@@ -1,0 +1,16 @@
+import Image from "next/image";
+import { ClubBreakdown } from "@/components/expanded-details";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { ArrowRight } from "lucide-react";
+import { getPublishedData } from "@/lib/server-data";
+import { players, type PlayerId } from "@/lib/data";
+import { jsonLd, pageMetadata, siteUrl } from "@/lib/site";
+
+export function generateStaticParams() { return [{ player: "messi" }, { player: "ronaldo" }]; }
+export async function generateMetadata({ params }: { params: Promise<{ player: string }> }) { const { snapshotLabel } = getPublishedData(); const { player } = await params; if (player !== "messi" && player !== "ronaldo") return {}; const p = players[player as PlayerId]; return pageMetadata(`${p.name}: Goals, Stats & Awards — 2026`, `${p.name}'s sourced career statistics through ${snapshotLabel}, with Champions League and La Liga records and individual awards.`, `/players/${player}`); }
+export default async function PlayerPage({ params }: { params: Promise<{ player: string }> }) {
+  const { scopes, snapshotLabel } = getPublishedData();
+  const { player } = await params; if (player !== "messi" && player !== "ronaldo") notFound(); const p = players[player];
+  return <div className={`page-container inner-page profile-page ${player}`}><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd({ "@context": "https://schema.org", "@type": "Person", name: p.name, birthDate: p.born, nationality: { "@type": "Country", name: p.country }, url: `${siteUrl}/players/${player}` }) }} /><section className="profile-hero panel"><div><span className="eyebrow">{p.countryCode} · PLAYER PROFILE</span><h1>{p.name}<span className="heading-dot">.</span></h1><p>{p.tagline}</p><span className="snapshot-badge">UPDATED {snapshotLabel.toUpperCase()}</span></div><Image src={p.image} alt={p.name} width={400} height={430} priority className="profile-photo" /></section><div className="profile-stat-grid">{scopes.career.metrics.slice(0, 3).map(metric => <div className="panel" key={metric.id}><span className="section-kicker">{metric.label.toUpperCase()}</span><strong>{metric.values[player]}</strong><Link href="/methodology">Source & definition <ArrowRight size={12} /></Link></div>)}</div><div className="prose panel"><h2>Individual recognition</h2><p>{p.name} won {p.awards.length} Ballon d’Or awards through the completed 2025 edition: {p.awards.join(", ")}. These are individual awards, separate from team trophies.</p><h2>European competitions</h2><p>In UEFA’s Champions League main competition, {p.short} recorded {scopes["champions-league"].goals[player]} goals in {scopes["champions-league"].appearances?.[player]} appearances. Qualifying rounds are excluded.</p><h2>Read the numbers with their date</h2><p>The career figures on this page were updated through {snapshotLabel}. They are a dated release and do not refresh during a match. See the methodology for the counting rules, coverage gaps and supporting sources.</p><Link href="/methodology">Sources & methodology <ArrowRight size={14} /></Link></div><ClubBreakdown only={player} /><Link href="/compare" className="primary-button">Compare with {player === "messi" ? "Ronaldo" : "Messi"}<ArrowRight size={16} /></Link></div>;
+}

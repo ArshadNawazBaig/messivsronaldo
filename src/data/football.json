@@ -1,0 +1,6760 @@
+{
+  "asOf": "2026-09-21",
+  "reviewedAt": "2026-09-21",
+  "version": "2026.09.21.1",
+  "source": "https://www.messivsronaldo.app/",
+  "scopes": {
+    "career": {
+      "goals": {
+        "messi": 930,
+        "ronaldo": 979
+      },
+      "assists": {
+        "messi": 424,
+        "ronaldo": 261
+      },
+      "appearances": {
+        "messi": 1176,
+        "ronaldo": 1337
+      },
+      "minutes": {
+        "messi": 96747,
+        "ronaldo": 109295
+      },
+      "hatTricks": {
+        "messi": 62,
+        "ronaldo": 66
+      },
+      "freeKicks": {
+        "messi": 75,
+        "ronaldo": 65
+      },
+      "outsideBox": {
+        "messi": 109,
+        "ronaldo": 72
+      },
+      "insideBox": {
+        "messi": 632,
+        "ronaldo": 658
+      },
+      "leftFoot": {
+        "messi": 781,
+        "ronaldo": 186
+      },
+      "rightFoot": {
+        "messi": 113,
+        "ronaldo": 632
+      },
+      "headers": {
+        "messi": 32,
+        "ronaldo": 158
+      },
+      "otherBody": {
+        "messi": 4,
+        "ronaldo": 3
+      },
+      "penalties": {
+        "messi": 114,
+        "ronaldo": 184
+      },
+      "penaltyAttempts": {
+        "messi": 149,
+        "ronaldo": 220
+      }
+    },
+    "career-europe": {
+      "goals": {
+        "messi": 829,
+        "ronaldo": 847
+      },
+      "assists": {
+        "messi": 368,
+        "ronaldo": 238
+      },
+      "appearances": {
+        "messi": 1060,
+        "ronaldo": 1182
+      },
+      "minutes": {
+        "messi": 87143,
+        "ronaldo": 95882
+      },
+      "hatTricks": {
+        "messi": 59,
+        "ronaldo": 60
+      },
+      "freeKicks": {
+        "messi": 64,
+        "ronaldo": 59
+      },
+      "outsideBox": {
+        "messi": 90,
+        "ronaldo": 62
+      },
+      "insideBox": {
+        "messi": 566,
+        "ronaldo": 574
+      },
+      "leftFoot": {
+        "messi": 696,
+        "ronaldo": 159
+      },
+      "rightFoot": {
+        "messi": 104,
+        "ronaldo": 545
+      },
+      "headers": {
+        "messi": 26,
+        "ronaldo": 141
+      },
+      "otherBody": {
+        "messi": 3,
+        "ronaldo": 2
+      },
+      "penalties": {
+        "messi": 109,
+        "ronaldo": 152
+      },
+      "penaltyAttempts": {
+        "messi": 142,
+        "ronaldo": 184
+      }
+    },
+    "club": {
+      "goals": {
+        "messi": 805,
+        "ronaldo": 833
+      },
+      "assists": {
+        "messi": 359,
+        "ronaldo": 224
+      },
+      "appearances": {
+        "messi": 969,
+        "ronaldo": 1104
+      },
+      "minutes": {
+        "messi": 79635,
+        "ronaldo": 90742
+      },
+      "hatTricks": {
+        "messi": 51,
+        "ronaldo": 56
+      },
+      "freeKicks": {
+        "messi": 63,
+        "ronaldo": 54
+      },
+      "outsideBox": {
+        "messi": 94,
+        "ronaldo": 60
+      },
+      "insideBox": {
+        "messi": 559,
+        "ronaldo": 558
+      },
+      "leftFoot": {
+        "messi": 670,
+        "ronaldo": 153
+      },
+      "rightFoot": {
+        "messi": 101,
+        "ronaldo": 547
+      },
+      "headers": {
+        "messi": 30,
+        "ronaldo": 130
+      },
+      "otherBody": {
+        "messi": 4,
+        "ronaldo": 3
+      },
+      "penalties": {
+        "messi": 89,
+        "ronaldo": 161
+      },
+      "penaltyAttempts": {
+        "messi": 117,
+        "ronaldo": 187
+      }
+    },
+    "european-clubs": {
+      "goals": {
+        "messi": 704,
+        "ronaldo": 701
+      },
+      "assists": {
+        "messi": 303,
+        "ronaldo": 201
+      },
+      "appearances": {
+        "messi": 853,
+        "ronaldo": 949
+      },
+      "minutes": {
+        "messi": 70031,
+        "ronaldo": 77329
+      },
+      "hatTricks": {
+        "messi": 48,
+        "ronaldo": 50
+      },
+      "freeKicks": {
+        "messi": 52,
+        "ronaldo": 48
+      },
+      "outsideBox": {
+        "messi": 75,
+        "ronaldo": 50
+      },
+      "insideBox": {
+        "messi": 493,
+        "ronaldo": 474
+      },
+      "leftFoot": {
+        "messi": 585,
+        "ronaldo": 126
+      },
+      "rightFoot": {
+        "messi": 92,
+        "ronaldo": 460
+      },
+      "headers": {
+        "messi": 24,
+        "ronaldo": 113
+      },
+      "otherBody": {
+        "messi": 3,
+        "ronaldo": 2
+      },
+      "penalties": {
+        "messi": 84,
+        "ronaldo": 129
+      },
+      "penaltyAttempts": {
+        "messi": 110,
+        "ronaldo": 151
+      }
+    },
+    "league": {
+      "goals": {
+        "messi": 566,
+        "ronaldo": 603
+      },
+      "assists": {
+        "messi": 261,
+        "ronaldo": 162
+      },
+      "appearances": {
+        "messi": 654,
+        "ronaldo": 764
+      },
+      "minutes": {
+        "messi": 53423,
+        "ronaldo": 61885
+      },
+      "hatTricks": {
+        "messi": 39,
+        "ronaldo": 45
+      },
+      "freeKicks": {
+        "messi": 49,
+        "ronaldo": 39
+      },
+      "outsideBox": {
+        "messi": 65,
+        "ronaldo": 46
+      },
+      "insideBox": {
+        "messi": 389,
+        "ronaldo": 393
+      },
+      "leftFoot": {
+        "messi": 475,
+        "ronaldo": 106
+      },
+      "rightFoot": {
+        "messi": 71,
+        "ronaldo": 403
+      },
+      "headers": {
+        "messi": 18,
+        "ronaldo": 91
+      },
+      "otherBody": {
+        "messi": 2,
+        "ronaldo": 3
+      },
+      "penalties": {
+        "messi": 63,
+        "ronaldo": 125
+      },
+      "penaltyAttempts": {
+        "messi": 79,
+        "ronaldo": 145
+      }
+    },
+    "champions-league": {
+      "goals": {
+        "messi": 129,
+        "ronaldo": 140
+      },
+      "assists": {
+        "messi": 40,
+        "ronaldo": 41
+      },
+      "appearances": {
+        "messi": 163,
+        "ronaldo": 183
+      },
+      "minutes": {
+        "messi": 13577,
+        "ronaldo": 15944
+      },
+      "hatTricks": {
+        "messi": 8,
+        "ronaldo": 8
+      },
+      "freeKicks": {
+        "messi": 5,
+        "ronaldo": 12
+      },
+      "outsideBox": {
+        "messi": 18,
+        "ronaldo": 10
+      },
+      "insideBox": {
+        "messi": 88,
+        "ronaldo": 99
+      },
+      "leftFoot": {
+        "messi": 107,
+        "ronaldo": 20
+      },
+      "rightFoot": {
+        "messi": 18,
+        "ronaldo": 95
+      },
+      "headers": {
+        "messi": 4,
+        "ronaldo": 25
+      },
+      "otherBody": {
+        "messi": 0,
+        "ronaldo": 0
+      },
+      "penalties": {
+        "messi": 18,
+        "ronaldo": 19
+      },
+      "penaltyAttempts": {
+        "messi": 23,
+        "ronaldo": 22
+      }
+    },
+    "international": {
+      "goals": {
+        "messi": 125,
+        "ronaldo": 146
+      },
+      "assists": {
+        "messi": 65,
+        "ronaldo": 37
+      },
+      "appearances": {
+        "messi": 207,
+        "ronaldo": 233
+      },
+      "minutes": {
+        "messi": 17112,
+        "ronaldo": 18553
+      },
+      "hatTricks": {
+        "messi": 11,
+        "ronaldo": 10
+      },
+      "freeKicks": {
+        "messi": 12,
+        "ronaldo": 11
+      },
+      "outsideBox": {
+        "messi": 15,
+        "ronaldo": 12
+      },
+      "insideBox": {
+        "messi": 73,
+        "ronaldo": 100
+      },
+      "leftFoot": {
+        "messi": 111,
+        "ronaldo": 33
+      },
+      "rightFoot": {
+        "messi": 12,
+        "ronaldo": 85
+      },
+      "headers": {
+        "messi": 2,
+        "ronaldo": 28
+      },
+      "otherBody": {
+        "messi": 0,
+        "ronaldo": 0
+      },
+      "penalties": {
+        "messi": 25,
+        "ronaldo": 23
+      },
+      "penaltyAttempts": {
+        "messi": 32,
+        "ronaldo": 33
+      }
+    },
+    "world-cup": {
+      "goals": {
+        "messi": 21,
+        "ronaldo": 11
+      },
+      "assists": {
+        "messi": 12,
+        "ronaldo": 2
+      },
+      "appearances": {
+        "messi": 34,
+        "ronaldo": 27
+      },
+      "minutes": {
+        "messi": 3053,
+        "ronaldo": 2203
+      },
+      "hatTricks": {
+        "messi": 1,
+        "ronaldo": 1
+      },
+      "freeKicks": {
+        "messi": 2,
+        "ronaldo": 1
+      },
+      "outsideBox": {
+        "messi": 4,
+        "ronaldo": 1
+      },
+      "insideBox": {
+        "messi": 11,
+        "ronaldo": 5
+      },
+      "leftFoot": {
+        "messi": 17,
+        "ronaldo": 2
+      },
+      "rightFoot": {
+        "messi": 4,
+        "ronaldo": 8
+      },
+      "headers": {
+        "messi": 0,
+        "ronaldo": 1
+      },
+      "otherBody": {
+        "messi": 0,
+        "ronaldo": 0
+      },
+      "penalties": {
+        "messi": 4,
+        "ronaldo": 4
+      },
+      "penaltyAttempts": {
+        "messi": 8,
+        "ronaldo": 5
+      }
+    },
+    "copa-euros": {
+      "goals": {
+        "messi": 14,
+        "ronaldo": 14
+      },
+      "assists": {
+        "messi": 18,
+        "ronaldo": 7
+      },
+      "appearances": {
+        "messi": 39,
+        "ronaldo": 30
+      },
+      "minutes": {
+        "messi": 3331,
+        "ronaldo": 2640
+      },
+      "hatTricks": {
+        "messi": 1,
+        "ronaldo": 0
+      },
+      "freeKicks": {
+        "messi": 4,
+        "ronaldo": 0
+      },
+      "outsideBox": {
+        "messi": 1,
+        "ronaldo": 0
+      },
+      "insideBox": {
+        "messi": 6,
+        "ronaldo": 11
+      },
+      "leftFoot": {
+        "messi": 14,
+        "ronaldo": 2
+      },
+      "rightFoot": {
+        "messi": 0,
+        "ronaldo": 7
+      },
+      "headers": {
+        "messi": 0,
+        "ronaldo": 5
+      },
+      "otherBody": {
+        "messi": 0,
+        "ronaldo": 0
+      },
+      "penalties": {
+        "messi": 3,
+        "ronaldo": 3
+      },
+      "penaltyAttempts": {
+        "messi": 3,
+        "ronaldo": 5
+      }
+    },
+    "head-to-head": {
+      "goals": {
+        "messi": 22,
+        "ronaldo": 21
+      },
+      "assists": {
+        "messi": 12,
+        "ronaldo": 1
+      },
+      "appearances": {
+        "messi": 36,
+        "ronaldo": 36
+      },
+      "minutes": {
+        "messi": 3141,
+        "ronaldo": 3004
+      },
+      "hatTricks": {
+        "messi": 1,
+        "ronaldo": 0
+      },
+      "freeKicks": {
+        "messi": 2,
+        "ronaldo": 0
+      },
+      "outsideBox": {
+        "messi": 0,
+        "ronaldo": 0
+      },
+      "insideBox": {
+        "messi": 13,
+        "ronaldo": 15
+      },
+      "leftFoot": {
+        "messi": 18,
+        "ronaldo": 3
+      },
+      "rightFoot": {
+        "messi": 3,
+        "ronaldo": 16
+      },
+      "headers": {
+        "messi": 1,
+        "ronaldo": 2
+      },
+      "otherBody": {
+        "messi": 0,
+        "ronaldo": 0
+      },
+      "penalties": {
+        "messi": 7,
+        "ronaldo": 6
+      },
+      "penaltyAttempts": {
+        "messi": 7,
+        "ronaldo": 7
+      }
+    },
+    "la-liga": {
+      "goals": {
+        "messi": 474,
+        "ronaldo": 311
+      },
+      "assists": {
+        "messi": 192,
+        "ronaldo": 87
+      },
+      "appearances": {
+        "messi": 520,
+        "ronaldo": 292
+      },
+      "minutes": {
+        "messi": 42157,
+        "ronaldo": 25103
+      },
+      "hatTricks": {
+        "messi": 36,
+        "ronaldo": 34
+      },
+      "freeKicks": {
+        "messi": 39,
+        "ronaldo": 20
+      },
+      "outsideBox": {
+        "messi": 48,
+        "ronaldo": 23
+      },
+      "insideBox": {
+        "messi": 327,
+        "ronaldo": 207
+      },
+      "leftFoot": {
+        "messi": 394,
+        "ronaldo": 54
+      },
+      "rightFoot": {
+        "messi": 63,
+        "ronaldo": 204
+      },
+      "headers": {
+        "messi": 16,
+        "ronaldo": 52
+      },
+      "otherBody": {
+        "messi": 1,
+        "ronaldo": 1
+      },
+      "penalties": {
+        "messi": 60,
+        "ronaldo": 61
+      },
+      "penaltyAttempts": {
+        "messi": 74,
+        "ronaldo": 72
+      }
+    },
+    "current-clubs": {
+      "goals": {
+        "messi": 101,
+        "ronaldo": 132
+      },
+      "assists": {
+        "messi": 56,
+        "ronaldo": 23
+      },
+      "appearances": {
+        "messi": 116,
+        "ronaldo": 155
+      },
+      "minutes": {
+        "messi": 9604,
+        "ronaldo": 13413
+      },
+      "hatTricks": {
+        "messi": 3,
+        "ronaldo": 6
+      },
+      "freeKicks": {
+        "messi": 11,
+        "ronaldo": 6
+      },
+      "outsideBox": {
+        "messi": 19,
+        "ronaldo": 10
+      },
+      "insideBox": {
+        "messi": 66,
+        "ronaldo": 84
+      },
+      "leftFoot": {
+        "messi": 85,
+        "ronaldo": 27
+      },
+      "rightFoot": {
+        "messi": 9,
+        "ronaldo": 87
+      },
+      "headers": {
+        "messi": 6,
+        "ronaldo": 17
+      },
+      "otherBody": {
+        "messi": 1,
+        "ronaldo": 1
+      },
+      "penalties": {
+        "messi": 5,
+        "ronaldo": 32
+      },
+      "penaltyAttempts": {
+        "messi": 7,
+        "ronaldo": 36
+      }
+    }
+  },
+  "calendar": [
+    {
+      "year": 2002,
+      "source": "https://www.messivsronaldo.app/calendar-year-stats/2002/",
+      "career": {
+        "goals": {
+          "messi": 0,
+          "ronaldo": 5
+        },
+        "assists": {
+          "messi": 0,
+          "ronaldo": 4
+        },
+        "appearances": {
+          "messi": 0,
+          "ronaldo": 16
+        },
+        "minutes": {
+          "messi": 0,
+          "ronaldo": 850
+        },
+        "hatTricks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "outsideBox": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "insideBox": {
+          "messi": 0,
+          "ronaldo": 4
+        },
+        "leftFoot": {
+          "messi": 0,
+          "ronaldo": 2
+        },
+        "rightFoot": {
+          "messi": 0,
+          "ronaldo": 2
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penaltyAttempts": {
+          "messi": 0,
+          "ronaldo": 0
+        }
+      },
+      "club": {
+        "goals": {
+          "messi": 0,
+          "ronaldo": 5
+        },
+        "assists": {
+          "messi": 0,
+          "ronaldo": 4
+        },
+        "appearances": {
+          "messi": 0,
+          "ronaldo": 16
+        },
+        "minutes": {
+          "messi": 0,
+          "ronaldo": 850
+        },
+        "hatTricks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "outsideBox": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "insideBox": {
+          "messi": 0,
+          "ronaldo": 4
+        },
+        "leftFoot": {
+          "messi": 0,
+          "ronaldo": 2
+        },
+        "rightFoot": {
+          "messi": 0,
+          "ronaldo": 2
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penaltyAttempts": {
+          "messi": 0,
+          "ronaldo": 0
+        }
+      },
+      "international": {
+        "goals": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "assists": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "appearances": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "minutes": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "hatTricks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "outsideBox": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "insideBox": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "leftFoot": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "rightFoot": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penaltyAttempts": {
+          "messi": 0,
+          "ronaldo": 0
+        }
+      },
+      "league": {
+        "goals": {
+          "messi": 0,
+          "ronaldo": 3
+        },
+        "assists": {
+          "messi": 0,
+          "ronaldo": 4
+        },
+        "appearances": {
+          "messi": 0,
+          "ronaldo": 11
+        },
+        "minutes": {
+          "messi": 0,
+          "ronaldo": 617
+        },
+        "hatTricks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "outsideBox": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "insideBox": {
+          "messi": 0,
+          "ronaldo": 3
+        },
+        "leftFoot": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "rightFoot": {
+          "messi": 0,
+          "ronaldo": 2
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penaltyAttempts": {
+          "messi": 0,
+          "ronaldo": 0
+        }
+      }
+    },
+    {
+      "year": 2003,
+      "source": "https://www.messivsronaldo.app/calendar-year-stats/2003/",
+      "career": {
+        "goals": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "assists": {
+          "messi": 0,
+          "ronaldo": 2
+        },
+        "appearances": {
+          "messi": 0,
+          "ronaldo": 36
+        },
+        "minutes": {
+          "messi": 0,
+          "ronaldo": 1708
+        },
+        "hatTricks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "outsideBox": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "insideBox": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "leftFoot": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "rightFoot": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penaltyAttempts": {
+          "messi": 0,
+          "ronaldo": 0
+        }
+      },
+      "club": {
+        "goals": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "assists": {
+          "messi": 0,
+          "ronaldo": 2
+        },
+        "appearances": {
+          "messi": 0,
+          "ronaldo": 34
+        },
+        "minutes": {
+          "messi": 0,
+          "ronaldo": 1618
+        },
+        "hatTricks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "outsideBox": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "insideBox": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "leftFoot": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "rightFoot": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penaltyAttempts": {
+          "messi": 0,
+          "ronaldo": 0
+        }
+      },
+      "international": {
+        "goals": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "assists": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "appearances": {
+          "messi": 0,
+          "ronaldo": 2
+        },
+        "minutes": {
+          "messi": 0,
+          "ronaldo": 90
+        },
+        "hatTricks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "outsideBox": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "insideBox": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "leftFoot": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "rightFoot": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penaltyAttempts": {
+          "messi": 0,
+          "ronaldo": 0
+        }
+      },
+      "league": {
+        "goals": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "assists": {
+          "messi": 0,
+          "ronaldo": 2
+        },
+        "appearances": {
+          "messi": 0,
+          "ronaldo": 29
+        },
+        "minutes": {
+          "messi": 0,
+          "ronaldo": 1182
+        },
+        "hatTricks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "outsideBox": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "insideBox": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "leftFoot": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "rightFoot": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penaltyAttempts": {
+          "messi": 0,
+          "ronaldo": 0
+        }
+      }
+    },
+    {
+      "year": 2004,
+      "source": "https://www.messivsronaldo.app/calendar-year-stats/2004/",
+      "career": {
+        "goals": {
+          "messi": 0,
+          "ronaldo": 13
+        },
+        "assists": {
+          "messi": 0,
+          "ronaldo": 14
+        },
+        "appearances": {
+          "messi": 7,
+          "ronaldo": 60
+        },
+        "minutes": {
+          "messi": 228,
+          "ronaldo": 3905
+        },
+        "hatTricks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "outsideBox": {
+          "messi": 0,
+          "ronaldo": 3
+        },
+        "insideBox": {
+          "messi": 0,
+          "ronaldo": 10
+        },
+        "leftFoot": {
+          "messi": 0,
+          "ronaldo": 2
+        },
+        "rightFoot": {
+          "messi": 0,
+          "ronaldo": 5
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 6
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penaltyAttempts": {
+          "messi": 0,
+          "ronaldo": 0
+        }
+      },
+      "club": {
+        "goals": {
+          "messi": 0,
+          "ronaldo": 6
+        },
+        "assists": {
+          "messi": 0,
+          "ronaldo": 7
+        },
+        "appearances": {
+          "messi": 7,
+          "ronaldo": 44
+        },
+        "minutes": {
+          "messi": 228,
+          "ronaldo": 2888
+        },
+        "hatTricks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "outsideBox": {
+          "messi": 0,
+          "ronaldo": 2
+        },
+        "insideBox": {
+          "messi": 0,
+          "ronaldo": 4
+        },
+        "leftFoot": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "rightFoot": {
+          "messi": 0,
+          "ronaldo": 4
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 2
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penaltyAttempts": {
+          "messi": 0,
+          "ronaldo": 0
+        }
+      },
+      "international": {
+        "goals": {
+          "messi": 0,
+          "ronaldo": 7
+        },
+        "assists": {
+          "messi": 0,
+          "ronaldo": 7
+        },
+        "appearances": {
+          "messi": 0,
+          "ronaldo": 16
+        },
+        "minutes": {
+          "messi": 0,
+          "ronaldo": 1017
+        },
+        "hatTricks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "outsideBox": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "insideBox": {
+          "messi": 0,
+          "ronaldo": 6
+        },
+        "leftFoot": {
+          "messi": 0,
+          "ronaldo": 2
+        },
+        "rightFoot": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 4
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penaltyAttempts": {
+          "messi": 0,
+          "ronaldo": 0
+        }
+      },
+      "league": {
+        "goals": {
+          "messi": 0,
+          "ronaldo": 4
+        },
+        "assists": {
+          "messi": 0,
+          "ronaldo": 4
+        },
+        "appearances": {
+          "messi": 5,
+          "ronaldo": 31
+        },
+        "minutes": {
+          "messi": 65,
+          "ronaldo": 2017
+        },
+        "hatTricks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "outsideBox": {
+          "messi": 0,
+          "ronaldo": 2
+        },
+        "insideBox": {
+          "messi": 0,
+          "ronaldo": 2
+        },
+        "leftFoot": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "rightFoot": {
+          "messi": 0,
+          "ronaldo": 3
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penaltyAttempts": {
+          "messi": 0,
+          "ronaldo": 0
+        }
+      }
+    },
+    {
+      "year": 2005,
+      "source": "https://www.messivsronaldo.app/calendar-year-stats/2005/",
+      "career": {
+        "goals": {
+          "messi": 3,
+          "ronaldo": 15
+        },
+        "assists": {
+          "messi": 4,
+          "ronaldo": 11
+        },
+        "appearances": {
+          "messi": 21,
+          "ronaldo": 64
+        },
+        "minutes": {
+          "messi": 999,
+          "ronaldo": 4629
+        },
+        "hatTricks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "outsideBox": {
+          "messi": 0,
+          "ronaldo": 2
+        },
+        "insideBox": {
+          "messi": 3,
+          "ronaldo": 11
+        },
+        "leftFoot": {
+          "messi": 3,
+          "ronaldo": 6
+        },
+        "rightFoot": {
+          "messi": 0,
+          "ronaldo": 7
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 2
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "penaltyAttempts": {
+          "messi": 0,
+          "ronaldo": 1
+        }
+      },
+      "club": {
+        "goals": {
+          "messi": 3,
+          "ronaldo": 13
+        },
+        "assists": {
+          "messi": 3,
+          "ronaldo": 9
+        },
+        "appearances": {
+          "messi": 16,
+          "ronaldo": 53
+        },
+        "minutes": {
+          "messi": 806,
+          "ronaldo": 3834
+        },
+        "hatTricks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "outsideBox": {
+          "messi": 0,
+          "ronaldo": 2
+        },
+        "insideBox": {
+          "messi": 3,
+          "ronaldo": 10
+        },
+        "leftFoot": {
+          "messi": 3,
+          "ronaldo": 6
+        },
+        "rightFoot": {
+          "messi": 0,
+          "ronaldo": 6
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "penaltyAttempts": {
+          "messi": 0,
+          "ronaldo": 1
+        }
+      },
+      "international": {
+        "goals": {
+          "messi": 0,
+          "ronaldo": 2
+        },
+        "assists": {
+          "messi": 1,
+          "ronaldo": 2
+        },
+        "appearances": {
+          "messi": 5,
+          "ronaldo": 11
+        },
+        "minutes": {
+          "messi": 193,
+          "ronaldo": 795
+        },
+        "hatTricks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "outsideBox": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "insideBox": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "leftFoot": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "rightFoot": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penaltyAttempts": {
+          "messi": 0,
+          "ronaldo": 0
+        }
+      },
+      "league": {
+        "goals": {
+          "messi": 2,
+          "ronaldo": 7
+        },
+        "assists": {
+          "messi": 2,
+          "ronaldo": 4
+        },
+        "appearances": {
+          "messi": 12,
+          "ronaldo": 32
+        },
+        "minutes": {
+          "messi": 599,
+          "ronaldo": 2114
+        },
+        "hatTricks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "outsideBox": {
+          "messi": 0,
+          "ronaldo": 2
+        },
+        "insideBox": {
+          "messi": 2,
+          "ronaldo": 5
+        },
+        "leftFoot": {
+          "messi": 2,
+          "ronaldo": 3
+        },
+        "rightFoot": {
+          "messi": 0,
+          "ronaldo": 3
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penaltyAttempts": {
+          "messi": 0,
+          "ronaldo": 0
+        }
+      }
+    },
+    {
+      "year": 2006,
+      "source": "https://www.messivsronaldo.app/calendar-year-stats/2006/",
+      "career": {
+        "goals": {
+          "messi": 12,
+          "ronaldo": 25
+        },
+        "assists": {
+          "messi": 3,
+          "ronaldo": 10
+        },
+        "appearances": {
+          "messi": 33,
+          "ronaldo": 60
+        },
+        "minutes": {
+          "messi": 2136,
+          "ronaldo": 4920
+        },
+        "hatTricks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 0,
+          "ronaldo": 2
+        },
+        "outsideBox": {
+          "messi": 1,
+          "ronaldo": 3
+        },
+        "insideBox": {
+          "messi": 11,
+          "ronaldo": 19
+        },
+        "leftFoot": {
+          "messi": 8,
+          "ronaldo": 4
+        },
+        "rightFoot": {
+          "messi": 3,
+          "ronaldo": 18
+        },
+        "headers": {
+          "messi": 1,
+          "ronaldo": 3
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "penaltyAttempts": {
+          "messi": 0,
+          "ronaldo": 3
+        }
+      },
+      "club": {
+        "goals": {
+          "messi": 10,
+          "ronaldo": 19
+        },
+        "assists": {
+          "messi": 1,
+          "ronaldo": 9
+        },
+        "appearances": {
+          "messi": 26,
+          "ronaldo": 46
+        },
+        "minutes": {
+          "messi": 1747,
+          "ronaldo": 3838
+        },
+        "hatTricks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 0,
+          "ronaldo": 2
+        },
+        "outsideBox": {
+          "messi": 0,
+          "ronaldo": 2
+        },
+        "insideBox": {
+          "messi": 10,
+          "ronaldo": 15
+        },
+        "leftFoot": {
+          "messi": 7,
+          "ronaldo": 2
+        },
+        "rightFoot": {
+          "messi": 2,
+          "ronaldo": 16
+        },
+        "headers": {
+          "messi": 1,
+          "ronaldo": 1
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penaltyAttempts": {
+          "messi": 0,
+          "ronaldo": 1
+        }
+      },
+      "international": {
+        "goals": {
+          "messi": 2,
+          "ronaldo": 6
+        },
+        "assists": {
+          "messi": 2,
+          "ronaldo": 1
+        },
+        "appearances": {
+          "messi": 7,
+          "ronaldo": 14
+        },
+        "minutes": {
+          "messi": 389,
+          "ronaldo": 1082
+        },
+        "hatTricks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "outsideBox": {
+          "messi": 1,
+          "ronaldo": 1
+        },
+        "insideBox": {
+          "messi": 1,
+          "ronaldo": 4
+        },
+        "leftFoot": {
+          "messi": 1,
+          "ronaldo": 2
+        },
+        "rightFoot": {
+          "messi": 1,
+          "ronaldo": 2
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 2
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "penaltyAttempts": {
+          "messi": 0,
+          "ronaldo": 2
+        }
+      },
+      "league": {
+        "goals": {
+          "messi": 8,
+          "ronaldo": 18
+        },
+        "assists": {
+          "messi": 1,
+          "ronaldo": 6
+        },
+        "appearances": {
+          "messi": 16,
+          "ronaldo": 36
+        },
+        "minutes": {
+          "messi": 1037,
+          "ronaldo": 3014
+        },
+        "hatTricks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 0,
+          "ronaldo": 2
+        },
+        "outsideBox": {
+          "messi": 0,
+          "ronaldo": 2
+        },
+        "insideBox": {
+          "messi": 8,
+          "ronaldo": 14
+        },
+        "leftFoot": {
+          "messi": 6,
+          "ronaldo": 2
+        },
+        "rightFoot": {
+          "messi": 2,
+          "ronaldo": 15
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penaltyAttempts": {
+          "messi": 0,
+          "ronaldo": 1
+        }
+      }
+    },
+    {
+      "year": 2007,
+      "source": "https://www.messivsronaldo.app/calendar-year-stats/2007/",
+      "career": {
+        "goals": {
+          "messi": 31,
+          "ronaldo": 34
+        },
+        "assists": {
+          "messi": 12,
+          "ronaldo": 11
+        },
+        "appearances": {
+          "messi": 55,
+          "ronaldo": 60
+        },
+        "minutes": {
+          "messi": 4390,
+          "ronaldo": 5004
+        },
+        "hatTricks": {
+          "messi": 1,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 0,
+          "ronaldo": 2
+        },
+        "outsideBox": {
+          "messi": 3,
+          "ronaldo": 2
+        },
+        "insideBox": {
+          "messi": 23,
+          "ronaldo": 22
+        },
+        "leftFoot": {
+          "messi": 27,
+          "ronaldo": 6
+        },
+        "rightFoot": {
+          "messi": 3,
+          "ronaldo": 19
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 9
+        },
+        "otherBody": {
+          "messi": 1,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 5,
+          "ronaldo": 8
+        },
+        "penaltyAttempts": {
+          "messi": 5,
+          "ronaldo": 9
+        }
+      },
+      "club": {
+        "goals": {
+          "messi": 25,
+          "ronaldo": 29
+        },
+        "assists": {
+          "messi": 8,
+          "ronaldo": 10
+        },
+        "appearances": {
+          "messi": 41,
+          "ronaldo": 50
+        },
+        "minutes": {
+          "messi": 3223,
+          "ronaldo": 4143
+        },
+        "hatTricks": {
+          "messi": 1,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 0,
+          "ronaldo": 2
+        },
+        "outsideBox": {
+          "messi": 2,
+          "ronaldo": 1
+        },
+        "insideBox": {
+          "messi": 19,
+          "ronaldo": 18
+        },
+        "leftFoot": {
+          "messi": 21,
+          "ronaldo": 3
+        },
+        "rightFoot": {
+          "messi": 3,
+          "ronaldo": 18
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 8
+        },
+        "otherBody": {
+          "messi": 1,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 4,
+          "ronaldo": 8
+        },
+        "penaltyAttempts": {
+          "messi": 4,
+          "ronaldo": 9
+        }
+      },
+      "international": {
+        "goals": {
+          "messi": 6,
+          "ronaldo": 5
+        },
+        "assists": {
+          "messi": 4,
+          "ronaldo": 1
+        },
+        "appearances": {
+          "messi": 14,
+          "ronaldo": 10
+        },
+        "minutes": {
+          "messi": 1167,
+          "ronaldo": 861
+        },
+        "hatTricks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "outsideBox": {
+          "messi": 1,
+          "ronaldo": 1
+        },
+        "insideBox": {
+          "messi": 4,
+          "ronaldo": 4
+        },
+        "leftFoot": {
+          "messi": 6,
+          "ronaldo": 3
+        },
+        "rightFoot": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 1,
+          "ronaldo": 0
+        },
+        "penaltyAttempts": {
+          "messi": 1,
+          "ronaldo": 0
+        }
+      },
+      "league": {
+        "goals": {
+          "messi": 19,
+          "ronaldo": 18
+        },
+        "assists": {
+          "messi": 6,
+          "ronaldo": 6
+        },
+        "appearances": {
+          "messi": 32,
+          "ronaldo": 31
+        },
+        "minutes": {
+          "messi": 2429,
+          "ronaldo": 2507
+        },
+        "hatTricks": {
+          "messi": 1,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "outsideBox": {
+          "messi": 2,
+          "ronaldo": 1
+        },
+        "insideBox": {
+          "messi": 14,
+          "ronaldo": 11
+        },
+        "leftFoot": {
+          "messi": 17,
+          "ronaldo": 3
+        },
+        "rightFoot": {
+          "messi": 1,
+          "ronaldo": 10
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 5
+        },
+        "otherBody": {
+          "messi": 1,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 3,
+          "ronaldo": 5
+        },
+        "penaltyAttempts": {
+          "messi": 3,
+          "ronaldo": 6
+        }
+      }
+    },
+    {
+      "year": 2008,
+      "source": "https://www.messivsronaldo.app/calendar-year-stats/2008/",
+      "career": {
+        "goals": {
+          "messi": 22,
+          "ronaldo": 35
+        },
+        "assists": {
+          "messi": 18,
+          "ronaldo": 12
+        },
+        "appearances": {
+          "messi": 48,
+          "ronaldo": 58
+        },
+        "minutes": {
+          "messi": 3589,
+          "ronaldo": 4786
+        },
+        "hatTricks": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "freeKicks": {
+          "messi": 1,
+          "ronaldo": 5
+        },
+        "outsideBox": {
+          "messi": 3,
+          "ronaldo": 1
+        },
+        "insideBox": {
+          "messi": 15,
+          "ronaldo": 25
+        },
+        "leftFoot": {
+          "messi": 19,
+          "ronaldo": 7
+        },
+        "rightFoot": {
+          "messi": 1,
+          "ronaldo": 21
+        },
+        "headers": {
+          "messi": 2,
+          "ronaldo": 6
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "penalties": {
+          "messi": 3,
+          "ronaldo": 4
+        },
+        "penaltyAttempts": {
+          "messi": 5,
+          "ronaldo": 5
+        }
+      },
+      "club": {
+        "goals": {
+          "messi": 20,
+          "ronaldo": 34
+        },
+        "assists": {
+          "messi": 16,
+          "ronaldo": 11
+        },
+        "appearances": {
+          "messi": 40,
+          "ronaldo": 50
+        },
+        "minutes": {
+          "messi": 2922,
+          "ronaldo": 4111
+        },
+        "hatTricks": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "freeKicks": {
+          "messi": 1,
+          "ronaldo": 5
+        },
+        "outsideBox": {
+          "messi": 3,
+          "ronaldo": 1
+        },
+        "insideBox": {
+          "messi": 13,
+          "ronaldo": 24
+        },
+        "leftFoot": {
+          "messi": 18,
+          "ronaldo": 7
+        },
+        "rightFoot": {
+          "messi": 1,
+          "ronaldo": 20
+        },
+        "headers": {
+          "messi": 1,
+          "ronaldo": 6
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "penalties": {
+          "messi": 3,
+          "ronaldo": 4
+        },
+        "penaltyAttempts": {
+          "messi": 5,
+          "ronaldo": 5
+        }
+      },
+      "international": {
+        "goals": {
+          "messi": 2,
+          "ronaldo": 1
+        },
+        "assists": {
+          "messi": 2,
+          "ronaldo": 1
+        },
+        "appearances": {
+          "messi": 8,
+          "ronaldo": 8
+        },
+        "minutes": {
+          "messi": 667,
+          "ronaldo": 675
+        },
+        "hatTricks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "outsideBox": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "insideBox": {
+          "messi": 2,
+          "ronaldo": 1
+        },
+        "leftFoot": {
+          "messi": 1,
+          "ronaldo": 0
+        },
+        "rightFoot": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "headers": {
+          "messi": 1,
+          "ronaldo": 0
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penaltyAttempts": {
+          "messi": 0,
+          "ronaldo": 0
+        }
+      },
+      "league": {
+        "goals": {
+          "messi": 12,
+          "ronaldo": 26
+        },
+        "assists": {
+          "messi": 13,
+          "ronaldo": 9
+        },
+        "appearances": {
+          "messi": 27,
+          "ronaldo": 33
+        },
+        "minutes": {
+          "messi": 2030,
+          "ronaldo": 2651
+        },
+        "hatTricks": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "freeKicks": {
+          "messi": 1,
+          "ronaldo": 5
+        },
+        "outsideBox": {
+          "messi": 2,
+          "ronaldo": 1
+        },
+        "insideBox": {
+          "messi": 6,
+          "ronaldo": 17
+        },
+        "leftFoot": {
+          "messi": 11,
+          "ronaldo": 5
+        },
+        "rightFoot": {
+          "messi": 0,
+          "ronaldo": 18
+        },
+        "headers": {
+          "messi": 1,
+          "ronaldo": 2
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "penalties": {
+          "messi": 3,
+          "ronaldo": 3
+        },
+        "penaltyAttempts": {
+          "messi": 3,
+          "ronaldo": 3
+        }
+      }
+    },
+    {
+      "year": 2009,
+      "source": "https://www.messivsronaldo.app/calendar-year-stats/2009/",
+      "career": {
+        "goals": {
+          "messi": 41,
+          "ronaldo": 30
+        },
+        "assists": {
+          "messi": 15,
+          "ronaldo": 6
+        },
+        "appearances": {
+          "messi": 64,
+          "ronaldo": 49
+        },
+        "minutes": {
+          "messi": 5055,
+          "ronaldo": 3861
+        },
+        "hatTricks": {
+          "messi": 1,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 1,
+          "ronaldo": 6
+        },
+        "outsideBox": {
+          "messi": 3,
+          "ronaldo": 3
+        },
+        "insideBox": {
+          "messi": 32,
+          "ronaldo": 15
+        },
+        "leftFoot": {
+          "messi": 29,
+          "ronaldo": 3
+        },
+        "rightFoot": {
+          "messi": 8,
+          "ronaldo": 23
+        },
+        "headers": {
+          "messi": 3,
+          "ronaldo": 4
+        },
+        "otherBody": {
+          "messi": 1,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 5,
+          "ronaldo": 6
+        },
+        "penaltyAttempts": {
+          "messi": 6,
+          "ronaldo": 7
+        }
+      },
+      "club": {
+        "goals": {
+          "messi": 38,
+          "ronaldo": 29
+        },
+        "assists": {
+          "messi": 14,
+          "ronaldo": 6
+        },
+        "appearances": {
+          "messi": 54,
+          "ronaldo": 42
+        },
+        "minutes": {
+          "messi": 4166,
+          "ronaldo": 3351
+        },
+        "hatTricks": {
+          "messi": 1,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 1,
+          "ronaldo": 6
+        },
+        "outsideBox": {
+          "messi": 3,
+          "ronaldo": 3
+        },
+        "insideBox": {
+          "messi": 30,
+          "ronaldo": 15
+        },
+        "leftFoot": {
+          "messi": 26,
+          "ronaldo": 3
+        },
+        "rightFoot": {
+          "messi": 8,
+          "ronaldo": 22
+        },
+        "headers": {
+          "messi": 3,
+          "ronaldo": 4
+        },
+        "otherBody": {
+          "messi": 1,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 4,
+          "ronaldo": 5
+        },
+        "penaltyAttempts": {
+          "messi": 5,
+          "ronaldo": 6
+        }
+      },
+      "international": {
+        "goals": {
+          "messi": 3,
+          "ronaldo": 1
+        },
+        "assists": {
+          "messi": 1,
+          "ronaldo": 0
+        },
+        "appearances": {
+          "messi": 10,
+          "ronaldo": 7
+        },
+        "minutes": {
+          "messi": 889,
+          "ronaldo": 510
+        },
+        "hatTricks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "outsideBox": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "insideBox": {
+          "messi": 2,
+          "ronaldo": 0
+        },
+        "leftFoot": {
+          "messi": 3,
+          "ronaldo": 0
+        },
+        "rightFoot": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 1,
+          "ronaldo": 1
+        },
+        "penaltyAttempts": {
+          "messi": 1,
+          "ronaldo": 1
+        }
+      },
+      "league": {
+        "goals": {
+          "messi": 22,
+          "ronaldo": 17
+        },
+        "assists": {
+          "messi": 10,
+          "ronaldo": 4
+        },
+        "appearances": {
+          "messi": 30,
+          "ronaldo": 26
+        },
+        "minutes": {
+          "messi": 2321,
+          "ronaldo": 2128
+        },
+        "hatTricks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 0,
+          "ronaldo": 2
+        },
+        "outsideBox": {
+          "messi": 3,
+          "ronaldo": 2
+        },
+        "insideBox": {
+          "messi": 17,
+          "ronaldo": 9
+        },
+        "leftFoot": {
+          "messi": 15,
+          "ronaldo": 2
+        },
+        "rightFoot": {
+          "messi": 5,
+          "ronaldo": 13
+        },
+        "headers": {
+          "messi": 2,
+          "ronaldo": 2
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 2,
+          "ronaldo": 4
+        },
+        "penaltyAttempts": {
+          "messi": 3,
+          "ronaldo": 5
+        }
+      }
+    },
+    {
+      "year": 2010,
+      "source": "https://www.messivsronaldo.app/calendar-year-stats/2010/",
+      "career": {
+        "goals": {
+          "messi": 60,
+          "ronaldo": 48
+        },
+        "assists": {
+          "messi": 17,
+          "ronaldo": 18
+        },
+        "appearances": {
+          "messi": 64,
+          "ronaldo": 59
+        },
+        "minutes": {
+          "messi": 5327,
+          "ronaldo": 5046
+        },
+        "hatTricks": {
+          "messi": 6,
+          "ronaldo": 4
+        },
+        "freeKicks": {
+          "messi": 1,
+          "ronaldo": 7
+        },
+        "outsideBox": {
+          "messi": 10,
+          "ronaldo": 2
+        },
+        "insideBox": {
+          "messi": 48,
+          "ronaldo": 31
+        },
+        "leftFoot": {
+          "messi": 47,
+          "ronaldo": 10
+        },
+        "rightFoot": {
+          "messi": 12,
+          "ronaldo": 35
+        },
+        "headers": {
+          "messi": 1,
+          "ronaldo": 3
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 1,
+          "ronaldo": 8
+        },
+        "penaltyAttempts": {
+          "messi": 2,
+          "ronaldo": 8
+        }
+      },
+      "club": {
+        "goals": {
+          "messi": 58,
+          "ronaldo": 45
+        },
+        "assists": {
+          "messi": 16,
+          "ronaldo": 14
+        },
+        "appearances": {
+          "messi": 54,
+          "ronaldo": 48
+        },
+        "minutes": {
+          "messi": 4461,
+          "ronaldo": 4209
+        },
+        "hatTricks": {
+          "messi": 6,
+          "ronaldo": 4
+        },
+        "freeKicks": {
+          "messi": 1,
+          "ronaldo": 6
+        },
+        "outsideBox": {
+          "messi": 10,
+          "ronaldo": 2
+        },
+        "insideBox": {
+          "messi": 46,
+          "ronaldo": 29
+        },
+        "leftFoot": {
+          "messi": 45,
+          "ronaldo": 9
+        },
+        "rightFoot": {
+          "messi": 12,
+          "ronaldo": 33
+        },
+        "headers": {
+          "messi": 1,
+          "ronaldo": 3
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 1,
+          "ronaldo": 8
+        },
+        "penaltyAttempts": {
+          "messi": 2,
+          "ronaldo": 8
+        }
+      },
+      "international": {
+        "goals": {
+          "messi": 2,
+          "ronaldo": 3
+        },
+        "assists": {
+          "messi": 1,
+          "ronaldo": 4
+        },
+        "appearances": {
+          "messi": 10,
+          "ronaldo": 11
+        },
+        "minutes": {
+          "messi": 866,
+          "ronaldo": 837
+        },
+        "hatTricks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "outsideBox": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "insideBox": {
+          "messi": 2,
+          "ronaldo": 2
+        },
+        "leftFoot": {
+          "messi": 2,
+          "ronaldo": 1
+        },
+        "rightFoot": {
+          "messi": 0,
+          "ronaldo": 2
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penaltyAttempts": {
+          "messi": 0,
+          "ronaldo": 0
+        }
+      },
+      "league": {
+        "goals": {
+          "messi": 42,
+          "ronaldo": 36
+        },
+        "assists": {
+          "messi": 15,
+          "ronaldo": 11
+        },
+        "appearances": {
+          "messi": 36,
+          "ronaldo": 37
+        },
+        "minutes": {
+          "messi": 3135,
+          "ronaldo": 3303
+        },
+        "hatTricks": {
+          "messi": 4,
+          "ronaldo": 3
+        },
+        "freeKicks": {
+          "messi": 1,
+          "ronaldo": 5
+        },
+        "outsideBox": {
+          "messi": 6,
+          "ronaldo": 2
+        },
+        "insideBox": {
+          "messi": 34,
+          "ronaldo": 22
+        },
+        "leftFoot": {
+          "messi": 32,
+          "ronaldo": 7
+        },
+        "rightFoot": {
+          "messi": 9,
+          "ronaldo": 26
+        },
+        "headers": {
+          "messi": 1,
+          "ronaldo": 3
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 1,
+          "ronaldo": 7
+        },
+        "penaltyAttempts": {
+          "messi": 1,
+          "ronaldo": 7
+        }
+      }
+    },
+    {
+      "year": 2011,
+      "source": "https://www.messivsronaldo.app/calendar-year-stats/2011/",
+      "career": {
+        "goals": {
+          "messi": 59,
+          "ronaldo": 60
+        },
+        "assists": {
+          "messi": 37,
+          "ronaldo": 18
+        },
+        "appearances": {
+          "messi": 70,
+          "ronaldo": 60
+        },
+        "minutes": {
+          "messi": 6183,
+          "ronaldo": 5088
+        },
+        "hatTricks": {
+          "messi": 6,
+          "ronaldo": 9
+        },
+        "freeKicks": {
+          "messi": 1,
+          "ronaldo": 6
+        },
+        "outsideBox": {
+          "messi": 3,
+          "ronaldo": 3
+        },
+        "insideBox": {
+          "messi": 47,
+          "ronaldo": 38
+        },
+        "leftFoot": {
+          "messi": 48,
+          "ronaldo": 10
+        },
+        "rightFoot": {
+          "messi": 9,
+          "ronaldo": 44
+        },
+        "headers": {
+          "messi": 2,
+          "ronaldo": 6
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 8,
+          "ronaldo": 13
+        },
+        "penaltyAttempts": {
+          "messi": 10,
+          "ronaldo": 13
+        }
+      },
+      "club": {
+        "goals": {
+          "messi": 55,
+          "ronaldo": 53
+        },
+        "assists": {
+          "messi": 28,
+          "ronaldo": 16
+        },
+        "appearances": {
+          "messi": 57,
+          "ronaldo": 52
+        },
+        "minutes": {
+          "messi": 4983,
+          "ronaldo": 4442
+        },
+        "hatTricks": {
+          "messi": 6,
+          "ronaldo": 9
+        },
+        "freeKicks": {
+          "messi": 1,
+          "ronaldo": 3
+        },
+        "outsideBox": {
+          "messi": 3,
+          "ronaldo": 3
+        },
+        "insideBox": {
+          "messi": 44,
+          "ronaldo": 35
+        },
+        "leftFoot": {
+          "messi": 44,
+          "ronaldo": 8
+        },
+        "rightFoot": {
+          "messi": 9,
+          "ronaldo": 39
+        },
+        "headers": {
+          "messi": 2,
+          "ronaldo": 6
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 7,
+          "ronaldo": 12
+        },
+        "penaltyAttempts": {
+          "messi": 9,
+          "ronaldo": 12
+        }
+      },
+      "international": {
+        "goals": {
+          "messi": 4,
+          "ronaldo": 7
+        },
+        "assists": {
+          "messi": 9,
+          "ronaldo": 2
+        },
+        "appearances": {
+          "messi": 13,
+          "ronaldo": 8
+        },
+        "minutes": {
+          "messi": 1200,
+          "ronaldo": 646
+        },
+        "hatTricks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 0,
+          "ronaldo": 3
+        },
+        "outsideBox": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "insideBox": {
+          "messi": 3,
+          "ronaldo": 3
+        },
+        "leftFoot": {
+          "messi": 4,
+          "ronaldo": 2
+        },
+        "rightFoot": {
+          "messi": 0,
+          "ronaldo": 5
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 1,
+          "ronaldo": 1
+        },
+        "penaltyAttempts": {
+          "messi": 1,
+          "ronaldo": 1
+        }
+      },
+      "league": {
+        "goals": {
+          "messi": 31,
+          "ronaldo": 43
+        },
+        "assists": {
+          "messi": 16,
+          "ronaldo": 12
+        },
+        "appearances": {
+          "messi": 35,
+          "ronaldo": 34
+        },
+        "minutes": {
+          "messi": 2977,
+          "ronaldo": 2845
+        },
+        "hatTricks": {
+          "messi": 4,
+          "ronaldo": 9
+        },
+        "freeKicks": {
+          "messi": 1,
+          "ronaldo": 2
+        },
+        "outsideBox": {
+          "messi": 1,
+          "ronaldo": 2
+        },
+        "insideBox": {
+          "messi": 25,
+          "ronaldo": 28
+        },
+        "leftFoot": {
+          "messi": 23,
+          "ronaldo": 7
+        },
+        "rightFoot": {
+          "messi": 7,
+          "ronaldo": 31
+        },
+        "headers": {
+          "messi": 1,
+          "ronaldo": 5
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 4,
+          "ronaldo": 11
+        },
+        "penaltyAttempts": {
+          "messi": 5,
+          "ronaldo": 11
+        }
+      }
+    },
+    {
+      "year": 2012,
+      "source": "https://www.messivsronaldo.app/calendar-year-stats/2012/",
+      "career": {
+        "goals": {
+          "messi": 91,
+          "ronaldo": 63
+        },
+        "assists": {
+          "messi": 22,
+          "ronaldo": 13
+        },
+        "appearances": {
+          "messi": 69,
+          "ronaldo": 71
+        },
+        "minutes": {
+          "messi": 5972,
+          "ronaldo": 6310
+        },
+        "hatTricks": {
+          "messi": 9,
+          "ronaldo": 4
+        },
+        "freeKicks": {
+          "messi": 7,
+          "ronaldo": 4
+        },
+        "outsideBox": {
+          "messi": 7,
+          "ronaldo": 9
+        },
+        "insideBox": {
+          "messi": 63,
+          "ronaldo": 40
+        },
+        "leftFoot": {
+          "messi": 81,
+          "ronaldo": 10
+        },
+        "rightFoot": {
+          "messi": 7,
+          "ronaldo": 45
+        },
+        "headers": {
+          "messi": 3,
+          "ronaldo": 8
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 14,
+          "ronaldo": 10
+        },
+        "penaltyAttempts": {
+          "messi": 17,
+          "ronaldo": 12
+        }
+      },
+      "club": {
+        "goals": {
+          "messi": 79,
+          "ronaldo": 58
+        },
+        "assists": {
+          "messi": 21,
+          "ronaldo": 11
+        },
+        "appearances": {
+          "messi": 60,
+          "ronaldo": 58
+        },
+        "minutes": {
+          "messi": 5162,
+          "ronaldo": 5170
+        },
+        "hatTricks": {
+          "messi": 7,
+          "ronaldo": 4
+        },
+        "freeKicks": {
+          "messi": 5,
+          "ronaldo": 4
+        },
+        "outsideBox": {
+          "messi": 6,
+          "ronaldo": 8
+        },
+        "insideBox": {
+          "messi": 55,
+          "ronaldo": 36
+        },
+        "leftFoot": {
+          "messi": 70,
+          "ronaldo": 10
+        },
+        "rightFoot": {
+          "messi": 6,
+          "ronaldo": 41
+        },
+        "headers": {
+          "messi": 3,
+          "ronaldo": 7
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 13,
+          "ronaldo": 10
+        },
+        "penaltyAttempts": {
+          "messi": 15,
+          "ronaldo": 11
+        }
+      },
+      "international": {
+        "goals": {
+          "messi": 12,
+          "ronaldo": 5
+        },
+        "assists": {
+          "messi": 1,
+          "ronaldo": 2
+        },
+        "appearances": {
+          "messi": 9,
+          "ronaldo": 13
+        },
+        "minutes": {
+          "messi": 810,
+          "ronaldo": 1140
+        },
+        "hatTricks": {
+          "messi": 2,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 2,
+          "ronaldo": 0
+        },
+        "outsideBox": {
+          "messi": 1,
+          "ronaldo": 1
+        },
+        "insideBox": {
+          "messi": 8,
+          "ronaldo": 4
+        },
+        "leftFoot": {
+          "messi": 11,
+          "ronaldo": 0
+        },
+        "rightFoot": {
+          "messi": 1,
+          "ronaldo": 4
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 1,
+          "ronaldo": 0
+        },
+        "penaltyAttempts": {
+          "messi": 2,
+          "ronaldo": 1
+        }
+      },
+      "league": {
+        "goals": {
+          "messi": 59,
+          "ronaldo": 40
+        },
+        "assists": {
+          "messi": 13,
+          "ronaldo": 9
+        },
+        "appearances": {
+          "messi": 38,
+          "ronaldo": 39
+        },
+        "minutes": {
+          "messi": 3361,
+          "ronaldo": 3430
+        },
+        "hatTricks": {
+          "messi": 6,
+          "ronaldo": 3
+        },
+        "freeKicks": {
+          "messi": 4,
+          "ronaldo": 3
+        },
+        "outsideBox": {
+          "messi": 4,
+          "ronaldo": 5
+        },
+        "insideBox": {
+          "messi": 41,
+          "ronaldo": 23
+        },
+        "leftFoot": {
+          "messi": 55,
+          "ronaldo": 6
+        },
+        "rightFoot": {
+          "messi": 3,
+          "ronaldo": 28
+        },
+        "headers": {
+          "messi": 1,
+          "ronaldo": 6
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 10,
+          "ronaldo": 9
+        },
+        "penaltyAttempts": {
+          "messi": 10,
+          "ronaldo": 10
+        }
+      }
+    },
+    {
+      "year": 2013,
+      "source": "https://www.messivsronaldo.app/calendar-year-stats/2013/",
+      "career": {
+        "goals": {
+          "messi": 45,
+          "ronaldo": 69
+        },
+        "assists": {
+          "messi": 16,
+          "ronaldo": 15
+        },
+        "appearances": {
+          "messi": 47,
+          "ronaldo": 59
+        },
+        "minutes": {
+          "messi": 3507,
+          "ronaldo": 4956
+        },
+        "hatTricks": {
+          "messi": 4,
+          "ronaldo": 8
+        },
+        "freeKicks": {
+          "messi": 3,
+          "ronaldo": 6
+        },
+        "outsideBox": {
+          "messi": 3,
+          "ronaldo": 2
+        },
+        "insideBox": {
+          "messi": 30,
+          "ronaldo": 52
+        },
+        "leftFoot": {
+          "messi": 39,
+          "ronaldo": 18
+        },
+        "rightFoot": {
+          "messi": 4,
+          "ronaldo": 37
+        },
+        "headers": {
+          "messi": 2,
+          "ronaldo": 14
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 9,
+          "ronaldo": 9
+        },
+        "penaltyAttempts": {
+          "messi": 10,
+          "ronaldo": 11
+        }
+      },
+      "club": {
+        "goals": {
+          "messi": 39,
+          "ronaldo": 59
+        },
+        "assists": {
+          "messi": 12,
+          "ronaldo": 14
+        },
+        "appearances": {
+          "messi": 40,
+          "ronaldo": 50
+        },
+        "minutes": {
+          "messi": 3016,
+          "ronaldo": 4219
+        },
+        "hatTricks": {
+          "messi": 3,
+          "ronaldo": 6
+        },
+        "freeKicks": {
+          "messi": 3,
+          "ronaldo": 5
+        },
+        "outsideBox": {
+          "messi": 2,
+          "ronaldo": 2
+        },
+        "insideBox": {
+          "messi": 29,
+          "ronaldo": 43
+        },
+        "leftFoot": {
+          "messi": 33,
+          "ronaldo": 14
+        },
+        "rightFoot": {
+          "messi": 4,
+          "ronaldo": 34
+        },
+        "headers": {
+          "messi": 2,
+          "ronaldo": 11
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 5,
+          "ronaldo": 9
+        },
+        "penaltyAttempts": {
+          "messi": 6,
+          "ronaldo": 11
+        }
+      },
+      "international": {
+        "goals": {
+          "messi": 6,
+          "ronaldo": 10
+        },
+        "assists": {
+          "messi": 4,
+          "ronaldo": 1
+        },
+        "appearances": {
+          "messi": 7,
+          "ronaldo": 9
+        },
+        "minutes": {
+          "messi": 491,
+          "ronaldo": 737
+        },
+        "hatTricks": {
+          "messi": 1,
+          "ronaldo": 2
+        },
+        "freeKicks": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "outsideBox": {
+          "messi": 1,
+          "ronaldo": 0
+        },
+        "insideBox": {
+          "messi": 1,
+          "ronaldo": 9
+        },
+        "leftFoot": {
+          "messi": 6,
+          "ronaldo": 4
+        },
+        "rightFoot": {
+          "messi": 0,
+          "ronaldo": 3
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 3
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 4,
+          "ronaldo": 0
+        },
+        "penaltyAttempts": {
+          "messi": 4,
+          "ronaldo": 0
+        }
+      },
+      "league": {
+        "goals": {
+          "messi": 28,
+          "ronaldo": 38
+        },
+        "assists": {
+          "messi": 11,
+          "ronaldo": 11
+        },
+        "appearances": {
+          "messi": 26,
+          "ronaldo": 33
+        },
+        "minutes": {
+          "messi": 1916,
+          "ronaldo": 2664
+        },
+        "hatTricks": {
+          "messi": 2,
+          "ronaldo": 4
+        },
+        "freeKicks": {
+          "messi": 2,
+          "ronaldo": 5
+        },
+        "outsideBox": {
+          "messi": 1,
+          "ronaldo": 1
+        },
+        "insideBox": {
+          "messi": 21,
+          "ronaldo": 25
+        },
+        "leftFoot": {
+          "messi": 23,
+          "ronaldo": 8
+        },
+        "rightFoot": {
+          "messi": 4,
+          "ronaldo": 23
+        },
+        "headers": {
+          "messi": 1,
+          "ronaldo": 7
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 4,
+          "ronaldo": 7
+        },
+        "penaltyAttempts": {
+          "messi": 4,
+          "ronaldo": 8
+        }
+      }
+    },
+    {
+      "year": 2014,
+      "source": "https://www.messivsronaldo.app/calendar-year-stats/2014/",
+      "career": {
+        "goals": {
+          "messi": 58,
+          "ronaldo": 61
+        },
+        "assists": {
+          "messi": 21,
+          "ronaldo": 20
+        },
+        "appearances": {
+          "messi": 66,
+          "ronaldo": 60
+        },
+        "minutes": {
+          "messi": 5692,
+          "ronaldo": 5033
+        },
+        "hatTricks": {
+          "messi": 5,
+          "ronaldo": 4
+        },
+        "freeKicks": {
+          "messi": 4,
+          "ronaldo": 3
+        },
+        "outsideBox": {
+          "messi": 8,
+          "ronaldo": 5
+        },
+        "insideBox": {
+          "messi": 39,
+          "ronaldo": 40
+        },
+        "leftFoot": {
+          "messi": 40,
+          "ronaldo": 9
+        },
+        "rightFoot": {
+          "messi": 15,
+          "ronaldo": 46
+        },
+        "headers": {
+          "messi": 2,
+          "ronaldo": 5
+        },
+        "otherBody": {
+          "messi": 1,
+          "ronaldo": 1
+        },
+        "penalties": {
+          "messi": 7,
+          "ronaldo": 13
+        },
+        "penaltyAttempts": {
+          "messi": 10,
+          "ronaldo": 14
+        }
+      },
+      "club": {
+        "goals": {
+          "messi": 50,
+          "ronaldo": 56
+        },
+        "assists": {
+          "messi": 19,
+          "ronaldo": 19
+        },
+        "appearances": {
+          "messi": 52,
+          "ronaldo": 51
+        },
+        "minutes": {
+          "messi": 4531,
+          "ronaldo": 4310
+        },
+        "hatTricks": {
+          "messi": 5,
+          "ronaldo": 4
+        },
+        "freeKicks": {
+          "messi": 3,
+          "ronaldo": 3
+        },
+        "outsideBox": {
+          "messi": 6,
+          "ronaldo": 5
+        },
+        "insideBox": {
+          "messi": 35,
+          "ronaldo": 35
+        },
+        "leftFoot": {
+          "messi": 32,
+          "ronaldo": 8
+        },
+        "rightFoot": {
+          "messi": 15,
+          "ronaldo": 43
+        },
+        "headers": {
+          "messi": 2,
+          "ronaldo": 4
+        },
+        "otherBody": {
+          "messi": 1,
+          "ronaldo": 1
+        },
+        "penalties": {
+          "messi": 6,
+          "ronaldo": 13
+        },
+        "penaltyAttempts": {
+          "messi": 8,
+          "ronaldo": 14
+        }
+      },
+      "international": {
+        "goals": {
+          "messi": 8,
+          "ronaldo": 5
+        },
+        "assists": {
+          "messi": 2,
+          "ronaldo": 1
+        },
+        "appearances": {
+          "messi": 14,
+          "ronaldo": 9
+        },
+        "minutes": {
+          "messi": 1161,
+          "ronaldo": 723
+        },
+        "hatTricks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 1,
+          "ronaldo": 0
+        },
+        "outsideBox": {
+          "messi": 2,
+          "ronaldo": 0
+        },
+        "insideBox": {
+          "messi": 4,
+          "ronaldo": 5
+        },
+        "leftFoot": {
+          "messi": 8,
+          "ronaldo": 1
+        },
+        "rightFoot": {
+          "messi": 0,
+          "ronaldo": 3
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 1,
+          "ronaldo": 0
+        },
+        "penaltyAttempts": {
+          "messi": 2,
+          "ronaldo": 0
+        }
+      },
+      "league": {
+        "goals": {
+          "messi": 35,
+          "ronaldo": 38
+        },
+        "assists": {
+          "messi": 14,
+          "ronaldo": 13
+        },
+        "appearances": {
+          "messi": 36,
+          "ronaldo": 28
+        },
+        "minutes": {
+          "messi": 3179,
+          "ronaldo": 2385
+        },
+        "hatTricks": {
+          "messi": 4,
+          "ronaldo": 4
+        },
+        "freeKicks": {
+          "messi": 3,
+          "ronaldo": 1
+        },
+        "outsideBox": {
+          "messi": 5,
+          "ronaldo": 5
+        },
+        "insideBox": {
+          "messi": 22,
+          "ronaldo": 24
+        },
+        "leftFoot": {
+          "messi": 23,
+          "ronaldo": 4
+        },
+        "rightFoot": {
+          "messi": 11,
+          "ronaldo": 29
+        },
+        "headers": {
+          "messi": 1,
+          "ronaldo": 4
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "penalties": {
+          "messi": 5,
+          "ronaldo": 8
+        },
+        "penaltyAttempts": {
+          "messi": 7,
+          "ronaldo": 8
+        }
+      }
+    },
+    {
+      "year": 2015,
+      "source": "https://www.messivsronaldo.app/calendar-year-stats/2015/",
+      "career": {
+        "goals": {
+          "messi": 52,
+          "ronaldo": 57
+        },
+        "assists": {
+          "messi": 26,
+          "ronaldo": 17
+        },
+        "appearances": {
+          "messi": 61,
+          "ronaldo": 57
+        },
+        "minutes": {
+          "messi": 5244,
+          "ronaldo": 5005
+        },
+        "hatTricks": {
+          "messi": 3,
+          "ronaldo": 8
+        },
+        "freeKicks": {
+          "messi": 4,
+          "ronaldo": 3
+        },
+        "outsideBox": {
+          "messi": 2,
+          "ronaldo": 3
+        },
+        "insideBox": {
+          "messi": 38,
+          "ronaldo": 40
+        },
+        "leftFoot": {
+          "messi": 39,
+          "ronaldo": 7
+        },
+        "rightFoot": {
+          "messi": 8,
+          "ronaldo": 32
+        },
+        "headers": {
+          "messi": 5,
+          "ronaldo": 18
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 8,
+          "ronaldo": 11
+        },
+        "penaltyAttempts": {
+          "messi": 12,
+          "ronaldo": 14
+        }
+      },
+      "club": {
+        "goals": {
+          "messi": 48,
+          "ronaldo": 54
+        },
+        "assists": {
+          "messi": 23,
+          "ronaldo": 17
+        },
+        "appearances": {
+          "messi": 53,
+          "ronaldo": 52
+        },
+        "minutes": {
+          "messi": 4559,
+          "ronaldo": 4577
+        },
+        "hatTricks": {
+          "messi": 3,
+          "ronaldo": 7
+        },
+        "freeKicks": {
+          "messi": 4,
+          "ronaldo": 3
+        },
+        "outsideBox": {
+          "messi": 2,
+          "ronaldo": 2
+        },
+        "insideBox": {
+          "messi": 35,
+          "ronaldo": 39
+        },
+        "leftFoot": {
+          "messi": 36,
+          "ronaldo": 7
+        },
+        "rightFoot": {
+          "messi": 8,
+          "ronaldo": 29
+        },
+        "headers": {
+          "messi": 4,
+          "ronaldo": 18
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 7,
+          "ronaldo": 10
+        },
+        "penaltyAttempts": {
+          "messi": 11,
+          "ronaldo": 13
+        }
+      },
+      "international": {
+        "goals": {
+          "messi": 4,
+          "ronaldo": 3
+        },
+        "assists": {
+          "messi": 3,
+          "ronaldo": 0
+        },
+        "appearances": {
+          "messi": 8,
+          "ronaldo": 5
+        },
+        "minutes": {
+          "messi": 685,
+          "ronaldo": 428
+        },
+        "hatTricks": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "freeKicks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "outsideBox": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "insideBox": {
+          "messi": 3,
+          "ronaldo": 1
+        },
+        "leftFoot": {
+          "messi": 3,
+          "ronaldo": 0
+        },
+        "rightFoot": {
+          "messi": 0,
+          "ronaldo": 3
+        },
+        "headers": {
+          "messi": 1,
+          "ronaldo": 0
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 1,
+          "ronaldo": 1
+        },
+        "penaltyAttempts": {
+          "messi": 1,
+          "ronaldo": 1
+        }
+      },
+      "league": {
+        "goals": {
+          "messi": 34,
+          "ronaldo": 37
+        },
+        "assists": {
+          "messi": 15,
+          "ronaldo": 12
+        },
+        "appearances": {
+          "messi": 33,
+          "ronaldo": 38
+        },
+        "minutes": {
+          "messi": 2729,
+          "ronaldo": 3380
+        },
+        "hatTricks": {
+          "messi": 3,
+          "ronaldo": 5
+        },
+        "freeKicks": {
+          "messi": 2,
+          "ronaldo": 2
+        },
+        "outsideBox": {
+          "messi": 1,
+          "ronaldo": 2
+        },
+        "insideBox": {
+          "messi": 25,
+          "ronaldo": 26
+        },
+        "leftFoot": {
+          "messi": 24,
+          "ronaldo": 5
+        },
+        "rightFoot": {
+          "messi": 6,
+          "ronaldo": 21
+        },
+        "headers": {
+          "messi": 4,
+          "ronaldo": 11
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 6,
+          "ronaldo": 7
+        },
+        "penaltyAttempts": {
+          "messi": 8,
+          "ronaldo": 10
+        }
+      }
+    },
+    {
+      "year": 2016,
+      "source": "https://www.messivsronaldo.app/calendar-year-stats/2016/",
+      "career": {
+        "goals": {
+          "messi": 59,
+          "ronaldo": 55
+        },
+        "assists": {
+          "messi": 31,
+          "ronaldo": 16
+        },
+        "appearances": {
+          "messi": 62,
+          "ronaldo": 57
+        },
+        "minutes": {
+          "messi": 5317,
+          "ronaldo": 4996
+        },
+        "hatTricks": {
+          "messi": 6,
+          "ronaldo": 7
+        },
+        "freeKicks": {
+          "messi": 7,
+          "ronaldo": 4
+        },
+        "outsideBox": {
+          "messi": 7,
+          "ronaldo": 5
+        },
+        "insideBox": {
+          "messi": 38,
+          "ronaldo": 39
+        },
+        "leftFoot": {
+          "messi": 56,
+          "ronaldo": 11
+        },
+        "rightFoot": {
+          "messi": 1,
+          "ronaldo": 33
+        },
+        "headers": {
+          "messi": 2,
+          "ronaldo": 11
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 7,
+          "ronaldo": 7
+        },
+        "penaltyAttempts": {
+          "messi": 9,
+          "ronaldo": 13
+        }
+      },
+      "club": {
+        "goals": {
+          "messi": 51,
+          "ronaldo": 42
+        },
+        "assists": {
+          "messi": 25,
+          "ronaldo": 14
+        },
+        "appearances": {
+          "messi": 51,
+          "ronaldo": 44
+        },
+        "minutes": {
+          "messi": 4429,
+          "ronaldo": 3905
+        },
+        "hatTricks": {
+          "messi": 5,
+          "ronaldo": 6
+        },
+        "freeKicks": {
+          "messi": 4,
+          "ronaldo": 4
+        },
+        "outsideBox": {
+          "messi": 6,
+          "ronaldo": 4
+        },
+        "insideBox": {
+          "messi": 35,
+          "ronaldo": 28
+        },
+        "leftFoot": {
+          "messi": 48,
+          "ronaldo": 8
+        },
+        "rightFoot": {
+          "messi": 1,
+          "ronaldo": 28
+        },
+        "headers": {
+          "messi": 2,
+          "ronaldo": 6
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 6,
+          "ronaldo": 6
+        },
+        "penaltyAttempts": {
+          "messi": 8,
+          "ronaldo": 9
+        }
+      },
+      "international": {
+        "goals": {
+          "messi": 8,
+          "ronaldo": 13
+        },
+        "assists": {
+          "messi": 6,
+          "ronaldo": 2
+        },
+        "appearances": {
+          "messi": 11,
+          "ronaldo": 13
+        },
+        "minutes": {
+          "messi": 888,
+          "ronaldo": 1091
+        },
+        "hatTricks": {
+          "messi": 1,
+          "ronaldo": 1
+        },
+        "freeKicks": {
+          "messi": 3,
+          "ronaldo": 0
+        },
+        "outsideBox": {
+          "messi": 1,
+          "ronaldo": 1
+        },
+        "insideBox": {
+          "messi": 3,
+          "ronaldo": 11
+        },
+        "leftFoot": {
+          "messi": 8,
+          "ronaldo": 3
+        },
+        "rightFoot": {
+          "messi": 0,
+          "ronaldo": 5
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 5
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 1,
+          "ronaldo": 1
+        },
+        "penaltyAttempts": {
+          "messi": 1,
+          "ronaldo": 4
+        }
+      },
+      "league": {
+        "goals": {
+          "messi": 32,
+          "ronaldo": 31
+        },
+        "assists": {
+          "messi": 15,
+          "ronaldo": 9
+        },
+        "appearances": {
+          "messi": 35,
+          "ronaldo": 30
+        },
+        "minutes": {
+          "messi": 2959,
+          "ronaldo": 2595
+        },
+        "hatTricks": {
+          "messi": 2,
+          "ronaldo": 4
+        },
+        "freeKicks": {
+          "messi": 3,
+          "ronaldo": 2
+        },
+        "outsideBox": {
+          "messi": 5,
+          "ronaldo": 4
+        },
+        "insideBox": {
+          "messi": 20,
+          "ronaldo": 20
+        },
+        "leftFoot": {
+          "messi": 30,
+          "ronaldo": 6
+        },
+        "rightFoot": {
+          "messi": 1,
+          "ronaldo": 20
+        },
+        "headers": {
+          "messi": 1,
+          "ronaldo": 5
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 4,
+          "ronaldo": 5
+        },
+        "penaltyAttempts": {
+          "messi": 6,
+          "ronaldo": 8
+        }
+      }
+    },
+    {
+      "year": 2017,
+      "source": "https://www.messivsronaldo.app/calendar-year-stats/2017/",
+      "career": {
+        "goals": {
+          "messi": 54,
+          "ronaldo": 53
+        },
+        "assists": {
+          "messi": 16,
+          "ronaldo": 12
+        },
+        "appearances": {
+          "messi": 64,
+          "ronaldo": 60
+        },
+        "minutes": {
+          "messi": 5562,
+          "ronaldo": 5180
+        },
+        "hatTricks": {
+          "messi": 3,
+          "ronaldo": 3
+        },
+        "freeKicks": {
+          "messi": 5,
+          "ronaldo": 3
+        },
+        "outsideBox": {
+          "messi": 6,
+          "ronaldo": 3
+        },
+        "insideBox": {
+          "messi": 33,
+          "ronaldo": 39
+        },
+        "leftFoot": {
+          "messi": 47,
+          "ronaldo": 10
+        },
+        "rightFoot": {
+          "messi": 6,
+          "ronaldo": 32
+        },
+        "headers": {
+          "messi": 1,
+          "ronaldo": 11
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 10,
+          "ronaldo": 8
+        },
+        "penaltyAttempts": {
+          "messi": 13,
+          "ronaldo": 10
+        }
+      },
+      "club": {
+        "goals": {
+          "messi": 50,
+          "ronaldo": 42
+        },
+        "assists": {
+          "messi": 16,
+          "ronaldo": 8
+        },
+        "appearances": {
+          "messi": 57,
+          "ronaldo": 49
+        },
+        "minutes": {
+          "messi": 4932,
+          "ronaldo": 4260
+        },
+        "hatTricks": {
+          "messi": 2,
+          "ronaldo": 2
+        },
+        "freeKicks": {
+          "messi": 5,
+          "ronaldo": 2
+        },
+        "outsideBox": {
+          "messi": 6,
+          "ronaldo": 2
+        },
+        "insideBox": {
+          "messi": 30,
+          "ronaldo": 32
+        },
+        "leftFoot": {
+          "messi": 43,
+          "ronaldo": 7
+        },
+        "rightFoot": {
+          "messi": 6,
+          "ronaldo": 27
+        },
+        "headers": {
+          "messi": 1,
+          "ronaldo": 8
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 9,
+          "ronaldo": 6
+        },
+        "penaltyAttempts": {
+          "messi": 12,
+          "ronaldo": 8
+        }
+      },
+      "international": {
+        "goals": {
+          "messi": 4,
+          "ronaldo": 11
+        },
+        "assists": {
+          "messi": 0,
+          "ronaldo": 4
+        },
+        "appearances": {
+          "messi": 7,
+          "ronaldo": 11
+        },
+        "minutes": {
+          "messi": 630,
+          "ronaldo": 920
+        },
+        "hatTricks": {
+          "messi": 1,
+          "ronaldo": 1
+        },
+        "freeKicks": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "outsideBox": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "insideBox": {
+          "messi": 3,
+          "ronaldo": 7
+        },
+        "leftFoot": {
+          "messi": 4,
+          "ronaldo": 3
+        },
+        "rightFoot": {
+          "messi": 0,
+          "ronaldo": 5
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 3
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 1,
+          "ronaldo": 2
+        },
+        "penaltyAttempts": {
+          "messi": 1,
+          "ronaldo": 2
+        }
+      },
+      "league": {
+        "goals": {
+          "messi": 40,
+          "ronaldo": 19
+        },
+        "assists": {
+          "messi": 12,
+          "ronaldo": 6
+        },
+        "appearances": {
+          "messi": 38,
+          "ronaldo": 30
+        },
+        "minutes": {
+          "messi": 3338,
+          "ronaldo": 2669
+        },
+        "hatTricks": {
+          "messi": 2,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 2,
+          "ronaldo": 0
+        },
+        "outsideBox": {
+          "messi": 4,
+          "ronaldo": 1
+        },
+        "insideBox": {
+          "messi": 28,
+          "ronaldo": 14
+        },
+        "leftFoot": {
+          "messi": 33,
+          "ronaldo": 4
+        },
+        "rightFoot": {
+          "messi": 6,
+          "ronaldo": 10
+        },
+        "headers": {
+          "messi": 1,
+          "ronaldo": 5
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 6,
+          "ronaldo": 4
+        },
+        "penaltyAttempts": {
+          "messi": 9,
+          "ronaldo": 6
+        }
+      }
+    },
+    {
+      "year": 2018,
+      "source": "https://www.messivsronaldo.app/calendar-year-stats/2018/",
+      "career": {
+        "goals": {
+          "messi": 51,
+          "ronaldo": 49
+        },
+        "assists": {
+          "messi": 26,
+          "ronaldo": 13
+        },
+        "appearances": {
+          "messi": 54,
+          "ronaldo": 53
+        },
+        "minutes": {
+          "messi": 4405,
+          "ronaldo": 4471
+        },
+        "hatTricks": {
+          "messi": 5,
+          "ronaldo": 3
+        },
+        "freeKicks": {
+          "messi": 10,
+          "ronaldo": 1
+        },
+        "outsideBox": {
+          "messi": 5,
+          "ronaldo": 2
+        },
+        "insideBox": {
+          "messi": 34,
+          "ronaldo": 37
+        },
+        "leftFoot": {
+          "messi": 44,
+          "ronaldo": 12
+        },
+        "rightFoot": {
+          "messi": 7,
+          "ronaldo": 27
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 10
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 2,
+          "ronaldo": 9
+        },
+        "penaltyAttempts": {
+          "messi": 4,
+          "ronaldo": 10
+        }
+      },
+      "club": {
+        "goals": {
+          "messi": 47,
+          "ronaldo": 43
+        },
+        "assists": {
+          "messi": 23,
+          "ronaldo": 12
+        },
+        "appearances": {
+          "messi": 49,
+          "ronaldo": 46
+        },
+        "minutes": {
+          "messi": 3955,
+          "ronaldo": 3878
+        },
+        "hatTricks": {
+          "messi": 4,
+          "ronaldo": 2
+        },
+        "freeKicks": {
+          "messi": 10,
+          "ronaldo": 0
+        },
+        "outsideBox": {
+          "messi": 5,
+          "ronaldo": 1
+        },
+        "insideBox": {
+          "messi": 31,
+          "ronaldo": 34
+        },
+        "leftFoot": {
+          "messi": 42,
+          "ronaldo": 11
+        },
+        "rightFoot": {
+          "messi": 5,
+          "ronaldo": 25
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 7
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 1,
+          "ronaldo": 8
+        },
+        "penaltyAttempts": {
+          "messi": 2,
+          "ronaldo": 8
+        }
+      },
+      "international": {
+        "goals": {
+          "messi": 4,
+          "ronaldo": 6
+        },
+        "assists": {
+          "messi": 3,
+          "ronaldo": 1
+        },
+        "appearances": {
+          "messi": 5,
+          "ronaldo": 7
+        },
+        "minutes": {
+          "messi": 450,
+          "ronaldo": 593
+        },
+        "hatTricks": {
+          "messi": 1,
+          "ronaldo": 1
+        },
+        "freeKicks": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "outsideBox": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "insideBox": {
+          "messi": 3,
+          "ronaldo": 3
+        },
+        "leftFoot": {
+          "messi": 2,
+          "ronaldo": 1
+        },
+        "rightFoot": {
+          "messi": 2,
+          "ronaldo": 2
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 3
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 1,
+          "ronaldo": 1
+        },
+        "penaltyAttempts": {
+          "messi": 2,
+          "ronaldo": 2
+        }
+      },
+      "league": {
+        "goals": {
+          "messi": 34,
+          "ronaldo": 36
+        },
+        "assists": {
+          "messi": 16,
+          "ronaldo": 8
+        },
+        "appearances": {
+          "messi": 34,
+          "ronaldo": 34
+        },
+        "minutes": {
+          "messi": 2699,
+          "ronaldo": 2859
+        },
+        "hatTricks": {
+          "messi": 3,
+          "ronaldo": 2
+        },
+        "freeKicks": {
+          "messi": 9,
+          "ronaldo": 0
+        },
+        "outsideBox": {
+          "messi": 4,
+          "ronaldo": 1
+        },
+        "insideBox": {
+          "messi": 20,
+          "ronaldo": 29
+        },
+        "leftFoot": {
+          "messi": 31,
+          "ronaldo": 10
+        },
+        "rightFoot": {
+          "messi": 3,
+          "ronaldo": 20
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 6
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 1,
+          "ronaldo": 6
+        },
+        "penaltyAttempts": {
+          "messi": 1,
+          "ronaldo": 6
+        }
+      }
+    },
+    {
+      "year": 2019,
+      "source": "https://www.messivsronaldo.app/calendar-year-stats/2019/",
+      "career": {
+        "goals": {
+          "messi": 50,
+          "ronaldo": 39
+        },
+        "assists": {
+          "messi": 18,
+          "ronaldo": 4
+        },
+        "appearances": {
+          "messi": 58,
+          "ronaldo": 50
+        },
+        "minutes": {
+          "messi": 4680,
+          "ronaldo": 4309
+        },
+        "hatTricks": {
+          "messi": 4,
+          "ronaldo": 4
+        },
+        "freeKicks": {
+          "messi": 8,
+          "ronaldo": 1
+        },
+        "outsideBox": {
+          "messi": 7,
+          "ronaldo": 2
+        },
+        "insideBox": {
+          "messi": 27,
+          "ronaldo": 28
+        },
+        "leftFoot": {
+          "messi": 46,
+          "ronaldo": 3
+        },
+        "rightFoot": {
+          "messi": 4,
+          "ronaldo": 26
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 10
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 8,
+          "ronaldo": 8
+        },
+        "penaltyAttempts": {
+          "messi": 10,
+          "ronaldo": 9
+        }
+      },
+      "club": {
+        "goals": {
+          "messi": 45,
+          "ronaldo": 25
+        },
+        "assists": {
+          "messi": 16,
+          "ronaldo": 4
+        },
+        "appearances": {
+          "messi": 48,
+          "ronaldo": 40
+        },
+        "minutes": {
+          "messi": 3878,
+          "ronaldo": 3468
+        },
+        "hatTricks": {
+          "messi": 4,
+          "ronaldo": 1
+        },
+        "freeKicks": {
+          "messi": 8,
+          "ronaldo": 0
+        },
+        "outsideBox": {
+          "messi": 7,
+          "ronaldo": 0
+        },
+        "insideBox": {
+          "messi": 24,
+          "ronaldo": 20
+        },
+        "leftFoot": {
+          "messi": 41,
+          "ronaldo": 3
+        },
+        "rightFoot": {
+          "messi": 4,
+          "ronaldo": 12
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 10
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 6,
+          "ronaldo": 5
+        },
+        "penaltyAttempts": {
+          "messi": 7,
+          "ronaldo": 6
+        }
+      },
+      "international": {
+        "goals": {
+          "messi": 5,
+          "ronaldo": 14
+        },
+        "assists": {
+          "messi": 2,
+          "ronaldo": 0
+        },
+        "appearances": {
+          "messi": 10,
+          "ronaldo": 10
+        },
+        "minutes": {
+          "messi": 802,
+          "ronaldo": 841
+        },
+        "hatTricks": {
+          "messi": 0,
+          "ronaldo": 3
+        },
+        "freeKicks": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "outsideBox": {
+          "messi": 0,
+          "ronaldo": 2
+        },
+        "insideBox": {
+          "messi": 3,
+          "ronaldo": 8
+        },
+        "leftFoot": {
+          "messi": 5,
+          "ronaldo": 0
+        },
+        "rightFoot": {
+          "messi": 0,
+          "ronaldo": 14
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 2,
+          "ronaldo": 3
+        },
+        "penaltyAttempts": {
+          "messi": 3,
+          "ronaldo": 3
+        }
+      },
+      "league": {
+        "goals": {
+          "messi": 34,
+          "ronaldo": 17
+        },
+        "assists": {
+          "messi": 9,
+          "ronaldo": 4
+        },
+        "appearances": {
+          "messi": 32,
+          "ronaldo": 26
+        },
+        "minutes": {
+          "messi": 2561,
+          "ronaldo": 2278
+        },
+        "hatTricks": {
+          "messi": 4,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 7,
+          "ronaldo": 0
+        },
+        "outsideBox": {
+          "messi": 5,
+          "ronaldo": 0
+        },
+        "insideBox": {
+          "messi": 17,
+          "ronaldo": 13
+        },
+        "leftFoot": {
+          "messi": 32,
+          "ronaldo": 3
+        },
+        "rightFoot": {
+          "messi": 2,
+          "ronaldo": 9
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 5
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 5,
+          "ronaldo": 4
+        },
+        "penaltyAttempts": {
+          "messi": 6,
+          "ronaldo": 5
+        }
+      }
+    },
+    {
+      "year": 2020,
+      "source": "https://www.messivsronaldo.app/calendar-year-stats/2020/",
+      "career": {
+        "goals": {
+          "messi": 27,
+          "ronaldo": 44
+        },
+        "assists": {
+          "messi": 19,
+          "ronaldo": 7
+        },
+        "appearances": {
+          "messi": 48,
+          "ronaldo": 45
+        },
+        "minutes": {
+          "messi": 4275,
+          "ronaldo": 3885
+        },
+        "hatTricks": {
+          "messi": 1,
+          "ronaldo": 1
+        },
+        "freeKicks": {
+          "messi": 1,
+          "ronaldo": 2
+        },
+        "outsideBox": {
+          "messi": 1,
+          "ronaldo": 4
+        },
+        "insideBox": {
+          "messi": 16,
+          "ronaldo": 21
+        },
+        "leftFoot": {
+          "messi": 23,
+          "ronaldo": 7
+        },
+        "rightFoot": {
+          "messi": 3,
+          "ronaldo": 34
+        },
+        "headers": {
+          "messi": 1,
+          "ronaldo": 3
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 9,
+          "ronaldo": 17
+        },
+        "penaltyAttempts": {
+          "messi": 10,
+          "ronaldo": 20
+        }
+      },
+      "club": {
+        "goals": {
+          "messi": 26,
+          "ronaldo": 41
+        },
+        "assists": {
+          "messi": 19,
+          "ronaldo": 6
+        },
+        "appearances": {
+          "messi": 44,
+          "ronaldo": 39
+        },
+        "minutes": {
+          "messi": 3915,
+          "ronaldo": 3416
+        },
+        "hatTricks": {
+          "messi": 1,
+          "ronaldo": 1
+        },
+        "freeKicks": {
+          "messi": 1,
+          "ronaldo": 1
+        },
+        "outsideBox": {
+          "messi": 1,
+          "ronaldo": 3
+        },
+        "insideBox": {
+          "messi": 16,
+          "ronaldo": 20
+        },
+        "leftFoot": {
+          "messi": 22,
+          "ronaldo": 7
+        },
+        "rightFoot": {
+          "messi": 3,
+          "ronaldo": 32
+        },
+        "headers": {
+          "messi": 1,
+          "ronaldo": 2
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 8,
+          "ronaldo": 17
+        },
+        "penaltyAttempts": {
+          "messi": 9,
+          "ronaldo": 20
+        }
+      },
+      "international": {
+        "goals": {
+          "messi": 1,
+          "ronaldo": 3
+        },
+        "assists": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "appearances": {
+          "messi": 4,
+          "ronaldo": 6
+        },
+        "minutes": {
+          "messi": 360,
+          "ronaldo": 469
+        },
+        "hatTricks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "outsideBox": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "insideBox": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "leftFoot": {
+          "messi": 1,
+          "ronaldo": 0
+        },
+        "rightFoot": {
+          "messi": 0,
+          "ronaldo": 2
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 1,
+          "ronaldo": 0
+        },
+        "penaltyAttempts": {
+          "messi": 1,
+          "ronaldo": 0
+        }
+      },
+      "league": {
+        "goals": {
+          "messi": 19,
+          "ronaldo": 33
+        },
+        "assists": {
+          "messi": 16,
+          "ronaldo": 5
+        },
+        "appearances": {
+          "messi": 34,
+          "ronaldo": 29
+        },
+        "minutes": {
+          "messi": 3015,
+          "ronaldo": 2516
+        },
+        "hatTricks": {
+          "messi": 1,
+          "ronaldo": 1
+        },
+        "freeKicks": {
+          "messi": 1,
+          "ronaldo": 1
+        },
+        "outsideBox": {
+          "messi": 1,
+          "ronaldo": 1
+        },
+        "insideBox": {
+          "messi": 12,
+          "ronaldo": 18
+        },
+        "leftFoot": {
+          "messi": 16,
+          "ronaldo": 4
+        },
+        "rightFoot": {
+          "messi": 2,
+          "ronaldo": 27
+        },
+        "headers": {
+          "messi": 1,
+          "ronaldo": 2
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 5,
+          "ronaldo": 13
+        },
+        "penaltyAttempts": {
+          "messi": 6,
+          "ronaldo": 15
+        }
+      }
+    },
+    {
+      "year": 2021,
+      "source": "https://www.messivsronaldo.app/calendar-year-stats/2021/",
+      "career": {
+        "goals": {
+          "messi": 43,
+          "ronaldo": 47
+        },
+        "assists": {
+          "messi": 18,
+          "ronaldo": 7
+        },
+        "appearances": {
+          "messi": 61,
+          "ronaldo": 65
+        },
+        "minutes": {
+          "messi": 5295,
+          "ronaldo": 5437
+        },
+        "hatTricks": {
+          "messi": 1,
+          "ronaldo": 2
+        },
+        "freeKicks": {
+          "messi": 5,
+          "ronaldo": 0
+        },
+        "outsideBox": {
+          "messi": 11,
+          "ronaldo": 4
+        },
+        "insideBox": {
+          "messi": 21,
+          "ronaldo": 33
+        },
+        "leftFoot": {
+          "messi": 40,
+          "ronaldo": 12
+        },
+        "rightFoot": {
+          "messi": 2,
+          "ronaldo": 26
+        },
+        "headers": {
+          "messi": 1,
+          "ronaldo": 9
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 6,
+          "ronaldo": 10
+        },
+        "penaltyAttempts": {
+          "messi": 8,
+          "ronaldo": 12
+        }
+      },
+      "club": {
+        "goals": {
+          "messi": 34,
+          "ronaldo": 34
+        },
+        "assists": {
+          "messi": 13,
+          "ronaldo": 6
+        },
+        "appearances": {
+          "messi": 45,
+          "ronaldo": 51
+        },
+        "minutes": {
+          "messi": 3931,
+          "ronaldo": 4241
+        },
+        "hatTricks": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "freeKicks": {
+          "messi": 3,
+          "ronaldo": 0
+        },
+        "outsideBox": {
+          "messi": 8,
+          "ronaldo": 4
+        },
+        "insideBox": {
+          "messi": 19,
+          "ronaldo": 25
+        },
+        "leftFoot": {
+          "messi": 32,
+          "ronaldo": 8
+        },
+        "rightFoot": {
+          "messi": 1,
+          "ronaldo": 20
+        },
+        "headers": {
+          "messi": 1,
+          "ronaldo": 6
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 4,
+          "ronaldo": 5
+        },
+        "penaltyAttempts": {
+          "messi": 6,
+          "ronaldo": 6
+        }
+      },
+      "international": {
+        "goals": {
+          "messi": 9,
+          "ronaldo": 13
+        },
+        "assists": {
+          "messi": 5,
+          "ronaldo": 1
+        },
+        "appearances": {
+          "messi": 16,
+          "ronaldo": 14
+        },
+        "minutes": {
+          "messi": 1364,
+          "ronaldo": 1196
+        },
+        "hatTricks": {
+          "messi": 1,
+          "ronaldo": 1
+        },
+        "freeKicks": {
+          "messi": 2,
+          "ronaldo": 0
+        },
+        "outsideBox": {
+          "messi": 3,
+          "ronaldo": 0
+        },
+        "insideBox": {
+          "messi": 2,
+          "ronaldo": 8
+        },
+        "leftFoot": {
+          "messi": 8,
+          "ronaldo": 4
+        },
+        "rightFoot": {
+          "messi": 1,
+          "ronaldo": 6
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 3
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 2,
+          "ronaldo": 5
+        },
+        "penaltyAttempts": {
+          "messi": 2,
+          "ronaldo": 6
+        }
+      },
+      "league": {
+        "goals": {
+          "messi": 24,
+          "ronaldo": 25
+        },
+        "assists": {
+          "messi": 12,
+          "ronaldo": 5
+        },
+        "appearances": {
+          "messi": 32,
+          "ronaldo": 39
+        },
+        "minutes": {
+          "messi": 2671,
+          "ronaldo": 3221
+        },
+        "hatTricks": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "freeKicks": {
+          "messi": 3,
+          "ronaldo": 0
+        },
+        "outsideBox": {
+          "messi": 5,
+          "ronaldo": 1
+        },
+        "insideBox": {
+          "messi": 15,
+          "ronaldo": 20
+        },
+        "leftFoot": {
+          "messi": 22,
+          "ronaldo": 6
+        },
+        "rightFoot": {
+          "messi": 1,
+          "ronaldo": 14
+        },
+        "headers": {
+          "messi": 1,
+          "ronaldo": 5
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 1,
+          "ronaldo": 4
+        },
+        "penaltyAttempts": {
+          "messi": 2,
+          "ronaldo": 5
+        }
+      }
+    },
+    {
+      "year": 2022,
+      "source": "https://www.messivsronaldo.app/calendar-year-stats/2022/",
+      "career": {
+        "goals": {
+          "messi": 35,
+          "ronaldo": 16
+        },
+        "assists": {
+          "messi": 30,
+          "ronaldo": 4
+        },
+        "appearances": {
+          "messi": 51,
+          "ronaldo": 46
+        },
+        "minutes": {
+          "messi": 4470,
+          "ronaldo": 3457
+        },
+        "hatTricks": {
+          "messi": 1,
+          "ronaldo": 2
+        },
+        "freeKicks": {
+          "messi": 2,
+          "ronaldo": 1
+        },
+        "outsideBox": {
+          "messi": 7,
+          "ronaldo": 2
+        },
+        "insideBox": {
+          "messi": 20,
+          "ronaldo": 10
+        },
+        "leftFoot": {
+          "messi": 29,
+          "ronaldo": 3
+        },
+        "rightFoot": {
+          "messi": 6,
+          "ronaldo": 11
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 2
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 6,
+          "ronaldo": 3
+        },
+        "penaltyAttempts": {
+          "messi": 8,
+          "ronaldo": 4
+        }
+      },
+      "club": {
+        "goals": {
+          "messi": 17,
+          "ronaldo": 13
+        },
+        "assists": {
+          "messi": 24,
+          "ronaldo": 2
+        },
+        "appearances": {
+          "messi": 37,
+          "ronaldo": 34
+        },
+        "minutes": {
+          "messi": 3207,
+          "ronaldo": 2601
+        },
+        "hatTricks": {
+          "messi": 0,
+          "ronaldo": 2
+        },
+        "freeKicks": {
+          "messi": 1,
+          "ronaldo": 1
+        },
+        "outsideBox": {
+          "messi": 4,
+          "ronaldo": 2
+        },
+        "insideBox": {
+          "messi": 12,
+          "ronaldo": 8
+        },
+        "leftFoot": {
+          "messi": 15,
+          "ronaldo": 3
+        },
+        "rightFoot": {
+          "messi": 2,
+          "ronaldo": 8
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 2
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 0,
+          "ronaldo": 2
+        },
+        "penaltyAttempts": {
+          "messi": 1,
+          "ronaldo": 3
+        }
+      },
+      "international": {
+        "goals": {
+          "messi": 18,
+          "ronaldo": 3
+        },
+        "assists": {
+          "messi": 6,
+          "ronaldo": 2
+        },
+        "appearances": {
+          "messi": 14,
+          "ronaldo": 12
+        },
+        "minutes": {
+          "messi": 1263,
+          "ronaldo": 856
+        },
+        "hatTricks": {
+          "messi": 1,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 1,
+          "ronaldo": 0
+        },
+        "outsideBox": {
+          "messi": 3,
+          "ronaldo": 0
+        },
+        "insideBox": {
+          "messi": 8,
+          "ronaldo": 2
+        },
+        "leftFoot": {
+          "messi": 14,
+          "ronaldo": 0
+        },
+        "rightFoot": {
+          "messi": 4,
+          "ronaldo": 3
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 6,
+          "ronaldo": 1
+        },
+        "penaltyAttempts": {
+          "messi": 7,
+          "ronaldo": 1
+        }
+      },
+      "league": {
+        "goals": {
+          "messi": 12,
+          "ronaldo": 11
+        },
+        "assists": {
+          "messi": 20,
+          "ronaldo": 0
+        },
+        "appearances": {
+          "messi": 28,
+          "ronaldo": 25
+        },
+        "minutes": {
+          "messi": 2414,
+          "ronaldo": 1770
+        },
+        "hatTricks": {
+          "messi": 0,
+          "ronaldo": 2
+        },
+        "freeKicks": {
+          "messi": 1,
+          "ronaldo": 1
+        },
+        "outsideBox": {
+          "messi": 2,
+          "ronaldo": 2
+        },
+        "insideBox": {
+          "messi": 9,
+          "ronaldo": 7
+        },
+        "leftFoot": {
+          "messi": 11,
+          "ronaldo": 2
+        },
+        "rightFoot": {
+          "messi": 1,
+          "ronaldo": 7
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 2
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "penaltyAttempts": {
+          "messi": 0,
+          "ronaldo": 1
+        }
+      }
+    },
+    {
+      "year": 2023,
+      "source": "https://www.messivsronaldo.app/calendar-year-stats/2023/",
+      "career": {
+        "goals": {
+          "messi": 28,
+          "ronaldo": 54
+        },
+        "assists": {
+          "messi": 12,
+          "ronaldo": 15
+        },
+        "appearances": {
+          "messi": 44,
+          "ronaldo": 59
+        },
+        "minutes": {
+          "messi": 3688,
+          "ronaldo": 5184
+        },
+        "hatTricks": {
+          "messi": 1,
+          "ronaldo": 3
+        },
+        "freeKicks": {
+          "messi": 5,
+          "ronaldo": 3
+        },
+        "outsideBox": {
+          "messi": 5,
+          "ronaldo": 6
+        },
+        "insideBox": {
+          "messi": 18,
+          "ronaldo": 30
+        },
+        "leftFoot": {
+          "messi": 22,
+          "ronaldo": 15
+        },
+        "rightFoot": {
+          "messi": 6,
+          "ronaldo": 33
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 6
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 0,
+          "ronaldo": 15
+        },
+        "penaltyAttempts": {
+          "messi": 0,
+          "ronaldo": 15
+        }
+      },
+      "club": {
+        "goals": {
+          "messi": 20,
+          "ronaldo": 44
+        },
+        "assists": {
+          "messi": 11,
+          "ronaldo": 13
+        },
+        "appearances": {
+          "messi": 36,
+          "ronaldo": 50
+        },
+        "minutes": {
+          "messi": 3036,
+          "ronaldo": 4460
+        },
+        "hatTricks": {
+          "messi": 0,
+          "ronaldo": 3
+        },
+        "freeKicks": {
+          "messi": 3,
+          "ronaldo": 2
+        },
+        "outsideBox": {
+          "messi": 4,
+          "ronaldo": 6
+        },
+        "insideBox": {
+          "messi": 13,
+          "ronaldo": 24
+        },
+        "leftFoot": {
+          "messi": 15,
+          "ronaldo": 12
+        },
+        "rightFoot": {
+          "messi": 5,
+          "ronaldo": 26
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 6
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 0,
+          "ronaldo": 12
+        },
+        "penaltyAttempts": {
+          "messi": 0,
+          "ronaldo": 12
+        }
+      },
+      "international": {
+        "goals": {
+          "messi": 8,
+          "ronaldo": 10
+        },
+        "assists": {
+          "messi": 1,
+          "ronaldo": 2
+        },
+        "appearances": {
+          "messi": 8,
+          "ronaldo": 9
+        },
+        "minutes": {
+          "messi": 652,
+          "ronaldo": 724
+        },
+        "hatTricks": {
+          "messi": 1,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 2,
+          "ronaldo": 1
+        },
+        "outsideBox": {
+          "messi": 1,
+          "ronaldo": 0
+        },
+        "insideBox": {
+          "messi": 5,
+          "ronaldo": 6
+        },
+        "leftFoot": {
+          "messi": 7,
+          "ronaldo": 3
+        },
+        "rightFoot": {
+          "messi": 1,
+          "ronaldo": 7
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 0,
+          "ronaldo": 3
+        },
+        "penaltyAttempts": {
+          "messi": 0,
+          "ronaldo": 3
+        }
+      },
+      "league": {
+        "goals": {
+          "messi": 10,
+          "ronaldo": 34
+        },
+        "assists": {
+          "messi": 8,
+          "ronaldo": 11
+        },
+        "appearances": {
+          "messi": 25,
+          "ronaldo": 34
+        },
+        "minutes": {
+          "messi": 2082,
+          "ronaldo": 3050
+        },
+        "hatTricks": {
+          "messi": 0,
+          "ronaldo": 3
+        },
+        "freeKicks": {
+          "messi": 1,
+          "ronaldo": 2
+        },
+        "outsideBox": {
+          "messi": 1,
+          "ronaldo": 5
+        },
+        "insideBox": {
+          "messi": 8,
+          "ronaldo": 16
+        },
+        "leftFoot": {
+          "messi": 8,
+          "ronaldo": 8
+        },
+        "rightFoot": {
+          "messi": 2,
+          "ronaldo": 23
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 3
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 0,
+          "ronaldo": 11
+        },
+        "penaltyAttempts": {
+          "messi": 0,
+          "ronaldo": 11
+        }
+      }
+    },
+    {
+      "year": 2024,
+      "source": "https://www.messivsronaldo.app/calendar-year-stats/2024/",
+      "career": {
+        "goals": {
+          "messi": 29,
+          "ronaldo": 43
+        },
+        "assists": {
+          "messi": 18,
+          "ronaldo": 7
+        },
+        "appearances": {
+          "messi": 36,
+          "ronaldo": 51
+        },
+        "minutes": {
+          "messi": 2895,
+          "ronaldo": 4441
+        },
+        "hatTricks": {
+          "messi": 2,
+          "ronaldo": 3
+        },
+        "freeKicks": {
+          "messi": 1,
+          "ronaldo": 3
+        },
+        "outsideBox": {
+          "messi": 5,
+          "ronaldo": 1
+        },
+        "insideBox": {
+          "messi": 22,
+          "ronaldo": 30
+        },
+        "leftFoot": {
+          "messi": 24,
+          "ronaldo": 10
+        },
+        "rightFoot": {
+          "messi": 2,
+          "ronaldo": 28
+        },
+        "headers": {
+          "messi": 2,
+          "ronaldo": 5
+        },
+        "otherBody": {
+          "messi": 1,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 1,
+          "ronaldo": 9
+        },
+        "penaltyAttempts": {
+          "messi": 1,
+          "ronaldo": 11
+        }
+      },
+      "club": {
+        "goals": {
+          "messi": 23,
+          "ronaldo": 36
+        },
+        "assists": {
+          "messi": 13,
+          "ronaldo": 5
+        },
+        "appearances": {
+          "messi": 25,
+          "ronaldo": 39
+        },
+        "minutes": {
+          "messi": 1986,
+          "ronaldo": 3401
+        },
+        "hatTricks": {
+          "messi": 1,
+          "ronaldo": 3
+        },
+        "freeKicks": {
+          "messi": 1,
+          "ronaldo": 3
+        },
+        "outsideBox": {
+          "messi": 5,
+          "ronaldo": 1
+        },
+        "insideBox": {
+          "messi": 16,
+          "ronaldo": 24
+        },
+        "leftFoot": {
+          "messi": 19,
+          "ronaldo": 7
+        },
+        "rightFoot": {
+          "messi": 1,
+          "ronaldo": 24
+        },
+        "headers": {
+          "messi": 2,
+          "ronaldo": 5
+        },
+        "otherBody": {
+          "messi": 1,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 1,
+          "ronaldo": 8
+        },
+        "penaltyAttempts": {
+          "messi": 1,
+          "ronaldo": 9
+        }
+      },
+      "international": {
+        "goals": {
+          "messi": 6,
+          "ronaldo": 7
+        },
+        "assists": {
+          "messi": 5,
+          "ronaldo": 2
+        },
+        "appearances": {
+          "messi": 11,
+          "ronaldo": 12
+        },
+        "minutes": {
+          "messi": 909,
+          "ronaldo": 1040
+        },
+        "hatTricks": {
+          "messi": 1,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "outsideBox": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "insideBox": {
+          "messi": 6,
+          "ronaldo": 6
+        },
+        "leftFoot": {
+          "messi": 5,
+          "ronaldo": 3
+        },
+        "rightFoot": {
+          "messi": 1,
+          "ronaldo": 4
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "penaltyAttempts": {
+          "messi": 0,
+          "ronaldo": 2
+        }
+      },
+      "league": {
+        "goals": {
+          "messi": 20,
+          "ronaldo": 25
+        },
+        "assists": {
+          "messi": 10,
+          "ronaldo": 4
+        },
+        "appearances": {
+          "messi": 19,
+          "ronaldo": 25
+        },
+        "minutes": {
+          "messi": 1486,
+          "ronaldo": 2105
+        },
+        "hatTricks": {
+          "messi": 1,
+          "ronaldo": 3
+        },
+        "freeKicks": {
+          "messi": 1,
+          "ronaldo": 3
+        },
+        "outsideBox": {
+          "messi": 4,
+          "ronaldo": 1
+        },
+        "insideBox": {
+          "messi": 14,
+          "ronaldo": 14
+        },
+        "leftFoot": {
+          "messi": 17,
+          "ronaldo": 3
+        },
+        "rightFoot": {
+          "messi": 1,
+          "ronaldo": 18
+        },
+        "headers": {
+          "messi": 1,
+          "ronaldo": 4
+        },
+        "otherBody": {
+          "messi": 1,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 1,
+          "ronaldo": 7
+        },
+        "penaltyAttempts": {
+          "messi": 1,
+          "ronaldo": 7
+        }
+      }
+    },
+    {
+      "year": 2025,
+      "source": "https://www.messivsronaldo.app/calendar-year-stats/2025/",
+      "career": {
+        "goals": {
+          "messi": 46,
+          "ronaldo": 41
+        },
+        "assists": {
+          "messi": 28,
+          "ronaldo": 4
+        },
+        "appearances": {
+          "messi": 54,
+          "ronaldo": 46
+        },
+        "minutes": {
+          "messi": 4534,
+          "ronaldo": 3914
+        },
+        "hatTricks": {
+          "messi": 1,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 3,
+          "ronaldo": 0
+        },
+        "outsideBox": {
+          "messi": 8,
+          "ronaldo": 4
+        },
+        "insideBox": {
+          "messi": 32,
+          "ronaldo": 27
+        },
+        "leftFoot": {
+          "messi": 41,
+          "ronaldo": 5
+        },
+        "rightFoot": {
+          "messi": 3,
+          "ronaldo": 31
+        },
+        "headers": {
+          "messi": 2,
+          "ronaldo": 4
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "penalties": {
+          "messi": 3,
+          "ronaldo": 10
+        },
+        "penaltyAttempts": {
+          "messi": 4,
+          "ronaldo": 14
+        }
+      },
+      "club": {
+        "goals": {
+          "messi": 43,
+          "ronaldo": 33
+        },
+        "assists": {
+          "messi": 25,
+          "ronaldo": 4
+        },
+        "appearances": {
+          "messi": 49,
+          "ronaldo": 37
+        },
+        "minutes": {
+          "messi": 4157,
+          "ronaldo": 3183
+        },
+        "hatTricks": {
+          "messi": 1,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 3,
+          "ronaldo": 0
+        },
+        "outsideBox": {
+          "messi": 8,
+          "ronaldo": 3
+        },
+        "insideBox": {
+          "messi": 29,
+          "ronaldo": 21
+        },
+        "leftFoot": {
+          "messi": 38,
+          "ronaldo": 4
+        },
+        "rightFoot": {
+          "messi": 3,
+          "ronaldo": 24
+        },
+        "headers": {
+          "messi": 2,
+          "ronaldo": 4
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "penalties": {
+          "messi": 3,
+          "ronaldo": 9
+        },
+        "penaltyAttempts": {
+          "messi": 4,
+          "ronaldo": 11
+        }
+      },
+      "international": {
+        "goals": {
+          "messi": 3,
+          "ronaldo": 8
+        },
+        "assists": {
+          "messi": 3,
+          "ronaldo": 0
+        },
+        "appearances": {
+          "messi": 5,
+          "ronaldo": 9
+        },
+        "minutes": {
+          "messi": 377,
+          "ronaldo": 731
+        },
+        "hatTricks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "outsideBox": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "insideBox": {
+          "messi": 3,
+          "ronaldo": 6
+        },
+        "leftFoot": {
+          "messi": 3,
+          "ronaldo": 1
+        },
+        "rightFoot": {
+          "messi": 0,
+          "ronaldo": 7
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "penaltyAttempts": {
+          "messi": 0,
+          "ronaldo": 3
+        }
+      },
+      "league": {
+        "goals": {
+          "messi": 29,
+          "ronaldo": 28
+        },
+        "assists": {
+          "messi": 16,
+          "ronaldo": 2
+        },
+        "appearances": {
+          "messi": 28,
+          "ronaldo": 29
+        },
+        "minutes": {
+          "messi": 2420,
+          "ronaldo": 2541
+        },
+        "hatTricks": {
+          "messi": 1,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 2,
+          "ronaldo": 0
+        },
+        "outsideBox": {
+          "messi": 6,
+          "ronaldo": 3
+        },
+        "insideBox": {
+          "messi": 20,
+          "ronaldo": 19
+        },
+        "leftFoot": {
+          "messi": 27,
+          "ronaldo": 4
+        },
+        "rightFoot": {
+          "messi": 2,
+          "ronaldo": 20
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 3
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 1
+        },
+        "penalties": {
+          "messi": 1,
+          "ronaldo": 6
+        },
+        "penaltyAttempts": {
+          "messi": 2,
+          "ronaldo": 8
+        }
+      }
+    },
+    {
+      "year": 2026,
+      "source": "https://www.messivsronaldo.app/calendar-year-stats/2026/",
+      "career": {
+        "goals": {
+          "messi": 34,
+          "ronaldo": 22
+        },
+        "assists": {
+          "messi": 17,
+          "ronaldo": 1
+        },
+        "appearances": {
+          "messi": 39,
+          "ronaldo": 36
+        },
+        "minutes": {
+          "messi": 3304,
+          "ronaldo": 2920
+        },
+        "hatTricks": {
+          "messi": 2,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 6,
+          "ronaldo": 1
+        },
+        "outsideBox": {
+          "messi": 4,
+          "ronaldo": 0
+        },
+        "insideBox": {
+          "messi": 22,
+          "ronaldo": 17
+        },
+        "leftFoot": {
+          "messi": 29,
+          "ronaldo": 4
+        },
+        "rightFoot": {
+          "messi": 3,
+          "ronaldo": 16
+        },
+        "headers": {
+          "messi": 2,
+          "ronaldo": 2
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 2,
+          "ronaldo": 4
+        },
+        "penaltyAttempts": {
+          "messi": 5,
+          "ronaldo": 5
+        }
+      },
+      "club": {
+        "goals": {
+          "messi": 24,
+          "ronaldo": 19
+        },
+        "assists": {
+          "messi": 13,
+          "ronaldo": 1
+        },
+        "appearances": {
+          "messi": 28,
+          "ronaldo": 29
+        },
+        "minutes": {
+          "messi": 2405,
+          "ronaldo": 2369
+        },
+        "hatTricks": {
+          "messi": 1,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 5,
+          "ronaldo": 1
+        },
+        "outsideBox": {
+          "messi": 3,
+          "ronaldo": 0
+        },
+        "insideBox": {
+          "messi": 15,
+          "ronaldo": 15
+        },
+        "leftFoot": {
+          "messi": 20,
+          "ronaldo": 4
+        },
+        "rightFoot": {
+          "messi": 2,
+          "ronaldo": 13
+        },
+        "headers": {
+          "messi": 2,
+          "ronaldo": 2
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 1,
+          "ronaldo": 3
+        },
+        "penaltyAttempts": {
+          "messi": 2,
+          "ronaldo": 4
+        }
+      },
+      "international": {
+        "goals": {
+          "messi": 10,
+          "ronaldo": 3
+        },
+        "assists": {
+          "messi": 4,
+          "ronaldo": 0
+        },
+        "appearances": {
+          "messi": 11,
+          "ronaldo": 7
+        },
+        "minutes": {
+          "messi": 899,
+          "ronaldo": 551
+        },
+        "hatTricks": {
+          "messi": 1,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 1,
+          "ronaldo": 0
+        },
+        "outsideBox": {
+          "messi": 1,
+          "ronaldo": 0
+        },
+        "insideBox": {
+          "messi": 7,
+          "ronaldo": 2
+        },
+        "leftFoot": {
+          "messi": 9,
+          "ronaldo": 0
+        },
+        "rightFoot": {
+          "messi": 1,
+          "ronaldo": 3
+        },
+        "headers": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 1,
+          "ronaldo": 1
+        },
+        "penaltyAttempts": {
+          "messi": 3,
+          "ronaldo": 1
+        }
+      },
+      "league": {
+        "goals": {
+          "messi": 20,
+          "ronaldo": 18
+        },
+        "assists": {
+          "messi": 11,
+          "ronaldo": 1
+        },
+        "appearances": {
+          "messi": 23,
+          "ronaldo": 25
+        },
+        "minutes": {
+          "messi": 2000,
+          "ronaldo": 2044
+        },
+        "hatTricks": {
+          "messi": 1,
+          "ronaldo": 0
+        },
+        "freeKicks": {
+          "messi": 5,
+          "ronaldo": 1
+        },
+        "outsideBox": {
+          "messi": 3,
+          "ronaldo": 0
+        },
+        "insideBox": {
+          "messi": 11,
+          "ronaldo": 14
+        },
+        "leftFoot": {
+          "messi": 17,
+          "ronaldo": 4
+        },
+        "rightFoot": {
+          "messi": 2,
+          "ronaldo": 12
+        },
+        "headers": {
+          "messi": 1,
+          "ronaldo": 2
+        },
+        "otherBody": {
+          "messi": 0,
+          "ronaldo": 0
+        },
+        "penalties": {
+          "messi": 1,
+          "ronaldo": 3
+        },
+        "penaltyAttempts": {
+          "messi": 2,
+          "ronaldo": 4
+        }
+      }
+    }
+  ],
+  "clubs": [
+    {
+      "id": "messi-barcelona",
+      "player": "messi",
+      "name": "Barcelona",
+      "period": "2004\u20132021",
+      "source": "https://www.messivsronaldo.app/all-time-stats/messi-barcelona-stats/",
+      "goals": 672,
+      "assists": 269,
+      "appearances": 778,
+      "minutes": 63530,
+      "hatTricks": 48,
+      "freeKicks": 50,
+      "outsideBox": 67,
+      "insideBox": 473,
+      "leftFoot": 557,
+      "rightFoot": 88,
+      "headers": 24,
+      "otherBody": 3
+    },
+    {
+      "id": "messi-psg",
+      "player": "messi",
+      "name": "Paris Saint-Germain",
+      "period": "2021\u20132023",
+      "source": "https://www.messivsronaldo.app/all-time-stats/messi-psg-stats/",
+      "goals": 32,
+      "assists": 34,
+      "appearances": 75,
+      "minutes": 6501,
+      "hatTricks": 0,
+      "freeKicks": 2,
+      "outsideBox": 8,
+      "insideBox": 20,
+      "leftFoot": 28,
+      "rightFoot": 4,
+      "headers": 0,
+      "otherBody": 0
+    },
+    {
+      "id": "messi-miami",
+      "player": "messi",
+      "name": "Inter Miami",
+      "period": "2023\u2013present",
+      "source": "https://www.messivsronaldo.app/all-time-stats/messi-inter-miami-stats/",
+      "goals": 101,
+      "assists": 56,
+      "appearances": 116,
+      "minutes": 9604,
+      "hatTricks": 3,
+      "freeKicks": 11,
+      "outsideBox": 19,
+      "insideBox": 66,
+      "leftFoot": 85,
+      "rightFoot": 9,
+      "headers": 6,
+      "otherBody": 1
+    },
+    {
+      "id": "ronaldo-sporting",
+      "player": "ronaldo",
+      "name": "Sporting CP",
+      "period": "2002\u20132003",
+      "source": "https://www.messivsronaldo.app/all-time-stats/ronaldo-sporting-cp-stats/",
+      "goals": 5,
+      "assists": 4,
+      "appearances": 31,
+      "minutes": 1392,
+      "hatTricks": 0,
+      "freeKicks": 0,
+      "outsideBox": 1,
+      "insideBox": 4,
+      "leftFoot": 2,
+      "rightFoot": 2,
+      "headers": 1,
+      "otherBody": 0
+    },
+    {
+      "id": "ronaldo-united",
+      "player": "ronaldo",
+      "name": "Manchester United",
+      "period": "2003\u20132009 \u00b7 2021\u20132022",
+      "source": "https://www.messivsronaldo.app/all-time-stats/ronaldo-manchester-united-stats/",
+      "goals": 145,
+      "assists": 57,
+      "appearances": 346,
+      "minutes": 26606,
+      "hatTricks": 3,
+      "freeKicks": 14,
+      "outsideBox": 14,
+      "insideBox": 96,
+      "leftFoot": 23,
+      "rightFoot": 97,
+      "headers": 24,
+      "otherBody": 1
+    },
+    {
+      "id": "ronaldo-madrid",
+      "player": "ronaldo",
+      "name": "Real Madrid",
+      "period": "2009\u20132018",
+      "source": "https://www.messivsronaldo.app/all-time-stats/ronaldo-real-madrid-stats/",
+      "goals": 450,
+      "assists": 120,
+      "appearances": 438,
+      "minutes": 37824,
+      "hatTricks": 44,
+      "freeKicks": 33,
+      "outsideBox": 29,
+      "insideBox": 309,
+      "leftFoot": 80,
+      "rightFoot": 299,
+      "headers": 70,
+      "otherBody": 1
+    },
+    {
+      "id": "ronaldo-juventus",
+      "player": "ronaldo",
+      "name": "Juventus",
+      "period": "2018\u20132021",
+      "source": "https://www.messivsronaldo.app/all-time-stats/ronaldo-juventus-stats/",
+      "goals": 101,
+      "assists": 20,
+      "appearances": 134,
+      "minutes": 11507,
+      "hatTricks": 3,
+      "freeKicks": 1,
+      "outsideBox": 6,
+      "insideBox": 65,
+      "leftFoot": 21,
+      "rightFoot": 62,
+      "headers": 18,
+      "otherBody": 0
+    },
+    {
+      "id": "ronaldo-nassr",
+      "player": "ronaldo",
+      "name": "Al Nassr",
+      "period": "2023\u2013present",
+      "source": "https://www.messivsronaldo.app/all-time-stats/ronaldo-al-nassr-stats/",
+      "goals": 132,
+      "assists": 23,
+      "appearances": 155,
+      "minutes": 13413,
+      "hatTricks": 6,
+      "freeKicks": 6,
+      "outsideBox": 10,
+      "insideBox": 84,
+      "leftFoot": 27,
+      "rightFoot": 87,
+      "headers": 17,
+      "otherBody": 1
+    }
+  ]
+}

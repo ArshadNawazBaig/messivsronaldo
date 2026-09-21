@@ -1,0 +1,848 @@
+{
+  "fixtures": [
+    {
+      "fixture": {
+        "id": 1490495,
+        "date": "2026-09-20T23:00:00+00:00",
+        "status": {
+          "short": "FT"
+        }
+      },
+      "league": {
+        "id": 253,
+        "name": "Major League Soccer",
+        "round": "Regular Season - 26"
+      },
+      "teams": {
+        "home": {
+          "id": 9568,
+          "name": "Inter Miami"
+        },
+        "away": {
+          "id": 25484,
+          "name": "San Diego"
+        }
+      },
+      "goals": {
+        "home": 2,
+        "away": 2
+      }
+    }
+  ],
+  "leagues": [
+    {
+      "league": {
+        "id": 253,
+        "type": "League"
+      }
+    }
+  ],
+  "fixtures/players": [
+    {
+      "team": {
+        "id": 9568
+      },
+      "players": [
+        {
+          "player": {
+            "id": 51148
+          },
+          "statistics": [
+            {
+              "games": {
+                "minutes": 90
+              },
+              "goals": {
+                "total": null,
+                "assists": 0
+              }
+            }
+          ]
+        },
+        {
+          "player": {
+            "id": 6401
+          },
+          "statistics": [
+            {
+              "games": {
+                "minutes": 90
+              },
+              "goals": {
+                "total": null,
+                "assists": 0
+              }
+            }
+          ]
+        },
+        {
+          "player": {
+            "id": 747
+          },
+          "statistics": [
+            {
+              "games": {
+                "minutes": 90
+              },
+              "goals": {
+                "total": null,
+                "assists": 0
+              }
+            }
+          ]
+        },
+        {
+          "player": {
+            "id": 67896
+          },
+          "statistics": [
+            {
+              "games": {
+                "minutes": 90
+              },
+              "goals": {
+                "total": null,
+                "assists": 0
+              }
+            }
+          ]
+        },
+        {
+          "player": {
+            "id": 663850
+          },
+          "statistics": [
+            {
+              "games": {
+                "minutes": 69
+              },
+              "goals": {
+                "total": null,
+                "assists": 0
+              }
+            }
+          ]
+        },
+        {
+          "player": {
+            "id": 2472
+          },
+          "statistics": [
+            {
+              "games": {
+                "minutes": 90
+              },
+              "goals": {
+                "total": null,
+                "assists": 1
+              }
+            }
+          ]
+        },
+        {
+          "player": {
+            "id": 455386
+          },
+          "statistics": [
+            {
+              "games": {
+                "minutes": 90
+              },
+              "goals": {
+                "total": null,
+                "assists": 0
+              }
+            }
+          ]
+        },
+        {
+          "player": {
+            "id": 305832
+          },
+          "statistics": [
+            {
+              "games": {
+                "minutes": 69
+              },
+              "goals": {
+                "total": null,
+                "assists": 0
+              }
+            }
+          ]
+        },
+        {
+          "player": {
+            "id": 154
+          },
+          "statistics": [
+            {
+              "games": {
+                "minutes": 90
+              },
+              "goals": {
+                "total": 1,
+                "assists": 0
+              }
+            }
+          ]
+        },
+        {
+          "player": {
+            "id": 157
+          },
+          "statistics": [
+            {
+              "games": {
+                "minutes": 90
+              },
+              "goals": {
+                "total": 1,
+                "assists": 0
+              }
+            }
+          ]
+        },
+        {
+          "player": {
+            "id": 6485
+          },
+          "statistics": [
+            {
+              "games": {
+                "minutes": 87
+              },
+              "goals": {
+                "total": null,
+                "assists": 0
+              }
+            }
+          ]
+        },
+        {
+          "player": {
+            "id": 739
+          },
+          "statistics": [
+            {
+              "games": {
+                "minutes": 21
+              },
+              "goals": {
+                "total": null,
+                "assists": 0
+              }
+            }
+          ]
+        },
+        {
+          "player": {
+            "id": 542272
+          },
+          "statistics": [
+            {
+              "games": {
+                "minutes": 21
+              },
+              "goals": {
+                "total": null,
+                "assists": 0
+              }
+            }
+          ]
+        },
+        {
+          "player": {
+            "id": 462860
+          },
+          "statistics": [
+            {
+              "games": {
+                "minutes": 9
+              },
+              "goals": {
+                "total": null,
+                "assists": 0
+              }
+            }
+          ]
+        },
+        {
+          "player": {
+            "id": 196737
+          },
+          "statistics": [
+            {
+              "games": {
+                "minutes": null
+              },
+              "goals": {
+                "total": null,
+                "assists": null
+              }
+            }
+          ]
+        },
+        {
+          "player": {
+            "id": 305799
+          },
+          "statistics": [
+            {
+              "games": {
+                "minutes": null
+              },
+              "goals": {
+                "total": null,
+                "assists": null
+              }
+            }
+          ]
+        },
+        {
+          "player": {
+            "id": 306705
+          },
+          "statistics": [
+            {
+              "games": {
+                "minutes": null
+              },
+              "goals": {
+                "total": null,
+                "assists": null
+              }
+            }
+          ]
+        },
+        {
+          "player": {
+            "id": 129886
+          },
+          "statistics": [
+            {
+              "games": {
+                "minutes": null
+              },
+              "goals": {
+                "total": null,
+                "assists": null
+              }
+            }
+          ]
+        },
+        {
+          "player": {
+            "id": 422792
+          },
+          "statistics": [
+            {
+              "games": {
+                "minutes": null
+              },
+              "goals": {
+                "total": null,
+                "assists": null
+              }
+            }
+          ]
+        },
+        {
+          "player": {
+            "id": 542116
+          },
+          "statistics": [
+            {
+              "games": {
+                "minutes": null
+              },
+              "goals": {
+                "total": null,
+                "assists": null
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "team": {
+        "id": 25484
+      },
+      "players": [
+        {
+          "player": {
+            "id": 163200
+          },
+          "statistics": [
+            {
+              "games": {
+                "minutes": 90
+              },
+              "goals": {
+                "total": null,
+                "assists": 0
+              }
+            }
+          ]
+        },
+        {
+          "player": {
+            "id": 511150
+          },
+          "statistics": [
+            {
+              "games": {
+                "minutes": 90
+              },
+              "goals": {
+                "total": null,
+                "assists": 0
+              }
+            }
+          ]
+        },
+        {
+          "player": {
+            "id": 508420
+          },
+          "statistics": [
+            {
+              "games": {
+                "minutes": 90
+              },
+              "goals": {
+                "total": null,
+                "assists": 0
+              }
+            }
+          ]
+        },
+        {
+          "player": {
+            "id": 351572
+          },
+          "statistics": [
+            {
+              "games": {
+                "minutes": 73
+              },
+              "goals": {
+                "total": null,
+                "assists": 0
+              }
+            }
+          ]
+        },
+        {
+          "player": {
+            "id": 39195
+          },
+          "statistics": [
+            {
+              "games": {
+                "minutes": 89
+              },
+              "goals": {
+                "total": null,
+                "assists": 0
+              }
+            }
+          ]
+        },
+        {
+          "player": {
+            "id": 15855
+          },
+          "statistics": [
+            {
+              "games": {
+                "minutes": 90
+              },
+              "goals": {
+                "total": null,
+                "assists": 2
+              }
+            }
+          ]
+        },
+        {
+          "player": {
+            "id": 2977
+          },
+          "statistics": [
+            {
+              "games": {
+                "minutes": 73
+              },
+              "goals": {
+                "total": null,
+                "assists": 0
+              }
+            }
+          ]
+        },
+        {
+          "player": {
+            "id": 458221
+          },
+          "statistics": [
+            {
+              "games": {
+                "minutes": 90
+              },
+              "goals": {
+                "total": null,
+                "assists": 0
+              }
+            }
+          ]
+        },
+        {
+          "player": {
+            "id": 45017
+          },
+          "statistics": [
+            {
+              "games": {
+                "minutes": 90
+              },
+              "goals": {
+                "total": 2,
+                "assists": 0
+              }
+            }
+          ]
+        },
+        {
+          "player": {
+            "id": 1941
+          },
+          "statistics": [
+            {
+              "games": {
+                "minutes": 62
+              },
+              "goals": {
+                "total": null,
+                "assists": 0
+              }
+            }
+          ]
+        },
+        {
+          "player": {
+            "id": 42012
+          },
+          "statistics": [
+            {
+              "games": {
+                "minutes": 90
+              },
+              "goals": {
+                "total": null,
+                "assists": 0
+              }
+            }
+          ]
+        },
+        {
+          "player": {
+            "id": 3033
+          },
+          "statistics": [
+            {
+              "games": {
+                "minutes": 28
+              },
+              "goals": {
+                "total": null,
+                "assists": 0
+              }
+            }
+          ]
+        },
+        {
+          "player": {
+            "id": 47835
+          },
+          "statistics": [
+            {
+              "games": {
+                "minutes": 17
+              },
+              "goals": {
+                "total": null,
+                "assists": 0
+              }
+            }
+          ]
+        },
+        {
+          "player": {
+            "id": 265898
+          },
+          "statistics": [
+            {
+              "games": {
+                "minutes": 17
+              },
+              "goals": {
+                "total": null,
+                "assists": 0
+              }
+            }
+          ]
+        },
+        {
+          "player": {
+            "id": 51308
+          },
+          "statistics": [
+            {
+              "games": {
+                "minutes": 1
+              },
+              "goals": {
+                "total": null,
+                "assists": 0
+              }
+            }
+          ]
+        },
+        {
+          "player": {
+            "id": 359962
+          },
+          "statistics": [
+            {
+              "games": {
+                "minutes": null
+              },
+              "goals": {
+                "total": null,
+                "assists": null
+              }
+            }
+          ]
+        },
+        {
+          "player": {
+            "id": 39365
+          },
+          "statistics": [
+            {
+              "games": {
+                "minutes": null
+              },
+              "goals": {
+                "total": null,
+                "assists": null
+              }
+            }
+          ]
+        },
+        {
+          "player": {
+            "id": 373519
+          },
+          "statistics": [
+            {
+              "games": {
+                "minutes": null
+              },
+              "goals": {
+                "total": null,
+                "assists": null
+              }
+            }
+          ]
+        },
+        {
+          "player": {
+            "id": 39347
+          },
+          "statistics": [
+            {
+              "games": {
+                "minutes": null
+              },
+              "goals": {
+                "total": null,
+                "assists": null
+              }
+            }
+          ]
+        },
+        {
+          "player": {
+            "id": 642537
+          },
+          "statistics": [
+            {
+              "games": {
+                "minutes": null
+              },
+              "goals": {
+                "total": null,
+                "assists": null
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "fixtures/events": [
+    {
+      "type": "Goal",
+      "detail": "Normal Goal",
+      "player": {
+        "id": 45017
+      },
+      "assist": {
+        "id": 15855
+      }
+    },
+    {
+      "type": "Goal",
+      "detail": "Normal Goal",
+      "player": {
+        "id": 154
+      },
+      "assist": {
+        "id": null
+      }
+    },
+    {
+      "type": "Card",
+      "detail": "Yellow Card",
+      "player": {
+        "id": 351572
+      },
+      "assist": {
+        "id": null
+      }
+    },
+    {
+      "type": "Var",
+      "detail": "Goal Disallowed - offside",
+      "player": {
+        "id": 1941
+      },
+      "assist": {
+        "id": null
+      }
+    },
+    {
+      "type": "subst",
+      "detail": "Substitution 1",
+      "player": {
+        "id": 1941
+      },
+      "assist": {
+        "id": 3033
+      }
+    },
+    {
+      "type": "Card",
+      "detail": "Yellow Card",
+      "player": {
+        "id": 455386
+      },
+      "assist": {
+        "id": null
+      }
+    },
+    {
+      "type": "subst",
+      "detail": "Substitution 1",
+      "player": {
+        "id": 305832
+      },
+      "assist": {
+        "id": 542272
+      }
+    },
+    {
+      "type": "subst",
+      "detail": "Substitution 2",
+      "player": {
+        "id": 663850
+      },
+      "assist": {
+        "id": 739
+      }
+    },
+    {
+      "type": "subst",
+      "detail": "Substitution 2",
+      "player": {
+        "id": 351572
+      },
+      "assist": {
+        "id": 47835
+      }
+    },
+    {
+      "type": "subst",
+      "detail": "Substitution 3",
+      "player": {
+        "id": 2977
+      },
+      "assist": {
+        "id": 265898
+      }
+    },
+    {
+      "type": "Goal",
+      "detail": "Normal Goal",
+      "player": {
+        "id": 157
+      },
+      "assist": {
+        "id": 2472
+      }
+    },
+    {
+      "type": "Card",
+      "detail": "Yellow Card",
+      "player": {
+        "id": 542272
+      },
+      "assist": {
+        "id": null
+      }
+    },
+    {
+      "type": "Goal",
+      "detail": "Normal Goal",
+      "player": {
+        "id": 45017
+      },
+      "assist": {
+        "id": null
+      }
+    },
+    {
+      "type": "subst",
+      "detail": "Substitution 3",
+      "player": {
+        "id": 6485
+      },
+      "assist": {
+        "id": 462860
+      }
+    },
+    {
+      "type": "subst",
+      "detail": "Substitution 4",
+      "player": {
+        "id": 39195
+      },
+      "assist": {
+        "id": 51308
+      }
+    }
+  ]
+}
