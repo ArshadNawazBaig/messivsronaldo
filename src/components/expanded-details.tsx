@@ -3,12 +3,12 @@ import { ArrowUpRight } from "lucide-react";
 import { getPublishedData } from "@/lib/server-data";
 import { players, sources } from "@/lib/data";
 
-export function CurrentHighlights() {
-  const { scopes, snapshotLabel } = getPublishedData();
+export async function CurrentHighlights() {
+  const { scopes, snapshotLabel } = await getPublishedData();
   return <div className="current-strip" aria-label="2026 highlights"><Link className="current-tile" href="/2026"><span className="section-kicker">2026 · CLUB + COUNTRY GOALS</span><strong><span className="messi-text">{scopes["2026"].goals.messi}</span><span className="ronaldo-text">{scopes["2026"].goals.ronaldo}</span></strong><p>The current year, side by side ↗</p></Link><Link className="current-tile" href="/clubs"><span className="section-kicker">INTER MIAMI / AL NASSR GOALS</span><strong><span className="messi-text">{scopes["current-clubs"].goals.messi}</span><span className="ronaldo-text">{scopes["current-clubs"].goals.ronaldo}</span></strong><p>Every competitive goal at their current clubs ↗</p></Link><Link className="current-tile" href="/records"><span className="section-kicker">THE ROAD TO 1,000 · GOALS TO GO</span><strong><span className="messi-text">{1000 - scopes.career.goals.messi}</span><span className="ronaldo-text">{1000 - scopes.career.goals.ronaldo}</span></strong><p>Career milestones, updated {snapshotLabel} ↗</p></Link></div>;
 }
-export function ClubBreakdown({ only }: { only?: "messi" | "ronaldo" }) {
-  const { clubs, snapshotLabel } = getPublishedData();
+export async function ClubBreakdown({ only }: { only?: "messi" | "ronaldo" }) {
+  const { clubs, snapshotLabel } = await getPublishedData();
   return <section aria-label="Club-by-club statistics"><div className="section-title-row"><div><span className="section-kicker">EVERY SHIRT. EVERY CHAPTER.</span><h2>Club by club<span className="heading-dot">.</span></h2></div></div><div className="club-columns">{(["messi", "ronaldo"] as const).filter(p => !only || p === only).map(player => <div className="club-column" key={player}><h2 className={`${player}-text`}>{players[player].name}</h2>{clubs.filter(c => c.player === player).toReversed().map(club => <article className="panel club-card" key={club.id}><span className="section-kicker">{club.period}</span><h3>{club.name}</h3><div className="club-stat-grid"><div><strong className={`${player}-text`}>{club.goals}</strong><span>GOALS</span></div><div><strong>{club.assists}</strong><span>ASSISTS</span></div><div><strong>{club.appearances}</strong><span>APPEARANCES</span></div></div><p>{club.minutes.toLocaleString("en-US")} minutes · {(club.goals * 90 / club.minutes).toFixed(2)} goals per 90 · {club.hatTricks} hat-tricks</p><a href={club.source} target="_blank" rel="noreferrer">Club record & counting rules <ArrowUpRight size={12} /></a></article>)}</div>)}</div><p className="freshness-note">Competitive first-team matches through {snapshotLabel}. Manchester United combines both spells. Ronaldo’s Real Madrid total uses the standard 450-goal convention; the club’s own 451 count assigns a disputed goal differently.</p></section>;
 }
 export const trophyRows = [

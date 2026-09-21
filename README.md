@@ -1,10 +1,10 @@
 # The Rivalry
 
-A Next.js website for comparing Lionel Messi and Cristiano Ronaldo, with an original responsive interface and a reviewed September 2026 dataset.
+A Next.js website for comparing Lionel Messi and Cristiano Ronaldo, with an original responsive interface and a reviewed September 2026 dataset. Production domain: https://messivsronaldo17.com. Vercel deployment and database instructions: [DEPLOYMENT.md](DEPLOYMENT.md).
 
 ## Run locally
 
-Requires Node.js 20.9 or later. The project was verified with Node.js 22.
+Requires Node.js 22 (also selected for Vercel).
 
 ```sh
 npm ci
@@ -22,7 +22,7 @@ This workspace's ignored `.env.local` sets the preview origin to `http://localho
 
 ## What is implemented
 
-- A protected `/admin` dashboard with date-based API-Football sync, verified manual match edits, audit history, undo, exports, and persistent SQLite storage. Setup and boundaries: [ADMIN_GUIDE.md](ADMIN_GUIDE.md).
+- A protected `/admin` dashboard with date-based API-Football sync, verified manual match edits, audit history, undo, exports, and persistent Postgres storage on Vercel (SQLite for local development). Setup and boundaries: [ADMIN_GUIDE.md](ADMIN_GUIDE.md).
 - Next.js App Router, TypeScript, locally hosted Inter and Manrope fonts, Lucide icons, and custom responsive CSS.
 - Thirteen comparison scopes: career, 2026, club, country, Champions League, La Liga, World Cup, Copa América/Euros, current clubs, all leagues, European clubs, career excluding USA/Saudi, and direct meetings.
 - Goals, assists, appearances, minutes, contributions, per-appearance and per-90 rates, hat-tricks, penalties/conversion, non-penalty goals, free kicks, scoring locations and body parts.
@@ -69,7 +69,7 @@ Deploy on a Node.js host with persistent writable storage and one application in
 
 1. Set `NEXT_PUBLIC_SITE_URL` to the final HTTPS origin, without a path. This affects built canonical URLs, sitemap URLs and structured data.
 2. Set `SITE_INDEXABLE=true` only for the intended public site. Private previews should keep it `false`. The code also prevents indexing for localhost origins.
-3. Run `npm run admin:setup` and configure the private admin environment variables and persistent database path. Optionally configure `CONTACT_EMAIL` and `GOOGLE_SITE_VERIFICATION`. These are publisher configuration values, not football-provider credentials.
+3. Run `npm run admin:setup` and configure the private admin environment variables. On Vercel, connect a Neon Postgres database and set `DATABASE_URL`; local SQLite requires a persistent disk on other hosts. Optionally configure `CONTACT_EMAIL` and `GOOGLE_SITE_VERIFICATION`. These are publisher configuration values, not football-provider credentials.
 4. Build with those environment values, then start the production server. Environment changes affecting static metadata require a rebuild.
 5. Check the final domain, HTTPS, canonical tags, sitemap, robots file, social image, source links and actual page content. Verify the property in Search Console and submit the sitemap.
 

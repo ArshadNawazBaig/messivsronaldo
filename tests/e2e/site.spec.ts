@@ -190,7 +190,10 @@ test("custom dropdown supports keyboard selection, dismissal, long lists and acc
   await page.keyboard.press("ArrowDown");
   await expect(page.getByRole("listbox")).toBeVisible();
   await expect(page.locator(".site-body")).toHaveAttribute("inert", "");
+  await expect(page.getByRole("option", { name: "Career", exact: true })).toBeFocused();
   await page.keyboard.press("i");
+  // Radix schedules typeahead focus; wait for it before confirming the option.
+  await expect(page.getByRole("option", { name: "International", exact: true })).toBeFocused();
   await page.keyboard.press("Enter");
   await expect(scope).toHaveText("International");
   await expect(page.locator(".big-score").first()).toHaveText("125");

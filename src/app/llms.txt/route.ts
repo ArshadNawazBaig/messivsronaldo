@@ -1,15 +1,15 @@
 import { siteUrl } from "@/lib/site";
 import { getPublishedData } from "@/lib/server-data";
 export const dynamic = "force-dynamic";
-export function GET() {
-  const { snapshotDate, datasetVersion, scopes, coverageNote } = getPublishedData();
+export async function GET() {
+  const { snapshotDate, datasetVersion, scopes, coverageNote } = await getPublishedData();
   const text = `# The Rivalry
 
 > Lionel Messi and Cristiano Ronaldo statistics, reviewed through ${snapshotDate}. Dataset ${datasetVersion}.
 
 ## Coverage
 
-${coverageNote}
+${coverageNote || "Reviewed baseline only. No post-baseline matches have been published."}
 
 Career goals: Messi ${scopes.career.goals.messi}, Ronaldo ${scopes.career.goals.ronaldo}. This is a dated release, not a live feed. Career totals include competitive senior club matches and recognized senior internationals; club friendlies, exhibitions, youth matches and shootouts are excluded. Calendar years span 2002–2026; 2026 is incomplete.
 
@@ -18,6 +18,9 @@ Career assists follow the secondary reference Messi vs Ronaldo App. Champions Le
 ## Pages
 
 - [Overview](${siteUrl}/): Dated career totals and comparison controls.
+- [Published updates](${siteUrl}/updates): Match records, sources and publication coverage.
+- [International](${siteUrl}/international): Argentina and Portugal records.
+- [Player profiles](${siteUrl}/players/messi): Messi; [Ronaldo](${siteUrl}/players/ronaldo).
 - [2026](${siteUrl}/2026): Year-to-date goals, assists and minutes.
 - [Years & seasons](${siteUrl}/seasons): Twenty-five calendar years and a separate shared-Spain season archive.
 - [Club records](${siteUrl}/clubs): Eight clubs, including Inter Miami and Al Nassr.

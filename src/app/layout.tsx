@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: { default: "Messi vs Ronaldo: Goals, Stats & Perspective | The Rivalry", template: "%s | The Rivalry" },
   description: "Explore Messi vs Ronaldo with sourced statistics updated in 2026, interactive comparisons and clear definitions. Career goals, assists, World Cup, club records and trophies.",
-  robots: { index: indexable, follow: true, googleBot: { index: indexable, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
+  robots: { index: indexable, follow: true, googleBot: { index: indexable, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
   verification: { google: process.env.GOOGLE_SITE_VERIFICATION || undefined },
   applicationName: siteName,
 };
@@ -22,6 +22,6 @@ const themeScript = `(function(){try{var theme=localStorage.getItem('rivalry-the
 
 export const dynamic = "force-dynamic";
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en" suppressHydrationWarning><head><script dangerouslySetInnerHTML={{ __html: themeScript }} /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd({ "@context": "https://schema.org", "@type": "WebSite", name: siteName, url: siteUrl, description: "An independent, source-transparent Messi and Ronaldo comparison publication.", inLanguage: "en" }) }} /></head><body className={`${inter.variable} ${manrope.variable}`}><DataProvider value={getPublishedData()}><SiteShell>{children}</SiteShell></DataProvider></body></html>;
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  return <html lang="en" suppressHydrationWarning><head><script dangerouslySetInnerHTML={{ __html: themeScript }} /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd({ "@context": "https://schema.org", "@type": "WebSite", "@id": `${siteUrl}/#website`, name: siteName, alternateName: "Messi vs Ronaldo 17", publisher: { "@type": "Organization", "@id": `${siteUrl}/#publisher`, name: siteName, url: siteUrl, logo: `${siteUrl}/icon.svg` }, url: siteUrl, description: "An independent, source-transparent Messi and Ronaldo comparison publication.", inLanguage: "en" }) }} /></head><body className={`${inter.variable} ${manrope.variable}`}><DataProvider value={await getPublishedData()}><SiteShell>{children}</SiteShell></DataProvider></body></html>;
 }

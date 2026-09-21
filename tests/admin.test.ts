@@ -148,17 +148,17 @@ test("connection discovers player identities by birth date and verifies national
 });
 
 
-test("manual publication validates dates, persists protected corrections and rejects duplicate days",()=>{
+test("manual publication validates dates, persists protected corrections and rejects duplicate days",async()=>{
   const db=openStore(":memory:");
   try {
-    saveMatch(sample,0,db,"2026-09-22");
+    await saveMatch(sample,0,db,"2026-09-22");
     assert.equal(readRecords(db)[0].locked,true);assert.equal(readRecords(db)[0].provider,"manual");
     assert.equal(buildPublishedData(readRecords(db)).scopes.career.goals.messi,932);
-    saveMatch({...sample,goals:3},1,db,"2026-09-22");
+    await saveMatch({...sample,goals:3},1,db,"2026-09-22");
     assert.equal(buildPublishedData(readRecords(db)).scopes.career.goals.messi,933);
-    assert.throws(()=>saveMatch({...sample,id:"manual:duplicate"},2,db,"2026-09-22"),/already exists/);
-    assert.throws(()=>saveMatch({...sample,date:"2026-09-21"},2,db,"2026-09-22"),/baseline/);
-    assert.throws(()=>saveMatch({...sample,date:"2026-09-23"},2,db,"2026-09-22"),/today/);
+    await assert.rejects(()=>saveMatch({...sample,id:"manual:duplicate"},2,db,"2026-09-22"),/already exists/);
+    await assert.rejects(()=>saveMatch({...sample,date:"2026-09-21"},2,db,"2026-09-22"),/baseline/);
+    await assert.rejects(()=>saveMatch({...sample,date:"2026-09-23"},2,db,"2026-09-22"),/today/);
     assert.equal(revision(db),2);
   } finally {db.close();}
 });

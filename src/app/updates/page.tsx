@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { getPublishedData } from "@/lib/server-data";
-import { readRecords } from "@/lib/admin/store";
+import { readRecords } from "@/lib/admin/database";
 import { pageMetadata } from "@/lib/site";
 export const metadata = pageMetadata("Published match updates", "Dated Messi and Ronaldo match records added after the reviewed baseline, with sources and coverage notes.", "/updates");
-export default function UpdatesPage() {
-  const data = getPublishedData(); const records = readRecords().sort((a,b)=>b.date.localeCompare(a.date));
+export default async function UpdatesPage() {
+  const data = await getPublishedData(); const records = (await readRecords()).sort((a,b)=>b.date.localeCompare(a.date));
   return <div className="page-container inner-page"><section className="page-intro"><div><span className="eyebrow">A RECORD OF EVERY CHANGE</span><h1>Published updates<span className="heading-dot">.</span></h1><p>The matches behind the latest totals.</p></div></section><div className="prose panel"><h2>Coverage and counting rules</h2><p>The reviewed baseline ends {data.baselineDate}. The records below are added to that baseline. An unlisted date has not been verified; this page is not a complete historical match log. Automatic imports use API-Football’s assist definition, which can differ from the baseline provider. Goal-type breakdowns retain their displayed baseline cutoff.</p><p>Only senior competitive club matches and senior internationals are included. Club friendlies and shootout kicks are excluded. League totals exclude MLS playoffs. Manual corrections take precedence over automatic imports.</p><Link href="/methodology">Read the baseline methodology ↗</Link></div><div className="panel admin-table-wrap"><table className="admin-table"><caption>Published match records after {data.baselineDate}</caption><thead><tr><th>Date (UTC)</th><th>Player / match</th><th>Goals</th><th>Assists</th><th>Minutes</th><th>Evidence</th></tr></thead><tbody>{records.map(r=><tr key={r.id}><td>{r.date}</td><th scope="row">{r.player === "messi" ? "Messi" : "Ronaldo"}<small>{r.team} vs {r.opponent} · {r.competition}</small></th><td>{r.goals}</td><td>{r.assists}</td><td>{r.minutes}</td><td><a href={r.source} target="_blank" rel="noreferrer">{r.provider === "manual" ? "Manual correction" : "API-Football"} ↗</a><small>{r.note}</small></td></tr>)}</tbody></table>{!records.length && <p className="admin-empty">No matches have been added after the baseline yet. Current public totals remain the reviewed snapshot.</p>}</div></div>;
 }

@@ -1,8 +1,8 @@
 import "server-only";
 import { cache } from "react";
 import { buildPublishedData } from "./published-data";
-import { readRecords, revision, store } from "./admin/store";
-export const getPublishedData = cache(() => {
-  const db = store();
-  return db.transaction(() => buildPublishedData(readRecords(db), revision(db)))();
+import { readSnapshot } from "./admin/database";
+export const getPublishedData = cache(async () => {
+  const { records, revision } = await readSnapshot();
+  return buildPublishedData(records, revision);
 });

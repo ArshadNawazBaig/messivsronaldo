@@ -4,9 +4,10 @@ import { checkOrigin, login, logout, requireAdmin } from "@/lib/admin/auth";
 import { AdminError, dateSchema } from "@/lib/admin/model";
 import { backup, getAdminState, removeMatch, saveMatch, syncDate } from "@/lib/admin/service";
 import { connectProvider } from "@/lib/admin/provider";
-import { logRun, saveConnection, undoLast } from "@/lib/admin/store";
+import { logRun, saveConnection, undoLast } from "@/lib/admin/database";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+export const maxDuration = 300;
 const headers = {"Cache-Control":"no-store", "X-Robots-Tag":"noindex, nofollow"};
 function failure(error: unknown) {
   const status = error instanceof AdminError ? error.status : error instanceof ZodError ? 422 : 500;
@@ -16,8 +17,8 @@ function failure(error: unknown) {
 export async function GET(_request: Request, {params}:{params:Promise<{action:string}>}) {
   try {
     await requireAdmin(); const {action} = await params;
-    if (action === "state") return Response.json(getAdminState(),{headers});
-    if (action === "backup") return Response.json(backup(),{headers:{...headers,"Content-Disposition":"attachment; filename=rivalry-data-backup.json"}});
+    if (action === "state") return Response.json(await getAdminState(),{headers});
+    if (action === "backup") return Response.json(await backup(),{headers:{...headers,"Content-Disposition":"attachment; filename=rivalry-data-backup.json"}});
     return Response.json({error:"Not found"},{status:404,headers});
   } catch(error) { return failure(error); }
 }
@@ -35,22 +36,22 @@ export async function POST(request: Request, {params}:{params:Promise<{action:st
     if (action === "connect") {
       const {key} = z.object({key:z.string().trim().min(10).max(200)}).parse(body);
       try {
-        saveConnection(await connectProvider(key));
+        await saveConnection(await connectProvider(key));
       } catch (error) {
-        if (error instanceof AdminError) logRun(new Date().toISOString().slice(0,10),"connection","failed",error.message);
+        if (error instanceof AdminError) await logRun(new Date().toISOString().slice(0,10),"connection","failed",error.message);
         throw error;
       }
-      logRun(new Date().toISOString().slice(0,10),"connection","connected","API-Football connected. Player and team identities verified.");
+      await logRun(new Date().toISOString().slice(0,10),"connection","connected","API-Football connected. Player and team identities verified.");
       message = "API-Football connected. Both players and their club/country identities were verified.";
     } else {
       const {revision} = z.object({revision:z.number().int().nonnegative()}).parse(body);
       if (action === "sync") { const {date} = z.object({date:dateSchema}).parse(body); message = await syncDate(date,revision); }
-      else if (action === "match") { const {record} = z.object({record:z.unknown()}).parse(body); saveMatch(record,revision); message = "Match saved and public totals recalculated."; }
-      else if (action === "remove") { const {id} = z.object({id:z.string().min(1).max(100)}).parse(body); removeMatch(id,revision); message = "Match removed and totals recalculated."; }
-      else if (action === "undo") { undoLast(revision); message = "Previous published data restored."; }
+      else if (action === "match") { const {record} = z.object({record:z.unknown()}).parse(body); await saveMatch(record,revision); message = "Match saved and public totals recalculated."; }
+      else if (action === "remove") { const {id} = z.object({id:z.string().min(1).max(100)}).parse(body); await removeMatch(id,revision); message = "Match removed and totals recalculated."; }
+      else if (action === "undo") { await undoLast(revision); message = "Previous published data restored."; }
       else throw new AdminError("Unknown admin action.",404);
     }
     revalidatePath("/","layout");
-    return Response.json({message,state:getAdminState()},{headers});
+    return Response.json({message,state:await getAdminState()},{headers});
   } catch(error) { return failure(error); }
 }

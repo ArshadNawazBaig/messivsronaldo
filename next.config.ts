@@ -2,6 +2,14 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  async redirects() {
+    return [{
+      source: "/:path*",
+      has: [{ type: "host", value: "www.messivsronaldo17.com" }],
+      destination: "https://messivsronaldo17.com/:path*",
+      permanent: true,
+    }];
+  },
   async headers() {
     return [{ source: "/(.*)", headers: [
       { key: "X-Content-Type-Options", value: "nosniff" },

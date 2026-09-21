@@ -47,16 +47,22 @@ function encryptionKey() {
   if (!secret || secret.length < 32) throw new AdminError("Admin security is not configured.", 503);
   return createHash("sha256").update(secret).digest();
 }
-export function saveConnection(connection: ProviderConnection, db = store()) {
+export function encryptConnection(connection: ProviderConnection) {
   const iv = randomBytes(12); const cipher = createCipheriv("aes-256-gcm", encryptionKey(), iv);
   const encrypted = Buffer.concat([cipher.update(JSON.stringify(connection), "utf8"), cipher.final()]);
   const payload = [iv, cipher.getAuthTag(), encrypted].map(b => b.toString("base64")).join(".");
-  db.prepare("INSERT OR REPLACE INTO settings (key,value) VALUES ('provider',?)").run(payload);
+  return payload;
+}
+export function saveConnection(connection: ProviderConnection, db = store()) {
+  db.prepare("INSERT OR REPLACE INTO settings (key,value) VALUES ('provider',?)").run(encryptConnection(connection));
 }
 export function getConnection(db = store()): ProviderConnection | null {
   const row = db.prepare("SELECT value FROM settings WHERE key = 'provider'").get() as {value: string} | undefined;
   if (!row) return null;
-  const [iv, tag, encrypted] = row.value.split(".").map(v => Buffer.from(v, "base64"));
+  return decryptConnection(row.value);
+}
+export function decryptConnection(payload: string): ProviderConnection {
+  const [iv, tag, encrypted] = payload.split(".").map(v => Buffer.from(v, "base64"));
   const decipher = createDecipheriv("aes-256-gcm", encryptionKey(), iv); decipher.setAuthTag(tag);
   return JSON.parse(Buffer.concat([decipher.update(encrypted), decipher.final()]).toString("utf8"));
 }

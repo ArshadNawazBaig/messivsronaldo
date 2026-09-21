@@ -99,3 +99,5 @@ input.date-picker-validation{position:absolute!important;left:0;bottom:0;width:1
 .admin-date-control>.date-picker{flex:1;min-width:0}.admin-date-control .date-picker-trigger{height:46px}.admin-record-toolbar .date-picker{min-width:190px}
 @media(max-width:600px){.date-picker-content{padding:13px;width:324px}.date-picker-day{max-height:40px}.admin-date-control>.date-picker{flex-basis:calc(100% - 96px)}.admin-date-control .date-picker-trigger{font-size:12px;padding:10px;gap:8px}}
 @media(prefers-reduced-motion:reduce){.date-picker-content{animation:none}.date-picker-trigger,.date-picker-chevron{transition:none}}
+
+.comparison-guide{margin-bottom:28px}.comparison-guide h3{font-size:16px;font-weight:650;margin:24px 0 8px;line-height:1.5}.comparison-guide>h2{margin-top:10px}
