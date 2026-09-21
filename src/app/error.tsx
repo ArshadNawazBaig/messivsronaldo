@@ -1,2 +1,6 @@
 "use client";
-export default function ErrorPage({ reset }: { reset: () => void }) { return <div className="page-container error-page"><span>!</span><h1>A brief interruption.</h1><p>We couldn’t load this comparison. Try again in a moment.</p><button className="primary-button" onClick={reset}>Try again</button></div>; }
+import { StatusScreen } from "@/components/status-screen";
+
+export default function ErrorPage({ retry }: { retry: () => void }) {
+  return <><title>Page unavailable | The Rivalry</title><meta name="robots" content="noindex, follow" /><StatusScreen onRetry={retry} /></>;
+}

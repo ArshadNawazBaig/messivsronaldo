@@ -35,7 +35,8 @@ test("comparison changes, plain statistic labels, and share state survive reload
   await expect(page.locator(".stats-table tbody button")).toHaveCount(0);
   await expect(page.locator(".source-dialog")).toHaveCount(0);
   await page.getByRole("button", { name: "Options", exact: true }).click();
-  await chooseOption(page, "Goal display", "Goals per appearance");
+  await page.getByRole("radio", { name: "Goals per appearance", exact: true }).check();
+  await page.getByRole("button", { name: "Done", exact: true }).click();
   await expect(page.locator(".big-score").first()).toHaveText("0.79");
   await page.reload();
   await expect(page.locator(".big-score").first()).toHaveText("0.79");
@@ -158,14 +159,16 @@ test("2026 comparison, per-90 display and detailed scoring filters persist", asy
   await page.getByRole("button", { name: "2026", exact: true }).click();
   await expect(page.locator(".big-score").first()).toHaveText("34");
   await page.getByRole("button", { name: "Options", exact: true }).click();
-  await chooseOption(page, "Goal display", "Goals per 90 minutes");
+  await page.getByRole("radio", { name: "Goals per 90 minutes", exact: true }).check();
+  await page.getByRole("button", { name: "Done", exact: true }).click();
   await expect(page.locator(".big-score").first()).toHaveText("0.93");
   await page.getByRole("button", { name: "Goal types & set pieces", exact: true }).click();
   await page.reload();
   await expect(page.getByRole("rowheader", { name: "Penalty goals", exact: true })).toBeVisible();
   await chooseOption(page, "More comparisons", "World Cup");
   await page.getByRole("button", { name: "Options", exact: true }).click();
-  await chooseOption(page, "Goal display", "Total goals");
+  await page.getByRole("radio", { name: "Total goals", exact: true }).check();
+  await page.getByRole("button", { name: "Done", exact: true }).click();
   await expect(page.locator(".big-score").first()).toHaveText("21");
   await expect(page.locator(".big-score").last()).toHaveText("11");
   await page.goto("/penalties");

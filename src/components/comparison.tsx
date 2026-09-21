@@ -3,9 +3,10 @@ import { useFootballData } from "@/components/data-provider";
 
 import { PlayerMatchup } from "@/components/player-matchup";
 import { Select } from "@/components/ui/select";
+import { ComparisonOptions } from "@/components/comparison-options";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, ArrowUpRight, Check, ChevronDown, Download, Globe2, Info, Link2, ShieldCheck, SlidersHorizontal, Star } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Check, Download, Globe2, Info, Link2, ShieldCheck, Star } from "lucide-react";
 import { comparisonCsv, getGoalValues, isScope, players, scopeIds, sources, type GoalMode, type MetricGroup, type Metric, type PlayerId, type ScopeId } from "@/lib/data";
 
 export function Comparison({ initialScope = "career", compact = false, initialGroup = "overview" }: { initialScope?: ScopeId; compact?: boolean; initialGroup?: MetricGroup | "all" }) {
@@ -15,7 +16,6 @@ export function Comparison({ initialScope = "career", compact = false, initialGr
   const [group, setGroup] = useState<MetricGroup | "all">(initialGroup);
   const [copied, setCopied] = useState(false);
   const [onlyDifferences, setOnlyDifferences] = useState(false);
-  const [filterOpen, setFilterOpen] = useState(false);
   const scope = scopes[scopeId];
   const goals = getGoalValues(scope, mode);
   const shareTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -58,8 +58,7 @@ export function Comparison({ initialScope = "career", compact = false, initialGr
   }
 
   return <section className={`comparison ${compact ? "comparison-compact" : ""}`} id="comparison" aria-label="Interactive player comparison">
-    <div className="comparison-toolbar"><div className="scope-tabs" role="group" aria-label="Competition scope">{(["career", "2026", "club", "international", "champions-league"] as ScopeId[]).map(id => <button key={id} className={scopeId === id ? "selected" : ""} aria-pressed={scopeId === id} onClick={() => update(id)}>{scopes[id].shortLabel}</button>)}</div><div className="extra-scope"><Select label="More comparisons" menuLabel="Compare by competition" value={scopeId} onValueChange={value => update(value as ScopeId)} icon={Globe2} options={(["career", ...scopeIds.filter(id => id !== "career")] as ScopeId[]).map(id => ({ value: id, label: scopes[id].shortLabel }))} /></div><button className={`filter-button ${filterOpen ? "selected" : ""}`} aria-label="Options" aria-expanded={filterOpen} onClick={() => setFilterOpen(!filterOpen)}><SlidersHorizontal size={15} /><span>Options</span><ChevronDown size={13} /></button></div>
-    {filterOpen && <div className="filter-panel"><div><label htmlFor="comparison-mode">Goal display</label><Select id="comparison-mode" label="Goal display" value={mode} onValueChange={value => update(scopeId, value as GoalMode)} options={[{ value: "total", label: "Total goals" }, { value: "per-game", label: "Goals per appearance" }, { value: "per-90", label: "Goals per 90 minutes" }]} /></div><label className="checkbox-label"><input type="checkbox" checked={onlyDifferences} onChange={event => update(scopeId, mode, event.target.checked)} />Hide tied metrics</label><button className="text-button" onClick={() => update(initialScope, "total", false, initialGroup)}>Reset comparison</button><p>Per-90 rates use the published minutes for the same comparison. Totals, appearances and minutes remain visible below.</p></div>}
+    <div className="comparison-toolbar"><div className="scope-tabs" role="group" aria-label="Competition scope">{(["career", "2026", "club", "international", "champions-league"] as ScopeId[]).map(id => <button key={id} className={scopeId === id ? "selected" : ""} aria-pressed={scopeId === id} onClick={() => update(id)}>{scopes[id].shortLabel}</button>)}</div><div className="extra-scope"><Select label="More comparisons" menuLabel="Compare by competition" value={scopeId} onValueChange={value => update(value as ScopeId)} icon={Globe2} options={(["career", ...scopeIds.filter(id => id !== "career")] as ScopeId[]).map(id => ({ value: id, label: scopes[id].shortLabel }))} /></div><ComparisonOptions mode={mode} onlyDifferences={onlyDifferences} onChange={(nextMode, differences) => update(scopeId, nextMode, differences)} /></div>
     {coverageNote && <p className="data-update-note">{coverageNote} <Link href="/updates">View update log ↗</Link></p>}<div className="snapshot-line"><span><span className="snapshot-dot" /> {scope.period}</span><Link href="/methodology">Sources & definitions <Info size={12} /></Link></div>
     <PlayerMatchup
       values={goals}

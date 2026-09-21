@@ -63,9 +63,11 @@ Browser tests use port 3001 and start a production server when one is not alread
 
 Generated screenshots and audit artifacts belong in `.artifacts/` and are ignored. Automated accessibility checks do not replace a complete manual accessibility audit. Lab performance measurements do not establish real-user Core Web Vitals.
 
+To check development-only React warnings, start `npm run dev` and run `PLAYWRIGHT_BASE_URL=http://localhost:3000 npx playwright test tests/e2e/theme-recovery.spec.ts`. These checks exercise 404 fallbacks, client navigation, saved themes and blocked browser storage.
+
 ## Deploy
 
-Deploy on a Node.js host with persistent writable storage and one application instance. The admin database uses SQLite; default ephemeral/serverless filesystems are unsupported. Set `ADMIN_DATABASE_PATH` to the persistent volume. See [ADMIN_GUIDE.md](ADMIN_GUIDE.md) for credentials, backup and deployment details.
+On Vercel, use Neon Postgres through `DATABASE_URL`. For a separate Node.js host using SQLite, use persistent writable storage and one application instance; set `ADMIN_DATABASE_PATH` to the persistent volume. Ephemeral serverless filesystems cannot persist the SQLite database. See [ADMIN_GUIDE.md](ADMIN_GUIDE.md) for credentials, backup and deployment details.
 
 1. Set `NEXT_PUBLIC_SITE_URL` to the final HTTPS origin, without a path. This affects built canonical URLs, sitemap URLs and structured data.
 2. Set `SITE_INDEXABLE=true` only for the intended public site. Private previews should keep it `false`. The code also prevents indexing for localhost origins.
@@ -73,7 +75,15 @@ Deploy on a Node.js host with persistent writable storage and one application in
 4. Build with those environment values, then start the production server. Environment changes affecting static metadata require a rebuild.
 5. Check the final domain, HTTPS, canonical tags, sitemap, robots file, social image, source links and actual page content. Verify the property in Search Console and submit the sitemap.
 
-No public deployment or domain purchase has been performed. A domain and hosting account remain owner inputs.
+The production website is deployed on Vercel at https://messivsronaldo17.com with Neon Postgres.
+
+## Public policies and system pages
+
+- `/terms`, `/privacy`, `/cookies`, `/disclaimer`, and `/accessibility` describe this edition. Policy content is in `src/lib/policies.ts`. Set the publisher's public `CONTACT_EMAIL` to show a real email contact; no contact address or legal entity is invented by the app.
+- `/about`, `/contact`, `/credits`, `/methodology`, and `/updates` provide the existing project information and correction workflow. Downloading a correction report does **not** submit it.
+- `/sitemap` is the visitor directory; `/sitemap.xml` uses the same catalog in `src/lib/public-pages.ts`. The catalog includes every public content route, player profile, article, calendar year and archived season. Error responses, `/maintenance`, `/admin`, API endpoints and filter variants are excluded. New `[slug]` pages registered in `content-pages.ts` are included automatically; register any new standalone route in `public-pages.ts` too.
+- Unknown routes use the custom 404. Route rendering failures use `error.tsx`; root-layout failures use the independent `global-error.tsx`. Retry re-fetches the failed route through Next.js.
+- `/maintenance` always serves the maintenance design with HTTP **503**, `Retry-After: 300`, and no caching. It works without the database. To temporarily pause public routes, set `MAINTENANCE_MODE=true` in the host environment and redeploy. Admin routes, admin APIs, assets and `robots.txt` remain accessible; existing admin authentication still applies. Set it back to `false` and redeploy to reopen. Keep this mode brief: prolonged 503 responses can affect search visibility. Normal URLs are not given `noindex` during an outage.
 
 ## Keeping the data current
 

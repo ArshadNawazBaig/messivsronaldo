@@ -2,6 +2,7 @@ import { DataProvider } from "@/components/data-provider";
 import { getPublishedData } from "@/lib/server-data";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { ThemeInitializer } from "@/components/theme-initializer";
 import "./globals.css";
 import "./editorial.css";
 import { SiteShell } from "@/components/site-shell";
@@ -19,10 +20,8 @@ export const metadata: Metadata = {
   applicationName: siteName,
 };
 
-const themeScript = `(function(){try{var theme=localStorage.getItem('rivalry-theme');if(theme==='dark'||theme==='light')document.documentElement.dataset.theme=theme;}catch(e){}})();`;
-
 export const dynamic = "force-dynamic";
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en" data-theme="light" suppressHydrationWarning><head><script dangerouslySetInnerHTML={{ __html: themeScript }} /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd({ "@context": "https://schema.org", "@type": "WebSite", "@id": `${siteUrl}/#website`, name: siteName, alternateName: "Messi vs Ronaldo 17", publisher: { "@type": "Organization", "@id": `${siteUrl}/#publisher`, name: siteName, url: siteUrl, logo: `${siteUrl}/icon.svg` }, url: siteUrl, description: "An independent, source-transparent Messi and Ronaldo comparison publication.", inLanguage: "en" }) }} /></head><body className={`${inter.variable} ${display.variable}`}><DataProvider value={await getPublishedData()}><SiteShell>{children}</SiteShell></DataProvider></body></html>;
+  return <html lang="en" data-theme="light" suppressHydrationWarning><head><ThemeInitializer /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd({ "@context": "https://schema.org", "@type": "WebSite", "@id": `${siteUrl}/#website`, name: siteName, alternateName: "Messi vs Ronaldo 17", publisher: { "@type": "Organization", "@id": `${siteUrl}/#publisher`, name: siteName, url: siteUrl, logo: `${siteUrl}/icon.svg` }, url: siteUrl, description: "An independent, source-transparent Messi and Ronaldo comparison publication.", inLanguage: "en" }) }} /></head><body className={`${inter.variable} ${display.variable}`}><DataProvider value={await getPublishedData()}><SiteShell>{children}</SiteShell></DataProvider></body></html>;
 }
