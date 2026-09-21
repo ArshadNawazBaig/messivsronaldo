@@ -26,15 +26,14 @@ test("statistics are available in HTML without JavaScript", async ({ request }) 
   expect(html).toContain("Champions League"); expect(html).toContain('type="application/ld+json"');
   expect(html).toContain('rel="canonical"'); expect(html).toContain("noindex");
 });
-test("comparison changes, metric evidence, and share state survive reload", async ({ page }) => {
+test("comparison changes, plain statistic labels, and share state survive reload", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("button", { name: "Champions League", exact: true }).click();
   await expect(page.locator(".big-score").first()).toHaveText("129");
   await expect(page.locator(".big-score").last()).toHaveText("140");
-  await page.getByRole("button", { name: "Assists", exact: true }).click();
-  await expect(page.getByRole("dialog")).toBeVisible();
-  await expect(page.getByRole("dialog")).toContainText("UEFA");
-  await page.keyboard.press("Escape");
+  await expect(page.getByRole("rowheader", { name: "Assists", exact: true })).toBeVisible();
+  await expect(page.locator(".stats-table tbody button")).toHaveCount(0);
+  await expect(page.locator(".source-dialog")).toHaveCount(0);
   await page.getByRole("button", { name: "Options", exact: true }).click();
   await chooseOption(page, "Goal display", "Goals per appearance");
   await expect(page.locator(".big-score").first()).toHaveText("0.79");
@@ -95,16 +94,16 @@ test("pages fit the viewport and chart switches to annual data", async ({ page }
 });
 test("season selections use weighted rates and keep competition state", async ({ page }) => {
   await page.goto("/seasons/2013-14");
-  await expect(page.locator(".era-summary strong").first()).toHaveText("28");
-  await expect(page.locator(".era-summary strong").last()).toHaveText("31");
+  await expect(page.locator(".player-matchup .big-score").first()).toHaveText("28");
+  await expect(page.locator(".player-matchup .big-score").last()).toHaveText("31");
   await page.getByRole("checkbox", { name: "Per appearance" }).check();
-  await expect(page.locator(".era-summary strong").first()).toHaveText("0.90");
+  await expect(page.locator(".player-matchup .big-score").first()).toHaveText("0.90");
   await page.getByRole("button", { name: "Champions League", exact: true }).click();
   await chooseOption(page, "Season", "2013/14");
   await expect(page).toHaveURL(/seasons\/2013-14/);
-  await expect(page.locator(".era-summary strong").last()).toHaveText("1.55");
+  await expect(page.locator(".player-matchup .big-score").last()).toHaveText("1.55");
   await page.reload();
-  await expect(page.locator(".era-summary strong").last()).toHaveText("1.55");
+  await expect(page.locator(".player-matchup .big-score").last()).toHaveText("1.55");
 });
 test("core pages pass automated accessibility checks in dark and light themes", async ({ page }) => {
   await page.goto("/");
@@ -163,7 +162,7 @@ test("2026 comparison, per-90 display and detailed scoring filters persist", asy
   await expect(page.locator(".big-score").first()).toHaveText("0.93");
   await page.getByRole("button", { name: "Goal types & set pieces", exact: true }).click();
   await page.reload();
-  await expect(page.getByRole("button", { name: "Penalty goals", exact: true })).toBeVisible();
+  await expect(page.getByRole("rowheader", { name: "Penalty goals", exact: true })).toBeVisible();
   await chooseOption(page, "More comparisons", "World Cup");
   await page.getByRole("button", { name: "Options", exact: true }).click();
   await chooseOption(page, "Goal display", "Total goals");
@@ -172,27 +171,69 @@ test("2026 comparison, per-90 display and detailed scoring filters persist", asy
   await page.goto("/penalties");
   await page.getByRole("button", { name: "Overview", exact: true }).click();
   await page.reload();
-  await expect(page.getByRole("button", { name: "Assists", exact: true })).toBeVisible();
+  await expect(page.getByRole("rowheader", { name: "Assists", exact: true })).toBeVisible();
 });
 test("calendar explorer includes current years, restores filters and handles no appearances", async ({ page }) => {
   await page.goto("/seasons");
-  await expect(page.locator(".era-summary strong").first()).toHaveText("34");
-  await expect(page.locator(".era-summary strong").last()).toHaveText("22");
+  await expect(page.locator(".player-matchup .big-score").first()).toHaveText("930");
+  await expect(page.locator(".player-matchup .big-score").last()).toHaveText("979");
   await expect(page.locator(".year-table tbody tr")).toHaveCount(25);
+  await expect(page.locator(".year-table thead th")).toHaveText(["YEAR", "MESSI", "RONALDO", "DIFFERENCE"]);
+  await expect(page.locator(".player-photo img")).toHaveCount(2);
+  await expect(page.locator(".player-card.messi")).toContainText("All years · 2002–2026 · Club + country");
+  await expect(page.locator(".player-card.messi")).toContainText("1,176 appearances · 96,747 minutes");
+  await chooseOption(page, "Calendar statistic", "Goals + assists");
+  await expect(page.locator(".big-score")).toHaveText(["1,354", "1,240"]);
+  await chooseOption(page, "Calendar statistic", "Appearances");
+  await expect(page.locator(".big-score")).toHaveText(["1,176", "1,337"]);
+  await expect(page.getByRole("checkbox", { name: "Per 90 minutes" })).toBeDisabled();
   await chooseOption(page, "Calendar statistic", "Assists");
   await page.getByRole("button", { name: "Club", exact: true }).click();
   await chooseOption(page, "Calendar year", "2025");
-  await expect(page.locator(".era-summary strong").first()).toHaveText("25");
+  await expect(page.locator(".player-matchup .big-score").first()).toHaveText("25");
   await page.reload();
-  await expect(page.locator(".era-summary strong").last()).toHaveText("4");
+  await expect(page.locator(".player-matchup .big-score").last()).toHaveText("4");
   await page.getByRole("checkbox", { name: "Per 90 minutes" }).check();
   await chooseOption(page, "Calendar year", "2002");
-  await expect(page.locator(".era-summary strong").first()).toHaveText("—");
+  await expect(page.locator(".player-matchup .big-score").first()).toHaveText("—");
   const csv = page.waitForEvent("download");
   await page.getByRole("button", { name: "Download calendar CSV" }).click();
   expect((await csv).suggestedFilename()).toContain("calendar-2002");
+  await chooseOption(page, "Calendar year", "All years · 2002–2026");
+  await chooseOption(page, "Calendar statistic", "Goals");
+  await page.getByRole("button", { name: "Club + country", exact: true }).click();
+  await expect(page.locator(".big-score")).toHaveText(["0.87", "0.81"]);
+  await page.reload();
+  await expect(page.locator(".big-score")).toHaveText(["0.87", "0.81"]);
+  await page.getByRole("checkbox", { name: "Per 90 minutes" }).uncheck();
+  await expect(page.locator(".big-score")).toHaveText(["930", "979"]);
 });
 
+
+test("all-years cards sum each scope and weight per-90 rates by combined minutes", async ({ page }) => {
+  await page.goto("/seasons");
+  const scores = page.locator(".player-matchup .big-score");
+  const rate = page.getByRole("checkbox", { name: "Per 90 minutes" });
+  async function tableTotals() {
+    return page.locator(".year-table tbody tr").evaluateAll(rows => rows.reduce((totals, row) => {
+      const cells = row.querySelectorAll("td");
+      return totals.map((total, player) => total + Number(cells[player].textContent!.replaceAll(",", "")));
+    }, [0, 0]));
+  }
+  for (const scope of ["Club + country", "Club", "Country", "League"]) {
+    await rate.uncheck();
+    await page.getByRole("button", { name: scope, exact: true }).click();
+    await chooseOption(page, "Calendar statistic", "Goals");
+    const goals = await tableTotals();
+    await expect(scores).toHaveText(goals.map(value => value.toLocaleString("en-US")));
+    await chooseOption(page, "Calendar statistic", "Minutes played");
+    const minutes = await tableTotals();
+    await expect(scores).toHaveText(minutes.map(value => value.toLocaleString("en-US")));
+    await chooseOption(page, "Calendar statistic", "Goals");
+    await rate.check();
+    await expect(scores).toHaveText(goals.map((value, player) => (value * 90 / minutes[player]).toFixed(2)));
+  }
+});
 
 test("expanded year, club, honours and tournament pages remain accessible", async ({ page }) => {
   for (const route of ["/seasons", "/clubs", "/honours", "/world-cup"]) {
