@@ -59,6 +59,12 @@ export function SiteShell({ children }: { children: ReactNode }) {
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, [menuOpen, mobile]);
+  useEffect(() => {
+    if (!mobile || !menuOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = previousOverflow; };
+  }, [menuOpen, mobile]);
   function toggleTheme() {
     const nextLight = document.documentElement.dataset.theme !== "light";
     document.documentElement.dataset.theme = nextLight ? "light" : "dark";
@@ -69,10 +75,12 @@ export function SiteShell({ children }: { children: ReactNode }) {
     <a href="#main-content" className="skip-link">Skip to content</a>
     <aside ref={sidebar} id="main-navigation" inert={mobile && !menuOpen ? true : undefined} role={mobile && menuOpen ? "dialog" : undefined} aria-modal={mobile && menuOpen ? true : undefined} className={`sidebar ${menuOpen ? "is-open" : ""}`} aria-label="Main navigation">
       <div className="sidebar-brand"><Brand /><button className="icon-button mobile-only" onClick={() => setMenuOpen(false)} aria-label="Close menu"><X size={20} /></button></div>
-      <div className="nav-caption">THE COMPARISON</div>
-      <nav aria-label="Comparisons">{navItems.map(({ href, label, icon: Icon }) => <Link onClick={() => setMenuOpen(false)} href={href} key={href} className={`nav-link ${pathname === href ? "active" : ""}`} aria-current={pathname === href ? "page" : undefined}><Icon size={18} strokeWidth={1.7} /><span>{label}</span>{pathname === href && <span className="nav-active-dot" />}</Link>)}</nav>
-      <div className="nav-caption second-caption">BEYOND THE NUMBERS</div>
-      <nav aria-label="Editorial and sources"><Link className={`nav-link ${pathname.startsWith("/insights") ? "active" : ""}`} href="/insights" onClick={() => setMenuOpen(false)}><BookOpen size={18} strokeWidth={1.7} />The reading room</Link><Link className={`nav-link ${pathname === "/methodology" ? "active" : ""}`} href="/methodology" onClick={() => setMenuOpen(false)}><ShieldCheck size={18} strokeWidth={1.7} />Sources & methodology</Link></nav>
+      <div className="sidebar-navigation">
+        <div className="nav-caption">THE COMPARISON</div>
+        <nav aria-label="Comparisons">{navItems.map(({ href, label, icon: Icon }) => <Link onClick={() => setMenuOpen(false)} href={href} key={href} className={`nav-link ${pathname === href ? "active" : ""}`} aria-current={pathname === href ? "page" : undefined}><Icon size={18} strokeWidth={1.7} /><span>{label}</span>{pathname === href && <span className="nav-active-dot" />}</Link>)}</nav>
+        <div className="nav-caption second-caption">BEYOND THE NUMBERS</div>
+        <nav aria-label="Editorial and sources"><Link className={`nav-link ${pathname.startsWith("/insights") ? "active" : ""}`} href="/insights" onClick={() => setMenuOpen(false)}><BookOpen size={18} strokeWidth={1.7} />The reading room</Link><Link className={`nav-link ${pathname === "/methodology" ? "active" : ""}`} href="/methodology" onClick={() => setMenuOpen(false)}><ShieldCheck size={18} strokeWidth={1.7} />Sources & methodology</Link></nav>
+      </div>
       <div className="sidebar-bottom"><div className="sidebar-note"><span className="eyebrow"><span className="tiny-dot" /> BUILT FOR THE BEAUTIFUL GAME</span><p>Greatness deserves<br />a little perspective.</p><Link href="/about" onClick={() => setMenuOpen(false)}>Our philosophy <ArrowUpRight size={14} /></Link></div><div className="sidebar-foot"><span>Two players. A world of football.</span><span>EST. 2026</span></div></div>
     </aside>
     {menuOpen && <button className="sidebar-scrim" aria-label="Close navigation" onClick={() => setMenuOpen(false)} />}
