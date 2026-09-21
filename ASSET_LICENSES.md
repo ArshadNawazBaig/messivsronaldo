@@ -1,25 +1,31 @@
 # Asset credits
 
+The publisher supplied the two local portrait files below. Attribution and source identifiers are taken from the files’ embedded metadata. These notes record provenance; they do not grant a license or establish the publisher’s licensing arrangements.
+
 ## Lionel Messi
 
-- Local file: `public/images/messi.jpg`
-- Photographer: Hossein Zohrevand / Tasnim News Agency.
-- Original: https://commons.wikimedia.org/wiki/File:Lionel_Messi_WC2022.jpg
-- License: Creative Commons Attribution 4.0 International, https://creativecommons.org/licenses/by/4.0/
-- Depicts: Messi with Argentina at the 2022 World Cup.
+- Local file: `public/images/argentina-portraits-fifa-world-cup-2026.jpg`
+- Photographer: Florencia Tan Jun – FIFA.
+- Credit: FIFA via Getty Images.
+- Copyright: © 2026 FIFA.
+- Source: https://www.gettyimages.com/detail/2281293668
+- Depicts: Argentina’s official FIFA World Cup 2026 portrait session, 11 June 2026.
+- Supplied resolution: 384 × 594 pixels.
 
 ## Cristiano Ronaldo
 
-- Local file: `public/images/ronaldo.jpg`
-- Photographer: Анна Нэсси (Anna Nessi), via soccer.ru.
-- Original: https://commons.wikimedia.org/wiki/File:Cristiano_Ronaldo_2018.jpg
-- License: Creative Commons Attribution-ShareAlike 3.0 Unported, https://creativecommons.org/licenses/by-sa/3.0/
-- Depicts: Ronaldo with Portugal at the 2018 World Cup.
+- Local file: `public/images/portugal-portraits-fifa-world-cup-2026.jpg`
+- Photographer: Carmen Mandato – FIFA.
+- Credit: FIFA via Getty Images.
+- Copyright: © 2026 FIFA.
+- Source: https://www.gettyimages.com/detail/2281747967
+- Depicts: Portugal’s official FIFA World Cup 2026 portrait session, 14 June 2026.
+- Supplied resolution: 396 × 594 pixels.
 
-The source JPEGs are retained without raster edits. The interface displays responsive crops, CSS colour treatment and tonal overlays. Any adaptation of the Ronaldo photograph is offered under CC BY-SA 3.0; Messi's remains under CC BY 4.0. Credits and license links are displayed to visitors at `/credits`. No endorsement by the photographers, agencies or players is implied.
+Next.js serves the locally hosted photographs in responsive, compressed versions. The interface uses CSS crops and tonal overlays to align the portraits. Getty’s embedded viewers and widget scripts are no longer loaded. These photographs are not offered under a Creative Commons license. Credits and source links are displayed at `/credits`. No endorsement by the photographers or players is implied.
 
 ## Fonts and icons
 
-- Inter Variable and Manrope Variable: SIL Open Font License, bundled through Fontsource with their package licenses.
+- Inter Variable and Roboto Condensed Variable: SIL Open Font License, bundled through Fontsource with their package licenses.
 - Lucide icons: ISC license, included in the package.
 - Interface diagrams, editorial graphics, chart SVGs, logo and favicon: original code-native graphics created for this project.

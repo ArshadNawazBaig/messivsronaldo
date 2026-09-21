@@ -1,5 +1,6 @@
 "use client";
 import { useFootballData } from "@/components/data-provider";
+import { players } from "@/lib/data";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -108,7 +109,7 @@ function SiteHeader({ pathname, onSearch }: { pathname: string; onSearch: () => 
       <div className="masthead-identity"><Brand /><p>Two careers.<br /><strong>Every chapter.</strong></p></div>
       <div className="header-players" aria-label="Player profiles">
         {(["messi", "ronaldo"] as const).map(player => <Link href={`/players/${player}`} key={player} className="header-player" aria-label={`${player === "messi" ? "Lionel Messi" : "Cristiano Ronaldo"} profile`} aria-current={pathname === `/players/${player}` ? "page" : undefined} onClick={closeNavigation}>
-          <Image src={`/images/${player}.jpg`} alt="" width={34} height={34} className={`header-player-photo ${player}`} />
+          <span className={`header-player-photo ${player}`}><Image src={players[player].image} alt="" width={players[player].imageWidth} height={players[player].imageHeight} sizes="60px" /></span>
           <span>{player === "messi" ? "Lionel Messi" : "Cristiano Ronaldo"}<small>{player === "messi" ? "Argentina · No. 10" : "Portugal · No. 7"}</small></span>
         </Link>)}
       </div>

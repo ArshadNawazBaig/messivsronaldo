@@ -2,6 +2,10 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  images: {
+    // Keep small thumbnails light while preserving detail in player portraits.
+    qualities: [75, 85],
+  },
   async redirects() {
     return [{
       source: "/:path*",
