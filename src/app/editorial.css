@@ -2,7 +2,7 @@
 :root {
   --bg:#151a17; --sidebar:var(--bg); --panel:#1d241f; --panel-raised:#273029;
   --border:#3b473e; --border-subtle:#303c33; --text:#f0f0e8; --muted:#b5bdb5; --subtle:#a1afa4;
-  --brand-accent:#bed8c3; --accent:#bed8c3; --messi:#8bc2d7; --ronaldo:#eba591;
+  --brand-accent:#74941d; --accent:#bed8c3; --messi:#8bc2d7; --ronaldo:#eba591;
   --scrollbar-thumb:#63796a; --scrollbar-hover:#8da693; --shadow:0 12px 30px #0003;
 }
 :root[data-theme=light] {
@@ -33,14 +33,10 @@ html {scroll-padding-top:150px}
 .skip-link {left:20px;z-index:120}
 .brand {font-size:10px;letter-spacing:2px;gap:10px;white-space:nowrap}
 .brand-second {font-size:29px;letter-spacing:-.5px;line-height:.95}
-.brand-symbol {height:34px;gap:3px}
-.brand-symbol span {width:5px;background:var(--brand-accent)}
+.brand-symbol {display:block;width:40px;height:40px;flex-shrink:0;transform:none;opacity:1;filter:none;background:none;border-radius:0}
 .brand-period,.footer-brand>span,.mobile-brand>span {color:var(--brand-accent)}
 .brand-period {display:none}
 .site-header {position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--border)}
-@media(min-width:1001px) {
-  :root[data-theme=light] .site-masthead .brand {--brand-accent:#28563d}
-}
 .site-masthead {max-width:1420px;min-height:86px;padding:16px 44px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:28px}
 .masthead-identity {display:flex;align-items:center;gap:26px;flex-shrink:0}
 .masthead-identity .brand {min-height:44px}
@@ -114,8 +110,7 @@ html {scroll-padding-top:150px}
   .masthead-identity>p,.header-search span,.header-search kbd,.header-menu-toggle span {display:none}
   .masthead-identity .brand {font-size:8px;letter-spacing:1.6px;gap:8px}
   .masthead-identity .brand-second {font-size:25px}
-  .masthead-identity .brand-symbol {height:30px}
-  .masthead-identity .brand-symbol span {width:4px}
+  .masthead-identity .brand-symbol {width:34px;height:34px}
   .header-tools {gap:2px}
   .header-search {justify-content:center;min-width:44px;padding:0}
   .site-navigation {max-height:calc(100dvh - 68px)}

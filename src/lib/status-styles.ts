@@ -4,7 +4,7 @@ export const statusStyles = `
 .rivalry-status *{box-sizing:border-box}
 .rivalry-status-header{max-width:1200px;margin:auto;padding:28px 32px;border-bottom:1px solid #d6dcd7;font:800 22px Arial,sans-serif;letter-spacing:-.7px}
 .rivalry-status-header a{color:inherit;text-decoration:none;display:inline-flex;gap:12px;align-items:center}
-.rivalry-status-header svg{width:30px;height:38px;color:#28563d}
+.rivalry-status-header img{display:block;width:38px;height:38px;border-radius:0;background:none;opacity:1;filter:none}
 .rivalry-status-layout{display:grid;grid-template-columns:1.2fr 1fr;gap:64px;align-items:center;min-height:340px}
 .rivalry-status-kicker{display:block;font-size:11px;letter-spacing:2px;font-weight:700;color:var(--status-muted)}
 .rivalry-status h1{font-family:var(--font-display,Arial),sans-serif;font-size:clamp(36px,5vw,64px);letter-spacing:-1.8px;line-height:1.06;margin:23px 0}
@@ -21,7 +21,7 @@ export const statusStyles = `
 .rivalry-status-links a{color:var(--status-text);text-underline-offset:4px}
 .rivalry-status-standalone{margin:0;background:#fff;color:#202d25;min-height:100vh;color-scheme:light}
 .rivalry-status-standalone .rivalry-status{--status-text:#202d25;--status-muted:#59665e;--status-line:#d6dcd7;--status-accent:#28563d}
-@media(prefers-color-scheme:dark){.rivalry-status-standalone{background:#111a15;color:#edf2ee;color-scheme:dark}.rivalry-status-standalone .rivalry-status{--status-text:#edf2ee;--status-muted:#b0bdb4;--status-line:#37443b;--status-accent:#bed8c3}.rivalry-status-standalone .rivalry-status-actions a,.rivalry-status-standalone .rivalry-status-actions button{color:#17281d}.rivalry-status-standalone .rivalry-status-actions .rivalry-status-secondary{color:#edf2ee}.rivalry-status-standalone .rivalry-status-header{border-color:#37443b}.rivalry-status-standalone .rivalry-status-header svg{color:#bed8c3}}
+@media(prefers-color-scheme:dark){.rivalry-status-standalone{background:#111a15;color:#edf2ee;color-scheme:dark}.rivalry-status-standalone .rivalry-status{--status-text:#edf2ee;--status-muted:#b0bdb4;--status-line:#37443b;--status-accent:#bed8c3}.rivalry-status-standalone .rivalry-status-actions a,.rivalry-status-standalone .rivalry-status-actions button{color:#17281d}.rivalry-status-standalone .rivalry-status-actions .rivalry-status-secondary{color:#edf2ee}.rivalry-status-standalone .rivalry-status-header{border-color:#37443b}}
 [data-theme=dark] .rivalry-status-actions a,[data-theme=dark] .rivalry-status-actions button{color:#17281d}
 [data-theme=dark] .rivalry-status-actions .rivalry-status-secondary{color:var(--status-text)}
 @media(max-width:650px){.rivalry-status{padding:36px 20px 48px}.rivalry-status-header{padding:22px 20px}.rivalry-status-layout{grid-template-columns:1fr;gap:32px}.rivalry-status-pitch{aspect-ratio:2.2;grid-row:1}.rivalry-status-pitch span{font-size:110px;letter-spacing:-5px}.rivalry-status h1{letter-spacing:-1px}.rivalry-status p{font-size:14px}.rivalry-status-links{margin-top:32px}}
