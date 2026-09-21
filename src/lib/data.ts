@@ -32,8 +32,8 @@ export interface Metric { id: string; label: string; values: Pair; unit?: string
 export interface Scope { id: string; label: string; shortLabel: string; description: string; period: string; goals: Pair; appearances: Pair; minutes: Pair; metrics: Metric[]; source: SourceId[]; answer: string }
 export interface Stats { goals: Pair; assists: Pair; appearances: Pair; minutes: Pair; hatTricks?: Pair; freeKicks?: Pair; outsideBox?: Pair; insideBox?: Pair; leftFoot?: Pair; rightFoot?: Pair; headers?: Pair; otherBody?: Pair; penalties?: Pair; penaltyAttempts?: Pair }
 export const players = {
-  messi: { name: "Lionel Messi", short: "Messi", number: "10", country: "Argentina", countryCode: "ARG", born: "1987-06-24", birthplace: "Rosario, Argentina", image: "/images/messi.jpg", tagline: "The art of possibility.", awards: [2009, 2010, 2011, 2012, 2015, 2019, 2021, 2023] },
-  ronaldo: { name: "Cristiano Ronaldo", short: "Ronaldo", number: "7", country: "Portugal", countryCode: "POR", born: "1985-02-05", birthplace: "Funchal, Portugal", image: "/images/ronaldo.jpg", tagline: "The pursuit of extraordinary.", awards: [2008, 2013, 2014, 2016, 2017] },
+  messi: { name: "Lionel Messi", short: "Messi", number: "10", country: "Argentina", countryCode: "ARG", born: "1987-06-24", birthplace: "Rosario, Argentina", image: "/images/messi.jpg", tagline: "Argentina · Born in Rosario, 24 June 1987", awards: [2009, 2010, 2011, 2012, 2015, 2019, 2021, 2023] },
+  ronaldo: { name: "Cristiano Ronaldo", short: "Ronaldo", number: "7", country: "Portugal", countryCode: "POR", born: "1985-02-05", birthplace: "Funchal, Portugal", image: "/images/ronaldo.jpg", tagline: "Portugal · Born in Funchal, 5 February 1985", awards: [2008, 2013, 2014, 2016, 2017] },
 } as const;
 
 export function ratio(numerator: number | null, denominator: number | null): number | null {

@@ -1,7 +1,7 @@
 import { test, expect, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 const origin="http://localhost:3002";
-async function signIn(page:Page) {await page.goto("/admin");await page.getByLabel("Admin password").fill("integration-test-password-only");await page.getByRole("button",{name:"Sign in to dashboard"}).click();await expect(page.getByRole("heading",{name:"The control room."})).toBeVisible();await expect(page).toHaveTitle(/Admin dashboard/);}
+async function signIn(page:Page) {await page.goto("/admin");await page.getByLabel("Admin password").fill("integration-test-password-only");await page.getByRole("button",{name:"Sign in to dashboard"}).click();await expect(page.getByRole("heading",{name:"Admin dashboard"})).toBeVisible();await expect(page).toHaveTitle(/Admin dashboard/);}
 test("admin pages are private and every endpoint requires authorization",async({request})=>{
   const page=await request.get("/admin");expect(await page.text()).toContain("noindex");expect(await page.text()).not.toContain("Synthetic test opponent");
   for(const path of ["state","backup"])expect((await request.get(`/api/admin/${path}`)).status()).toBe(401);
@@ -10,6 +10,8 @@ test("admin pages are private and every endpoint requires authorization",async({
   expect((await request.post("/api/admin/login",{headers:{origin},data:{password:"wrong-password"}})).status()).toBe(401);
 });
 test("login, dashboard tabs, theme, backup and logout work on desktop and mobile",async({page,context})=>{
+  // Audit final theme colors without waiting for animations in collapsed menus.
+  await page.emulateMedia({reducedMotion:"reduce"});
   const errors:string[]=[];page.on("pageerror",e=>errors.push(e.message));
   await signIn(page);
   await expect(page.getByRole("button",{name:"Fetch & update stats"})).toBeDisabled();
@@ -21,8 +23,7 @@ test("login, dashboard tabs, theme, backup and logout work on desktop and mobile
   }
   await expect(page.getByLabel("API-Football key")).toHaveValue("");
   await page.getByRole("button",{name:"Toggle light or dark theme"}).click();
-  // Audit the settled theme, not an intermediate button color during transition.
-  await page.evaluate(async()=>{await Promise.all(document.getAnimations().filter(a=>a.effect?.getTiming().iterations!==Infinity).map(a=>a.finished.catch(()=>{})));});
+  await expect(page.locator("html")).toHaveAttribute("data-theme","dark");
   expect((await new AxeBuilder({page}).analyze()).violations.map(v=>v.id)).toEqual([]);
   const downloadPromise=page.waitForEvent("download");await page.getByRole("link",{name:"Download data backup"}).click();expect((await downloadPromise).suggestedFilename()).toBe("rivalry-data-backup.json");
   const backup=await(await page.request.get("/api/admin/backup")).json();expect(backup.records[0].opponent).toBe("Synthetic test opponent");expect(JSON.stringify(backup)).not.toMatch(/PASSWORD_HASH|SESSION_SECRET|integration-test-password/);

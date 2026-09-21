@@ -3,11 +3,12 @@ import { getPublishedData } from "@/lib/server-data";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import "./editorial.css";
 import { SiteShell } from "@/components/site-shell";
 import { indexable, jsonLd, siteName, siteUrl } from "@/lib/site";
 
 const inter = localFont({ src: "../../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2", variable: "--font-inter", display: "swap", weight: "100 900" });
-const manrope = localFont({ src: "../../node_modules/@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2", variable: "--font-manrope", display: "swap", weight: "200 800" });
+const display = localFont({ src: "../../node_modules/@fontsource-variable/roboto-condensed/files/roboto-condensed-latin-wght-normal.woff2", variable: "--font-display", display: "swap", weight: "100 900" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -18,10 +19,10 @@ export const metadata: Metadata = {
   applicationName: siteName,
 };
 
-const themeScript = `(function(){try{var theme=localStorage.getItem('rivalry-theme');if(theme==='light')document.documentElement.dataset.theme='light';}catch(e){}})();`;
+const themeScript = `(function(){try{var theme=localStorage.getItem('rivalry-theme');if(theme==='dark'||theme==='light')document.documentElement.dataset.theme=theme;}catch(e){}})();`;
 
 export const dynamic = "force-dynamic";
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en" suppressHydrationWarning><head><script dangerouslySetInnerHTML={{ __html: themeScript }} /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd({ "@context": "https://schema.org", "@type": "WebSite", "@id": `${siteUrl}/#website`, name: siteName, alternateName: "Messi vs Ronaldo 17", publisher: { "@type": "Organization", "@id": `${siteUrl}/#publisher`, name: siteName, url: siteUrl, logo: `${siteUrl}/icon.svg` }, url: siteUrl, description: "An independent, source-transparent Messi and Ronaldo comparison publication.", inLanguage: "en" }) }} /></head><body className={`${inter.variable} ${manrope.variable}`}><DataProvider value={await getPublishedData()}><SiteShell>{children}</SiteShell></DataProvider></body></html>;
+  return <html lang="en" data-theme="light" suppressHydrationWarning><head><script dangerouslySetInnerHTML={{ __html: themeScript }} /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd({ "@context": "https://schema.org", "@type": "WebSite", "@id": `${siteUrl}/#website`, name: siteName, alternateName: "Messi vs Ronaldo 17", publisher: { "@type": "Organization", "@id": `${siteUrl}/#publisher`, name: siteName, url: siteUrl, logo: `${siteUrl}/icon.svg` }, url: siteUrl, description: "An independent, source-transparent Messi and Ronaldo comparison publication.", inLanguage: "en" }) }} /></head><body className={`${inter.variable} ${display.variable}`}><DataProvider value={await getPublishedData()}><SiteShell>{children}</SiteShell></DataProvider></body></html>;
 }

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { ArrowRight, ArrowUpRight, Trophy } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { awardHistory, players, sources } from "@/lib/data";
 
 export function AwardChart({ full = false }: { full?: boolean }) {
@@ -12,7 +12,7 @@ export function AwardChart({ full = false }: { full?: boolean }) {
   const y = (value: number) => 210 - value * 21;
   const points = (player: "messi" | "ronaldo") => awardHistory.map((item, i) => `${i === 0 ? "M" : "H"} ${x(i)} ${i === 0 ? y(item[player]) : `V ${y(item[player])}`}`).join(" ");
   return <div className={`story-grid ${full ? "full-chart" : ""}`}>
-    <section className="panel award-chart"><div className="panel-heading"><div><span className="section-kicker">AN ERA OF EXCELLENCE</span><h2>The Ballon d’Or race<span className="heading-dot">.</span></h2></div><div className="chart-toggle" aria-label="Chart display" role="group"><button className={!annual ? "selected" : ""} aria-pressed={!annual} onClick={() => setAnnual(false)}>Cumulative</button><button className={annual ? "selected" : ""} aria-pressed={annual} onClick={() => setAnnual(true)}>By year</button></div></div><div className="chart-subline"><span>Men’s awards · 2008–2025</span><div className="chart-legend"><span><i className="legend-dot messi-dot" />Messi</span><span><i className="legend-dot ronaldo-dot" />Ronaldo</span></div></div>
+    <section className="panel award-chart"><div className="panel-heading"><div><span className="section-kicker">INDIVIDUAL AWARDS</span><h2>Ballon d’Or wins</h2></div><div className="chart-toggle" aria-label="Chart display" role="group"><button className={!annual ? "selected" : ""} aria-pressed={!annual} onClick={() => setAnnual(false)}>Cumulative</button><button className={annual ? "selected" : ""} aria-pressed={annual} onClick={() => setAnnual(true)}>By year</button></div></div><div className="chart-subline"><span>Men’s awards · 2008–2025</span><div className="chart-legend"><span><i className="legend-dot messi-dot" />Messi</span><span><i className="legend-dot ronaldo-dot" />Ronaldo</span></div></div>
       <div className="chart-container"><svg viewBox="0 0 690 250" role="img" aria-labelledby="award-chart-title award-chart-description"><title id="award-chart-title">{`${annual ? "Annual" : "Cumulative"} Ballon d’Or awards, 2008 to 2025`}</title><desc id="award-chart-description">Messi won eight awards and Ronaldo won five. A complete table follows the chart. No award was given in 2020.</desc>
         <defs><linearGradient id="messi-area" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#6fc7ef" stopOpacity="0.14" /><stop offset="100%" stopColor="#6fc7ef" stopOpacity="0" /></linearGradient></defs>
         {(annual ? [0, 1] : [0, 2, 4, 6, 8]).map(value => <g key={value}><line x1="36" x2="644" y1={annual ? 210 - value * 150 : y(value)} y2={annual ? 210 - value * 150 : y(value)} className="chart-gridline" /><text x="12" y={(annual ? 210 - value * 150 : y(value)) + 4} className="chart-axis">{value}</text></g>)}
@@ -22,7 +22,7 @@ export function AwardChart({ full = false }: { full?: boolean }) {
       </svg></div>
       <details className="chart-data"><summary>View data & source <Chevron /></summary><table><caption>Cumulative awards at year end</caption><thead><tr><th>Year</th><th>Messi</th><th>Ronaldo</th></tr></thead><tbody>{awardHistory.map(item => <tr key={item.year}><th scope="row">{item.year}{item.year === 2020 ? " (cancelled)" : ""}</th><td>{item.messi}</td><td>{item.ronaldo}</td></tr>)}</tbody></table><a href={sources.ballon.url} target="_blank" rel="noreferrer">Source: {sources.ballon.name} <ArrowUpRight size={12} /></a></details>
     </section>
-    {!full && <aside className="legacy-card"><div className="legacy-ornament" aria-hidden="true"><Trophy size={98} strokeWidth={0.7} /></div><span className="section-kicker">A GOLDEN GENERATION</span><h2>Two careers.<br /><span>Thirteen crowns.</span></h2><p>Between them, Messi and Ronaldo won 13 of the 17 Ballon d’Or awards presented from 2008 to 2025.</p><div className="legacy-counts"><div><strong className="messi-text">8</strong><span>MESSI</span></div><span className="legacy-count-divider" /><div><strong className="ronaldo-text">5</strong><span>RONALDO</span></div></div><Link href="/honours">Explore the honours <ArrowRight size={16} /></Link></aside>}
+    {!full && <aside className="legacy-card"><span className="section-kicker">2008—2025</span><h2>13 of 17<span> Ballon d’Or awards</span></h2><p>Between them, Messi and Ronaldo won 13 of the 17 Ballon d’Or awards presented from 2008 to 2025.</p><div className="legacy-counts"><div><strong className="messi-text">8</strong><span>MESSI</span></div><span className="legacy-count-divider" /><div><strong className="ronaldo-text">5</strong><span>RONALDO</span></div></div><Link href="/honours">Explore the honours <ArrowRight size={16} /></Link></aside>}
   </div>;
 }
 

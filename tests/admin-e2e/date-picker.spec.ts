@@ -7,7 +7,7 @@ async function signIn(page: Page) {
   await page.goto("/admin");
   await page.getByLabel("Admin password").fill("integration-test-password-only");
   await page.getByRole("button", {name:"Sign in to dashboard"}).click();
-  await expect(page.getByRole("heading", {name:"The control room."})).toBeVisible();
+  await expect(page.getByRole("heading", {name:"Admin dashboard"})).toBeVisible();
   return (await page.request.get("/api/admin/state")).json();
 }
 

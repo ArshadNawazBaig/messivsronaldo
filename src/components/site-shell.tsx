@@ -2,93 +2,171 @@
 import { useFootballData } from "@/components/data-provider";
 
 import Link from "next/link";
+import Image from "next/image";
 
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
-import { ArrowDownUp, ArrowUpRight, BarChart3, BookOpen, CalendarDays, ChevronRight, CircleHelp, Globe2, LayoutDashboard, Menu, Moon, Search, ShieldCheck, Sun, Trophy, X } from "lucide-react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import { ArrowDownUp, ArrowUpRight, BarChart3, BookOpen, CalendarDays, ChevronDown, ChevronRight, CircleHelp, Globe2, History, LayoutDashboard, Menu, Moon, Search, ShieldCheck, Sun, Trophy, X } from "lucide-react";
 
-const navItems = [
+const comparisonItems = [
   { href: "/", label: "Overview", icon: LayoutDashboard },
-  { href: "/2026", label: "2026 stats", icon: CalendarDays },
-  { href: "/clubs", label: "Club by club", icon: BarChart3 },
-  { href: "/world-cup", label: "World Cup", icon: Globe2 },
   { href: "/compare", label: "Compare stats", icon: ArrowDownUp },
+  { href: "/2026", label: "2026 stats", icon: CalendarDays },
   { href: "/seasons", label: "Years & seasons", icon: CalendarDays },
-  { href: "/champions-league", label: "Champions League", icon: Trophy },
-  { href: "/la-liga", label: "La Liga", icon: BarChart3 },
-  { href: "/international", label: "International", icon: Globe2 },
   { href: "/honours", label: "Trophies & awards", icon: Trophy },
 ];
-const searchItems = [...navItems, { href: "/penalties", label: "Penalties & conversion", icon: BarChart3 }, { href: "/free-kicks", label: "Free kicks & goal types", icon: BarChart3 }, { href: "/hat-tricks", label: "Hat-tricks", icon: BarChart3 }, { href: "/head-to-head", label: "Direct head-to-head meetings", icon: ArrowDownUp }, { href: "/copa-america-vs-euros", label: "Copa América vs Euros", icon: Globe2 }, { href: "/european-clubs", label: "European club records", icon: Globe2 }, { href: "/league", label: "All domestic leagues", icon: BarChart3 }, { href: "/records", label: "Records & race to 1,000", icon: Trophy }, { href: "/goals", label: "Career goals", icon: BarChart3 }, { href: "/assists", label: "Understanding assists", icon: BookOpen }, { href: "/methodology", label: "Sources & methodology", icon: ShieldCheck }, { href: "/insights", label: "The reading room", icon: BookOpen }, { href: "/players/messi", label: "Lionel Messi profile", icon: CircleHelp }, { href: "/players/ronaldo", label: "Cristiano Ronaldo profile", icon: CircleHelp }];
+const competitionItems = [
+  { href: "/clubs", label: "Club by club", icon: BarChart3 },
+  { href: "/champions-league", label: "Champions League", icon: Trophy },
+  { href: "/la-liga", label: "La Liga", icon: BarChart3 },
+  { href: "/world-cup", label: "World Cup", icon: Globe2 },
+  { href: "/international", label: "International", icon: Globe2 },
+];
+const scoringItems = [
+  { href: "/goals", label: "Career goals", icon: BarChart3 },
+  { href: "/assists", label: "Assists", icon: ArrowDownUp },
+  { href: "/penalties", label: "Penalties", icon: BarChart3 },
+  { href: "/free-kicks", label: "Free kicks", icon: BarChart3 },
+  { href: "/hat-tricks", label: "Hat-tricks", icon: Trophy },
+  { href: "/head-to-head", label: "Head-to-head", icon: ArrowDownUp },
+  { href: "/records", label: "Career milestones", icon: Trophy },
+];
+const editorialItems = [
+  { href: "/insights", label: "The reading room", icon: BookOpen },
+  { href: "/methodology", label: "Sources & methodology", icon: ShieldCheck },
+];
+const navItems = [...comparisonItems, ...competitionItems];
 
-function subscribeMobile(callback: () => void) {
-  const media = window.matchMedia("(max-width: 760px)");
-  media.addEventListener("change", callback);
-  return () => media.removeEventListener("change", callback);
+function isActivePath(pathname: string, href: string) {
+  return pathname === href || (href !== "/" && pathname.startsWith(`${href}/`));
 }
-const mobileSnapshot = () => window.matchMedia("(max-width: 760px)").matches;
-const desktopSnapshot = () => false;
+
+const searchItems = [...navItems, { href: "/penalties", label: "Penalties & conversion", icon: BarChart3 }, { href: "/free-kicks", label: "Free kicks & goal types", icon: BarChart3 }, { href: "/hat-tricks", label: "Hat-tricks", icon: BarChart3 }, { href: "/head-to-head", label: "Direct head-to-head meetings", icon: ArrowDownUp }, { href: "/copa-america-vs-euros", label: "Copa América vs Euros", icon: Globe2 }, { href: "/european-clubs", label: "European club records", icon: Globe2 }, { href: "/league", label: "All domestic leagues", icon: BarChart3 }, { href: "/records", label: "Records & race to 1,000", icon: Trophy }, { href: "/goals", label: "Career goals", icon: BarChart3 }, { href: "/assists", label: "Understanding assists", icon: BookOpen }, { href: "/methodology", label: "Sources & methodology", icon: ShieldCheck }, { href: "/insights", label: "The reading room", icon: BookOpen }, { href: "/players/messi", label: "Lionel Messi profile", icon: CircleHelp }, { href: "/players/ronaldo", label: "Cristiano Ronaldo profile", icon: CircleHelp }];
 
 export function Brand() {
   return <Link href="/" className="brand" aria-label="The Rivalry home"><span className="brand-symbol"><span /><span /><span /></span><span>THE<span className="brand-second">RIVALRY<span className="brand-period">.</span></span></span></Link>;
 }
 
-export function SiteShell({ children }: { children: ReactNode }) {
-  const { snapshotLabel } = useFootballData();
-  const pathname = usePathname();
+const navigationGroups: { id: string; label: string; href?: string; items?: typeof navItems }[] = [
+  { id: "career", label: "All-time stats", items: comparisonItems.slice(0, 2) },
+  { id: "years", label: "Years & seasons", items: comparisonItems.slice(2, 4) },
+  { id: "clubs", label: "Club stats", items: [...competitionItems.slice(0, 3), { href: "/league", label: "All domestic leagues", icon: BarChart3 }, { href: "/european-clubs", label: "European club records", icon: Globe2 }] },
+  { id: "international", label: "International", items: [competitionItems[4], competitionItems[3], { href: "/copa-america-vs-euros", label: "Copa América vs Euros", icon: Globe2 }] },
+  { id: "scoring", label: "Scoring records", items: scoringItems },
+  { id: "honours", label: "Trophies & awards", href: "/honours" },
+  { id: "reading", label: "Read & research", items: [...editorialItems, { href: "/updates", label: "Update log", icon: History }, { href: "/about", label: "About the project", icon: CircleHelp }] },
+];
+
+function SiteHeader({ pathname, onSearch }: { pathname: string; onSearch: () => void }) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [light, setLight] = useState(false);
-  const [query, setQuery] = useState("");
-  const dialog = useRef<HTMLDialogElement>(null);
-  const sidebar = useRef<HTMLElement>(null);
+  const [openGroup, setOpenGroup] = useState<string | null>(null);
+  const header = useRef<HTMLElement>(null);
   const menuButton = useRef<HTMLButtonElement>(null);
-  const mobile = useSyncExternalStore(subscribeMobile, mobileSnapshot, desktopSnapshot);
+  const { snapshotLabel, snapshotDate } = useFootballData();
+
+  function closeNavigation() { setMenuOpen(false); setOpenGroup(null); }
+
   useEffect(() => {
-    const onKey = (event: KeyboardEvent) => {
-      if ((event.metaKey || event.ctrlKey) && event.key === "k") { event.preventDefault(); dialog.current?.showModal(); }
-      if (event.key === "Escape" && menuOpen) { setMenuOpen(false); requestAnimationFrame(() => menuButton.current?.focus()); }
-      if (event.key === "Tab" && menuOpen && mobile) {
-        const items = sidebar.current?.querySelectorAll<HTMLElement>("a[href], button");
-        if (items?.length) {
-          const first = items[0]; const last = items[items.length - 1];
-          if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
-          if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
-        }
+    const dismissOutside = (event: PointerEvent) => {
+      if (event.target instanceof Node && !header.current?.contains(event.target)) {
+        setMenuOpen(false); setOpenGroup(null);
       }
     };
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [menuOpen, mobile]);
-  useEffect(() => {
-    if (!mobile || !menuOpen) return;
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => { document.body.style.overflow = previousOverflow; };
-  }, [menuOpen, mobile]);
+    // A resize must not leave focus inside a menu that is becoming hidden.
+    const media = window.matchMedia("(max-width: 1000px)");
+    const resetNavigation = () => {
+      if (header.current?.contains(document.activeElement)) {
+        if (media.matches) menuButton.current?.focus();
+        else header.current?.querySelector<HTMLElement>(".brand")?.focus();
+      }
+      setMenuOpen(false); setOpenGroup(null);
+    };
+    document.addEventListener("pointerdown", dismissOutside);
+    media.addEventListener("change", resetNavigation);
+    return () => {
+      document.removeEventListener("pointerdown", dismissOutside);
+      media.removeEventListener("change", resetNavigation);
+    };
+  }, []);
+
   function toggleTheme() {
     const nextLight = document.documentElement.dataset.theme !== "light";
     document.documentElement.dataset.theme = nextLight ? "light" : "dark";
-    setLight(nextLight);
-    try { localStorage.setItem("rivalry-theme", nextLight ? "light" : "dark"); } catch { /* Theme still works when browser storage is unavailable. */ }
+    try { localStorage.setItem("rivalry-theme", nextLight ? "light" : "dark"); } catch { /* Theme still works without storage. */ }
   }
+
+  return <header ref={header} className="site-header" onKeyDown={event => {
+    if (event.key !== "Escape") return;
+    if (openGroup) {
+      header.current?.querySelector<HTMLButtonElement>(`#nav-trigger-${openGroup}`)?.focus();
+      setOpenGroup(null); event.preventDefault(); event.stopPropagation();
+    } else if (menuOpen) {
+      closeNavigation(); menuButton.current?.focus(); event.preventDefault();
+    }
+  }}>
+    <div className="site-masthead">
+      <div className="masthead-identity"><Brand /><p>Two careers.<br /><strong>Every chapter.</strong></p></div>
+      <div className="header-players" aria-label="Player profiles">
+        {(["messi", "ronaldo"] as const).map(player => <Link href={`/players/${player}`} key={player} className="header-player" aria-label={`${player === "messi" ? "Lionel Messi" : "Cristiano Ronaldo"} profile`} aria-current={pathname === `/players/${player}` ? "page" : undefined} onClick={closeNavigation}>
+          <Image src={`/images/${player}.jpg`} alt="" width={34} height={34} className={`header-player-photo ${player}`} />
+          <span>{player === "messi" ? "Lionel Messi" : "Cristiano Ronaldo"}<small>{player === "messi" ? "Argentina · No. 10" : "Portugal · No. 7"}</small></span>
+        </Link>)}
+      </div>
+      <div className="header-tools">
+        <button className="header-search" onClick={() => { closeNavigation(); onSearch(); }} aria-label="Search the site"><Search size={18} aria-hidden="true" /><span>Search</span><kbd>⌘ K</kbd></button>
+        <button className="icon-button theme-toggle" aria-label="Toggle light or dark theme" onClick={toggleTheme}><Moon size={19} className="theme-light-icon" aria-hidden="true" /><Sun size={19} className="theme-dark-icon" aria-hidden="true" /></button>
+        <button className="header-menu-toggle" ref={menuButton} aria-label={menuOpen ? "Close menu" : "Open menu"} aria-controls="main-navigation" aria-expanded={menuOpen} onClick={() => { setMenuOpen(!menuOpen); setOpenGroup(null); }}>{menuOpen ? <X size={21} aria-hidden="true" /> : <Menu size={21} aria-hidden="true" />}<span>Menu</span></button>
+      </div>
+    </div>
+    <div className={`site-navigation ${menuOpen ? "is-open" : ""}`} id="main-navigation">
+      <nav className="primary-navigation" aria-label="Main navigation">
+        <ul className="primary-nav-list">
+          {navigationGroups.map(group => {
+            const active = group.href ? isActivePath(pathname, group.href) : group.items?.some(item => isActivePath(pathname, item.href));
+            const expanded = openGroup === group.id;
+            return <li key={group.id} className={`primary-nav-group ${active ? "is-current" : ""}`} onBlur={event => {
+              if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setOpenGroup(current => current === group.id ? null : current);
+            }}>
+              {group.href ? <Link className="primary-nav-trigger" href={group.href} aria-current={active ? "page" : undefined} onClick={closeNavigation}>{group.label}</Link> : <>
+                <button id={`nav-trigger-${group.id}`} className="primary-nav-trigger" aria-expanded={expanded} aria-controls={`nav-panel-${group.id}`} onClick={() => setOpenGroup(expanded ? null : group.id)} onKeyDown={event => {
+                  if (event.key === "ArrowDown") {
+                    event.preventDefault(); setOpenGroup(group.id);
+                    requestAnimationFrame(() => header.current?.querySelector<HTMLElement>(`#nav-panel-${group.id} a`)?.focus());
+                  }
+                }}>{group.label}<ChevronDown size={13} aria-hidden="true" /></button>
+                <ul id={`nav-panel-${group.id}`} className="nav-dropdown" hidden={!expanded} aria-labelledby={`nav-trigger-${group.id}`}>
+                  {group.items?.map(({ href, label, icon: Icon }) => <li key={href}><Link href={href} aria-current={isActivePath(pathname, href) ? "page" : undefined} onClick={closeNavigation}><Icon size={17} strokeWidth={1.6} aria-hidden="true" /><span>{label}</span><ChevronRight size={13} aria-hidden="true" /></Link></li>)}
+                </ul>
+              </>}
+            </li>;
+          })}
+        </ul>
+        <Link className="navigation-update" href="/updates" onClick={closeNavigation}><span className="update-indicator" />Updated <time dateTime={snapshotDate}>{snapshotLabel}</time><ArrowUpRight size={13} aria-hidden="true" /></Link>
+        <div className="mobile-profile-links"><Link href="/players/messi" onClick={closeNavigation}>Lionel Messi <ArrowUpRight size={14} /></Link><Link href="/players/ronaldo" onClick={closeNavigation}>Cristiano Ronaldo <ArrowUpRight size={14} /></Link></div>
+      </nav>
+    </div>
+  </header>;
+}
+
+export function SiteShell({ children }: { children: ReactNode }) {
+  const { snapshotLabel } = useFootballData();
+  const pathname = usePathname();
+  const [query, setQuery] = useState("");
+  const dialog = useRef<HTMLDialogElement>(null);
+  useEffect(() => {
+    const onKey = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.key === "k") { event.preventDefault(); dialog.current?.showModal(); }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, []);
   return <>
     <a href="#main-content" className="skip-link">Skip to content</a>
-    <aside ref={sidebar} id="main-navigation" inert={mobile && !menuOpen ? true : undefined} role={mobile && menuOpen ? "dialog" : undefined} aria-modal={mobile && menuOpen ? true : undefined} className={`sidebar ${menuOpen ? "is-open" : ""}`} aria-label="Main navigation">
-      <div className="sidebar-brand"><Brand /><button className="icon-button mobile-only" onClick={() => setMenuOpen(false)} aria-label="Close menu"><X size={20} /></button></div>
-      <div className="sidebar-navigation">
-        <div className="nav-caption">THE COMPARISON</div>
-        <nav aria-label="Comparisons">{navItems.map(({ href, label, icon: Icon }) => <Link onClick={() => setMenuOpen(false)} href={href} key={href} className={`nav-link ${pathname === href ? "active" : ""}`} aria-current={pathname === href ? "page" : undefined}><Icon size={18} strokeWidth={1.7} /><span>{label}</span>{pathname === href && <span className="nav-active-dot" />}</Link>)}</nav>
-        <div className="nav-caption second-caption">BEYOND THE NUMBERS</div>
-        <nav aria-label="Editorial and sources"><Link className={`nav-link ${pathname.startsWith("/insights") ? "active" : ""}`} href="/insights" onClick={() => setMenuOpen(false)}><BookOpen size={18} strokeWidth={1.7} />The reading room</Link><Link className={`nav-link ${pathname === "/methodology" ? "active" : ""}`} href="/methodology" onClick={() => setMenuOpen(false)}><ShieldCheck size={18} strokeWidth={1.7} />Sources & methodology</Link></nav>
-      </div>
-      <div className="sidebar-bottom"><div className="sidebar-note"><span className="eyebrow"><span className="tiny-dot" /> BUILT FOR THE BEAUTIFUL GAME</span><p>Greatness deserves<br />a little perspective.</p><Link href="/about" onClick={() => setMenuOpen(false)}>Our philosophy <ArrowUpRight size={14} /></Link></div><div className="sidebar-foot"><span>Two players. A world of football.</span><span>EST. 2026</span></div></div>
-    </aside>
-    {menuOpen && <button className="sidebar-scrim" aria-label="Close navigation" onClick={() => setMenuOpen(false)} />}
-    <div className="site-body" inert={mobile && menuOpen ? true : undefined}>
-      <header className="topbar"><div className="breadcrumb"><button className="icon-button mobile-only" ref={menuButton} aria-label="Open menu" aria-controls="main-navigation" aria-expanded={menuOpen} onClick={() => { setMenuOpen(true); requestAnimationFrame(() => sidebar.current?.querySelector<HTMLElement>("a")?.focus()); }}><Menu size={21} /></button><span className="desktop-only">Football, in perspective</span><span className="mobile-brand">THE RIVALRY<span>.</span></span><ChevronRight size={13} className="desktop-only" /><span className="breadcrumb-current desktop-only">{pathname.startsWith("/admin") ? "Admin dashboard" : "Messi vs Ronaldo"}</span></div><div className="topbar-actions"><button className="search-trigger" onClick={() => dialog.current?.showModal()} aria-label="Search the site"><Search size={16} /><span>Find a comparison</span><kbd>⌘ K</kbd></button><span className="topbar-divider" /><button className="icon-button theme-toggle" aria-label="Toggle light or dark theme" onClick={toggleTheme}>{light ? <Moon size={18} /> : <Sun size={18} />}</button><Link href="/methodology" className="source-status"><ShieldCheck size={15} /><span>Sources included</span></Link></div></header>
-      <main id="main-content">{children}</main>
-      <footer className="site-footer"><div><span className="footer-brand">THE RIVALRY<span>.</span></span><p>Independent perspectives on two extraordinary careers.</p></div><div className="footer-links"><Link href="/about">About</Link><Link href="/methodology">Our data</Link><Link href="/contact">Corrections</Link><Link href="/privacy">Privacy</Link><Link href="/credits">Photo credits</Link><Link href="/updates">Update log</Link><Link href="/admin">Admin</Link></div><div className="footer-bottom"><span>© {new Date().getFullYear()} The Rivalry. An independent football project.</span><span>Data updated {snapshotLabel}</span></div></footer>
+    <SiteHeader key={pathname} pathname={pathname} onSearch={() => dialog.current?.showModal()} />
+    <div className="site-body">
+      <main id="main-content" tabIndex={-1}>{children}</main>
+      <footer className="site-footer"><div><span className="footer-brand">THE RIVALRY<span>.</span></span><p>An independent archive of Messi and Ronaldo’s careers.</p></div><div className="footer-links"><Link href="/about">About</Link><Link href="/methodology">Our data</Link><Link href="/contact">Corrections</Link><Link href="/privacy">Privacy</Link><Link href="/credits">Photo credits</Link><Link href="/updates">Update log</Link><Link href="/admin">Admin</Link></div><div className="footer-bottom"><span>© {new Date().getFullYear()} The Rivalry. An independent football project.</span><span>Data updated {snapshotLabel}</span></div></footer>
     </div>
-    <dialog ref={dialog} className="search-dialog" onClick={event => { if (event.target === event.currentTarget) dialog.current?.close(); }}><div className="search-dialog-inner"><div className="dialog-search-row"><Search size={21} /><input autoComplete="off" placeholder="Players, competitions, stories…" aria-label="Search pages" value={query} onChange={event => setQuery(event.target.value)} /><button className="icon-button" aria-label="Close search" onClick={() => dialog.current?.close()}><X size={19} /></button></div><div className="search-results">{searchItems.filter(item => item.label.toLowerCase().includes(query.toLowerCase())).map(({ href, label, icon: Icon }) => <Link href={href} key={href} onClick={() => { dialog.current?.close(); setQuery(""); setMenuOpen(false); }}><Icon size={19} /><span>{label}</span><ArrowUpRight size={15} /></Link>)}{!searchItems.some(item => item.label.toLowerCase().includes(query.toLowerCase())) && <p className="no-results">No matches. Try “goals”, “Messi” or “sources”.</p>}</div><div className="search-dialog-footer">Explore the numbers behind the rivalry.<kbd>ESC to close</kbd></div></div></dialog>
+    <dialog ref={dialog} className="search-dialog" onClick={event => { if (event.target === event.currentTarget) dialog.current?.close(); }}><div className="search-dialog-inner"><div className="dialog-search-row"><Search size={21} /><input autoComplete="off" placeholder="Players, competitions, stories…" aria-label="Search pages" value={query} onChange={event => setQuery(event.target.value)} /><button className="icon-button" aria-label="Close search" onClick={() => dialog.current?.close()}><X size={19} /></button></div><div className="search-results">{searchItems.filter(item => item.label.toLowerCase().includes(query.toLowerCase())).map(({ href, label, icon: Icon }) => <Link href={href} key={href} onClick={() => { dialog.current?.close(); setQuery(""); }}><Icon size={19} /><span>{label}</span><ArrowUpRight size={15} /></Link>)}{!searchItems.some(item => item.label.toLowerCase().includes(query.toLowerCase())) && <p className="no-results">No matches. Try “goals”, “Messi” or “sources”.</p>}</div><div className="search-dialog-footer">Search players, competitions and articles.<kbd>ESC to close</kbd></div></div></dialog>
   </>;
 }

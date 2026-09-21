@@ -51,11 +51,11 @@ test("search navigates to editorial content and theme persists", async ({ page }
   await page.getByRole("textbox", { name: "Search pages" }).fill("assist");
   await page.getByRole("dialog").getByRole("link", { name: "Understanding assists" }).click();
   await expect(page).toHaveURL(/\/assists$/);
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Great goals have a backstory.");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Assists & goal contributions.");
   await page.getByRole("button", { name: "Toggle light or dark theme" }).click();
-  await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
   await page.reload();
-  await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
 });
 test("exports comparison and prepares an honest local correction report", async ({ page }) => {
   await page.goto("/");
@@ -114,20 +114,41 @@ test("core pages pass automated accessibility checks in dark and light themes", 
   results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
   expect(results.violations).toEqual([]);
 });
-test("mobile navigation opens, closes and is keyboard accessible", async ({ page, isMobile }) => {
-  test.skip(!isMobile, "Mobile drawer only");
+test("website navigation opens from the top and supports keyboard navigation", async ({ page, isMobile }) => {
   await page.goto("/");
-  await expect(page.locator(".sidebar")).toHaveAttribute("inert", "");
-  await expect(page.getByRole("link", { name: "Years & seasons", exact: true })).not.toBeInViewport();
-  await page.getByRole("button", { name: "Open menu" }).click();
-  await expect(page.getByRole("link", { name: "Years & seasons", exact: true })).toBeVisible();
-  await expect(page.getByRole("link", { name: "The Rivalry home", exact: true })).toBeFocused();
+  const navigation = page.getByRole("navigation", { name: "Main navigation", exact: true });
+  await expect(page.getByRole("link", { name: "The Rivalry home", exact: true })).toBeVisible();
+  await expect(page.locator(".site-body")).toHaveCSS("margin-left", "0px");
+  if (isMobile) {
+    await expect(navigation).not.toBeVisible();
+    await page.getByRole("button", { name: "Open menu" }).click();
+  }
+  await expect(navigation).toBeVisible();
+  const years = navigation.getByRole("button", { name: "Years & seasons", exact: true });
+  await years.focus();
+  await page.keyboard.press("ArrowDown");
+  await expect(navigation.getByRole("link", { name: "2026 stats" })).toBeFocused();
   await page.keyboard.press("Escape");
-  await expect(page.getByRole("button", { name: "Open menu" })).toBeFocused();
-  await page.getByRole("button", { name: "Open menu" }).click();
-  await page.getByRole("link", { name: "Years & seasons", exact: true }).click();
+  await expect(years).toBeFocused();
+  await expect(years).toHaveAttribute("aria-expanded", "false");
+  if (isMobile) {
+    await page.keyboard.press("Escape");
+    await expect(page.getByRole("button", { name: "Open menu" })).toBeFocused();
+    await expect(navigation).not.toBeVisible();
+    await page.getByRole("button", { name: "Open menu" }).click();
+  }
+  await years.click();
+  await navigation.getByRole("link", { name: "Years & seasons", exact: true }).click();
   await expect(page).toHaveURL(/\/seasons$/);
-  await expect(page.getByRole("button", { name: "Open menu" })).toBeVisible();
+  if (isMobile) {
+    await expect(page.getByRole("button", { name: "Open menu" })).toHaveAttribute("aria-expanded", "false");
+    await page.getByRole("button", { name: "Open menu" }).click();
+  }
+  await years.click();
+  await expect(navigation.getByRole("link", { name: "Years & seasons", exact: true })).toHaveAttribute("aria-current", "page");
+  expect((await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze()).violations).toEqual([]);
+  await page.locator(".page-intro h1").click({ force: true });
+  await expect(years).toHaveAttribute("aria-expanded", "false");
 });
 
 
@@ -211,7 +232,7 @@ test("custom dropdown supports keyboard selection, dismissal, long lists and acc
   const year = page.getByRole("combobox", { name: "Calendar year", exact: true });
   await expect(year).toHaveText("2002");
   for (const theme of ["dark", "light"]) {
-    if (theme === "light") await page.getByRole("button", { name: "Toggle light or dark theme" }).click();
+    if (await page.locator("html").getAttribute("data-theme") !== theme) await page.getByRole("button", { name: "Toggle light or dark theme" }).click();
     await year.click();
     await expect(page.getByRole("option", { name: "2002", exact: true })).toHaveAttribute("aria-selected", "true");
     const box = await page.getByRole("listbox").boundingBox();

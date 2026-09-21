@@ -2,7 +2,7 @@ import { scopes, snapshotLabel } from "@/lib/data";
 
 export const articles = [
   {
-    slug: "why-assist-totals-differ", category: "THE DETAILS MATTER", title: "An assist isn’t always an assist.", description: "Why two trusted sources can give you two different answers — and how to compare fairly.", readTime: "4 min read", color: "blue", number: "01",
+    slug: "why-assist-totals-differ", category: "ASSIST DEFINITIONS", title: "An assist isn’t always an assist.", description: "Why two trusted sources can give you two different answers — and how to compare fairly.", readTime: "4 min read", color: "blue", number: "01",
     sections: [
       { heading: "Start with the definition", text: "A goal assist, a fantasy assist and a secondary assist describe different contributions. A pass to the scorer may qualify as a conventional assist, while a rebound or a penalty won may be counted by a broader fantasy system. Adding these categories together changes the question being answered." },
       { heading: "Keep the source consistent", text: "For its Champions League history, UEFA lists Cristiano Ronaldo with 42 assists and Lionel Messi with 40. This site uses those UEFA figures for that competition. A different provider may classify individual incidents differently. A difference is a reason to inspect the underlying events, not to silently replace one number with another." },
@@ -10,7 +10,7 @@ export const articles = [
     ], sourceIds: ["uefa"] as const,
   },
   {
-    slug: "totals-vs-scoring-rates", category: "A FAIRER COMPARISON", title: "More goals. Or more goals per game?", description: "Career totals and scoring rates tell different parts of the same remarkable story.", readTime: "3 min read", color: "coral", number: "02",
+    slug: "totals-vs-scoring-rates", category: "SCORING RATES", title: "More goals. Or more goals per game?", description: "Career totals and scoring rates tell different parts of the same remarkable story.", readTime: "3 min read", color: "coral", number: "02",
     sections: [
       { heading: "Volume and efficiency answer different questions", text: "A career total measures accumulated scoring. Goals per appearance measures average scoring in matches played. Neither metric replaces the other: one values sustained output, while the other describes frequency within a defined sample." },
       { heading: "The Champions League example", text: "Ronaldo's 140 goals in 183 appearances yield approximately 0.77 goals per game. Messi's 129 goals in 163 appearances yield approximately 0.79. Ronaldo leads this total and Messi leads this rate. Both observations can be true at the same time." },
@@ -19,7 +19,7 @@ export const articles = [
     ], sourceIds: ["uefa"] as const,
   },
   {
-    slug: "what-counts-as-a-career-goal", category: "BEHIND THE NUMBERS", title: "What counts as a career goal?", description: "Friendlies, shootouts and youth football: the small print behind a very big number.", readTime: "3 min read", color: "lime", number: "03",
+    slug: "what-counts-as-a-career-goal", category: "COUNTING RULES", title: "What counts as a career goal?", description: "Friendlies, shootouts and youth football: the small print behind a very big number.", readTime: "3 min read", color: "lime", number: "03",
     sections: [
       { heading: "Define the match before counting the goal", text: "Our career comparison uses senior competitive club football and senior A internationals. Club friendlies, exhibition fixtures, reserve teams and youth matches are excluded. Recognized senior international friendlies are included; they belong to a different category from club preseason games." },
       { heading: "Keep penalty shootouts separate", text: "A penalty scored during normal or extra time contributes to the match score and to the player's goal total. A successful kick in a penalty shootout decides the outcome of a tie but is not added to that player's match goals. Combining the two would inflate career totals." },
