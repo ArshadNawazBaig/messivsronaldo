@@ -1,4 +1,5 @@
 import { intlLocales, type Locale } from "./config";
+import { translatedDate } from "./date-format";
 
 export type Messages = Record<string, string>;
 export type Values = Record<string, string | number>;
@@ -15,11 +16,7 @@ export function createTranslator(locale: Locale, messages: Messages) {
   function translate<T>(input: T, values?: Values): T extends string ? string : T {
     if (typeof input !== "string" || !input.trim()) return input as T extends string ? string : T;
     const source = input.trim();
-    if (locale !== "en" && /^(?:\d{1,2} [A-Za-z]+ \d{4}|\d{4}-\d{2}-\d{2})$/.test(source)) {
-      const date = new Date(/^\d{4}-/.test(source) ? `${source}T00:00:00Z` : `${source} 00:00:00 GMT`);
-      if (!Number.isNaN(date.getTime())) return new Intl.DateTimeFormat(intlLocales[locale], { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(date) as T extends string ? string : T;
-    }
-    let result = messages[source];
+    let result = locale === "en" ? messages[source] : translatedDate(source, locale) ?? messages[source];
     if (result === undefined && locale !== "en") {
       result = folded.get(source.toLowerCase())!;
       if (result && source === source.toUpperCase()) result = result.toLocaleUpperCase(intlLocales[locale]);

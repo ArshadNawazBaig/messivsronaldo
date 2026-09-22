@@ -1,7 +1,7 @@
 import "server-only";
 import { cache } from "react";
 import { headers } from "next/headers";
-import { isLocale, intlLocales, type Locale } from "./config";
+import { isLocale, numberLocales, type Locale } from "./config";
 import { createTranslator, type Messages } from "./translate";
 
 const catalogs: Record<Locale, () => Promise<{ default: Messages }>> = {
@@ -14,5 +14,5 @@ export const getI18n = cache(async () => {
   const requested = (await headers()).get("x-rivalry-locale") ?? "en";
   const locale = isLocale(requested) ? requested : "en";
   const messages = locale === "en" ? {} : (await catalogs[locale]()).default;
-  return { locale, messages, numberLocale: locale === "en" ? "en-US" : intlLocales[locale], t: createTranslator(locale, messages) };
+  return { locale, messages, numberLocale: numberLocales[locale], t: createTranslator(locale, messages) };
 });

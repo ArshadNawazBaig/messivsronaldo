@@ -23,7 +23,9 @@
 .coverage { padding: 0 0 0 16px; border-inline-start: 2px solid var(--border); }
 :global([dir='rtl']) .coverage { padding: 0 16px 0 0; }
 .coverage p { max-width: 90ch; margin: 8px 0 0; color: var(--muted); font-size: 14px; line-height: 1.75; }
-.table { direction: ltr; }
+.tableWrap { direction: ltr; }
+.table { direction: ltr; min-width: 0; table-layout: fixed; }
+.table th, .table td { overflow-wrap: anywhere; }
 .table th:first-child { width: 50%; }
 .table th:not(:first-child), .table td { width: 25%; text-align: center; }
 .value { display: inline-flex; align-items: center; gap: 9px; }
@@ -33,4 +35,5 @@
 @media (max-width: 600px) {
   .navigation { gap: 20px; }
   .comparison { gap: 22px; }
+  .table th, .table td { padding: 14px 12px; }
 }

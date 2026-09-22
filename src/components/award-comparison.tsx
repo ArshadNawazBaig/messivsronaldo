@@ -21,7 +21,7 @@ export async function AwardComparison({ slug }: { slug: AwardSlug }) {
     <div className={styles.coverage}><span className="section-kicker">{t("Comparison scope")}</span><p>{t(award.note)}</p></div>
     <section className="panel">
       <div className="panel-heading"><div><span className="section-kicker">{t(award.context)}</span><h2>{t(award.wins ? "Winning editions" : "Covered match awards")}</h2></div></div>
-      <div className="year-table-wrap" role="region" aria-label={t(award.label)} tabIndex={0}>
+      <div className={`year-table-wrap ${styles.tableWrap}`} role="region" aria-label={t(award.label)} tabIndex={0}>
         <table className={`year-table ${styles.table}`}>
           <caption className="sr-only">{t(award.description)}</caption>
           <thead><tr><th scope="col">{t(award.wins ? "Award edition" : "Statistic")}</th><th scope="col">{t("Messi")}</th><th scope="col">{t("Ronaldo")}</th></tr></thead>

@@ -67,7 +67,10 @@ export const awardComparisons: Record<AwardSlug, AwardComparison> = {
     cardLabel: "UEFA player awards",
     wins: { messi: ["2010/11", "2014/15"], ronaldo: ["2013/14", "2015/16", "2016/17"] },
     note: "This award began in 2011 as UEFA Best Player in Europe. The earlier UEFA Club Footballer of the Year prize is separate: Ronaldo won it in 2008 and Messi in 2009. Those earlier awards are not included in these totals.",
-    sources: [{ name: "UEFA", url: "https://www.uefa.com/uefachampionsleague/news/0254-0e99d68ce583-a9362a08b3eb-1000--who-has-won-the-uefa-men-s-player-of-the-year-award/" }],
+    sources: [
+      { name: "UEFA", url: "https://www.uefa.com/uefachampionsleague/news/0250-0c5117e92c89-63778ff646c0-1000/" },
+      { name: "UEFA · 1998–2018", url: "https://www.uefa.com/uefachampionsleague/news/0254-0e99d68ce583-a9362a08b3eb-1000--who-has-won-the-uefa-men-s-player-of-the-year-award/" },
+    ],
   },
 };
 

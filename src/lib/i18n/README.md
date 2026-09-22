@@ -34,7 +34,12 @@ shared across the eight checked-in JSON catalogs. Translate full sentences with
 `{0}`, `{1}`, etc. placeholders, and pass live values separately to `t()`.
 Never translate IDs, routes, source URLs, metric keys or database values.
 The translator also recognizes existing composed messages from the published
-dataset, formats dates in UTC, and falls back to English for unknown messages.
+dataset and falls back to English for unknown messages. `date-format.ts` parses
+valid UTC calendar dates and uses checked-in month names and date patterns;
+public translated date labels must not use runtime `Intl.DateTimeFormat`, whose
+punctuation can differ between the server and browser. Numeric formatting uses
+`numberLocales`, with an explicit Latin numbering system for Arabic to keep the
+site's 0–9 statistics consistent across ICU versions.
 
 The initial catalog includes machine-assisted translations with reviewed core
 football vocabulary, navigation and comparison controls. Long-form articles
