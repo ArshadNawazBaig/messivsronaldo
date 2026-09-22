@@ -5,10 +5,19 @@ Arabic (ar), and Hindi (hi) share the same published football dataset.
 
 English URLs remain unprefixed. `src/proxy.ts` internally rewrites them to
 `/en/...`; public `/en/...` URLs permanently redirect to the original URL.
-Other languages use `/es/...`, `/pt/...`, etc. The request URL is authoritative:
-there is no automatic browser-language redirect or language cookie. The header
-selector retains the current page, query and comparison hash. Language changes
-use a full navigation to update the document language and direction together.
+Other languages use `/es/...`, `/pt/...`, etc. Explicit language URLs are
+authoritative. On unprefixed public page visits, a valid `rivalry-locale` cookie
+takes priority over the browser's weighted `Accept-Language` preferences. Regional
+variants map to supported base languages, with English as the fallback. Only
+manual menu choices are saved, for one year (Path=/, SameSite=Lax, Secure on HTTPS).
+Automatic detection does not set a cookie. An explicit `/en/...` visit also saves
+English before redirecting to its canonical unprefixed URL.
+
+Language negotiation uses temporary, private, non-cacheable redirects and skips
+API/admin/assets, non-GET/HEAD requests, prefetches, RSC fetches, and recognized
+search/link-preview crawlers. Thus English and translated pages remain directly
+crawlable. The header selector retains the page, query and comparison hash;
+full navigation updates the document language and direction together.
 Normal navigation uses `components/localized-link.tsx` and its router wrapper.
 Admin, API, assets and metadata endpoints retain their original URLs.
 

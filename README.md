@@ -122,7 +122,10 @@ Photograph licenses and original authors are documented in `ASSET_LICENSES.md` a
 The header language menu supports English, Spanish, Portuguese, Dutch, French,
 German, Arabic and Hindi. English URLs stay unchanged; other languages use
 `/es`, `/pt`, `/nl`, `/fr`, `/de`, `/ar` and `/hi` prefixes. The selected page and
-comparison filters are preserved when switching. Translations render on the
+comparison filters are preserved when switching. Unprefixed visits automatically
+use the browser's preferred supported language; a manual language choice is
+remembered for one year and takes priority. Explicit language URLs remain
+authoritative. Translations render on the
 server, Arabic uses right-to-left layout, and the XML sitemap includes every
 public page in all eight languages with reciprocal `hreflang` alternates.
 See `src/lib/i18n/README.md` for catalog maintenance and translation coverage.

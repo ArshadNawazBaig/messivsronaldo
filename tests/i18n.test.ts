@@ -5,6 +5,57 @@ import { NextRequest } from "next/server";
 import { locales, localizedPath, languageAlternates, stripLocale } from "../src/lib/i18n/config";
 import { createTranslator, type Messages } from "../src/lib/i18n/translate";
 import { proxy } from "../src/proxy";
+import { browserLocale, preferredLocale, languageCookie } from "../src/lib/i18n/detection";
+
+test("browser language matching handles regions, weights, exclusions and invalid headers", () => {
+  for (const [header, expected] of [
+    ["es-MX,es;q=0.9,en;q=0.8", "es"], ["pt-BR,pt;q=0.9", "pt"],
+    ["fr-CA;q=0.7,nl-NL;q=0.9,en;q=0.5", "nl"], ["zh-CN,hi-IN;q=0.7", "hi"],
+    ["ar-SA,en-US;q=0.8", "ar"], ["DE-de;q=0.8,fr;q=0.8", "de"],
+    ["es;q=0,en;q=0.8", "en"], ["en;q=0,*;q=0.5", "es"],
+    ["es;q=NaN,pt;q=2,de;q=-1,fr;q=0.6", "fr"],
+    ["zh-CN,ja;q=0.9", "en"], ["*", "en"], ["", "en"],
+  ]) assert.equal(browserLocale(header), expected, header);
+  assert.equal(browserLocale(null), "en");
+  assert.equal(preferredLocale("en", "es-MX"), "en");
+  assert.equal(preferredLocale("pt", "es-MX"), "pt");
+  assert.equal(preferredLocale("not-a-locale", "es-MX"), "es");
+});
+
+test("automatic redirects honor manual choices, preserve query state and are never shared-cacheable", () => {
+  const request = (path: string, cookie?: string) => new NextRequest(`https://example.com${path}`, { headers: { "accept-language": "es-MX,es;q=0.9", ...(cookie ? { cookie: `${languageCookie}=${cookie}` } : {}) } });
+  const detected = proxy(request("/seasons/2026?ref=shared"));
+  assert.equal(detected.status, 307);
+  assert.equal(detected.headers.get("location"), "https://example.com/es/seasons/2026?ref=shared");
+  assert.match(detected.headers.get("Cache-Control")!, /private, no-store/);
+  for (const header of ["Accept-Language", "Cookie", "User-Agent"]) assert.ok(detected.headers.get("Vary")!.includes(header));
+  assert.equal(detected.headers.get("set-cookie"), null, "detection should not set a preference");
+  assert.equal(proxy(request("/compare", "pt")).headers.get("location"), "https://example.com/pt/compare");
+  assert.equal(proxy(request("/compare", "en")).headers.get("x-middleware-rewrite"), "https://example.com/en/compare");
+  assert.equal(proxy(request("/fr/compare", "pt")).headers.get("x-middleware-next"), "1", "explicit language URL wins");
+  const english = proxy(request("/en/compare", "pt"));
+  assert.equal(english.headers.get("location"), "https://example.com/compare");
+  assert.match(english.headers.get("set-cookie")!, new RegExp(`^${languageCookie}=en;`), "English alias cannot bounce to detected language");
+  assert.match(english.headers.get("set-cookie")!, /Secure/);
+});
+
+test("language detection leaves crawlers, prefetches, mutations and non-page endpoints untouched", () => {
+  const base = { "accept-language": "es-MX,es;q=0.9", cookie: `${languageCookie}=fr` };
+  for (const agent of ["Googlebot", "Google-InspectionTool", "bingbot", "facebookexternalhit/1.1", "Twitterbot", "WhatsApp", "ClaudeBot"]) {
+    const response = proxy(new NextRequest("https://example.com/compare", { headers: { ...base, "user-agent": agent } }));
+    assert.equal(response.headers.get("x-middleware-rewrite"), "https://example.com/en/compare", agent);
+  }
+  const prefetchHeaders: Record<string, string>[] = [{ rsc: "1" }, { "next-router-prefetch": "1" }, { purpose: "prefetch" }, { "sec-purpose": "prefetch;prerender" }];
+  for (const extra of prefetchHeaders) {
+    assert.equal(proxy(new NextRequest("https://example.com/compare", { headers: { ...base, ...extra } })).headers.get("location"), null);
+  }
+  assert.equal(proxy(new NextRequest("https://example.com/compare", { method: "POST", headers: base })).headers.get("location"), null);
+  for (const path of ["/admin", "/api/comparison/career", "/sitemap.xml", "/robots.txt", "/llms.txt", "/opengraph-image", "/images/photo.jpg", "/fonts/i18n/noto-sans-arabic.woff2", "/maintenance"]) {
+    const response = proxy(new NextRequest(`https://example.com${path}`, { headers: base }));
+    assert.equal(response.headers.get("location"), null, path);
+    assert.equal(response.headers.get("x-middleware-next"), "1", path);
+  }
+});
 
 test("localized links retain comparison state and leave assets, APIs and admin alone", () => {
   assert.equal(localizedPath("/seasons/2026?ref=share#scope=club&metric=assists", "pt"), "/pt/seasons/2026?ref=share#scope=club&metric=assists");
