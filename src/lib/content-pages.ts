@@ -1,5 +1,6 @@
 import type { ScopeId } from "./data";
 import { policies } from "./policies";
+import { awardComparisons, awardSlugs } from "./awards";
 
 export const contentPages: Record<string, { title: string; heading: string; eyebrow: string; description: string; scope?: ScopeId; scoring?: boolean }> = {
   compare: { title: "Messi vs Ronaldo Comparison Explorer", heading: "Compare the records.", eyebrow: "THE COMPARISON EXPLORER", description: "Choose the context, explore the figures, and share what you find. Every comparison keeps its scope and source attached.", scope: "career" },
@@ -24,5 +25,9 @@ export const contentPages: Record<string, { title: string; heading: string; eyeb
   about: { title: "About The Rivalry", heading: "About The Rivalry.", eyebrow: "OUR PHILOSOPHY", description: "Two extraordinary careers deserve more than an argument over a single number." },
   contact: { title: "Report a Statistical Correction", heading: "Report a correction.", eyebrow: "CORRECTIONS & FEEDBACK", description: "Found a figure that needs another look? Put the claim and its evidence together in a correction report." },
   credits: { title: "Photography Credits & Licenses", heading: "Photography & credits.", eyebrow: "PHOTOGRAPHY & ATTRIBUTION", description: "Credits for the player portraits, icons and locally hosted fonts used on The Rivalry." },
+  ...Object.fromEntries(awardSlugs.map(slug => {
+    const award = awardComparisons[slug];
+    return [slug, { title: `Messi vs Ronaldo: ${award.label}`, heading: award.label, eyebrow: "INDIVIDUAL AWARDS", description: award.description }];
+  })),
   ...policies,
 };

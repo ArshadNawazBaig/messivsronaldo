@@ -8,6 +8,8 @@ import { ClubBreakdown, TeamHonours, CurrentHighlights, teamTrophyTotals } from 
 import { Comparison, ExploreCards } from "@/components/comparison";
 import { PlayerMatchup } from "@/components/player-matchup";
 import { AwardChart } from "@/components/award-chart";
+import { AwardComparison, HonoursNavigation } from "@/components/award-comparison";
+import { isAwardSlug } from "@/lib/awards";
 import { CorrectionForm } from "@/components/correction-form";
 import { players, scopeIds, sources } from "@/lib/data";
 import { jsonLd, pageMetadata, siteUrl } from "@/lib/site";
@@ -49,6 +51,8 @@ export default async function ContentPage({ params }: {
     {slug === "assists" && <div className="notice-card"><ShieldCheck size={21}/><div><strong>{t("Career assists: Messi {0} \u00B7 Ronaldo {1}.", { "0": t(careerAssists.messi), "1": t(careerAssists.ronaldo) })}</strong><p>{t("{0} The Champions League view separately uses UEFA\u2019s definition: 40 and 42. ", { "0": t(liveData.coverageNote ? "These combine the reviewed baseline and the sourced match records in the public update log. Provider assist definitions may differ." : "These use the named statistical reference’s conventional-assist totals.") })}<Link href="/insights/why-assist-totals-differ">{t("Why totals can differ ")}<ArrowRight size={13}/></Link></p></div></div>}
     {slug === "records" && <CurrentHighlights />}
     {page.scope && <><Comparison initialScope={page.scope} initialGroup={page.scoring ? "scoring" : "overview"}/>{slug === "clubs" && <ClubBreakdown />}<ExploreCards /></>}
+    {(slug === "honours" || isAwardSlug(slug)) && <HonoursNavigation current={slug} />}
+    {isAwardSlug(slug) && <AwardComparison slug={slug} />}
     {slug === "honours" && <>
       <section className="honours-comparison" aria-label={t("Player honours comparison")}>
         <div className="snapshot-line"><span><span className="snapshot-dot"/>{t(" Team trophies \u00B7 Through September 2026")}</span><Link href="/methodology">{t("Sources & counting rules ")}<ShieldCheck size={12}/></Link></div>

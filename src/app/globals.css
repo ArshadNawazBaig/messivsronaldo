@@ -1031,7 +1031,7 @@ kbd {
 }
 .stats-footnote {
   border-top: 1px solid var(--border-subtle);
-  padding: 13px 25px;
+  padding: 13px 25px !important;
   display: flex;
   justify-content: space-between;
   color: var(--subtle);

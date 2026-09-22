@@ -2,6 +2,7 @@ import { articles } from "./articles";
 import { contentPages } from "./content-pages";
 import { policies, policyUpdated } from "./policies";
 import { seasons } from "./seasons";
+import { awardsReviewed, isAwardSlug } from "./awards";
 
 export type PublicPage = { path: string; title: string; group: string; updated?: string };
 
@@ -12,8 +13,8 @@ export function getPublicPages(years: readonly { year: number }[], snapshotDate:
     { path: "/", title: "Messi vs Ronaldo overview", group: "Comparisons", updated: snapshotDate },
     ...Object.entries(contentPages).map(([slug, page]) => ({
       path: `/${slug}`, title: page.title,
-      group: page.scope || slug === "honours" ? "Comparisons" : "About & policies",
-      updated: Object.hasOwn(policies, slug) ? policyUpdated : page.scope || slug === "honours" || slug === "methodology" ? snapshotDate : undefined,
+      group: page.scope || slug === "honours" || isAwardSlug(slug) ? "Comparisons" : "About & policies",
+      updated: isAwardSlug(slug) ? awardsReviewed : Object.hasOwn(policies, slug) ? policyUpdated : page.scope || slug === "honours" || slug === "methodology" ? snapshotDate : undefined,
     })),
     { path: "/players/messi", title: "Lionel Messi profile", group: "Player profiles", updated: snapshotDate },
     { path: "/players/ronaldo", title: "Cristiano Ronaldo profile", group: "Player profiles", updated: snapshotDate },

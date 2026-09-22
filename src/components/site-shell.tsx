@@ -4,6 +4,7 @@ import { stripLocale } from "@/lib/i18n/config";
 import { useI18n } from "@/components/i18n-provider";
 import { useFootballData } from "@/components/data-provider";
 import { players } from "@/lib/data";
+import { honoursNavigation } from "@/lib/awards";
 import Link from "@/components/localized-link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -32,11 +33,12 @@ const scoringItems = [
     { href: "/head-to-head", label: "Head-to-head", icon: ArrowDownUp },
     { href: "/records", label: "Career milestones", icon: Trophy },
 ];
+const honoursItems = honoursNavigation.map(item => ({ ...item, icon: Trophy }));
 const editorialItems = [
     { href: "/insights", label: "The reading room", icon: BookOpen },
     { href: "/methodology", label: "Sources & methodology", icon: ShieldCheck },
 ];
-const navItems = [...comparisonItems, ...competitionItems];
+const navItems = [...comparisonItems, ...competitionItems, ...honoursItems.slice(1)];
 function isActivePath(pathname: string, href: string) {
     return pathname === href || (href !== "/" && pathname.startsWith(`${href}/`));
 }
@@ -56,7 +58,7 @@ const navigationGroups: {
     { id: "clubs", label: "Club stats", items: [...competitionItems.slice(0, 3), { href: "/league", label: "All domestic leagues", icon: BarChart3 }, { href: "/european-clubs", label: "European club records", icon: Globe2 }] },
     { id: "international", label: "International", items: [competitionItems[4], competitionItems[3], { href: "/copa-america-vs-euros", label: "Copa América vs Euros", icon: Globe2 }] },
     { id: "scoring", label: "Scoring records", items: scoringItems },
-    { id: "honours", label: "Trophies & awards", href: "/honours" },
+    { id: "honours", label: "Trophies & awards", items: honoursItems },
     { id: "reading", label: "Read & research", items: [...editorialItems, { href: "/updates", label: "Update log", icon: History }, { href: "/about", label: "About the project", icon: CircleHelp }] },
 ];
 function SiteHeader({ pathname, onSearch }: {
