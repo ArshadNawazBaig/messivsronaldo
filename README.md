@@ -116,3 +116,13 @@ public/images/           Attributed player photographs
 ```
 
 Photograph licenses and original authors are documented in `ASSET_LICENSES.md` and displayed at `/credits`.
+
+### Languages
+
+The header language menu supports English, Spanish, Portuguese, Dutch, French,
+German, Arabic and Hindi. English URLs stay unchanged; other languages use
+`/es`, `/pt`, `/nl`, `/fr`, `/de`, `/ar` and `/hi` prefixes. The selected page and
+comparison filters are preserved when switching. Translations render on the
+server, Arabic uses right-to-left layout, and the XML sitemap includes every
+public page in all eight languages with reciprocal `hreflang` alternates.
+See `src/lib/i18n/README.md` for catalog maintenance and translation coverage.

@@ -7,3 +7,5 @@ playwright-report
 node_modules
 .next
 *.tsbuildinfo
+
+.kilo

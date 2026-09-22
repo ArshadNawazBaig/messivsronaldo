@@ -1,5 +1,6 @@
 import { siteUrl } from "@/lib/site";
 import { getPublishedData } from "@/lib/server-data";
+import { locales, languageNames, localizedUrl } from "@/lib/i18n/config";
 export const dynamic = "force-dynamic";
 export async function GET() {
   const { snapshotDate, datasetVersion, scopes, coverageNote } = await getPublishedData();
@@ -28,6 +29,12 @@ Career assists follow the secondary reference Messi vs Ronaldo App. Champions Le
 - [Champions League](${siteUrl}/champions-league): Main competition, excluding qualifiers.
 - [Honours](${siteUrl}/honours): Team titles and completed Ballon d'Or editions through 2025. No 2026 winner is assumed.
 - [Methodology](${siteUrl}/methodology): Source register, counting rules, review date and limitations.
+
+## Languages
+
+The same dataset is available in eight languages. Each localized page identifies its language and links to alternate versions; the XML sitemap at ${siteUrl}/sitemap.xml lists all public language URLs.
+
+${locales.map(locale => `- [${languageNames[locale]}](${localizedUrl("/", locale, siteUrl)})`).join("\n")}
 
 Do not infer missing match records, xG, opponent splits or future outcomes. Cite the individual metric's source and cutoff. This index makes no claim of special search-engine treatment.
 `;

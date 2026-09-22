@@ -23,7 +23,7 @@ test("maintenance is opt-in, preserves admin access, and does not deindex normal
   const original = process.env.MAINTENANCE_MODE;
   try {
     process.env.MAINTENANCE_MODE = "false";
-    assert.equal(proxy(new NextRequest("https://example.com/compare")).headers.get("x-middleware-next"), "1");
+    assert.equal(proxy(new NextRequest("https://example.com/compare")).headers.get("x-middleware-rewrite"), "https://example.com/en/compare");
     process.env.MAINTENANCE_MODE = "true";
     for (const path of ["/", "/terms", "/seasons/2026", "/sitemap.xml", "/administrator"]) {
       const response = proxy(new NextRequest(`https://example.com${path}`));
