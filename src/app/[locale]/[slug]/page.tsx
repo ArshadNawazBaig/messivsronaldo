@@ -16,6 +16,8 @@ import { jsonLd, pageMetadata, siteUrl } from "@/lib/site";
 import { contentPages as pages } from "@/lib/content-pages";
 import { policies } from "@/lib/policies";
 import { PolicyContent } from "@/components/policy-content";
+import { ScoringCalculator } from "@/components/scoring-calculator";
+import { EditorialCards } from "@/components/editorial";
 async function getPage(slug: string) {
     const page = Object.hasOwn(pages, slug) ? pages[slug] : undefined;
     if (!page)
@@ -49,6 +51,7 @@ export default async function ContentPage({ params }: {
         notFound();
     return <div className="page-container inner-page"><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd({ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: t("Overview"), item: `${siteUrl}${localizedPath("/", locale)}` }, { "@type": "ListItem", position: 2, name: t(page.title), item: `${siteUrl}${localizedPath(`/${slug}`, locale)}` }] }) }}/><div className="page-intro inner-intro"><div><span className="eyebrow"><span className="tiny-dot"/>{t(page.eyebrow)}</span><h1>{t(page.heading)}</h1><p>{t(page.description)}</p></div></div>
     {slug === "assists" && <div className="notice-card"><ShieldCheck size={21}/><div><strong>{t("Career assists: Messi {0} \u00B7 Ronaldo {1}.", { "0": t(careerAssists.messi), "1": t(careerAssists.ronaldo) })}</strong><p>{t("{0} The Champions League view separately uses UEFA\u2019s definition: 40 and 42. ", { "0": t(liveData.coverageNote ? "These combine the reviewed baseline and the sourced match records in the public update log. Provider assist definitions may differ." : "These use the named statistical reference’s conventional-assist totals.") })}<Link href="/insights/why-assist-totals-differ">{t("Why totals can differ ")}<ArrowRight size={13}/></Link></p></div></div>}
+    {slug === "scoring-calculator" && <><ScoringCalculator /><EditorialCards limit={3}/></>}
     {slug === "records" && <CurrentHighlights />}
     {page.scope && <><Comparison initialScope={page.scope} initialGroup={page.scoring ? "scoring" : "overview"}/>{slug === "clubs" && <ClubBreakdown />}<ExploreCards /></>}
     {(slug === "honours" || isAwardSlug(slug)) && <HonoursNavigation current={slug} />}

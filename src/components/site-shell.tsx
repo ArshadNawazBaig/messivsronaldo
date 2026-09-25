@@ -4,6 +4,7 @@ import { stripLocale } from "@/lib/i18n/config";
 import { useI18n } from "@/components/i18n-provider";
 import { useFootballData } from "@/components/data-provider";
 import { players } from "@/lib/data";
+import { interactiveGuides } from "@/lib/interactive-guides";
 import { honoursNavigation } from "@/lib/awards";
 import Link from "@/components/localized-link";
 import Image from "next/image";
@@ -25,6 +26,7 @@ const competitionItems = [
     { href: "/international", label: "International", icon: Globe2 },
 ];
 const scoringItems = [
+    { href: "/scoring-calculator", label: "Scoring calculator", icon: BarChart3 },
     { href: "/goals", label: "Career goals", icon: BarChart3 },
     { href: "/assists", label: "Assists", icon: ArrowDownUp },
     { href: "/penalties", label: "Penalties", icon: BarChart3 },
@@ -42,7 +44,7 @@ const navItems = [...comparisonItems, ...competitionItems, ...honoursItems.slice
 function isActivePath(pathname: string, href: string) {
     return pathname === href || (href !== "/" && pathname.startsWith(`${href}/`));
 }
-const searchItems = [...[["terms", "Terms of use"], ["privacy", "Privacy policy"], ["cookies", "Cookie policy"], ["disclaimer", "Editorial disclaimer"], ["accessibility", "Accessibility"], ["contact", "Contact & corrections"], ["sitemap", "Site map"]].map(([slug, label]) => ({ href: `/${slug}`, label, icon: BookOpen })), ...navItems, { href: "/penalties", label: "Penalties & conversion", icon: BarChart3 }, { href: "/free-kicks", label: "Free kicks & goal types", icon: BarChart3 }, { href: "/hat-tricks", label: "Hat-tricks", icon: BarChart3 }, { href: "/head-to-head", label: "Direct head-to-head meetings", icon: ArrowDownUp }, { href: "/copa-america-vs-euros", label: "Copa América vs Euros", icon: Globe2 }, { href: "/european-clubs", label: "European club records", icon: Globe2 }, { href: "/league", label: "All domestic leagues", icon: BarChart3 }, { href: "/records", label: "Records & race to 1,000", icon: Trophy }, { href: "/goals", label: "Career goals", icon: BarChart3 }, { href: "/assists", label: "Understanding assists", icon: BookOpen }, { href: "/methodology", label: "Sources & methodology", icon: ShieldCheck }, { href: "/insights", label: "The reading room", icon: BookOpen }, { href: "/players/messi", label: "Lionel Messi profile", icon: CircleHelp }, { href: "/players/ronaldo", label: "Cristiano Ronaldo profile", icon: CircleHelp }];
+const searchItems = [{ href: "/scoring-calculator", label: "Scoring calculator", icon: BarChart3 }, ...interactiveGuides.map(article => ({ href: `/insights/${article.slug}`, label: article.title, icon: BookOpen })), ...[["terms", "Terms of use"], ["privacy", "Privacy policy"], ["cookies", "Cookie policy"], ["disclaimer", "Editorial disclaimer"], ["accessibility", "Accessibility"], ["contact", "Contact & corrections"], ["sitemap", "Site map"]].map(([slug, label]) => ({ href: `/${slug}`, label, icon: BookOpen })), ...navItems, { href: "/penalties", label: "Penalties & conversion", icon: BarChart3 }, { href: "/free-kicks", label: "Free kicks & goal types", icon: BarChart3 }, { href: "/hat-tricks", label: "Hat-tricks", icon: BarChart3 }, { href: "/head-to-head", label: "Direct head-to-head meetings", icon: ArrowDownUp }, { href: "/copa-america-vs-euros", label: "Copa América vs Euros", icon: Globe2 }, { href: "/european-clubs", label: "European club records", icon: Globe2 }, { href: "/league", label: "All domestic leagues", icon: BarChart3 }, { href: "/records", label: "Records & race to 1,000", icon: Trophy }, { href: "/goals", label: "Career goals", icon: BarChart3 }, { href: "/assists", label: "Understanding assists", icon: BookOpen }, { href: "/methodology", label: "Sources & methodology", icon: ShieldCheck }, { href: "/insights", label: "The reading room", icon: BookOpen }, { href: "/players/messi", label: "Lionel Messi profile", icon: CircleHelp }, { href: "/players/ronaldo", label: "Cristiano Ronaldo profile", icon: CircleHelp }];
 export function Brand() {
     const { t } = useI18n();
     return <Link href="/" className="brand" aria-label={t("The Rivalry home")}><Image className="brand-symbol" src="/images/brand/the-rivalry-mark.svg" width={40} height={40} alt={t("")} unoptimized/><span>{t("THE")}<span className="brand-second">{t("RIVALRY")}<span className="brand-period">.</span></span></span></Link>;

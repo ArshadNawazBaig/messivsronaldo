@@ -19,7 +19,8 @@ export default async function Home() {
     <CurrentHighlights />
     <AwardChart />
     <ExploreCards />
-    <EditorialCards />
+    <section className="trust-banner"><div><span className="section-kicker">{t("THE SCORING CALCULATOR")}</span><h2>{t("Same opportunity. Your comparison.")}</h2><p>{t("Choose a record for each player. Compare their goals at equal minutes or appearances, explore peak seasons, and share your calculation.")}</p></div><Link href="/scoring-calculator">{t("Open the calculator")}<ArrowUpRight size={17}/></Link></section>
+    <EditorialCards limit={3} />
     <ComparisonGuide />
     <section className="trust-banner"><div><span className="section-kicker">{t("ABOUT THE DATA")}</span><h2>{t("A comparison you can check.")}</h2><p>{t("Every statistic links to its source. Counting rules, coverage dates and corrections are public.")}</p></div><Link href="/methodology">{t("Sources & methodology ")}<ArrowUpRight size={17}/></Link></section>
     <div className="back-to-data"><a href="#comparison">{t("Back to the comparison ")}<ArrowDown size={13}/></a></div>
