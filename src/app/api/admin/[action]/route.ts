@@ -2,7 +2,7 @@ import { z, ZodError } from "zod";
 import { revalidatePath } from "next/cache";
 import { checkOrigin, login, logout, requireAdmin } from "@/lib/admin/auth";
 import { AdminError, dateSchema } from "@/lib/admin/model";
-import { backup, getAdminState, removeMatch, saveMatch, syncDate } from "@/lib/admin/service";
+import { getAdminState, removeMatch, saveMatch, syncDate } from "@/lib/admin/service";
 import { connectProvider } from "@/lib/admin/provider";
 import { logRun, saveConnection, undoLast } from "@/lib/admin/database";
 export const runtime = "nodejs";
@@ -18,7 +18,6 @@ export async function GET(_request: Request, {params}:{params:Promise<{action:st
   try {
     await requireAdmin(); const {action} = await params;
     if (action === "state") return Response.json(await getAdminState(),{headers});
-    if (action === "backup") return Response.json(await backup(),{headers:{...headers,"Content-Disposition":"attachment; filename=rivalry-data-backup.json"}});
     return Response.json({error:"Not found"},{status:404,headers});
   } catch(error) { return failure(error); }
 }

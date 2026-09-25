@@ -57,19 +57,19 @@ test("search navigates to editorial content and theme persists", async ({ page }
   await page.reload();
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
 });
-test("exports comparison and prepares an honest local correction report", async ({ page }) => {
+test("prepares an on-page correction report without offering downloads", async ({ page }) => {
   await page.goto("/");
-  const csv = page.waitForEvent("download");
-  await page.getByRole("button", { name: "Download comparison CSV" }).click();
-  expect((await csv).suggestedFilename()).toBe("the-rivalry-career-2026-09-21.csv");
+  await expect(page.getByRole("button", { name: /download/i })).toHaveCount(0);
   await page.goto("/contact");
   await page.getByLabel("Page or comparison").fill("Champions League");
   await page.getByLabel("Statistic to review").fill("Assists");
   await page.getByLabel("Supporting source URL").fill("https://www.uefa.com/");
   await page.getByLabel("What should we look at?").fill("Please check the coverage and definition of this statistic.");
-  const report = page.waitForEvent("download");
-  await page.getByRole("button", { name: "Prepare & download report" }).click();
-  expect((await report).suggestedFilename()).toBe("the-rivalry-correction.txt");
+  const downloads: string[] = [];
+  page.on("download", download => downloads.push(download.suggestedFilename()));
+  await page.getByRole("button", { name: "Prepare report" }).click();
+  await expect(page.getByRole("textbox", { name: "Prepared report", exact: true })).toHaveValue(/Page: Champions League[\s\S]*Metric: Assists/);
+  expect(downloads).toEqual([]);
   await expect(page.getByRole("status")).toContainText("No report has been sent automatically.");
 });
 test("routes, metadata endpoints and invalid scopes have correct behavior", async ({ request }) => {
@@ -199,9 +199,7 @@ test("calendar explorer includes current years, restores filters and handles no 
   await page.getByRole("checkbox", { name: "Per 90 minutes" }).check();
   await chooseOption(page, "Calendar year", "2002");
   await expect(page.locator(".player-matchup .big-score").first()).toHaveText("—");
-  const csv = page.waitForEvent("download");
-  await page.getByRole("button", { name: "Download calendar CSV" }).click();
-  expect((await csv).suggestedFilename()).toContain("calendar-2002");
+  await expect(page.getByRole("button", { name: /download/i })).toHaveCount(0);
   await chooseOption(page, "Calendar year", "All years · 2002–2026");
   await chooseOption(page, "Calendar statistic", "Goals");
   await page.getByRole("button", { name: "Club + country", exact: true }).click();

@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { awardHistory, comparisonCsv, getGoalValues, isScope, players, calendarYears, clubs, snapshotDate, ratio, scopeIds, scopes, sources } from "../src/lib/data";
+import { awardHistory, getGoalValues, isScope, players, calendarYears, clubs, snapshotDate, ratio, scopeIds, scopes, sources } from "../src/lib/data";
 import { seasons, seasonTotals } from "../src/lib/seasons";
 
 test("club and international goals reconcile with the 2026 career snapshot", () => {
@@ -34,13 +34,6 @@ test("award chronology handles the cancelled 2020 award and reconciles winners",
   assert.equal(awardHistory.find(d => d.year === 2020)?.ronaldo, awardHistory.find(d => d.year === 2019)?.ronaldo);
   const ronaldoYears: readonly number[] = players.ronaldo.awards;
   assert.equal(players.messi.awards.filter(year => ronaldoYears.includes(year)).length, 0);
-});
-test("CSV exports retain coverage, precision, source and definition", () => {
-  const csv = comparisonCsv(scopes["champions-league"]);
-  assert.ok(csv.includes('"Goals per appearance","0.79","0.77"'));
-  assert.ok(csv.includes("21 September 2026"));
-  assert.ok(csv.includes("https://www.uefa.com/"));
-  assert.equal(csv.split("\r\n").length, scopes["champions-league"].metrics.length + 1);
 });
 test("untrusted scope input cannot select arbitrary object properties", () => {
   assert.equal(isScope("career"), true);

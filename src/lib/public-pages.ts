@@ -3,6 +3,7 @@ import { contentPages } from "./content-pages";
 import { policies, policyUpdated } from "./policies";
 import { seasons } from "./seasons";
 import { awardsReviewed, isAwardSlug } from "./awards";
+import { toolPages, toolsUpdated } from "./tools";
 
 export type PublicPage = { path: string; title: string; group: string; updated?: string };
 
@@ -10,11 +11,11 @@ export type PublicPage = { path: string; title: string; group: string; updated?:
 // admin routes, APIs and filter variants are not canonical content pages.
 export function getPublicPages(years: readonly { year: number }[], snapshotDate: string): PublicPage[] {
   return [
-    { path: "/", title: "Messi vs Ronaldo overview", group: "Comparisons", updated: snapshotDate },
+    { path: "/", title: "Messi vs Ronaldo overview", group: "Comparisons", updated: [snapshotDate, toolsUpdated].sort().at(-1) },
     ...Object.entries(contentPages).map(([slug, page]) => ({
       path: `/${slug}`, title: page.title,
-      group: page.scope || slug === "scoring-calculator" || slug === "honours" || isAwardSlug(slug) ? "Comparisons" : "About & policies",
-      updated: slug === "scoring-calculator" ? "2026-09-25" : isAwardSlug(slug) ? awardsReviewed : Object.hasOwn(policies, slug) ? policyUpdated : page.scope || slug === "honours" || slug === "methodology" ? snapshotDate : undefined,
+      group: Object.hasOwn(toolPages, slug) || slug === "scoring-calculator" ? "Tools & games" : page.scope || slug === "honours" || isAwardSlug(slug) ? "Comparisons" : "About & policies",
+      updated: Object.hasOwn(toolPages, slug) || slug === "scoring-calculator" ? [toolsUpdated, snapshotDate].sort().at(-1) : isAwardSlug(slug) ? awardsReviewed : Object.hasOwn(policies, slug) ? policyUpdated : page.scope || slug === "honours" || slug === "methodology" ? snapshotDate : undefined,
     })),
     { path: "/players/messi", title: "Lionel Messi profile", group: "Player profiles", updated: snapshotDate },
     { path: "/players/ronaldo", title: "Cristiano Ronaldo profile", group: "Player profiles", updated: snapshotDate },
@@ -28,4 +29,4 @@ export function getPublicPages(years: readonly { year: number }[], snapshotDate:
   ];
 }
 
-export const pageGroups = ["Comparisons", "Player profiles", "Calendar years", "Spanish-season archive", "Articles", "About & policies"];
+export const pageGroups = ["Comparisons", "Tools & games", "Player profiles", "Calendar years", "Spanish-season archive", "Articles", "About & policies"];

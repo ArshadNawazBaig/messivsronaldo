@@ -19,6 +19,10 @@ Career assists follow the secondary reference Messi vs Ronaldo App. Champions Le
 ## Pages
 
 - [Overview](${siteUrl}/): Dated career totals and comparison controls.
+- [Tools & games](${siteUrl}/tools): Original interactive tools using the shared published dataset.
+- [Football quiz](${siteUrl}/football-quiz): Eight knowledge questions with sourced answers and an on-page score. Scores are local to the page, not a public ranking.
+- [Career timeline](${siteUrl}/career-timeline): Annual or cumulative goals and assists within a selected year range with an on-page data table and publication cutoff.
+- [Milestone planner](${siteUrl}/milestone-planner): Appearances needed at user-selected scoring rates. Scenarios are not predictions or future match dates.
 - [Scoring calculator](${siteUrl}/scoring-calculator): Compare independent career, calendar-year and season records at equal minutes or appearances. Calculated outputs are scenarios, not recorded goals or predictions.
 - [Interactive guides](${siteUrl}/insights): Messi 2012 vs Ronaldo 2013; 50 vs 48 La Liga goals; 14 vs 17 Champions League goals.
 - [Published updates](${siteUrl}/updates): Match records, sources and publication coverage.

@@ -22,12 +22,12 @@ This workspace's ignored `.env.local` sets the preview origin to `http://localho
 
 ## What is implemented
 
-- A protected `/admin` dashboard with date-based API-Football sync, verified manual match edits, audit history, undo, exports, and persistent Postgres storage on Vercel (SQLite for local development). Setup and boundaries: [ADMIN_GUIDE.md](ADMIN_GUIDE.md).
+- A protected `/admin` dashboard with date-based API-Football sync, verified manual match edits, audit history, undo, and persistent Postgres storage on Vercel (SQLite for local development). Setup and boundaries: [ADMIN_GUIDE.md](ADMIN_GUIDE.md).
 - Next.js App Router, TypeScript, locally hosted Inter and Manrope fonts, Lucide icons, and custom responsive CSS.
 - Thirteen comparison scopes: career, 2026, club, country, Champions League, La Liga, World Cup, Copa América/Euros, current clubs, all leagues, European clubs, career excluding USA/Saudi, and direct meetings.
 - Goals, assists, appearances, minutes, contributions, per-appearance and per-90 rates, hat-tricks, penalties/conversion, non-penalty goals, free kicks, scoring locations and body parts.
-- Source explanations for each metric, CSV export with attribution and coverage, clipboard sharing, and filter restoration through URL fragments.
-- A 2002–2026 calendar explorer with club/country/league filters, metric selection, per-90 rates, CSV export and 25 individual year pages. The nine shared-Spain season pages remain a separate archive.
+- Source explanations for each metric, clipboard sharing, and filter restoration through URL fragments.
+- A 2002–2026 calendar explorer with club/country/league filters, metric selection, per-90 rates and 25 individual year pages. The nine shared-Spain season pages remain a separate archive.
 - Eight club records and a team-honours table with participation and counting notes.
 - An interactive Ballon d'Or chart, accessible data table, and award history through the latest completed edition, 2025.
 - Player profiles, original explanatory articles, methodology and source register, coverage matrix, privacy information, photo credits, and a local correction-report generator.
@@ -39,13 +39,13 @@ Google's AI-search guidance does not prescribe a special GEO framework or promis
 
 ## Data boundaries
 
-**Statistics were updated through 21 September 2026.** Career goals: Messi 930, Ronaldo 979. The 2026 calendar year is incomplete. The interface, API, exports and AI-readable summary retain the cutoff.
+**Statistics were updated through 21 September 2026.** Career goals: Messi 930, Ronaldo 979. The 2026 calendar year is incomplete. The interface, API and AI-readable summary retain the cutoff.
 
 `src/data/football.json` stores the reviewed numeric snapshot with calendar-year and club provenance. `src/lib/data.ts` defines formulas, source references and comparison scopes. `src/lib/seasons.ts` preserves the historical shared-Spain archive. `DATA_SOURCES.md` documents the source choices and reconciliation checks.
 
 Detailed current numbers use the attributed secondary statistical reference, with UEFA used separately for its Champions League definition and Ballon d'Or records. The dataset is not an independently audited match ledger or a licensed live provider feed. An administrator-triggered API-Football adapter is implemented; it requires a provider key in Admin Settings before real imports can run. The original baseline remains fixed, with later verified records stored separately. Arbitrary opponent/age filtering and full-coverage xG are not available.
 
-The correction form creates a local download. It does **not** persist reports to a backend or claim delivery. If `CONTACT_EMAIL` is configured, it also offers a prefilled email for the visitor to send themselves.
+The correction form prepares a report to review and copy on the page. It does **not** persist reports to a backend or claim delivery. If `CONTACT_EMAIL` is configured, it also offers a prefilled email for the visitor to send themselves.
 
 ## Checks
 
@@ -59,7 +59,7 @@ npm run test:e2e
 npm run test:admin
 ```
 
-Browser tests use port 3001 and start a production server when one is not already running. They cover desktop and mobile, HTML statistics without JavaScript, comparison and season state, theme persistence, source dialogs, search, exports, correction reports, route status codes, layout overflow, and automated accessibility checks in both themes. Unit tests cover aggregation boundaries, missing denominators, references, exports and chronology.
+Browser tests use port 3001 and start a production server when one is not already running. They cover desktop and mobile, HTML statistics without JavaScript, comparison and season state, theme persistence, source dialogs, search, correction reports, route status codes, layout overflow, and automated accessibility checks in both themes. Unit tests cover aggregation boundaries, missing denominators, references and chronology.
 
 Generated screenshots and audit artifacts belong in `.artifacts/` and are ignored. Automated accessibility checks do not replace a complete manual accessibility audit. Lab performance measurements do not establish real-user Core Web Vitals.
 
@@ -80,7 +80,7 @@ The production website is deployed on Vercel at https://messivsronaldo17.com wit
 ## Public policies and system pages
 
 - `/terms`, `/privacy`, `/cookies`, `/disclaimer`, and `/accessibility` describe this edition. Policy content is in `src/lib/policies.ts`. Set the publisher's public `CONTACT_EMAIL` to show a real email contact; no contact address or legal entity is invented by the app.
-- `/about`, `/contact`, `/credits`, `/methodology`, and `/updates` provide the existing project information and correction workflow. Downloading a correction report does **not** submit it.
+- `/about`, `/contact`, `/credits`, `/methodology`, and `/updates` provide the existing project information and correction workflow. Preparing a correction report does **not** submit it.
 - `/sitemap` is the visitor directory; `/sitemap.xml` uses the same catalog in `src/lib/public-pages.ts`. The catalog includes every public content route, player profile, article, calendar year and archived season. Error responses, `/maintenance`, `/admin`, API endpoints and filter variants are excluded. New `[slug]` pages registered in `content-pages.ts` are included automatically; register any new standalone route in `public-pages.ts` too.
 - Unknown routes use the custom 404. Route rendering failures use `error.tsx`; root-layout failures use the independent `global-error.tsx`. Retry re-fetches the failed route through Next.js.
 - `/maintenance` always serves the maintenance design with HTTP **503**, `Retry-After: 300`, and no caching. It works without the database. To temporarily pause public routes, set `MAINTENANCE_MODE=true` in the host environment and redeploy. Admin routes, admin APIs, assets and `robots.txt` remain accessible; existing admin authentication still applies. Set it back to `false` and redeploy to reopen. Keep this mode brief: prolonged 503 responses can affect search visibility. Normal URLs are not given `noindex` during an outage.
@@ -107,7 +107,7 @@ src/components/          Comparison, season explorer, charts, navigation, editor
 src/data/football.json   Reviewed 2026 snapshot, 25 years and eight club records
 src/lib/admin/           Authentication, provider adapter, SQLite store and updates
 src/lib/published-data.ts Public aggregation of baseline and published matches
-src/lib/data.ts          Source register, formulas, comparison scopes and CSV
+src/lib/data.ts          Source register, formulas and comparison scopes
 src/lib/seasons.ts       Shared-era season data and aggregation
 src/lib/articles.ts      Original explanatory articles
 src/lib/site.ts          Origin, indexing controls and metadata helpers

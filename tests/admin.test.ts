@@ -5,7 +5,6 @@ import { matchSchema, checkDate, type MatchRecord } from "../src/lib/admin/model
 import { mergeDate, saveMatch } from "../src/lib/admin/service";
 import { openStore, commitRecords, readRecords, revision, undoLast, history, acquireSync, saveConnection, getConnection } from "../src/lib/admin/store";
 import { connectProvider, fetchDate, type ProviderFetch } from "../src/lib/admin/provider";
-import { comparisonCsv } from "../src/lib/data";
 const sample: MatchRecord = {id:"api:100:messi",player:"messi",date:"2026-09-22",team:"Inter Miami",opponent:"Test opponent",competition:"Major League Soccer",category:"league",goals:2,assists:1,minutes:90,appearances:1,headToHead:false,source:"https://www.api-football.com/",provider:"api-football",note:"Test fixture only; not a real match record.",locked:false};
 const connection = {key:"test-only-key",messi:{player:154,club:9568,country:26},ronaldo:{player:874,club:2939,country:27}};
 const fixture = {fixture:{id:100,date:"2026-09-22T20:00:00+00:00",status:{short:"FT"}},goals:{home:3,away:0},league:{id:253,name:"Major League Soccer",type:"League",round:"Regular Season - 30"},teams:{home:{id:9568,name:"Inter Miami"},away:{id:1000,name:"Test opponent"}}};
@@ -26,10 +25,9 @@ test("new match updates all relevant scopes and rates without mutating the basel
   }
   assert.match(after.coverageNote,/unlisted dates have not been verified/);
 });
-test("goal-type rows and CSV retain their actual earlier cutoff",()=>{
+test("goal-type rows retain their actual earlier cutoff",()=>{
   const after = buildPublishedData([sample],1);
   assert.match(after.scopes.career.metrics.find(m=>m.id==="penalties")!.coverage!,/21 September 2026/);
-  assert.match(comparisonCsv(after.scopes.career),/Penalty goals.*Through 21 September 2026/);
   assert.ok(after.scopes.career.source.includes("updates"));
 });
 test("international, tournament and new calendar years aggregate independently",()=>{

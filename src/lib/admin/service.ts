@@ -1,7 +1,7 @@
 import type Database from "better-sqlite3";
 import { snapshotDate } from "@/lib/data";
 import { AdminError, checkDate, matchSchema, type AdminState, type MatchRecord } from "./model";
-import { acquireSync, commitRecords, getConnection, history, logRun, readRecords, revision, readSnapshot, fullHistory } from "./database";
+import { acquireSync, commitRecords, getConnection, history, logRun, readRecords, revision, readSnapshot } from "./database";
 import { fetchDate } from "./provider";
 export async function getAdminState(): Promise<AdminState> {
   const [connection, snapshot, runs] = await Promise.all([getConnection(), readSnapshot(), history()]);
@@ -52,8 +52,4 @@ export async function removeMatch(id: string, expected: number) {
   const records = await readRecords(); const record = records.find(r=>r.id === id);
   if (!record) throw new AdminError("Match record not found.",404);
   await commitRecords(expected,records.filter(r=>r.id !== id),record.date,"remove",`Removed ${record.player} vs ${record.opponent}. Totals recalculated.`);
-}
-export async function backup() {
-  const snapshot = await readSnapshot();
-  return {format:"the-rivalry-admin-v1",exportedAt:new Date().toISOString(),baseline:snapshotDate,revision:snapshot.revision,records:snapshot.records,history:await fullHistory()};
 }

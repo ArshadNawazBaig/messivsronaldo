@@ -1,8 +1,10 @@
 import type { ScopeId } from "./data";
 import { policies } from "./policies";
 import { awardComparisons, awardSlugs } from "./awards";
+import { toolPages } from "./tools";
 
 export const contentPages: Record<string, { title: string; heading: string; eyebrow: string; description: string; scope?: ScopeId; scoring?: boolean }> = {
+  ...toolPages,
   "scoring-calculator": { title: "Messi vs Ronaldo Scoring Calculator: Compare Seasons & Rates", heading: "Same opportunity. Your comparison.", eyebrow: "THE SCORING CALCULATOR", description: "Choose a record for each player. Compare their goals at equal minutes or appearances, explore peak seasons, and share your calculation." },
   compare: { title: "Messi vs Ronaldo Comparison Explorer", heading: "Compare the records.", eyebrow: "THE COMPARISON EXPLORER", description: "Choose the context, explore the figures, and share what you find. Every comparison keeps its scope and source attached.", scope: "career" },
   goals: { title: "Messi vs Ronaldo Career Goals — Updated 2026", heading: "Career goals.", eyebrow: "THE GOALSCORING STORY", description: "Career goals, non-penalty goals, minutes and scoring rates, updated through 21 September 2026.", scope: "career" },

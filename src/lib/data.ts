@@ -104,10 +104,5 @@ export function getGoalValues(scope: Scope, mode: GoalMode): Pair {
   return scope.goals;
 }
 export const awardHistory = Array.from({ length: 18 }, (_, i) => { const year = 2008 + i; return { year, messi: players.messi.awards.filter(y => y <= year).length, ronaldo: players.ronaldo.awards.filter(y => y <= year).length }; });
-export function comparisonCsv(scope: Scope): string {
-  const quote = (v: string | number) => `"${String(v).replaceAll('"', '""')}"`;
-  const rows = [["Metric", "Lionel Messi", "Cristiano Ronaldo", "Coverage", "Source", "Definition", "Unit"], ...scope.metrics.map(m => [m.label, m.values.messi.toFixed(m.decimals ?? 0), m.values.ronaldo.toFixed(m.decimals ?? 0), m.coverage ?? scope.period, m.source.map(s => sources[s].url).join(" | "), m.explanation, m.unit ?? "count or rate"])];
-  return rows.map(row => row.map(quote).join(",")).join("\r\n");
-}
 export const calendarYears = snapshot.calendar;
 export const clubs = snapshot.clubs;

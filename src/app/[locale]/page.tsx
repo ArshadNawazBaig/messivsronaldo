@@ -8,6 +8,7 @@ import { EditorialCards } from "@/components/editorial";
 import { CurrentHighlights } from "@/components/expanded-details";
 import { getPublishedData } from "@/lib/server-data";
 import { pageMetadata } from "@/lib/site";
+import { ToolCards } from "@/components/tool-cards";
 export async function generateMetadata() { const { snapshotLabel } = await getPublishedData(); return pageMetadata("Messi vs Ronaldo: Goals, Assists, Stats & Trophies (2026)", `Messi vs Ronaldo statistics updated ${snapshotLabel}: career goals, assists, 2026 stats, World Cup, club records, scoring rates and trophies.`, "/"); }
 export default async function Home() {
     const { t } = await getI18n();
@@ -19,6 +20,7 @@ export default async function Home() {
     <CurrentHighlights />
     <AwardChart />
     <ExploreCards />
+    <ToolCards />
     <section className="trust-banner"><div><span className="section-kicker">{t("THE SCORING CALCULATOR")}</span><h2>{t("Same opportunity. Your comparison.")}</h2><p>{t("Choose a record for each player. Compare their goals at equal minutes or appearances, explore peak seasons, and share your calculation.")}</p></div><Link href="/scoring-calculator">{t("Open the calculator")}<ArrowUpRight size={17}/></Link></section>
     <EditorialCards limit={3} />
     <ComparisonGuide />

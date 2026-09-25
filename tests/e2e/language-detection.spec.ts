@@ -32,7 +32,7 @@ test("manual choices including English override detection and persist across vis
   const saved = (await context.cookies()).find(cookie => cookie.name === "rivalry-locale");
   expect(saved?.value).toBe("en");
   expect(saved?.sameSite).toBe("Lax");
-  expect(saved!.expires).toBeGreaterThan(Date.now() / 1000 + 360 * 86400);
+  expect(saved!.expires).toBeGreaterThan(Date.now() / 1000 + 360 * 86720);
 
   await page.locator(".language-trigger").click();
   await page.locator('.language-menu a[lang="nl"]').click();
@@ -81,5 +81,5 @@ test("crawlers retain canonical English and translated pages regardless of heade
   expect(await spanish.text()).toContain('lang="es"');
   const sitemap = await request.get("/sitemap.xml", { headers, maxRedirects: 0 });
   expect(sitemap.status()).toBe(200);
-  expect((await sitemap.text()).match(/<url>/g)).toHaveLength(640);
+  expect((await sitemap.text()).match(/<url>/g)).toHaveLength(672);
 });

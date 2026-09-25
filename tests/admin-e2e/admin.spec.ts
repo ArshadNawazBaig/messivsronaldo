@@ -9,7 +9,7 @@ test("admin pages are private and every endpoint requires authorization",async({
   expect((await request.post("/api/admin/login",{headers:{origin:"https://attacker.example"},data:{password:"integration-test-password-only"}})).status()).toBe(403);
   expect((await request.post("/api/admin/login",{headers:{origin},data:{password:"wrong-password"}})).status()).toBe(401);
 });
-test("login, dashboard tabs, theme, backup and logout work on desktop and mobile",async({page,context})=>{
+test("login, dashboard tabs, theme and logout work on desktop and mobile",async({page,context})=>{
   // Audit final theme colors without waiting for animations in collapsed menus.
   await page.emulateMedia({reducedMotion:"reduce"});
   const errors:string[]=[];page.on("pageerror",e=>errors.push(e.message));
@@ -25,8 +25,8 @@ test("login, dashboard tabs, theme, backup and logout work on desktop and mobile
   await page.getByRole("button",{name:"Toggle light or dark theme"}).click();
   await expect(page.locator("html")).toHaveAttribute("data-theme","dark");
   expect((await new AxeBuilder({page}).analyze()).violations.map(v=>v.id)).toEqual([]);
-  const downloadPromise=page.waitForEvent("download");await page.getByRole("link",{name:"Download data backup"}).click();expect((await downloadPromise).suggestedFilename()).toBe("rivalry-data-backup.json");
-  const backup=await(await page.request.get("/api/admin/backup")).json();expect(backup.records[0].opponent).toBe("Synthetic test opponent");expect(JSON.stringify(backup)).not.toMatch(/PASSWORD_HASH|SESSION_SECRET|integration-test-password/);
+  await expect(page.locator("a[download], a[href=\"/api/admin/backup\"]")).toHaveCount(0);
+  expect((await page.request.get("/api/admin/backup")).status()).toBe(404);
   await page.getByRole("button",{name:"Sign out"}).click();await expect(page.getByLabel("Admin password")).toBeVisible();
   expect((await page.request.get("/api/admin/state",{headers:{cookie:`rivalry-admin=${cookie.value}`}})).status()).toBe(401);
   expect(errors).toEqual([]);

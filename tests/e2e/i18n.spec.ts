@@ -91,7 +91,7 @@ test("XML sitemap lists all localized pages with reciprocal language alternates"
   const response = await request.get("/sitemap.xml");
   expect(response.status()).toBe(200);
   const xml = await response.text();
-  expect((xml.match(/<url>/g) ?? []).length).toBe(80 * 8);
+  expect((xml.match(/<url>/g) ?? []).length).toBe(84 * 8);
   for (const [locale] of languages) {
     expect(xml).toContain(`hreflang="${locale}"`);
     if (locale !== "en") expect(xml).toContain(`/${locale}/seasons/2026</loc>`);

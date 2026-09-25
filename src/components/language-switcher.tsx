@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { locales, languageNames, localizedPath, type Locale } from "@/lib/i18n/config";
 import { languageCookie, languageCookieMaxAge } from "@/lib/i18n/detection";
+import { currentToolUrl } from "@/lib/tool-url";
 import { useI18n } from "./i18n-provider";
 
 function rememberLanguage(locale: Locale) {
@@ -23,13 +24,13 @@ export function LanguageSwitcher() {
     rememberLanguage(next);
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
-    const url = new URL(window.location.href);
+    const url = currentToolUrl();
     url.pathname = localizedPath(url.pathname, next);
     // Full navigation updates html lang/dir and the server-provided catalog
     // together, while preserving the current comparison, query and hash.
     window.location.assign(url.href);
   }
-  return <Popover.Root open={open} onOpenChange={next => { setOpen(next); if (next) setSuffix(window.location.search + window.location.hash); }}>
+  return <Popover.Root open={open} onOpenChange={next => { setOpen(next); if (next) { const url = currentToolUrl(); setSuffix(url.search + url.hash); } }}>
     <Popover.Trigger asChild><button className="language-trigger" type="button" aria-label={t("Choose your language")}>
       <Languages size={18} aria-hidden="true" /><span className="language-current" lang={locale}>{languageNames[locale]}</span><span className="language-code">{locale.toUpperCase()}</span><ChevronDown size={12} aria-hidden="true" />
     </button></Popover.Trigger>

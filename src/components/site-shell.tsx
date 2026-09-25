@@ -1,50 +1,54 @@
 "use client";
 import { LanguageSwitcher } from "./language-switcher";
+import { NavigationIcon } from "./ui/navigation-icon";
 import { stripLocale } from "@/lib/i18n/config";
 import { useI18n } from "@/components/i18n-provider";
 import { useFootballData } from "@/components/data-provider";
 import { players } from "@/lib/data";
 import { interactiveGuides } from "@/lib/interactive-guides";
 import { honoursNavigation } from "@/lib/awards";
+import { toolLinks } from "@/lib/tools";
 import Link from "@/components/localized-link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { ArrowDownUp, ArrowUpRight, BarChart3, BookOpen, CalendarDays, ChevronDown, ChevronRight, CircleHelp, Globe2, History, LayoutDashboard, Menu, Moon, Search, ShieldCheck, Sun, Trophy, X } from "lucide-react";
+import { ArrowUpRight, ChevronDown, ChevronRight, Menu, Moon, Search, Sun, X } from "lucide-react";
 const comparisonItems = [
-    { href: "/", label: "Overview", icon: LayoutDashboard },
-    { href: "/compare", label: "Compare stats", icon: ArrowDownUp },
-    { href: "/2026", label: "2026 stats", icon: CalendarDays },
-    { href: "/seasons", label: "Years & seasons", icon: CalendarDays },
-    { href: "/honours", label: "Trophies & awards", icon: Trophy },
+    { href: "/", label: "Overview" },
+    { href: "/compare", label: "Compare stats" },
+    { href: "/2026", label: "2026 stats" },
+    { href: "/seasons", label: "Years & seasons" },
+    { href: "/honours", label: "Trophies & awards" },
 ];
 const competitionItems = [
-    { href: "/clubs", label: "Club by club", icon: BarChart3 },
-    { href: "/champions-league", label: "Champions League", icon: Trophy },
-    { href: "/la-liga", label: "La Liga", icon: BarChart3 },
-    { href: "/world-cup", label: "World Cup", icon: Globe2 },
-    { href: "/international", label: "International", icon: Globe2 },
+    { href: "/clubs", label: "Club by club" },
+    { href: "/champions-league", label: "Champions League" },
+    { href: "/la-liga", label: "La Liga" },
+    { href: "/world-cup", label: "World Cup" },
+    { href: "/international", label: "International" },
 ];
 const scoringItems = [
-    { href: "/scoring-calculator", label: "Scoring calculator", icon: BarChart3 },
-    { href: "/goals", label: "Career goals", icon: BarChart3 },
-    { href: "/assists", label: "Assists", icon: ArrowDownUp },
-    { href: "/penalties", label: "Penalties", icon: BarChart3 },
-    { href: "/free-kicks", label: "Free kicks", icon: BarChart3 },
-    { href: "/hat-tricks", label: "Hat-tricks", icon: Trophy },
-    { href: "/head-to-head", label: "Head-to-head", icon: ArrowDownUp },
-    { href: "/records", label: "Career milestones", icon: Trophy },
+    { href: "/scoring-calculator", label: "Scoring calculator" },
+    { href: "/goals", label: "Career goals" },
+    { href: "/assists", label: "Assists" },
+    { href: "/penalties", label: "Penalties" },
+    { href: "/free-kicks", label: "Free kicks" },
+    { href: "/hat-tricks", label: "Hat-tricks" },
+    { href: "/head-to-head", label: "Head-to-head" },
+    { href: "/records", label: "Career milestones" },
 ];
-const honoursItems = honoursNavigation.map(item => ({ ...item, icon: Trophy }));
+const honoursItems = honoursNavigation;
 const editorialItems = [
-    { href: "/insights", label: "The reading room", icon: BookOpen },
-    { href: "/methodology", label: "Sources & methodology", icon: ShieldCheck },
+    { href: "/tools", label: "Tools & games" },
+    ...toolLinks.filter(tool => tool.href !== "/scoring-calculator").map(tool => ({ href: tool.href, label: tool.label })),
+    { href: "/insights", label: "The reading room" },
+    { href: "/methodology", label: "Sources & methodology" },
 ];
 const navItems = [...comparisonItems, ...competitionItems, ...honoursItems.slice(1)];
 function isActivePath(pathname: string, href: string) {
     return pathname === href || (href !== "/" && pathname.startsWith(`${href}/`));
 }
-const searchItems = [{ href: "/scoring-calculator", label: "Scoring calculator", icon: BarChart3 }, ...interactiveGuides.map(article => ({ href: `/insights/${article.slug}`, label: article.title, icon: BookOpen })), ...[["terms", "Terms of use"], ["privacy", "Privacy policy"], ["cookies", "Cookie policy"], ["disclaimer", "Editorial disclaimer"], ["accessibility", "Accessibility"], ["contact", "Contact & corrections"], ["sitemap", "Site map"]].map(([slug, label]) => ({ href: `/${slug}`, label, icon: BookOpen })), ...navItems, { href: "/penalties", label: "Penalties & conversion", icon: BarChart3 }, { href: "/free-kicks", label: "Free kicks & goal types", icon: BarChart3 }, { href: "/hat-tricks", label: "Hat-tricks", icon: BarChart3 }, { href: "/head-to-head", label: "Direct head-to-head meetings", icon: ArrowDownUp }, { href: "/copa-america-vs-euros", label: "Copa América vs Euros", icon: Globe2 }, { href: "/european-clubs", label: "European club records", icon: Globe2 }, { href: "/league", label: "All domestic leagues", icon: BarChart3 }, { href: "/records", label: "Records & race to 1,000", icon: Trophy }, { href: "/goals", label: "Career goals", icon: BarChart3 }, { href: "/assists", label: "Understanding assists", icon: BookOpen }, { href: "/methodology", label: "Sources & methodology", icon: ShieldCheck }, { href: "/insights", label: "The reading room", icon: BookOpen }, { href: "/players/messi", label: "Lionel Messi profile", icon: CircleHelp }, { href: "/players/ronaldo", label: "Cristiano Ronaldo profile", icon: CircleHelp }];
+const searchItems = [{ href: "/tools", label: "Tools & games" }, ...toolLinks.filter(tool => tool.href !== "/scoring-calculator").map(tool => ({ href: tool.href, label: tool.label })), { href: "/scoring-calculator", label: "Scoring calculator" }, ...interactiveGuides.map(article => ({ href: `/insights/${article.slug}`, label: article.title })), ...[["terms", "Terms of use"], ["privacy", "Privacy policy"], ["cookies", "Cookie policy"], ["disclaimer", "Editorial disclaimer"], ["accessibility", "Accessibility"], ["contact", "Contact & corrections"], ["sitemap", "Site map"]].map(([slug, label]) => ({ href: `/${slug}`, label })), ...navItems, { href: "/penalties", label: "Penalties & conversion" }, { href: "/free-kicks", label: "Free kicks & goal types" }, { href: "/hat-tricks", label: "Hat-tricks" }, { href: "/head-to-head", label: "Direct head-to-head meetings" }, { href: "/copa-america-vs-euros", label: "Copa América vs Euros" }, { href: "/european-clubs", label: "European club records" }, { href: "/league", label: "All domestic leagues" }, { href: "/records", label: "Records & race to 1,000" }, { href: "/goals", label: "Career goals" }, { href: "/assists", label: "Understanding assists" }, { href: "/methodology", label: "Sources & methodology" }, { href: "/insights", label: "The reading room" }, { href: "/players/messi", label: "Lionel Messi profile" }, { href: "/players/ronaldo", label: "Cristiano Ronaldo profile" }];
 export function Brand() {
     const { t } = useI18n();
     return <Link href="/" className="brand" aria-label={t("The Rivalry home")}><Image className="brand-symbol" src="/images/brand/the-rivalry-mark.svg" width={40} height={40} alt={t("")} unoptimized/><span>{t("THE")}<span className="brand-second">{t("RIVALRY")}<span className="brand-period">.</span></span></span></Link>;
@@ -57,11 +61,11 @@ const navigationGroups: {
 }[] = [
     { id: "career", label: "All-time stats", items: comparisonItems.slice(0, 2) },
     { id: "years", label: "Years & seasons", items: comparisonItems.slice(2, 4) },
-    { id: "clubs", label: "Club stats", items: [...competitionItems.slice(0, 3), { href: "/league", label: "All domestic leagues", icon: BarChart3 }, { href: "/european-clubs", label: "European club records", icon: Globe2 }] },
-    { id: "international", label: "International", items: [competitionItems[4], competitionItems[3], { href: "/copa-america-vs-euros", label: "Copa América vs Euros", icon: Globe2 }] },
+    { id: "clubs", label: "Club stats", items: [...competitionItems.slice(0, 3), { href: "/league", label: "All domestic leagues" }, { href: "/european-clubs", label: "European club records" }] },
+    { id: "international", label: "International", items: [competitionItems[4], competitionItems[3], { href: "/copa-america-vs-euros", label: "Copa América vs Euros" }] },
     { id: "scoring", label: "Scoring records", items: scoringItems },
     { id: "honours", label: "Trophies & awards", items: honoursItems },
-    { id: "reading", label: "Read & research", items: [...editorialItems, { href: "/updates", label: "Update log", icon: History }, { href: "/about", label: "About the project", icon: CircleHelp }] },
+    { id: "reading", label: "Read & research", items: [...editorialItems, { href: "/updates", label: "Update log" }, { href: "/about", label: "About the project" }] },
 ];
 function SiteHeader({ pathname, onSearch }: {
     pathname: string;
@@ -157,7 +161,7 @@ function SiteHeader({ pathname, onSearch }: {
                         }
                     }}>{t(group.label)}<ChevronDown size={13} aria-hidden="true"/></button>
                 <ul id={`nav-panel-${group.id}`} className="nav-dropdown" hidden={!expanded} aria-labelledby={`nav-trigger-${group.id}`}>
-                  {group.items?.map(({ href, label, icon: Icon }) => <li key={href}><Link href={href} aria-current={isActivePath(pathname, href) ? "page" : undefined} onClick={closeNavigation}><Icon size={17} strokeWidth={1.6} aria-hidden="true"/><span>{t(label)}</span><ChevronRight size={13} aria-hidden="true"/></Link></li>)}
+                  {group.items?.map(({ href, label }) => <li key={href}><Link href={href} aria-current={isActivePath(pathname, href) ? "page" : undefined} onClick={closeNavigation}><NavigationIcon href={href} size={20} strokeWidth={1.65} aria-hidden="true"/><span>{t(label)}</span><ChevronRight size={13} aria-hidden="true"/></Link></li>)}
                 </ul>
               </>}
             </li>;
@@ -205,6 +209,6 @@ export function SiteShell({ children }: {
     <dialog ref={dialog} className="search-dialog" onClick={event => {
             if (event.target === event.currentTarget)
                 dialog.current?.close();
-        }}><div className="search-dialog-inner"><div className="dialog-search-row"><Search size={21}/><input autoComplete="off" placeholder={t("Players, competitions, stories\u2026")} aria-label={t("Search pages")} value={query} onChange={event => setQuery(event.target.value)}/><button className="icon-button" aria-label={t("Close search")} onClick={() => dialog.current?.close()}><X size={19}/></button></div><div className="search-results">{searchItems.filter(item => t(item.label).toLocaleLowerCase().includes(query.toLocaleLowerCase())).map(({ href, label, icon: Icon }) => <Link href={href} key={href} onClick={() => { dialog.current?.close(); setQuery(""); }}><Icon size={19}/><span>{t(label)}</span><ArrowUpRight size={15}/></Link>)}{!searchItems.some(item => t(item.label).toLocaleLowerCase().includes(query.toLocaleLowerCase())) && <p className="no-results">{t("No matches. Try \u201Cgoals\u201D, \u201CMessi\u201D or \u201Csources\u201D.")}</p>}</div><div className="search-dialog-footer">{t("Search players, competitions and articles.")}<kbd>{t("ESC to close")}</kbd></div></div></dialog>
+        }}><div className="search-dialog-inner"><div className="dialog-search-row"><Search size={21}/><input autoComplete="off" placeholder={t("Players, competitions, stories\u2026")} aria-label={t("Search pages")} value={query} onChange={event => setQuery(event.target.value)}/><button className="icon-button" aria-label={t("Close search")} onClick={() => dialog.current?.close()}><X size={19}/></button></div><div className="search-results">{searchItems.filter(item => t(item.label).toLocaleLowerCase().includes(query.toLocaleLowerCase())).map(({ href, label }) => <Link href={href} key={href} onClick={() => { dialog.current?.close(); setQuery(""); }}><NavigationIcon href={href} size={19} aria-hidden="true"/><span>{t(label)}</span><ArrowUpRight size={15}/></Link>)}{!searchItems.some(item => t(item.label).toLocaleLowerCase().includes(query.toLocaleLowerCase())) && <p className="no-results">{t("No matches. Try \u201Cgoals\u201D, \u201CMessi\u201D or \u201Csources\u201D.")}</p>}</div><div className="search-dialog-footer">{t("Search players, competitions and articles.")}<kbd>{t("ESC to close")}</kbd></div></div></dialog>
   </>;
 }

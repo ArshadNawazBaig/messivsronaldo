@@ -6,6 +6,8 @@ import { useFootballData } from "./data-provider";
 import { useI18n } from "./i18n-provider";
 import Link from "./localized-link";
 import { Select } from "./ui/select";
+import { RangeSlider } from "./ui/range-slider";
+import { useToolUrl } from "./use-tool-url";
 import { players, type PlayerId } from "@/lib/data";
 import { calculatorHash, calculatorPresets, calculatorRecords, normalizeCalculator, parseCalculator, scoringProjection, type CalculatorPreset, type CalculatorState } from "@/lib/calculator";
 import styles from "./scoring-calculator.module.css";
@@ -18,6 +20,7 @@ export function ScoringCalculator({ preset = "career" }: { preset?: CalculatorPr
   const [state, setState] = useState<CalculatorState>(initial);
   const [share, setShare] = useState({ url: "", message: "" });
   const uid = useId();
+  const updateUrl = useToolUrl();
   useEffect(() => {
     function restore() { setState(parseCalculator(window.location.hash, records, initial)); setShare({ url: "", message: "" }); }
     restore();
@@ -33,7 +36,7 @@ export function ScoringCalculator({ preset = "career" }: { preset?: CalculatorPr
   function update(next: CalculatorState) {
     const normalized = normalizeCalculator(next, records);
     setState(normalized); setShare({ url: "", message: "" });
-    window.history.replaceState(null, "", calculatorHash(normalized));
+    updateUrl(calculatorHash(normalized));
   }
   async function copy() {
     const url = new URL(window.location.href); url.hash = calculatorHash(state);
@@ -52,8 +55,7 @@ export function ScoringCalculator({ preset = "career" }: { preset?: CalculatorPr
     <div className={styles.controls}>
       <div className={styles.basis} role="group" aria-label={t("Equal opportunity basis")}><button type="button" aria-pressed={state.basis === "minutes"} disabled={!minutesAvailable} onClick={() => update({ ...state, basis: "minutes", amount: 900 })}>{t("Equal minutes")}</button><button type="button" aria-pressed={state.basis === "appearances"} onClick={() => update({ ...state, basis: "appearances", amount: 10 })}>{t("Equal appearances")}</button></div>
       {!minutesAvailable && <p className={styles.note}>{t("Minutes are unavailable for this season archive. Compare appearances instead.")}</p>}
-      <div className={styles.rangeLabel}><label htmlFor={`${uid}-amount`}>{t(state.basis === "minutes" ? "Minutes for each player" : "Appearances for each player")}</label><output htmlFor={`${uid}-amount`}>{fmt(state.amount)}</output></div>
-      <input className={styles.slider} id={`${uid}-amount`} type="range" min={state.basis === "minutes" ? 90 : 1} max={state.basis === "minutes" ? 9000 : 100} step="1" value={state.amount} onChange={event => update({ ...state, amount: Number(event.target.value) })}/>
+      <RangeSlider id={`${uid}-amount`} label={t(state.basis === "minutes" ? "Minutes for each player" : "Appearances for each player")} min={state.basis === "minutes" ? 90 : 1} max={state.basis === "minutes" ? 9000 : 100} value={state.amount} formatValue={value => fmt(value)} onValueChange={amount => update({ ...state, amount })}/>
     </div>
     <figure className={styles.chart}>
       <figcaption><strong>{t("Goals at the selected rate")}</strong><span>{t("A calculation, not a prediction or an actual goal total.")}</span></figcaption>

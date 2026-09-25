@@ -24,19 +24,19 @@ Provider errors identify the failing endpoint and include the provider's explana
 - API-Football's assists can differ from the secondary baseline source's convention. The boundary and match-level evidence are disclosed, not represented as a single-provider audited career ledger. UEFA's completed Champions League convention is unchanged.
 - A later recorded match does not prove every intermediate date is complete. The public coverage note and update log explicitly disclose this. Run a sync for each date that needs checking.
 
-## Manual correction and export
+## Manual correction and recovery
 
 **Match records → Add match** records one appearance after the baseline. Enter player, date, opponent, competition, category, goals, assists, minutes, evidence URL, and a source/reason note. Club entries refer to the currently tracked clubs; international entries refer to the player's national team. Edit an existing record to correct it instead of creating another record for the same player/date. The database rejects duplicates. Manual records and edits are protected from automatic overwrite. Remove an incorrect match with its inline confirmation, then use undo if needed.
 
-**Download data backup** exports the full match ledger and audit history, including prior ledger versions. It excludes API keys, passwords and sessions. The reviewed baseline remains versioned in `src/data/football.json`. There is no automatic JSON backup restore UI; full disaster recovery uses the database and baseline backup described below.
+The activity log retains publication history and supports undoing the last publication. The reviewed baseline remains versioned in `src/data/football.json`. The dashboard has no download or export controls; full disaster recovery uses the database and baseline backup described below.
 
 ## Hosting and recovery
 
 Production on Vercel uses **shared Neon Postgres** through the private `DATABASE_URL` environment variable. Match records, revision checks, audit history, encrypted provider settings, sessions, login throttling and sync locks all live in that database. The application refuses to use local SQLite on Vercel when `DATABASE_URL` is missing. Local development still uses `.data/admin.sqlite` (or `ADMIN_DATABASE_PATH`) when no database URL is configured. Use HTTPS and set `NEXT_PUBLIC_SITE_URL=https://messivsronaldo17.com` before building. Keep `ADMIN_SESSION_SECRET` stable so saved provider keys remain decryptable. See [DEPLOYMENT.md](DEPLOYMENT.md) for migration and production setup.
 
-Keep `ADMIN_PASSWORD_HASH` and `ADMIN_SESSION_SECRET` in the host's private environment settings. The stable secret encrypts the API connection with AES-256-GCM; changing it makes the saved provider key unreadable. Back up the SQLite database using SQLite's backup API or while the app is stopped (including its WAL files if not checkpointed), the baseline JSON, and the encryption secret separately. The JSON data export is not a credential or session backup. No deployment was performed in this task.
+Keep `ADMIN_PASSWORD_HASH` and `ADMIN_SESSION_SECRET` in the host's private environment settings. The stable secret encrypts the API connection with AES-256-GCM; changing it makes the saved provider key unreadable. Back up the SQLite database using SQLite's backup API or while the app is stopped (including its WAL files if not checkpointed), the baseline JSON, and the encryption secret separately. No deployment was performed in this task.
 
-Admin pages and APIs are excluded from indexing. Mutations require a valid server-side session and matching request origin. Sessions use opaque random tokens, expire after eight hours, and are revoked at logout. Password attempts are limited to ten per fifteen-minute window, globally for this single-admin app. Provider credentials are encrypted at rest, never returned by state/export APIs, and sent only to the fixed HTTPS API-Sports host. Admin data and response bodies are not publicly cached.
+Admin pages and APIs are excluded from indexing. Mutations require a valid server-side session and matching request origin. Sessions use opaque random tokens, expire after eight hours, and are revoked at logout. Password attempts are limited to ten per fifteen-minute window, globally for this single-admin app. Provider credentials are encrypted at rest, never returned by admin state API, and sent only to the fixed HTTPS API-Sports host. Admin data and response bodies are not publicly cached.
 
 ## Checks
 
