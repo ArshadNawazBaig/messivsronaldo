@@ -1,6 +1,7 @@
+import { StatImageButton } from "@/components/admin-stat-export";
 import Link from "@/components/localized-link";
 import { ArrowUpRight, Star } from "lucide-react";
-import { awardComparisons, awardRows, awardTotals, honoursNavigation, type AwardSlug } from "@/lib/awards";
+import { awardsReviewed, awardComparisons, awardRows, awardTotals, honoursNavigation, type AwardSlug } from "@/lib/awards";
 import { getI18n } from "@/lib/i18n/server";
 import { PlayerMatchup } from "./player-matchup";
 import { AwardChart } from "./award-chart";
@@ -17,7 +18,7 @@ export async function AwardComparison({ slug }: { slug: AwardSlug }) {
   const { t, numberLocale } = await getI18n();
   const award = awardComparisons[slug];
   return <section className={styles.comparison} aria-label={t(award.label)}>
-    <PlayerMatchup values={awardTotals(slug)} label={t(award.cardLabel)} accessibleLabel={t(award.cardLabel)} context={t(award.context)} />
+    <PlayerMatchup values={awardTotals(slug)} label={t(award.cardLabel)} accessibleLabel={t(award.cardLabel)} context={t(award.context)} exportData={{ title: award.cardLabel, context: award.context, date: awardsReviewed, note: award.note }} />
     <div className={styles.coverage}><span className="section-kicker">{t("Comparison scope")}</span><p>{t(award.note)}</p></div>
     <section className="panel">
       <div className="panel-heading"><div><span className="section-kicker">{t(award.context)}</span><h2>{t(award.wins ? "Winning editions" : "Covered match awards")}</h2></div></div>
@@ -26,7 +27,7 @@ export async function AwardComparison({ slug }: { slug: AwardSlug }) {
           <caption className="sr-only">{t(award.description)}</caption>
           <thead><tr><th scope="col">{t(award.wins ? "Award edition" : "Statistic")}</th><th scope="col">{t("Messi")}</th><th scope="col">{t("Ronaldo")}</th></tr></thead>
           <tbody>{awardRows(slug).map(row => <tr key={row.label}>
-            <th scope="row">{t(row.label)}</th>
+            <th scope="row">{t(row.label)}<StatImageButton stat={{ title: award.wins ? award.cardLabel : row.label, context: award.wins ? `${award.context} · ${row.label}` : award.context, values: row.values, unit: row.percent ? "%" : "", note: award.note, date: awardsReviewed }}/></th>
             {(["messi", "ronaldo"] as const).map(player => {
               const value = row.values[player];
               const other = row.values[player === "messi" ? "ronaldo" : "messi"];
@@ -36,7 +37,7 @@ export async function AwardComparison({ slug }: { slug: AwardSlug }) {
               </span></td>;
             })}
           </tr>)}</tbody>
-          {award.wins && <tfoot><tr><th scope="row">{t("Total awards")}</th><td className="messi-text">{t(awardTotals(slug).messi)}</td><td className="ronaldo-text">{t(awardTotals(slug).ronaldo)}</td></tr></tfoot>}
+          {award.wins && <tfoot><tr><th scope="row">{t("Total awards")}<StatImageButton stat={{ title: award.cardLabel, context: award.context, values: awardTotals(slug), note: award.note, date: awardsReviewed }}/></th><td className="messi-text">{t(awardTotals(slug).messi)}</td><td className="ronaldo-text">{t(awardTotals(slug).ronaldo)}</td></tr></tfoot>}
         </table>
       </div>
       <div className={`stats-footnote ${styles.sources}`}><span>{t("Sources & counting rules")}</span><div>{award.sources.map(source => <a key={source.url} href={source.url} target="_blank" rel="noreferrer">{source.name}<ArrowUpRight size={13} aria-hidden="true" /></a>)}</div></div>

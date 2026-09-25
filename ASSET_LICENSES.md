@@ -5,6 +5,7 @@ The publisher supplied the two local portrait files below. Attribution and sourc
 ## Lionel Messi
 
 - Local file: `public/images/argentina-portraits-fifa-world-cup-2026.jpg`
+- Publisher-supplied transparent version used in admin downloads: `public/images/transparent-argentina-portraits-fifa-world-cup-2026-removebg-preview.png` (384 × 594).
 - Photographer: Florencia Tan Jun – FIFA.
 - Credit: FIFA via Getty Images.
 - Copyright: © 2026 FIFA.
@@ -15,6 +16,7 @@ The publisher supplied the two local portrait files below. Attribution and sourc
 ## Cristiano Ronaldo
 
 - Local file: `public/images/portugal-portraits-fifa-world-cup-2026.jpg`
+- Publisher-supplied transparent version used in admin downloads: `public/images/transparent-portugal-portraits-fifa-world-cup-2026-removebg-preview.png` (396 × 594).
 - Photographer: Carmen Mandato – FIFA.
 - Credit: FIFA via Getty Images.
 - Copyright: © 2026 FIFA.

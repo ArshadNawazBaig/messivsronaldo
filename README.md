@@ -129,3 +129,21 @@ authoritative. Translations render on the
 server, Arabic uses right-to-left layout, and the XML sitemap includes every
 public page in all eight languages with reciprocal `hreflang` alternates.
 See `src/lib/i18n/README.md` for catalog maintenance and translation coverage.
+
+### Admin social images
+
+Sign in at `/admin`, then open a comparison. **Download image** appears next to
+statistics and beneath the player cards for authenticated admins. Select both
+players or one player, choose a dark or light image theme, then Square (1080×1080), Portrait (1080×1350), or Story
+(1080×1920). Each preview starts with the website's currently selected theme;
+changing the image theme only affects that preview. The preview is the actual PNG. Download it on desktop or mobile;
+supported mobile browsers also offer native file sharing. **Open image** provides
+a save-image fallback. Posting to a social network remains a manual action.
+
+Artwork uses English labels and the approved player portraits, colours and logo;
+the controls are translated. Values are captured from the visible filters, with
+their snapshot date and coverage notes. Scenarios remain explicitly labelled.
+The authenticated, same-origin POST `/api/admin/stat-image` validates bounded
+input and renders local assets with `ImageResponse`. Responses are private and
+uncached; no export changes the database or exposes provider credentials. Public
+visitors have no download controls. No sitemap entry is needed for this private API.

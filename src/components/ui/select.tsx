@@ -18,8 +18,9 @@ interface SelectProps {
     options: readonly SelectOption[];
     icon?: LucideIcon;
     className?: string;
+    portalContainer?: HTMLElement | null;
 }
-export function Select({ id, label, menuLabel, value, onValueChange, options, icon: Icon, className = "" }: SelectProps) {
+export function Select({ id, label, menuLabel, value, onValueChange, options, icon: Icon, className = "", portalContainer }: SelectProps) {
     const { t, locale } = useI18n();
     // Make the surrounding page inert while Radix traps focus in the open menu.
     // The returned ref cleanup restores existing inert states before focus returns.
@@ -52,7 +53,7 @@ export function Select({ id, label, menuLabel, value, onValueChange, options, ic
       <span className="select-value"><SelectPrimitive.Value>{t(selected?.label)}</SelectPrimitive.Value></span>
       <SelectPrimitive.Icon className="select-chevron"><ChevronDown size={15} aria-hidden="true"/></SelectPrimitive.Icon>
     </SelectPrimitive.Trigger>
-    <SelectPrimitive.Portal>
+    <SelectPrimitive.Portal container={portalContainer}>
       <SelectPrimitive.Content ref={menuRef} className="select-content" position="popper" sideOffset={8} collisionPadding={12} aria-label={t(label)}>
         <SelectPrimitive.ScrollUpButton className="select-scroll-button"><ChevronUp size={15} aria-hidden="true"/></SelectPrimitive.ScrollUpButton>
         <SelectPrimitive.Viewport className="select-viewport">

@@ -1,4 +1,6 @@
 "use client";
+import { StatImageButton } from "@/components/admin-stat-export";
+import type { StatImage } from "@/lib/stat-image";
 import { useI18n } from "@/components/i18n-provider";
 import Image from "next/image";
 import Link from "@/components/localized-link";
@@ -11,10 +13,11 @@ type PlayerMatchupProps = {
     context: string;
     details?: Record<PlayerId, string>;
     decimals?: number;
+    exportData: Omit<StatImage, "values" | "decimals">;
 };
-export function PlayerMatchup({ values, label, accessibleLabel, context, details, decimals = 0 }: PlayerMatchupProps) {
+export function PlayerMatchup({ values, label, accessibleLabel, context, details, decimals = 0, exportData }: PlayerMatchupProps) {
     const { t, numberLocale } = useI18n();
-    return <div className="player-matchup">
+    return <><div className="player-matchup">
     {(["messi", "ronaldo"] as const).map(id => {
             const player = players[id];
             const value = values[id];
@@ -33,5 +36,5 @@ export function PlayerMatchup({ values, label, accessibleLabel, context, details
       </article>;
         })}
     <span className="versus-badge" aria-hidden="true">{t("VS")}</span>
-  </div>;
+  </div><StatImageButton placement="toolbar" stat={{ ...exportData, values, decimals }}/></>;
 }

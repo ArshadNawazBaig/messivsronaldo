@@ -1,4 +1,5 @@
 "use client";
+import { StatImageButton } from "@/components/admin-stat-export";
 import { useEffect, useId, useState } from "react";
 import { useFootballData } from "./data-provider";
 import { useI18n } from "./i18n-provider";
@@ -46,6 +47,11 @@ export function MilestonePlanner() {
         <p className={styles.muted}>{t(games === 0 ? "Target already reached in this dataset." : games === null ? "A zero scoring rate cannot reach a higher target." : "Rounded up to a whole appearance.")}</p>
       </section>;
     })}</div>
+    <StatImageButton placement="toolbar" stats={[
+      { title: "Additional appearances needed", context: `Scenario · Target ${state.target.toLocaleString("en-US")} career goals`, values: { messi: milestoneGames(scopes.career.goals.messi, state.target, state.messi), ronaldo: milestoneGames(scopes.career.goals.ronaldo, state.target, state.ronaldo) }, lowerIsBetter: true, note: `Assumption, not a forecast. Goals per appearance: Messi ${state.messi.toFixed(2)}, Ronaldo ${state.ronaldo.toFixed(2)}. Rounded up. A dash means this rate cannot reach the target.` },
+      { title: "Goals remaining", context: `Target ${state.target.toLocaleString("en-US")} career goals`, values: { messi: Math.max(0, state.target - scopes.career.goals.messi), ronaldo: Math.max(0, state.target - scopes.career.goals.ronaldo) }, lowerIsBetter: true },
+      { title: "Selected goals per appearance", context: "Milestone planner · Your scenario", values: { messi: state.messi, ronaldo: state.ronaldo }, decimals: 2, note: "User-selected scoring rates; assumptions, not actual totals or a forecast." },
+    ]}/>
     <div className={styles.note}><p>{t("Formula: remaining goals ÷ your selected goals per appearance, rounded up. The rate is an assumption, not a forecast.")}</p><p>{t("No future match dates, injuries, retirements or changes in playing time are predicted. Historical rates describe past records and may not continue.")}</p><div className={styles.actions}><Link className="text-link" href="/records">{t("Career milestones")}</Link><ToolShare key={hash(state)} hash={hash(state)}/></div></div>
   </section>;
 }

@@ -1,4 +1,5 @@
 "use client";
+import { StatImageButton } from "@/components/admin-stat-export";
 import { useEffect, useId, useMemo, useState } from "react";
 import Image from "next/image";
 import { ArrowUpRight, RotateCcw, Share2 } from "lucide-react";
@@ -61,7 +62,7 @@ export function ScoringCalculator({ preset = "career" }: { preset?: CalculatorPr
       <figcaption><strong>{t("Goals at the selected rate")}</strong><span>{t("A calculation, not a prediction or an actual goal total.")}</span></figcaption>
       <div className={styles.results} aria-live="polite" aria-atomic="true">{(["messi", "ronaldo"] as const).map((player: PlayerId) => <div key={player} className={styles.barRow} data-player={player}><div><span>{players[player].short}</span><strong data-testid={`${player}-projection`}>{fmt(results[player], 2)}</strong></div><div className={styles.track} aria-hidden="true"><span style={{ width: `${(results[player] ?? 0) / max * 100}%` }}/></div><small>{t(selected[player].label)} · {t(state.basis === "minutes" ? "{0} goals per 90 minutes" : "{0} goals per appearance", { "0": fmt(scoringProjection(selected[player].players[player], state.basis, state.basis === "minutes" ? 90 : 1), 3) })}</small></div>)}</div>
       {(results.messi === null || results.ronaldo === null) && <p className={styles.note}>{t("No rate is available without recorded playing time or appearances.")}</p>}
-    </figure>
+    </figure><StatImageButton placement="toolbar" stat={{ title: "Goals at the selected rate", context: `Scenario · ${state.amount} ${state.basis} each`, values: results, decimals: 2, date: data.snapshotDate, note: `A calculation, not a prediction or actual goal total. Messi: ${selected.messi.label}. Ronaldo: ${selected.ronaldo.label}.` }}/>
     <div className={styles.method}><p>{t(state.basis === "minutes" ? "Formula: recorded goals ÷ recorded minutes × selected minutes." : "Formula: recorded goals ÷ recorded appearances × selected appearances.")}</p><p>{t("Equal playing time does not adjust for opponents, team strength, age or competition. A substitute appearance still counts as one match.")}</p><p>{t("Data updated {0}", { "0": t(data.snapshotLabel) })}</p><div className={styles.actions}><Link className="text-link" href="/methodology">{t("Sources & counting rules")}<ArrowUpRight size={13}/></Link><button type="button" className="text-link" onClick={copy}><Share2 size={14}/>{t("Share comparison")}</button></div>
       {share.url && <div className={styles.share}><p role="status">{t(share.message)}</p><input aria-label={t("Comparison link")} value={share.url} readOnly onFocus={event => event.currentTarget.select()}/></div>}
     </div>

@@ -69,7 +69,7 @@ export default async function ContentPage({ params }: {
     {slug === "honours" && <>
       <section className="honours-comparison" aria-label={t("Player honours comparison")}>
         <div className="snapshot-line"><span><span className="snapshot-dot"/>{t(" Team trophies \u00B7 Through September 2026")}</span><Link href="/methodology">{t("Sources & counting rules ")}<ShieldCheck size={12}/></Link></div>
-        <PlayerMatchup values={teamTrophyTotals} label={t("OVERALL TROPHIES")} accessibleLabel={t("overall team trophies")} context={t("Club & country \u00B7 Through Sep 2026")}/>
+        <PlayerMatchup values={teamTrophyTotals} label={t("OVERALL TROPHIES")} accessibleLabel={t("overall team trophies")} context={t("Club & country \u00B7 Through Sep 2026")} exportData={{ title: "Overall trophies", context: "Club & country · Team honours", date: "2026-09-21", note: "Includes youth/Olympic titles and MLS conference championship. Individual awards excluded." }}/>
       </section>
       <TeamHonours />
       <div className="honours-summary">{(["messi", "ronaldo"] as const).map(id => <div className={`honour-player panel ${id}`} key={id}><span className="section-kicker">{t(players[id].name.toUpperCase())}</span><h2>{t("{0} Ballon d\u2019Or awards", { "0": t(players[id].awards.length) })}</h2><div className="award-years">{players[id].awards.map(year => <span key={year}>{t(year)}</span>)}</div></div>)}</div>
