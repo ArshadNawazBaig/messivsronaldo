@@ -11,7 +11,7 @@ import { getI18n } from '@/lib/i18n/server';
 import { I18nProvider } from '@/components/i18n-provider';
 import { AdminExportProvider } from '@/components/admin-stat-export';
 import { isAdmin } from '@/lib/admin/auth';
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from '@vercel/analytics/next';
 
 const inter = localFont({
   src: '../../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2',
@@ -65,7 +65,6 @@ export default async function RootLayout({
     >
       <head>
         <ThemeInitializer />
-        <Analytics />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -99,6 +98,7 @@ export default async function RootLayout({
             </AdminExportProvider>
           </DataProvider>
         </I18nProvider>
+        <Analytics />
       </body>
     </html>
   );
