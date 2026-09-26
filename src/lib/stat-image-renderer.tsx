@@ -125,14 +125,29 @@ export async function renderStatImage({
   const story = format === "story";
   const top = story ? 125 : 45;
   const portraitAreaHeight = story ? 860 : format === "portrait" ? 630 : 474;
-  const faceHeight = Math.round(portraitAreaHeight * 0.9 * (story ? 0.9 : 1));
+  const preferredFaceHeight = Math.round(
+    portraitAreaHeight * 0.9 * (story ? 0.9 : 1),
+  );
   const note = [stat.note, stat.lowerIsBetter ? "Lower is better." : ""]
     .filter(Boolean)
     .join(" ");
   const noteHeight = note ? Math.ceil(note.length / 87) * 25 + 10 : 0;
   const footerBottom = story ? 155 : 34;
+  const playerStats = shown.map((player) => {
+    const value = imageValue(stat, player);
+    const size = Math.min(
+      both ? 210 : 270,
+      ((both ? 660 : 1200) / Math.max(3, value.length)) * 1.1,
+    );
+    return { player, value, size };
+  });
+  const nameHeight = 28;
+  const valueGap = 12;
+  const statsHeight =
+    nameHeight + valueGap + Math.max(...playerStats.map(({ size }) => size));
+  const statsTop = height - footerBottom - 83 - noteHeight - statsHeight;
   const title = stat.title.toUpperCase();
-  const fontSize =
+  const baseFontSize =
     title.length > 65
       ? 50
       : title.length > 38
@@ -140,12 +155,23 @@ export async function renderStatImage({
         : title.length > 22
           ? 78
           : 104;
-  const titleLines = Math.ceil((title.length * fontSize * 0.5) / 960);
+  const titleWidth = width - 120;
+  // Wrapped headings need a smaller scale to leave breathing room above the faces.
+  const fontSize =
+    title.length * baseFontSize * 0.5 > titleWidth
+      ? Math.round(baseFontSize * 0.75)
+      : baseFontSize;
+  const titleLines = Math.ceil((title.length * fontSize * 0.5) / titleWidth);
   const faceTop =
     Math.max(
       story ? 450 : format === "portrait" ? 340 : 300,
       top + 145 + titleLines * fontSize * 1.04,
-    ) + (portraitAreaHeight - faceHeight) / 2;
+    ) + (portraitAreaHeight - preferredFaceHeight) / 2;
+  // Reserve the name and value rows first so portraits always end above the names.
+  const faceHeight = Math.min(
+    preferredFaceHeight,
+    statsTop - faceTop - 24,
+  );
   const date = stat.date.split("-");
   const dateLabel = `${Number(date[2])} ${["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"][Number(date[1]) - 1]} ${date[0]}`;
   return new ImageResponse(
@@ -293,17 +319,12 @@ export async function renderStatImage({
         style={{
           display: "flex",
           position: "absolute",
-          bottom: footerBottom + 83 + noteHeight,
+          top: statsTop,
           left: 0,
           right: 0,
         }}
       >
-        {shown.map((player) => {
-          const value = imageValue(stat, player);
-          const size = Math.min(
-            both ? 210 : 270,
-            ((both ? 660 : 1200) / Math.max(3, value.length)) * 1.1,
-          );
+        {playerStats.map(({ player, value, size }) => {
           return (
             <div
               key={player}
@@ -315,7 +336,13 @@ export async function renderStatImage({
                 color: colors[player],
               }}
             >
-              <span style={{ fontSize: 21, letterSpacing: 2.2 }}>
+              <span
+                style={{
+                  fontSize: 21,
+                  letterSpacing: 2.2,
+                  lineHeight: `${nameHeight}px`,
+                }}
+              >
                 {player === "messi" ? "LIONEL MESSI" : "CRISTIANO RONALDO"}
               </span>
               <div
@@ -323,7 +350,7 @@ export async function renderStatImage({
                   display: "flex",
                   alignItems: "center",
                   gap: 12,
-                  marginTop: 8,
+                  marginTop: valueGap,
                 }}
               >
                 <span
