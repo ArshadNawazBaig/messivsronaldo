@@ -40,20 +40,21 @@ function portraitLayer(
   shown: readonly ("messi" | "ronaldo")[],
   height: number,
   theme: StatImageRequest["theme"],
+  imageHeight = height,
 ) {
   const half = 1080 / shown.length;
   const pictures = shown
     .map((player, index) => {
-      const h = height * (player === "messi" ? 1.45 : 2.48);
+      const h = imageHeight * (player === "messi" ? 1.45 : 2.48);
       const w = (h * (player === "messi" ? 384 : 396)) / 594;
       const left = index * half;
-      return `<g clip-path="url(#crop${index})"><image href="${dataUri(player === "messi" ? messi : ronaldo)}" x="${left + (half - w) / 2}" y="${-height * (player === "messi" ? 0.03 : 0.1)}" width="${w}" height="${h}" mask="url(#sides${index})"/></g>`;
+      return `<g clip-path="url(#crop${index})"><image href="${dataUri(player === "messi" ? messi : ronaldo)}" x="${left + (half - w) / 2}" y="${-imageHeight * (player === "messi" ? 0.03 : 0.1)}" width="${w}" height="${h}" mask="url(#sides${index})"/></g>`;
     })
     .join("");
   const defs = shown
     .map((player, index) => {
       const imageWidth =
-        (height * (player === "messi" ? 1.45 * 384 : 2.48 * 396)) / 594;
+        (imageHeight * (player === "messi" ? 1.45 * 384 : 2.48 * 396)) / 594;
       const maskWidth = Math.min(half, imageWidth);
       const maskLeft = index * half + (half - maskWidth) / 2;
       return `<clipPath id="crop${index}"><rect x="${index * half}" width="${half}" height="${height}"/></clipPath><mask id="sides${index}" maskUnits="userSpaceOnUse" x="${index * half}" y="0" width="${half}" height="${height}"><rect x="${maskLeft}" width="${maskWidth}" height="${height}" fill="url(#horizontal)"/></mask>`;
@@ -123,8 +124,9 @@ export async function renderStatImage({
   const both = players === "both";
   const shown = both ? (["messi", "ronaldo"] as const) : [players];
   const story = format === "story";
+  const square = format === "square";
   const top = story ? 125 : 45;
-  const portraitAreaHeight = story ? 860 : format === "portrait" ? 630 : 474;
+  const portraitAreaHeight = story ? 860 : 630;
   const preferredFaceHeight = Math.round(
     portraitAreaHeight * 0.9 * (story ? 0.9 : 1),
   );
@@ -135,11 +137,12 @@ export async function renderStatImage({
   const footerBottom = story ? 155 : 34;
   const playerStats = shown.map((player) => {
     const value = imageValue(stat, player);
-    const size = Math.min(
+    // Smaller square-format values leave more room for the portraits above them.
+    const baseSize = Math.min(
       both ? 210 : 270,
       ((both ? 660 : 1200) / Math.max(3, value.length)) * 1.1,
     );
-    return { player, value, size };
+    return { player, value, baseSize, size: baseSize * (square ? 0.65 : 1) };
   });
   const nameHeight = 28;
   const valueGap = 12;
@@ -156,22 +159,50 @@ export async function renderStatImage({
           ? 78
           : 104;
   const titleWidth = width - 120;
+  const context = stat.context.toUpperCase();
+  const contextFontSize = context.length > 80 ? 15 : 16;
+  const contextSpacing = context.length > 80 ? 1.8 : 3.6;
+  const contextHeight =
+    Math.ceil(
+      (context.length * (contextFontSize * 0.6 + contextSpacing)) / titleWidth,
+    ) * 24;
   // Wrapped headings need a smaller scale to leave breathing room above the faces.
-  const fontSize =
+  const regularTitleSize =
     title.length * baseFontSize * 0.5 > titleWidth
       ? Math.round(baseFontSize * 0.75)
       : baseFontSize;
-  const titleLines = Math.ceil((title.length * fontSize * 0.5) / titleWidth);
-  const faceTop =
-    Math.max(
-      story ? 450 : format === "portrait" ? 340 : 300,
-      top + 145 + titleLines * fontSize * 1.04,
-    ) + (portraitAreaHeight - preferredFaceHeight) / 2;
+  const fontSize = square ? Math.min(regularTitleSize, 78) : regularTitleSize;
+  const titleHeight = (size: number) =>
+    Math.ceil((title.length * size * 0.5) / titleWidth) * size * 1.04;
+  const headingTop = top + (square ? 75 : 105);
+  const titleGap = square ? 10 : 18;
+  const headingBottom = headingTop + contextHeight + titleGap + titleHeight(fontSize);
+  const faceTop = square
+    ? headingBottom + 16
+    : Math.max(
+        (story ? 450 : 340) + (portraitAreaHeight - preferredFaceHeight) / 2,
+        headingBottom + 24,
+      );
   // Reserve the name and value rows first so portraits always end above the names.
   const faceHeight = Math.min(
     preferredFaceHeight,
     statsTop - faceTop - 24,
   );
+  let imageHeight = faceHeight;
+  if (square) {
+    // Slightly reduce the portrait scale so shirts remain visible in the square frame.
+    const portraitHeadingBottom =
+      45 + 105 + contextHeight + 18 + titleHeight(regularTitleSize);
+    const portraitFaceTop = Math.max(
+      340 + (portraitAreaHeight - preferredFaceHeight) / 2,
+      portraitHeadingBottom + 24,
+    );
+    const portraitStatsTop =
+      imageFormats.portrait.height - footerBottom - 83 - noteHeight -
+      nameHeight - valueGap - Math.max(...playerStats.map(({ baseSize }) => baseSize));
+    imageHeight =
+      Math.min(preferredFaceHeight, portraitStatsTop - portraitFaceTop - 24) * 0.9;
+  }
   const date = stat.date.split("-");
   const dateLabel = `${Number(date[2])} ${["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"][Number(date[1]) - 1]} ${date[0]}`;
   return new ImageResponse(
@@ -248,35 +279,43 @@ export async function renderStatImage({
             display: "flex",
             maxWidth: 635,
             textAlign: "right",
-            fontSize: stat.context.length > 80 ? 17 : 20,
+            fontSize: 20,
             lineHeight: 1.4,
             color: colors.muted,
           }}
         >
-          {stat.context}
+          {both
+            ? "Messi vs Ronaldo"
+            : players === "messi"
+              ? "Lionel Messi"
+              : "Cristiano Ronaldo"}
         </div>
       </div>
       <div
         style={{
           display: "flex",
           position: "absolute",
-          top: top + 105,
+          top: headingTop,
           left: 60,
           right: 60,
           flexDirection: "column",
         }}
       >
-        <span style={{ fontSize: 16, letterSpacing: 3.6, color: colors.muted }}>
-          {both
-            ? "MESSI VS RONALDO"
-            : players === "messi"
-              ? "LIONEL MESSI"
-              : "CRISTIANO RONALDO"}
+        <span
+          style={{
+            fontSize: contextFontSize,
+            letterSpacing: contextSpacing,
+            lineHeight: "24px",
+            height: contextHeight,
+            color: colors.muted,
+          }}
+        >
+          {context}
         </span>
         <div
           style={{
             display: "flex",
-            marginTop: 18,
+            marginTop: titleGap,
             fontFamily: "Condensed",
             fontSize,
             fontWeight: 800,
@@ -288,7 +327,7 @@ export async function renderStatImage({
         </div>
       </div>
       <img
-        src={portraitLayer(messi, ronaldo, shown, faceHeight, theme)}
+        src={portraitLayer(messi, ronaldo, shown, faceHeight, theme, imageHeight)}
         width={1080}
         height={faceHeight}
         alt=""

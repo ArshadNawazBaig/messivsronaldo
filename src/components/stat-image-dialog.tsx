@@ -48,6 +48,7 @@ export default function StatImageDialog({
   const uid = useId();
   const stat = stats[Number(index)];
   const payload = JSON.stringify({ stat, format, players: player, theme });
+  const downloadUrl = `/api/admin/stat-image?data=${encodeURIComponent(payload)}`;
   const requestKey = `${payload}:${attempt}`;
   const ready = image?.key === requestKey ? image : null;
   const error = failure.key === requestKey ? failure.message : "";
@@ -309,8 +310,10 @@ export default function StatImageDialog({
               {ready && !error ? (
                 <a
                   className={styles.primary}
-                  href={ready.url}
+                  href={downloadUrl}
                   download={ready.file.name}
+                  target="_blank"
+                  rel="noopener"
                 >
                   <Download size={18} />
                   {t("Download PNG")}
@@ -333,7 +336,7 @@ export default function StatImageDialog({
                         {t("Share image")}
                       </button>
                     )}
-                    <a href={ready.url} target="_blank" rel="noopener">
+                    <a href={`${downloadUrl}&inline=1`} target="_blank" rel="noopener">
                       <ExternalLink size={17} />
                       {t("Open image")}
                     </a>

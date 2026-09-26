@@ -78,6 +78,38 @@ test("exports require an active admin session and same-origin request", async ({
     page.getByRole("button", { name: /^Download image:/ }),
   ).toHaveCount(0);
 });
+test("direct PNG URLs require a session and return download or viewable image responses", async ({
+  page,
+}) => {
+  const url = `/api/admin/stat-image?data=${encodeURIComponent(JSON.stringify(requestBody))}`;
+  expect((await page.request.get(url)).status()).toBe(401);
+  await login(page);
+  expect(
+    (await page.request.get(url, { headers: { "sec-fetch-site": "cross-site" } })).status(),
+  ).toBe(403);
+  expect(
+    (await page.request.get(url, { headers: { origin: "https://attacker.example" } })).status(),
+  ).toBe(403);
+  for (const data of ["not-json", JSON.stringify({ ...requestBody, players: "unknown" })]) {
+    expect(
+      (await page.request.get(`/api/admin/stat-image?data=${encodeURIComponent(data)}`)).status(),
+    ).toBe(422);
+  }
+  const oversized = await page.request.get(`/api/admin/stat-image?data=${"x".repeat(12001)}`);
+  expect(oversized.status()).toBe(413);
+  for (const [suffix, disposition] of [["", "attachment"], ["&inline=1", "inline"]]) {
+    const response = await page.request.get(url + suffix);
+    expect(response.status()).toBe(200);
+    expect(response.headers()["cache-control"]).toContain("no-store");
+    expect(response.headers()["content-type"]).toBe("image/png");
+    expect(response.headers()["content-disposition"]).toBe(
+      `${disposition}; filename="messi-vs-ronaldo-club-country-career-goals-2026-09-21-dark-square.png"`,
+    );
+    expect(dimensions(await response.body())).toEqual([1080, 1080]);
+  }
+  await page.request.post("/api/admin/logout", { headers: { origin }, data: {} });
+  expect((await page.request.get(url)).status()).toBe(401);
+});
 test("admin previews and downloads the current stat in every format and each player", async ({
   page,
   isMobile,
@@ -142,11 +174,15 @@ test("admin previews and downloads the current stat in every format and each pla
       exact: true,
     });
     await expect(link).toBeVisible({ timeout: 30000 });
+    await expect(link).toHaveAttribute("href", /^\/api\/admin\/stat-image\?data=/);
+    // Still download when a mobile browser ignores the anchor's download attribute.
+    if (name === "Square") await link.evaluate((node) => node.removeAttribute("download"));
     const pending = page.waitForEvent("download");
     if (isMobile) await link.tap();
     else await link.click();
     const download = await pending;
     expect(await download.failure()).toBeNull();
+    expect(new URL(download.url()).pathname).toBe("/api/admin/stat-image");
     expect(download.suggestedFilename()).toContain(`${name.toLowerCase()}.png`);
     const png = await readFile((await download.path())!);
     expect(dimensions(png)).toEqual([1080, height]);
