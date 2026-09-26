@@ -1,11 +1,13 @@
 import type Database from "better-sqlite3";
 import { snapshotDate } from "@/lib/data";
-import { AdminError, checkDate, matchSchema, type AdminState, type MatchRecord } from "./model";
+import { AdminError, checkDate, matchSchema, type AdminState, type MatchRecord, type ProviderConnection } from "./model";
 import { acquireSync, commitRecords, getConnection, history, logRun, readRecords, revision, readSnapshot } from "./database";
 import { fetchDate } from "./provider";
+import type { ProviderFetch } from "./provider-client";
+import { dailySyncSchedule, readDailySyncState } from "./daily-sync-state";
 export async function getAdminState(): Promise<AdminState> {
-  const [connection, snapshot, runs] = await Promise.all([getConnection(), readSnapshot(), history()]);
-  return {revision:snapshot.revision,records:snapshot.records,history:runs,providerConnected:!!connection,baseline:snapshotDate,today:new Date().toISOString().slice(0,10),connection:connection ? {messi:connection.messi,ronaldo:connection.ronaldo} : null};
+  const [connection, snapshot, runs, daily] = await Promise.all([getConnection(), readSnapshot(), history(), readDailySyncState()]);
+  return {revision:snapshot.revision,records:snapshot.records,history:runs,providerConnected:!!connection,baseline:snapshotDate,today:new Date().toISOString().slice(0,10),connection:connection ? {messi:connection.messi,ronaldo:connection.ronaldo} : null, automaticUpdates:{scheduled:process.env.VERCEL_ENV === "production" && !!process.env.CRON_SECRET,schedule:dailySyncSchedule,...daily}};
 }
 export function mergeDate(existing: MatchRecord[], incoming: MatchRecord[], date: string, withdrawnIds: string[] = []) {
   const missing = existing.filter(r => r.date === date && !r.locked && r.provider === "api-football" && !incoming.some(n => n.id === r.id) && !withdrawnIds.includes(r.id));
@@ -21,12 +23,17 @@ export async function syncDate(date: string, expected: number) {
   const connection = await getConnection();
   if (!connection) throw new AdminError("Connect API-Football in Settings before fetching statistics.", 409);
   const release = await acquireSync();
+  try { return (await syncDateUnderLock(date, expected, connection)).message; }
+  finally { await release(); }
+}
+// Both the manual operation and the daily batch hold the shared sync lock.
+export async function syncDateUnderLock(date: string, expected: number, connection: ProviderConnection, fetcher?: ProviderFetch) {
   try {
     if (await revision() !== expected) throw new AdminError("Refresh the dashboard before syncing; another update was published.", 409);
-    const result = await fetchDate(date,connection);
+    const result = await fetchDate(date,connection,fetcher);
     if (date <= snapshotDate) {
       const message = `Checked ${result.fixtures} tracked fixture(s); ${result.records.length} player record(s) available. This date is already in the reviewed baseline, so no totals were changed.`;
-      await logRun(date,"check","checked",message); return message;
+      await logRun(date,"check","checked",message); return {message, pending: result.pending > 0};
     }
     const existing = await readRecords(); const next = mergeDate(existing,result.records,date,result.withdrawnIds);
     const unchanged = JSON.stringify([...existing].sort((a,b)=>a.id.localeCompare(b.id))) === JSON.stringify([...next].sort((a,b)=>a.id.localeCompare(b.id)));
@@ -34,11 +41,11 @@ export async function syncDate(date: string, expected: number) {
     const message = `${result.records.length} player record(s) fetched; ${result.skipped} unplayed/excluded fixture(s). ${protectedCount ? `${protectedCount} manual correction(s) preserved. ` : ""}${unchanged ? "No changes to publish." : "Totals published across the website."}`;
     if (unchanged) await logRun(date,"check","unchanged",message);
     else await commitRecords(expected,next,date,"sync",message);
-    return message;
+    return {message, pending: result.pending > 0};
   } catch (error) {
     await logRun(date,"sync","failed",error instanceof AdminError ? error.message : "The provider response could not be verified. No data was published.");
     throw error;
-  } finally { await release(); }
+  }
 }
 export async function saveMatch(input: unknown, expected: number, db?: Database.Database, today?: string) {
   const record = matchSchema.parse(input); checkDate(record.date,today,true);

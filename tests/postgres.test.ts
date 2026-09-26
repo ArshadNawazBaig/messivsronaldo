@@ -37,6 +37,13 @@ test("Postgres persists publications, serializes competing writers, and protects
     await db.saveConnection(connection);
     await db.closeDatabase();
     assert.deepEqual(await db.getConnection(), connection);
+    await db.writeSetting("daily-sync", JSON.stringify({ lastRunDate: "2026-09-26", pendingDates: ["2026-09-22"] }));
+    await db.closeDatabase();
+    assert.deepEqual(JSON.parse((await db.readSetting("daily-sync"))!), { lastRunDate: "2026-09-26", pendingDates: ["2026-09-22"] });
+    await db.writeSetting("daily-sync", "updated");
+    assert.equal(await db.readSetting("daily-sync"), "updated");
+    assert.equal(await db.readSetting("missing-setting"), undefined);
+    assert.deepEqual(await db.getConnection(), connection);
     const fresh = (await db.postgresStore())!;
     const [encrypted] = await fresh`SELECT value FROM settings WHERE key='provider'`;
     assert.equal(encrypted.value.includes(connection.key), false);

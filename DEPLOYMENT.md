@@ -8,7 +8,7 @@ Database: `rivalry-production`, Neon Free, region `iad1`. The Vercel functions u
 
 ## Environment and data
 
-Production needs `NEXT_PUBLIC_SITE_URL=https://messivsronaldo17.com`, `SITE_INDEXABLE=true`, `DATABASE_URL`, `ADMIN_PASSWORD_HASH`, and `ADMIN_SESSION_SECRET`. Keep database and admin secrets private. Google Search Console verification can optionally use `GOOGLE_SITE_VERIFICATION`.
+Production needs `NEXT_PUBLIC_SITE_URL=https://messivsronaldo17.com`, `SITE_INDEXABLE=true`, `DATABASE_URL`, `ADMIN_PASSWORD_HASH`, `ADMIN_SESSION_SECRET`, and `CRON_SECRET` for automatic updates. Keep database and admin secrets private. Google Search Console verification can optionally use `GOOGLE_SITE_VERIFICATION`.
 
 The provider key is encrypted in the database; the app does not need the plain API-Football key in a public environment variable. Keep the existing admin secret when moving the database. Active sessions are intentionally not copied during migration; sign in again with the existing admin password.
 
@@ -33,6 +33,14 @@ npx vercel deploy --prod --yes
 ```
 
 Do not upload local admin passwords or database backups. Vercel builds using its production environment values, not the local preview URL. Public indexing is enabled only with the production origin, `SITE_INDEXABLE=true`, and a production deployment. Preview environments stay noindex. The `www` host permanently redirects to the apex domain and preserves the path/query.
+
+## Automatic daily statistics
+
+`vercel.json` schedules `GET /api/admin/daily-sync` with `0 8 * * *` (08:00 UTC / 1 PM Pakistan time). Cron jobs activate on production deployments, not preview or local servers. Hobby plans may invoke the job at any time during the scheduled hour.
+
+Before deploying, add a private random `CRON_SECRET` to the project's **Production** environment variables (at least 32 random bytes, e.g. `openssl rand -hex 32`). Do not use a `NEXT_PUBLIC_` prefix. Vercel automatically sends it as a bearer token; the endpoint refuses requests if the secret is missing or incorrect. The existing encrypted API-Football connection and stable `ADMIN_SESSION_SECRET` must also be available in production. See [Vercel cron security](https://vercel.com/docs/cron-jobs/manage-cron-jobs) and [schedule limits](https://vercel.com/docs/cron-jobs/usage-and-pricing).
+
+After deploying, verify the schedule under **Project → Settings → Cron Jobs**, and check **Admin → Daily updates / Activity log** after execution. The dashboard reports when deployment configuration or the provider connection is missing. The endpoint uses the same shared database lock and revision checks as manual syncs, stores progress after each date, and invalidates public pages after the batch. Daily attempts are deduplicated in the database, including failed attempts. A four-minute budget leaves time to save progress before the function and lock expire at five minutes. Each batch is limited to seven dates; unresolved dates and any catch-up backlog continue the next day. Public goal-type details and honours remain at their reviewed cutoff because the existing provider adapter only supplies core match statistics.
 
 ## Domain DNS
 

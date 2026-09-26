@@ -42,7 +42,7 @@ export async function fetchDate(date: string, connection: ProviderConnection, fe
   const tracked = new Set([connection.messi.club,connection.messi.country,connection.ronaldo.club,connection.ronaldo.country]);
   const fixtures = all.filter(f => tracked.has(f.teams.home.id) || tracked.has(f.teams.away.id));
   if (fixtures.length > 6) throw new AdminError("Unexpected number of tracked fixtures. Check provider identities.", 502);
-  const records: MatchRecord[] = []; const withdrawnIds: string[] = []; let skipped = 0;
+  const records: MatchRecord[] = []; const withdrawnIds: string[] = []; let skipped = 0; let pending = 0;
   const leagueTypes = new Map<number, "League" | "Cup">();
   for (const f of fixtures) {
     if (f.fixture.date.slice(0,10) !== date) throw new AdminError("The provider returned a fixture outside the selected UTC date.", 502);
@@ -50,7 +50,7 @@ export async function fetchDate(date: string, connection: ProviderConnection, fe
     if ((!national && /friendly|friendlies|exhibition/i.test(f.league.name)) || f.fixture.status.short === "CANC") {
       withdrawnIds.push(`api:${f.fixture.id}:messi`, `api:${f.fixture.id}:ronaldo`); skipped++; continue;
     }
-    if (["NS","TBD","PST","CANC"].includes(f.fixture.status.short)) { skipped++; continue; }
+    if (["NS","TBD","PST"].includes(f.fixture.status.short)) { skipped++; pending++; continue; }
     if (!["FT","AET"].includes(f.fixture.status.short)) throw new AdminError("A tracked match is live, suspended, or needs shootout review. Retry after completion or add a verified manual record.", 409);
     // /fixtures supplies a league ID, but usually no competition type. Resolve it
     // only for tracked club games; never silently count an unknown league as a cup.
@@ -87,5 +87,5 @@ export async function fetchDate(date: string, connection: ProviderConnection, fe
     const sameFixture = records.filter(r => r.id.startsWith(`api:${f.fixture.id}:`));
     if (sameFixture.length === 2) sameFixture.forEach(r => { r.headToHead = true; });
   }
-  return {records, withdrawnIds, skipped, fixtures: fixtures.length};
+  return {records, withdrawnIds, skipped, pending, fixtures: fixtures.length};
 }

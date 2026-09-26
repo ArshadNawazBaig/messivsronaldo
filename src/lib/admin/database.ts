@@ -89,6 +89,17 @@ export async function getConnection() {
   const [row] = await pg`SELECT value FROM settings WHERE key='provider'`;
   return row ? local.decryptConnection(row.value) : null;
 }
+export async function readSetting(key: string) {
+  const pg = await remote();
+  const row = pg ? (await pg`SELECT value FROM settings WHERE key=${key}`)[0]
+    : local.store().prepare("SELECT value FROM settings WHERE key=?").get(key) as { value: string } | undefined;
+  return row?.value as string | undefined;
+}
+export async function writeSetting(key: string, value: string) {
+  const pg = await remote();
+  if (!pg) { local.store().prepare("INSERT INTO settings (key,value) VALUES (?,?) ON CONFLICT(key) DO UPDATE SET value=excluded.value").run(key, value); return; }
+  await pg`INSERT INTO settings (key,value) VALUES (${key},${value}) ON CONFLICT (key) DO UPDATE SET value=EXCLUDED.value`;
+}
 export async function acquireSync() {
   const pg = await remote();
   if (!pg) return local.acquireSync();

@@ -107,6 +107,7 @@ function SiteHeader({ pathname, onSearch }: {
     function toggleTheme() {
         const nextLight = document.documentElement.dataset.theme !== "light";
         document.documentElement.dataset.theme = nextLight ? "light" : "dark";
+        document.documentElement.dataset.themePreference = nextLight ? "light" : "dark";
         try {
             localStorage.setItem("rivalry-theme", nextLight ? "light" : "dark");
         }

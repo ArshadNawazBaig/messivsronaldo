@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { snapshotDate } from "@/lib/data";
+import type { DailySyncState } from "./daily-sync-state";
 
 export const dateSchema = z.string().regex(/^\d{4}-\d{2}-\d{2}$/).refine(v => !Number.isNaN(Date.parse(v)) && new Date(v).toISOString().slice(0, 10) === v, "Use a valid calendar date");
 export const matchSchema = z.object({
@@ -15,7 +16,7 @@ export const matchSchema = z.object({
 export type MatchRecord = z.infer<typeof matchSchema>;
 export interface ProviderConnection { key: string; messi: { player: number; club: number; country: number }; ronaldo: { player: number; club: number; country: number } }
 export interface RunRecord { id: number; at: string; date: string; action: string; status: string; message: string }
-export interface AdminState { revision: number; records: MatchRecord[]; history: RunRecord[]; providerConnected: boolean; baseline: string; today: string; connection: Omit<ProviderConnection, "key"> | null; }
+export interface AdminState { revision: number; records: MatchRecord[]; history: RunRecord[]; providerConnected: boolean; baseline: string; today: string; connection: Omit<ProviderConnection, "key"> | null; automaticUpdates: DailySyncState & { scheduled: boolean; schedule: string }; }
 export class AdminError extends Error { constructor(message: string, public status = 400) { super(message); } }
 export function checkDate(date: string, today = new Date().toISOString().slice(0, 10), append = false) {
   if (!dateSchema.safeParse(date).success || date > today || date < "2002-01-01") throw new AdminError("Choose a valid date between 2002 and today (UTC).");
