@@ -66,7 +66,7 @@ export default async function ContentPage({ params }: {
     {slug === "football-quiz" && <FootballQuiz/>}
     {slug === "career-timeline" && <CareerTimeline/>}
     {slug === "milestone-planner" && <MilestonePlanner/>}
-    {slug === "scoring-calculator" && <><ScoringCalculator /><EditorialCards limit={3}/></>}
+    {slug === "scoring-calculator" && <><ScoringCalculator /><EditorialCards limit={3} calculatorsOnly/></>}
     {slug === "records" && <CurrentHighlights />}
     {page.scope && <><Comparison initialScope={page.scope} initialGroup={page.scoring ? "scoring" : "overview"} focusMetric={page.focusMetric}/>{slug === "clubs" && <ClubBreakdown />}<ComparisonQuestions slug={slug} data={liveData}/><ExploreCards /></>}
     {(slug === "honours" || isAwardSlug(slug)) && <HonoursNavigation current={slug} />}

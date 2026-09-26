@@ -18,6 +18,7 @@ export async function AwardComparison({ slug }: { slug: AwardSlug }) {
   const { t, numberLocale } = await getI18n();
   const award = awardComparisons[slug];
   return <section className={styles.comparison} aria-label={t(award.label)}>
+    {slug === "ballon-dor" && <Link className="text-link" href="/insights/ballon-dor-2026-contenders-stats">{t("Ballon d’Or 2026: contenders, stats and voting guide")}<ArrowUpRight size={16} aria-hidden="true"/></Link>}
     <PlayerMatchup values={awardTotals(slug)} label={t(award.cardLabel)} accessibleLabel={t(award.cardLabel)} context={t(award.context)} exportData={{ title: award.cardLabel, context: award.context, date: awardsReviewed, note: award.note }} />
     <div className={styles.coverage}><span className="section-kicker">{t("Comparison scope")}</span><p>{t(award.note)}</p></div>
     <section className="panel">

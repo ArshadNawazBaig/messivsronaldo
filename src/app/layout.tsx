@@ -98,7 +98,7 @@ export default async function RootLayout({
             </AdminExportProvider>
           </DataProvider>
         </I18nProvider>
-        <Analytics />
+        {process.env.VERCEL === "1" && <Analytics />}
       </body>
     </html>
   );

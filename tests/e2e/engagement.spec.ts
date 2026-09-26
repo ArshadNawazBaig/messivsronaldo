@@ -142,7 +142,7 @@ test("tools serve crawlable content in all languages and appear in search, homep
   }
   await context.close();
   const xml = await (await request.get("/sitemap.xml")).text();
-  expect(xml.match(/<url>/g)).toHaveLength(672);
+  expect(xml.match(/<url>/g)).toHaveLength(696);
   for (const slug of ["tools", "football-quiz", "career-timeline", "milestone-planner"]) {
     for (const locale of ["", "/es", "/pt", "/nl", "/fr", "/de", "/ar", "/hi"]) expect(xml).toContain(`${locale}/${slug}</loc>`);
   }

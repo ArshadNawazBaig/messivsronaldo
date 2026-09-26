@@ -88,5 +88,5 @@ test("new award pages are searchable and included in every sitemap language", as
   for (const locale of ["", "/es", "/pt", "/nl", "/fr", "/de", "/ar", "/hi"]) {
     for (const slug of ["ballon-dor", "golden-boots", "man-of-the-match", "fifa-awards", "uefa-awards"]) expect(xml).toContain(`${locale}/${slug}</loc>`);
   }
-  expect((xml.match(/<url>/g) ?? []).length).toBe(672);
+  expect((xml.match(/<url>/g) ?? []).length).toBe(696);
 });

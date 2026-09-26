@@ -1,11 +1,12 @@
 import { scopes, snapshotLabel } from "@/lib/data";
-import type { SourceId } from "./data";
-import type { CalculatorPreset } from "./calculator";
 import { interactiveGuides } from "./interactive-guides";
+import { ballonArticles } from "./ballon-articles";
+import type { Article } from "./article-types";
 
-export type Article = { slug: string; category: string; title: string; description: string; readTime: string; color: string; number: string; sections: readonly { heading: string; text: string }[]; sourceIds: readonly SourceId[]; published?: string; updated?: string; preset?: CalculatorPreset; citations?: readonly { title: string; url: string }[] };
+export type { Article } from "./article-types";
 
 export const articles: readonly Article[] = [
+  ...ballonArticles,
   ...interactiveGuides,
   {
     slug: "why-assist-totals-differ", category: "ASSIST DEFINITIONS", title: "An assist isn’t always an assist.", description: "Why two trusted sources can give you two different answers — and how to compare fairly.", readTime: "4 min read", color: "blue", number: "01",
