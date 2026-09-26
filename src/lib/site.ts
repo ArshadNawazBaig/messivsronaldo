@@ -3,9 +3,14 @@ import { siteConfiguration } from "./site-config";
 import { socialImageAlt, socialImagePath } from "./social-image";
 import { getI18n } from "./i18n/server";
 import { languageAlternates, localizedPath, ogLocales, locales } from "./i18n/config";
+import { socialProfiles } from "./social-profiles";
 
 export const siteName = "The Rivalry";
 export const { siteUrl, indexable } = siteConfiguration(process.env);
+export const publisherOrganization = {
+  "@type": "Organization", "@id": `${siteUrl}/#publisher`, name: siteName,
+  url: siteUrl, logo: `${siteUrl}/icon.svg`, sameAs: socialProfiles.map(profile => profile.url),
+} as const;
 export async function pageMetadata(title: string, description: string, path: string): Promise<Metadata> {
   const { locale, t } = await getI18n();
   title = t(title); description = t(description);

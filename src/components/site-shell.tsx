@@ -1,5 +1,6 @@
 "use client";
 import { LanguageSwitcher } from "./language-switcher";
+import { SocialLinks } from "./social-links";
 import { NavigationIcon } from "./ui/navigation-icon";
 import { stripLocale } from "@/lib/i18n/config";
 import { useI18n } from "@/components/i18n-provider";
@@ -198,7 +199,7 @@ export function SiteShell({ children }: {
     <div className="site-body">
       <main id="main-content" tabIndex={-1}>{children}</main>
       <footer className="site-footer">
-        <div className="footer-intro"><span className="footer-brand">{t("THE RIVALRY")}<span>.</span></span><p>{t("An independent archive of Messi and Ronaldo\u2019s careers.")}</p></div>
+        <div className="footer-intro"><span className="footer-brand">{t("THE RIVALRY")}<span>.</span></span><p>{t("An independent archive of Messi and Ronaldo\u2019s careers.")}</p><SocialLinks /></div>
         <nav className="footer-navigation" aria-label={t("Footer navigation")}>
           <div><span className="section-kicker">{t("THE PROJECT")}</span><div className="footer-links"><Link href="/about">{t("About")}</Link><Link href="/methodology">{t("Our data")}</Link><Link href="/updates">{t("Update log")}</Link><Link href="/credits">{t("Photo credits")}</Link></div></div>
           <div><span className="section-kicker">{t("INFORMATION")}</span><div className="footer-links"><Link href="/terms">{t("Terms of use")}</Link><Link href="/privacy">{t("Privacy")}</Link><Link href="/cookies">{t("Cookies")}</Link><Link href="/disclaimer">{t("Disclaimer")}</Link></div></div>

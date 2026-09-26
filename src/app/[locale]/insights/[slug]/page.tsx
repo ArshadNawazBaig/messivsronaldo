@@ -6,7 +6,7 @@ import { ArrowLeft, ArrowUpRight, BookOpen } from "lucide-react";
 import { articles, getArticle } from "@/lib/articles";
 import { sources } from "@/lib/data";
 import { translatedDate } from "@/lib/i18n/date-format";
-import { jsonLd, pageMetadata, siteUrl } from "@/lib/site";
+import { jsonLd, pageMetadata, publisherOrganization, siteUrl } from "@/lib/site";
 import { socialImagePath } from "@/lib/social-image";
 import { getArticleI18n } from "@/lib/i18n/article-server";
 import styles from "./article.module.css";
@@ -31,7 +31,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const citations = [...article.sourceIds.map(id => ({ title: sources[id].title, url: sources[id].url })), ...(article.citations ?? [])];
   const related = article.relatedSlugs ? articles.filter(item => article.relatedSlugs!.includes(item.slug)) : articles.filter(item => item.slug !== slug && item.preset).slice(0, 2);
   const articleUrl = `${siteUrl}${localizedPath(`/insights/${slug}`, locale)}`;
-  const organization = { "@type": "Organization", name: "The Rivalry", url: `${siteUrl}${localizedPath("/about", locale)}` };
+  const organization = publisherOrganization;
   return <div className="page-container inner-page article-page">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd({ "@context": "https://schema.org", "@type": "Article", headline: t(article.title), description: t(article.description), datePublished: published, dateModified: updated, author: organization, publisher: organization, articleSection: t(article.category), mainEntityOfPage: articleUrl, image: `${siteUrl}${article.image?.path ?? socialImagePath}`, inLanguage: locale, citation: citations.map(source => source.url) }) }}/>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd({ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: t("The reading room"), item: `${siteUrl}${localizedPath("/insights", locale)}` }, { "@type": "ListItem", position: 2, name: t(article.title), item: articleUrl }] }) }}/>
