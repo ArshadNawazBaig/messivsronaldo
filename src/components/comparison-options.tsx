@@ -10,7 +10,8 @@ const displays = [
     { value: "per-game", label: "Goals per appearance", description: "Average goals for each match played.", icon: UserRound },
     { value: "per-90", label: "Goals per 90 minutes", description: "Scoring rate adjusted for playing time.", icon: Timer },
 ] as const;
-export function ComparisonOptions({ mode, onlyDifferences, onChange }: {
+export function ComparisonOptions({ mode, onlyDifferences, onChange, totalLabel }: {
+    totalLabel?: string;
     mode: GoalMode;
     onlyDifferences: boolean;
     onChange: (mode: GoalMode, onlyDifferences: boolean) => void;
@@ -19,6 +20,7 @@ export function ComparisonOptions({ mode, onlyDifferences, onChange }: {
     const [open, setOpen] = useState(false);
     const uid = useId();
     const choices = useRef<HTMLFieldSetElement>(null);
+    const ties = useRef<HTMLInputElement>(null);
     const activeCount = Number(mode !== "total") + Number(onlyDifferences);
     return <Popover.Root open={open} onOpenChange={setOpen}>
     <Popover.Trigger asChild>
@@ -31,14 +33,14 @@ export function ComparisonOptions({ mode, onlyDifferences, onChange }: {
     <Popover.Portal>
       <Popover.Content className={styles["comparison-options-content"]} side="bottom" align="end" sideOffset={10} collisionPadding={12} aria-labelledby={`${uid}-title`} aria-describedby={`${uid}-description`} onOpenAutoFocus={event => {
             event.preventDefault();
-            choices.current?.querySelector<HTMLInputElement>("input:checked")?.focus({ preventScroll: true });
+            (choices.current?.querySelector<HTMLInputElement>("input:checked") ?? ties.current)?.focus({ preventScroll: true });
         }}>
         <div className={styles["comparison-options-heading"]}>
           <div><h2 id={`${uid}-title`}>{t("Comparison options")}</h2><p id={`${uid}-description`}>{t("Changes apply immediately.")}</p></div>
           <Popover.Close className={styles["options-close"]} aria-label={t("Close options")}><X size={18} aria-hidden="true"/></Popover.Close>
         </div>
         <div className={styles["comparison-options-body"]}>
-          <fieldset ref={choices} className={styles["options-display"]}>
+          {totalLabel ? <div className={styles["options-display"]}><strong>{t(totalLabel)}</strong><p className={styles["options-section-note"]}>{t("The player cards show totals for this statistic.")}</p></div> : <fieldset ref={choices} className={styles["options-display"]}>
             <legend>{t("Goal display")}</legend>
             <p className={styles["options-section-note"]}>{t("Shown on the two player cards.")}</p>
             <div className={styles["options-display-choices"]}>{displays.map(({ value, label, description, icon: Icon }) => <label key={value} className={styles["options-display-choice"]} data-selected={mode === value || undefined}>
@@ -47,10 +49,10 @@ export function ComparisonOptions({ mode, onlyDifferences, onChange }: {
               <span className={styles["options-choice-copy"]}><strong>{t(label)}</strong><span id={`${uid}-${value}-help`}>{t(description)}</span></span>
               <span className={styles["options-radio-mark"]} aria-hidden="true">{mode === value && <Check size={11} strokeWidth={3}/>}</span>
             </label>)}</div>
-          </fieldset>
+          </fieldset>}
           <label className={styles["options-tied-toggle"]}>
             <span><strong>{t("Hide tied metrics")}</strong><span id={`${uid}-ties-help`}>{t("Only show stats where the totals differ.")}</span></span>
-            <input type="checkbox" role="switch" className={styles["options-native-control"]} aria-label={t("Hide tied metrics")} aria-describedby={`${uid}-ties-help`} checked={onlyDifferences} onChange={event => onChange(mode, event.target.checked)}/>
+            <input ref={ties} type="checkbox" role="switch" className={styles["options-native-control"]} aria-label={t("Hide tied metrics")} aria-describedby={`${uid}-ties-help`} checked={onlyDifferences} onChange={event => onChange(mode, event.target.checked)}/>
             <span className={styles["options-switch-track"]} aria-hidden="true"><span /></span>
           </label>
         </div>

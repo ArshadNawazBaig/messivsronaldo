@@ -2,6 +2,7 @@
 import { StatImageButton } from "@/components/admin-stat-export";
 import { useI18n } from "@/components/i18n-provider";
 import { useFootballData } from "@/components/data-provider";
+import { comparisonFocus, type FocusMetric } from "@/lib/comparison-focus";
 import { PlayerMatchup } from "@/components/player-matchup";
 import { Select } from "@/components/ui/select";
 import { ComparisonOptions } from "@/components/comparison-options";
@@ -9,13 +10,14 @@ import Link from "@/components/localized-link";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, ArrowUpRight, Check, Globe2, Info, Link2, ShieldCheck, Star } from "lucide-react";
 import { getGoalValues, isScope, players, scopeIds, sources, type GoalMode, type MetricGroup, type Metric, type PlayerId, type ScopeId } from "@/lib/data";
-export function Comparison({ initialScope = "career", compact = false, initialGroup = "overview" }: {
+export function Comparison({ initialScope = "career", compact = false, initialGroup = "overview", focusMetric }: {
+    focusMetric?: FocusMetric;
     initialScope?: ScopeId;
     compact?: boolean;
     initialGroup?: MetricGroup | "all";
 }) {
     const { t, numberLocale } = useI18n();
-    const { scopes, coverageNote, snapshotDate } = useFootballData();
+    const { scopes, coverageNote, snapshotDate, baselineDate } = useFootballData();
     const [scopeId, setScopeId] = useState<ScopeId>(initialScope);
     const [mode, setMode] = useState<GoalMode>("total");
     const [group, setGroup] = useState<MetricGroup | "all">(initialGroup);
@@ -23,6 +25,7 @@ export function Comparison({ initialScope = "career", compact = false, initialGr
     const [onlyDifferences, setOnlyDifferences] = useState(false);
     const scope = scopes[scopeId];
     const goals = getGoalValues(scope, mode);
+    const focus = focusMetric ? comparisonFocus(scope, focusMetric, baselineDate, snapshotDate) : undefined;
     const shareTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
     useEffect(() => {
         const restore = () => {
@@ -30,7 +33,7 @@ export function Comparison({ initialScope = "career", compact = false, initialGr
             const requestedScope = params.get("scope");
             const selected = isScope(requestedScope) ? requestedScope : initialScope;
             setScopeId(selected);
-            setMode(params.get("mode") === "per-90" ? "per-90" : params.get("mode") === "per-game" ? "per-game" : "total");
+            setMode(focusMetric ? "total" : params.get("mode") === "per-90" ? "per-90" : params.get("mode") === "per-game" ? "per-game" : "total");
             setGroup(params.get("view") === "overview" ? "overview" : params.get("view") === "scoring" ? "scoring" : params.get("view") === "all" ? "all" : initialGroup);
             setOnlyDifferences(params.get("different") === "1");
         };
@@ -43,9 +46,9 @@ export function Comparison({ initialScope = "career", compact = false, initialGr
             if (shareTimer.current)
                 clearTimeout(shareTimer.current);
         };
-    }, [initialScope, initialGroup]);
+    }, [initialScope, initialGroup, focusMetric]);
     function update(nextScope: ScopeId, nextMode = mode, differences = onlyDifferences, nextGroup = group) {
-        const safeMode = nextMode;
+        const safeMode = focusMetric ? "total" : nextMode;
         setScopeId(nextScope);
         setMode(safeMode);
         setOnlyDifferences(differences);
@@ -68,18 +71,18 @@ export function Comparison({ initialScope = "career", compact = false, initialGr
         }
     }
     return <section className={`comparison ${compact ? "comparison-compact" : ""}`} id="comparison" aria-label={t("Interactive player comparison")}>
-    <div className="comparison-toolbar"><div className="scope-tabs" role="group" aria-label={t("Competition scope")}>{(["career", "2026", "club", "international", "champions-league"] as ScopeId[]).map(id => <button key={id} className={scopeId === id ? "selected" : ""} aria-pressed={scopeId === id} onClick={() => update(id)}>{t(scopes[id].shortLabel)}</button>)}</div><div className="extra-scope"><Select label={t("More comparisons")} menuLabel={t("Compare by competition")} value={scopeId} onValueChange={value => update(value as ScopeId)} icon={Globe2} options={(["career", ...scopeIds.filter(id => id !== "career")] as ScopeId[]).map(id => ({ value: id, label: scopes[id].shortLabel }))}/></div><ComparisonOptions mode={mode} onlyDifferences={onlyDifferences} onChange={(nextMode, differences) => update(scopeId, nextMode, differences)}/></div>
-    {coverageNote && <p className="data-update-note">{t(coverageNote)} <Link href="/updates">{t("View update log \u2197")}</Link></p>}<div className="snapshot-line"><span><span className="snapshot-dot"/> {t(scope.period)}</span><Link href="/methodology">{t("Sources & definitions ")}<Info size={12}/></Link></div>
-    <PlayerMatchup values={goals} decimals={mode !== "total" ? 2 : 0} label={t(mode === "per-90" ? "GOALS / 90 MIN" : mode === "per-game" ? "GOALS / APPEARANCE" : "TOTAL GOALS")} accessibleLabel={t(mode === "per-90" ? "goals per 90 minutes" : mode === "per-game" ? "goals per appearance" : "goals")} context={t(scope.shortLabel)} exportData={{ title: mode === "per-90" ? "Goals per 90 minutes" : mode === "per-game" ? "Goals per appearance" : scopeId === "career" ? "Career goals" : "Goals", context: scope.label, date: snapshotDate, note: scope.period }}/>
-    <div className="numbers-panel panel"><div className="panel-heading"><div><span className="section-kicker">{t("STATISTICAL COMPARISON")}</span><h2>{t("{0} statistics", { "0": t(scope.shortLabel) })}</h2></div><div className="panel-actions"><button className="small-button" onClick={share}>{copied ? <Check size={14}/> : <Link2 size={14}/>}<span aria-live="polite">{t(copied ? "Link copied" : "Share comparison")}</span></button></div></div>
-      <div className="metric-tabs" role="group" aria-label={t("Statistic category")}>{([["overview", "Overview"], ["scoring", "Goal types & set pieces"], ["all", "All statistics"]] as const).map(([id, label]) => <button key={id} className={group === id ? "selected" : ""} aria-pressed={group === id} onClick={() => update(scopeId, mode, onlyDifferences, id)}>{t(label)}</button>)}</div><div className="comparison-legend"><span><Star size={13} fill="currentColor" aria-hidden="true"/>{t("Leads this stat")}</span><span>{t("Both starred = tied")}</span><span>{t("Lower minutes per goal is better")}</span></div><div className="stats-table-wrap"><table className="stats-table"><caption className="sr-only">{t("{0}: Messi versus Ronaldo. {1}. Counting rules and sources are available on the methodology page.", { "0": t(scope.label), "1": t(scope.period) })}</caption><thead><tr><th className="messi-text" scope="col"><span className="legend-dot messi-dot"/>{t("LIONEL MESSI")}</th><th scope="col">{t(scope.shortLabel.toUpperCase())}</th><th className="ronaldo-text" scope="col">{t("CRISTIANO RONALDO")}<span className="legend-dot ronaldo-dot"/></th></tr></thead><tbody>{scope.metrics.filter(m => (group === "all" || m.group === group) && (!onlyDifferences || m.values.messi !== m.values.ronaldo)).map(m => {
+    <div className="comparison-toolbar"><div className="scope-tabs" role="group" aria-label={t("Competition scope")}>{(["career", "2026", "club", "international", "champions-league"] as ScopeId[]).map(id => <button key={id} className={scopeId === id ? "selected" : ""} aria-pressed={scopeId === id} onClick={() => update(id)}>{t(scopes[id].shortLabel)}</button>)}</div><div className="extra-scope"><Select label={t("More comparisons")} menuLabel={t("Compare by competition")} value={scopeId} onValueChange={value => update(value as ScopeId)} icon={Globe2} options={(["career", ...scopeIds.filter(id => id !== "career")] as ScopeId[]).map(id => ({ value: id, label: scopes[id].shortLabel }))}/></div><ComparisonOptions totalLabel={focus?.label} mode={mode} onlyDifferences={onlyDifferences} onChange={(nextMode, differences) => update(scopeId, nextMode, differences)}/></div>
+    {coverageNote && <p className="data-update-note">{t(coverageNote)} <Link href="/updates">{t("View update log \u2197")}</Link></p>}<div className="snapshot-line"><span><span className="snapshot-dot"/> {t(focus?.period ?? scope.period)}</span><Link href="/methodology">{t("Sources & definitions ")}<Info size={12}/></Link></div>
+    <PlayerMatchup values={focus?.values ?? goals} decimals={mode !== "total" ? 2 : 0} label={t(focus?.label ?? (mode === "per-90" ? "GOALS / 90 MIN" : mode === "per-game" ? "GOALS / APPEARANCE" : "TOTAL GOALS"))} accessibleLabel={t(focus?.label ?? (mode === "per-90" ? "goals per 90 minutes" : mode === "per-game" ? "goals per appearance" : "goals"))} context={t(scope.shortLabel)} exportData={{ title: focus?.label ?? (mode === "per-90" ? "Goals per 90 minutes" : mode === "per-game" ? "Goals per appearance" : scopeId === "career" ? "Career goals" : "Goals"), context: scope.label, date: focus?.date ?? snapshotDate, note: focus?.period ?? scope.period }}/>
+    <div className="numbers-panel panel"><div className="panel-heading"><div><span className="section-kicker">{t("STATISTICAL COMPARISON")}</span><h2>{focus ? t(focus.label) : t("{0} statistics", { "0": t(scope.shortLabel) })}</h2></div><div className="panel-actions"><button className="small-button" onClick={share}>{copied ? <Check size={14}/> : <Link2 size={14}/>}<span aria-live="polite">{t(copied ? "Link copied" : "Share comparison")}</span></button></div></div>
+      <div className="metric-tabs" role="group" aria-label={t("Statistic category")}>{([["overview", "Overview"], ["scoring", "Goal types & set pieces"], ["all", "All statistics"]] as const).map(([id, label]) => <button key={id} className={group === id ? "selected" : ""} aria-pressed={group === id} onClick={() => update(scopeId, mode, onlyDifferences, id)}>{t(label)}</button>)}</div><div className="comparison-legend"><span><Star size={13} fill="currentColor" aria-hidden="true"/>{t("Leads this stat")}</span><span>{t("Both starred = tied")}</span><span>{t("Lower minutes per goal is better")}</span></div><div className="stats-table-wrap"><table className="stats-table"><caption className="sr-only">{t("{0}: Messi versus Ronaldo. {1}. Counting rules and sources are available on the methodology page.", { "0": t(scope.label), "1": t(scope.period) })}</caption><thead><tr><th className="messi-text" scope="col"><span className="legend-dot messi-dot"/>{t("LIONEL MESSI")}</th><th scope="col">{t(scope.shortLabel.toUpperCase())}</th><th className="ronaldo-text" scope="col">{t("CRISTIANO RONALDO")}<span className="legend-dot ronaldo-dot"/></th></tr></thead><tbody>{scope.metrics.filter(m => (group === "all" || m.group === group) && (!onlyDifferences || m.values.messi !== m.values.ronaldo)).sort((a, b) => Number(b.id === focusMetric) - Number(a.id === focusMetric)).map(m => {
             const max = Math.max(m.values.messi, m.values.ronaldo, 1);
             return <tr key={m.id}><td><div className="metric-number messi-text">{t(m.values.messi.toLocaleString(numberLocale, { minimumFractionDigits: m.decimals ?? 0, maximumFractionDigits: m.decimals ?? 0 }))}{t(m.unit)}<StatLeader metric={m} player="messi"/></div><div className="stat-track"><span className="messi-bar" style={{ width: `${m.values.messi / max * 100}%` }}/></div></td><th scope="row"><span className="metric-label">{t(m.label)}{m.coverage && <small className="metric-coverage">{t(m.coverage)}</small>}</span><StatImageButton stat={{ title: m.label, context: scope.label, values: m.values, decimals: m.decimals, unit: m.unit, lowerIsBetter: m.lowerIsBetter, date: snapshotDate, note: [scope.period, m.coverage].filter(Boolean).join(" · ") }}/></th><td><div className="metric-number ronaldo-text"><StatLeader metric={m} player="ronaldo"/>{t(m.values.ronaldo.toLocaleString(numberLocale, { minimumFractionDigits: m.decimals ?? 0, maximumFractionDigits: m.decimals ?? 0 }))}{t(m.unit)}</div><div className="stat-track"><span className="ronaldo-bar" style={{ width: `${m.values.ronaldo / max * 100}%` }}/></div></td></tr>;
         })}</tbody></table></div>
       <div className="stats-footnote"><span><ShieldCheck size={14}/>{t("Definitions and sources are in our methodology.")}</span><Link href="/methodology">{t("How we count ")}<ArrowRight size={13}/></Link></div>
     </div>
     <div className="context-note"><Info size={16}/><p>{t(scope.description)} <span>{t("Statistics cover the stated period; overlapping categories should not be added together.")}</span></p></div>
-    <div className="answer-card"><span className="section-kicker">{t("READING THE DATA")}</span><p>{t(scope.answer)}</p><div>{scope.source.map(id => <a key={id} href={sources[id].url} target="_blank" rel="noreferrer">{t(sources[id].name)}<ArrowUpRight size={12}/></a>)}</div></div>
+    <div className="answer-card"><span className="section-kicker">{t("READING THE DATA")}</span><p>{t(focus ? focus.explanation ?? "Not available" : scope.answer)}</p><div>{(focus?.source ?? scope.source).map(id => <a key={id} href={sources[id].url} target="_blank" rel="noreferrer">{t(sources[id].name)}<ArrowUpRight size={12}/></a>)}</div></div>
   </section>;
 }
 function StatLeader({ metric, player }: {

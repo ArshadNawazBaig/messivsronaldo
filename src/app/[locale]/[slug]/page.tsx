@@ -23,11 +23,16 @@ import { CareerTimeline } from "@/components/career-timeline";
 import { MilestonePlanner } from "@/components/milestone-planner";
 import { ToolCards, ToolNavigation } from "@/components/tool-cards";
 import { toolPages } from "@/lib/tools";
+import { comparisonIntro } from "@/lib/comparison-copy";
+import { ComparisonQuestions } from "@/components/comparison-questions";
 async function getPage(slug: string) {
     const page = Object.hasOwn(pages, slug) ? pages[slug] : undefined;
     if (!page)
         return undefined;
     const data = await getPublishedData();
+    const { t } = await getI18n();
+    const introduction = comparisonIntro(slug, data, t, teamTrophyTotals);
+    if (introduction) return { ...page, description: introduction };
     return page.scope && data.coverageNote ? { ...page, description: `${data.scopes[page.scope].label}. Reviewed baseline plus published match updates. See each statistic’s coverage and the public update log.` } : page;
 }
 export function generateStaticParams() { return Object.keys(pages).map(slug => ({ slug })); }
@@ -63,7 +68,7 @@ export default async function ContentPage({ params }: {
     {slug === "milestone-planner" && <MilestonePlanner/>}
     {slug === "scoring-calculator" && <><ScoringCalculator /><EditorialCards limit={3}/></>}
     {slug === "records" && <CurrentHighlights />}
-    {page.scope && <><Comparison initialScope={page.scope} initialGroup={page.scoring ? "scoring" : "overview"}/>{slug === "clubs" && <ClubBreakdown />}<ExploreCards /></>}
+    {page.scope && <><Comparison initialScope={page.scope} initialGroup={page.scoring ? "scoring" : "overview"} focusMetric={page.focusMetric}/>{slug === "clubs" && <ClubBreakdown />}<ComparisonQuestions slug={slug} data={liveData}/><ExploreCards /></>}
     {(slug === "honours" || isAwardSlug(slug)) && <HonoursNavigation current={slug} />}
     {isAwardSlug(slug) && <AwardComparison slug={slug} />}
     {slug === "honours" && <>
@@ -72,6 +77,7 @@ export default async function ContentPage({ params }: {
         <PlayerMatchup values={teamTrophyTotals} label={t("OVERALL TROPHIES")} accessibleLabel={t("overall team trophies")} context={t("Club & country \u00B7 Through Sep 2026")} exportData={{ title: "Overall trophies", context: "Club & country · Team honours", date: "2026-09-21", note: "Includes youth/Olympic titles and MLS conference championship. Individual awards excluded." }}/>
       </section>
       <TeamHonours />
+      <ComparisonQuestions slug={slug} data={liveData}/>
       <div className="honours-summary">{(["messi", "ronaldo"] as const).map(id => <div className={`honour-player panel ${id}`} key={id}><span className="section-kicker">{t(players[id].name.toUpperCase())}</span><h2>{t("{0} Ballon d\u2019Or awards", { "0": t(players[id].awards.length) })}</h2><div className="award-years">{players[id].awards.map(year => <span key={year}>{t(year)}</span>)}</div></div>)}</div>
       <AwardChart full/><div className="prose panel"><h2>{t("What this timeline measures")}</h2><p>{t("Men\u2019s Ballon d\u2019Or and FIFA Ballon d\u2019Or wins through the latest completed edition, 2025. These are individual awards, not team trophies. No Ballon d\u2019Or was awarded in 2020.")}</p><p>{t("Between 2008 and 2025, 17 awards were presented. Messi and Ronaldo won 13. The 2026 ceremony has not taken place at this snapshot date, so no 2026 winner is assumed.")}</p><a href={sources.ballon.url} target="_blank" rel="noreferrer">{t("See the complete winners list at UEFA ")}<ArrowUpRight size={14}/></a></div>
     </>}

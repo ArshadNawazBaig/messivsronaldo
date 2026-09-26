@@ -1,13 +1,14 @@
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+import { focusLabels, type FocusMetric } from "../../src/lib/comparison-focus";
 import { contentPages } from "../../src/lib/content-pages";
 
 test("every comparison route loads the same styled and working options", async ({ page }) => {
   test.setTimeout(120_000);
-  const routes = [{ path: "/", scope: "career" }, ...Object.entries(contentPages)
+  const routes: { path: string; scope: string; focusMetric?: FocusMetric }[] = [{ path: "/", scope: "career" }, ...Object.entries(contentPages)
     .filter(([, content]) => content.scope)
-    .map(([slug, content]) => ({ path: `/${slug}`, scope: content.scope! }))];
-  for (const { path, scope } of routes) {
+    .map(([slug, content]) => ({ path: `/${slug}`, scope: content.scope!, focusMetric: content.focusMetric }))];
+  for (const { path, scope, focusMetric } of routes) {
     await test.step(path, async () => {
       await page.goto(path);
       const trigger = page.getByRole("button", { name: "Options", exact: true });
@@ -17,17 +18,22 @@ test("every comparison route loads the same styled and working options", async (
       await expect(options).toHaveCSS("display", "flex");
       await expect(options).toHaveCSS("background-color", "rgb(255, 255, 255)");
       await expect(options).toHaveCSS("border-top-width", "1px");
-      await expect(options.getByRole("radio", { name: "Total goals", exact: true })).toHaveCSS("opacity", "0");
+      if (!focusMetric) await expect(options.getByRole("radio", { name: "Total goals", exact: true })).toHaveCSS("opacity", "0");
       const bounds = await options.boundingBox();
       expect(bounds!.width).toBeLessThanOrEqual(392);
-      await options.getByRole("radio", { name: "Goals per appearance", exact: true }).check();
-      await expect(page.locator(".player-matchup")).toContainText("GOALS / APPEARANCE");
-      await options.getByRole("radio", { name: "Goals per 90 minutes", exact: true }).check();
+      if (!focusMetric) {
+        await options.getByRole("radio", { name: "Goals per appearance", exact: true }).check();
+        await expect(page.locator(".player-matchup")).toContainText("GOALS / APPEARANCE");
+        await options.getByRole("radio", { name: "Goals per 90 minutes", exact: true }).check();
+      } else {
+        await expect(options.getByRole("radio")).toHaveCount(0);
+        await expect(options).toContainText("The player cards show totals for this statistic.");
+      }
       await options.getByRole("switch", { name: "Hide tied metrics" }).check();
-      await expect(page).toHaveURL(new RegExp(`scope=${scope}&mode=per-90&view=.+&different=1`));
+      await expect(page).toHaveURL(new RegExp(`scope=${scope}&mode=${focusMetric ? "total" : "per-90"}&view=.+&different=1`));
       await options.getByRole("button", { name: "Reset options" }).click();
-      await expect(options.getByRole("radio", { name: "Total goals", exact: true })).toBeChecked();
-      await expect(page.locator(".player-matchup")).toContainText("TOTAL GOALS");
+      if (!focusMetric) await expect(options.getByRole("radio", { name: "Total goals", exact: true })).toBeChecked();
+      await expect(page.locator(".player-matchup")).toContainText(focusMetric ? focusLabels[focusMetric] : "TOTAL GOALS");
       await expect(page).toHaveURL(new RegExp(`scope=${scope}&mode=total&view=`));
       await options.getByRole("button", { name: "Done", exact: true }).click();
       await expect(options).not.toBeVisible();
