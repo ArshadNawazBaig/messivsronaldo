@@ -12,6 +12,7 @@ import { I18nProvider } from '@/components/i18n-provider';
 import { AdminExportProvider } from '@/components/admin-stat-export';
 import { isAdmin } from '@/lib/admin/auth';
 import { Analytics } from '@vercel/analytics/next';
+import { socialImageAlt, socialImagePath } from '@/lib/social-image';
 
 const inter = localFont({
   src: '../../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2',
@@ -47,6 +48,13 @@ export const metadata: Metadata = {
   },
   verification: { google: process.env.GOOGLE_SITE_VERIFICATION || undefined },
   applicationName: siteName,
+  openGraph: {
+    images: [{ url: socialImagePath, width: 1200, height: 630, type: 'image/png', alt: socialImageAlt }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    images: [{ url: socialImagePath, alt: socialImageAlt }],
+  },
 };
 
 export const dynamic = 'force-dynamic';

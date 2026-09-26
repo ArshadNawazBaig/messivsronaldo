@@ -1,4 +1,4 @@
-// Shared by comparison cards and admin social-image exports.
+// Shared by comparison cards, profiles, admin exports, and Open Graph artwork.
 export const playerArtworkColors = {
   light: {
     canvas: "#ffffff",
