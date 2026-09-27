@@ -1,3 +1,4 @@
+import { expectedSitemapSize } from "./sitemap-helpers";
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
@@ -81,7 +82,7 @@ test("new tools and guides are discoverable and sitemap lists every language", a
   await page.locator('.search-results a[href="/insights/messi-2012-vs-ronaldo-2013-goals"]').click();
   await expect(page.getByTestId("messi-projection")).toHaveText("65.94");
   const xml = await (await request.get("/sitemap.xml")).text();
-  expect(xml.match(/<url>/g)).toHaveLength(696);
+  expect(xml.match(/<url>/g)).toHaveLength(expectedSitemapSize);
   for (const locale of ["", "/es", "/pt", "/nl", "/fr", "/de", "/ar", "/hi"]) {
     expect(xml).toContain(`${locale}/scoring-calculator</loc>`);
     expect(xml).toContain(`${locale}/insights/messi-2012-vs-ronaldo-2013-goals</loc>`);

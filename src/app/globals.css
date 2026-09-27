@@ -5692,3 +5692,8 @@ input.date-picker-validation {
 .comparison-guide > h2 {
   margin-top: 10px;
 }
+
+.footer-languages { display: flex; flex-wrap: wrap; gap: 12px 22px; margin-block: 24px; font-size: 13px; }
+.footer-languages a { color: var(--muted); text-underline-offset: 4px; }
+.footer-languages a[aria-current] { color: var(--text); font-weight: 600; }
+.footer-languages a:hover { color: var(--accent); }

@@ -1116,5 +1116,16 @@
   "UNDERSTANDING THE NUMBERS": "DIE ZAHLEN VERSTEHEN",
   "What counts as a goal, assist, appearance or hat-trick? Understand the definitions, scoring formulas and counting rules used in our Messi vs Ronaldo comparisons.": "Was zählt als Tor, Vorlage, Einsatz oder Hattrick? Hier stehen die Definitionen, Torquoten-Formeln und Zählregeln unserer Vergleiche zwischen Messi und Ronaldo.",
   "Jump to a statistic": "Zu einer Statistik springen",
-  "Compare {0}": "{0} vergleichen"
+  "Compare {0}": "{0} vergleichen",
+  "Explore nearby periods": "Benachbarte Zeiträume ansehen",
+  "Previous: {0}": "Zurück: {0}",
+  "Next: {0}": "Weiter: {0}",
+  "{0}: the complete statistical summary": "{0}: die vollständige Statistikübersicht",
+  "In {0}, Messi recorded {1} goals and {2} assists in {3} appearances; Ronaldo recorded {4} goals and {5} assists in {6} appearances.": "Im Jahr {0} erzielte Messi {1} Tore und gab {2} Vorlagen in {3} Einsätzen; Ronaldo erzielte {4} Tore und gab {5} Vorlagen in {6} Einsätzen.",
+  "League figures are part of club totals. Add club and country to obtain the overall total; do not add league figures again.": "Die Ligawerte sind in den Vereinswerten enthalten. Verein und Nationalmannschaft ergeben zusammen die Gesamtzahl; die Ligawerte dürfen nicht nochmals addiert werden.",
+  "{0} calendar-year source": "Quelle für das Kalenderjahr {0}",
+  "{0}: both competitions at a glance": "{0}: beide Wettbewerbe auf einen Blick",
+  "Domestic cups, national-team games and other competitions are excluded. Champions League figures exclude qualifying rounds.": "Nationale Pokale, Länderspiele und andere Wettbewerbe sind ausgeschlossen. Die Champions-League-Zahlen enthalten keine Qualifikationsrunden.",
+  "Calendar-year {0}{1}, {2}.": "Kalenderjahr: {0}{1}, {2}.",
+  "{0} is incomplete.": "{0} ist noch nicht abgeschlossen."
 }

@@ -1116,5 +1116,16 @@
   "UNDERSTANDING THE NUMBERS": "DE CIJFERS BEGRIJPEN",
   "What counts as a goal, assist, appearance or hat-trick? Understand the definitions, scoring formulas and counting rules used in our Messi vs Ronaldo comparisons.": "Wat telt als doelpunt, assist, gespeelde wedstrijd of hattrick? Lees de definities, scoringsformules en telregels die we gebruiken om Messi en Ronaldo te vergelijken.",
   "Jump to a statistic": "Ga naar een statistiek",
-  "Compare {0}": "Vergelijk {0}"
+  "Compare {0}": "Vergelijk {0}",
+  "Explore nearby periods": "Verken aangrenzende periodes",
+  "Previous: {0}": "Vorige: {0}",
+  "Next: {0}": "Volgende: {0}",
+  "{0}: the complete statistical summary": "{0}: het volledige statistische overzicht",
+  "In {0}, Messi recorded {1} goals and {2} assists in {3} appearances; Ronaldo recorded {4} goals and {5} assists in {6} appearances.": "In {0} maakte Messi {1} doelpunten en gaf hij {2} assists in {3} wedstrijden; Ronaldo maakte {4} doelpunten en gaf {5} assists in {6} wedstrijden.",
+  "League figures are part of club totals. Add club and country to obtain the overall total; do not add league figures again.": "De competitiecijfers zijn onderdeel van de clubtotalen. Tel club en land bij elkaar op voor het totaal; tel de competitiecijfers niet nogmaals mee.",
+  "{0} calendar-year source": "Bron voor kalenderjaar {0}",
+  "{0}: both competitions at a glance": "{0}: beide competities in één oogopslag",
+  "Domestic cups, national-team games and other competitions are excluded. Champions League figures exclude qualifying rounds.": "Nationale bekertoernooien, interlands en andere competities zijn uitgesloten. De Champions League-cijfers zijn exclusief voorrondes.",
+  "Calendar-year {0}{1}, {2}.": "Kalenderjaar {0}{1}, {2}.",
+  "{0} is incomplete.": "{0} is onvolledig."
 }

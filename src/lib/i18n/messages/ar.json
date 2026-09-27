@@ -1116,5 +1116,16 @@
   "UNDERSTANDING THE NUMBERS": "فهم الأرقام",
   "What counts as a goal, assist, appearance or hat-trick? Understand the definitions, scoring formulas and counting rules used in our Messi vs Ronaldo comparisons.": "ما الذي يُحتسب هدفًا أو تمريرة حاسمة أو مشاركة أو هاتريك؟ تعرّف على التعريفات ومعادلات معدلات التسجيل وقواعد الاحتساب المستخدمة في مقارناتنا بين ميسي ورونالدو.",
   "Jump to a statistic": "الانتقال إلى إحصائية",
-  "Compare {0}": "مقارنة {0}"
+  "Compare {0}": "مقارنة {0}",
+  "Explore nearby periods": "استكشف الفترات المجاورة",
+  "Previous: {0}": "السابق: {0}",
+  "Next: {0}": "التالي: {0}",
+  "{0}: the complete statistical summary": "{0}: الملخص الإحصائي الكامل",
+  "In {0}, Messi recorded {1} goals and {2} assists in {3} appearances; Ronaldo recorded {4} goals and {5} assists in {6} appearances.": "في عام {0}، سجّل ميسي {1} هدفًا وقدّم {2} تمريرة حاسمة في {3} مباراة؛ وسجّل رونالدو {4} هدفًا وقدّم {5} تمريرة حاسمة في {6} مباراة.",
+  "League figures are part of club totals. Add club and country to obtain the overall total; do not add league figures again.": "أرقام الدوري جزء من إجمالي الأندية. اجمع أرقام النادي والمنتخب للحصول على الإجمالي العام؛ ولا تضف أرقام الدوري مرة أخرى.",
+  "{0} calendar-year source": "مصدر إحصاءات السنة الميلادية {0}",
+  "{0}: both competitions at a glance": "{0}: نظرة على البطولتين",
+  "Domestic cups, national-team games and other competitions are excluded. Champions League figures exclude qualifying rounds.": "تُستبعد الكؤوس المحلية ومباريات المنتخبات والبطولات الأخرى. ولا تشمل أرقام دوري أبطال أوروبا الأدوار التأهيلية.",
+  "Calendar-year {0}{1}, {2}.": "{0}{1} في السنة الميلادية، {2}.",
+  "{0} is incomplete.": "عام {0} لم يكتمل بعد."
 }

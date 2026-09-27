@@ -1116,5 +1116,16 @@
   "UNDERSTANDING THE NUMBERS": "आँकड़ों को समझें",
   "What counts as a goal, assist, appearance or hat-trick? Understand the definitions, scoring formulas and counting rules used in our Messi vs Ronaldo comparisons.": "गोल, असिस्ट, खेले गए मैच या हैट्रिक में क्या गिना जाता है? मेसी और रोनाल्डो की हमारी तुलनाओं में इस्तेमाल होने वाली परिभाषाएँ, स्कोरिंग दर के सूत्र और गिनती के नियम समझें।",
   "Jump to a statistic": "किसी आँकड़े पर जाएँ",
-  "Compare {0}": "{0} की तुलना करें"
+  "Compare {0}": "{0} की तुलना करें",
+  "Explore nearby periods": "आसपास की अवधियाँ देखें",
+  "Previous: {0}": "पिछला: {0}",
+  "Next: {0}": "अगला: {0}",
+  "{0}: the complete statistical summary": "{0}: पूरा सांख्यिकीय सारांश",
+  "In {0}, Messi recorded {1} goals and {2} assists in {3} appearances; Ronaldo recorded {4} goals and {5} assists in {6} appearances.": "{0} में मेसी ने {3} मैचों में {1} गोल और {2} असिस्ट दर्ज किए; रोनाल्डो ने {6} मैचों में {4} गोल और {5} असिस्ट दर्ज किए।",
+  "League figures are part of club totals. Add club and country to obtain the overall total; do not add league figures again.": "लीग के आँकड़े क्लब के कुल आँकड़ों में शामिल हैं। कुल आँकड़ों के लिए क्लब और राष्ट्रीय टीम के आँकड़े जोड़ें; लीग के आँकड़े दोबारा न जोड़ें।",
+  "{0} calendar-year source": "कैलेंडर वर्ष {0} का स्रोत",
+  "{0}: both competitions at a glance": "{0}: दोनों प्रतियोगिताएँ एक नज़र में",
+  "Domestic cups, national-team games and other competitions are excluded. Champions League figures exclude qualifying rounds.": "घरेलू कप, राष्ट्रीय टीम के मैच और अन्य प्रतियोगिताएँ शामिल नहीं हैं। चैंपियंस लीग के आँकड़ों में क्वालीफाइंग दौर शामिल नहीं हैं।",
+  "Calendar-year {0}{1}, {2}.": "कैलेंडर वर्ष {0}{1}, {2}।",
+  "{0} is incomplete.": "{0} अभी अधूरा है।"
 }

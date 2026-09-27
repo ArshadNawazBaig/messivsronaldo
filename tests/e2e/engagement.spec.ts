@@ -1,3 +1,4 @@
+import { expectedSitemapSize } from "./sitemap-helpers";
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
@@ -142,7 +143,7 @@ test("tools serve crawlable content in all languages and appear in search, homep
   }
   await context.close();
   const xml = await (await request.get("/sitemap.xml")).text();
-  expect(xml.match(/<url>/g)).toHaveLength(696);
+  expect(xml.match(/<url>/g)).toHaveLength(expectedSitemapSize);
   for (const slug of ["tools", "football-quiz", "career-timeline", "milestone-planner"]) {
     for (const locale of ["", "/es", "/pt", "/nl", "/fr", "/de", "/ar", "/hi"]) expect(xml).toContain(`${locale}/${slug}</loc>`);
   }

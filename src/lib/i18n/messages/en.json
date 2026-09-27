@@ -1116,5 +1116,16 @@
   "UNDERSTANDING THE NUMBERS": "UNDERSTANDING THE NUMBERS",
   "What counts as a goal, assist, appearance or hat-trick? Understand the definitions, scoring formulas and counting rules used in our Messi vs Ronaldo comparisons.": "What counts as a goal, assist, appearance or hat-trick? Understand the definitions, scoring formulas and counting rules used in our Messi vs Ronaldo comparisons.",
   "Jump to a statistic": "Jump to a statistic",
-  "Compare {0}": "Compare {0}"
+  "Compare {0}": "Compare {0}",
+  "Explore nearby periods": "Explore nearby periods",
+  "Previous: {0}": "Previous: {0}",
+  "Next: {0}": "Next: {0}",
+  "{0}: the complete statistical summary": "{0}: the complete statistical summary",
+  "In {0}, Messi recorded {1} goals and {2} assists in {3} appearances; Ronaldo recorded {4} goals and {5} assists in {6} appearances.": "In {0}, Messi recorded {1} goals and {2} assists in {3} appearances; Ronaldo recorded {4} goals and {5} assists in {6} appearances.",
+  "League figures are part of club totals. Add club and country to obtain the overall total; do not add league figures again.": "League figures are part of club totals. Add club and country to obtain the overall total; do not add league figures again.",
+  "{0} calendar-year source": "{0} calendar-year source",
+  "{0}: both competitions at a glance": "{0}: both competitions at a glance",
+  "Domestic cups, national-team games and other competitions are excluded. Champions League figures exclude qualifying rounds.": "Domestic cups, national-team games and other competitions are excluded. Champions League figures exclude qualifying rounds.",
+  "Calendar-year {0}{1}, {2}.": "Calendar-year {0}{1}, {2}.",
+  "{0} is incomplete.": "{0} is incomplete."
 }

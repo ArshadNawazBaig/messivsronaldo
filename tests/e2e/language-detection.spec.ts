@@ -1,3 +1,4 @@
+import { expectedSitemapSize } from "./sitemap-helpers";
 import { expect, test } from "@playwright/test";
 
 test("first visits select regional browser language before rendering and keep filters", async ({ browser, baseURL }) => {
@@ -81,5 +82,5 @@ test("crawlers retain canonical English and translated pages regardless of heade
   expect(await spanish.text()).toContain('lang="es"');
   const sitemap = await request.get("/sitemap.xml", { headers, maxRedirects: 0 });
   expect(sitemap.status()).toBe(200);
-  expect((await sitemap.text()).match(/<url>/g)).toHaveLength(696);
+  expect((await sitemap.text()).match(/<url>/g)).toHaveLength(expectedSitemapSize);
 });

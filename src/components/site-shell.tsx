@@ -1,5 +1,5 @@
 "use client";
-import { LanguageSwitcher } from "./language-switcher";
+import { LanguageLinks, LanguageSwitcher } from "./language-switcher";
 import { SocialLinks } from "./social-links";
 import { NavigationIcon } from "./ui/navigation-icon";
 import { stripLocale } from "@/lib/i18n/config";
@@ -207,6 +207,7 @@ export function SiteShell({ children }: {
           <div><span className="section-kicker">{t("INFORMATION")}</span><div className="footer-links"><Link href="/terms">{t("Terms of use")}</Link><Link href="/privacy">{t("Privacy")}</Link><Link href="/cookies">{t("Cookies")}</Link><Link href="/disclaimer">{t("Disclaimer")}</Link></div></div>
           <div><span className="section-kicker">{t("FIND YOUR WAY")}</span><div className="footer-links"><Link href="/contact">{t("Contact & corrections")}</Link><Link href="/accessibility">{t("Accessibility")}</Link><Link href="/sitemap">{t("Site map")}</Link><Link href="/admin">{t("Admin")}</Link></div></div>
         </nav>
+        {!pathname.startsWith("/admin") && <LanguageLinks />}
         <div className="footer-bottom"><span>© {t(new Date().getFullYear())}{t(" The Rivalry. An independent football project.")}</span><span>{t("Data updated {0}", { "0": t(snapshotLabel) })}</span></div>
       </footer>
     </div>

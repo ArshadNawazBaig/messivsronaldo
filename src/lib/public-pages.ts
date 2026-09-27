@@ -1,3 +1,4 @@
+import { archiveContentUpdated } from "./archive-summary";
 import { articles } from "./articles";
 import { contentPages } from "./content-pages";
 import { policies, policyUpdated } from "./policies";
@@ -37,9 +38,9 @@ export function getPublicPages(years: readonly { year: number }[], snapshotDate:
     }),
     { path: "/players/messi", title: "Lionel Messi profile", group: "Player profiles", updated: snapshotDate },
     { path: "/players/ronaldo", title: "Cristiano Ronaldo profile", group: "Player profiles", updated: snapshotDate },
-    { path: "/seasons", title: "All years & seasons", group: "Calendar years", updated: [snapshotDate, semanticContentUpdated].sort().at(-1) },
-    ...years.map(({ year }) => ({ path: `/seasons/${year}`, title: `Messi vs Ronaldo, ${year}`, group: "Calendar years", updated: [snapshotDate, semanticContentUpdated].sort().at(-1) })),
-    ...seasons.map(season => ({ path: `/seasons/${season.slug}`, title: `Messi vs Ronaldo, ${season.label}`, group: "Spanish-season archive", updated: semanticContentUpdated })),
+    { path: "/seasons", title: "All years & seasons", group: "Calendar years", updated: [snapshotDate, semanticContentUpdated, archiveContentUpdated].sort().at(-1) },
+    ...years.map(({ year }) => ({ path: `/seasons/${year}`, title: `Messi vs Ronaldo, ${year}`, group: "Calendar years", updated: [snapshotDate, semanticContentUpdated, archiveContentUpdated].sort().at(-1) })),
+    ...seasons.map(season => ({ path: `/seasons/${season.slug}`, title: `Messi vs Ronaldo, ${season.label}`, group: "Spanish-season archive", updated: [semanticContentUpdated, archiveContentUpdated].sort().at(-1) })),
     { path: "/insights", title: "The reading room", group: "Articles", updated: latestArticle },
     ...articles.map(article => ({ path: `/insights/${article.slug}`, title: article.title, group: "Articles", updated: [discoveryUpdated, article.updated ?? "2026-09-21"].sort().at(-1) })),
     { path: "/updates", title: "Public update log", group: "About & policies", updated: snapshotDate },
