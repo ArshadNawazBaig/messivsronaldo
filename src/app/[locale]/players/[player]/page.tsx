@@ -53,7 +53,7 @@ export default async function PlayerPage({ params }: { params: Promise<{ player:
   ];
 
   return <div className={`page-container inner-page ${styles.page}`} data-player={player} style={playerArtworkStyle(player) as CSSProperties}>
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd({ "@context": "https://schema.org", "@type": "Person", name: p.name, birthDate: p.born, nationality: { "@type": "Country", name: p.country }, image: `${siteUrl}${portrait.src}`, url: `${siteUrl}${localizedPath(`/players/${player}`, locale)}` }) }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd({ "@context": "https://schema.org", "@type": "Person", "@id": `${siteUrl}/players/${player}#person`, name: p.name, birthDate: p.born, nationality: { "@type": "Country", name: p.country }, image: `${siteUrl}${portrait.src}`, url: `${siteUrl}${localizedPath(`/players/${player}`, locale)}` }) }} />
 
     <div className={styles.breadcrumb}>
       <Link href="/"><ArrowLeft size={15} aria-hidden="true" />{t("Overview")}</Link>

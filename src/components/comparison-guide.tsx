@@ -1,26 +1,16 @@
-import { localizedPath } from "@/lib/i18n/config";
 import { getI18n } from "@/lib/i18n/server";
 import Link from "@/components/localized-link";
 import { getPublishedData } from "@/lib/server-data";
-import { sources } from "@/lib/data";
+import { comparisonDataset } from "@/lib/comparison-schema";
 import { jsonLd, siteUrl } from "@/lib/site";
 export async function ComparisonGuide() {
     const { t, numberLocale, locale } = await getI18n();
-    const { scopes, snapshotLabel, snapshotDate, baselineDate, datasetVersion } = await getPublishedData();
+    const data = await getPublishedData();
+    const { scopes, snapshotLabel, snapshotDate } = data;
     const goals = scopes.career.goals;
     const assists = scopes.career.metrics.find(metric => metric.id === "assists")!.values;
     return <section className="comparison-guide prose panel" aria-labelledby="comparison-guide-title">
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd({
-                "@context": "https://schema.org", "@type": "Dataset",
-                "@id": `${siteUrl}/#career-dataset`, name: "Messi vs Ronaldo career statistics",
-                description: `Career goals, assists, appearances and scoring rates for Lionel Messi and Cristiano Ronaldo. Published figures through ${snapshotLabel}; reviewed baseline ${baselineDate}.`,
-                url: `${siteUrl}${localizedPath("/", locale)}#comparison`, inLanguage: locale, version: datasetVersion, dateModified: snapshotDate,
-                creator: { "@id": `${siteUrl}/#publisher` },
-                about: [{ "@type": "Person", name: "Lionel Messi", url: `${siteUrl}/players/messi` }, { "@type": "Person", name: "Cristiano Ronaldo", url: `${siteUrl}/players/ronaldo` }],
-                variableMeasured: ["Goals", "Assists", "Appearances", "Minutes played"],
-                citation: scopes.career.source.map(id => sources[id].url),
-                isAccessibleForFree: true,
-            }) }}/>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(comparisonDataset(data, "career", "/", locale, siteUrl, t)) }}/>
     <span className="section-kicker">{t("THE COMPARISON, IN CONTEXT")}</span>
     <h2 id="comparison-guide-title">{t("Messi vs Ronaldo: goals, assists and trophies")}</h2>
     <p>{t("Compare Lionel Messi and Cristiano Ronaldo across their careers, clubs and national teams. The published figures below run through ")}<time dateTime={snapshotDate}>{t(snapshotLabel)}</time>{t(". Each competition has its own boundary and supporting sources.")}</p>

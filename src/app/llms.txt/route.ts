@@ -18,6 +18,7 @@ Career assists follow the secondary reference Messi vs Ronaldo App. Champions Le
 
 ## Pages
 
+- [Quick answers](${siteUrl}/answers): Searchable, dated answers derived from published comparisons, with each metric’s sources and cutoff.
 - [Overview](${siteUrl}/): Dated career totals and comparison controls.
 - [Tools & games](${siteUrl}/tools): Original interactive tools using the shared published dataset.
 - [Football quiz](${siteUrl}/football-quiz): Eight knowledge questions with sourced answers and an on-page score. Scores are local to the page, not a public ranking.

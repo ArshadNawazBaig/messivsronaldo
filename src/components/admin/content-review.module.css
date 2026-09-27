@@ -1,0 +1,19 @@
+.review { padding: clamp(20px,4vw,40px); }
+.review h2 { font-size: 32px; margin: 12px 0; }
+.review > p { color: var(--muted); line-height: 1.7; max-width: 900px; }
+.summary { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 24px; margin-block: 30px; }
+.summary div { border-inline-start: 2px solid var(--accent); padding-inline-start: 16px; }
+.summary dt { color: var(--muted); font-size: 13px; }
+.summary dd { font-size: 36px; font-weight: 600; margin: 6px 0; }
+.cutoffs { display: flex; gap: 32px; flex-wrap: wrap; align-items: center; border-block: 1px solid var(--border); padding-block: 16px; }
+.cutoffs p { display: grid; gap: 6px; }
+.cutoffs time { color: var(--muted); }
+.review a { color: var(--accent); display: inline-flex; align-items: center; gap: 6px; }
+.status { display: flex; align-items: center; gap: 10px; }
+.queue { padding: 0; list-style: none; }
+.queue li { display: flex; align-items: flex-start; gap: 14px; padding-block: 20px; border-bottom: 1px solid var(--border); }
+.queue li > svg { margin-top: 3px; flex: 0 0 auto; color: var(--muted); }
+.queue span { display: block; font-size: 12px; margin-bottom: 8px; color: var(--muted); }
+.queue a { font-weight: 600; }
+.queue p { color: var(--muted); line-height: 1.6; }
+@media(max-width:600px) { .summary { grid-template-columns: 1fr; gap: 20px; } }

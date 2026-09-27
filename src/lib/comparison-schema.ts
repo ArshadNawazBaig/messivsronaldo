@@ -1,0 +1,26 @@
+import { players, sources, type ScopeId } from "./data";
+import { localizedUrl, type Locale } from "./i18n/config";
+import type { createTranslator } from "./i18n/translate";
+import type { PublishedData } from "./published-data";
+
+export function comparisonDataset(data: PublishedData, scopeId: ScopeId, path: string, locale: Locale, origin: string, t: ReturnType<typeof createTranslator>, scoring = false) {
+  const scope = data.scopes[scopeId];
+  const metrics = scope.metrics.filter(metric => metric.group === (scoring ? "scoring" : "overview"));
+  const cutoff = scoring ? data.baselineDate : scope.updatedThrough;
+  const url = localizedUrl(path, locale, origin);
+  return {
+    "@context": "https://schema.org", "@type": "Dataset", "@id": `${url}#comparison-dataset`,
+    name: `${t("Messi vs Ronaldo")} · ${t(scope.label)}`,
+    description: `${t(scope.description)} ${t("Data cutoff: ")} ${cutoff}.`,
+    url: `${url}#comparison`, inLanguage: locale, version: data.datasetVersion,
+    dateModified: cutoff, creator: { "@id": `${origin}/#publisher` }, isAccessibleForFree: true,
+    about: Object.entries(players).map(([id, player]) => ({ "@type": "Person", "@id": `${origin}/players/${id}#person`, name: player.name, url: localizedUrl(`/players/${id}`, locale, origin) })),
+    measurementTechnique: localizedUrl("/methodology", locale, origin),
+    citation: [...new Set(metrics.flatMap(metric => metric.source))].map(id => new URL(sources[id].url, origin).href),
+    variableMeasured: metrics.flatMap(metric => (["messi", "ronaldo"] as const).map(player => ({
+      "@type": "PropertyValue", name: `${players[player].name} · ${t(metric.label)}`,
+      value: Number(metric.values[player].toFixed(metric.decimals ?? 0)), ...(metric.unit ? { unitText: metric.unit } : {}),
+      description: `${t(metric.explanation)} ${t(metric.coverage ?? scope.period)}`,
+    }))),
+  };
+}

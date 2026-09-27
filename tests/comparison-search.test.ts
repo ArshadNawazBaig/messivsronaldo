@@ -1,3 +1,4 @@
+import { discoveryUpdated } from "../src/lib/content-discovery";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { test } from "node:test";
@@ -60,7 +61,7 @@ test("visible answers and metadata are translated with the same published values
 test("sitemap records the content revision separately from the statistic cutoff", () => {
   const data = buildPublishedData();
   const pages = getPublicPages(data.calendarYears, data.snapshotDate);
-  for (const slug of ["goals", "free-kicks", "la-liga", "honours"]) assert.equal(pages.find(page => page.path === `/${slug}`)!.updated, "2026-09-26");
+  for (const slug of ["goals", "free-kicks", "la-liga", "honours"]) assert.equal(pages.find(page => page.path === `/${slug}`)!.updated, discoveryUpdated);
   assert.equal(data.snapshotDate, "2026-09-21");
   assert.equal(getPublicPages(data.calendarYears, "2026-10-01").find(page => page.path === "/goals")!.updated, "2026-10-01");
 });

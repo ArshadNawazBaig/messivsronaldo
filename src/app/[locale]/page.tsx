@@ -8,15 +8,19 @@ import { EditorialCards } from "@/components/editorial";
 import { CurrentHighlights } from "@/components/expanded-details";
 import { getPublishedData } from "@/lib/server-data";
 import { pageMetadata } from "@/lib/site";
+import { RecordAnswers } from "@/components/record-answers";
+import { buildRecordAnswers } from "@/lib/record-answers";
 import { ToolCards } from "@/components/tool-cards";
 export async function generateMetadata() { const { snapshotLabel } = await getPublishedData(); return pageMetadata("Messi vs Ronaldo: Goals, Assists, Stats & Trophies (2026)", `Messi vs Ronaldo statistics updated ${snapshotLabel}: career goals, assists, 2026 stats, World Cup, club records, scoring rates and trophies.`, "/"); }
 export default async function Home() {
     const { t } = await getI18n();
-    const { snapshotLabel, snapshotDate } = await getPublishedData();
+    const data = await getPublishedData();
+    const { snapshotLabel, snapshotDate } = data;
     return <div className="page-container home-page">
     <div className="edition-line"><span>{t("FOOTBALL / PLAYER COMPARISON")}</span><Link href="/updates">{t("Updated ")}<time dateTime={snapshotDate}>{t(snapshotLabel)}</time><ArrowUpRight size={13}/></Link></div>
     <section className="page-intro"><div><h1>{t("Messi ")}<span className="title-vs">{t("vs")}</span>{t(" Ronaldo")}</h1><p>{t("Career goals, assists and trophies. Choose a competition. Compare the records.")}</p></div><Link className="intro-link" href="/methodology">{t("How we count ")}<ArrowUpRight size={16}/></Link></section>
     <Comparison />
+    <RecordAnswers answers={buildRecordAnswers(data, t)} compact />
     <CurrentHighlights />
     <AwardChart />
     <ExploreCards />

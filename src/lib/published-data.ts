@@ -42,6 +42,7 @@ export function buildPublishedData(records: MatchRecord[] = [], revision = 0) {
     const old = scopes[id];
     const period = `Baseline ${baselineLabel} + recorded matches to ${date}`;
     const updated: Scope = makeScope(id,old.label,old.shortLabel,stats[id],[...old.source,"updates"],`${old.description} Post-baseline matches and provider definitions are listed in the public update log. Goal-type figures retain their own earlier cutoff.`,period);
+    updated.updatedThrough = date;
     if (id === "head-to-head") updated.description = "Recorded meetings in which both players appeared: competitive club games and senior international friendlies. Exhibitions are excluded. See the update log for post-baseline records.";
     if (id === "2026") updated.description = `2026 is not a completed year. Reviewed baseline through ${baselineLabel}, plus recorded matches to ${date}. See the update log for coverage.`;
     updated.metrics.push(...old.metrics.filter(m => m.group === "scoring").map(m => ({...m,coverage:`Through ${baselineLabel}`,explanation:`${m.explanation} Coverage ends ${baselineLabel}; newer matches are not included in this goal-type figure.`})));

@@ -14,6 +14,7 @@ export type Article = {
   sections: readonly { heading: string; text: string; citations?: readonly ArticleCitation[] }[];
   sourceIds: readonly SourceId[];
   published?: string; updated?: string; preset?: CalculatorPreset;
+  reviewAfter?: string;
   citations?: readonly ArticleCitation[];
   summary?: string; tables?: readonly ArticleTable[];
   relatedSlugs?: readonly string[];

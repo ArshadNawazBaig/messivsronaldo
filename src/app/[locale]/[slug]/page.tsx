@@ -5,7 +5,7 @@ import Link from "@/components/localized-link";
 import { notFound } from "next/navigation";
 import { ArrowRight, ArrowUpRight, CalendarDays, Check, ShieldCheck } from "lucide-react";
 import { ClubBreakdown, TeamHonours, CurrentHighlights, teamTrophyTotals } from "@/components/expanded-details";
-import { Comparison, ExploreCards } from "@/components/comparison";
+import { Comparison } from "@/components/comparison";
 import { PlayerMatchup } from "@/components/player-matchup";
 import { AwardChart } from "@/components/award-chart";
 import { AwardComparison, HonoursNavigation } from "@/components/award-comparison";
@@ -25,6 +25,10 @@ import { ToolCards, ToolNavigation } from "@/components/tool-cards";
 import { toolPages } from "@/lib/tools";
 import { comparisonIntro } from "@/lib/comparison-copy";
 import { ComparisonQuestions } from "@/components/comparison-questions";
+import { RecordAnswers } from "@/components/record-answers";
+import { buildRecordAnswers } from "@/lib/record-answers";
+import { RelatedReading } from "@/components/related-reading";
+import { comparisonDataset } from "@/lib/comparison-schema";
 import { SocialLinks } from "@/components/social-links";
 async function getPage(slug: string) {
     const page = Object.hasOwn(pages, slug) ? pages[slug] : undefined;
@@ -61,6 +65,8 @@ export default async function ContentPage({ params }: {
     if (!page)
         notFound();
     return <div className="page-container inner-page"><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd({ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: t("Overview"), item: `${siteUrl}${localizedPath("/", locale)}` }, { "@type": "ListItem", position: 2, name: t(page.title), item: `${siteUrl}${localizedPath(`/${slug}`, locale)}` }] }) }}/><div className="page-intro inner-intro"><div><span className="eyebrow"><span className="tiny-dot"/>{t(page.eyebrow)}</span><h1>{t(page.heading)}</h1><p>{t(page.description)}</p></div></div>
+    {slug === "answers" && <RecordAnswers answers={buildRecordAnswers(liveData, t)} />}
+    {page.scope && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(comparisonDataset(liveData, page.scope, `/${slug}`, locale, siteUrl, t, page.scoring)) }}/>}
     {slug === "assists" && <div className="notice-card"><ShieldCheck size={21}/><div><strong>{t("Career assists: Messi {0} \u00B7 Ronaldo {1}.", { "0": t(careerAssists.messi), "1": t(careerAssists.ronaldo) })}</strong><p>{t("{0} The Champions League view separately uses UEFA\u2019s definition: 40 and 42. ", { "0": t(liveData.coverageNote ? "These combine the reviewed baseline and the sourced match records in the public update log. Provider assist definitions may differ." : "These use the named statistical reference’s conventional-assist totals.") })}<Link href="/insights/why-assist-totals-differ">{t("Why totals can differ ")}<ArrowRight size={13}/></Link></p></div></div>}
     {(Object.hasOwn(toolPages, slug) || slug === "scoring-calculator") && <ToolNavigation current={slug}/>}
     {slug === "tools" && <><ToolCards/><div className="prose panel"><h2>{t("Built for curious football fans")}</h2><p>{t("Our tools turn the published records into questions, charts and calculations you can explore. Every tool runs on this website, with no embedded third-party game or account required.")}</p><p>{t("Quiz answers and chart totals come from the same dataset as the comparison pages. Scenarios use your assumptions. Source references remain available so you can check the underlying records.")}</p><Link className="text-link" href="/methodology">{t("Sources & counting rules")}</Link></div></>}
@@ -69,15 +75,16 @@ export default async function ContentPage({ params }: {
     {slug === "milestone-planner" && <MilestonePlanner/>}
     {slug === "scoring-calculator" && <><ScoringCalculator /><EditorialCards limit={3} calculatorsOnly/></>}
     {slug === "records" && <CurrentHighlights />}
-    {page.scope && <><Comparison initialScope={page.scope} initialGroup={page.scoring ? "scoring" : "overview"} focusMetric={page.focusMetric}/>{slug === "clubs" && <ClubBreakdown />}<ComparisonQuestions slug={slug} data={liveData}/><ExploreCards /></>}
+    {page.scope && <><Comparison initialScope={page.scope} initialGroup={page.scoring ? "scoring" : "overview"} focusMetric={page.focusMetric}/>{slug === "clubs" && <ClubBreakdown />}<ComparisonQuestions slug={slug} data={liveData}/><RelatedReading path={`/${slug}`} /></>}
     {(slug === "honours" || isAwardSlug(slug)) && <HonoursNavigation current={slug} />}
-    {isAwardSlug(slug) && <AwardComparison slug={slug} />}
+    {isAwardSlug(slug) && <><AwardComparison slug={slug} /><RelatedReading path={`/${slug}`} /></>}
     {slug === "honours" && <>
       <section className="honours-comparison" aria-label={t("Player honours comparison")}>
         <div className="snapshot-line"><span><span className="snapshot-dot"/>{t(" Team trophies \u00B7 Through September 2026")}</span><Link href="/methodology">{t("Sources & counting rules ")}<ShieldCheck size={12}/></Link></div>
         <PlayerMatchup values={teamTrophyTotals} label={t("OVERALL TROPHIES")} accessibleLabel={t("overall team trophies")} context={t("Club & country \u00B7 Through Sep 2026")} exportData={{ title: "Overall trophies", context: "Club & country · Team honours", date: "2026-09-21", note: "Includes youth/Olympic titles and MLS conference championship. Individual awards excluded." }}/>
       </section>
       <TeamHonours />
+      <RelatedReading path="/honours" />
       <ComparisonQuestions slug={slug} data={liveData}/>
       <div className="honours-summary">{(["messi", "ronaldo"] as const).map(id => <div className={`honour-player panel ${id}`} key={id}><span className="section-kicker">{t(players[id].name.toUpperCase())}</span><h2>{t("{0} Ballon d\u2019Or awards", { "0": t(players[id].awards.length) })}</h2><div className="award-years">{players[id].awards.map(year => <span key={year}>{t(year)}</span>)}</div></div>)}</div>
       <AwardChart full/><div className="prose panel"><h2>{t("What this timeline measures")}</h2><p>{t("Men\u2019s Ballon d\u2019Or and FIFA Ballon d\u2019Or wins through the latest completed edition, 2025. These are individual awards, not team trophies. No Ballon d\u2019Or was awarded in 2020.")}</p><p>{t("Between 2008 and 2025, 17 awards were presented. Messi and Ronaldo won 13. The 2026 ceremony has not taken place at this snapshot date, so no 2026 winner is assumed.")}</p><a href={sources.ballon.url} target="_blank" rel="noreferrer">{t("See the complete winners list at UEFA ")}<ArrowUpRight size={14}/></a></div>

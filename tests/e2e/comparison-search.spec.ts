@@ -1,3 +1,4 @@
+import { discoveryUpdated } from "../../src/lib/content-discovery";
 import { expect, test } from "@playwright/test";
 import { locales } from "../../src/lib/i18n/config";
 
@@ -52,6 +53,6 @@ test("targeted pages and all locale URLs retain canonical sitemap entries", asyn
     const path = `${locale === "en" ? "" : `/${locale}`}/${slug}`;
     const entry = xml.split("<url>").find(item => item.includes(`${path}</loc>`));
     expect(entry, path).toBeDefined();
-    expect(entry).toContain("2026-09-26");
+    expect(entry).toContain(discoveryUpdated);
   }
 });

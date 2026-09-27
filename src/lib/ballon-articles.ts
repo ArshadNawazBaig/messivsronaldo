@@ -22,7 +22,7 @@ export const ballonArticles: readonly Article[] = [
   {
     slug: ballonSlugs[0], category: "BALLON D’OR 2026", title: "Ballon d’Or 2026 contenders: the stats behind the debate",
     description: "Compare Kane, Mbappé, Yamal and PSG’s contenders using verified season stats. Messi’s nomination, the World Cup and the judging window explained.",
-    readTime: "4 min read", color: "lime", number: "07", published: ballonReviewed, updated: ballonReviewed, sourceIds: [],
+    readTime: "4 min read", color: "lime", number: "07", published: ballonReviewed, updated: ballonReviewed, reviewAfter: "2026-10-26", sourceIds: [],
     image: { path: "/images/articles/ballon-dor-2026-contenders.png", alt: "Ballon d’Or 2026 contenders: Kane, Mbappé, Yamal and Kvaratskhelia, with clearly labelled scoring samples." },
     summary: "Harry Kane’s 61 club goals, Kylian Mbappé’s 15 Champions League goals and Khvicha Kvaratskhelia’s European title offer different arguments. Lamine Yamal and Rodri bring Spain’s World Cup success into the discussion. This is our evidence-led comparison of selected nominees, not an official ranking or a prediction of the vote.",
     tables: [{ caption: "Selected contenders: verified evidence and its scope", columns: ["Player", "Published record", "Competition / period"], rows: [
@@ -45,7 +45,7 @@ export const ballonArticles: readonly Article[] = [
   {
     slug: ballonSlugs[1], category: "CONTENDER COMPARISON", title: "Kane vs Mbappé: 2025/26 stats for the Ballon d’Or debate",
     description: "Kane scored 61 club goals; Mbappé scored 42. Compare appearances, goals per game and Champions League records without mixing competition scopes.",
-    readTime: "3 min read", color: "blue", number: "08", published: ballonReviewed, updated: ballonReviewed, sourceIds: [],
+    readTime: "3 min read", color: "blue", number: "08", published: ballonReviewed, updated: ballonReviewed, reviewAfter: "2026-10-26", sourceIds: [],
     image: { path: "/images/articles/kane-vs-mbappe-2026.png", alt: "Harry Kane 61 and Kylian Mbappé 42: goals in all club competitions in 2025/26." },
     summary: "Kane scored more across the 2025/26 club season: 61 goals in 51 matches, against Mbappé’s 42 in 44. In the Champions League, Mbappé led 15–14 and also had the higher goals-per-appearance rate. These are club records, not complete club-and-country totals for the Ballon d’Or voting period.",
     tables: [{ caption: "Kane vs Mbappé: published 2025/26 club records", columns: ["Statistic and scope", "Harry Kane", "Kylian Mbappé"], rows: [
@@ -66,7 +66,7 @@ export const ballonArticles: readonly Article[] = [
   {
     slug: ballonSlugs[2], category: "AWARD EXPLAINER", title: "Ballon d’Or 2026: ceremony date, voting and judging period",
     description: "The 2026 Ballon d’Or is on 26 October in London. Find the judging dates, who votes, the points system and how the World Cup counts.",
-    readTime: "3 min read", color: "coral", number: "09", published: ballonReviewed, updated: ballonReviewed, sourceIds: [],
+    readTime: "3 min read", color: "coral", number: "09", published: ballonReviewed, updated: ballonReviewed, reviewAfter: "2026-10-26", sourceIds: [],
     image: { path: "/images/articles/ballon-dor-2026-guide.png", alt: "Ballon d’Or 2026: 26 October, London; judging window 3 August 2025 to 19 July 2026." },
     summary: "The 2026 Ballon d’Or ceremony is scheduled for Monday 26 October at the London Palladium Theatre. The men’s award considers performances from 3 August 2025 through 19 July 2026. A specialist journalists’ jury decides the award; it is not decided by an online public poll.",
     tables: [{ caption: "Ballon d’Or 2026: confirmed dates and voting facts", columns: ["Question", "Confirmed information"], rows: [

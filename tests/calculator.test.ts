@@ -1,3 +1,4 @@
+import { discoveryUpdated } from "../src/lib/content-discovery";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { test } from "node:test";
@@ -44,7 +45,7 @@ test("all interactive guides have complete translations, real presets and dated 
   assert.ok(pages.some(page => page.path === "/scoring-calculator"));
   for (const guide of interactiveGuides) {
     assert.ok(Object.hasOwn(calculatorPresets, guide.preset));
-    assert.equal(pages.find(page => page.path === `/insights/${guide.slug}`)?.updated, guide.updated);
+    assert.equal(pages.find(page => page.path === `/insights/${guide.slug}`)?.updated, [discoveryUpdated, guide.updated!].sort().at(-1));
     for (const locale of locales) {
       const messages = JSON.parse(readFileSync(`src/lib/i18n/messages/${locale}.json`, "utf8"));
       for (const key of [guide.title, guide.description, guide.category, ...guide.sections.flatMap(section => [section.heading, section.text])]) {
