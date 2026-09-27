@@ -13,6 +13,7 @@ import { useI18n } from "./i18n-provider";
 import { Select } from "./ui/select";
 import { useFootballData } from "./data-provider";
 import { getPlayerPoster, posterScopeIds, posterScopeLabel, type PlayerPosterRequest } from "@/lib/player-poster";
+import { comparisonRowValue, comparisonScopeLabel, getComparisonPoster } from "@/lib/comparison-poster";
 import {
   imageFormats,
   imageValue,
@@ -37,7 +38,8 @@ export default function StatImageDialog({
 }) {
   const { t } = useI18n();
   const data = useFootballData();
-  const [design, setDesign] = useState<"stat" | "poster">("stat");
+  const [design, setDesign] = useState<"stat" | "poster" | "comparison">("stat");
+  const comparisonOpened = useRef(false);
   const [posterPlayer, setPosterPlayer] = useState<"messi" | "ronaldo">(initialPlayer === "ronaldo" ? "ronaldo" : "messi");
   const [scope, setScope] = useState<PlayerPosterRequest["scope"]>(() => posterScopeIds.find(id =>
     [data.scopes[id].label, data.scopes[id].shortLabel].some(label => stats[0].context === label || stats[0].context.startsWith(`${label} ·`)),
@@ -56,13 +58,20 @@ export default function StatImageDialog({
   const uid = useId();
   const stat = stats[Number(index)];
   const poster = getPlayerPoster(data, { scope, player: posterPlayer });
-  const payload = JSON.stringify(design === "poster"
+  const comparison = getComparisonPoster(data, { scope });
+  const payload = JSON.stringify(design === "comparison"
+    ? { design, scope, format, theme }
+    : design === "poster"
     ? { design, scope, player: posterPlayer, format, theme }
     : { stat, format, players: player, theme });
-  const imageTitle = design === "poster"
+  const imageTitle = design === "comparison"
+    ? `Messi vs Ronaldo · ${comparison.competition}`
+    : design === "poster"
     ? `${posterPlayer === "messi" ? "Lionel Messi" : "Cristiano Ronaldo"} · ${poster.competition}`
     : `${stat.context} · ${stat.title}`;
-  const imageDescription = design === "poster"
+  const imageDescription = design === "comparison"
+    ? `${imageTitle}. ${comparison.rows.map(row => `${row.label}: Messi ${comparisonRowValue(row, "messi")}, Ronaldo ${comparisonRowValue(row, "ronaldo")}`).join(". ")}. Core stats as of ${comparison.date}. ${comparison.notes.join(" ")}`
+    : design === "poster"
     ? `${imageTitle}. ${posterPlayer === "messi" ? "Argentina" : "Portugal"} flag. ${poster.goals} goals. ${poster.metrics.map(metric => `${metric.label}: ${metric.value}`).join(". ")}. As of ${poster.date}.`
     : `${stat.context}: ${stat.title}. ${player !== "ronaldo" ? `Messi ${imageValue(stat, "messi")}. ` : ""}${player !== "messi" ? `Ronaldo ${imageValue(stat, "ronaldo")}.` : ""}`;
   const downloadUrl = `/api/admin/stat-image?data=${encodeURIComponent(payload)}`;
@@ -194,38 +203,42 @@ export default function StatImageDialog({
           <div className={styles.controls}>
             <fieldset className={styles.fieldset}>
               <legend>{t("Image design")}</legend>
-              <div className={styles.themes}>
-                {(["stat", "poster"] as const).map(choice => <button
+              <div className={`${styles.themes} ${styles.designs}`}>
+                {(["stat", "poster", "comparison"] as const).map(choice => <button
                   type="button"
                   key={choice}
                   aria-pressed={design === choice}
                   onClick={() => {
                     if (design !== choice) {
                       setDesign(choice);
+                      if (choice === "comparison" && !comparisonOpened.current) {
+                        setFormat("portrait");
+                        comparisonOpened.current = true;
+                      }
                       setStatus("");
                     }
                   }}
-                >{t(choice === "poster" ? "Player poster" : "Stat card")}</button>)}
+                >{t(choice === "comparison" ? "Comparison poster" : choice === "poster" ? "Player poster" : "Stat card")}</button>)}
               </div>
             </fieldset>
-            {design === "poster" && <>
-              <div className={styles.field}>
+            {design !== "stat" && <>
+              {design === "poster" && <div className={styles.field}>
                 <label htmlFor={`${uid}-poster-player`}>{t("Player")}</label>
                 <Select id={`${uid}-poster-player`} label="Player" value={posterPlayer}
                   portalContainer={portal}
                   onValueChange={value => { setPosterPlayer(value as "messi" | "ronaldo"); setStatus(""); }}
                   options={[{ value: "messi", label: "Lionel Messi" }, { value: "ronaldo", label: "Cristiano Ronaldo" }]}
                 />
-              </div>
+              </div>}
               <div className={styles.field}>
                 <label htmlFor={`${uid}-scope`}>{t("Tournament / competition")}</label>
                 <Select id={`${uid}-scope`} label="Tournament / competition" value={scope}
                   portalContainer={portal}
                   onValueChange={value => { setScope(value as PlayerPosterRequest["scope"]); setStatus(""); }}
-                  options={posterScopeIds.map(id => ({ value: id, label: posterScopeLabel(data, id, posterPlayer) }))}
+                  options={posterScopeIds.map(id => ({ value: id, label: design === "comparison" ? comparisonScopeLabel(data, id) : posterScopeLabel(data, id, posterPlayer) }))}
                 />
               </div>
-              <div className={`${styles.summary} ${styles.posterSummary}`}>
+              {design === "poster" ? <div className={`${styles.summary} ${styles.posterSummary}`}>
                 <strong>{posterPlayer === "messi" ? "Lionel Messi" : "Cristiano Ronaldo"}</strong>
                 <span>{t(poster.competition)} · {poster.date}</span>
                 <dl>
@@ -233,7 +246,18 @@ export default function StatImageDialog({
                     <dt>{t(metric.label)}</dt><dd>{metric.value}</dd>
                   </div>)}
                 </dl>
-              </div>
+              </div> : <div className={styles.summary}>
+                <strong>Messi vs Ronaldo</strong>
+                <span>{t(comparison.competition)} · {comparison.date}</span>
+                <table className={styles.comparisonSummary}>
+                  <caption className="sr-only">{t("Comparison poster statistics")}</caption>
+                  <thead><tr><th scope="col">{t("Statistic")}</th><th scope="col">Messi</th><th scope="col">Ronaldo</th></tr></thead>
+                  <tbody>{comparison.rows.map(row => <tr key={row.id}>
+                    <th scope="row">{t(row.label)}</th>
+                    <td>{comparisonRowValue(row, "messi")}</td><td>{comparisonRowValue(row, "ronaldo")}</td>
+                  </tr>)}</tbody>
+                </table>
+              </div>}
             </>}
             {design === "stat" && stats.length > 1 && (
               <div className={styles.field}>
@@ -363,7 +387,9 @@ export default function StatImageDialog({
             </div>}
             <p className={styles.help}>
               {t(
-                design === "poster"
+                design === "comparison"
+                  ? "Compare both players using published stats. Career posters include trophies and awards; tournament posters use competition totals. Data dates and counting notes are included."
+                  : design === "poster"
                   ? "Posters use published tournament totals, national flags and English labels. The data date and coverage notes are included."
                   : "Images use English labels. The selected filters, data date and coverage notes are included.",
               )}

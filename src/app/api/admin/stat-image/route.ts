@@ -5,6 +5,8 @@ import { renderStatImage } from "@/lib/stat-image-renderer";
 import { getPlayerPoster, playerPosterSchema, posterFilename } from "@/lib/player-poster";
 import { renderPlayerPoster } from "@/lib/player-poster-renderer";
 import { getPublishedData } from "@/lib/server-data";
+import { comparisonPosterSchema, comparisonPosterFilename, getComparisonPoster } from "@/lib/comparison-poster";
+import { renderComparisonPoster } from "@/lib/comparison-poster-renderer";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -21,7 +23,7 @@ async function imageResponse(raw: string, inline = false) {
   } catch {
     throw new AdminError("Invalid image request.", 422);
   }
-  const result = statImageSchema.or(playerPosterSchema).safeParse(body);
+  const result = statImageSchema.or(playerPosterSchema).or(comparisonPosterSchema).safeParse(body);
   if (!result.success)
     throw new AdminError(
       "This comparison cannot be exported. Check its values and date.",
@@ -31,9 +33,16 @@ async function imageResponse(raw: string, inline = false) {
   let rendered: Response;
   let filename: string;
   if ("design" in input) {
-    const poster = getPlayerPoster(await getPublishedData(), input);
-    rendered = await renderPlayerPoster(input, poster);
-    filename = posterFilename(input, poster);
+    const data = await getPublishedData();
+    if (input.design === "comparison") {
+      const poster = getComparisonPoster(data, input);
+      rendered = await renderComparisonPoster(input, poster);
+      filename = comparisonPosterFilename(input, poster);
+    } else {
+      const poster = getPlayerPoster(data, input);
+      rendered = await renderPlayerPoster(input, poster);
+      filename = posterFilename(input, poster);
+    }
   } else {
     rendered = await renderStatImage(input);
     filename = imageFilename(input);

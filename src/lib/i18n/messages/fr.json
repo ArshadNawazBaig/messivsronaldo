@@ -1139,5 +1139,13 @@
   "Copa América": "Copa América",
   "UEFA European Championship": "Championnat d’Europe de l’UEFA",
   "Posters use published tournament totals, national flags and English labels. The data date and coverage notes are included.": "Les affiches utilisent les totaux publiés du tournoi, les drapeaux nationaux et des libellés en anglais. La date des données et les précisions sur leur périmètre sont incluses.",
-  "World Cup stats": "Statistiques de la Coupe du monde"
+  "World Cup stats": "Statistiques de la Coupe du monde",
+  "Comparison poster": "Affiche comparative",
+  "Comparison poster statistics": "Statistiques de l’affiche comparative",
+  "Games played": "Matchs joués",
+  "Team trophies": "Trophées collectifs",
+  "Goals per game": "Buts par match",
+  "Goals per 90": "Buts par 90 minutes",
+  "Free-kick goals": "Buts sur coup franc",
+  "Compare both players using published stats. Career posters include trophies and awards; tournament posters use competition totals. Data dates and counting notes are included.": "Comparez les deux joueurs avec les statistiques publiées. Les affiches de carrière incluent trophées et récompenses ; celles des tournois utilisent les totaux de la compétition. Les dates et critères de comptage sont inclus."
 }

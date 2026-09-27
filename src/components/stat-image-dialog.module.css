@@ -144,6 +144,28 @@
 .posterSummary dd {
   font-size: 20px;
 }
+.comparisonSummary {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+}
+.comparisonSummary th,
+.comparisonSummary td {
+  padding: 8px 4px;
+  border-bottom: 1px solid var(--border);
+}
+.comparisonSummary th {
+  text-align: start;
+  font-weight: 500;
+}
+.comparisonSummary thead th:not(:first-child),
+.comparisonSummary td {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+.comparisonSummary td {
+  font-weight: 700;
+}
 .field {
   display: flex;
   flex-direction: column;
@@ -187,6 +209,13 @@
   border-color: #74941d;
   background: color-mix(in srgb, #74941d 10%, var(--panel));
   font-weight: 600;
+}
+.designs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.designs button:last-child {
+  grid-column: 1 / -1;
 }
 .formats {
   display: flex;
