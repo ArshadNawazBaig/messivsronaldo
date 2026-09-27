@@ -1,3 +1,4 @@
+import { getPublishedArticles } from "@/lib/blog/server";
 import { siteUrl } from "@/lib/site";
 import { getPublishedData } from "@/lib/server-data";
 import { locales, languageNames, localizedUrl } from "@/lib/i18n/config";
@@ -25,10 +26,6 @@ Career assists follow the secondary reference Messi vs Ronaldo App. Champions Le
 - [Career timeline](${siteUrl}/career-timeline): Annual or cumulative goals and assists within a selected year range with an on-page data table and publication cutoff.
 - [Milestone planner](${siteUrl}/milestone-planner): Appearances needed at user-selected scoring rates. Scenarios are not predictions or future match dates.
 - [Scoring calculator](${siteUrl}/scoring-calculator): Compare independent career, calendar-year and season records at equal minutes or appearances. Calculated outputs are scenarios, not recorded goals or predictions.
-- [Interactive guides](${siteUrl}/insights): Messi 2012 vs Ronaldo 2013; 50 vs 48 La Liga goals; 14 vs 17 Champions League goals.
-- [Ballon d’Or 2026 contenders](${siteUrl}/insights/ballon-dor-2026-contenders-stats): Selected official nominees and scoped season statistics, reviewed 27 September 2026. Editorial comparison, not an official ranking.
-- [Kane vs Mbappé](${siteUrl}/insights/kane-vs-mbappe-ballon-dor-2026-stats): 2025/26 all-club and Champions League totals, with calculated goals per appearance. International matches are excluded from these samples.
-- [Ballon d’Or 2026 rules](${siteUrl}/insights/ballon-dor-2026-date-voting-rules): Official ceremony, judging window and journalist voting. The 2026 winner was not announced at the article’s publication date.
 - [Published updates](${siteUrl}/updates): Match records, sources and publication coverage.
 - [International](${siteUrl}/international): Argentina and Portugal records.
 - [Player profiles](${siteUrl}/players/messi): Messi; [Ronaldo](${siteUrl}/players/ronaldo).
@@ -39,6 +36,10 @@ Career assists follow the secondary reference Messi vs Ronaldo App. Champions Le
 - [Champions League](${siteUrl}/champions-league): Main competition, excluding qualifiers.
 - [Honours](${siteUrl}/honours): Team titles and completed Ballon d'Or editions through 2025. No 2026 winner is assumed.
 - [Methodology](${siteUrl}/methodology): Source register, counting rules, review date and limitations.
+
+## Articles
+
+${(await getPublishedArticles("en")).map(article => `- [${article.title.replace(/[\[\]\n]/g, " ")}](${siteUrl}/insights/${article.slug}): ${article.description.replace(/\n/g, " ")}`).join("\n")}
 
 ## Languages
 

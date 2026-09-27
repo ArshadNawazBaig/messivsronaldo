@@ -1,0 +1,1 @@
+Argentina (`ar.svg`) and Portugal (`pt.svg`) flags are from [flag-icons](https://github.com/lipis/flag-icons), `flags/4x3`, retrieved 28 September 2026. The upstream MIT license is included in this directory. These local assets are embedded into player poster PNGs; generating an image makes no external asset requests.

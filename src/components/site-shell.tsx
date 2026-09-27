@@ -2,11 +2,10 @@
 import { LanguageLinks, LanguageSwitcher } from "./language-switcher";
 import { SocialLinks } from "./social-links";
 import { NavigationIcon } from "./ui/navigation-icon";
-import { stripLocale } from "@/lib/i18n/config";
+import { stripLocale, locales, type Locale } from "@/lib/i18n/config";
 import { useI18n } from "@/components/i18n-provider";
 import { useFootballData } from "@/components/data-provider";
 import { players } from "@/lib/data";
-import { interactiveGuides } from "@/lib/interactive-guides";
 import { honoursNavigation } from "@/lib/awards";
 import { toolLinks } from "@/lib/tools";
 import Link from "@/components/localized-link";
@@ -51,7 +50,7 @@ const navItems = [...comparisonItems, ...competitionItems, ...honoursItems.slice
 function isActivePath(pathname: string, href: string) {
     return pathname === href || (href !== "/" && pathname.startsWith(`${href}/`));
 }
-const searchItems = [{ href: "/glossary", label: "Football statistics glossary" }, { href: "/answers", label: "Quick answers" }, { href: "/tools", label: "Tools & games" }, ...toolLinks.filter(tool => tool.href !== "/scoring-calculator").map(tool => ({ href: tool.href, label: tool.label })), { href: "/scoring-calculator", label: "Scoring calculator" }, ...interactiveGuides.map(article => ({ href: `/insights/${article.slug}`, label: article.title })), ...[["terms", "Terms of use"], ["privacy", "Privacy policy"], ["cookies", "Cookie policy"], ["disclaimer", "Editorial disclaimer"], ["accessibility", "Accessibility"], ["contact", "Contact & corrections"], ["sitemap", "Site map"]].map(([slug, label]) => ({ href: `/${slug}`, label })), ...navItems, { href: "/penalties", label: "Penalties & conversion" }, { href: "/free-kicks", label: "Free kicks & goal types" }, { href: "/hat-tricks", label: "Hat-tricks" }, { href: "/head-to-head", label: "Direct head-to-head meetings" }, { href: "/copa-america-vs-euros", label: "Copa América vs Euros" }, { href: "/european-clubs", label: "European club records" }, { href: "/league", label: "All domestic leagues" }, { href: "/records", label: "Records & race to 1,000" }, { href: "/goals", label: "Career goals" }, { href: "/assists", label: "Understanding assists" }, { href: "/methodology", label: "Sources & methodology" }, { href: "/insights", label: "The reading room" }, { href: "/players/messi", label: "Lionel Messi profile" }, { href: "/players/ronaldo", label: "Cristiano Ronaldo profile" }];
+const searchItems = [{ href: "/glossary", label: "Football statistics glossary" }, { href: "/answers", label: "Quick answers" }, { href: "/tools", label: "Tools & games" }, ...toolLinks.filter(tool => tool.href !== "/scoring-calculator").map(tool => ({ href: tool.href, label: tool.label })), { href: "/scoring-calculator", label: "Scoring calculator" }, ...[["terms", "Terms of use"], ["privacy", "Privacy policy"], ["cookies", "Cookie policy"], ["disclaimer", "Editorial disclaimer"], ["accessibility", "Accessibility"], ["contact", "Contact & corrections"], ["sitemap", "Site map"]].map(([slug, label]) => ({ href: `/${slug}`, label })), ...navItems, { href: "/penalties", label: "Penalties & conversion" }, { href: "/free-kicks", label: "Free kicks & goal types" }, { href: "/hat-tricks", label: "Hat-tricks" }, { href: "/head-to-head", label: "Direct head-to-head meetings" }, { href: "/copa-america-vs-euros", label: "Copa América vs Euros" }, { href: "/european-clubs", label: "European club records" }, { href: "/league", label: "All domestic leagues" }, { href: "/records", label: "Records & race to 1,000" }, { href: "/goals", label: "Career goals" }, { href: "/assists", label: "Understanding assists" }, { href: "/methodology", label: "Sources & methodology" }, { href: "/insights", label: "The reading room" }, { href: "/players/messi", label: "Lionel Messi profile" }, { href: "/players/ronaldo", label: "Cristiano Ronaldo profile" }];
 export function Brand() {
     const { t } = useI18n();
     return <Link href="/" className="brand" aria-label={t("The Rivalry home")}><Image className="brand-symbol" src="/images/brand/the-rivalry-mark.svg" width={40} height={40} alt={t("")} unoptimized/><span>{t("THE")}<span className="brand-second">{t("RIVALRY")}<span className="brand-period">.</span></span></span></Link>;
@@ -70,8 +69,9 @@ const navigationGroups: {
     { id: "honours", label: "Trophies & awards", items: honoursItems },
     { id: "reading", label: "Read & research", items: [...editorialItems, { href: "/updates", label: "Update log" }, { href: "/about", label: "About the project" }] },
 ];
-function SiteHeader({ pathname, onSearch }: {
+function SiteHeader({ pathname, onSearch, availableLanguages }: {
     pathname: string;
+    availableLanguages: readonly Locale[];
     onSearch: () => void;
 }) {
     const { t } = useI18n();
@@ -140,7 +140,7 @@ function SiteHeader({ pathname, onSearch }: {
         </Link>)}
       </div>
       <div className="header-tools">
-        {!pathname.startsWith("/admin") && <LanguageSwitcher />}
+        {!pathname.startsWith("/admin") && <LanguageSwitcher available={availableLanguages} />}
         <button className="header-search" onClick={() => { closeNavigation(); onSearch(); }} aria-label={t("Search the site")}><Search size={18} aria-hidden="true"/><span>{t("Search")}</span><kbd>{t("\u2318 K")}</kbd></button>
         <button className="icon-button theme-toggle" aria-label={t("Toggle light or dark theme")} onClick={toggleTheme}><Moon size={19} className="theme-light-icon" aria-hidden="true"/><Sun size={19} className="theme-dark-icon" aria-hidden="true"/></button>
         <button className="header-menu-toggle" ref={menuButton} aria-label={t(menuOpen ? "Close menu" : "Open menu")} aria-controls="main-navigation" aria-expanded={menuOpen} onClick={() => { setMenuOpen(!menuOpen); setOpenGroup(null); }}>{menuOpen ? <X size={21} aria-hidden="true"/> : <Menu size={21} aria-hidden="true"/>}<span>{t("Menu")}</span></button>
@@ -177,12 +177,16 @@ function SiteHeader({ pathname, onSearch }: {
     </div>
   </header>;
 }
-export function SiteShell({ children }: {
+export function SiteShell({ children, articleLinks, articleLanguages }: {
     children: ReactNode;
+    articleLinks: { href: string; label: string }[];
+    articleLanguages: Record<string, Locale[]>;
 }) {
     const { t } = useI18n();
     const { snapshotLabel } = useFootballData();
     const pathname = stripLocale(usePathname());
+    const availableLanguages = pathname.startsWith("/insights/") ? articleLanguages[pathname.slice(10)] ?? [] : locales;
+    const allSearchItems = [...searchItems.map(item => ({ ...item, label: t(item.label) })), ...articleLinks];
     const [query, setQuery] = useState("");
     const dialog = useRef<HTMLDialogElement>(null);
     useEffect(() => {
@@ -197,7 +201,7 @@ export function SiteShell({ children }: {
     }, []);
     return <>
     <a href="#main-content" className="skip-link">{t("Skip to content")}</a>
-    <SiteHeader key={pathname} pathname={pathname} onSearch={() => dialog.current?.showModal()}/>
+    <SiteHeader key={pathname} pathname={pathname} availableLanguages={availableLanguages} onSearch={() => dialog.current?.showModal()}/>
     <div className="site-body">
       <main id="main-content" tabIndex={-1}>{children}</main>
       <footer className="site-footer">
@@ -207,13 +211,13 @@ export function SiteShell({ children }: {
           <div><span className="section-kicker">{t("INFORMATION")}</span><div className="footer-links"><Link href="/terms">{t("Terms of use")}</Link><Link href="/privacy">{t("Privacy")}</Link><Link href="/cookies">{t("Cookies")}</Link><Link href="/disclaimer">{t("Disclaimer")}</Link></div></div>
           <div><span className="section-kicker">{t("FIND YOUR WAY")}</span><div className="footer-links"><Link href="/contact">{t("Contact & corrections")}</Link><Link href="/accessibility">{t("Accessibility")}</Link><Link href="/sitemap">{t("Site map")}</Link><Link href="/admin">{t("Admin")}</Link></div></div>
         </nav>
-        {!pathname.startsWith("/admin") && <LanguageLinks />}
+        {!pathname.startsWith("/admin") && <LanguageLinks available={availableLanguages} />}
         <div className="footer-bottom"><span>© {t(new Date().getFullYear())}{t(" The Rivalry. An independent football project.")}</span><span>{t("Data updated {0}", { "0": t(snapshotLabel) })}</span></div>
       </footer>
     </div>
     <dialog ref={dialog} className="search-dialog" onClick={event => {
             if (event.target === event.currentTarget)
                 dialog.current?.close();
-        }}><div className="search-dialog-inner"><div className="dialog-search-row"><Search size={21}/><input autoComplete="off" placeholder={t("Players, competitions, stories\u2026")} aria-label={t("Search pages")} value={query} onChange={event => setQuery(event.target.value)}/><button className="icon-button" aria-label={t("Close search")} onClick={() => dialog.current?.close()}><X size={19}/></button></div><div className="search-results">{searchItems.filter(item => t(item.label).toLocaleLowerCase().includes(query.toLocaleLowerCase())).map(({ href, label }) => <Link href={href} key={href} onClick={() => { dialog.current?.close(); setQuery(""); }}><NavigationIcon href={href} size={19} aria-hidden="true"/><span>{t(label)}</span><ArrowUpRight size={15}/></Link>)}{!searchItems.some(item => t(item.label).toLocaleLowerCase().includes(query.toLocaleLowerCase())) && <p className="no-results">{t("No matches. Try \u201Cgoals\u201D, \u201CMessi\u201D or \u201Csources\u201D.")}</p>}</div><div className="search-dialog-footer">{t("Search players, competitions and articles.")}<kbd>{t("ESC to close")}</kbd></div></div></dialog>
+        }}><div className="search-dialog-inner"><div className="dialog-search-row"><Search size={21}/><input autoComplete="off" placeholder={t("Players, competitions, stories\u2026")} aria-label={t("Search pages")} value={query} onChange={event => setQuery(event.target.value)}/><button className="icon-button" aria-label={t("Close search")} onClick={() => dialog.current?.close()}><X size={19}/></button></div><div className="search-results">{allSearchItems.filter(item => item.label.toLocaleLowerCase().includes(query.toLocaleLowerCase())).map(({ href, label }) => <Link href={href} key={href} onClick={() => { dialog.current?.close(); setQuery(""); }}><NavigationIcon href={href} size={19} aria-hidden="true"/><span>{label}</span><ArrowUpRight size={15}/></Link>)}{!allSearchItems.some(item => item.label.toLocaleLowerCase().includes(query.toLocaleLowerCase())) && <p className="no-results">{t("No matches. Try \u201Cgoals\u201D, \u201CMessi\u201D or \u201Csources\u201D.")}</p>}</div><div className="search-dialog-footer">{t("Search players, competitions and articles.")}<kbd>{t("ESC to close")}</kbd></div></div></dialog>
   </>;
 }

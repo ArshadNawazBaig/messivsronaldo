@@ -11,6 +11,8 @@ import {
 } from "lucide-react";
 import { useI18n } from "./i18n-provider";
 import { Select } from "./ui/select";
+import { useFootballData } from "./data-provider";
+import { getPlayerPoster, posterScopeIds, posterScopeLabel, type PlayerPosterRequest } from "@/lib/player-poster";
 import {
   imageFormats,
   imageValue,
@@ -34,6 +36,12 @@ export default function StatImageDialog({
   onClose: () => void;
 }) {
   const { t } = useI18n();
+  const data = useFootballData();
+  const [design, setDesign] = useState<"stat" | "poster">("stat");
+  const [posterPlayer, setPosterPlayer] = useState<"messi" | "ronaldo">(initialPlayer === "ronaldo" ? "ronaldo" : "messi");
+  const [scope, setScope] = useState<PlayerPosterRequest["scope"]>(() => posterScopeIds.find(id =>
+    [data.scopes[id].label, data.scopes[id].shortLabel].some(label => stats[0].context === label || stats[0].context.startsWith(`${label} ·`)),
+  ) ?? "career");
   const [format, setFormat] = useState<ImageFormat>("square");
   const [theme, setTheme] = useState<ImageTheme>(initialTheme);
   const [player, setPlayer] = useState(initialPlayer);
@@ -47,7 +55,16 @@ export default function StatImageDialog({
   const close = useRef<HTMLButtonElement>(null);
   const uid = useId();
   const stat = stats[Number(index)];
-  const payload = JSON.stringify({ stat, format, players: player, theme });
+  const poster = getPlayerPoster(data, { scope, player: posterPlayer });
+  const payload = JSON.stringify(design === "poster"
+    ? { design, scope, player: posterPlayer, format, theme }
+    : { stat, format, players: player, theme });
+  const imageTitle = design === "poster"
+    ? `${posterPlayer === "messi" ? "Lionel Messi" : "Cristiano Ronaldo"} · ${poster.competition}`
+    : `${stat.context} · ${stat.title}`;
+  const imageDescription = design === "poster"
+    ? `${imageTitle}. ${posterPlayer === "messi" ? "Argentina" : "Portugal"} flag. ${poster.goals} goals. ${poster.metrics.map(metric => `${metric.label}: ${metric.value}`).join(". ")}. As of ${poster.date}.`
+    : `${stat.context}: ${stat.title}. ${player !== "ronaldo" ? `Messi ${imageValue(stat, "messi")}. ` : ""}${player !== "messi" ? `Ronaldo ${imageValue(stat, "ronaldo")}.` : ""}`;
   const downloadUrl = `/api/admin/stat-image?data=${encodeURIComponent(payload)}`;
   const requestKey = `${payload}:${attempt}`;
   const ready = image?.key === requestKey ? image : null;
@@ -130,7 +147,7 @@ export default function StatImageDialog({
       // File is prepared before this click to preserve mobile user activation.
       await navigator.share({
         files: [ready.file],
-        title: `${stat.context} · ${stat.title}`,
+        title: imageTitle,
       });
       setStatus("Image shared.");
     } catch (e) {
@@ -175,7 +192,50 @@ export default function StatImageDialog({
         </header>
         <div className={styles.body}>
           <div className={styles.controls}>
-            {stats.length > 1 && (
+            <fieldset className={styles.fieldset}>
+              <legend>{t("Image design")}</legend>
+              <div className={styles.themes}>
+                {(["stat", "poster"] as const).map(choice => <button
+                  type="button"
+                  key={choice}
+                  aria-pressed={design === choice}
+                  onClick={() => {
+                    if (design !== choice) {
+                      setDesign(choice);
+                      setStatus("");
+                    }
+                  }}
+                >{t(choice === "poster" ? "Player poster" : "Stat card")}</button>)}
+              </div>
+            </fieldset>
+            {design === "poster" && <>
+              <div className={styles.field}>
+                <label htmlFor={`${uid}-poster-player`}>{t("Player")}</label>
+                <Select id={`${uid}-poster-player`} label="Player" value={posterPlayer}
+                  portalContainer={portal}
+                  onValueChange={value => { setPosterPlayer(value as "messi" | "ronaldo"); setStatus(""); }}
+                  options={[{ value: "messi", label: "Lionel Messi" }, { value: "ronaldo", label: "Cristiano Ronaldo" }]}
+                />
+              </div>
+              <div className={styles.field}>
+                <label htmlFor={`${uid}-scope`}>{t("Tournament / competition")}</label>
+                <Select id={`${uid}-scope`} label="Tournament / competition" value={scope}
+                  portalContainer={portal}
+                  onValueChange={value => { setScope(value as PlayerPosterRequest["scope"]); setStatus(""); }}
+                  options={posterScopeIds.map(id => ({ value: id, label: posterScopeLabel(data, id, posterPlayer) }))}
+                />
+              </div>
+              <div className={`${styles.summary} ${styles.posterSummary}`}>
+                <strong>{posterPlayer === "messi" ? "Lionel Messi" : "Cristiano Ronaldo"}</strong>
+                <span>{t(poster.competition)} · {poster.date}</span>
+                <dl>
+                  {[{ label: "Goals", value: poster.goals }, ...poster.metrics].map(metric => <div key={metric.label}>
+                    <dt>{t(metric.label)}</dt><dd>{metric.value}</dd>
+                  </div>)}
+                </dl>
+              </div>
+            </>}
+            {design === "stat" && stats.length > 1 && (
               <div className={styles.field}>
                 <label htmlFor={`${uid}-stat`}>{t("Statistic")}</label>
                 <Select
@@ -199,7 +259,7 @@ export default function StatImageDialog({
                 />
               </div>
             )}
-            <div className={styles.summary}>
+            {design === "stat" && <div className={styles.summary}>
               <strong>{t(stat.title)}</strong>
               <span>{t(stat.context)}</span>
               <dl>
@@ -212,7 +272,7 @@ export default function StatImageDialog({
                     </div>
                   ))}
               </dl>
-            </div>
+            </div>}
             <fieldset className={styles.fieldset}>
               <legend>{t("Image theme")}</legend>
               <div className={styles.themes}>
@@ -273,7 +333,7 @@ export default function StatImageDialog({
                 ))}
               </div>
             </fieldset>
-            <div className={styles.field}>
+            {design === "stat" && <div className={styles.field}>
               <label htmlFor={`${uid}-player`}>{t("Players in image")}</label>
               <Select
                 id={`${uid}-player`}
@@ -300,10 +360,12 @@ export default function StatImageDialog({
                     })),
                 ]}
               />
-            </div>
+            </div>}
             <p className={styles.help}>
               {t(
-                "Images use English labels. The selected filters, data date and coverage notes are included.",
+                design === "poster"
+                  ? "Posters use published tournament totals, national flags and English labels. The data date and coverage notes are included."
+                  : "Images use English labels. The selected filters, data date and coverage notes are included.",
               )}
             </p>
             <div className={styles.actions}>
@@ -373,7 +435,7 @@ export default function StatImageDialog({
                 src={ready.url}
                 width={imageFormats[format].width}
                 height={imageFormats[format].height}
-                alt={`${stat.context}: ${stat.title}. ${player !== "ronaldo" ? `Messi ${imageValue(stat, "messi")}. ` : ""}${player !== "messi" ? `Ronaldo ${imageValue(stat, "ronaldo")}.` : ""}`}
+                alt={imageDescription}
               />
             ) : (
               <div className={styles.loading} role="status">

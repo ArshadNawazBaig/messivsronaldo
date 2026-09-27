@@ -2,6 +2,9 @@ import { checkOrigin, requireAdmin } from "@/lib/admin/auth";
 import { AdminError } from "@/lib/admin/model";
 import { imageFilename, statImageSchema } from "@/lib/stat-image";
 import { renderStatImage } from "@/lib/stat-image-renderer";
+import { getPlayerPoster, playerPosterSchema, posterFilename } from "@/lib/player-poster";
+import { renderPlayerPoster } from "@/lib/player-poster-renderer";
+import { getPublishedData } from "@/lib/server-data";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -18,20 +21,30 @@ async function imageResponse(raw: string, inline = false) {
   } catch {
     throw new AdminError("Invalid image request.", 422);
   }
-  const result = statImageSchema.safeParse(body);
+  const result = statImageSchema.or(playerPosterSchema).safeParse(body);
   if (!result.success)
     throw new AdminError(
       "This comparison cannot be exported. Check its values and date.",
       422,
     );
-  const rendered = await renderStatImage(result.data);
+  const input = result.data;
+  let rendered: Response;
+  let filename: string;
+  if ("design" in input) {
+    const poster = getPlayerPoster(await getPublishedData(), input);
+    rendered = await renderPlayerPoster(input, poster);
+    filename = posterFilename(input, poster);
+  } else {
+    rendered = await renderStatImage(input);
+    filename = imageFilename(input);
+  }
   // Consume here so rendering failures become a safe JSON error rather than a broken PNG.
   const png = await rendered.arrayBuffer();
   return new Response(png, {
     headers: {
       ...headers,
       "Content-Type": "image/png",
-      "Content-Disposition": `${inline ? "inline" : "attachment"}; filename="${imageFilename(result.data)}"`,
+      "Content-Disposition": `${inline ? "inline" : "attachment"}; filename="${filename}"`,
     },
   });
 }

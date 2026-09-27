@@ -1,4 +1,5 @@
 import { archiveContentUpdated } from "./archive-summary";
+import type { Article } from "./article-types";
 import { articles } from "./articles";
 import { contentPages } from "./content-pages";
 import { policies, policyUpdated } from "./policies";
@@ -15,8 +16,8 @@ export type PublicPage = { path: string; title: string; group: string; updated?:
 
 // Shared by the visitor directory and XML sitemap. System responses, private
 // admin routes, APIs and filter variants are not canonical content pages.
-export function getPublicPages(years: readonly { year: number }[], snapshotDate: string): PublicPage[] {
-  const latestArticle = articles.map(article => article.updated ?? article.published ?? "2026-09-21").sort().at(-1)!;
+export function getPublicPages(years: readonly { year: number }[], snapshotDate: string, entries: readonly Article[] = articles): PublicPage[] {
+  const latestArticle = entries.map(article => article.updated ?? article.published ?? "2026-09-21").sort().at(-1) ?? discoveryUpdated;
   return [
     { path: "/", title: "Messi vs Ronaldo overview", group: "Comparisons", updated: [snapshotDate, toolsUpdated, latestArticle, discoveryUpdated].sort().at(-1) },
     ...Object.entries(contentPages).map(([slug, page]) => {
@@ -42,7 +43,7 @@ export function getPublicPages(years: readonly { year: number }[], snapshotDate:
     ...years.map(({ year }) => ({ path: `/seasons/${year}`, title: `Messi vs Ronaldo, ${year}`, group: "Calendar years", updated: [snapshotDate, semanticContentUpdated, archiveContentUpdated].sort().at(-1) })),
     ...seasons.map(season => ({ path: `/seasons/${season.slug}`, title: `Messi vs Ronaldo, ${season.label}`, group: "Spanish-season archive", updated: [semanticContentUpdated, archiveContentUpdated].sort().at(-1) })),
     { path: "/insights", title: "The reading room", group: "Articles", updated: latestArticle },
-    ...articles.map(article => ({ path: `/insights/${article.slug}`, title: article.title, group: "Articles", updated: [discoveryUpdated, article.updated ?? "2026-09-21"].sort().at(-1) })),
+    ...entries.map(article => ({ path: `/insights/${article.slug}`, title: article.title, group: "Articles", updated: [discoveryUpdated, article.updated ?? "2026-09-21"].sort().at(-1) })),
     { path: "/updates", title: "Public update log", group: "About & policies", updated: snapshotDate },
     { path: "/sitemap", title: "Site map", group: "About & policies" },
   ];

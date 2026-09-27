@@ -1127,5 +1127,17 @@
   "{0}: both competitions at a glance": "{0}: दोनों प्रतियोगिताएँ एक नज़र में",
   "Domestic cups, national-team games and other competitions are excluded. Champions League figures exclude qualifying rounds.": "घरेलू कप, राष्ट्रीय टीम के मैच और अन्य प्रतियोगिताएँ शामिल नहीं हैं। चैंपियंस लीग के आँकड़ों में क्वालीफाइंग दौर शामिल नहीं हैं।",
   "Calendar-year {0}{1}, {2}.": "कैलेंडर वर्ष {0}{1}, {2}।",
-  "{0} is incomplete.": "{0} अभी अधूरा है।"
+  "{0} is incomplete.": "{0} अभी अधूरा है।",
+  "{0} min read": "{0} मिनट का पठन",
+  "Image design": "छवि डिज़ाइन",
+  "Stat card": "आँकड़ों का कार्ड",
+  "Player poster": "खिलाड़ी का पोस्टर",
+  "Tournament / competition": "टूर्नामेंट / प्रतियोगिता",
+  "Player": "खिलाड़ी",
+  "Matches": "मैच",
+  "Goals / game": "गोल / मैच",
+  "Copa América": "कोपा अमेरिका",
+  "UEFA European Championship": "यूईएफए यूरोपीय चैम्पियनशिप",
+  "Posters use published tournament totals, national flags and English labels. The data date and coverage notes are included.": "पोस्टर में टूर्नामेंट के प्रकाशित कुल आँकड़े, राष्ट्रीय ध्वज और अंग्रेज़ी लेबल होते हैं। डेटा की तारीख और कवरेज संबंधी जानकारी शामिल होती है।",
+  "World Cup stats": "विश्व कप के आँकड़े"
 }

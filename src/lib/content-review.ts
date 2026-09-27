@@ -6,7 +6,7 @@ import type { PublishedData } from "./published-data";
 
 export type ContentReviewIssue = { path: string; title: string; reason: string; severity: "action" | "suggestion" };
 export function contentReview(data: PublishedData, today: string, entries: readonly Article[] = articles) {
-  const pages = getPublicPages(data.calendarYears, data.snapshotDate);
+  const pages = getPublicPages(data.calendarYears, data.snapshotDate, entries);
   const paths = new Set(pages.map(page => page.path));
   const issues: ContentReviewIssue[] = [];
   const knownArticles = new Set(entries.map(article => article.slug));
@@ -17,9 +17,9 @@ export function contentReview(data: PublishedData, today: string, entries: reado
     if (!article.summary) add("Consider adding a concise opening answer to this article.");
     if (article.reviewAfter && article.reviewAfter <= today) add(`Scheduled editorial review due ${article.reviewAfter}. Verify claims and sources before changing its review date.`, "action");
     for (const slug of article.relatedSlugs ?? []) if (!knownArticles.has(slug)) add(`Related article does not exist: ${slug}.`, "action");
-    if (!relatedContent(path).length) add("This article has no topic links. Add an editorial relationship.");
+    if (!relatedContent(path, 4, entries).length) add("This article has no topic links. Add an editorial relationship.");
   }
-  for (const path of new Set(contentTopics.flat())) if (!paths.has(path)) issues.push({ path, title: path, reason: "Topic navigation points to an unregistered page.", severity: "action" });
+  for (const path of new Set(contentTopics.flat())) if (!paths.has(path) && !path.startsWith("/insights/")) issues.push({ path, title: path, reason: "Topic navigation points to an unregistered page.", severity: "action" });
   const age = Math.max(0, Math.floor((Date.parse(`${today}T00:00:00Z`) - Date.parse(`${data.snapshotDate}T00:00:00Z`)) / 86400000));
   if (age >= 7) issues.unshift({ path: "/updates", title: "Published match coverage", reason: `The latest recorded match cutoff is ${age} days old. Check for missing matches; this alone does not prove the data is wrong.`, severity: "action" });
   return { today, pageCount: pages.length, articleCount: entries.length, coreCutoff: data.snapshotDate, goalTypeCutoff: data.baselineDate, issues };

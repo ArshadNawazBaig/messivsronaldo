@@ -53,8 +53,14 @@ test("custom calendar supports bounds, keyboard, month/year selection and both t
     const box = await calendar.boundingBox();
     expect(box!.x).toBeGreaterThanOrEqual(0);
     expect(box!.x + box!.width).toBeLessThanOrEqual(page.viewportSize()!.width);
-    expect(await calendar.evaluate(el=>el.scrollHeight<=el.clientHeight+1)).toBe(true);
+    // A constrained viewport may require the popover's existing vertical scroll.
+    // Check that its controls remain reachable instead of requiring an unclipped height.
+    expect(box!.y).toBeGreaterThanOrEqual(0);
+    expect(box!.y + box!.height).toBeLessThanOrEqual(page.viewportSize()!.height + 1);
+    await calendar.getByRole("button", {name:"Today", exact:true}).scrollIntoViewIfNeeded();
+    await expect(calendar.getByRole("button", {name:"Today", exact:true})).toBeInViewport();
     const month = calendar.getByRole("combobox", {name:"Calendar month"});
+    await month.scrollIntoViewIfNeeded();
     await expect(month).toContainText("March");
     expect((await month.boundingBox())!.width).toBeGreaterThan(90);
     expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);

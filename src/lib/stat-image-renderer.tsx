@@ -3,6 +3,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import { playerArtworkColors, transparentPlayerPortraits } from "./player-artwork";
+import { renderStatImageBrand } from "./stat-image-brand";
 import {
   imageFormats,
   imageLeader,
@@ -219,26 +220,7 @@ export async function renderStatImage({
           gap: 30,
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <img
-            src={dataUri(mark, "image/svg+xml")}
-            width={42}
-            height={48}
-            alt=""
-          />
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <span style={{ fontSize: 11, letterSpacing: 3.6 }}>THE</span>
-            <span
-              style={{
-                fontFamily: "Condensed",
-                fontWeight: 800,
-                fontSize: 33,
-              }}
-            >
-              RIVALRY
-            </span>
-          </div>
-        </div>
+        {renderStatImageBrand(dataUri(mark, "image/svg+xml"))}
         <div
           style={{
             display: "flex",

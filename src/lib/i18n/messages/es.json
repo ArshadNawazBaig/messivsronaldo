@@ -1127,5 +1127,17 @@
   "{0}: both competitions at a glance": "{0}: ambas competiciones de un vistazo",
   "Domestic cups, national-team games and other competitions are excluded. Champions League figures exclude qualifying rounds.": "Se excluyen las copas nacionales, los partidos de selecciones y otras competiciones. Las cifras de la Champions League excluyen las rondas clasificatorias.",
   "Calendar-year {0}{1}, {2}.": "{0}{1} del año natural, {2}.",
-  "{0} is incomplete.": "{0} está incompleto."
+  "{0} is incomplete.": "{0} está incompleto.",
+  "{0} min read": "{0} min de lectura",
+  "Image design": "Diseño de imagen",
+  "Stat card": "Tarjeta de estadísticas",
+  "Player poster": "Póster del jugador",
+  "Tournament / competition": "Torneo / competición",
+  "Player": "Jugador",
+  "Matches": "Partidos",
+  "Goals / game": "Goles / partido",
+  "Copa América": "Copa América",
+  "UEFA European Championship": "Campeonato Europeo de la UEFA",
+  "Posters use published tournament totals, national flags and English labels. The data date and coverage notes are included.": "Los pósteres usan los totales publicados del torneo, banderas nacionales y etiquetas en inglés. Incluyen la fecha de los datos y las notas de cobertura.",
+  "World Cup stats": "Estadísticas del Mundial"
 }

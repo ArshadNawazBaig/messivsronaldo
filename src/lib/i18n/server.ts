@@ -13,6 +13,9 @@ const catalogs: Record<Locale, () => Promise<{ default: Messages }>> = {
 export const getI18n = cache(async () => {
   const requested = (await headers()).get("x-rivalry-locale") ?? "en";
   const locale = isLocale(requested) ? requested : "en";
+  return getLocaleI18n(locale);
+});
+export const getLocaleI18n = cache(async (locale: Locale) => {
   const messages = locale === "en" ? {} : (await catalogs[locale]()).default;
   return { locale, messages, numberLocale: numberLocales[locale], t: createTranslator(locale, messages) };
 });

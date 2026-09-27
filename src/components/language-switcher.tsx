@@ -24,7 +24,7 @@ function chooseLanguage(event: React.MouseEvent<HTMLAnchorElement>, next: Locale
   window.location.assign(url.href);
 }
 
-export function LanguageSwitcher() {
+export function LanguageSwitcher({ available = locales }: { available?: readonly Locale[] }) {
   const { locale, t } = useI18n();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -35,7 +35,7 @@ export function LanguageSwitcher() {
     </button></Popover.Trigger>
     <Popover.Portal><Popover.Content className="language-menu" align="end" sideOffset={10} collisionPadding={12} aria-label={t("Language")} dir={locale === "ar" ? "rtl" : "ltr"}>
       <p className="language-menu-title">{t("Choose your language")}</p>
-      <nav aria-label={t("Language")}><ul>{locales.map(next => <li key={next}>
+      <nav aria-label={t("Language")}><ul>{available.map(next => <li key={next}>
         <a href={`${localizedPath(pathname, next)}${suffix}`} hrefLang={next} lang={next} dir="auto" aria-current={locale === next ? "true" : undefined} onClick={event => chooseLanguage(event, next)}>
           <span>{languageNames[next]}</span><span className="language-item-code" aria-hidden="true">{next.toUpperCase()}</span>{locale === next && <Check size={16} aria-hidden="true" />}
         </a>
@@ -45,10 +45,10 @@ export function LanguageSwitcher() {
 }
 
 // Ordinary links are also present in the initial HTML, without opening a portal.
-export function LanguageLinks() {
+export function LanguageLinks({ available = locales }: { available?: readonly Locale[] }) {
   const { locale, t } = useI18n();
   const pathname = usePathname();
   return <nav className="footer-languages" aria-label={t("Choose your language")}>
-    {locales.map(next => <a key={next} href={localizedPath(pathname, next)} hrefLang={next} lang={next} dir="auto" aria-current={next === locale ? "true" : undefined} onClick={event => chooseLanguage(event, next)}>{languageNames[next]}</a>)}
+    {available.map(next => <a key={next} href={localizedPath(pathname, next)} hrefLang={next} lang={next} dir="auto" aria-current={next === locale ? "true" : undefined} onClick={event => chooseLanguage(event, next)}>{languageNames[next]}</a>)}
   </nav>;
 }

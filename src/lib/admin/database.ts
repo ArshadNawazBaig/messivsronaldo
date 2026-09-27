@@ -25,6 +25,8 @@ export async function postgresStore() {
     await tx`CREATE TABLE IF NOT EXISTS sessions (token TEXT PRIMARY KEY, expires BIGINT NOT NULL)`;
     await tx`CREATE TABLE IF NOT EXISTS login_attempts (id SERIAL PRIMARY KEY, at BIGINT NOT NULL)`;
     await tx`CREATE TABLE IF NOT EXISTS locks (id INTEGER PRIMARY KEY, token TEXT NOT NULL, expires BIGINT NOT NULL)`;
+    await tx`CREATE TABLE IF NOT EXISTS blog_posts (id TEXT PRIMARY KEY, locale TEXT NOT NULL, slug TEXT NOT NULL, revision INTEGER NOT NULL, data TEXT NOT NULL, UNIQUE(locale,slug))`;
+    await tx`CREATE TABLE IF NOT EXISTS blog_media (id TEXT PRIMARY KEY, data BYTEA NOT NULL, created_at TEXT NOT NULL)`;
   }).then(() => {}).catch(error => { initialized = undefined; throw error; });
   await initialized;
   return db;

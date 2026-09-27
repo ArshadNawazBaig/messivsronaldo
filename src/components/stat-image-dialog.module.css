@@ -136,6 +136,14 @@
   margin: 0;
   font-variant-numeric: tabular-nums;
 }
+.posterSummary dl {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px 10px;
+}
+.posterSummary dd {
+  font-size: 20px;
+}
 .field {
   display: flex;
   flex-direction: column;

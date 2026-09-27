@@ -15,7 +15,9 @@ export function openStore(path = process.env.ADMIN_DATABASE_PATH || resolve(".da
     CREATE TABLE IF NOT EXISTS settings (key TEXT PRIMARY KEY, value TEXT NOT NULL);
     CREATE TABLE IF NOT EXISTS sessions (token TEXT PRIMARY KEY, expires INTEGER NOT NULL);
     CREATE TABLE IF NOT EXISTS login_attempts (id INTEGER PRIMARY KEY AUTOINCREMENT, at INTEGER NOT NULL);
-    CREATE TABLE IF NOT EXISTS locks (id INTEGER PRIMARY KEY, token TEXT NOT NULL, expires INTEGER NOT NULL);`);
+    CREATE TABLE IF NOT EXISTS locks (id INTEGER PRIMARY KEY, token TEXT NOT NULL, expires INTEGER NOT NULL);
+    CREATE TABLE IF NOT EXISTS blog_posts (id TEXT PRIMARY KEY, locale TEXT NOT NULL, slug TEXT NOT NULL, revision INTEGER NOT NULL, data TEXT NOT NULL, UNIQUE(locale,slug));
+    CREATE TABLE IF NOT EXISTS blog_media (id TEXT PRIMARY KEY, data BLOB NOT NULL, created_at TEXT NOT NULL);`);
   return db;
 }
 let singleton: Database.Database | undefined;

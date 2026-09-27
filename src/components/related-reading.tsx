@@ -1,3 +1,4 @@
+import { getPublishedArticles } from "@/lib/blog/server";
 import { ArrowUpRight } from "lucide-react";
 import Link from "./localized-link";
 import { relatedContent } from "@/lib/content-discovery";
@@ -5,8 +6,8 @@ import { getArticleI18n } from "@/lib/i18n/article-server";
 import styles from "./discovery.module.css";
 
 export async function RelatedReading({ path }: { path: string }) {
-  const { t } = await getArticleI18n();
-  const items = relatedContent(path);
+  const { t, locale } = await getArticleI18n();
+  const items = relatedContent(path, 4, await getPublishedArticles(locale));
   if (!items.length) return null;
   return <section className={styles.related} aria-labelledby="related-reading-title" data-related-reading>
     <div className={styles.heading}><h2 id="related-reading-title">{t("Keep exploring")}</h2><span>{t("Comparisons and reading on this topic")}</span></div>

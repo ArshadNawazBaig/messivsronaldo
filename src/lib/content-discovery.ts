@@ -1,3 +1,4 @@
+import type { Article } from "./article-types";
 import { articles } from "./articles";
 import { contentPages } from "./content-pages";
 import { calendarYears } from "./data";
@@ -24,22 +25,23 @@ export const contentTopics = [
   ["/seasons/2011-12", "/seasons/2013-14", "/champions-league", "/insights/messi-2011-12-vs-ronaldo-2013-14-champions-league"],
 ] as const;
 export type RelatedContent = { path: string; title: string; kind: "article" | "comparison" };
-const destinations: RelatedContent[] = [
+const destinations = (entries: readonly Article[]): RelatedContent[] => [
   ...Object.entries(contentPages).map(([slug, page]) => ({ path: `/${slug}`, title: page.title, kind: "comparison" as const })),
   { path: "/seasons", title: "All years & seasons", kind: "comparison" },
   ...calendarYears.map(({ year }) => ({ path: `/seasons/${year}`, title: `Messi vs Ronaldo, ${year}`, kind: "comparison" as const })),
   ...seasons.map(season => ({ path: `/seasons/${season.slug}`, title: `Messi vs Ronaldo, ${season.label}`, kind: "comparison" as const })),
-  ...articles.map(article => ({ path: `/insights/${article.slug}`, title: article.title, kind: "article" as const })),
+  ...entries.map(article => ({ path: `/insights/${article.slug}`, title: article.title, kind: "article" as const })),
 ];
-export function relatedContent(path: string, limit = 4): RelatedContent[] {
+export function relatedContent(path: string, limit = 4, entries: readonly Article[] = articles): RelatedContent[] {
   const topicPath = path.startsWith("/seasons/") && !contentTopics.some(topic => (topic as readonly string[]).includes(path)) ? "/seasons" : path;
   const topics = contentTopics.filter(topic => (topic as readonly string[]).includes(topicPath));
-  const editorial = articles.find(article => path === `/insights/${article.slug}`)?.relatedSlugs ?? [];
-  const candidates = destinations.filter(item => item.path !== path).map(item => ({
+  const editorial = entries.find(article => path === `/insights/${article.slug}`)?.relatedSlugs ?? [];
+  const candidates = destinations(entries).filter(item => item.path !== path).map(item => ({
     ...item, score: topics.filter(topic => (topic as readonly string[]).includes(item.path)).length + (editorial.includes(item.path.replace("/insights/", "")) ? 10 : 0),
   })).filter(item => item.score > 0).sort((a, b) => b.score - a.score || a.path.localeCompare(b.path));
   const first = candidates[0];
   const otherKind = candidates.find(item => item.kind !== first?.kind);
   const ordered = [...(first ? [first] : []), ...(otherKind ? [otherKind] : []), ...candidates.filter(item => item !== first && item !== otherKind)];
-  return ordered.slice(0, Math.max(0, limit)).map(({ path, title, kind }) => ({ path, title, kind }));
+  const fallback = path.startsWith("/insights/") && !ordered.length ? destinations(entries).filter(item => item.path !== path && (item.kind === "article" || item.path === "/compare")) : [];
+  return [...ordered, ...fallback].slice(0, Math.max(0, limit)).map(({ path, title, kind }) => ({ path, title, kind }));
 }

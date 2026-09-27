@@ -1,3 +1,4 @@
+import { getPublishedArticles } from "@/lib/blog/server";
 import { PageContext } from "@/components/page-context";
 import { StatGlossary } from "@/components/stat-glossary";
 import { getI18n } from "@/lib/i18n/server";
@@ -60,6 +61,7 @@ export default async function ContentPage({ params }: {
 }) {
     const { t, locale } = await getI18n();
     const liveData = await getPublishedData();
+    const articles = await getPublishedArticles(locale);
     const careerAssists = liveData.scopes.career.metrics.find(m => m.id === "assists")!.values;
     const { slug } = await params;
     const page = await getPage(slug);
@@ -79,7 +81,7 @@ export default async function ContentPage({ params }: {
     {slug === "glossary" && <StatGlossary />}
     {slug === "answers" && <RecordAnswers answers={buildRecordAnswers(liveData, t)} />}
     {page.scope && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(comparisonDataset(liveData, page.scope, `/${slug}`, locale, siteUrl, t, page.scoring)) }}/>}
-    {slug === "assists" && <div className="notice-card"><ShieldCheck size={21}/><div><strong>{t("Career assists: Messi {0} \u00B7 Ronaldo {1}.", { "0": t(careerAssists.messi), "1": t(careerAssists.ronaldo) })}</strong><p>{t("{0} The Champions League view separately uses UEFA\u2019s definition: 40 and 42. ", { "0": t(liveData.coverageNote ? "These combine the reviewed baseline and the sourced match records in the public update log. Provider assist definitions may differ." : "These use the named statistical reference’s conventional-assist totals.") })}<Link href="/insights/why-assist-totals-differ">{t("Why totals can differ ")}<ArrowRight size={13}/></Link></p></div></div>}
+    {slug === "assists" && <div className="notice-card"><ShieldCheck size={21}/><div><strong>{t("Career assists: Messi {0} \u00B7 Ronaldo {1}.", { "0": t(careerAssists.messi), "1": t(careerAssists.ronaldo) })}</strong><p>{t("{0} The Champions League view separately uses UEFA\u2019s definition: 40 and 42. ", { "0": t(liveData.coverageNote ? "These combine the reviewed baseline and the sourced match records in the public update log. Provider assist definitions may differ." : "These use the named statistical reference’s conventional-assist totals.") })}{articles.some(article => article.slug === "why-assist-totals-differ") && <Link href="/insights/why-assist-totals-differ">{t("Why totals can differ ")}<ArrowRight size={13}/></Link>}</p></div></div>}
     {(Object.hasOwn(toolPages, slug) || slug === "scoring-calculator") && <ToolNavigation current={slug}/>}
     {slug === "tools" && <><ToolCards/><div className="prose panel"><h2>{t("Built for curious football fans")}</h2><p>{t("Our tools turn the published records into questions, charts and calculations you can explore. Every tool runs on this website, with no embedded third-party game or account required.")}</p><p>{t("Quiz answers and chart totals come from the same dataset as the comparison pages. Scenarios use your assumptions. Source references remain available so you can check the underlying records.")}</p><Link className="text-link" href="/methodology">{t("Sources & counting rules")}</Link></div></>}
     {slug === "football-quiz" && <FootballQuiz/>}

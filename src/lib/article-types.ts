@@ -1,5 +1,6 @@
 import type { SourceId, PlayerId } from "./data";
 import type { CalculatorPreset } from "./calculator";
+import type { RichNode } from "./blog/model";
 
 export type ArticleCitation = { title: string; url: string };
 export type ArticleTable = {
@@ -19,5 +20,7 @@ export type Article = {
   citations?: readonly ArticleCitation[];
   summary?: string; tables?: readonly ArticleTable[];
   relatedSlugs?: readonly string[];
-  image?: { path: string; alt: string };
+  image?: { path: string; alt: string; caption?: string };
+  body?: RichNode;
+  managed?: boolean;
 };

@@ -3,6 +3,8 @@ import test from "node:test";
 import { randomBytes } from "node:crypto";
 import * as db from "../src/lib/admin/database";
 import type { MatchRecord } from "../src/lib/admin/model";
+import { randomUUID } from "node:crypto";
+import { mediaIsPublic, mergePublished, readMedia, readPosts, saveMedia, writePost } from "../src/lib/blog/store";
 
 // This suite only runs against an explicitly provided, isolated test database.
 test("Postgres persists publications, serializes competing writers, and protects admin state", { skip: !process.env.TEST_DATABASE_URL }, async () => {
@@ -55,6 +57,27 @@ test("Postgres persists publications, serializes competing writers, and protects
     await db.deleteSession(token);
     assert.equal(await db.sessionValid(token), false);
     await db.recordLoginAttempt(Date.now());
+    const image = Buffer.from("synthetic image bytes");
+    const path = await saveMedia(image);
+    const mediaId = path.split("/").at(-1)!;
+    const command = { id: randomUUID(), locale: "en", slug: "postgres-blog-test", revision: 0, action: "save", draft: { title: "Postgres article", description: "Synthetic test only.", category: "Test", summary: "", citations: [], image: { path, alt: "Synthetic image" }, body: { type: "doc", content: [{ type: "paragraph", content: [{ type: "text", text: "Synthetic article body." }] }] } } };
+    let post = await writePost(command);
+    await db.closeDatabase();
+    assert.deepEqual(await readMedia(mediaId), image);
+    assert.equal(mediaIsPublic(mediaId, await readPosts()), false);
+    post = await writePost({ ...command, action: "publish", revision: post.revision });
+    await db.closeDatabase();
+    assert.equal(mediaIsPublic(mediaId, await readPosts()), true);
+    assert.equal(mergePublished("en", await readPosts())[0].title, command.draft.title);
+    const blogWrites = await Promise.allSettled([1, 2].map(number => writePost({ ...command, revision: post.revision, draft: { ...command.draft, title: `Draft ${number}` } })));
+    assert.equal(blogWrites.filter(result => result.status === "fulfilled").length, 1);
+    post = (await readPosts())[0];
+    assert.equal(post.published?.title, command.draft.title);
+    await assert.rejects(writePost({ ...command, id: randomUUID() }), /already uses/);
+    post = await writePost({ ...command, action: "delete", revision: post.revision });
+    assert.equal(mediaIsPublic(mediaId, await readPosts()), false);
+    post = await writePost({ ...command, action: "restore", revision: post.revision });
+    assert.equal(post.deleted, false); assert.equal(post.published, null);
     // The old connection was closed; all assertions above use fresh connections after restarts.
     assert.ok(pg);
   } finally {

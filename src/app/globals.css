@@ -4475,7 +4475,8 @@ dialog::backdrop {
   margin-bottom: 25px;
   overflow-x: auto;
 }
-.admin-tabs > button {
+.admin-tabs > button,
+.admin-tabs > a {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -5216,11 +5217,13 @@ dialog::backdrop {
     gap: 23px;
     margin-bottom: 20px;
   }
-  .admin-tabs > button {
+  .admin-tabs > button,
+  .admin-tabs > a {
     font-size: 11px;
     gap: 6px;
   }
-  .admin-tabs > button svg {
+  .admin-tabs > button svg,
+  .admin-tabs > a svg {
     width: 14px;
   }
   .admin-main-grid {
@@ -5697,3 +5700,5 @@ input.date-picker-validation {
 .footer-languages a { color: var(--muted); text-underline-offset: 4px; }
 .footer-languages a[aria-current] { color: var(--text); font-weight: 600; }
 .footer-languages a:hover { color: var(--accent); }
+
+.admin-tabs .admin-blog-nav:hover { color: var(--accent); border-bottom-color: var(--accent); }

@@ -1,6 +1,6 @@
 import "server-only";
 import { cache } from "react";
-import { getI18n } from "./server";
+import { getI18n, getLocaleI18n } from "./server";
 import { createTranslator, type Messages } from "./translate";
 import type { Locale } from "./config";
 
@@ -13,6 +13,10 @@ const catalogs: Record<Locale, () => Promise<{ default: Messages }>> = {
 };
 export const getArticleI18n = cache(async () => {
   const context = await getI18n();
+  return getArticleI18nForLocale(context.locale);
+});
+export const getArticleI18nForLocale = cache(async (locale: Locale) => {
+  const context = await getLocaleI18n(locale);
   if (context.locale === "en") return context;
   const messages = { ...context.messages, ...(await catalogs[context.locale]()).default };
   return { ...context, t: createTranslator(context.locale, messages) };

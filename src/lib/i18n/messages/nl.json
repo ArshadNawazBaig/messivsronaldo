@@ -1127,5 +1127,17 @@
   "{0}: both competitions at a glance": "{0}: beide competities in één oogopslag",
   "Domestic cups, national-team games and other competitions are excluded. Champions League figures exclude qualifying rounds.": "Nationale bekertoernooien, interlands en andere competities zijn uitgesloten. De Champions League-cijfers zijn exclusief voorrondes.",
   "Calendar-year {0}{1}, {2}.": "Kalenderjaar {0}{1}, {2}.",
-  "{0} is incomplete.": "{0} is onvolledig."
+  "{0} is incomplete.": "{0} is onvolledig.",
+  "{0} min read": "{0} min leestijd",
+  "Image design": "Afbeeldingsontwerp",
+  "Stat card": "Statistiekkaart",
+  "Player poster": "Spelersposter",
+  "Tournament / competition": "Toernooi / competitie",
+  "Player": "Speler",
+  "Matches": "Wedstrijden",
+  "Goals / game": "Goals / wedstrijd",
+  "Copa América": "Copa América",
+  "UEFA European Championship": "Europees kampioenschap UEFA",
+  "Posters use published tournament totals, national flags and English labels. The data date and coverage notes are included.": "Posters gebruiken gepubliceerde toernooitotalen, nationale vlaggen en Engelse labels. De peildatum en toelichting op de dekking worden vermeld.",
+  "World Cup stats": "WK-statistieken"
 }

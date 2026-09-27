@@ -29,3 +29,8 @@
   .tableSection h2, .body h2 { font-size: 23px; }
   .tableSection h2, .body h2 { scroll-margin-top: 155px; }
 }
+
+.hero { margin: 24px 0 32px; }
+.hero img { display: block; width: 100%; height: auto; max-height: 620px; object-fit: contain; border-radius: 10px; background: var(--panel-raised); }
+
+.hero figcaption { font-size: 13px; margin-top: 8px; color: var(--muted); text-align: center; }
