@@ -7,8 +7,9 @@ export type { Article } from "./article-types";
 
 export const articles: readonly Article[] = [
   ...ballonArticles,
-  ...interactiveGuides,
+  ...interactiveGuides.map(article => ({ ...article, players: ["messi", "ronaldo"] as const })),
   {
+    players: ["messi", "ronaldo"],
     slug: "why-assist-totals-differ", category: "ASSIST DEFINITIONS", title: "An assist isn’t always an assist.", description: "Why two trusted sources can give you two different answers — and how to compare fairly.", readTime: "4 min read", color: "blue", number: "01",
     sections: [
       { heading: "Start with the definition", text: "A goal assist, a fantasy assist and a secondary assist describe different contributions. A pass to the scorer may qualify as a conventional assist, while a rebound or a penalty won may be counted by a broader fantasy system. Adding these categories together changes the question being answered." },
@@ -17,6 +18,7 @@ export const articles: readonly Article[] = [
     ], sourceIds: ["uefa"] as const,
   },
   {
+    players: ["messi", "ronaldo"],
     slug: "totals-vs-scoring-rates", category: "SCORING RATES", title: "More goals. Or more goals per game?", description: "Career totals and scoring rates tell different parts of the same remarkable story.", readTime: "3 min read", color: "coral", number: "02",
     sections: [
       { heading: "Volume and efficiency answer different questions", text: "A career total measures accumulated scoring. Goals per appearance measures average scoring in matches played. Neither metric replaces the other: one values sustained output, while the other describes frequency within a defined sample." },
@@ -26,6 +28,7 @@ export const articles: readonly Article[] = [
     ], sourceIds: ["uefa"] as const,
   },
   {
+    players: ["messi", "ronaldo"],
     slug: "what-counts-as-a-career-goal", category: "COUNTING RULES", title: "What counts as a career goal?", description: "Friendlies, shootouts and youth football: the small print behind a very big number.", readTime: "3 min read", color: "lime", number: "03",
     sections: [
       { heading: "Define the match before counting the goal", text: "Our career comparison uses senior competitive club football and senior A internationals. Club friendlies, exhibition fixtures, reserve teams and youth matches are excluded. Recognized senior international friendlies are included; they belong to a different category from club preseason games." },

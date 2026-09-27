@@ -2,6 +2,8 @@ import { test, expect } from "@playwright/test";
 import { readFileSync } from "node:fs";
 import { ballonArticles } from "../../src/lib/ballon-articles";
 import { locales, localizedPath } from "../../src/lib/i18n/config";
+import { calendarYears, snapshotDate } from "../../src/lib/data";
+import { getPublicPages } from "../../src/lib/public-pages";
 
 test.describe("crawlable award articles", () => {
   test.use({ javaScriptEnabled: false });
@@ -46,7 +48,9 @@ test("article navigation hydrates, table links work, and Arabic fits in both the
   await expect(page).toHaveURL(/#table-0$/);
   await expect(page.locator("table tbody tr").first().locator("td")).toHaveText(["61", "42"]);
   await expect(page.locator("table tbody tr").nth(3).locator("td")).toHaveText(["14", "15"]);
-  await page.getByRole("link", { name: ballonArticles[0].title, exact: true }).click();
+  const relatedArticle = page.locator(`[data-related-reading] a[href="/insights/${ballonArticles[0].slug}"]`);
+  await expect(relatedArticle).toContainText(ballonArticles[0].title);
+  await relatedArticle.click();
   await expect(page.locator("h1")).toHaveText(ballonArticles[0].title);
   await page.goto(`/ar/insights/${ballonArticles[2].slug}`);
   for (const theme of ["light", "dark"]) {
@@ -60,7 +64,7 @@ test("article navigation hydrates, table links work, and Arabic fits in both the
 test("new articles appear in the sitemap and directory without replacing calculator guides", async ({ page, request }) => {
   const xml = await (await request.get("/sitemap.xml")).text();
   for(const article of ballonArticles) for(const locale of locales) expect(xml).toContain(`<loc>https://messivsronaldo17.com${localizedPath(`/insights/${article.slug}`,locale)}</loc>`);
-  expect(xml.match(/<url>/g)).toHaveLength(696);
+  expect(xml.match(/<url>/g)).toHaveLength(getPublicPages(calendarYears, snapshotDate).length * locales.length);
   await page.goto("/insights");
   for(const article of ballonArticles) await expect(page.getByRole("link", { name: new RegExp(article.title.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")) })).toBeVisible();
   await page.goto("/scoring-calculator");

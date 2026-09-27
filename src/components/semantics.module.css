@@ -1,0 +1,27 @@
+.breadcrumbs { margin: 0 0 28px; color: var(--muted); font-size: 13px; line-height: 1.7; }
+.breadcrumbs ol { list-style: none; display: flex; flex-wrap: wrap; gap: 4px 10px; padding: 0; margin: 0; }
+.breadcrumbs li { display: flex; align-items: baseline; gap: 10px; min-width: 0; }
+.breadcrumbs a { color: var(--muted); text-decoration: none; }
+.breadcrumbs [aria-current] { color: var(--text); overflow-wrap: anywhere; }
+.separator { color: var(--muted); }
+.breadcrumbs a:hover, .glossary a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.breadcrumbs a:focus-visible, .glossary a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.glossary { max-width: 1050px; }
+.termIndex { padding-block: 0 28px; border-bottom: 2px solid var(--text); }
+.termIndex ul { display: flex; flex-wrap: wrap; gap: 10px 24px; padding: 0; margin: 0; list-style: none; }
+.glossary a { color: var(--accent); font-size: 14px; text-underline-offset: 4px; }
+.glossary section { margin-block: 40px; }
+.glossary h2 { font-size: 28px; font-family: var(--font-display), sans-serif; margin-bottom: 20px; }
+.glossary dl { margin: 0; }
+.term { display: grid; grid-template-columns: minmax(150px, 1fr) 2fr; gap: 24px; padding-block: 24px; border-top: 1px solid var(--border); scroll-margin-top: 220px; }
+.term dt { font-size: 18px; font-weight: 600; color: var(--text); }
+.term dd { margin: 0; }
+.term p, .countingRules p { margin: 0 0 12px; color: var(--muted); line-height: 1.8; }
+.countingRules { padding: 28px; background: var(--panel); border: 1px solid var(--border); }
+.countingRules a { display: inline-block; margin-inline-end: 24px; }
+@media (max-width: 700px) {
+  .breadcrumbs { margin-bottom: 20px; font-size: 12px; }
+  .term { grid-template-columns: 1fr; gap: 10px; scroll-margin-top: 160px; }
+  .termIndex ul { gap: 12px 20px; }
+  .countingRules { padding: 20px; }
+}

@@ -1,3 +1,4 @@
+import { PageContext } from "@/components/page-context";
 import { getI18n } from "@/lib/i18n/server";
 import Link from "@/components/localized-link";
 import { ArrowUpRight } from "lucide-react";
@@ -9,7 +10,7 @@ export default async function SiteMapPage() {
     const { t } = await getI18n();
     const { calendarYears, snapshotDate } = await getPublishedData();
     const pages = getPublicPages(calendarYears, snapshotDate);
-    return <div className="page-container inner-page">
+    return <div className="page-container inner-page"><PageContext path="/sitemap" title={t("Site map")} breadcrumbs={[{ path: "/", name: t("Overview") }, { path: "/sitemap", name: t("Site map") }]} />
     <div className="page-intro inner-intro"><div><span className="eyebrow"><span className="tiny-dot"/>{t("THE COMPLETE INDEX")}</span><h1>{t("Find your next chapter.")}</h1><p>{t("Every comparison, season and story in one place. Browse {0} public pages, or open the ", { "0": t(pages.length) })}<a href="/sitemap.xml">{t("XML sitemap")}</a>.</p></div></div>
     <div className="sitemap-grid">{pageGroups.map((group, index) => <section key={group} className="sitemap-group">
       <div className="sitemap-group-heading"><span className="section-kicker">{t(String(index + 1).padStart(2, "0"))}</span><h2>{t(group)}</h2></div>

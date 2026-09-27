@@ -6,6 +6,7 @@ import type { FocusMetric } from "./comparison-focus";
 
 export const contentPages: Record<string, { title: string; heading: string; eyebrow: string; description: string; scope?: ScopeId; scoring?: boolean; focusMetric?: FocusMetric }> = {
   ...toolPages,
+  glossary: { title: "Football Statistics Glossary: Goals, Assists & Scoring Rates", heading: "Football statistics glossary", eyebrow: "UNDERSTANDING THE NUMBERS", description: "What counts as a goal, assist, appearance or hat-trick? Understand the definitions, scoring formulas and counting rules used in our Messi vs Ronaldo comparisons." },
   answers: { title: "Messi vs Ronaldo: Goals, Records & Quick Answers", heading: "Your questions. The records.", eyebrow: "QUICK ANSWERS", description: "Find dated answers about Messi and Ronaldo’s goals, assists, appearances and scoring records, with sources and counting rules." },
   "scoring-calculator": { title: "Messi vs Ronaldo Scoring Calculator: Compare Seasons & Rates", heading: "Same opportunity. Your comparison.", eyebrow: "THE SCORING CALCULATOR", description: "Choose a record for each player. Compare their goals at equal minutes or appearances, explore peak seasons, and share your calculation." },
   compare: { title: "Messi vs Ronaldo Comparison Explorer", heading: "Compare the records.", eyebrow: "THE COMPARISON EXPLORER", description: "Choose the context, explore the figures, and share what you find. Every comparison keeps its scope and source attached.", scope: "career" },

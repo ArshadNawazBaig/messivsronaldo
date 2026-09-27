@@ -8,6 +8,7 @@ import { comparisonContentUpdated, refreshedComparisons } from "./comparison-cop
 import { ballonReviewed } from "./ballon-articles";
 import { discoveryUpdated } from "./content-discovery";
 import { socialProfilesUpdated } from "./social-profiles";
+import { semanticContentUpdated } from "./page-semantics";
 
 export type PublicPage = { path: string; title: string; group: string; updated?: string };
 
@@ -18,7 +19,7 @@ export function getPublicPages(years: readonly { year: number }[], snapshotDate:
   return [
     { path: "/", title: "Messi vs Ronaldo overview", group: "Comparisons", updated: [snapshotDate, toolsUpdated, latestArticle, discoveryUpdated].sort().at(-1) },
     ...Object.entries(contentPages).map(([slug, page]) => {
-      let updated = slug === "about" || slug === "contact" ? socialProfilesUpdated
+      let updated = slug === "glossary" ? semanticContentUpdated : slug === "about" || slug === "contact" ? socialProfilesUpdated
         : slug === "ballon-dor" ? [awardsReviewed, ballonReviewed].sort().at(-1)
         : refreshedComparisons.has(slug) ? [comparisonContentUpdated, snapshotDate].sort().at(-1)
         : Object.hasOwn(toolPages, slug) || slug === "scoring-calculator" ? [toolsUpdated, snapshotDate].sort().at(-1)
@@ -36,9 +37,9 @@ export function getPublicPages(years: readonly { year: number }[], snapshotDate:
     }),
     { path: "/players/messi", title: "Lionel Messi profile", group: "Player profiles", updated: snapshotDate },
     { path: "/players/ronaldo", title: "Cristiano Ronaldo profile", group: "Player profiles", updated: snapshotDate },
-    { path: "/seasons", title: "All years & seasons", group: "Calendar years", updated: snapshotDate },
-    ...years.map(({ year }) => ({ path: `/seasons/${year}`, title: `Messi vs Ronaldo, ${year}`, group: "Calendar years", updated: snapshotDate })),
-    ...seasons.map(season => ({ path: `/seasons/${season.slug}`, title: `Messi vs Ronaldo, ${season.label}`, group: "Spanish-season archive" })),
+    { path: "/seasons", title: "All years & seasons", group: "Calendar years", updated: [snapshotDate, semanticContentUpdated].sort().at(-1) },
+    ...years.map(({ year }) => ({ path: `/seasons/${year}`, title: `Messi vs Ronaldo, ${year}`, group: "Calendar years", updated: [snapshotDate, semanticContentUpdated].sort().at(-1) })),
+    ...seasons.map(season => ({ path: `/seasons/${season.slug}`, title: `Messi vs Ronaldo, ${season.label}`, group: "Spanish-season archive", updated: semanticContentUpdated })),
     { path: "/insights", title: "The reading room", group: "Articles", updated: latestArticle },
     ...articles.map(article => ({ path: `/insights/${article.slug}`, title: article.title, group: "Articles", updated: [discoveryUpdated, article.updated ?? "2026-09-21"].sort().at(-1) })),
     { path: "/updates", title: "Public update log", group: "About & policies", updated: snapshotDate },

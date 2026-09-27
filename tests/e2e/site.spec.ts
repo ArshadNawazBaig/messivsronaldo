@@ -51,7 +51,7 @@ test("search navigates to editorial content and theme persists", async ({ page }
   await page.getByRole("textbox", { name: "Search pages" }).fill("assist");
   await page.getByRole("dialog").getByRole("link", { name: "Understanding assists" }).click();
   await expect(page).toHaveURL(/\/assists$/);
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Assists & goal contributions.");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Messi vs Ronaldo Career Assists & Goal Contributions");
   await page.getByRole("button", { name: "Toggle light or dark theme" }).click();
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
   await page.reload();

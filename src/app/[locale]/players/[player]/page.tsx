@@ -1,7 +1,9 @@
+import { PageContext } from "@/components/page-context";
+import { playerEntity } from "@/lib/page-semantics";
 import type { CSSProperties } from "react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight, ArrowUpRight, Trophy } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Trophy } from "lucide-react";
 import { StatImageButton } from "@/components/admin-stat-export";
 import { ClubBreakdown, teamTrophyTotals } from "@/components/expanded-details";
 import Link from "@/components/localized-link";
@@ -53,10 +55,10 @@ export default async function PlayerPage({ params }: { params: Promise<{ player:
   ];
 
   return <div className={`page-container inner-page ${styles.page}`} data-player={player} style={playerArtworkStyle(player) as CSSProperties}>
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd({ "@context": "https://schema.org", "@type": "Person", "@id": `${siteUrl}/players/${player}#person`, name: p.name, birthDate: p.born, nationality: { "@type": "Country", name: p.country }, image: `${siteUrl}${portrait.src}`, url: `${siteUrl}${localizedPath(`/players/${player}`, locale)}` }) }} />
+    <PageContext path={`/players/${player}`} title={t(p.name)} players={[player]} mainEntityId={`${siteUrl}/players/${player}#person`} breadcrumbs={[{ path: "/", name: t("Overview") }, { path: `/players/${player}`, name: t(p.name) }]} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd({ "@context": "https://schema.org", ...playerEntity(player, locale, siteUrl), mainEntityOfPage: { "@id": `${siteUrl}${localizedPath(`/players/${player}`, locale)}#webpage` }, birthDate: p.born, nationality: { "@type": "Country", name: p.country }, image: `${siteUrl}${portrait.src}`, url: `${siteUrl}${localizedPath(`/players/${player}`, locale)}` }) }} />
 
     <div className={styles.breadcrumb}>
-      <Link href="/"><ArrowLeft size={15} aria-hidden="true" />{t("Overview")}</Link>
       <Link href={`/players/${player === "messi" ? "ronaldo" : "messi"}`}>{t(other.name)}<ArrowUpRight size={15} aria-hidden="true" /></Link>
     </div>
 

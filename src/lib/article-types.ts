@@ -1,4 +1,4 @@
-import type { SourceId } from "./data";
+import type { SourceId, PlayerId } from "./data";
 import type { CalculatorPreset } from "./calculator";
 
 export type ArticleCitation = { title: string; url: string };
@@ -15,6 +15,7 @@ export type Article = {
   sourceIds: readonly SourceId[];
   published?: string; updated?: string; preset?: CalculatorPreset;
   reviewAfter?: string;
+  players?: readonly PlayerId[];
   citations?: readonly ArticleCitation[];
   summary?: string; tables?: readonly ArticleTable[];
   relatedSlugs?: readonly string[];
