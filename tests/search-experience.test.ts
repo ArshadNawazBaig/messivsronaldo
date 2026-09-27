@@ -59,6 +59,8 @@ test("structured data retains cutoff, definitions, localized identities and actu
   assert.equal(core.dateModified, "2026-09-25");
   assert.equal(types.dateModified, "2026-09-21");
   assert.equal(core.url, "https://example.com/fr/goals#comparison");
+  assert.equal(core.license, "https://example.com/fr/terms#using-the-content");
+  assert.equal(types.license, core.license);
   assert.ok(core.citation.every(url => url.startsWith("https://")));
   assert.equal(core.variableMeasured.find(v => v.name === "Lionel Messi · Goals")!.value, 932);
   const rate = core.variableMeasured.find(v => v.name === "Lionel Messi · Goals per appearance")!.value;

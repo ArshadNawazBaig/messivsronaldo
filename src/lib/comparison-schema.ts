@@ -15,6 +15,8 @@ export function comparisonDataset(data: PublishedData, scopeId: ScopeId, path: s
     description: `${t(scope.description)} ${t("Data cutoff: ")} ${cutoff}.`,
     url: `${url}#comparison`, inLanguage: locale, version: data.datasetVersion,
     dateModified: cutoff, creator: { "@id": `${origin}/#publisher` }, isAccessibleForFree: true,
+    // Reference the site's existing reuse terms, including third-party rights.
+    license: localizedUrl("/terms#using-the-content", locale, origin),
     mainEntityOfPage: { "@id": `${url}#webpage` },
     about: (["messi", "ronaldo"] as const).map(id => playerEntity(id, locale, origin)),
     measurementTechnique: localizedUrl("/methodology", locale, origin),

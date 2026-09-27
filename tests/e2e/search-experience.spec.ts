@@ -52,6 +52,12 @@ test("comparison schemas match visible stats and article topic links survive nav
   expect(datasets).toHaveLength(1);
   expect(datasets[0].variableMeasured.find((v: {name:string}) => v.name === "Lionel Messi · Direct free-kick goals").value).toBe(75);
   expect(datasets[0].dateModified).toBe("2026-09-21");
+  const license = new URL(datasets[0].license);
+  expect(license.pathname).toBe("/terms");
+  expect(license.hash).toBe("#using-the-content");
+  const licensePage = await page.request.get(license.pathname);
+  expect(licensePage.status()).toBe(200);
+  expect(await licensePage.text()).toContain('id="using-the-content"');
   const related = page.locator("[data-related-reading]");
   await expect(related.getByRole("link")).toHaveCount(4);
   await related.getByRole("link", { name: /What counts as a career goal/ }).click();
