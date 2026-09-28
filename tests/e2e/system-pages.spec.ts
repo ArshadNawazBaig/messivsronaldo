@@ -41,13 +41,20 @@ test("policy pages, directory and footer work in both themes and fit the viewpor
 });
 
 test("unknown routes return a branded 404 and let visitors recover", async ({ page }) => {
-  for (const path of ["/this-page-does-not-exist", "/players/not-a-player", "/seasons/no-such-year", "/unknown/nested/page"]) {
+  const errors: string[] = [];
+  page.on("pageerror", error => errors.push(error.message));
+  for (const path of ["/404", "/this-page-does-not-exist", "/players/not-a-player", "/seasons/no-such-year", "/unknown/nested/page"]) {
     const response = await page.goto(path);
     expect(response?.status()).toBe(404);
     await expect(page.getByRole("heading", { name: "A little wide of the mark." })).toBeVisible();
     expect(await page.locator('meta[name="robots"]').first().getAttribute("content")).toContain("noindex");
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    await page.waitForLoadState("networkidle");
+    expect(errors, path).toEqual([]);
   }
+  expect((await page.reload())?.status()).toBe(404);
+  await page.waitForLoadState("networkidle");
+  expect(errors, "reloading a missing page").toEqual([]);
   for (const theme of ["light", "dark"]) {
     await page.evaluate(theme => { document.documentElement.dataset.theme = theme; }, theme);
     expect((await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze()).violations).toEqual([]);
@@ -55,6 +62,7 @@ test("unknown routes return a branded 404 and let visitors recover", async ({ pa
   await page.getByRole("link", { name: "Back to the overview" }).click();
   await expect(page).toHaveURL("/");
   await expect(page.locator(".player-matchup")).toBeVisible();
+  expect(errors, "recovering from a missing page").toEqual([]);
 });
 
 test("the maintenance screen uses 503 without taking the public website offline", async ({ page, request }) => {
