@@ -1167,5 +1167,22 @@
   "Fit": "Passend",
   "Ready to share": "Klaar om te delen",
   "Preparing your image…": "Je afbeelding voorbereiden…",
-  "Download started.": "Download gestart."
+  "Download started.": "Download gestart.",
+  "Comparison style": "Vergelijkingsstijl",
+  "Visual bars": "Visuele balken",
+  "Clean table": "Eenvoudige tabel",
+  "Choose statistics": "Statistieken kiezen",
+  "All stats": "Alle statistieken",
+  "Essentials": "Kerncijfers",
+  "Choose at least four stats. Use the arrows to change their order.": "Kies minstens vier statistieken. Gebruik de pijlen om de volgorde te wijzigen.",
+  "Move {0} up": "{0} omhoog",
+  "Move {0} down": "{0} omlaag",
+  "Explore poster statistics": "Posterstatistieken verkennen",
+  "Select a row. Use arrow keys to explore.": "Selecteer een rij. Gebruik de pijltjestoetsen om te verkennen.",
+  "Comparison unavailable": "Vergelijking niet beschikbaar",
+  "Level on this statistic": "Gelijk op deze statistiek",
+  "{0} more for {1}": "{0} meer voor {1}",
+  "Close statistic details": "Statistiekdetails sluiten",
+  "Stats through {0}": "Statistieken t/m {0}",
+  "Tap a stat to explore": "Tik op een statistiek"
 }

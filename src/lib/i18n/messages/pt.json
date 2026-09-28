@@ -1167,5 +1167,22 @@
   "Fit": "Ajustar",
   "Ready to share": "Pronto para partilhar",
   "Preparing your image…": "A preparar a imagem…",
-  "Download started.": "Transferência iniciada."
+  "Download started.": "Transferência iniciada.",
+  "Comparison style": "Estilo de comparação",
+  "Visual bars": "Barras visuais",
+  "Clean table": "Tabela simples",
+  "Choose statistics": "Escolher estatísticas",
+  "All stats": "Todas as estatísticas",
+  "Essentials": "Essenciais",
+  "Choose at least four stats. Use the arrows to change their order.": "Escolha pelo menos quatro estatísticas. Use as setas para alterar a ordem.",
+  "Move {0} up": "Mover {0} para cima",
+  "Move {0} down": "Mover {0} para baixo",
+  "Explore poster statistics": "Explorar estatísticas do póster",
+  "Select a row. Use arrow keys to explore.": "Selecione uma linha. Use as teclas de seta para explorar.",
+  "Comparison unavailable": "Comparação indisponível",
+  "Level on this statistic": "Empate nesta estatística",
+  "{0} more for {1}": "Mais {0} para {1}",
+  "Close statistic details": "Fechar detalhes da estatística",
+  "Stats through {0}": "Estatísticas até {0}",
+  "Tap a stat to explore": "Toque numa estatística"
 }

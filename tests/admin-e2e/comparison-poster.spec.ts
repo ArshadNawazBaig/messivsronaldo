@@ -30,6 +30,12 @@ test("comparison posters require admin access, reject supplied figures and rende
   for (const change of [{ scope: "unknown" }, { values: { messi: 99999 } }, { player: "messi" }, { imageUrl: "https://example.com/image.png" }]) {
     expect((await post({ ...payload, ...change })).status()).toBe(422);
   }
+  for (const change of [
+    { metrics: ["goals", "goals", "assists", "appearances"] },
+    { metrics: ["goals", "assists", "appearances", "minutes"] },
+    { scope: "world-cup", metrics: ["goals", "assists", "appearances", "ballon-dor"] },
+    { metrics: ["goals"] }, { showBars: "yes" },
+  ]) expect((await post({ ...payload, ...change })).status()).toBe(422);
   await mkdir(".artifacts/comparison-poster", { recursive: true });
   for (const theme of ["dark", "light"]) {
     for (const [format, height] of [["square", 1080], ["portrait", 1350], ["story", 1920]] as const) {
@@ -44,6 +50,58 @@ test("comparison posters require admin access, reject supplied figures and rende
   const inline = await page.request.get(`${url}&inline=1`);
   expect(inline.status()).toBe(200);
   expect(inline.headers()["content-disposition"]).toBe('inline; filename="messi-vs-ronaldo-career-comparison-2026-09-22-dark-portrait.png"');
+});
+
+test("comparison artwork supports stat exploration, custom order and a matching download", async ({ page }, info) => {
+  test.setTimeout(90000);
+  await login(page);
+  await page.goto("/");
+  await page.getByRole("button", { name: /^Download image:/ }).first().click();
+  const dialog = page.getByRole("dialog");
+  await dialog.getByRole("button", { name: "Comparison poster", exact: true }).click();
+  const download = dialog.getByRole("link", { name: "Download PNG", exact: true });
+  await expect(download).toBeVisible({ timeout: 30000 });
+  const imageUrl = await dialog.getByRole("img").getAttribute("src");
+  const explorer = dialog.getByRole("button", { name: "Explore poster statistics" });
+  await explorer.focus();
+  await page.keyboard.press("Enter");
+  await expect(dialog.getByRole("status", { name: "Goals", exact: true })).toContainText("48 more for Ronaldo");
+  await page.keyboard.press("ArrowDown");
+  await expect(dialog.getByRole("status", { name: "Games played", exact: true })).toContainText("Games played");
+  await expect(dialog.getByRole("img")).toHaveAttribute("src", imageUrl!);
+  await dialog.getByRole("button", { name: "Close statistic details" }).click();
+
+  await dialog.locator("summary").filter({ hasText: "Choose statistics" }).click();
+  await dialog.getByRole("button", { name: "Essentials", exact: true }).click();
+  await expect(download).toBeVisible({ timeout: 30000 });
+  await expect(dialog.getByRole("img")).not.toHaveAttribute("alt", /Team trophies: Messi|Ballon d’Or: Messi/);
+  await dialog.getByRole("button", { name: "Move Assists up", exact: true }).click();
+  await expect(download).toBeVisible({ timeout: 30000 });
+  await dialog.getByRole("checkbox", { name: "Goals + assists", exact: true }).uncheck();
+  await dialog.getByRole("checkbox", { name: "Hat-tricks", exact: true }).uncheck();
+  await expect(download).toBeVisible({ timeout: 30000 });
+  await expect(dialog.getByRole("checkbox", { name: "Goals", exact: true })).toBeDisabled();
+  await dialog.getByRole("button", { name: "Clean table", exact: true }).click();
+  await expect(download).toBeVisible({ timeout: 30000 });
+  const body = JSON.parse(new URL((await download.getAttribute("href"))!, origin).searchParams.get("data")!);
+  expect(body.metrics).toEqual(["goals", "appearances", "assists", "freeKicks"]);
+  expect(body.showBars).toBe(false);
+  const pending = page.waitForEvent("download");
+  await download.click();
+  const file = await pending;
+  expect(await file.failure()).toBeNull();
+  expect(dimensions(await readFile((await file.path())!))).toEqual([1080, 1350]);
+  expect((await new AxeBuilder({ page }).include("dialog").analyze()).violations.map(item => item.id)).toEqual([]);
+  await dialog.getByRole("combobox", { name: "Tournament / competition" }).click();
+  await page.getByRole("option", { name: "World Cup stats", exact: true }).click();
+  await expect(download).toBeVisible({ timeout: 30000 });
+  await expect(dialog.getByRole("img")).toHaveAttribute("alt", /Goals per 90/);
+  await dialog.getByRole("button", { name: "Visual bars", exact: true }).click();
+  await expect(download).toBeVisible({ timeout: 30000 });
+  await explorer.click({ position: { x: 10, y: 3 } });
+  await expect(dialog.getByRole("status", { name: "Goals", exact: true })).toContainText("Goals");
+  await mkdir(".artifacts/comparison-interactive", { recursive: true });
+  await page.screenshot({ path: `.artifacts/comparison-interactive/${info.project.name}-explorer.png` });
 });
 
 test("admin previews both players, changes competition and downloads a comparison poster", async ({ page }, info) => {

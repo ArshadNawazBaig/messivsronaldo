@@ -20,7 +20,9 @@ import { useI18n } from "./i18n-provider";
 import { Select } from "./ui/select";
 import { useFootballData } from "./data-provider";
 import { getPlayerPoster, posterScopeIds, posterScopeLabel, type PlayerPosterRequest } from "@/lib/player-poster";
-import { comparisonRowValue, comparisonScopeLabel, getComparisonPoster } from "@/lib/comparison-poster";
+import { comparisonRows, comparisonRowValue, comparisonScopeLabel, getComparisonPoster } from "@/lib/comparison-poster";
+import { ComparisonPosterControls } from "./comparison-poster-controls";
+import { ComparisonPosterHotspots, ComparisonPosterInsight } from "./comparison-poster-explorer";
 import {
   imageFormats,
   imageValue,
@@ -51,6 +53,9 @@ export default function StatImageDialog({
   const { t } = useI18n();
   const data = useFootballData();
   const [design, setDesign] = useState<"stat" | "poster" | "comparison">("stat");
+  const [comparisonMetrics, setComparisonMetrics] = useState<string[] | undefined>();
+  const [showComparisonBars, setShowComparisonBars] = useState(true);
+  const [inspectedStat, setInspectedStat] = useState<string | null>(null);
   const comparisonOpened = useRef(false);
   const [posterPlayer, setPosterPlayer] = useState<"messi" | "ronaldo">(initialPlayer === "ronaldo" ? "ronaldo" : "messi");
   const [scope, setScope] = useState<PlayerPosterRequest["scope"]>(() => posterScopeIds.find(id =>
@@ -74,9 +79,11 @@ export default function StatImageDialog({
   const uid = useId();
   const stat = stats[Number(index)];
   const poster = getPlayerPoster(data, { scope, player: posterPlayer });
-  const comparison = getComparisonPoster(data, { scope });
+  const availableComparison = getComparisonPoster(data, { scope });
+  const comparison = { ...availableComparison, rows: comparisonRows(availableComparison, comparisonMetrics) };
+  const inspectedRow = comparison.rows.find(row => row.id === inspectedStat);
   const payload = JSON.stringify(design === "comparison"
-    ? { design, scope, format, theme }
+    ? { design, scope, format, theme, showBars: showComparisonBars, metrics: comparisonMetrics }
     : design === "poster"
     ? { design, scope, player: posterPlayer, format, theme }
     : { stat, format, players: player, theme });
@@ -275,10 +282,13 @@ export default function StatImageDialog({
                 <label htmlFor={`${uid}-scope`}>{t("Tournament / competition")}</label>
                 <Select id={`${uid}-scope`} label="Tournament / competition" value={scope}
                   portalContainer={portal}
-                  onValueChange={value => { setScope(value as PlayerPosterRequest["scope"]); setStatus(""); }}
+                  onValueChange={value => { setScope(value as PlayerPosterRequest["scope"]); setComparisonMetrics(undefined); setInspectedStat(null); setStatus(""); }}
                   options={posterScopeIds.map(id => ({ value: id, label: design === "comparison" ? comparisonScopeLabel(data, id) : posterScopeLabel(data, id, posterPlayer) }))}
                 />
               </div>
+              {design === "comparison" && <ComparisonPosterControls poster={availableComparison} metrics={comparisonMetrics} showBars={showComparisonBars}
+                onMetricsChange={metrics => { setComparisonMetrics(metrics); setInspectedStat(null); setStatus(""); }}
+                onBarsChange={show => { setShowComparisonBars(show); setStatus(""); }} />}
               <details className={styles.statistics}>
                 <summary>{t("View statistics")}<ChevronDown size={15} aria-hidden="true" /></summary>
               {design === "poster" ? <div className={`${styles.summary} ${styles.posterSummary}`}>
@@ -450,12 +460,16 @@ export default function StatImageDialog({
             <div ref={stage} className={styles.stage} tabIndex={0} role="region" aria-label={t("Scrollable image preview")} aria-busy={!ready && !error}>
               {image && !error && (
                 <div className={styles.canvas} style={{ width: dimensions.width * scale + canvasPadding * 2, height: dimensions.height * scale + canvasPadding * 2, padding: canvasPadding, minWidth: "100%", minHeight: "100%" }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element -- Preview the actual generated PNG. */}
-                  <img key={image.url} src={image.url} width={dimensions.width} height={dimensions.height} alt={image.description} className={styles.artwork} style={{ width: dimensions.width * scale, height: dimensions.height * scale }} />
+                  <div className={styles.artworkFrame} style={{ width: dimensions.width * scale, height: dimensions.height * scale }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element -- Preview the actual generated PNG. */}
+                    <img key={image.url} src={image.url} width={dimensions.width} height={dimensions.height} alt={image.description} className={styles.artwork} style={{ width: dimensions.width * scale, height: dimensions.height * scale }} />
+                    {ready && design === "comparison" && <ComparisonPosterHotspots rows={comparison.rows} format={format} scale={scale} selected={inspectedStat} onSelect={setInspectedStat} />}
+                  </div>
                 </div>
               )}
               {!image && !error && <div className={styles.skeleton} aria-hidden="true"><span /><span /><span /></div>}
             </div>
+            {ready && design === "comparison" && inspectedRow && <ComparisonPosterInsight row={inspectedRow} onClose={() => setInspectedStat(null)} />}
             {(!ready || error) && <div className={styles.previewNotice}>
               {error ? <div className={styles.error} role="alert">
                 <p>{t(error)}</p>
@@ -463,7 +477,7 @@ export default function StatImageDialog({
               </div> : <div className={styles.loading} role="status"><LoaderCircle size={17} className={styles.spin} />{t(image ? "Updating preview…" : "Creating image…")}</div>}
             </div>}
             <div className={styles.previewBottom}>
-              <span className={styles.previewDimensions}>{imageFormats[format].width} × {imageFormats[format].height} <span>PNG</span></span>
+              <span className={styles.previewDimensions}>{design === "comparison" ? t("Tap a stat to explore") : `${imageFormats[format].width} × ${imageFormats[format].height}`} <span>PNG</span></span>
               <div className={styles.zoomControls} role="group" aria-label={t("Preview zoom")}>
                 <button type="button" aria-label={t("Zoom out")} disabled={!ready || scale <= .25} onClick={() => setZoom(Math.max(.25, Math.ceil(scale * 4 - 1) / 4))}><Minus size={15} /></button>
                 <output aria-live="polite" aria-label={t("Zoom level")}>{Math.round(scale * 100)}%</output>

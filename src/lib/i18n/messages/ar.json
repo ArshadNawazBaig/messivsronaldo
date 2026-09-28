@@ -1167,5 +1167,22 @@
   "Fit": "ملاءمة",
   "Ready to share": "جاهزة للمشاركة",
   "Preparing your image…": "جارٍ تجهيز صورتك…",
-  "Download started.": "بدأ التنزيل."
+  "Download started.": "بدأ التنزيل.",
+  "Comparison style": "نمط المقارنة",
+  "Visual bars": "أشرطة المقارنة",
+  "Clean table": "جدول بسيط",
+  "Choose statistics": "اختيار الإحصائيات",
+  "All stats": "كل الإحصائيات",
+  "Essentials": "الأساسيات",
+  "Choose at least four stats. Use the arrows to change their order.": "اختر أربع إحصائيات على الأقل. استخدم الأسهم لتغيير ترتيبها.",
+  "Move {0} up": "نقل {0} لأعلى",
+  "Move {0} down": "نقل {0} لأسفل",
+  "Explore poster statistics": "استكشاف إحصائيات الملصق",
+  "Select a row. Use arrow keys to explore.": "اختر صفًا. استخدم مفاتيح الأسهم للتنقل.",
+  "Comparison unavailable": "المقارنة غير متاحة",
+  "Level on this statistic": "تعادل في هذه الإحصائية",
+  "{0} more for {1}": "{0} أكثر لصالح {1}",
+  "Close statistic details": "إغلاق تفاصيل الإحصائية",
+  "Stats through {0}": "الإحصائيات حتى {0}",
+  "Tap a stat to explore": "اضغط على إحصائية"
 }

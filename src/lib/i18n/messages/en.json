@@ -1167,5 +1167,22 @@
   "Fit": "Fit",
   "Ready to share": "Ready to share",
   "Preparing your image…": "Preparing your image…",
-  "Download started.": "Download started."
+  "Download started.": "Download started.",
+  "Comparison style": "Comparison style",
+  "Visual bars": "Visual bars",
+  "Clean table": "Clean table",
+  "Choose statistics": "Choose statistics",
+  "All stats": "All stats",
+  "Essentials": "Essentials",
+  "Choose at least four stats. Use the arrows to change their order.": "Choose at least four stats. Use the arrows to change their order.",
+  "Move {0} up": "Move {0} up",
+  "Move {0} down": "Move {0} down",
+  "Explore poster statistics": "Explore poster statistics",
+  "Select a row. Use arrow keys to explore.": "Select a row. Use arrow keys to explore.",
+  "Comparison unavailable": "Comparison unavailable",
+  "Level on this statistic": "Level on this statistic",
+  "{0} more for {1}": "{0} more for {1}",
+  "Close statistic details": "Close statistic details",
+  "Stats through {0}": "Stats through {0}",
+  "Tap a stat to explore": "Tap a stat to explore"
 }

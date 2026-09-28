@@ -36,6 +36,8 @@ async function imageResponse(raw: string, inline = false) {
     const data = await getPublishedData();
     if (input.design === "comparison") {
       const poster = getComparisonPoster(data, input);
+      if (input.metrics?.some(id => !poster.rows.some(row => row.id === id)))
+        throw new AdminError("A selected statistic is unavailable for this competition.", 422);
       rendered = await renderComparisonPoster(input, poster);
       filename = comparisonPosterFilename(input, poster);
     } else {

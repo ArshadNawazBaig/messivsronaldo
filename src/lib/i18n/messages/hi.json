@@ -1167,5 +1167,22 @@
   "Fit": "फ़िट करें",
   "Ready to share": "साझा करने के लिए तैयार",
   "Preparing your image…": "आपकी तस्वीर तैयार हो रही है…",
-  "Download started.": "डाउनलोड शुरू हुआ।"
+  "Download started.": "डाउनलोड शुरू हुआ।",
+  "Comparison style": "तुलना का अंदाज़",
+  "Visual bars": "तुलना बार",
+  "Clean table": "सरल तालिका",
+  "Choose statistics": "आंकड़े चुनें",
+  "All stats": "सभी आंकड़े",
+  "Essentials": "मुख्य आंकड़े",
+  "Choose at least four stats. Use the arrows to change their order.": "कम से कम चार आंकड़े चुनें। क्रम बदलने के लिए तीरों का उपयोग करें।",
+  "Move {0} up": "{0} को ऊपर करें",
+  "Move {0} down": "{0} को नीचे करें",
+  "Explore poster statistics": "पोस्टर के आंकड़े देखें",
+  "Select a row. Use arrow keys to explore.": "एक पंक्ति चुनें। आगे देखने के लिए तीर कुंजियों का उपयोग करें।",
+  "Comparison unavailable": "तुलना उपलब्ध नहीं है",
+  "Level on this statistic": "इस आंकड़े में बराबरी",
+  "{0} more for {1}": "{1} के लिए {0} अधिक",
+  "Close statistic details": "आंकड़े का विवरण बंद करें",
+  "Stats through {0}": "{0} तक के आंकड़े",
+  "Tap a stat to explore": "किसी आंकड़े पर टैप करें"
 }

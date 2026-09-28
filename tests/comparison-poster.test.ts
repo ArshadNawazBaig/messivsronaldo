@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { buildPublishedData } from "../src/lib/published-data";
-import { comparisonBarShare, comparisonPosterFilename, comparisonPosterSchema, comparisonRowValue, getComparisonPoster } from "../src/lib/comparison-poster";
+import { comparisonBarShare, comparisonDifference, comparisonPosterFilename, comparisonPosterSchema, comparisonRows, comparisonRowValue, getComparisonPoster } from "../src/lib/comparison-poster";
 import { posterScopeIds } from "../src/lib/player-poster";
 import { teamTrophyTotals } from "../src/lib/team-honours";
 import type { MatchRecord } from "../src/lib/admin/model";
@@ -70,4 +70,28 @@ test("comparison bars and rates handle zero and unavailable data without inventi
   const rate = getComparisonPoster(data, { scope: "world-cup" }).rows.find(item => item.id === "goals-per-game")!;
   assert.equal(rate.values.messi, null);
   assert.ok(rate.values.ronaldo! > 0);
+});
+
+test("custom posters preserve the requested order using only available published statistics", () => {
+  const poster = getComparisonPoster(buildPublishedData(), request);
+  const metrics = ["assists", "goals", "appearances", "contributions"];
+  assert.ok(comparisonPosterSchema.safeParse({ ...request, metrics, showBars: false }).success);
+  const rows = comparisonRows(poster, metrics);
+  assert.deepEqual(rows.map(row => row.id), metrics);
+  assert.deepEqual(rows[0].values, { messi: 424, ronaldo: 261 });
+  assert.equal(poster.rows.length, 9);
+  assert.equal(comparisonRows(poster)[0].id, "goals");
+  assert.throws(() => comparisonRows(poster, ["minutes"]), RangeError);
+  for (const change of [
+    { metrics: [] }, { metrics: ["goals", "assists", "appearances"] },
+    { metrics: [...metrics, "goals"] }, { metrics: [...metrics, "made-up"] }, { showBars: "true" },
+  ]) assert.equal(comparisonPosterSchema.safeParse({ ...request, ...change }).success, false);
+});
+
+test("the interactive breakdown uses displayed precision, ties and unavailable values", () => {
+  const row = { id: "rate", label: "Rate", values: { messi: .624, ronaldo: .623 }, decimals: 2, date: "2026-09-21" };
+  assert.deepEqual(comparisonDifference(row), { player: null, difference: 0 });
+  assert.deepEqual(comparisonDifference({ ...row, values: { messi: .644, ronaldo: .623 } }), { player: "messi", difference: .02 });
+  assert.deepEqual(comparisonDifference({ ...row, values: { messi: 0, ronaldo: 1 } }), { player: "ronaldo", difference: 1 });
+  assert.deepEqual(comparisonDifference({ ...row, values: { messi: null, ronaldo: 1 } }), { player: null, difference: null });
 });
