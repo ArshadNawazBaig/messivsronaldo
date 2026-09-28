@@ -12,6 +12,27 @@ const playerStats = [{team:{id:9568},players:[{player:{id:154},statistics:[{game
 const events = [{type:"Goal",detail:"Normal Goal",player:{id:154},assist:{id:null}},{type:"Goal",detail:"Penalty",player:{id:154},assist:{id:null}},{type:"Goal",detail:"Normal Goal",player:{id:1001},assist:{id:154}}];
 const provider = (overrides:Record<string,unknown[]> = {}): ProviderFetch => async(path)=>overrides[path] ?? ({fixtures:[fixture],"fixtures/players":playerStats,"fixtures/events":events}[path] || []);
 
+test("unused substitutes are excluded, but verified zero-minute late substitutes count", async () => {
+  const overrides = {
+    fixtures:[{...fixture,goals:{home:0,away:0}}],
+    "fixtures/players":[{team:{id:9568},players:[{player:{id:154},statistics:[{games:{minutes:0},goals:{total:0,assists:0}}]}]}],
+    "fixtures/events":[],
+    "fixtures/lineups":[{team:{id:9568},startXI:[{player:{id:1001}}],substitutes:[{player:{id:154}}]}],
+  };
+  const unused = await fetchDate(sample.date,connection,provider(overrides));
+  assert.equal(unused.records.length,0);
+  assert.equal(unused.nonAppearances,1);
+  assert.deepEqual(unused.withdrawnIds,[sample.id]);
+  assert.deepEqual(mergeDate([sample],[],sample.date,unused.withdrawnIds),[]);
+  const manual = {...sample,locked:true,provider:"manual" as const};
+  assert.deepEqual(mergeDate([manual],[],sample.date,unused.withdrawnIds),[manual]);
+  const appeared = await fetchDate(sample.date,connection,provider({...overrides,"fixtures/events":[{type:"subst",detail:"Substitution 5",player:{id:1001},assist:{id:154}}]}));
+  assert.equal(appeared.records[0].appearances,1);
+  assert.equal(appeared.records[0].minutes,0);
+  await assert.rejects(()=>fetchDate(sample.date,connection,provider({...overrides,"fixtures/lineups":[]})),/Cannot verify a zero-minute appearance/);
+  await assert.rejects(()=>fetchDate(sample.date,connection,provider({...overrides,"fixtures/players":[{team:{id:9568},players:[{player:{id:154},statistics:[{games:{minutes:null},goals:{total:0,assists:0}}]}]}]})),/Incomplete minutes/);
+});
+
 test("new match updates all relevant scopes and rates without mutating the baseline",()=>{
   const before = buildPublishedData();const after = buildPublishedData([sample],1);
   for (const scope of ["career","club","current-clubs","league","2026"] as const) assert.equal(after.scopes[scope].goals.messi,before.scopes[scope].goals.messi+2,scope);
@@ -29,6 +50,49 @@ test("goal-type rows retain their actual earlier cutoff",()=>{
   const after = buildPublishedData([sample],1);
   assert.match(after.scopes.career.metrics.find(m=>m.id==="penalties")!.coverage!,/21 September 2026/);
   assert.ok(after.scopes.career.source.includes("updates"));
+});
+
+test("verified match free kicks update every relevant scope without duplicating core totals",()=>{
+  const record={...sample,goals:1,assists:0,freeKicks:1,locked:true,provider:"manual" as const};
+  const before=buildPublishedData();
+  const after=buildPublishedData([record,record],1);
+  for(const scope of ["career","club","current-clubs","league","2026"] as const) {
+    const old=before.scopes[scope].metrics.find(m=>m.id==="freeKicks")!;
+    const metric=after.scopes[scope].metrics.find(m=>m.id==="freeKicks")!;
+    assert.equal(metric.values.messi,old.values.messi+1,scope);
+    assert.equal(metric.values.ronaldo,old.values.ronaldo);
+    assert.equal(metric.updatedThrough,record.date);
+    assert.ok(metric.source.includes("updates"));
+    assert.match(metric.coverage!,/Updated 22 September 2026/);
+  }
+  assert.equal(after.scopes.career.goals.messi,931);
+  assert.equal(after.scopes.career.appearances.messi,1177);
+  for(const scope of ["international","champions-league","career-europe","la-liga"] as const) {
+    assert.deepEqual(after.scopes[scope],before.scopes[scope]);
+  }
+  const year=after.calendarYears.find(y=>y.year===2026)!;
+  assert.equal(year.career.freeKicks!.messi,7);
+  assert.equal(year.club.freeKicks!.messi,6);
+  assert.equal(year.league.freeKicks!.messi,6);
+  assert.equal(year.international.freeKicks!.messi,1);
+  const freeKicks=(records:MatchRecord[])=>buildPublishedData(records).scopes.career.metrics.find(m=>m.id==="freeKicks")!;
+  assert.equal(freeKicks([]).values.messi,75,"removal/undo restores the original total");
+  assert.equal(freeKicks([{...record,date:"2026-09-21"}]).values.messi,75,"baseline matches cannot count again");
+  const refreshed=mergeDate([record],[{...sample,goals:1,assists:0}],record.date);
+  assert.equal(freeKicks(refreshed).values.messi,76,"sync preserves verified manual goal types");
+});
+
+test("unknown goal types are not assumed to be zero and invalid free-kick counts are rejected",()=>{
+  assert.equal(matchSchema.safeParse({...sample,freeKicks:sample.goals+1}).success,false);
+  assert.equal(matchSchema.safeParse({...sample,freeKicks:-1}).success,false);
+  assert.equal(matchSchema.safeParse({...sample,freeKicks:1.5}).success,false);
+  assert.equal(matchSchema.parse({...sample,freeKicks:1}).freeKicks,1);
+  const record={...sample,freeKicks:1};
+  const unclassified={...sample,id:"api:101:messi",date:"2026-09-23",goals:1};
+  const metric=buildPublishedData([record,unclassified]).scopes.career.metrics.find(m=>m.id==="freeKicks")!;
+  assert.equal(metric.values.messi,76);
+  assert.equal(metric.updatedThrough,"2026-09-22");
+  assert.match(metric.explanation,/1 match record\(s\) still need this classification/);
 });
 test("international, tournament and new calendar years aggregate independently",()=>{
   const record:MatchRecord={...sample,id:"api:200:ronaldo",player:"ronaldo",date:"2027-01-01",category:"world-cup",team:"Portugal"};
@@ -121,6 +185,19 @@ test("provider null goal/assist fields require corroborating complete goal event
   const result=await fetchDate(sample.date,connection,provider({"fixtures/players":nullStats}));
   assert.equal(result.records[0].goals,2);assert.equal(result.records[0].assists,1);
   await assert.rejects(()=>fetchDate(sample.date,connection,provider({"fixtures/players":nullStats,"fixtures/events":[]})),/coverage/);
+});
+test("provider imports corroborated penalties without treating null misses as zero",async()=>{
+  const statsWithPenalty=(penalty:unknown)=>[{...playerStats[0],players:[{...playerStats[0].players[0],statistics:[{...playerStats[0].players[0].statistics[0],penalty}]}]}];
+  const known=await fetchDate(sample.date,connection,provider({"fixtures/players":statsWithPenalty({scored:1,missed:0})}));
+  assert.equal(known.records[0].penalties,1);
+  assert.equal(known.records[0].penaltyAttempts,1);
+  const unknown=await fetchDate(sample.date,connection,provider({"fixtures/players":statsWithPenalty({scored:1,missed:null})}));
+  assert.equal(unknown.records[0].penalties,1);
+  assert.equal(unknown.records[0].penaltyAttempts,undefined);
+  await assert.rejects(()=>fetchDate(sample.date,connection,provider({"fixtures/players":statsWithPenalty({scored:0,missed:0})})),/Penalty goals disagree/);
+  await assert.rejects(()=>fetchDate(sample.date,connection,provider({"fixtures/players":statsWithPenalty({scored:1,missed:1})})),/Penalty misses disagree/);
+  const missed=await fetchDate(sample.date,connection,provider({"fixtures/players":statsWithPenalty({scored:1,missed:1}),"fixtures/events":[...events,{type:"Goal",detail:"Missed Penalty",player:{id:154},assist:{id:null}}]}));
+  assert.equal(missed.records[0].penaltyAttempts,2);
 });
 test("incomplete, disputed, live and shootout data never publish partial statistics",async()=>{
   await assert.rejects(()=>fetchDate(sample.date,connection,provider({"fixtures/players":[]})),/Missing player coverage/);

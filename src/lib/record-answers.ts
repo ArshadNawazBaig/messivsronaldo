@@ -21,7 +21,7 @@ const records: { id: string; question: string; scope: ScopeId; metric: string; h
   { id: "la-liga", question: "Who has more La Liga goals: Messi or Ronaldo?", scope: "la-liga", metric: "goals", href: "/la-liga" },
 ];
 
-// Goal-type figures keep their baseline date after a new core-stat publication.
+// Only a verified goal-type addition advances that metric's own date.
 export function buildRecordAnswers(data: PublishedData, t: Translate): RecordAnswer[] {
   return records.flatMap(record => {
     const scope = data.scopes[record.scope];
@@ -31,7 +31,7 @@ export function buildRecordAnswers(data: PublishedData, t: Translate): RecordAns
       id: record.id, question: t(record.question),
       answer: t("{0}: Messi {1}; Ronaldo {2}.", { 0: t(metric.label), 1: metric.values.messi, 2: metric.values.ronaldo }),
       detail: `${t(metric.explanation)} ${t(scope.description)}`, context: t(scope.label),
-      date: metric.group === "scoring" ? data.baselineDate : scope.updatedThrough,
+      date: metric.updatedThrough ?? (metric.group === "scoring" ? data.baselineDate : scope.updatedThrough),
       href: record.href, sourceIds: [...metric.source],
     }];
   });

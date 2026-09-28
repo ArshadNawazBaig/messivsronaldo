@@ -2,7 +2,7 @@ import { snapshotDate } from "@/lib/data";
 import { acquireSync, getConnection, logRun, revision } from "./database";
 import { readDailySyncState, saveDailySyncState, type DailySyncState } from "./daily-sync-state";
 import { AdminError } from "./model";
-import { apiClient, type ProviderFetch } from "./provider-client";
+import { batchApiClient, type ProviderFetch } from "./provider-client";
 import { syncDateUnderLock } from "./service";
 
 const maxDates = 7;
@@ -40,15 +40,13 @@ export async function runDailySync(options: { now?: Date; fetcher?: ProviderFetc
     await logRun(today, "daily", "running", state.message);
     let completed = 0;
     let failed = 0;
+    let accessRestricted = false;
     const attempted = new Set<string>();
     try {
       const connection = await getConnection();
       if (!connection) throw new AdminError("Connect API-Football in Settings to enable automatic updates.", 409);
-      const signal = AbortSignal.timeout(Math.max(1, deadline - Date.now()));
       // One client shares quota counters across every date in the batch.
-      const fetcher = options.fetcher ?? apiClient(connection.key, (url, init) => fetch(url, {
-        ...init, signal: init?.signal ? AbortSignal.any([signal, init.signal]) : signal,
-      }));
+      const fetcher = options.fetcher ?? batchApiClient(connection.key, deadline);
       for (const date of dates) {
         if (Date.now() >= deadline) break;
         // Remember an in-flight date before fetching, so an interrupted run retries it tomorrow.
@@ -61,6 +59,7 @@ export async function runDailySync(options: { now?: Date; fetcher?: ProviderFetc
           completed++;
         } catch (error) {
           failed++;
+          if (error instanceof AdminError && error.status === 403) accessRestricted = true;
           // Live/disputed dates can wait while other valid dates publish. Provider outages and
           // quota exhaustion stop the batch instead of burning more requests.
           stop = !(error instanceof AdminError) || error.status === 429 || error.status >= 500;
@@ -72,7 +71,7 @@ export async function runDailySync(options: { now?: Date; fetcher?: ProviderFetc
       }
       const caughtUp = state.scannedThrough >= offsetDate(today, -1);
       state.status = failed && !completed ? "failed" : state.pendingDates.length || !caughtUp ? "partial" : "success";
-      state.message = `${completed} date(s) checked; ${failed} failed; ${state.pendingDates.length} awaiting retry.${caughtUp ? "" : ` Catch-up checked through ${state.scannedThrough}.`} ${state.status === "success" ? "All verified changes published." : "Remaining dates will be checked in the next daily run. See the activity log for details."}`;
+      state.message = `${completed} date(s) checked; ${failed} failed; ${state.pendingDates.length} awaiting retry.${caughtUp ? "" : ` Catch-up checked through ${state.scannedThrough}.`} ${state.status === "success" ? "All verified changes published." : accessRestricted ? "Some dates are blocked by your API-Football subscription. Use a plan covering those dates or add verified matches manually; retrying alone cannot resolve access restrictions. See the activity log." : "Remaining dates will be checked in the next daily run. See the activity log for details."}`;
     } catch (error) {
       state.status = "failed";
       state.message = error instanceof AdminError ? error.message : "Automatic update could not finish. Review the provider connection and activity log.";

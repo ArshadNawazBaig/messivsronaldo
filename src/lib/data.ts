@@ -28,7 +28,7 @@ export const sources = {
   messiLatest: { name: "AS · Messi", title: "Messi scores against San Diego, 20 September 2026", url: "https://as.com/us/futbol/messi-se-luce-con-golazo-en-el-duelo-entre-inter-miami-y-san-diego-fc-f202609-n/", note: "Independent report of the latest scoring match, published 21 September UTC." },
 } as const;
 export type SourceId = keyof typeof sources;
-export interface Metric { id: string; label: string; values: Pair; unit?: string; decimals?: number; source: SourceId[]; explanation: string; derived?: boolean; group: MetricGroup; lowerIsBetter?: boolean; coverage?: string }
+export interface Metric { id: string; label: string; values: Pair; unit?: string; decimals?: number; source: SourceId[]; explanation: string; derived?: boolean; group: MetricGroup; lowerIsBetter?: boolean; coverage?: string; updatedThrough?: string }
 export interface Scope { id: string; label: string; shortLabel: string; description: string; period: string; updatedThrough: string; goals: Pair; appearances: Pair; minutes: Pair; metrics: Metric[]; source: SourceId[]; answer: string }
 export interface Stats { goals: Pair; assists: Pair; appearances: Pair; minutes: Pair; hatTricks?: Pair; freeKicks?: Pair; outsideBox?: Pair; insideBox?: Pair; leftFoot?: Pair; rightFoot?: Pair; headers?: Pair; otherBody?: Pair; penalties?: Pair; penaltyAttempts?: Pair }
 export const players = {

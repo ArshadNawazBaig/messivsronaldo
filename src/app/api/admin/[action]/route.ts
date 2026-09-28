@@ -5,6 +5,7 @@ import { AdminError, dateSchema } from "@/lib/admin/model";
 import { getAdminState, removeMatch, saveMatch, syncDate } from "@/lib/admin/service";
 import { connectProvider } from "@/lib/admin/provider";
 import { logRun, saveConnection, undoLast } from "@/lib/admin/database";
+import { syncLatest } from "@/lib/admin/recent-sync";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const maxDuration = 300;
@@ -32,6 +33,7 @@ export async function POST(request: Request, {params}:{params:Promise<{action:st
     if (action === "login") { const {password} = z.object({password:z.string().min(1).max(256)}).parse(body); await login(password); return Response.json({ok:true},{headers}); }
     if (action === "logout") { await logout(); return Response.json({ok:true},{headers}); }
     let message = "Saved.";
+    let warnings: string[] = [];
     if (action === "connect") {
       const {key} = z.object({key:z.string().trim().min(10).max(200)}).parse(body);
       try {
@@ -45,12 +47,13 @@ export async function POST(request: Request, {params}:{params:Promise<{action:st
     } else {
       const {revision} = z.object({revision:z.number().int().nonnegative()}).parse(body);
       if (action === "sync") { const {date} = z.object({date:dateSchema}).parse(body); message = await syncDate(date,revision); }
+      else if (action === "sync-latest") { const result = await syncLatest(revision); message = result.message; warnings = result.warnings; }
       else if (action === "match") { const {record} = z.object({record:z.unknown()}).parse(body); await saveMatch(record,revision); message = "Match saved and public totals recalculated."; }
       else if (action === "remove") { const {id} = z.object({id:z.string().min(1).max(100)}).parse(body); await removeMatch(id,revision); message = "Match removed and totals recalculated."; }
       else if (action === "undo") { await undoLast(revision); message = "Previous published data restored."; }
       else throw new AdminError("Unknown admin action.",404);
     }
     revalidatePath("/","layout");
-    return Response.json({message,state:await getAdminState()},{headers});
+    return Response.json({message,warnings,state:await getAdminState()},{headers});
   } catch(error) { return failure(error); }
 }

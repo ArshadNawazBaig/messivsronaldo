@@ -32,7 +32,7 @@ export function getComparisonPoster(data: PublishedData, { scope: id }: Pick<Com
     return {
       id: metricId, label, values: metric?.values ?? { messi: null, ronaldo: null },
       decimals: metric?.decimals ?? 0,
-      date: metric?.group === "scoring" ? data.baselineDate : scope.updatedThrough,
+      date: metric?.updatedThrough ?? (metric?.group === "scoring" ? data.baselineDate : scope.updatedThrough),
     };
   };
   const rows: ComparisonRow[] = [
@@ -61,15 +61,18 @@ export function getComparisonPoster(data: PublishedData, { scope: id }: Pick<Com
     if (scope.metrics.some(metric => metric.id === metricId)) rows.push(metricRow(metricId, label));
   }
   const coverage = getPlayerPoster(data, { scope: id, player: "messi" }).coverage;
+  const freeKicks = scope.metrics.find(metric => metric.id === "freeKicks");
+  const hatTricksDate = scope.metrics.find(metric => metric.id === "hatTricks")?.updatedThrough ?? data.baselineDate;
+  const freeKickNote = freeKicks?.updatedThrough ? `Free kicks: ${freeKicks.updatedThrough}.` : `Free kicks: ${data.baselineDate}.`;
   const notes = id === "career" ? [
     "Senior club + internationals. Club friendlies and shootouts excluded.",
     "Team trophies include youth/Olympic and MLS conference honours; counting rules: /honours.",
     "Ballon d’Or: completed editions through 2025. Golden Shoes: European award only.",
-    `Goal-type stats: ${data.baselineDate}. Team trophies: ${teamHonoursDate}. Awards reviewed: ${awardsReviewed}.`,
+    `Hat-tricks: ${hatTricksDate}. ${freeKickNote} Team trophies: ${teamHonoursDate}.`,
   ] : [
     id === "copa-euros" || id === "current-clubs" ? scope.description : coverage,
     ...(rows.some(row => row.id === "hatTricks" || row.id === "freeKicks")
-      ? [`Hat-tricks and free-kick goals through ${data.baselineDate}.`] : []),
+      ? [`Hat-tricks: ${hatTricksDate}. ${freeKickNote}`] : []),
   ];
   return { competition: comparisonScopeLabel(data, id), date: scope.updatedThrough, rows, notes };
 }

@@ -35,14 +35,15 @@ export async function connectProvider(key: string, fetcher = apiClient(key)): Pr
   return {key, messi, ronaldo};
 }
 const fixtureSchema = z.object({fixture:z.object({id:z.number().int().positive(),date:z.string(),status:z.object({short:z.string()})}),goals:z.object({home:z.number().nullable(),away:z.number().nullable()}),league:z.object({id:z.number().int().positive(),name:z.string(),type:z.enum(["League","Cup"]).optional(),round:z.string().nullable()}),teams:z.object({home:z.object({id:z.number(),name:z.string()}),away:z.object({id:z.number(),name:z.string()})})});
-const statisticsSchema = z.array(z.object({team:z.object({id:z.number()}),players:z.array(z.object({player:z.object({id:z.number()}),statistics:z.array(z.object({games:z.object({minutes:z.number().nullable()}),goals:z.object({total:z.number().nullable(),assists:z.number().nullable()})}))}))}));
+const statisticsSchema = z.array(z.object({team:z.object({id:z.number()}),players:z.array(z.object({player:z.object({id:z.number()}),statistics:z.array(z.object({games:z.object({minutes:z.number().nullable()}),goals:z.object({total:z.number().nullable(),assists:z.number().nullable()}),penalty:z.object({scored:z.number().int().nonnegative().nullish(),missed:z.number().int().nonnegative().nullish()}).nullish()}))}))}));
 const eventSchema = z.array(z.object({type:z.string(),detail:z.string(),player:z.object({id:z.number().nullable()}),assist:z.object({id:z.number().nullable()})}));
+const lineupSchema = z.array(z.object({team:z.object({id:z.number()}),startXI:z.array(z.object({player:z.object({id:z.number()})})),substitutes:z.array(z.object({player:z.object({id:z.number()})}))}));
 export async function fetchDate(date: string, connection: ProviderConnection, fetcher = apiClient(connection.key)) {
   const all = providerData(z.array(fixtureSchema), await fetcher("fixtures", {date, timezone:"UTC"}), `fixtures for ${date}`);
   const tracked = new Set([connection.messi.club,connection.messi.country,connection.ronaldo.club,connection.ronaldo.country]);
   const fixtures = all.filter(f => tracked.has(f.teams.home.id) || tracked.has(f.teams.away.id));
   if (fixtures.length > 6) throw new AdminError("Unexpected number of tracked fixtures. Check provider identities.", 502);
-  const records: MatchRecord[] = []; const withdrawnIds: string[] = []; let skipped = 0; let pending = 0;
+  const records: MatchRecord[] = []; const withdrawnIds: string[] = []; let skipped = 0; let pending = 0; let nonAppearances = 0;
   const leagueTypes = new Map<number, "League" | "Cup">();
   for (const f of fixtures) {
     if (f.fixture.date.slice(0,10) !== date) throw new AdminError("The provider returned a fixture outside the selected UTC date.", 502);
@@ -67,6 +68,7 @@ export async function fetchDate(date: string, connection: ProviderConnection, fe
     const events = providerData(eventSchema, await fetcher("fixtures/events", {fixture:f.fixture.id}), `events for fixture ${f.fixture.id} on ${date}`);
     const scoredEvents = events.filter(e => e.type === "Goal" && ["Normal Goal","Penalty","Own Goal"].includes(e.detail));
     if (f.goals.home === null || f.goals.away === null || scoredEvents.length !== f.goals.home + f.goals.away) throw new AdminError("Goal-event coverage does not reconcile with the final score. No updates published.", 422);
+    let lineups: z.infer<typeof lineupSchema> | undefined;
     for (const player of ["messi","ronaldo"] as const) {
       const ids = connection[player];
       const team = [f.teams.home,f.teams.away].find(t => t.id === ids.club || t.id === ids.country);
@@ -80,12 +82,32 @@ export async function fetchDate(date: string, connection: ProviderConnection, fe
       if (s.goals.total !== null && eventGoals !== s.goals.total) throw new AdminError("Player goals disagree with match events. Review before publishing.",422);
       const eventAssists = scoredEvents.filter(e => e.detail !== "Own Goal" && e.assist.id === ids.player).length;
       if (s.goals.assists !== null && eventAssists !== s.goals.assists) throw new AdminError("Provider assists disagree with match events. Review the match before publishing.", 422);
+      if (s.games.minutes === 0) {
+        lineups ??= providerData(lineupSchema, await fetcher("fixtures/lineups", {fixture:f.fixture.id}), `lineups for fixture ${f.fixture.id}`);
+        const lineup = lineups.filter(row => row.team.id === team.id);
+        const started = lineup.length === 1 && lineup[0].startXI.some(row => row.player.id === ids.player);
+        const onBench = lineup.length === 1 && lineup[0].substitutes.some(row => row.player.id === ids.player);
+        const substituted = events.some(e => e.type.toLowerCase() === "subst" && (e.player.id === ids.player || e.assist.id === ids.player));
+        // Being listed on the bench is not an appearance. A stoppage-time substitute
+        // can legitimately have zero rounded minutes, so corroborate with match events.
+        if (onBench && !started && !substituted && !eventGoals && !eventAssists) {
+          withdrawnIds.push(`api:${f.fixture.id}:${player}`); nonAppearances++; continue;
+        }
+        if (!started && !substituted) throw new AdminError(`Cannot verify a zero-minute appearance for ${player} on ${date}. Review the lineup and substitutions before publishing.`, 422);
+      }
+      const penalties = scoredEvents.filter(e => e.detail === "Penalty" && e.player.id === ids.player).length;
+      const missedPenalties = events.filter(e => e.type === "Goal" && e.detail === "Missed Penalty" && e.player.id === ids.player).length;
+      if (s.penalty?.scored != null && s.penalty.scored !== penalties) throw new AdminError("Penalty goals disagree with match events. Review before publishing.", 422);
+      if (s.penalty?.missed != null && s.penalty.missed !== missedPenalties) throw new AdminError("Penalty misses disagree with match events. Review before publishing.", 422);
+      // Null misses do not establish zero attempts. Keep the denominator unknown
+      // until an explicit provider count or a manual review verifies it.
+      const penaltyAttempts = s.penalty?.missed != null ? penalties + s.penalty.missed : undefined;
       const international = team.id === ids.country;
       const category = international ? (/^world cup$/i.test(f.league.name) ? "world-cup" : /^(copa america|euro championship|european championship)$/i.test(f.league.name) ? "copa-euros" : "international") : leagueType === "League" && !/play.?off|final|knockout/i.test(f.league.round || "") ? "league" : "club-cup";
-      records.push(matchSchema.parse({id:`api:${f.fixture.id}:${player}`,player,date,team:team.name,opponent:(team.id === f.teams.home.id ? f.teams.away : f.teams.home).name,competition:f.league.name,category,goals:s.goals.total ?? eventGoals,assists:s.goals.assists ?? eventAssists,minutes:s.games.minutes,appearances:1,headToHead:false,source:`https://www.api-football.com/`,provider:"api-football",note:`API-Football fixture ${f.fixture.id}. Completed ${f.fixture.status.short}; conventional provider assists, checked against goal events.`,locked:false}));
+      records.push(matchSchema.parse({id:`api:${f.fixture.id}:${player}`,player,date,team:team.name,opponent:(team.id === f.teams.home.id ? f.teams.away : f.teams.home).name,competition:f.league.name,category,goals:s.goals.total ?? eventGoals,penalties,penaltyAttempts,assists:s.goals.assists ?? eventAssists,minutes:s.games.minutes,appearances:1,headToHead:false,source:`https://www.api-football.com/`,provider:"api-football",note:`API-Football fixture ${f.fixture.id}. Completed ${f.fixture.status.short}; conventional provider assists, checked against goal events.`,locked:false}));
     }
     const sameFixture = records.filter(r => r.id.startsWith(`api:${f.fixture.id}:`));
     if (sameFixture.length === 2) sameFixture.forEach(r => { r.headToHead = true; });
   }
-  return {records, withdrawnIds, skipped, pending, fixtures: fixtures.length};
+  return {records, withdrawnIds, skipped, pending, nonAppearances, fixtures: fixtures.length};
 }

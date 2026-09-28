@@ -5,7 +5,7 @@ async function signIn(page:Page) {await page.goto("/admin");await page.getByLabe
 test("admin pages are private and every endpoint requires authorization",async({request})=>{
   const page=await request.get("/admin");expect(await page.text()).toContain("noindex");expect(await page.text()).not.toContain("Synthetic test opponent");
   for(const path of ["state","backup","daily-sync"])expect((await request.get(`/api/admin/${path}`)).status()).toBe(401);
-  for(const action of ["sync","match","remove","undo","connect"])expect((await request.post(`/api/admin/${action}`,{headers:{origin},data:{revision:1}})).status()).toBe(401);
+  for(const action of ["sync","sync-latest","match","remove","undo","connect"])expect((await request.post(`/api/admin/${action}`,{headers:{origin},data:{revision:1}})).status()).toBe(401);
   expect((await request.post("/api/admin/login",{headers:{origin:"https://attacker.example"},data:{password:"integration-test-password-only"}})).status()).toBe(403);
   expect((await request.post("/api/admin/login",{headers:{origin},data:{password:"wrong-password"}})).status()).toBe(401);
 });
@@ -14,7 +14,10 @@ test("login, dashboard tabs, theme and logout work on desktop and mobile",async(
   await page.emulateMedia({reducedMotion:"reduce"});
   const errors:string[]=[];page.on("pageerror",e=>errors.push(e.message));
   await signIn(page);
-  await expect(page.getByRole("button",{name:"Fetch & update stats"})).toBeDisabled();
+  await expect(page.getByRole("button",{name:"Update latest stats"})).toBeDisabled();
+  await page.getByText("Check a specific match date",{exact:true}).click();
+  await expect(page.getByRole("button",{name:"Check selected date"})).toBeDisabled();
+  await expect(page.getByText(/A game finishing after midnight/)).toBeVisible();
   await expect(page.getByRole("heading",{name:"Automatic daily updates"})).toBeVisible();
   await expect(page.getByText(/Daily around 1 PM Pakistan time/)).toBeVisible();
   const cookie=(await context.cookies()).find(c=>c.name==="rivalry-admin")!;expect(cookie.httpOnly).toBe(true);expect(cookie.sameSite).toBe("Strict");
@@ -33,19 +36,39 @@ test("login, dashboard tabs, theme and logout work on desktop and mobile",async(
   expect((await page.request.get("/api/admin/state",{headers:{cookie:`rivalry-admin=${cookie.value}`}})).status()).toBe(401);
   expect(errors).toEqual([]);
 });
+test("latest update sends the revision and displays partial coverage without claiming success",async({page})=>{
+  await signIn(page);
+  const state=await(await page.request.get("/api/admin/state")).json();
+  const connected={...state,providerConnected:true};
+  await page.route("**/api/admin/connect",route=>route.fulfill({json:{message:"Connected for UI test.",state:connected}}));
+  await page.getByRole("button",{name:"Settings",exact:true}).click();
+  await page.getByLabel("API-Football key").fill("synthetic-ui-test-only");
+  await page.getByRole("button",{name:"Connect API-Football",exact:true}).click();
+  await expect(page.getByRole("status")).toContainText("Connected for UI test");
+  await page.getByRole("button",{name:"Daily updates",exact:true}).click();
+  await page.route("**/api/admin/sync-latest",async route=>{
+    expect(route.request().postDataJSON()).toEqual({revision:state.revision});
+    await route.fulfill({json:{message:"Recent match check: 2 of 7 UTC dates verified.",warnings:["Older dates are blocked by your API-Football subscription."],state:connected}});
+  });
+  await page.getByRole("button",{name:"Update latest stats",exact:true}).click();
+  await expect(page.getByRole("status")).toHaveClass(/warning/);
+  await expect(page.getByRole("status")).toContainText("blocked by your API-Football subscription");
+  await expect(page.getByRole("button",{name:"Update latest stats",exact:true})).toBeEnabled();
+});
 test("remove and undo publish consistent server HTML, public API, calendar and source coverage",async({page})=>{
   await signIn(page);
   await page.getByRole("button",{name:/Match records/}).click();await page.getByRole("button",{name:"Remove",exact:true}).click();await page.getByRole("button",{name:"Confirm removal"}).click();await expect(page.getByRole("status")).toContainText("removed");
   let data=await(await page.request.get("/api/comparison/career")).json();expect(data.comparison.goals.messi).toBe(930);
   await page.getByRole("button",{name:"Activity log",exact:true}).click();await page.getByRole("button",{name:"Undo last publication"}).click();await expect(page.getByRole("status")).toContainText("restored");
   data=await(await page.request.get("/api/comparison/career")).json();expect(data.comparison.goals.messi).toBe(931);expect(data.coverageNote).toContain("unlisted dates");expect(data.comparison.metrics.find((m:{id:string})=>m.id==="penalties").coverage).toContain("21 September 2026");
-  const html=await(await page.request.get("/")).text();expect(html).toContain("931");expect(html).toContain("recorded matches to 2026-09-22");
+  const html=await(await page.request.get("/")).text();expect(html).toContain("931");expect(html).toContain("Updated 22 September 2026");
   await page.goto("/seasons/2026");await expect(page.getByRole("row").filter({has:page.getByRole("rowheader",{name:/2026/})})).toContainText("35");
   await page.goto("/updates");await expect(page.getByRole("table")).toContainText("Synthetic test opponent");
 });
 test("date validation, missing-provider errors, stale writes and manual form are enforced",async({page})=>{
   await signIn(page);const state=await(await page.request.get("/api/admin/state")).json();
   const post=(action:string,data:unknown)=>page.request.post(`/api/admin/${action}`,{headers:{origin},data});
+  const noLatestProvider=await post("sync-latest",{revision:state.revision});expect(noLatestProvider.status()).toBe(409);expect((await noLatestProvider.json()).error).toContain("Connect API-Football");
   const noProvider=await post("sync",{date:state.today,revision:state.revision});expect(noProvider.status()).toBe(409);expect((await noProvider.json()).error).toContain("Connect API-Football");
   expect((await post("remove",{id:"manual:integration-only",revision:state.revision-1})).status()).toBe(409);
   expect((await post("match",{record:{...state.records[0],date:state.baseline},revision:state.revision})).status()).toBe(400);
@@ -53,6 +76,51 @@ test("date validation, missing-provider errors, stale writes and manual form are
   await page.getByRole("combobox",{name:"Match player",exact:true}).click();await page.getByRole("option",{name:"Cristiano Ronaldo"}).click();await expect(page.getByRole("combobox",{name:"Match player",exact:true})).toContainText("Cristiano Ronaldo");
   expect((await new AxeBuilder({page}).analyze()).violations.map(v=>v.id)).toEqual([]);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
+});
+
+test("verified free-kick corrections publish through the editor and undo restores the breakdown",async({page})=>{
+  await signIn(page);
+  const before=await(await page.request.get("/api/admin/state")).json();
+  const visitor=await page.context().newPage();
+  await visitor.goto("/free-kicks");
+  await expect(visitor.locator(".stats-table tbody tr").first()).toContainText("75");
+  await page.getByRole("button",{name:/Match records/}).click();
+  await page.getByRole("button",{name:"Edit messi match on 2026-09-22"}).click();
+  await expect(page.getByLabel("Direct free-kick goals",{exact:true})).toHaveValue("");
+  await page.getByLabel("Direct free-kick goals",{exact:true}).fill("1");
+  await page.getByLabel("Penalties taken",{exact:true}).fill("0");
+  await page.getByLabel("Left-foot goals",{exact:true}).fill("1");
+  await page.getByRole("button",{name:"Save & publish match"}).click();
+  await expect(page.getByRole("status")).toContainText("Match saved");
+  try {
+    const state=await(await page.request.get("/api/admin/state")).json();
+    expect(state.records[0].freeKicks).toBe(1);
+    await visitor.evaluate(()=>window.dispatchEvent(new Event("focus")));
+    await expect(visitor.locator(".stats-table tbody tr").first()).toContainText("76");
+    await expect(visitor.locator(".stats-table tbody tr").first()).toContainText("Updated 22 September 2026");
+    const version=await visitor.request.get("/api/data-version");
+    expect(version.headers()["cache-control"]).toBe("no-store");
+    expect((await version.json()).version).toContain(`+r${state.revision}`);
+    const data=await(await page.request.get("/api/comparison/career")).json();
+    expect(data.comparison.goals.messi).toBe(931);
+    for(const metric of data.comparison.metrics.filter((m:{group:string})=>m.group === "scoring")) {
+      expect(metric.updatedThrough,metric.id).toBe("2026-09-22");
+      expect(metric.coverage,metric.id).toBe("Updated 22 September 2026");
+    }
+    expect(data.comparison.metrics.find((m:{id:string})=>m.id==="freeKicks").values.messi).toBe(76);
+    await page.goto("/free-kicks");
+    await expect(page.locator(".stats-table tbody tr").first()).toContainText("76");
+    const datasets=await page.locator('script[type="application/ld+json"]').evaluateAll(nodes=>nodes.map(n=>JSON.parse(n.textContent||"{}")).filter(d=>d["@type"]==="Dataset"));
+    expect(datasets[0].variableMeasured.find((v:{name:string})=>v.name==="Lionel Messi · Direct free-kick goals").value).toBe(76);
+    await page.goto("/answers");
+    await expect(page.locator("#free-kicks")).toContainText("76");
+  } finally {
+    const state=await(await page.request.get("/api/admin/state")).json();
+    expect((await page.request.post("/api/admin/undo",{headers:{origin},data:{revision:state.revision}})).status()).toBe(200);
+    const restored=await(await page.request.get("/api/admin/state")).json();
+    expect(restored.records).toEqual(before.records);
+    await visitor.close();
+  }
 });
 
 test("daily scheduler requires its own secret and reports setup failures without changing totals",async({request})=>{

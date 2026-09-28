@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { snapshotDate } from "@/lib/data";
 import type { DailySyncState } from "./daily-sync-state";
+import { bodyFields, locationFields } from "../match-scoring";
 
 export const dateSchema = z.string().regex(/^\d{4}-\d{2}-\d{2}$/).refine(v => !Number.isNaN(Date.parse(v)) && new Date(v).toISOString().slice(0, 10) === v, "Use a valid calendar date");
 export const matchSchema = z.object({
@@ -9,9 +10,27 @@ export const matchSchema = z.object({
   team: z.string().trim().min(2).max(80), opponent: z.string().trim().min(2).max(80), competition: z.string().trim().min(2).max(100),
   category: z.enum(["league", "club-cup", "international", "world-cup", "copa-euros"]),
   goals: z.number().int().min(0).max(20), assists: z.number().int().min(0).max(20), minutes: z.number().int().min(0).max(150),
+  freeKicks: z.number().int().min(0).max(20).optional(),
+  penalties: z.number().int().min(0).max(20).optional(),
+  penaltyAttempts: z.number().int().min(0).max(20).optional(),
+  outsideBox: z.number().int().min(0).max(20).optional(),
+  insideBox: z.number().int().min(0).max(20).optional(),
+  leftFoot: z.number().int().min(0).max(20).optional(),
+  rightFoot: z.number().int().min(0).max(20).optional(),
+  headers: z.number().int().min(0).max(20).optional(),
+  otherBody: z.number().int().min(0).max(20).optional(),
   appearances: z.literal(1), headToHead: z.boolean().default(false),
   source: z.string().url().max(500).refine(v => new URL(v).protocol === "https:", "An HTTPS evidence URL is required"),
   provider: z.enum(["api-football", "manual"]), note: z.string().trim().min(5).max(500), locked: z.boolean().default(false),
+}).superRefine((record, ctx) => {
+  for (const partition of [locationFields, bodyFields]) {
+    if (partition.reduce((sum, field) => sum + (record[field] ?? 0), 0) > record.goals) {
+      ctx.addIssue({code:"custom",path:[partition[0]],message:"Scoring breakdowns cannot exceed total goals. Location and body-part categories must each reconcile with the match total."});
+    }
+  }
+  if (record.penaltyAttempts !== undefined && (record.penalties ?? 0) > record.penaltyAttempts) {
+    ctx.addIssue({code:"custom",path:["penaltyAttempts"],message:"Penalties taken cannot be fewer than penalty goals."});
+  }
 });
 export type MatchRecord = z.infer<typeof matchSchema>;
 export interface ProviderConnection { key: string; messi: { player: number; club: number; country: number }; ronaldo: { player: number; club: number; country: number } }

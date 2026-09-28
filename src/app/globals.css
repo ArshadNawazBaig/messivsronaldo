@@ -4642,6 +4642,22 @@ dialog::backdrop {
   width: 100%;
   min-height: 47px;
 }
+.admin-latest-button {
+  margin-top: 20px;
+}
+.admin-date-details {
+  border-top: 1px solid var(--border-subtle);
+  margin-top: 20px;
+  padding-top: 18px;
+}
+.admin-date-details summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+}
+.admin-date-details fieldset {
+  margin-top: 18px;
+}
 .admin-inline-help {
   margin: 14px 0 !important;
   font-size: 11px !important;
@@ -4819,9 +4835,17 @@ dialog::backdrop {
   background: color-mix(in srgb, var(--accent) 8%, var(--panel));
   color: var(--accent);
 }
-.admin-message.error {
+.admin-message.error,
+.admin-message.warning {
   background: color-mix(in srgb, var(--ronaldo) 8%, var(--panel));
   color: var(--ronaldo);
+}
+.admin-message ul {
+  margin: 10px 0 0;
+  padding-left: 18px;
+}
+.admin-message li + li {
+  margin-top: 8px;
 }
 .admin-record-toolbar {
   display: flex;

@@ -10,6 +10,7 @@ export const refreshedComparisons = new Set(["goals", "free-kicks", "la-liga", "
 // match must not make an older goal-type breakdown appear to be up to date.
 export function comparisonIntro(slug: string, data: PublishedData, t: Translate, trophies?: Pair) {
   const career = data.scopes.career;
+  if (slug === "2026") return t("Goals, assists, appearances and playing minutes from 1 January 2026. {0}. The year is still in progress.", {0:t(data.scopes["2026"].period)});
   if (slug === "goals") return t("Messi has {0} career goals and Ronaldo has {1}. Compare club and international totals, appearances and scoring rates. {2}.", { 0: career.goals.messi, 1: career.goals.ronaldo, 2: t(career.period) });
   if (slug === "free-kicks") {
     const metric = career.metrics.find(item => item.id === "freeKicks");
@@ -32,7 +33,7 @@ export function comparisonQuestions(slug: string, data: PublishedData, t: Transl
   ];
   if (slug === "free-kicks") return [
     { question: t("What counts as a direct free-kick goal?"), answer: t("A direct free-kick goal is scored from the kick itself. A goal after a pass from a free kick is not a direct free-kick goal. Penalty goals are counted separately."), href: "/penalties", link: t("Messi vs Ronaldo Penalties: Scored, Missed & Conversion") },
-    { question: t("How current are the free-kick totals?"), answer: t("Free-kick totals cover {0}. Later match updates can change career goals without changing this breakdown. Check each statistic’s cutoff before comparing totals.", { 0: t(snapshotLabel) }), href: "/updates", link: t("Published match updates") },
+    { question: t("How current are the free-kick totals?"), answer: t("Free-kick coverage: {0}. Verified match classifications update this total. Check the update log for evidence and any remaining coverage gaps.", { 0: t(career.metrics.find(metric => metric.id === "freeKicks")?.coverage ?? snapshotLabel) }), href: "/updates", link: t("Published match updates") },
   ];
   if (slug === "la-liga") return [
     { question: t("Who has more La Liga goals: Messi or Ronaldo?"), answer: comparisonIntro(slug, data, t)!, href: "/scoring-calculator", link: t("Messi vs Ronaldo Scoring Calculator: Compare Seasons & Rates") },

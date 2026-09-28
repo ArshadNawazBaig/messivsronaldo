@@ -44,7 +44,7 @@ test("competition views never reuse career trophies, awards or mismatched assist
   assert.equal(getComparisonPoster(data, { scope: "world-cup" }).competition, "World Cup stats");
 });
 
-test("new match publications update core stats without advancing awards or goal-type cutoffs", () => {
+test("new match publications update core stats without advancing awards or unverified goal types", () => {
   const record: MatchRecord = {
     id: "manual:comparison-test", player: "messi", date: "2026-09-22", team: "Inter Miami", opponent: "Test only", competition: "Test",
     category: "league", goals: 2, assists: 1, appearances: 1, minutes: 90, headToHead: false,
@@ -54,7 +54,7 @@ test("new match publications update core stats without advancing awards or goal-
   const after = getComparisonPoster(buildPublishedData([record], 1), request);
   assert.equal(after.date, "2026-09-22");
   assert.equal(after.rows.find(row => row.id === "contributions")!.values.messi, 1357);
-  for (const id of ["team-trophies", "ballon-dor", "golden-shoes", "hatTricks", "freeKicks"]) {
+  for (const id of ["team-trophies", "ballon-dor", "golden-shoes", "freeKicks"]) {
     assert.deepEqual(after.rows.find(row => row.id === id), before.rows.find(row => row.id === id));
   }
 });
@@ -70,6 +70,16 @@ test("comparison bars and rates handle zero and unavailable data without inventi
   const rate = getComparisonPoster(data, { scope: "world-cup" }).rows.find(item => item.id === "goals-per-game")!;
   assert.equal(rate.values.messi, null);
   assert.ok(rate.values.ronaldo! > 0);
+});
+
+test("comparison posters use verified free-kick additions and the metric's own date",()=>{
+  const record:MatchRecord={id:"manual:free-kick-test",player:"messi",date:"2026-09-27",team:"Inter Miami",opponent:"Test only",competition:"Test",category:"league",goals:1,freeKicks:1,assists:0,appearances:1,minutes:90,headToHead:false,source:"https://example.com/evidence",provider:"manual",note:"Synthetic verified free-kick fixture",locked:true};
+  const poster=getComparisonPoster(buildPublishedData([record],1),request);
+  const row=poster.rows.find(r=>r.id==="freeKicks")!;
+  assert.deepEqual(row.values,{messi:76,ronaldo:65});
+  assert.equal(row.date,"2026-09-27");
+  assert.match(poster.notes.join(" "),/Free kicks: 2026-09-27/);
+  assert.equal(poster.rows.find(r=>r.id==="hatTricks")!.date,"2026-09-27");
 });
 
 test("custom posters preserve the requested order using only available published statistics", () => {

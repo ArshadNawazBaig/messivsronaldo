@@ -57,7 +57,8 @@ test("structured data retains cutoff, definitions, localized identities and actu
   const core = comparisonDataset(data, "career", "/goals", "fr", "https://example.com", t);
   const types = comparisonDataset(data, "career", "/free-kicks", "fr", "https://example.com", t, true);
   assert.equal(core.dateModified, "2026-09-25");
-  assert.equal(types.dateModified, "2026-09-21");
+  assert.equal(types.dateModified, "2026-09-25", "the scoring dataset changes when the hat-trick count is verified");
+  assert.match(types.variableMeasured.find(v => v.name === "Lionel Messi · Direct free-kick goals")!.description, /21 September 2026/);
   assert.equal(core.url, "https://example.com/fr/goals#comparison");
   assert.equal(core.license, "https://example.com/fr/terms#using-the-content");
   assert.equal(types.license, core.license);

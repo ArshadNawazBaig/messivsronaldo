@@ -8,10 +8,29 @@ import { buildPublishedData } from "../src/lib/published-data";
 import { createTranslator } from "../src/lib/i18n/translate";
 import { locales } from "../src/lib/i18n/config";
 import { getPublicPages } from "../src/lib/public-pages";
+import { comparisonDataset } from "../src/lib/comparison-schema";
+import { buildRecordAnswers } from "../src/lib/record-answers";
 import type { MatchRecord } from "../src/lib/admin/model";
 
 const match: MatchRecord = { id: "manual:seo-test", player: "messi", date: "2026-09-24", team: "Inter Miami", opponent: "Synthetic opponent", competition: "Synthetic league", category: "league", goals: 2, assists: 1, appearances: 1, minutes: 90, headToHead: false, source: "https://example.com/test", provider: "manual", note: "Synthetic test fixture", locked: true };
 const english = createTranslator("en", {});
+
+test("verified free kicks agree across featured cards, search copy, answers and structured data",()=>{
+  const data=buildPublishedData([{...match,freeKicks:1}],1);
+  const focus=comparisonFocus(data.scopes.career,"freeKicks",data.baselineDate,data.snapshotDate);
+  assert.equal(focus.values.messi,76);
+  assert.equal(focus.date,match.date);
+  assert.match(comparisonIntro("free-kicks",data,english)!,/Messi 76/);
+  assert.match(comparisonQuestions("free-kicks",data,english)[1].answer,/24 September 2026/);
+  const answer=buildRecordAnswers(data,english).find(a=>a.id==="free-kicks")!;
+  assert.match(answer.answer,/Messi 76/);
+  assert.equal(answer.date,match.date);
+  const dataset=comparisonDataset(data,"career","/free-kicks","en","https://example.com",english,true);
+  assert.equal(dataset.dateModified,match.date);
+  assert.equal(dataset.variableMeasured.find(v=>v.name==="Lionel Messi · Direct free-kick goals")!.value,76);
+  assert.ok(dataset.citation.includes("https://example.com/updates"));
+  assert.match(dataset.variableMeasured.find(v=>v.name==="Lionel Messi · Penalty goals")!.description,/21 September 2026/);
+});
 
 test("featured cards and copy keep old goal-type dates after newer career updates", () => {
   const before = buildPublishedData();
@@ -23,7 +42,7 @@ test("featured cards and copy keep old goal-type dates after newer career update
   assert.doesNotMatch(comparisonIntro("free-kicks", after, english)!, /24 September|2026-09-24|932/);
   assert.equal(comparisonIntro("free-kicks", before, english), comparisonIntro("free-kicks", after, english));
   assert.match(comparisonIntro("goals", after, english)!, /932/);
-  assert.match(comparisonIntro("goals", after, english)!, /recorded matches to 2026-09-24/);
+  assert.match(comparisonIntro("goals", after, english)!, /Updated 24 September 2026/);
   assert.equal(comparisonFocus(after.scopes.career, "assists", after.baselineDate, after.snapshotDate).values.messi, 425);
   assert.equal(comparisonFocus(after.scopes.career, "assists", after.baselineDate, after.snapshotDate).date, "2026-09-24");
 });

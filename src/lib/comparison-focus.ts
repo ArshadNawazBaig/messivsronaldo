@@ -14,7 +14,7 @@ export function comparisonFocus(scope: Scope, id: FocusMetric, baselineDate: str
   return {
     values: metric?.values ?? { messi: null, ronaldo: null },
     label: focusLabels[id],
-    date: id === "assists" ? snapshotDate : baselineDate,
+    date: metric?.updatedThrough ?? (id === "assists" ? scope.updatedThrough || snapshotDate : baselineDate),
     period: metric?.coverage ?? scope.period,
     explanation: metric?.explanation,
     source: metric?.source ?? [],

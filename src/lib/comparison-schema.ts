@@ -7,12 +7,12 @@ import { playerEntity } from "./page-semantics";
 export function comparisonDataset(data: PublishedData, scopeId: ScopeId, path: string, locale: Locale, origin: string, t: ReturnType<typeof createTranslator>, scoring = false) {
   const scope = data.scopes[scopeId];
   const metrics = scope.metrics.filter(metric => metric.group === (scoring ? "scoring" : "overview"));
-  const cutoff = scoring ? data.baselineDate : scope.updatedThrough;
+  const cutoff = scoring ? metrics.map(metric => metric.updatedThrough ?? data.baselineDate).sort().at(-1) ?? data.baselineDate : scope.updatedThrough;
   const url = localizedUrl(path, locale, origin);
   return {
     "@context": "https://schema.org", "@type": "Dataset", "@id": `${url}#comparison-dataset`,
     name: `${t("Messi vs Ronaldo")} · ${t(scope.label)}`,
-    description: `${t(scope.description)} ${t("Data cutoff: ")} ${cutoff}.`,
+    description: `${t(scope.description)} ${scoring ? t("Each scoring statistic lists its own coverage.") : `${t("Data cutoff: ")} ${cutoff}.`}`,
     url: `${url}#comparison`, inLanguage: locale, version: data.datasetVersion,
     dateModified: cutoff, creator: { "@id": `${origin}/#publisher` }, isAccessibleForFree: true,
     // Reference the site's existing reuse terms, including third-party rights.

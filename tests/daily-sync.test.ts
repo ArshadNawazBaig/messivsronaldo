@@ -6,6 +6,7 @@ import { AdminError } from "../src/lib/admin/model";
 import { getAdminState } from "../src/lib/admin/service";
 import { store, saveConnection, history, readRecords, revision, commitRecords, undoLast } from "../src/lib/admin/store";
 import type { ProviderFetch } from "../src/lib/admin/provider-client";
+import { apiClient } from "../src/lib/admin/provider-client";
 import { buildPublishedData } from "../src/lib/published-data";
 
 // This file runs in its own Node test process. All mutations stay in memory.
@@ -34,6 +35,16 @@ beforeEach(() => {
   for (const table of ["settings", "matches", "runs", "locks"]) store().prepare(`DELETE FROM ${table}`).run();
   store().prepare("UPDATE state SET revision=0").run();
   saveConnection(connection);
+});
+
+test("subscription-restricted dates do not stop other dates and explain the required action", async () => {
+  const valid = provider();
+  const blocked = apiClient("synthetic-key", async () => Response.json({errors:{plan:"Free plans do not have access to this date."},response:[]}));
+  const result = await runDailySync({now,fetcher:async(path,params)=>params.date === "2026-09-25" ? blocked(path,params) : valid(path,params)});
+  assert.equal(result.status,"partial");
+  assert.equal(readRecords().length,1);
+  assert.deepEqual(result.pendingDates,["2026-09-25"]);
+  assert.match(result.message,/subscription.*retrying alone cannot resolve/);
 });
 
 test("daily run catches up completed UTC dates and publishes consistent totals only once", async () => {

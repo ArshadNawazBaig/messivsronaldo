@@ -33,15 +33,18 @@ export async function syncDateUnderLock(date: string, expected: number, connecti
     const result = await fetchDate(date,connection,fetcher);
     if (date <= snapshotDate) {
       const message = `Checked ${result.fixtures} tracked fixture(s); ${result.records.length} player record(s) available. This date is already in the reviewed baseline, so no totals were changed.`;
-      await logRun(date,"check","checked",message); return {message, pending: result.pending > 0};
+      await logRun(date,"check","checked",message); return {message, pending: result.pending > 0, changed: false};
     }
     const existing = await readRecords(); const next = mergeDate(existing,result.records,date,result.withdrawnIds);
     const unchanged = JSON.stringify([...existing].sort((a,b)=>a.id.localeCompare(b.id))) === JSON.stringify([...next].sort((a,b)=>a.id.localeCompare(b.id)));
     const protectedCount = existing.filter(r => r.date === date && (r.locked || r.provider === "manual")).length;
-    const message = `${result.records.length} player record(s) fetched; ${result.skipped} unplayed/excluded fixture(s). ${protectedCount ? `${protectedCount} manual correction(s) preserved. ` : ""}${unchanged ? "No changes to publish." : "Totals published across the website."}`;
-    if (unchanged) await logRun(date,"check","unchanged",message);
+    const details = !result.fixtures
+      ? `No fixtures for either player's club or national team were returned for ${date} (UTC kickoff date). Try Update latest stats to check recent dates.`
+      : `${result.records.length} player appearance(s) verified for ${date} (UTC); ${result.nonAppearances} unused substitute(s) excluded; ${result.skipped} unplayed/excluded fixture(s).`;
+    const message = `${details} ${protectedCount ? `${protectedCount} manual correction(s) preserved. ` : ""}${result.pending ? `${result.pending} fixture(s) awaiting completion; check again later. ` : ""}${unchanged ? result.fixtures && !result.pending ? "Published records already match the verified data." : "Totals were not changed." : "Totals published across the website."}`;
+    if (unchanged) await logRun(date,"check",result.pending ? "pending" : !result.fixtures ? "no-fixtures" : "unchanged",message);
     else await commitRecords(expected,next,date,"sync",message);
-    return {message, pending: result.pending > 0};
+    return {message, pending: result.pending > 0, changed: !unchanged};
   } catch (error) {
     await logRun(date,"sync","failed",error instanceof AdminError ? error.message : "The provider response could not be verified. No data was published.");
     throw error;

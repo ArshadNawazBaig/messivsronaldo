@@ -42,22 +42,28 @@ function providerError(path: string, response: Response, detail: string) {
   } else if (response.status === 401 || /api.?key|token|authentication/i.test(detail)) {
     reason = "Key rejected. Use the API-Sports key from Account → My Access in the API-Football dashboard.";
   } else if (response.status === 403 || /subscription|access|free plan|season|not subscribed/i.test(detail)) {
-    reason = "Access restricted. Check whether your subscription permits this endpoint and season.";
+    reason = "Access restricted by your subscription. Use a plan that covers this date/season, or add a verified match manually.";
+    status = 403;
   } else {
     reason = `Request rejected${response.ok ? "" : ` (HTTP ${response.status})`}.`;
   }
   return new AdminError(`${prefix}: ${reason}${detail ? ` Provider message: ${detail}` : ""} No changes were saved.`, status);
 }
 
-export function apiClient(key: string, send: typeof fetch = fetch): ProviderFetch {
+export function apiClient(key: string, send: typeof fetch = fetch, options: { waitForRateLimit?: (ms: number) => Promise<void> } = {}): ProviderFetch {
   let dailyRemaining: number | null = null;
   let minuteRemaining: number | null = null;
   return async (path, params) => {
     const records: unknown[] = [];
+    const retriedPages = new Set<number>();
     let total = 1;
     for (let page = 1; page <= total; page++) {
       if (dailyRemaining === 0) throw new AdminError(`API-Football /${path}: Daily request quota reached. Check the quota reset in your provider dashboard before retrying. No changes were saved.`, 429);
-      if (minuteRemaining === 0) throw new AdminError(`API-Football /${path}: Request rate limit reached. Wait at least 60 seconds before retrying. No changes were saved.`, 429);
+      if (minuteRemaining === 0) {
+        if (!options.waitForRateLimit) throw new AdminError(`API-Football /${path}: Request rate limit reached. Wait at least 60 seconds before retrying. No changes were saved.`, 429);
+        await options.waitForRateLimit(61_000);
+        minuteRemaining = null;
+      }
       const url = new URL(`${base}/${path}`);
       for (const [name, value] of Object.entries(params)) url.searchParams.set(name, String(value));
       if (page > 1) url.searchParams.set("page", String(page));
@@ -77,7 +83,18 @@ export function apiClient(key: string, send: typeof fetch = fetch): ProviderFetc
       }
       const errors = body && typeof body === "object" && "errors" in body ? body.errors : undefined;
       const detail = safeDetail(errors, key);
-      if (!response.ok || detail) throw providerError(path, response, detail);
+      if (!response.ok || detail) {
+        const error = providerError(path, response, detail);
+        if (options.waitForRateLimit && error.status === 429 && error.message.includes(": Request rate limit reached.") && !retriedPages.has(page)) {
+          retriedPages.add(page);
+          const retryAfter = Number(response.headers.get("retry-after"));
+          await options.waitForRateLimit(Math.max(61_000, Number.isFinite(retryAfter) ? retryAfter * 1000 : 0));
+          minuteRemaining = null;
+          page--;
+          continue;
+        }
+        throw error;
+      }
       const parsed = envelopeSchema.safeParse(body);
       if (!parsed.success) throw new AdminError(`API-Football /${path}: Incomplete response format. No changes were saved.`, 502);
       const paging = parsed.data.paging;
@@ -91,4 +108,18 @@ export function apiClient(key: string, send: typeof fetch = fetch): ProviderFetc
     }
     return records;
   };
+}
+
+// Batch jobs can span a minute boundary while staying inside their execution budget.
+// Daily quotas and subscription restrictions are never retried automatically.
+export function batchApiClient(key: string, deadline: number): ProviderFetch {
+  const signal = AbortSignal.timeout(Math.max(1, deadline - Date.now()));
+  return apiClient(key, (url, init) => fetch(url, {
+    ...init, signal: init?.signal ? AbortSignal.any([signal, init.signal]) : signal,
+  }), {
+    waitForRateLimit: async ms => {
+      if (Date.now() + ms + 15_000 >= deadline) throw new AdminError("The provider rate limit would exceed this update's time limit. Wait at least 60 seconds, then run Update latest stats again. Verified changes already published are retained.", 429);
+      await new Promise(resolve => setTimeout(resolve, ms));
+    },
+  });
 }

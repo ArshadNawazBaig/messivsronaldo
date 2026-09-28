@@ -1,12 +1,59 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { apiClient } from "../src/lib/admin/provider-client";
+import { apiClient, batchApiClient } from "../src/lib/admin/provider-client";
 import { AdminError } from "../src/lib/admin/model";
 
 const key = "test-only-private-key+value";
 const page = (response: unknown[], current = 1, total = 1) => ({ errors: [], response, paging: { current, total } });
 const transport = (handler: (url: URL, init?: RequestInit) => Response | Promise<Response>): typeof fetch =>
   async (input, init) => handler(new URL(String(input)), init);
+
+test("batch pacing waits before the next request when a minute quota reaches zero", async () => {
+  const waits: number[] = [];
+  let calls = 0;
+  const client = apiClient(key, transport(() => {
+    calls++;
+    return Response.json(page([{id:calls}]),{headers:{"x-ratelimit-remaining":calls===1?"0":"9"}});
+  }),{waitForRateLimit:async ms=>{waits.push(ms);assert.equal(calls,1);}});
+  await client("fixtures",{});
+  assert.deepEqual(await client("fixtures/players",{}),[{id:2}]);
+  assert.deepEqual(waits,[61_000]);
+});
+
+test("batch minute-limit responses retry once per page and respect Retry-After", async () => {
+  const waits:number[]=[];
+  let calls=0;
+  const client=apiClient(key,transport(()=>++calls===1
+    ? Response.json({errors:{rateLimit:"Too many requests per minute."},response:[]},{status:429,headers:{"retry-after":"75"}})
+    : Response.json(page([{id:123}]))),{waitForRateLimit:async ms=>{waits.push(ms);}});
+  assert.deepEqual(await client("fixtures",{}),[{id:123}]);
+  assert.deepEqual(waits,[75_000]);
+  let retries=0;
+  const alwaysLimited=apiClient(key,transport(()=>{retries++;return Response.json({errors:{rateLimit:"Too many requests per minute."},response:[]},{status:429});}),{waitForRateLimit:async()=>{}});
+  await assert.rejects(()=>alwaysLimited("fixtures",{}),/Request rate limit/);
+  assert.equal(retries,2);
+});
+
+test("batch pacing never waits on daily quotas or subscription errors",async()=>{
+  for(const errors of [{requests:"Daily request quota reached"},{plan:"Free plans do not have access to this date"}]) {
+    let calls=0;
+    const client=apiClient(key,transport(()=>{calls++;return Response.json({errors,response:[]});}),{waitForRateLimit:async()=>{assert.fail("Must not wait");}});
+    await assert.rejects(()=>client("fixtures",{}),/Daily request quota|Access restricted/);
+    assert.equal(calls,1);
+  }
+});
+
+test("batch pacing cannot wait beyond the server execution budget",async(t)=>{
+  let calls=0;
+  t.mock.method(globalThis,"fetch",async()=>{
+    calls++;
+    return Response.json(page([]),{headers:{"x-ratelimit-remaining":"0"}});
+  });
+  const client=batchApiClient(key,Date.now()+10_000);
+  await client("fixtures",{});
+  await assert.rejects(()=>client("fixtures/players",{}),/exceed this update's time limit/);
+  assert.equal(calls,1);
+});
 
 test("provider client follows every page and preserves the lookup filters", async () => {
   const seen: string[] = [];
