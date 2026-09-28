@@ -6,11 +6,11 @@ The user selected a Messi–Ronaldo statistics guide for Thai readers. The artic
 
 ## Delivery state
 
-A private draft was saved and read back from the **local** `.data/admin.sqlite` database, with `published: null`. The stable draft ID is `6b55a4b6-a1b9-8d50-a67b-fc0ec0d397d8`. No production deployment or production article publication was performed. The production CMS needs this Thai-language code deployed before it can accept the draft.
+The guide is now [published on the live website](https://messivsronaldo17.com/th/insights/messi-vs-ronaldo-stats-guide), following the reported 404. Thai support was already deployed; the missing step was importing and publishing the article in the production CMS. Publication completed on 28 September 2026. The article ID is `6b55a4b6-a1b9-8d50-a67b-fc0ec0d397d8`.
 
-[drafts.json](drafts.json) contains the native CMS `save` command, including the rich document, description, category, summary and citations. After deployment it can be submitted through the existing authenticated `/api/admin/blog` endpoint. Inspect any existing Thai post with this slug first; the initial payload expects revision zero. Publishing is a separate action in the blog editor.
+[drafts.json](drafts.json) remains the original authoring payload, including the rich document, description, category, summary and citations. The production article was published through the authenticated `/api/admin/blog` endpoint and read back to verify the content. Edit the existing Thai article in **Admin → Blog editor** for subsequent changes; do not resubmit the initial revision-zero payload. The local SQLite article is also published so the same path works in local development.
 
-The eventual public path is `/th/insights/messi-vs-ronaldo-stats-guide`. It reuses the English guide's slug so the existing article-language logic can connect the versions when both are published. These are supporting guides, not keyword-variant duplicates.
+The public path is `/th/insights/messi-vs-ronaldo-stats-guide`. It reuses the English guide's slug so the existing article-language logic can connect the versions when both are published. These are supporting guides, not keyword-variant duplicates.
 
 ## Evidence and editorial choices
 
@@ -30,4 +30,6 @@ npx tsx content/thai-2026-09-28/prepare.ts
 
 This local conversion validates the draft with the app's document and publication schemas, regenerates `drafts.json`, and records counts, links and the content hash in [editorial-report.json](editorial-report.json). It does not authenticate, save or publish.
 
-Build, lint and TypeScript checks passed. Unit tests passed (135, with one existing optional database test skipped); 21 language browser tests passed across desktop Chromium, mobile Chromium and mobile WebKit. The Thai guide and comparison page were also rendered against an isolated local preview database: all tables appeared, fonts loaded, and no page overflow or browser errors were found. Evidence and screenshots are in `.artifacts/thai-2026-09-28/`, outside version control. The preview database is separate from the local private draft and from production.
+Build, lint and TypeScript checks passed. Unit tests passed (135, with one existing optional database test skipped); 21 language browser tests passed across desktop Chromium, mobile Chromium and mobile WebKit. The Thai guide and comparison page were also rendered against an isolated local preview database: all tables appeared, fonts loaded, and no page overflow or browser errors were found. Evidence and screenshots are in `.artifacts/thai-2026-09-28/`, outside version control. The preview database is separate from the local development database and from production.
+
+The 404 fix published the prepared content without changing the app's routing code or any other article. Production and local publication receipts, the prior production inventory and public-page verification are retained in `.artifacts/thai-guide-404/`, without credentials.
