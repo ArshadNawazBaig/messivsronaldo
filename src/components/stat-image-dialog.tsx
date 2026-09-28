@@ -2,9 +2,16 @@
 import { useEffect, useId, useRef, useState } from "react";
 import {
   Download,
+  Check,
+  ChevronDown,
   ExternalLink,
+  Focus,
   LoaderCircle,
+  Maximize2,
+  Minimize2,
+  Minus,
   Moon,
+  Plus,
   Share2,
   Sun,
   X,
@@ -24,7 +31,12 @@ import {
 } from "@/lib/stat-image";
 import styles from "./stat-image-dialog.module.css";
 
-type ReadyImage = { key: string; url: string; file: File; shareable: boolean };
+type ReadyImage = { key: string; url: string; file: File; shareable: boolean; format: ImageFormat; description: string };
+const designs = [
+  { id: "stat", label: "Stat card", description: "One number. All the impact." },
+  { id: "poster", label: "Player poster", description: "Put a player in the spotlight." },
+  { id: "comparison", label: "Comparison poster", description: "Two legends. Side by side." },
+] as const;
 export default function StatImageDialog({
   stats,
   initialPlayer,
@@ -52,6 +64,10 @@ export default function StatImageDialog({
   const [failure, setFailure] = useState({ key: "", message: "" });
   const [status, setStatus] = useState("");
   const [attempt, setAttempt] = useState(0);
+  const [expanded, setExpanded] = useState(false);
+  const [zoom, setZoom] = useState<number | null>(null);
+  const [viewport, setViewport] = useState({ width: 0, height: 0 });
+  const stage = useRef<HTMLDivElement>(null);
   const dialog = useRef<HTMLDialogElement>(null);
   const [portal, setPortal] = useState<HTMLDialogElement | null>(null);
   const close = useRef<HTMLButtonElement>(null);
@@ -78,6 +94,23 @@ export default function StatImageDialog({
   const requestKey = `${payload}:${attempt}`;
   const ready = image?.key === requestKey ? image : null;
   const error = failure.key === requestKey ? failure.message : "";
+  const previewFormat = image?.format ?? format;
+  const dimensions = imageFormats[previewFormat];
+  const canvasPadding = viewport.width < 460 ? 12 : 24;
+  const fitScale = Math.min(1, Math.max(0, viewport.width - canvasPadding * 2) / dimensions.width, Math.max(0, viewport.height - canvasPadding * 2) / dimensions.height);
+  const scale = zoom ?? fitScale;
+
+  useEffect(() => {
+    const node = stage.current!;
+    const observer = new ResizeObserver(([entry]) => {
+      setViewport({ width: entry.contentRect.width, height: entry.contentRect.height });
+    });
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  // Keep the last preview visible while its replacement is being rendered.
+  useEffect(() => () => { if (image) URL.revokeObjectURL(image.url); }, [image]);
 
   useEffect(() => {
     const node = dialog.current!;
@@ -99,7 +132,6 @@ export default function StatImageDialog({
 
   useEffect(() => {
     const controller = new AbortController();
-    let url = "";
     async function generate() {
       try {
         const response = await fetch("/api/admin/stat-image", {
@@ -124,14 +156,14 @@ export default function StatImageDialog({
             .get("content-disposition")
             ?.match(/filename="([a-z0-9.-]+)"/)?.[1] ?? "the-rivalry.png";
         const file = new File([blob], filename, { type: "image/png" });
-        url = URL.createObjectURL(blob);
+        const url = URL.createObjectURL(blob);
         let shareable = false;
         try {
           shareable = !!navigator.canShare?.({ files: [file] });
         } catch {
           /* Download remains available. */
         }
-        setImage({ key: requestKey, url, file, shareable });
+        setImage({ key: requestKey, url, file, shareable, format, description: imageDescription });
       } catch (e) {
         if (!controller.signal.aborted)
           setFailure({
@@ -143,12 +175,13 @@ export default function StatImageDialog({
           });
       }
     }
-    void generate();
+    // A short debounce avoids rendering every intermediate selection.
+    const timer = window.setTimeout(() => { void generate(); }, 180);
     return () => {
+      window.clearTimeout(timer);
       controller.abort();
-      if (url) URL.revokeObjectURL(url);
     };
-  }, [payload, requestKey]);
+  }, [payload, requestKey, format, imageDescription]);
 
   async function share() {
     if (!ready) return;
@@ -183,10 +216,10 @@ export default function StatImageDialog({
       <div className={styles.shell}>
         <header className={styles.header}>
           <div>
-            <span className={styles.badge}>{t("Admin image export")}</span>
+            <span className={styles.badge}><span className={styles.brandMark} aria-hidden="true" />{t("The Rivalry")}<span aria-hidden="true">/</span>{t("Export studio")}</span>
             <h2 id={`${uid}-title`}>{t("A stat worth sharing.")}</h2>
             <p id={`${uid}-description`}>
-              {t("Your selected comparison, ready for social media.")}
+              {t("Choose your look. Make it yours. Share the rivalry.")}
             </p>
           </div>
           <button
@@ -199,26 +232,34 @@ export default function StatImageDialog({
             <X size={22} />
           </button>
         </header>
-        <div className={styles.body}>
-          <div className={styles.controls}>
+        <div className={styles.body} data-expanded={expanded}>
+          <div className={styles.controls} hidden={expanded}>
             <fieldset className={styles.fieldset}>
               <legend>{t("Image design")}</legend>
-              <div className={`${styles.themes} ${styles.designs}`}>
-                {(["stat", "poster", "comparison"] as const).map(choice => <button
+              <div className={styles.designs}>
+                {designs.map(({ id: choice, label, description }) => <button
                   type="button"
                   key={choice}
+                  aria-label={t(label)}
                   aria-pressed={design === choice}
                   onClick={() => {
                     if (design !== choice) {
                       setDesign(choice);
                       if (choice === "comparison" && !comparisonOpened.current) {
                         setFormat("portrait");
+                        setZoom(null);
                         comparisonOpened.current = true;
                       }
                       setStatus("");
                     }
                   }}
-                >{t(choice === "comparison" ? "Comparison poster" : choice === "poster" ? "Player poster" : "Stat card")}</button>)}
+                >
+                  <span className={styles.designArt} data-design={choice} aria-hidden="true">
+                    {choice === "stat" ? <><b>10</b><span className={styles.miniLines} /></> : <><span className={styles.miniMessi} />{choice === "comparison" && <span className={styles.miniRonaldo} />}<span className={styles.miniLines} /></>}
+                  </span>
+                  <span className={styles.designCopy}><strong>{t(label)}</strong><small>{t(description)}</small></span>
+                  <span className={styles.selectionMark} aria-hidden="true">{design === choice && <Check size={12} strokeWidth={3} />}</span>
+                </button>)}
               </div>
             </fieldset>
             {design !== "stat" && <>
@@ -238,6 +279,8 @@ export default function StatImageDialog({
                   options={posterScopeIds.map(id => ({ value: id, label: design === "comparison" ? comparisonScopeLabel(data, id) : posterScopeLabel(data, id, posterPlayer) }))}
                 />
               </div>
+              <details className={styles.statistics}>
+                <summary>{t("View statistics")}<ChevronDown size={15} aria-hidden="true" /></summary>
               {design === "poster" ? <div className={`${styles.summary} ${styles.posterSummary}`}>
                 <strong>{posterPlayer === "messi" ? "Lionel Messi" : "Cristiano Ronaldo"}</strong>
                 <span>{t(poster.competition)} · {poster.date}</span>
@@ -258,6 +301,7 @@ export default function StatImageDialog({
                   </tr>)}</tbody>
                 </table>
               </div>}
+              </details>
             </>}
             {design === "stat" && stats.length > 1 && (
               <div className={styles.field}>
@@ -338,6 +382,7 @@ export default function StatImageDialog({
                     onClick={() => {
                       if (key !== format) {
                         setFormat(key);
+                        setZoom(null);
                         setAttempt((n) => n + 1);
                         setStatus("");
                       }
@@ -394,7 +439,46 @@ export default function StatImageDialog({
                   : "Images use English labels. The selected filters, data date and coverage notes are included.",
               )}
             </p>
-            <div className={styles.actions}>
+          </div>
+          <section className={styles.preview} aria-label={t("Image preview")}>
+            <div className={styles.previewToolbar}>
+              <span className={styles.previewLabel}><span className={styles.liveDot} data-loading={!ready && !error} />{t("Live preview")}</span>
+              <button type="button" className={styles.iconButton} aria-label={t(expanded ? "Show controls" : "Expand preview")} aria-pressed={expanded} onClick={() => setExpanded(value => !value)}>
+                {expanded ? <Minimize2 size={17} /> : <Maximize2 size={17} />}
+              </button>
+            </div>
+            <div ref={stage} className={styles.stage} tabIndex={0} role="region" aria-label={t("Scrollable image preview")} aria-busy={!ready && !error}>
+              {image && !error && (
+                <div className={styles.canvas} style={{ width: dimensions.width * scale + canvasPadding * 2, height: dimensions.height * scale + canvasPadding * 2, padding: canvasPadding, minWidth: "100%", minHeight: "100%" }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element -- Preview the actual generated PNG. */}
+                  <img key={image.url} src={image.url} width={dimensions.width} height={dimensions.height} alt={image.description} className={styles.artwork} style={{ width: dimensions.width * scale, height: dimensions.height * scale }} />
+                </div>
+              )}
+              {!image && !error && <div className={styles.skeleton} aria-hidden="true"><span /><span /><span /></div>}
+            </div>
+            {(!ready || error) && <div className={styles.previewNotice}>
+              {error ? <div className={styles.error} role="alert">
+                <p>{t(error)}</p>
+                <button type="button" onClick={() => setAttempt(n => n + 1)}>{t("Try again")}</button>
+              </div> : <div className={styles.loading} role="status"><LoaderCircle size={17} className={styles.spin} />{t(image ? "Updating preview…" : "Creating image…")}</div>}
+            </div>}
+            <div className={styles.previewBottom}>
+              <span className={styles.previewDimensions}>{imageFormats[format].width} × {imageFormats[format].height} <span>PNG</span></span>
+              <div className={styles.zoomControls} role="group" aria-label={t("Preview zoom")}>
+                <button type="button" aria-label={t("Zoom out")} disabled={!ready || scale <= .25} onClick={() => setZoom(Math.max(.25, Math.ceil(scale * 4 - 1) / 4))}><Minus size={15} /></button>
+                <output aria-live="polite" aria-label={t("Zoom level")}>{Math.round(scale * 100)}%</output>
+                <button type="button" aria-label={t("Zoom in")} disabled={!ready || scale >= 1.5} onClick={() => setZoom(Math.min(1.5, Math.floor(scale * 4 + 1) / 4))}><Plus size={15} /></button>
+                <button type="button" className={styles.fitButton} aria-pressed={zoom === null} onClick={() => setZoom(null)}><Focus size={15} />{t("Fit")}</button>
+              </div>
+            </div>
+          </section>
+        </div>
+        <footer className={styles.footer}>
+          <div className={styles.exportInfo} aria-live="polite">
+            <strong>{status ? t(status) : t(ready ? "Ready to share" : error ? "Image unavailable" : "Preparing your image…")}</strong>
+            <span>{t(imageFormats[format].label)} · {imageFormats[format].width} × {imageFormats[format].height}{ready ? ` · ${(ready.file.size / 1024 / 1024).toFixed(1)} MB` : ""}</span>
+          </div>
+          <div className={styles.actions}>
               {ready && !error ? (
                 <a
                   className={styles.primary}
@@ -402,6 +486,7 @@ export default function StatImageDialog({
                   download={ready.file.name}
                   target="_blank"
                   rel="noopener"
+                  onClick={() => setStatus("Download started.")}
                 >
                   <Download size={18} />
                   {t("Download PNG")}
@@ -419,60 +504,20 @@ export default function StatImageDialog({
                 <>
                   <div className={styles.secondaryActions}>
                     {ready.shareable && (
-                      <button type="button" onClick={share}>
+                      <button type="button" onClick={share} title={t("Share image")}>
                         <Share2 size={17} />
-                        {t("Share image")}
+                        <span className={styles.secondaryLabel}>{t("Share image")}</span>
                       </button>
                     )}
-                    <a href={`${downloadUrl}&inline=1`} target="_blank" rel="noopener">
+                    <a href={`${downloadUrl}&inline=1`} target="_blank" rel="noopener" title={t("Open image")}>
                       <ExternalLink size={17} />
-                      {t("Open image")}
+                      <span className={styles.secondaryLabel}>{t("Open image")}</span>
                     </a>
                   </div>
-                  <p className={styles.help}>
-                    {t(
-                      "On mobile, save the PNG to Files or use Share image when available. You can also open the image and press and hold to save it.",
-                    )}
-                  </p>
                 </>
               )}
-              {status && (
-                <p className={styles.help} role="status">
-                  {t(status)}
-                </p>
-              )}
-              {error && (
-                <div className={styles.error} role="alert">
-                  <p>{t(error)}</p>
-                  <button
-                    type="button"
-                    onClick={() => setAttempt((n) => n + 1)}
-                  >
-                    {t("Try again")}
-                  </button>
-                </div>
-              )}
             </div>
-          </div>
-          <div className={styles.preview} aria-busy={!ready && !error}>
-            {ready &&
-            !error /* eslint-disable-next-line @next/next/no-img-element -- This is the actual generated PNG, not a remote photo. */ ? (
-              <img
-                src={ready.url}
-                width={imageFormats[format].width}
-                height={imageFormats[format].height}
-                alt={imageDescription}
-              />
-            ) : (
-              <div className={styles.loading} role="status">
-                {!error && <LoaderCircle size={28} className={styles.spin} />}
-                <span>
-                  {t(error ? "Image unavailable" : "Creating image…")}
-                </span>
-              </div>
-            )}
-          </div>
-        </div>
+        </footer>
       </div>
     </dialog>
   );

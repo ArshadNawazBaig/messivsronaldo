@@ -57,6 +57,7 @@ test("admin previews both players, changes competition and downloads a compariso
   await expect(link).toBeVisible({ timeout: 30000 });
   await expect(dialog.getByRole("button", { name: /^Portrait/ })).toHaveAttribute("aria-pressed", "true");
   await expect(dialog.getByRole("combobox", { name: "Player", exact: true })).toHaveCount(0);
+  await dialog.locator("summary").filter({ hasText: "View statistics" }).click();
   const table = dialog.getByRole("table", { name: "Comparison poster statistics" });
   await expect(table.getByRole("row")).toHaveCount(10);
   await expect(dialog.getByRole("img")).toHaveAttribute("alt", /Goals: Messi 931, Ronaldo 979/);
@@ -86,4 +87,56 @@ test("admin previews both players, changes competition and downloads a compariso
   await dialog.getByRole("button", { name: "Player poster", exact: true }).click();
   await expect(link).toBeVisible({ timeout: 30000 });
   await expect(dialog.getByRole("combobox", { name: "Player", exact: true })).toBeVisible();
+});
+
+test("export studio zooms without regenerating and keeps the previous preview while updating", async ({ page }, info) => {
+  test.setTimeout(90000);
+  await login(page);
+  await page.goto("/");
+  await page.evaluate(() => document.documentElement.setAttribute("data-theme", "light"));
+  await page.getByRole("button", { name: /^Download image:/ }).first().click();
+  const dialog = page.getByRole("dialog", { name: "A stat worth sharing." });
+  await dialog.getByRole("button", { name: "Comparison poster", exact: true }).click();
+  const download = dialog.getByRole("link", { name: "Download PNG", exact: true });
+  const image = dialog.getByRole("img");
+  await expect(download).toBeVisible({ timeout: 30000 });
+  await expect(image).toBeVisible();
+  let requests = 0;
+  page.on("request", request => {
+    if (request.method() === "POST" && request.url().endsWith("/api/admin/stat-image")) requests++;
+  });
+  const initialWidth = (await image.boundingBox())!.width;
+  await dialog.getByRole("button", { name: "Zoom in", exact: true }).click();
+  await expect.poll(async () => (await image.boundingBox())!.width).toBeGreaterThan(initialWidth);
+  await expect(dialog.getByRole("button", { name: "Fit", exact: true })).toHaveAttribute("aria-pressed", "false");
+  await dialog.getByRole("button", { name: "Fit", exact: true }).click();
+  await expect.poll(async () => (await image.boundingBox())!.width).toBeCloseTo(initialWidth, 0);
+  await dialog.getByRole("button", { name: "Expand preview" }).click();
+  await expect(dialog.getByRole("button", { name: "Stat card", exact: true })).toBeHidden();
+  await expect(image).toBeVisible();
+  await dialog.getByRole("button", { name: "Show controls" }).click();
+  await expect(dialog.getByRole("button", { name: "Stat card", exact: true })).toBeVisible();
+  expect(requests).toBe(0);
+
+  const previousUrl = await image.getAttribute("src");
+  await page.route("**/api/admin/stat-image", async route => {
+    await new Promise(resolve => setTimeout(resolve, 900));
+    await route.continue();
+  });
+  await dialog.getByRole("button", { name: "Dark", exact: true }).click();
+  await expect(dialog.getByRole("status").filter({ hasText: "Updating preview…" })).toBeVisible();
+  await expect(image).toHaveAttribute("src", previousUrl!);
+  await expect(download).toHaveCount(0);
+  await expect(download).toBeVisible({ timeout: 30000 });
+  await expect(image).not.toHaveAttribute("src", previousUrl!);
+  await expect(download).toHaveAttribute("download", /-dark-portrait\.png$/);
+  expect(requests).toBe(1);
+  await page.unroute("**/api/admin/stat-image");
+  expect((await new AxeBuilder({ page }).include("dialog").analyze()).violations.map(item => item.id)).toEqual([]);
+  expect(await dialog.evaluate(node => node.scrollWidth <= node.clientWidth)).toBe(true);
+  await mkdir(".artifacts/export-studio", { recursive: true });
+  await dialog.getByRole("group", { name: "Image design", exact: true }).evaluate(node => { node.parentElement!.scrollTop = 0; });
+  await page.screenshot({ path: `.artifacts/export-studio/${info.project.name}.png` });
+  await page.keyboard.press("Escape");
+  await expect(dialog).toHaveCount(0);
 });
