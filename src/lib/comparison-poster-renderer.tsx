@@ -80,7 +80,7 @@ export async function renderComparisonPoster(request: ComparisonPosterRequest, p
       <div style={{ display: "flex", position: "absolute", top: layout.nameTop - 100, left: 513, width: 54, height: 54, borderRadius: 27, background: colors.canvas, border: `1px solid ${colors.border}`, alignItems: "center", justifyContent: "center", fontFamily: "Condensed", fontSize: 23, fontWeight: 800, color: colors.muted }}>VS</div>
       <div style={{ display: "flex", position: "absolute", left: 0, right: 0, top: layout.nameTop + 75, bottom: 0, backgroundImage: `linear-gradient(${dark ? "rgba(11,17,23,0)" : "rgba(255,255,255,0)"}, ${colors.canvas} 100px)` }} />
       {(["messi", "ronaldo"] as const).map((player, index) => <div key={player} style={{ display: "flex", position: "absolute", top: layout.nameTop, left: index ? 564 : 56, width: 460, flexDirection: "column", alignItems: "center" }}>
-        <span style={{ fontSize: format === "square" ? 19 : 23, letterSpacing: 5, color: colors.muted }}>{index ? "CRISTIANO" : "LIONEL"}</span>
+        <span style={{ fontFamily: "Condensed", fontWeight: 800, fontSize: format === "square" ? 28 : format === "story" ? 38 : 32, lineHeight: 1.1, letterSpacing: 3, color: colors.ink, textShadow: `0 1px 8px ${colors.canvas}` }}>{index ? "CRISTIANO" : "LIONEL"}</span>
         <span style={{ fontFamily: "Condensed", fontWeight: 800, fontSize: layout.nameSize, lineHeight: 1.1, letterSpacing: -1, color: colors[player], marginTop: 4 }}>{index ? "RONALDO" : "MESSI"}</span>
       </div>)}
       <div style={{ display: "flex", position: "absolute", top: layout.tableTop - 12, left: 56, width: 460, height: 2, background: colors.messi }} />

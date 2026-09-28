@@ -1,0 +1,107 @@
+[
+  {
+    "locale": "pt", "slug": "messi-career-goals", "file": "pt-messi-career-goals.md",
+    "category": "Golos da carreira",
+    "description": "Quantos golos tem Messi? Veja o total de 930, a divisão por clubes e Argentina e a diferença para Ronaldo, no registo de 21 de setembro de 2026.",
+    "summary": "Até 21 de setembro de 2026, Messi soma 930 golos: 805 por clubes e 125 pela Argentina. Ronaldo tem 979, uma diferença de 49. Faltam, nessa fotografia, 70 e 21 golos para os 1.000, respetivamente.",
+    "queryPattern": "golos|gols|goles",
+    "queryLanguage": "pt",
+    "cover": { "heading": "GOLOS DA CARREIRA", "left": "930", "right": "979", "label": "Clube + seleção A", "date": "21 SET 2026", "alt": "Golos de carreira até 21 de setembro de 2026: Messi 930, Ronaldo 979." }
+  },
+  {
+    "locale": "en", "slug": "messi-ronaldo-la-liga-records", "file": "en-messi-ronaldo-la-liga-records.md",
+    "category": "La Liga records",
+    "description": "Messi leads La Liga goals 474–311; Ronaldo leads goals per appearance. Compare the records and understand why some sources give Ronaldo 312.",
+    "summary": "Messi scored 474 La Liga goals in 520 appearances; Ronaldo scored 311 in 292 under the convention used here. Ronaldo has the higher scoring rate. Real Madrid’s own attribution gives him 312 league goals, a difference explained in the article.",
+    "queryPattern": "la ?liga|liga$", "queryLanguage": "en",
+    "cover": { "heading": "THE LA LIGA RECORD", "left": "474", "right": "311", "label": "Goals · Complete league careers", "date": "311-GOAL CONVENTION", "alt": "Complete La Liga career goals: Messi 474, Ronaldo 311 under the site's attribution convention." }
+  },
+  {
+    "locale": "fr", "slug": "messi-ronaldo-free-kick-records", "file": "fr-messi-ronaldo-free-kick-records.md",
+    "category": "Coups francs",
+    "description": "Messi ou Ronaldo : qui a marqué le plus de coups francs ? Le relevé du 21 septembre 2026 donne 75–65, avec le détail clubs et sélections.",
+    "summary": "Au 21 septembre 2026, le relevé du site compte 75 coups francs directs pour Messi et 65 pour Ronaldo. Ce sont des buts, pas des tentatives. Un taux de réussite exige une couverture identique des tirs et des buts.",
+    "queryPattern": "coup franc", "queryLanguage": "fr",
+    "cover": { "heading": "LES COUPS FRANCS DIRECTS", "left": "75", "right": "65", "label": "Buts · Clubs + sélections A", "date": "21 SEPT 2026", "alt": "Buts sur coup franc direct au 21 septembre 2026 : Messi 75, Ronaldo 65." }
+  },
+  {
+    "locale": "de", "slug": "messi-ronaldo-free-kick-records", "file": "de-messi-ronaldo-free-kick-records.md",
+    "category": "Freistoßtore",
+    "description": "Messi hat 75 direkte Freistoßtore, Ronaldo 65: Stand 21. September 2026. Die Aufteilung, der Champions-League-Vergleich und die Grenzen der Quote.",
+    "summary": "Im Datenstand vom 21. September 2026 führt Messi bei direkten Freistoßtoren 75 zu 65. In der Champions League führt Ronaldo 12 zu 5. Die Trefferzahl allein sagt nichts über eine vollständige Karrierequote aus.",
+    "queryPattern": "freisto|freistö", "queryLanguage": "de",
+    "cover": { "heading": "DIREKTE FREISTOSSTORE", "left": "75", "right": "65", "label": "Tore · Verein + A-Nationalteam", "date": "21 SEPT 2026", "alt": "Direkte Freistoßtore am 21. September 2026: Messi 75, Ronaldo 65." }
+  },
+  {
+    "locale": "ar", "slug": "messi-ronaldo-2026-goals-comparison", "file": "ar-messi-ronaldo-2026-goals-comparison.md",
+    "category": "مقارنة الأهداف",
+    "description": "عدد أهداف ميسي ورونالدو حتى 21 سبتمبر 2026: 930 مقابل 979 في المسيرة، و34 مقابل 22 خلال العام. مقارنة توضح الفارق والأندية والمنتخبين.",
+    "summary": "في لقطة 21 سبتمبر 2026، يتقدم رونالدو في أهداف المسيرة بـ979 مقابل 930، بينما يتقدم ميسي في أهداف عام 2026 بـ34 مقابل 22. العام لم ينتهِ، وهذه الأرقام تختلف عن إحصاءات موسم 2025/26.",
+    "queryPattern": "2026", "queryLanguage": "ar",
+    "cover": { "heading": "أهداف المسيرة", "left": "930", "right": "979", "label": "الأندية والمنتخب الأول", "date": "2026-09-21", "alt": "أهداف المسيرة حتى 21 سبتمبر 2026: ميسي 930، ورونالدو 979." }
+  },
+  {
+    "locale": "nl", "slug": "messi-ronaldo-team-trophies", "file": "nl-messi-ronaldo-team-trophies.md",
+    "category": "Prijzen en bekers",
+    "description": "Wie heeft meer prijzen, Messi of Ronaldo? Het register van 21 september 2026 geeft 49–37. Bekijk welke teamtitels meetellen en waarom lijsten verschillen.",
+    "summary": "Het ruime teamprijzenregister telt 49 titels voor Messi en 37 voor Ronaldo, tot 21 september 2026. Zonder Messi’s twee jeugd-/olympische titels en MLS-conferentietitel wordt de vergelijking 46–37. Individuele awards staan apart.",
+    "queryPattern": "prijzen|bekers|trofee", "queryLanguage": "nl",
+    "cover": { "heading": "DE PRIJZENKAST", "left": "49", "right": "37", "label": "Teamtitels · Inclusief jeugd, olympisch en conferentie", "date": "21 SEPT 2026", "alt": "Teamtitels tot 21 september 2026: Messi 49, Ronaldo 37. Inclusief jeugd-, olympische en conferentietitels." }
+  },
+  {
+    "locale": "en", "slug": "messi-ronaldo-2017-stats", "file": "en-messi-ronaldo-2017-stats.md",
+    "category": "Calendar-year analysis",
+    "description": "Messi scored 54 goals and Ronaldo 53 in 2017. Compare club and country totals, appearances and scoring rates, and separate 2017 from 2017/18.",
+    "summary": "In the 2017 calendar year, Messi scored 54 goals in 64 appearances and Ronaldo 53 in 60. Messi led club goals 50–42; Ronaldo led international goals 11–4. Ronaldo had the higher goals-per-appearance and per-90 rates.",
+    "queryPattern": "2017", "queryLanguage": "en",
+    "cover": { "heading": "ONE YEAR. ONE GOAL APART.", "left": "54", "right": "53", "label": "Goals · Club + senior national team", "date": "JAN–DEC 2017", "alt": "2017 calendar-year goals for club and country: Messi 54, Ronaldo 53." }
+  },
+  {
+    "locale": "en", "slug": "messi-ronaldo-penalty-records", "file": "en-messi-ronaldo-penalty-records.md",
+    "category": "Penalty records",
+    "description": "Ronaldo leads penalty goals 184–114 in the September 21, 2026 snapshot. Compare attempts, conversion rates and non-penalty totals, excluding shootouts.",
+    "summary": "The September 21, 2026 snapshot records Messi at 114 penalties from 149 attempts (76.5%) and Ronaldo at 184 from 220 (83.6%). Shootouts are excluded. Non-penalty career goals are 816 and 795 respectively.",
+    "queryPattern": "penalt", "queryLanguage": "en",
+    "cover": { "heading": "THE PENALTY RECORD", "left": "114", "right": "184", "label": "Penalty goals · Shootouts excluded", "date": "21 SEPT 2026", "alt": "In-match penalty goals at 21 September 2026: Messi 114, Ronaldo 184. Shootouts excluded." }
+  },
+  {
+    "locale": "pt", "slug": "messi-ronaldo-hat-tricks", "file": "pt-messi-ronaldo-hat-tricks.md",
+    "category": "Hat-tricks",
+    "description": "Messi tem 62 hat-tricks e Ronaldo 66 no registo de 21 de setembro de 2026. Veja a divisão por clubes, seleções e Liga dos Campeões.",
+    "summary": "Até 21 de setembro de 2026, Messi regista 62 hat-tricks e Ronaldo 66. Nos clubes, a comparação é 51–56; nas seleções principais, 11–10. Um jogo com quatro ou mais golos conta como uma partida com hat-trick.",
+    "queryPattern": "hat.?trick|hattrick", "queryLanguage": "pt",
+    "cover": { "heading": "TRÊS GOLOS. OU MAIS.", "left": "62", "right": "66", "label": "Hat-tricks · Clubes + seleções A", "date": "21 SET 2026", "alt": "Hat-tricks até 21 de setembro de 2026: Messi 62, Ronaldo 66." }
+  },
+  {
+    "locale": "fr", "slug": "messi-ronaldo-career-appearances", "file": "fr-messi-ronaldo-career-appearances.md",
+    "category": "Matchs et temps de jeu",
+    "description": "Combien de matchs ont joué Messi et Ronaldo ? Le relevé du 21 septembre 2026 donne 1 176 et 1 337, avec le détail clubs, sélections et minutes.",
+    "summary": "Au 21 septembre 2026, la base du site recense 1 176 apparitions pour Messi et 1 337 pour Ronaldo. Une entrée en jeu compte comme une apparition ; elle ne correspond pas nécessairement à 90 minutes.",
+    "queryPattern": "nombre de match", "queryLanguage": "fr",
+    "cover": { "heading": "DEUX CARRIÈRES EN MATCHS", "left": "1 176", "right": "1 337", "label": "Apparitions · Clubs + sélections A", "date": "21 SEPT 2026", "alt": "Apparitions en carrière au 21 septembre 2026 : Messi 1 176, Ronaldo 1 337." }
+  },
+  {
+    "locale": "es", "slug": "messi-goals-2009", "file": "es-messi-goals-2009.md",
+    "category": "Archivo de 2009",
+    "description": "Messi marcó 41 goles en 2009: 38 con el Barça y tres con Argentina. Descubre por qué no es lo mismo que sus 38 goles de la temporada 2008/09.",
+    "summary": "En el año natural 2009, Messi marcó 41 goles en 64 partidos con club y selección. Sus 38 goles del Barça durante ese año no corresponden al mismo periodo que los 38 de la temporada 2008/09.",
+    "queryPattern": "2009", "queryLanguage": "es",
+    "cover": { "heading": "EL AÑO 2009, EN GOLES", "left": "41", "right": "30", "label": "Club y selección absoluta", "date": "ENERO–DICIEMBRE 2009", "alt": "Goles del año natural 2009 con club y selección: Messi 41, Ronaldo 30." }
+  },
+  {
+    "locale": "en", "slug": "messi-ronaldo-individual-awards", "file": "en-messi-ronaldo-individual-awards.md",
+    "category": "Individual awards",
+    "description": "Compare Messi and Ronaldo’s Ballon d’Or wins, European Golden Shoes and UEFA awards, with winning years and the counting differences explained.",
+    "summary": "Messi leads Ballon d’Or wins 8–5 through completed editions up to 2025 and European Golden Shoes 6–4. Ronaldo leads the UEFA player award series introduced in 2011 by 3–2. Earlier UEFA Club Footballer awards are separate.",
+    "queryPattern": "ballon|golden|award", "queryLanguage": "en",
+    "cover": { "heading": "THE BALLON D’OR RECORD", "left": "8", "right": "5", "label": "Ballon d’Or wins · Other award series inside", "date": "COMPLETED EDITIONS TO 2025", "alt": "Ballon d’Or wins in completed editions through 2025: Messi eight, Ronaldo five." }
+  },
+  {
+    "locale": "en", "slug": "messi-ronaldo-free-kick-records", "file": "en-messi-ronaldo-free-kick-records.md",
+    "category": "Free-kick records",
+    "description": "Messi leads career free-kick goals 75–65 in the September 21, 2026 snapshot; Ronaldo leads the Champions League subset. Compare the scopes and limits.",
+    "summary": "At 21 September 2026, the site’s record gives Messi 75 direct free-kick goals and Ronaldo 65. The Champions League subset is 5–12. Goal totals alone cannot establish a complete career conversion rate.",
+    "queryPattern": "free kick", "queryLanguage": "en",
+    "cover": { "heading": "THE DIRECT FREE-KICK RECORD", "left": "75", "right": "65", "label": "Goals · Clubs + senior national teams", "date": "21 SEPT 2026", "alt": "Direct free-kick goals at 21 September 2026: Messi 75, Ronaldo 65." }
+  }
+]

@@ -25,16 +25,29 @@ test("admin writes, formats, uploads, previews, publishes, edits and deletes a l
   test.setTimeout(120_000);
   const errors: string[] = []; page.on("pageerror", error => errors.push(error.message));
   await signIn(page);
+  await page.screenshot({ path: `.artifacts/blog-library-${info.project.name}.png` });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  const libraryAudit = await new AxeBuilder({ page }).include('[aria-label="Article library"]').analyze();
+  expect(libraryAudit.violations.map(item => item.id)).toEqual([]);
   await page.getByLabel("Article language").selectOption("es");
   await expect(page.getByRole("button", { name: "New article", exact: true }).first()).toBeEnabled();
   await page.getByRole("button", { name: "New article", exact: true }).first().click();
   const slug = `editor-${info.project.name}-${Date.now()}`;
   const title = `Prueba editorial ${info.project.name}`;
   await page.getByLabel("Article title", { exact: true }).fill(title);
+  if (page.viewportSize()!.width <= 900) {
+    await expect(page.getByLabel("Article language")).toBeHidden();
+    await page.getByRole("button", { name: "Browse articles" }).click();
+    await expect(page.getByLabel("Article language")).toBeVisible();
+    await page.getByRole("button", { name: "Hide articles" }).click();
+    await expect(page.getByLabel("Article title", { exact: true })).toHaveValue(title);
+  }
   await page.getByLabel("URL slug", { exact: true }).fill(slug);
   await page.getByLabel("Excerpt / search description").fill("Un artículo de prueba aislado para comprobar el editor.");
   const body = page.getByRole("textbox", { name: "Article body", exact: true });
   await body.fill("Original article body for publishing tests.");
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await page.screenshot({ path: `.artifacts/blog-writing-${info.project.name}.png` });
   await body.press("ControlOrMeta+a"); await page.getByRole("button", { name: "Bold", exact: true }).click();
   await page.getByRole("button", { name: "Add or edit link" }).click();
   await page.getByLabel("Link URL", { exact: true }).fill("https://example.com/evidence"); await page.getByRole("button", { name: "Apply link" }).click();
