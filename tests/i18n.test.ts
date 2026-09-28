@@ -12,6 +12,7 @@ test("browser language matching handles regions, weights, exclusions and invalid
     ["es-MX,es;q=0.9,en;q=0.8", "es"], ["pt-BR,pt;q=0.9", "pt"],
     ["fr-CA;q=0.7,nl-NL;q=0.9,en;q=0.5", "nl"], ["zh-CN,hi-IN;q=0.7", "hi"],
     ["ar-SA,en-US;q=0.8", "ar"], ["DE-de;q=0.8,fr;q=0.8", "de"],
+    ["th-TH,th;q=0.9,en;q=0.8", "th"],
     ["es;q=0,en;q=0.8", "en"], ["en;q=0,*;q=0.5", "es"],
     ["es;q=NaN,pt;q=2,de;q=-1,fr;q=0.6", "fr"],
     ["zh-CN,ja;q=0.9", "en"], ["*", "en"], ["", "en"],
@@ -81,9 +82,23 @@ test("locale routing uses the URL, keeps English URLs, and cannot be spoofed by 
 
 test("search alternates are reciprocal and include the original English fallback", () => {
   const expected = languageAlternates("/seasons/2026", "https://example.com");
-  assert.equal(Object.keys(expected).length, 9);
+  assert.equal(Object.keys(expected).length, locales.length + 1);
   assert.equal(expected["x-default"], "https://example.com/seasons/2026");
   for (const locale of locales) assert.deepEqual(languageAlternates(localizedPath("/seasons/2026", locale), "https://example.com"), expected);
+});
+
+test("Thai paths, preferences and alternates preserve the page and comparison state", () => {
+  assert.equal(localizedPath("/es/compare?ref=share#mode=per-90", "th"), "/th/compare?ref=share#mode=per-90");
+  assert.equal(localizedPath("/th/compare", "en"), "/compare");
+  assert.equal(stripLocale("/the-rivalry"), "/the-rivalry");
+  assert.equal(stripLocale("/th?ref=home"), "/?ref=home");
+  assert.equal(localizedPath("/th/admin", "th"), "/admin");
+  assert.equal(preferredLocale("th", "en-GB"), "th");
+  const detected = proxy(new NextRequest("https://example.com/compare?ref=share", { headers: { "accept-language": "th-TH" } }));
+  assert.equal(detected.headers.get("location"), "https://example.com/th/compare?ref=share");
+  const explicit = proxy(new NextRequest("https://example.com/th/compare", { headers: { "accept-language": "en-US" } }));
+  assert.equal(explicit.headers.get("x-middleware-request-x-rivalry-locale"), "th");
+  assert.equal(languageAlternates("/compare", "https://example.com").th, "https://example.com/th/compare");
 });
 
 test("every language has complete messages and preserves live-statistic placeholders", () => {

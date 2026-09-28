@@ -1,3 +1,4 @@
+import { locales } from "../../src/lib/i18n/config";
 import { expectedSitemapSize } from "./sitemap-helpers";
 import { expect, test, type Page } from "@playwright/test";
 
@@ -45,7 +46,7 @@ test("award pages show scoped records, paired portraits and search metadata", as
     await expect(page.locator(".year-table thead th")).toHaveCount(3);
     await expect(page.getByRole("columnheader", { name: "Evidence", exact: true })).toHaveCount(0);
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", new RegExp(`/${slug}$`));
-    await expect(page.locator('link[rel="alternate"][hreflang]')).toHaveCount(9);
+    await expect(page.locator('link[rel="alternate"][hreflang]')).toHaveCount(locales.length + 1);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
     if (slug === "man-of-the-match") await expect(page.getByText(/This is partial career coverage/)).toBeVisible();
     if (slug === "golden-boots") await expect(page.getByText(/exclude individual league and international tournament Golden Boots/)).toBeVisible();

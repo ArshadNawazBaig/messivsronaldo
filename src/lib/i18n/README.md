@@ -1,7 +1,7 @@
 # Website languages
 
 English (en), Spanish (es), Portuguese (pt), Dutch (nl), French (fr), German (de),
-Arabic (ar), and Hindi (hi) share the same published football dataset.
+Arabic (ar), Hindi (hi), and Thai (th) share the same published football dataset.
 
 English URLs remain unprefixed. `src/proxy.ts` internally rewrites them to
 `/en/...`; public `/en/...` URLs permanently redirect to the original URL.
@@ -30,7 +30,7 @@ or football data is sent to a translation service at runtime.
 ## Editing translations
 
 `messages/en.json` is the message inventory. Readable English message IDs are
-shared across the eight checked-in JSON catalogs. Translate full sentences with
+shared across the nine checked-in JSON catalogs. Translate full sentences with
 `{0}`, `{1}`, etc. placeholders, and pass live values separately to `t()`.
 Never translate IDs, routes, source URLs, metric keys or database values.
 The translator also recognizes existing composed messages from the published
@@ -46,16 +46,24 @@ football vocabulary, navigation and comparison controls. Long-form articles
 and policies should receive native-speaker editorial review as wording evolves.
 Update all catalogs when changing a message. `tests/i18n.test.ts` checks message
 coverage, interpolation, localized links, and routing. Browser tests check all
-eight languages, filters, RTL, server metadata and the language selector.
+nine languages, filters, RTL, server metadata and the language selector.
 
 The language selector uses native language names. Arabic has RTL document
-flow; football diagrams and Messi/Ronaldo column order stay consistent. Arabic
-and Hindi use locally hosted Noto fonts with their license files in public/fonts.
+flow; football diagrams and Messi/Ronaldo column order stay consistent. Arabic, Hindi
+and Thai use locally hosted Noto fonts with their license files in public/fonts.
 
 ## Search metadata
 
 Every public page has a localized canonical URL, translated title and
-description, Open Graph locale, and reciprocal hreflang links for all eight
+description, Open Graph locale, and reciprocal hreflang links for all nine
 languages plus x-default (English). The XML sitemap expands the shared public
-page catalog into each language; adding a registered page includes its eight
+page catalog into each language; adding a registered page includes its nine
 URLs automatically. System responses and private routes are excluded.
+
+Thai uses `/th` routes, the native language label ไทย, and `th_TH` Open Graph metadata.
+Dates explicitly retain Gregorian years (for example, 21 กันยายน ค.ศ. 2026),
+matching the football dataset instead of switching silently to Buddhist years.
+Thai statistics use Latin digits. Blog word counts and reading-time estimates
+use Thai word segmentation because whitespace is not a reliable word boundary.
+Thai catalogs include machine-assisted text with reviewed core navigation and
+football terminology; long-form wording should receive native-speaker review.

@@ -13,6 +13,7 @@ const months: Record<Locale, readonly string[]> = {
   de: ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
   ar: ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"],
   hi: ["जनवरी", "फ़रवरी", "मार्च", "अप्रैल", "मई", "जून", "जुलाई", "अगस्त", "सितंबर", "अक्टूबर", "नवंबर", "दिसंबर"],
+  th: ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"],
 };
 
 /** Format only valid ISO dates or the dataset's English date labels. */
@@ -31,5 +32,7 @@ export function translatedDate(source: string, locale: Locale): string | undefin
   const year = iso.slice(0, 4);
   if (locale === "es" || locale === "pt") return `${day} de ${month} de ${year}`;
   if (locale === "de") return `${day}. ${month} ${year}`;
+  // Football seasons and the source data use Gregorian years in every locale.
+  if (locale === "th") return `${day} ${month} ค.ศ. ${year}`;
   return `${day} ${month} ${year}`;
 }

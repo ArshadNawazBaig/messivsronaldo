@@ -17,7 +17,7 @@ test("year details, period navigation and language links are available without J
       await expect(summary.locator('a[href="https://www.messivsronaldo.app/calendar-year-stats/2012/"]')).toBeVisible();
       await expect(summary.locator('a[rel="prev"]')).toHaveAttribute("href", `${prefix}/seasons/2011`);
       await expect(summary.locator('a[rel="next"]')).toHaveAttribute("href", `${prefix}/seasons/2013`);
-      await expect(page.locator(".footer-languages a")).toHaveCount(8);
+      await expect(page.locator(".footer-languages a")).toHaveCount(locales.length);
       await expect(page.locator('.footer-languages a[lang="de"]')).toHaveAttribute("href", "/de/seasons/2012");
       expect(await summary.innerText()).not.toMatch(/\{\d+\}|NaN|Infinity/);
       if (locale !== "en") await expect(summary.locator("h2")).not.toContainText("the complete statistical summary");

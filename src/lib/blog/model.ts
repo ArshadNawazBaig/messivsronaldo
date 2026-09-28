@@ -1,6 +1,7 @@
 import { z } from "zod";
 import type { Article } from "../article-types";
 import { locales, type Locale } from "../i18n/config";
+import { articleWordCount } from "./word-count";
 
 export type RichNode = { type: string; text?: string; attrs?: Record<string, unknown>; marks?: { type: string; attrs?: Record<string, unknown> }[]; content?: RichNode[] };
 export const emptyDocument: RichNode = { type: "doc", content: [{ type: "paragraph" }] };
@@ -85,7 +86,7 @@ export function publishedArticle(post: BlogPost, at: string, original?: Article)
   const draft = post.draft;
   return { ...original, slug: post.slug, title: draft.title, description: draft.description, category: draft.category,
     summary: draft.summary || undefined, sections: [], tables: undefined, sourceIds: [], citations: draft.citations,
-    image: draft.image ?? undefined, body: draft.body, managed: true, readTime: `${Math.max(1, Math.ceil(documentText(draft.body).split(/\s+/).length / 200))} min read`,
+    image: draft.image ?? undefined, body: draft.body, managed: true, readTime: `${Math.max(1, Math.ceil(articleWordCount(documentText(draft.body), post.locale) / 200))} min read`,
     color: original?.color ?? "blue", number: original?.number ?? "01", published: post.published?.published ?? original?.published ?? at, updated: at,
   };
 }

@@ -9,6 +9,7 @@ const catalogs: Record<Locale, () => Promise<{ default: Messages }>> = {
   pt: () => import("./messages/pt.json"), nl: () => import("./messages/nl.json"),
   fr: () => import("./messages/fr.json"), de: () => import("./messages/de.json"),
   ar: () => import("./messages/ar.json"), hi: () => import("./messages/hi.json"),
+  th: () => import("./messages/th.json"),
 };
 export const getI18n = cache(async () => {
   const requested = (await headers()).get("x-rivalry-locale") ?? "en";

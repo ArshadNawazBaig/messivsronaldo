@@ -5,6 +5,7 @@ import { useEffect, useId, useState } from "react";
 import { ArrowLeft, ArrowUpRight, ChevronDown, FileText, Globe2, ImagePlus, Plus, Save, Send, Trash2, Undo2, Eye, Pencil, Search } from "lucide-react";
 import { languageNames, locales, localizedPath, type Locale } from "@/lib/i18n/config";
 import { emptyDocument, documentText, type BlogDraft, type BlogPost, type BlogCommand } from "@/lib/blog/model";
+import { articleWordCount } from "@/lib/blog/word-count";
 import { RichBody } from "@/components/blog/rich-body";
 import { BlogRichEditor, ImageUpload } from "./blog-rich-editor";
 import styles from "./blog.module.css";
@@ -90,7 +91,7 @@ function ArticleEditor({ post, onDirty, onBusy, onSaved, onReload }: { post: Blo
       onSaved(result.post);
     } catch (error) { setError((error as Error).message); } finally { setBusy(false); onBusy(false); }
   }
-  const wordCount = documentText(draft.body).split(/\s+/).filter(Boolean).length;
+  const wordCount = articleWordCount(documentText(draft.body), post.locale);
   return <section className={styles.composer} tabIndex={-1} aria-label="Article editor" aria-busy={blocked}>
     <div className={styles.composerTop}>
     <div className={styles.composerHeading}><div className={styles.editorIdentity}><div className={styles.documentIcon}><FileText size={19}/></div><div><h2>{post.deleted ? "Article in Trash" : post.createdAt ? "Edit article" : "New article"}</h2><span>{languageNames[post.locale]}<i/>{status(post)}</span></div></div><span className={styles.saveState} role="status">{busy ? "Saving…" : uploading ? "Uploading…" : changed ? "Unsaved changes" : post.updatedAt ? `Saved ${new Date(post.updatedAt).toLocaleString()}` : "Not saved yet"}</span></div>

@@ -1,0 +1,1957 @@
+[
+  {
+    "command": {
+      "action": "save",
+      "id": "6b55a4b6-a1b9-8d50-a67b-fc0ec0d397d8",
+      "revision": 0,
+      "locale": "th",
+      "slug": "messi-vs-ronaldo-stats-guide",
+      "draft": {
+        "title": "เมสซี vs โรนัลโด: เปรียบเทียบประตู แอสซิสต์ และสถิติให้เข้าใจจริง",
+        "description": "เปรียบเทียบสถิติเมสซี vs โรนัลโด ทั้งประตู แอสซิสต์ สโมสร ทีมชาติ และแชมเปียนส์ลีก พร้อมสูตรต่อ 90 นาที วันที่ตรวจสอบ และแหล่งอ้างอิง",
+        "category": "คู่มือสถิติ",
+        "summary": "อ่านยอดประตูและแอสซิสต์อย่างเข้าใจ แยกสโมสรกับทีมชาติ ตรวจวันที่และเกณฑ์นับ แล้วเลือกสถิติให้ตรงกับคำถามของคุณ",
+        "body": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "โรนัลโดมีประตูรวมตลอดอาชีพมากกว่า ส่วนเมสซีมีแอสซิสต์และอัตราประตูต่อการลงเล่นสูงกว่าในชุดข้อมูลที่ตรวจสอบนี้",
+                  "marks": [
+                    {
+                      "type": "bold"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " ทั้งสองข้อเป็นจริงพร้อมกันได้ เพราะยอดสะสมกับความถี่ในการทำประตูตอบคนละคำถาม"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ถ้าคุณเคยเห็นกราฟิกสองภาพที่บอกสถิติไม่ตรงกัน ปัญหาอาจไม่ได้อยู่ที่การบวกเลขผิด แต่อยู่ที่วันที่อัปเดต รายการที่นำมารวม หรือนิยามของคำว่าแอสซิสต์ บทความนี้จึงแสดงตัวเลขพร้อมวิธีอ่าน เพื่อให้คุณเลือกใช้ข้อมูลที่ตรงกับคำถามของตัวเอง"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ตรวจสอบแหล่งข้อมูลวันที่ 28 กันยายน ค.ศ. 2026 หรือ พ.ศ. 2569",
+                  "marks": [
+                    {
+                      "type": "bold"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " ตัวเลขในบทความเป็นข้อมูล ณ วันที่ตรวจสอบ ไม่ใช่ผลการแข่งขันแบบสด เว็บไซต์ใช้ปี ค.ศ. เพื่อให้ตรงกับฤดูกาลและแหล่งข้อมูลต่างประเทศ หน้าสถิติอื่นของเว็บไซต์อาจมีวันสิ้นสุดข้อมูลต่างกัน โปรดดูวันที่กำกับก่อนเปรียบเทียบ"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "สถิติเมสซีและโรนัลโดที่ควรรู้ก่อนเริ่มเปรียบเทียบ"
+                }
+              ]
+            },
+            {
+              "type": "table",
+              "content": [
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableHeader",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "สถิติตลอดอาชีพ"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableHeader",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "เมสซี"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableHeader",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "โรนัลโด"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "ประตู"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "931"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "979"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "แอสซิสต์"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "424"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "261"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "ลงเล่น"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "1,177 นัด"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "1,338 นัด"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "นาทีที่ลงเล่น"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "96,837"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "109,362"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "ประตูต่อการลงเล่น"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "0.791"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "0.732"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "ประตูต่อ 90 นาที"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "0.865"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "0.806"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "ประตูที่ไม่ใช่จุดโทษ"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "817"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "795"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ยอดประตู แอสซิสต์ การลงเล่น นาที และจุดโทษอ้างอิงจาก "
+                },
+                {
+                  "type": "text",
+                  "text": "สถิติตลอดอาชีพของ Messi vs Ronaldo App",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://www.messivsronaldo.app/"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " ซึ่งเป็นแหล่งข้อมูลสถิติรองที่ตรวจสอบในวันที่ระบุข้างต้น อัตราการทำประตูและยอดที่ไม่ใช่จุดโทษเป็นการคำนวณจากข้อมูลชุดเดียวกัน โดยปัดอัตราเป็นทศนิยมสามตำแหน่ง"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ขอบเขตนี้รวมเกมสโมสรชุดใหญ่อย่างเป็นทางการและทีมชาติชุดใหญ่ระดับ A รวมถึงเกมอุ่นเครื่องทีมชาติที่ได้รับการรับรอง ไม่รวมเกมอุ่นเครื่องสโมสร เกมเยาวชน เกมโชว์ หรือการยิงในการดวลจุดโทษ หากต้องการเปลี่ยนการแข่งขัน ลองใช้ "
+                },
+                {
+                  "type": "text",
+                  "text": "เครื่องมือเปรียบเทียบสถิติ",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "/th/compare"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " และอ่านวันสิ้นสุดข้อมูลของหน้านั้นด้วย"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ใครยิงมากกว่า กับใครยิงบ่อยกว่า ต่างกันอย่างไร"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "โรนัลโดนำ 48 ประตูในตารางนี้ แต่ก็ลงเล่นมากกว่า 161 นัด ยอดรวมบอกถึงผลงานที่สะสมตลอดอาชีพ ส่วนประตูต่อการลงเล่นช่วยบอกว่าประตูเกิดขึ้นบ่อยเพียงใดในเกมที่นักเตะได้ลงสนาม"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ลองนึกถึงนักเตะสองคนที่มีค่าเฉลี่ยหนึ่งประตูต่อนัดเท่ากัน คนแรกอาจลงเล่นเต็มเกมทุกนัด ส่วนอีกคนอาจมีหลายนัดที่ถูกส่งลงมาในช่วงท้าย จำนวนการลงเล่นเพียงอย่างเดียวไม่ได้แสดงความต่างของเวลาในสนาม นี่เป็นเหตุผลที่ควรดูอัตราต่อ 90 นาทีประกอบ"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "สูตรที่ใช้ตรวจสอบได้ด้วยตัวเองมีดังนี้"
+                }
+              ]
+            },
+            {
+              "type": "bulletList",
+              "content": [
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "ประตูต่อการลงเล่น = ประตูทั้งหมด ÷ จำนวนนัดที่ลงเล่น"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "ประตูต่อ 90 นาที = ประตูทั้งหมด × 90 ÷ นาทีที่ลงเล่น"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "เมสซีจึงมีค่า 931 × 90 ÷ 96,837 ประมาณ 0.865 ประตูต่อ 90 นาที ส่วนโรนัลโดมีค่า 979 × 90 ÷ 109,362 ประมาณ 0.806"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "อัตรานี้ช่วยปรับเรื่องเวลาเล่น แต่ยังไม่ได้ปรับความแข็งแกร่งของคู่แข่ง คุณภาพเพื่อนร่วมทีม แผนการเล่น หรืออายุของนักเตะ จึงใช้บรรยายผลงานในข้อมูลชุดนี้ได้ แต่ไม่ใช่คำทำนายว่าทั้งคู่จะทำประตูเท่าไรหากสลับทีมกัน"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ประตูสโมสรกับประตูทีมชาตินับอย่างไร"
+                }
+              ]
+            },
+            {
+              "type": "table",
+              "content": [
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableHeader",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "ขอบเขต"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableHeader",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "เมสซี"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableHeader",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "โรนัลโด"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "สโมสร"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "806"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "833"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "ทีมชาติชุดใหญ่"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "125"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "146"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "รวม"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "931"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "979"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ยอดสโมสรคำนวณจากสถิติรายทีมของแหล่งอ้างอิง เมสซีมี 672 ประตูกับบาร์เซโลนา 32 กับเปแอสเช และ 102 กับอินเตอร์ ไมอามี ส่วนโรนัลโดมี 5 กับสปอร์ติ้ง 145 กับแมนเชสเตอร์ ยูไนเต็ด 450 กับเรอัล มาดริด 101 กับยูเวนตุส และ 132 กับอัล นาสเซอร์ ยอดทีมชาติอ้างอิง "
+                },
+                {
+                  "type": "text",
+                  "text": "สถิติอาร์เจนตินาและโปรตุเกส",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://www.messivsronaldo.app/international-stats/"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " ณ วันตรวจสอบเดียวกัน"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ประตูแชมเปียนส์ลีกอยู่ในยอดของสโมสรแล้ว จึงไม่ควรนำมาบวกกับยอดสโมสรอีกครั้ง เช่นเดียวกับประตูฟุตบอลโลกที่อยู่ในยอดทีมชาติ การแสดงหมวดย่อยช่วยให้สำรวจรายละเอียดได้ แต่ไม่ได้หมายความว่าทุกแถวเป็นจำนวนที่แยกจากกัน"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "อีกจุดที่ควรระวังคือสถิติของสโมสรกับสถิติของลีก ประตูทั้งหมดกับอินเตอร์ ไมอามีไม่ได้หมายถึงประตูในฤดูกาลปกติของ MLS เท่านั้น และประตูทั้งหมดกับอัล นาสเซอร์ก็ไม่ได้หมายถึงประตูในลีกซาอุดีอาระเบียอย่างเดียว หากถามเฉพาะผลงานในลีก ต้องเลือกขอบเขตลีกทั้งสองฝั่ง"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ทำไมยอดเรอัล มาดริดของโรนัลโดจึงมีทั้ง 450 และ 451"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "เรอัล มาดริดระบุว่าโรนัลโดยิง 451 ประตูจาก 438 นัด",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://www.realmadrid.com/en-US/the-club/history/football-legends/cristiano-ronaldo-dos-santos-aveiro"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " ขณะที่ "
+                },
+                {
+                  "type": "text",
+                  "text": "ฐานสถิติที่ใช้ในบทความนี้",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://www.messivsronaldo.app/all-time-stats/ronaldo-real-madrid-stats/"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " ใช้ 450 ประตู ความต่างเกี่ยวข้องกับการให้เครดิตประตูแฉลบที่แหล่งข้อมูลนับต่างกัน ตามที่อธิบายใน "
+                },
+                {
+                  "type": "text",
+                  "text": "วิธีการรวบรวมข้อมูลของเว็บไซต์",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "/th/methodology"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "สำหรับตารางข้างต้น เราใช้เกณฑ์ 450 อย่างสม่ำเสมอ หากเปลี่ยนเฉพาะแถวมาดริดเป็น 451 แต่ยังใช้ยอดสโมสร 833 และยอดอาชีพ 979 ตัวเลขจะบวกกันไม่ลงตัว ทางเลือกที่มีประโยชน์คือระบุเกณฑ์ให้ชัด ไม่ใช่เลือกยอดจากแต่ละแหล่งมารวมกันโดยไม่อธิบาย"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "แอสซิสต์บอกอะไร และมีอะไรที่ตัวเลขยังไม่บอก"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "แอสซิสต์ทำให้เราเห็นการจ่ายบอลจังหวะสุดท้ายควบคู่กับการยิงประตู แต่ไม่ได้บันทึกทุกการกระทำที่ช่วยสร้างโอกาส ลองนึกถึงเมสซีหรือโรนัลโดเลี้ยงผ่านคู่แข่งสองคนแล้วจ่ายให้เพื่อน ก่อนที่เพื่อนจะส่งต่ออีกครั้งให้ผู้ทำประตู นักเตะที่เริ่มสร้างโอกาสอาจไม่ได้รับแอสซิสต์เลย"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ในทางกลับกัน การจ่ายที่ยอดเยี่ยมอาจไม่กลายเป็นแอสซิสต์หากผู้รับยิงไม่เข้า จำนวนแอสซิสต์จึงไม่ใช่ภาพทั้งหมดของความสามารถในการสร้างเกม"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "นิยามเหตุการณ์ของ Opta",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://www.statsperform.com/opta-event-definitions/"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " แยกแอสซิสต์ทั่วไปออกจากแอสซิสต์แฟนตาซี ซึ่งอาจรวมเหตุการณ์เพิ่มเติม หากเว็บไซต์สองแห่งให้ยอดไม่เท่ากัน ควรตรวจนิยามก่อนสรุปว่าแห่งใดผิด และไม่ควรเปรียบเทียบตัวเลขของนักเตะสองคนจากคนละเกณฑ์"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "คุณสามารถอ่าน "
+                },
+                {
+                  "type": "text",
+                  "text": "เหตุผลที่ยอดแอสซิสต์ต่างกัน",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "/th/insights/why-assist-totals-differ"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " เพื่อดูวิธีแยกขอบเขตของข้อมูลให้ชัดเจน"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ถ้าไม่นับจุดโทษ ใครมีประตูมากกว่า"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ในแหล่งอ้างอิงที่ตรวจสอบ เมสซีมีประตูจากจุดโทษระหว่างเกม 114 ประตู ส่วนโรนัลโดมี 184 ประตู เมื่อนำไปหักจากยอดรวม จะได้ประตูที่ไม่ใช่จุดโทษ 817 และ 795 ตามลำดับ"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ตัวเลขนี้ตอบคำถามเกี่ยวกับการทำประตูนอกเหนือจากหน้าที่ยิงจุดโทษ ไม่ได้หมายความว่าจุดโทษไม่มีคุณค่าต่อทีม การดูทั้งยอดรวมและยอดที่ไม่ใช่จุดโทษช่วยให้เห็นผลงานคนละด้าน"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "อย่าสับสนกับประตูจากโอเพนเพลย์ เพราะยอดที่ไม่ใช่จุดโทษยังรวมประตูจากฟรีคิกโดยตรงด้วย ส่วนการยิงในการดวลจุดโทษไม่เคยรวมอยู่ในยอดประตูอาชีพของบทความนี้ตั้งแต่ต้น จึงไม่ต้องนำมาหักซ้ำ"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "เปรียบเทียบแชมเปียนส์ลีกโดยใช้ขอบเขตเดียวกัน"
+                }
+              ]
+            },
+            {
+              "type": "table",
+              "content": [
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableHeader",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "แชมเปียนส์ลีก ไม่รวมรอบคัดเลือก"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableHeader",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "เมสซี"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableHeader",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "โรนัลโด"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "ประตู"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "129"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "140"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "ลงเล่น"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "163 นัด"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "183 นัด"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "ประตูต่อการลงเล่น"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "0.791"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "0.765"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ข้อมูลประตูและจำนวนนัดมาจากบันทึกของ UEFA สำหรับ "
+                },
+                {
+                  "type": "text",
+                  "text": "เมสซี",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://www.uefa.com/uefachampionsleague/news/02a7-212c29181390-c681db1beaba-1000--lionel-messi-in-the-champions-league-records-stats-who-he-/"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " และ "
+                },
+                {
+                  "type": "text",
+                  "text": "โรนัลโด",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://www.uefa.com/uefachampionsleague/news/02a7-2136b8f054ea-76a61b3f9d24-1000--cristiano-ronaldo-in-the-champions-league-records-stats-wh/"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " ส่วนอัตราเป็นการคำนวณจากสองค่านั้น"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "การเลือกการแข่งขันเดียวกันช่วยลดความต่างของบริบทบางส่วน แต่ทั้งคู่ยังเจอคู่แข่งคนละชุด ลงเล่นคนละฤดูกาล และมีโอกาสเข้ารอบลึกไม่เท่ากัน ตัวเลขจึงให้คำตอบที่เจาะจงขึ้น โดยยังต้องอ่านร่วมกับบริบทของการแข่งขัน"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "91 ประตูในหนึ่งปีไม่ใช่ 91 ประตูในหนึ่งฤดูกาล"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ตาม "
+                },
+                {
+                  "type": "text",
+                  "text": "บันทึกของบาร์เซโลนาเกี่ยวกับปี 2012",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://www.fcbarcelona.com/en/football/first-team/news/1670444/-91-/featured"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " เมสซียิง 91 ประตูในปีปฏิทินนั้น แบ่งเป็น 79 ให้บาร์เซโลนาและ 12 ให้อาร์เจนตินา ช่วงเวลาคือมกราคมถึงธันวาคม ซึ่งคร่อมสองฤดูกาลของฟุตบอลสโมสรยุโรป"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ดังนั้น ถ้าต้องการเปรียบเทียบช่วงพีกของทั้งคู่ ให้เลือกปีปฏิทินเทียบกับปีปฏิทิน หรือฤดูกาลสโมสรเทียบกับฤดูกาลสโมสร อย่านำยอดรวมสโมสรและทีมชาติของคนหนึ่งไปเทียบกับยอดเฉพาะสโมสรของอีกคนโดยไม่บอกความต่าง"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "หน้าปี 2012",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "/th/seasons/2012"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " และ "
+                },
+                {
+                  "type": "text",
+                  "text": "คลังปีและฤดูกาล",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "/th/seasons"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " ช่วยให้เริ่มต้นจากช่วงเวลาที่ชัดเจน"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "เลือกสถิติให้ตรงกับสิ่งที่อยากรู้"
+                }
+              ]
+            },
+            {
+              "type": "table",
+              "content": [
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableHeader",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "คำถามของคุณ"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableHeader",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "ข้อมูลที่ควรเริ่มดู"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "ใครยิงมากกว่าตลอดอาชีพ"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "ประตูรวม พร้อมวันที่และขอบเขต"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "ใครยิงบ่อยกว่าเมื่ออยู่ในสนาม"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "ประตูต่อ 90 นาที จากนาทีที่ครบถ้วน"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "ใครมีผลงานการจ่ายจังหวะสุดท้ายมากกว่า"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "แอสซิสต์จากผู้ให้ข้อมูลและนิยามเดียวกัน"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "ใครทำได้ดีกว่าในลีกสเปน"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "สถิติลาลีกา และระบุว่าใช้ทั้งอาชีพหรือช่วงปีที่ทับซ้อน"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "ใครมีผลงานกับทีมชาติมากกว่า"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "สถิติทีมชาติชุดใหญ่ แยกจากสถิติทัวร์นาเมนต์เฉพาะ"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ถ้วยแชมป์และรางวัลส่วนบุคคลควรดูแยกกันด้วย บัลลงดอร์เป็นรางวัลของนักเตะ ส่วนแชมป์ลีกเป็นผลงานของทีม การนำทั้งหมดมารวมเป็นจำนวนเดียวอาจทำให้ความหมายของความสำเร็จแต่ละประเภทหายไป ดูรายการและเกณฑ์ได้ที่ "
+                },
+                {
+                  "type": "text",
+                  "text": "หน้าเกียรติประวัติ",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "/th/honours"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "คำถามที่พบบ่อย"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "เมสซีหรือโรนัลโด ใครเก่งกว่ากัน?",
+                  "marks": [
+                    {
+                      "type": "bold"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " สถิติช่วยบอกได้ว่าใครนำในด้านใด แต่ไม่สามารถกำหนดแทนผู้อ่านได้ว่าควรให้น้ำหนักแต่ละด้านเท่าไร คุณอาจให้ความสำคัญกับประตูสะสม ความถี่ในการยิง การสร้างโอกาส หรือผลงานในรายการที่สนใจต่างกัน เริ่มจากคำถามที่ชัดเจนแล้วใช้เกณฑ์เดียวกันกับทั้งคู่"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ทำไมบางหน้าบอกเมสซี 930 ประตู แต่บทความนี้บอก 931?",
+                  "marks": [
+                    {
+                      "type": "bold"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " ตรวจวันที่กำกับก่อน ชุดข้อมูลตั้งต้นของเว็บไซต์ลงวันที่ 21 กันยายน ค.ศ. 2026 ส่วนบทความนี้ตรวจแหล่งอ้างอิงวันที่ 28 กันยายน ค.ศ. 2026 อย่าใช้ตัวเลขจากคนละวันแล้วสรุปทันทีว่ามีฝ่ายใดนับผิด"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ตัวเลขเหล่านี้ใช้ทำนายผลนัดหน้าได้ไหม?",
+                  "marks": [
+                    {
+                      "type": "bold"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " สถิติตลอดอาชีพสรุปสิ่งที่เกิดขึ้นแล้ว ไม่รับประกันผลงานในนัดถัดไป สภาพร่างกาย เวลาเล่น คู่แข่ง และแผนการเล่นล้วนเปลี่ยนไปได้"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ก่อนส่งต่อกราฟิกหรือข้อความเกี่ยวกับเมสซีกับโรนัลโด ลองเช็กสามอย่าง: นับเกมอะไร ข้อมูลถึงวันไหน และใช้แหล่งเดียวกันหรือไม่ เพียงเท่านี้ การคุยเรื่องสองอาชีพที่ยอดเยี่ยมก็จะมีข้อมูลที่เข้าใจตรงกันมากขึ้น"
+                }
+              ]
+            }
+          ]
+        },
+        "image": null,
+        "citations": [
+          {
+            "title": "สถิติตลอดอาชีพของ Messi vs Ronaldo App",
+            "url": "https://www.messivsronaldo.app/"
+          },
+          {
+            "title": "สถิติอาร์เจนตินาและโปรตุเกส",
+            "url": "https://www.messivsronaldo.app/international-stats/"
+          },
+          {
+            "title": "เรอัล มาดริดระบุว่าโรนัลโดยิง 451 ประตูจาก 438 นัด",
+            "url": "https://www.realmadrid.com/en-US/the-club/history/football-legends/cristiano-ronaldo-dos-santos-aveiro"
+          },
+          {
+            "title": "ฐานสถิติที่ใช้ในบทความนี้",
+            "url": "https://www.messivsronaldo.app/all-time-stats/ronaldo-real-madrid-stats/"
+          },
+          {
+            "title": "นิยามเหตุการณ์ของ Opta",
+            "url": "https://www.statsperform.com/opta-event-definitions/"
+          },
+          {
+            "title": "เมสซี",
+            "url": "https://www.uefa.com/uefachampionsleague/news/02a7-212c29181390-c681db1beaba-1000--lionel-messi-in-the-champions-league-records-stats-who-he-/"
+          },
+          {
+            "title": "โรนัลโด",
+            "url": "https://www.uefa.com/uefachampionsleague/news/02a7-2136b8f054ea-76a61b3f9d24-1000--cristiano-ronaldo-in-the-champions-league-records-stats-wh/"
+          },
+          {
+            "title": "บันทึกของบาร์เซโลนาเกี่ยวกับปี 2012",
+            "url": "https://www.fcbarcelona.com/en/football/first-team/news/1670444/-91-/featured"
+          }
+        ]
+      }
+    }
+  }
+]

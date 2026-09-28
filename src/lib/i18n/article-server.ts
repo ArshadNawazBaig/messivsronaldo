@@ -10,6 +10,7 @@ const catalogs: Record<Locale, () => Promise<{ default: Messages }>> = {
   pt: () => import("./article-messages/pt.json"), nl: () => import("./article-messages/nl.json"),
   fr: () => import("./article-messages/fr.json"), de: () => import("./article-messages/de.json"),
   ar: () => import("./article-messages/ar.json"), hi: () => import("./article-messages/hi.json"),
+  th: () => import("./article-messages/th.json"),
 };
 export const getArticleI18n = cache(async () => {
   const context = await getI18n();

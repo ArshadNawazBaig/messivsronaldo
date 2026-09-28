@@ -16,7 +16,7 @@ test("answers are present without JavaScript in every language, with sitemap alt
       await expect(page.locator("#career-goals")).toContainText("930");
       await expect(page.locator("#career-goals")).toContainText("979");
       await expect(page.locator("link[rel=canonical]")).toHaveAttribute("href", new RegExp(`${path}$`));
-      await expect(page.locator("link[hreflang]")).toHaveCount(9);
+      await expect(page.locator("link[hreflang]")).toHaveCount(locales.length + 1);
       expect(xml).toContain(`${path}</loc>`);
       expect(await page.locator("main").innerText()).not.toMatch(/\{\d+\}/);
     }

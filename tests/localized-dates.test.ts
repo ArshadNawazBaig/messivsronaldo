@@ -7,7 +7,7 @@ import { createTranslator } from "../src/lib/i18n/translate";
 const expected: Record<Locale, string> = {
   en: "21 September 2026", es: "21 de septiembre de 2026", pt: "21 de setembro de 2026",
   nl: "21 september 2026", fr: "21 septembre 2026", de: "21. September 2026",
-  ar: "21 سبتمبر 2026", hi: "21 सितंबर 2026",
+  ar: "21 سبتمبر 2026", hi: "21 सितंबर 2026", th: "21 กันยายน ค.ศ. 2026",
 };
 
 test("localized dates use identical text regardless of the runtime's Intl locale data", context => {
@@ -43,4 +43,12 @@ test("Arabic statistics explicitly retain the site's Latin digits and separators
   assert.equal(new Intl.NumberFormat(numberLocales.ar).resolvedOptions().numberingSystem, "latn");
   assert.equal((1176).toLocaleString(numberLocales.ar), "1,176");
   assert.equal((0.79).toLocaleString(numberLocales.ar, { minimumFractionDigits: 2 }), "0.79");
+});
+
+test("Thai dates keep Gregorian football years and Latin statistical digits", () => {
+  assert.equal(translatedDate("2024-02-29", "th"), "29 กุมภาพันธ์ ค.ศ. 2024");
+  assert.equal(translatedDate("2026-02-29", "th"), undefined);
+  assert.equal((1176).toLocaleString(numberLocales.th), "1,176");
+  const t = createTranslator("th", { "Updated {0}": "อัปเดต {0}" });
+  assert.equal(t("Updated 21 September 2026"), "อัปเดต 21 กันยายน ค.ศ. 2026");
 });

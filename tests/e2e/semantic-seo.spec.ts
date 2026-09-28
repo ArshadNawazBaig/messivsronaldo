@@ -13,7 +13,7 @@ test("glossary definitions, entity links and translations are delivered without 
       expect((await page.goto(path))!.status()).toBe(200);
       await expect(page.locator("h1")).toHaveCount(1);
       await expect(page.locator("link[rel=canonical]")).toHaveAttribute("href", new RegExp(`${path}$`));
-      await expect(page.locator("link[hreflang]")).toHaveCount(9);
+      await expect(page.locator("link[hreflang]")).toHaveCount(locales.length + 1);
       const schemas = await page.locator('script[type="application/ld+json"]').allTextContents();
       const nodes = schemas.map(text => JSON.parse(text));
       const glossary = nodes.find(node => node["@type"] === "DefinedTermSet");

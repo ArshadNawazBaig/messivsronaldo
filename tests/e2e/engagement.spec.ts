@@ -1,3 +1,4 @@
+import { locales } from "../../src/lib/i18n/config";
 import { expectedSitemapSize } from "./sitemap-helpers";
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
@@ -137,7 +138,7 @@ test("tools serve crawlable content in all languages and appear in search, homep
       await expect(noJs.locator('meta[name="description"]')).toHaveAttribute("content", /.+/);
       const canonical = await noJs.locator('link[rel="canonical"]').getAttribute("href");
       expect(new URL(canonical!).pathname).toBe(`${locale}/${slug}`);
-      await expect(noJs.locator('link[hreflang]')).toHaveCount(9);
+      await expect(noJs.locator('link[hreflang]')).toHaveCount(locales.length + 1);
       if (slug !== "tools") await expect(noJs.getByTestId(slug)).toBeVisible();
     }
   }

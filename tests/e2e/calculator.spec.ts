@@ -1,3 +1,4 @@
+import { locales } from "../../src/lib/i18n/config";
 import { expectedSitemapSize } from "./sitemap-helpers";
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
@@ -49,7 +50,7 @@ test("historical guides serve their answers, sources and calculator presets with
     expect(article.datePublished).toBe("2026-09-25");
     expect(article.citation.length).toBeGreaterThanOrEqual(2);
     await expect(page.locator(".article-sources a").first()).toBeVisible();
-    await expect(page.locator('link[hreflang]')).toHaveCount(9);
+    await expect(page.locator('link[hreflang]')).toHaveCount(locales.length + 1);
   }
   await context.close();
 });

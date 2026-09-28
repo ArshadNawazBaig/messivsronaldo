@@ -1,12 +1,13 @@
+import { locales } from "../../src/lib/i18n/config";
 import { expectedSitemapSize } from "./sitemap-helpers";
 import { expect, test } from "@playwright/test";
 
 const languages = [
   ["en", "Goals"], ["es", "Goles"], ["pt", "Golos"], ["nl", "Doelpunten"],
-  ["fr", "Buts"], ["de", "Tore"], ["ar", "الأهداف"], ["hi", "गोल"],
+  ["fr", "Buts"], ["de", "Tore"], ["ar", "الأهداف"], ["hi", "गोल"], ["th", "ประตู"],
 ] as const;
 
-test("all eight languages render translated statistics and metadata on the server", async ({ browser, baseURL }) => {
+test("all supported languages render translated statistics and metadata on the server", async ({ browser, baseURL }) => {
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
   for (const [locale, goals] of languages) {
@@ -17,7 +18,7 @@ test("all eight languages render translated statistics and metadata on the serve
     await expect(page.locator("html")).toHaveAttribute("dir", locale === "ar" ? "rtl" : "ltr");
     await expect(page.locator(".metric-label").first()).toHaveText(goals);
     expect(new URL(await page.locator('link[rel="canonical"]').getAttribute("href") as string).pathname).toBe(path);
-    await expect(page.locator('head link[rel="alternate"][hreflang]')).toHaveCount(9);
+    await expect(page.locator('head link[rel="alternate"][hreflang]')).toHaveCount(locales.length + 1);
     await expect(page.locator('meta[property="og:locale"]')).toHaveAttribute("content", /^\w+_\w+$/);
   }
   await context.close();
@@ -28,7 +29,7 @@ test("language switching preserves the current page and comparison filters", asy
   page.on("pageerror", error => errors.push(error.message));
   await page.goto("/seasons/2026?ref=share#scope=club&metric=assists&per90=1");
   await page.locator(".language-trigger").click();
-  await expect(page.locator(".language-menu a")).toHaveCount(8);
+  await expect(page.locator(".language-menu a")).toHaveCount(locales.length);
   await page.locator('.language-menu a[lang="es"]').click();
   await expect(page).toHaveURL(/\/es\/seasons\/2026\?ref=share#scope=club&metric=assists&per90=1$/);
   await expect(page.locator("html")).toHaveAttribute("lang", "es");
@@ -80,7 +81,7 @@ test("articles, profiles, policies and not-found pages retain their locale", asy
     await expect(page.locator("html")).toHaveAttribute("lang", "fr");
     await expect(page.locator("h1")).not.toBeEmpty();
     await expect(page.locator(".brand")).toHaveAttribute("href", "/fr");
-    await expect(page.locator('head link[rel="alternate"][hreflang]')).toHaveCount(9);
+    await expect(page.locator('head link[rel="alternate"][hreflang]')).toHaveCount(locales.length + 1);
   }
   const response = await page.goto("/fr/a-page-that-does-not-exist");
   expect(response?.status()).toBe(404);
@@ -99,4 +100,30 @@ test("XML sitemap lists all localized pages with reciprocal language alternates"
   }
   expect(xml).toContain('hreflang="x-default"');
   expect(xml).not.toMatch(/<loc>[^<]*\/(?:admin|api\/|maintenance)/);
+});
+
+test("Thai switching retains filters, Gregorian dates and readable local fonts", async ({ page }) => {
+  const errors: string[] = [];
+  page.on("pageerror", error => errors.push(error.message));
+  await page.goto("/seasons/2026?ref=thai#scope=club&metric=assists&per90=1");
+  await page.locator(".language-trigger").click();
+  await page.locator('.language-menu a[lang="th"]').click();
+  await expect(page).toHaveURL(/\/th\/seasons\/2026\?ref=thai#scope=club&metric=assists&per90=1$/);
+  await expect(page.locator("html")).toHaveAttribute("lang", "th");
+  await expect(page.locator("html")).toHaveAttribute("dir", "ltr");
+  await expect(page.locator("#calendar-statistic")).toContainText("แอสซิสต์");
+  await expect(page.locator(".checkbox-label input")).toBeChecked();
+  await expect(page.locator(".navigation-update time")).toContainText("ค.ศ. 2026");
+  await expect(page.locator('meta[property="og:locale"]')).toHaveAttribute("content", "th_TH");
+  const fontReady = await page.evaluate(async () => {
+    await document.fonts.load('16px "Noto Sans Thai"', "ภาษาไทย");
+    return document.fonts.check('16px "Noto Sans Thai"', "ภาษาไทย");
+  });
+  expect(fontReady).toBe(true);
+  expect(await page.evaluate(() => getComputedStyle(document.body).fontFamily)).toContain("Noto Sans Thai");
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await page.locator(".brand").click();
+  await expect(page).toHaveURL(/\/th$/);
+  await expect(page.locator(".metric-label").first()).toHaveText("ประตู");
+  expect(errors).toEqual([]);
 });

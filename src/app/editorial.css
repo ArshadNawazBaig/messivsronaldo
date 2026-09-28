@@ -2223,8 +2223,24 @@ html[lang='hi'] :is(h1, h2, h3) {
     'Devanagari Sangam MN', sans-serif;
   letter-spacing: 0;
 }
+html[lang='th'] body,
+[lang='th'],
+[lang='th'] :is(h1, h2, h3) {
+  font-family: 'Noto Sans Thai', var(--font-inter), Tahoma, sans-serif;
+  letter-spacing: 0;
+}
+[lang='th'] :is(h1, h2, h3) {
+  line-height: 1.5;
+}
+[lang='th'] :is(.eyebrow, .section-kicker, .player-epithet, .player-score > div > span:first-child) {
+  letter-spacing: 0;
+}
+html[lang='th'] .page-intro h1 {
+  font-size: clamp(28px, 4.5vw, 60px);
+  line-height: 1.4;
+}
 /* The player names use Latin lettering in every current translation. */
-html:is([lang='ar'], [lang='hi']) .player-identity h2 {
+html:is([lang='ar'], [lang='hi'], [lang='th']) .player-identity h2 {
   font-family: var(--font-display), 'Noto Sans Arabic', 'Noto Sans Devanagari', sans-serif;
   letter-spacing: -.02em;
 }
@@ -2332,6 +2348,12 @@ html:not([lang='en']) .player-epithet {
 @font-face {
   font-family: 'Noto Sans Devanagari';
   src: url('/fonts/i18n/noto-sans-devanagari.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Noto Sans Thai';
+  src: url('/fonts/i18n/noto-sans-thai.woff2') format('woff2');
   font-weight: 100 900;
   font-display: swap;
 }

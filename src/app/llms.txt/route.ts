@@ -43,7 +43,7 @@ ${(await getPublishedArticles("en")).map(article => `- [${article.title.replace(
 
 ## Languages
 
-The same dataset is available in eight languages. Each localized page identifies its language and links to alternate versions; the XML sitemap at ${siteUrl}/sitemap.xml lists all public language URLs.
+The same dataset is available in ${locales.length} languages. Each localized page identifies its language and links to alternate versions; the XML sitemap at ${siteUrl}/sitemap.xml lists all public language URLs.
 
 ${locales.map(locale => `- [${languageNames[locale]}](${localizedUrl("/", locale, siteUrl)})`).join("\n")}
 

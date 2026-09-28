@@ -7,7 +7,7 @@ import { getPublicPages } from "../../src/lib/public-pages";
 
 test.describe("crawlable award articles", () => {
   test.use({ javaScriptEnabled: false });
-  test("all eight languages deliver complete article text, tables and search metadata without JavaScript", async ({ page }) => {
+  test("all supported languages deliver complete article text, tables and search metadata without JavaScript", async ({ page }) => {
     test.setTimeout(120_000);
     for (const locale of locales) {
       const shared = JSON.parse(readFileSync(`src/lib/i18n/messages/${locale}.json`, "utf8"));
@@ -22,7 +22,7 @@ test.describe("crawlable award articles", () => {
         await expect(page.locator("table tbody tr")).toHaveCount(article.tables![0].rows.length);
         for (const [index, section] of article.sections.entries()) await expect(page.locator(`#section-${index} + p`)).toHaveText(body[section.text]);
         await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", `https://messivsronaldo17.com${path}`);
-        await expect(page.locator('link[rel="alternate"][hreflang]')).toHaveCount(9);
+        await expect(page.locator('link[rel="alternate"][hreflang]')).toHaveCount(locales.length + 1);
         await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", `https://messivsronaldo17.com${article.image!.path}`);
         await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", shared[article.description]);
         const schemas = await page.locator('script[type="application/ld+json"]').allTextContents();
