@@ -1,0 +1,32 @@
+[
+  {
+    "locale": "en",
+    "slug": "messi-vs-ronaldo-stats-guide",
+    "file": "messi-vs-ronaldo-stats-guide.md",
+    "category": "CAREER COMPARISON",
+    "description": "Compare Messi vs Ronaldo stats with dated goals, assists, scoring rates and Champions League records. Understand what each number tells you and how to use it.",
+    "summary": "At the 28 September 2026 source review, Ronaldo led senior career goals 979–931, while Messi led recorded assists 424–261 and goals per appearance. This guide explains the scope, scoring rates, non-penalty goals and competition choices behind a fair comparison.",
+    "keywords": ["messi vs ronaldo", "messi vs ronaldo stats", "ronaldo vs messi", "ronaldo vs messi stats"],
+    "intent": "Help readers interpret a career comparison and select the right metric; support the existing comparison pages with explanatory editorial content."
+  },
+  {
+    "locale": "en",
+    "slug": "messi-stats-career-guide",
+    "file": "messi-stats-career-guide.md",
+    "category": "LIONEL MESSI",
+    "description": "Explore Messi stats by club and country: career goals, assists, Barcelona records, his 91-goal year and the counting rules behind a useful comparison.",
+    "summary": "The 28 September 2026 source review records 931 Messi goals: 672 for Barcelona, 32 for PSG, 102 for Inter Miami and 125 for Argentina. Learn how club totals, league records, assists and calendar-year achievements fit together without counting the same goals twice.",
+    "keywords": ["messi stats"],
+    "intent": "Explain Messi's club and country contributions, the difference between club and league totals, and season versus calendar-year records."
+  },
+  {
+    "locale": "en",
+    "slug": "ronaldo-stats-career-guide",
+    "file": "ronaldo-stats-career-guide.md",
+    "category": "CRISTIANO RONALDO",
+    "description": "Explore Ronaldo stats by club and country, his Champions League record, the 450–451 Real Madrid discrepancy and the dated gap to 1,000 career goals.",
+    "summary": "The 28 September 2026 source review records 979 Ronaldo goals: 833 for clubs and 146 for Portugal, leaving 21 to reach 1,000 under the stated convention. This guide reconciles the club rows and explains Madrid's different attribution and competition boundaries.",
+    "keywords": ["ronaldo stats"],
+    "intent": "Reconcile Ronaldo's club and country totals, explain the Madrid attribution discrepancy, and distinguish a milestone gap from a prediction."
+  }
+]

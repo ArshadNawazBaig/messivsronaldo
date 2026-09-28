@@ -1,0 +1,73 @@
+[
+  {
+    "slug": "messi-vs-ronaldo-stats-guide",
+    "title": "Messi vs Ronaldo Stats: Goals, Assists and What They Tell Us",
+    "words": 1239,
+    "descriptionCharacters": 158,
+    "headings": 9,
+    "tables": 3,
+    "citations": 5,
+    "keywords": [
+      "messi vs ronaldo",
+      "messi vs ronaldo stats",
+      "ronaldo vs messi",
+      "ronaldo vs messi stats"
+    ],
+    "intent": "Help readers interpret a career comparison and select the right metric; support the existing comparison pages with explanatory editorial content.",
+    "internalLinks": [
+      "/compare",
+      "/insights/why-assist-totals-differ",
+      "/insights/messi-ronaldo-penalty-records",
+      "/champions-league",
+      "/honours",
+      "/insights/messi-ronaldo-la-liga-records",
+      "/international"
+    ],
+    "contentHash": "c326d0b4e082c63aac1ec4dd7e0c4d0a32829d0a0c574ec6f75ed595a24cba31"
+  },
+  {
+    "slug": "messi-stats-career-guide",
+    "title": "Messi Stats: Career Goals, Assists and His Club-by-Club Record",
+    "words": 1240,
+    "descriptionCharacters": 150,
+    "headings": 10,
+    "tables": 1,
+    "citations": 9,
+    "keywords": [
+      "messi stats"
+    ],
+    "intent": "Explain Messi's club and country contributions, the difference between club and league totals, and season versus calendar-year records.",
+    "internalLinks": [
+      "/insights/messi-ronaldo-la-liga-records",
+      "/international",
+      "/insights/why-assist-totals-differ",
+      "/seasons/2012",
+      "/players/messi",
+      "/insights/what-counts-as-a-career-goal"
+    ],
+    "contentHash": "5026d2ad89ec1470661d0cc5c4528a7b14ee89c91ed7dc75e7907d772a24b69a"
+  },
+  {
+    "slug": "ronaldo-stats-career-guide",
+    "title": "Ronaldo Stats: Career Goals, Club Records and the 1,000-Goal Chase",
+    "words": 1251,
+    "descriptionCharacters": 148,
+    "headings": 10,
+    "tables": 2,
+    "citations": 9,
+    "keywords": [
+      "ronaldo stats"
+    ],
+    "intent": "Reconcile Ronaldo's club and country totals, explain the Madrid attribution discrepancy, and distinguish a milestone gap from a prediction.",
+    "internalLinks": [
+      "/methodology",
+      "/players/ronaldo",
+      "/seasons",
+      "/champions-league",
+      "/records",
+      "/insights/messi-ronaldo-penalty-records",
+      "/insights/what-counts-as-a-career-goal"
+    ],
+    "contentHash": "23aeea40dad463d5566503f86488a967f1a5c1639907f57f6de4cf45fa479e9c"
+  }
+]
