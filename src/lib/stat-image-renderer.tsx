@@ -3,7 +3,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import { playerArtworkColors, transparentPlayerPortraits } from "./player-artwork";
-import { renderStatImageBrand } from "./stat-image-brand";
+import { renderStatImageBrand, statImagePlayerNameStyle } from "./stat-image-brand";
 import {
   imageFormats,
   imageLeader,
@@ -322,13 +322,7 @@ export async function renderStatImage({
                 color: colors[player],
               }}
             >
-              <span
-                style={{
-                  fontSize: 21,
-                  letterSpacing: 2.2,
-                  lineHeight: `${nameHeight}px`,
-                }}
-              >
+              <span style={statImagePlayerNameStyle}>
                 {player === "messi" ? "LIONEL MESSI" : "CRISTIANO RONALDO"}
               </span>
               <div
