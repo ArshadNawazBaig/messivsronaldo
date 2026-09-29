@@ -42,7 +42,7 @@ async function getPage(slug: string) {
     if (introduction) return { ...page, description: introduction };
     return page.scope && data.coverageNote ? { ...page, description: `${data.scopes[page.scope].label}. Reviewed baseline plus published match updates. See each statistic’s coverage and the public update log.` } : page;
 }
-export function generateStaticParams() { return Object.keys(pages).map(slug => ({ slug })); }
+export function generateStaticParams() { return Object.keys(pages).filter(slug => slug !== "comparison-posters").map(slug => ({ slug })); }
 export async function generateMetadata({ params }: {
     params: Promise<{
         slug: string;

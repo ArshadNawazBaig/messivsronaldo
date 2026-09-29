@@ -1,7 +1,7 @@
 import {
   Accessibility, ArrowLeftRight, Award, BadgeCheck, BookOpen, BookText, Calculator,
   CalendarDays, CalendarRange, ChartNoAxesCombined, CircleDot, CircleHelp, MessageCircleQuestion,
-  Cookie, Earth, Flag, FlagTriangleRight, Gamepad2, Goal, History, Info,
+  Cookie, Earth, Flag, FlagTriangleRight, Gamepad2, Goal, History, ImageDown, Info,
   ListOrdered, Mail, Map, Medal, Milestone, PanelsTopLeft, Route, ScrollText,
   Shield, ShieldCheck, Shirt, Signpost, Swords, Target, Trophy, Waypoints,
   type LucideProps,
@@ -39,7 +39,7 @@ const icons = {
   "/head-to-head": Swords, "/records": Milestone,
   "/honours": Trophy, "/ballon-dor": GoldenBall, "/golden-boots": GoldenBoot,
   "/man-of-the-match": Medal, "/fifa-awards": Award, "/uefa-awards": BadgeCheck,
-  "/tools": Gamepad2, "/football-quiz": CircleHelp, "/career-timeline": ChartNoAxesCombined,
+  "/comparison-posters": ImageDown, "/tools": Gamepad2, "/football-quiz": CircleHelp, "/career-timeline": ChartNoAxesCombined,
   "/milestone-planner": Route, "/insights": BookOpen, "/methodology": ShieldCheck,
   "/glossary": BookText, "/answers": MessageCircleQuestion, "/updates": History, "/about": Info,
   "/terms": ScrollText, "/privacy": Shield, "/cookies": Cookie,

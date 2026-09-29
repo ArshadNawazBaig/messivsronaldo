@@ -1,0 +1,53 @@
+.studio { margin-bottom: 56px; }
+.layout { display: grid; grid-template-columns: minmax(290px, 350px) minmax(0, 1fr); gap: 32px; align-items: start; }
+.editor { background: var(--panel); border: 1px solid var(--border); border-radius: 16px; padding: 26px; display: flex; flex-direction: column; gap: 24px; min-width: 0; }
+.editorHeading h2 { font-size: 30px; margin: 7px 0 0; }
+.competition { display: grid; gap: 10px; }
+.competition label { font-size: 12px; font-weight: 600; }
+.competition > button { width: 100%; }
+.editor fieldset { margin: 0; min-width: 0; }
+.editor legend { margin-bottom: 10px; }
+.editor button { cursor: pointer; }
+.editor button:disabled { cursor: not-allowed; }
+.help { color: var(--muted); font-size: 12px; line-height: 1.75; margin: 0; }
+.editor .help + .help { margin-top: -14px; }
+.previewPanel { min-width: 0; scroll-margin-top: 140px; }
+.previewJump { display: none; }
+.previewHeading { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin: 0 0 16px; }
+.previewHeading h2 { font-size: 24px; }
+.previewHeading span { font-size: 11px; color: var(--muted); }
+.canvas { display: flex; justify-content: center; padding: 26px; background: radial-gradient(ellipse at 10% 10%, color-mix(in srgb, var(--messi) 12%, transparent), transparent 65%), radial-gradient(ellipse at 90% 90%, color-mix(in srgb, var(--ronaldo) 12%, transparent), transparent 65%), var(--panel-raised); border-radius: 16px; }
+.artwork { position: relative; width: 100%; overflow: hidden; border-radius: 4px; box-shadow: var(--shadow); background: var(--panel); }
+.artwork img { display: block; width: 100%; height: auto; }
+.placeholder { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 20px; padding: 24px; text-align: center; color: var(--muted); font-size: 13px; }
+.brandMark { width: 48px; height: 48px; background: url('/images/brand/the-rivalry-mark.svg') center / contain no-repeat; }
+.actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin: 22px 0 12px; }
+.actions :is(button, a) { min-height: 44px; }
+.caption { text-align: center; color: var(--muted); font-size: 11px; }
+.copyFallback { display: grid; gap: 8px; font-size: 12px; margin-block: 16px; }
+.copyFallback input { width: 100%; padding: 12px; border: 1px solid var(--border); background: var(--panel); color: var(--text); border-radius: 6px; }
+.dataDetails { margin-top: 24px; border-top: 1px solid var(--border); }
+.dataDetails summary { cursor: pointer; padding: 18px 0; font-size: 13px; font-weight: 600; }
+.dataDetails table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.dataDetails caption { text-align: start; font-weight: 600; padding-bottom: 12px; }
+.dataDetails th, .dataDetails td { padding: 10px 6px; border-bottom: 1px solid var(--border-subtle); text-align: start; }
+.dataDetails td { font-variant-numeric: tabular-nums; font-weight: 650; }
+.dataDetails th { font-weight: 500; }
+.dataDetails th small { display: block; font-size: 10px; color: var(--muted); margin-top: 5px; }
+.dataDetails .help { margin-top: 12px; }
+.restoreNotice { padding: 16px; background: var(--panel); color: var(--muted); border-radius: 10px; margin-bottom: 20px; }
+@media (max-width: 850px) {
+  .layout { grid-template-columns: minmax(250px, 300px) minmax(0, 1fr); gap: 20px; }
+  .editor { padding: 20px; }
+  .canvas { padding: 16px; }
+  .previewHeading { flex-wrap: wrap; gap: 8px; }
+}
+@media (max-width: 680px) {
+  .layout { display: flex; flex-direction: column; gap: 24px; }
+  .editor, .previewPanel { width: 100%; }
+  .previewPanel { order: -1; scroll-margin-top: 90px; }
+  .previewJump { display: inline-flex; }
+  .editor { gap: 20px; }
+  .canvas { padding: 12px; }
+  .actions > :first-child { flex: 1; }
+}
