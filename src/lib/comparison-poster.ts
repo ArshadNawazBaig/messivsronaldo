@@ -79,10 +79,11 @@ export function getComparisonPoster(data: PublishedData, { scope: id }: Pick<Com
 export type ComparisonPoster = ReturnType<typeof getComparisonPoster>;
 
 // Shared coordinates keep the interactive preview aligned with the exported PNG.
+export const comparisonBrandHeaderHeight = 76;
 export const comparisonLayouts = {
-  square: { headTop: 154, photoScale: .8, portraitBottom: 398, nameSize: 72, tableTop: 526, valueSize: 34, labelSize: 18, footerHeight: 176 },
-  portrait: { headTop: 154, photoScale: 1.18, portraitBottom: 518, nameSize: 94, tableTop: 676, valueSize: 42, labelSize: 20, footerHeight: 190 },
-  story: { headTop: 214, photoScale: 1.65, portraitBottom: 766, nameSize: 114, tableTop: 954, valueSize: 56, labelSize: 25, footerHeight: 220 },
+  square: { photoTop: 32 + comparisonBrandHeaderHeight, headTop: 44 + comparisonBrandHeaderHeight, photoScale: 1, tableHeaderTop: 344 + comparisonBrandHeaderHeight, headingSize: 60, tableTop: 522 + comparisonBrandHeaderHeight, valueSize: 32, labelSize: 21, footerHeight: 200 - comparisonBrandHeaderHeight },
+  portrait: { photoTop: 40 + comparisonBrandHeaderHeight, headTop: 60 + comparisonBrandHeaderHeight, photoScale: 1.36, tableHeaderTop: 478 + comparisonBrandHeaderHeight, headingSize: 76, tableTop: 684 + comparisonBrandHeaderHeight, valueSize: 38, labelSize: 23, footerHeight: 206 - comparisonBrandHeaderHeight },
+  story: { photoTop: 56 + comparisonBrandHeaderHeight, headTop: 80 + comparisonBrandHeaderHeight, photoScale: 1.94, tableHeaderTop: 724 + comparisonBrandHeaderHeight, headingSize: 94, tableTop: 984 + comparisonBrandHeaderHeight, valueSize: 48, labelSize: 29, footerHeight: 228 - comparisonBrandHeaderHeight },
 } satisfies Record<ImageFormat, object>;
 
 export function comparisonRows(poster: ComparisonPoster, metrics?: readonly string[]) {
