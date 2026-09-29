@@ -48,13 +48,33 @@ export default async function ClubSeasonPage({ params }: Props) {
       messi: t("{0} appearances · {1} minutes", { 0: fmt(season.stats.appearances.messi), 1: fmt(season.stats.minutes.messi) }),
       ronaldo: t("{0} appearances · {1} minutes", { 0: fmt(season.stats.appearances.ronaldo), 1: fmt(season.stats.minutes.ronaldo) }),
     }} exportData={{ title: "Club season goals", context: `${season.label} · All club competitions`, note: `Source reviewed ${clubSeasonsReviewed}${season.inProgress ? " · Incomplete season" : ""}${season.alignedPeriod ? " · Messi in the same period as Ronaldo's season" : ""}` }} />
-    <section className={`${styles.summary} panel`} aria-labelledby="club-season-summary" data-club-season-summary>
-      <h2 id="club-season-summary">{t("{0}: the complete statistical summary", { 0: season.label })}</h2>
-      <SummaryTable title={`${season.label} · ${t("All club competitions")}`} rows={clubSeasonRows(season)} />
-      <p>{t("Club competitions only. National-team matches and club friendlies are excluded.")}</p>
-      <p>{t("These figures describe one club season, not the sum of two calendar years. Assists follow the linked source’s definitions. A dash means the rate has no valid denominator.")}</p>
-      <p>{t("Source")}: <a href={season.source}>{t("{0} club-season source", { 0: season.label })}</a>. {t("Source reviewed {0}.", { 0: reviewed })} {season.inProgress && t("This season is incomplete. Figures are a reviewed snapshot and do not update automatically.")}</p>
-      <nav className={styles.navigation} aria-label={t("Explore nearby periods")}>
+    <section className={styles.clubSummary} aria-labelledby="club-season-summary" data-club-season-summary>
+      <header className={styles.seasonHeading}>
+        <div>
+          <span className={styles.seasonPeriod}>{season.label}</span>
+          <h2 id="club-season-summary">{t("Season statistics")}</h2>
+          <p>{t("All club competitions")}</p>
+        </div>
+        <div className={styles.seasonMeta}>
+          {season.inProgress && <span className={styles.seasonStatus}>{t("In progress")}</span>}
+          <span className={styles.leaderKey}><span aria-hidden="true"><i/><i/></span>{t("Leads this stat")}</span>
+        </div>
+      </header>
+      <SummaryTable title={`${season.label} · ${t("All club competitions")}`} rows={clubSeasonRows(season)} variant="panel" />
+      <div className={styles.seasonNotes}>
+        <div className={styles.sourceLine}>
+          <span>{t("Source")}: <a href={season.source}>{t("{0} club-season source", { 0: season.label })}</a></span>
+          <span>{t("Source reviewed {0}.", { 0: reviewed })}</span>
+        </div>
+        {season.inProgress && <p>{t("This season is incomplete. Figures are a reviewed snapshot and do not update automatically.")}</p>}
+        <details>
+          <summary>{t("Source & definition")}</summary>
+          <p>{t("Club competitions only. National-team matches and club friendlies are excluded.")}</p>
+          <p>{t("These figures describe one club season, not the sum of two calendar years. Assists follow the linked source’s definitions. A dash means the rate has no valid denominator.")}</p>
+          <p>{t("Lower minutes per goal is better")}</p>
+        </details>
+      </div>
+      <nav className={`${styles.navigation} ${styles.seasonNavigation}`} aria-label={t("Explore nearby periods")}>
         {previous && <Link href={`/club-stats/${previous.slug}`} rel="prev">{t("Previous: {0}", { 0: previous.label })}</Link>}
         <Link href="/club-stats">{t("All club seasons")}</Link>
         {next && <Link href={`/club-stats/${next.slug}`} rel="next">{t("Next: {0}", { 0: next.label })}</Link>}

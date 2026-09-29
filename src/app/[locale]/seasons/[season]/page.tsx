@@ -49,7 +49,7 @@ export default async function SeasonPage({ params }: {
                 <p>{t(comparison)} {t(year.year === Number(snapshotDate.slice(0, 4)) ? `Year to date through ${snapshotLabel}.` : "A full January-to-December comparison.")}</p>
             </div></div>
             <CalendarExplorer selected={season}/>
-            <CalendarSummary year={year} years={calendarYears} snapshotLabel={snapshotLabel} hasUpdates={Boolean(coverageNote)} />
+            <CalendarSummary year={year} years={calendarYears} snapshotLabel={snapshotLabel} hasUpdates={Boolean(coverageNote)} inProgress={year.year === Number(snapshotDate.slice(0, 4))} />
             <CalendarYearNavigation years={calendarYears} selected={year.year} />
             <RelatedReading path={`/seasons/${season}`} />
         </div>;

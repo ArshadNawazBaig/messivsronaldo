@@ -3,11 +3,24 @@
 .summary p { color: var(--muted); line-height: 1.8; margin-block: 20px; }
 .summary a { color: var(--accent); text-decoration: underline; text-underline-offset: 4px; }
 .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; margin-block: 28px; }
-.table { width: 100%; border-collapse: collapse; font-size: 14px; font-variant-numeric: tabular-nums; }
-.table caption { text-align: start; font-weight: 700; color: var(--text); padding-block: 12px; font-size: 17px; }
-.table th, .table td { border-bottom: 1px solid var(--border); padding: 12px 8px; text-align: end; }
-.table th:first-child { text-align: start; font-weight: 500; }
-.table thead th { color: var(--muted); font-size: 12px; }
+.table { width: 100%; max-width: 760px; margin-inline: auto; table-layout: fixed; border-collapse: collapse; font-size: 14px; font-variant-numeric: tabular-nums; }
+.table caption { text-align: center; font-weight: 700; color: var(--text); padding-block: 12px 18px; font-size: 17px; }
+.playerColumn { width: 27%; }
+.labelColumn { width: 46%; }
+.table th, .table td { padding: 6px 8px; text-align: center; vertical-align: middle; }
+.table thead th { padding-block: 4px 12px; color: var(--muted); font-size: 12px; font-weight: 600; }
+.table thead th:first-child { color: var(--messi); }
+.table thead th:last-child { color: var(--ronaldo); }
+.table tbody tr { border-bottom: 1px solid color-mix(in srgb, var(--border-subtle) 55%, transparent); }
+.table tbody tr:last-child { border-bottom: 0; }
+.table tbody tr:nth-child(even) { background: color-mix(in srgb, var(--messi) 3%, var(--panel)); }
+.table .value { color: var(--text); font-family: var(--font-display), sans-serif; font-size: 28px; font-weight: 700; line-height: 1.15; }
+.table .value[data-player="messi"][data-leading="true"] { color: var(--messi); }
+.table .value[data-player="ronaldo"][data-leading="true"] { color: var(--ronaldo); }
+.table .metric { color: var(--muted); font-size: 13px; font-weight: 400; line-height: 1.35; overflow-wrap: anywhere; }
+.balance { display: flex; direction: ltr; width: 110px; max-width: 100%; height: 2px; margin: 5px auto 0; overflow: hidden; background: var(--border-subtle); }
+.messiShare { background: var(--messi); }
+.ronaldoShare { background: var(--ronaldo); }
 .navigation { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; border-top: 1px solid var(--border); padding-top: 20px; font-size: 14px; }
 .years { padding: 20px; margin-block: 24px; }
 .years ol { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 14px 0 0; }
@@ -16,5 +29,96 @@
 .questions { border-top: 1px solid var(--border); padding-top: 24px; margin-top: 28px; }
 .questions dt { color: var(--text); font-weight: 700; line-height: 1.6; }
 .questions dd { margin: 8px 0 24px; color: var(--muted); line-height: 1.8; }
+
+.clubSummary { margin-block: 32px; border: 1px solid var(--border); border-radius: 8px; background: var(--panel); overflow: hidden; }
+.seasonHeading { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 24px 32px; border-bottom: 1px solid var(--border-subtle); }
+.seasonHeading > div:first-child { min-width: 0; }
+.seasonPeriod { color: var(--muted); font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: .06em; }
+.seasonHeading h2 { margin: 4px 0; font-size: 28px; line-height: 1.15; overflow-wrap: anywhere; hyphens: auto; }
+.seasonHeading p { margin: 0; color: var(--muted); font-size: 13px; }
+.seasonMeta { display: flex; flex-shrink: 0; flex-direction: column; align-items: flex-end; gap: 16px; }
+.seasonStatus { display: inline-flex; align-items: center; gap: 7px; padding: 6px 10px; border: 1px solid var(--border-subtle); border-radius: 4px; color: var(--accent); background: color-mix(in srgb, var(--accent) 5%, var(--panel)); font-size: 11px; font-weight: 600; }
+.seasonStatus::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+.leaderKey { display: flex; align-items: center; gap: 7px; color: var(--muted); font-size: 11px; }
+.leaderKey > span { display: flex; gap: 3px; }
+.leaderKey i { width: 6px; height: 6px; border-radius: 50%; background: var(--messi); }
+.leaderKey i:last-child { background: var(--ronaldo); }
+.seasonTable { max-width: none; margin: 0; }
+.seasonTable .playerColumn { width: 38%; }
+.seasonTable .labelColumn { width: 24%; }
+.seasonTable thead { background: linear-gradient(90deg, color-mix(in srgb, var(--messi) 6%, var(--panel)), var(--panel) 45%, var(--panel) 55%, color-mix(in srgb, var(--ronaldo) 6%, var(--panel))); }
+.seasonTable thead th { padding-block: 18px; border-bottom: 1px solid var(--border-subtle); }
+.seasonTable th:first-child, .seasonTable td:first-child { text-align: right; padding-right: clamp(24px, 5vw, 80px); }
+.seasonTable th:last-child, .seasonTable td:last-child { text-align: left; padding-left: clamp(24px, 5vw, 80px); }
+.playerHeading { display: inline-flex; min-width: 88px; flex-direction: column; align-items: center; gap: 3px; }
+.playerHeading > span { font-size: 11px; font-weight: 500; color: var(--muted); }
+.playerHeading strong { font-family: var(--font-display), sans-serif; font-size: 23px; line-height: 1.1; }
+.columnLabel { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: .08em; }
+.seasonTable tbody tr { border-bottom-color: var(--border-subtle); }
+.seasonTable tbody tr:nth-child(even) { background: color-mix(in srgb, var(--panel-raised) 25%, var(--panel)); }
+.seasonTable th, .seasonTable td { padding-block: 12px; }
+.seasonTable .value:first-child { padding-right: calc(clamp(24px, 5vw, 80px) + 16px); }
+.seasonTable .value:last-child { padding-left: calc(clamp(24px, 5vw, 80px) + 16px); }
+.seasonTable .metric { color: var(--text); }
+.seasonTable .balance { width: 144px; height: 3px; margin-top: 7px; border-radius: 2px; }
+.seasonTable tr[data-rate-start="true"] { border-top: 2px solid var(--border); }
+.seasonTable tr[data-rate-start="true"] > * { padding-top: 20px; }
+.seasonTable tbody tr:last-child > * { padding-bottom: 20px; }
+.seasonNotes { padding: 20px 32px; border-top: 1px solid var(--border-subtle); color: var(--muted); font-size: 12px; line-height: 1.7; }
+.sourceLine { display: flex; flex-wrap: wrap; justify-content: space-between; column-gap: 24px; row-gap: 4px; }
+.clubSummary a { color: var(--accent); text-underline-offset: 3px; }
+.sourceLine a { text-decoration: underline; }
+.seasonNotes p { margin: 8px 0 0; }
+.seasonNotes details { margin-top: 12px; }
+.seasonNotes summary { width: fit-content; cursor: pointer; color: var(--text); font-weight: 600; }
+.seasonNotes summary:hover { color: var(--accent); }
+.seasonNotes summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.seasonNavigation { padding: 12px 24px; align-items: center; gap: 4px 16px; font-size: 12px; background: color-mix(in srgb, var(--panel-raised) 25%, var(--panel)); }
+.seasonNavigation a { display: inline-flex; align-items: center; min-height: 40px; padding: 8px; border-radius: 4px; font-weight: 600; }
+.seasonNavigation a:hover { background: var(--panel-raised); }
+.calendarIntro { margin: 0; padding: 20px 32px 0; color: var(--muted); font-size: 13px; line-height: 1.8; }
+.calendarGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; gap: 24px; padding: 24px 32px; }
+.scopePanel { min-width: 0; border: 1px solid var(--border-subtle); border-radius: 6px; overflow: hidden; container-type: inline-size; }
+.scopePanel h3 { margin: 0; padding: 16px 20px; font-size: 21px; line-height: 1.3; border-bottom: 1px solid var(--border-subtle); }
+.calendarQuestions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin: 0; padding: 24px 32px; border-color: var(--border-subtle); font-size: 13px; }
+.calendarQuestions dd { margin-bottom: 0; }
+.calendarQuestions a, .seasonNotes a { text-decoration: underline; }
+@container (max-width: 720px) {
+  .seasonTable .playerColumn { width: 28%; }
+  .seasonTable .labelColumn { width: 44%; }
+  .seasonTable th:first-child, .seasonTable .value:first-child, .seasonTable th:last-child, .seasonTable .value:last-child { text-align: center; padding-inline: 6px; }
+  .playerHeading { min-width: 0; }
+}
 @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
-@media (max-width: 500px) { .summary { padding: 18px; } .table { font-size: 12px; } .table th, .table td { padding: 10px 4px; } }
+@media (max-width: 800px) { .calendarGrid, .calendarQuestions { grid-template-columns: 1fr; } }
+@media (max-width: 500px) { .summary { padding: 18px; } .table { font-size: 12px; } .table th, .table td { padding: 6px 3px; } }
+@media (max-width: 600px) {
+  .seasonHeading { padding: 20px 18px; align-items: flex-start; gap: 12px; }
+  .seasonHeading h2 { font-size: 24px; }
+  .seasonHeading p { font-size: 12px; }
+  .seasonMeta { gap: 12px; max-width: 40%; }
+  .leaderKey { align-items: baseline; font-size: 10px; }
+  .seasonTable .playerColumn { width: 26%; }
+  .seasonTable .labelColumn { width: 48%; }
+  .seasonTable th, .seasonTable td { padding: 12px 4px; }
+  .seasonTable th:first-child, .seasonTable .value:first-child, .seasonTable th:last-child, .seasonTable .value:last-child { text-align: center; padding-inline: 4px; }
+  .playerHeading { min-width: 0; }
+  .playerHeading strong { font-size: 21px; }
+  .seasonTable .balance { width: 100px; }
+  .columnLabel { font-size: 9px; }
+  .seasonNotes { padding: 16px 18px; font-size: 11px; }
+  .seasonNavigation { padding: 10px; gap: 2px 8px; }
+  .calendarIntro { padding: 16px 18px 0; font-size: 12px; }
+  .calendarGrid { padding: 18px 12px; gap: 18px; }
+  .scopePanel h3 { padding: 14px 16px; font-size: 20px; }
+  .calendarQuestions { padding: 18px; gap: 20px; font-size: 12px; }
+}
+@container (max-width: 350px) {
+  .seasonTable .playerColumn { width: 29%; }
+  .seasonTable .labelColumn { width: 42%; }
+  .playerHeading strong { font-size: 19px; }
+}
+@media (max-width: 360px) {
+  .seasonHeading { flex-direction: column; align-items: stretch; }
+  .seasonMeta { flex-direction: row; justify-content: space-between; align-items: center; max-width: none; }
+}

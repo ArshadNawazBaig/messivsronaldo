@@ -12,7 +12,7 @@ export const clubSeasonDescription = (season: ClubSeason) => `${season.label} cl
 
 export function clubSeasonRows(season: ClubSeason): SummaryRow[] {
   return [...calendarSummaryRows(season.stats), {
-    label: "Minutes per goal", decimals: 1,
+    label: "Minutes per goal", decimals: 1, lowerIsBetter: true,
     values: { messi: ratio(season.stats.minutes.messi, season.stats.goals.messi), ronaldo: ratio(season.stats.minutes.ronaldo, season.stats.goals.ronaldo) },
   }];
 }

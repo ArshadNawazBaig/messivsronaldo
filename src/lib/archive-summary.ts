@@ -3,7 +3,7 @@ import type { SeasonRecord } from "./seasons";
 import type { CalendarYear } from "./published-data";
 
 export const archiveContentUpdated = "2026-09-29";
-export type SummaryRow = { label: string; values: { messi: number | null; ronaldo: number | null }; decimals?: number };
+export type SummaryRow = { label: string; values: { messi: number | null; ronaldo: number | null }; decimals?: number; lowerIsBetter?: boolean };
 
 export const calendarYearTitle = (year: number) => `Messi vs Ronaldo ${year}: Calendar Year Goals & Stats`;
 
