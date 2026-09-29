@@ -1,4 +1,4 @@
-import { archiveContentUpdated } from "./archive-summary";
+import { archiveContentUpdated, calendarYearTitle } from "./archive-summary";
 import type { Article } from "./article-types";
 import { articles } from "./articles";
 import { contentPages } from "./content-pages";
@@ -11,6 +11,7 @@ import { ballonReviewed } from "./ballon-articles";
 import { discoveryUpdated } from "./content-discovery";
 import { socialProfilesUpdated } from "./social-profiles";
 import { semanticContentUpdated } from "./page-semantics";
+import { clubSeasons, clubSeasonsReviewed, clubSeasonTitle } from "./club-seasons";
 
 export type PublicPage = { path: string; title: string; group: string; updated?: string };
 
@@ -40,7 +41,9 @@ export function getPublicPages(years: readonly { year: number }[], snapshotDate:
     { path: "/players/messi", title: "Lionel Messi profile", group: "Player profiles", updated: snapshotDate },
     { path: "/players/ronaldo", title: "Cristiano Ronaldo profile", group: "Player profiles", updated: snapshotDate },
     { path: "/seasons", title: "All years & seasons", group: "Calendar years", updated: [snapshotDate, semanticContentUpdated, archiveContentUpdated].sort().at(-1) },
-    ...years.map(({ year }) => ({ path: `/seasons/${year}`, title: `Messi vs Ronaldo, ${year}`, group: "Calendar years", updated: [snapshotDate, semanticContentUpdated, archiveContentUpdated].sort().at(-1) })),
+    ...years.map(({ year }) => ({ path: `/seasons/${year}`, title: calendarYearTitle(year), group: "Calendar years", updated: [snapshotDate, semanticContentUpdated, archiveContentUpdated].sort().at(-1) })),
+    { path: "/club-stats", title: "All club seasons", group: "Club seasons", updated: clubSeasonsReviewed },
+    ...clubSeasons.map(season => ({ path: `/club-stats/${season.slug}`, title: clubSeasonTitle(season), group: "Club seasons", updated: clubSeasonsReviewed })),
     ...seasons.map(season => ({ path: `/seasons/${season.slug}`, title: `Messi vs Ronaldo, ${season.label}`, group: "Spanish-season archive", updated: [semanticContentUpdated, archiveContentUpdated].sort().at(-1) })),
     { path: "/insights", title: "The reading room", group: "Articles", updated: latestArticle },
     ...entries.map(article => ({ path: `/insights/${article.slug}`, title: article.title, group: "Articles", updated: [discoveryUpdated, article.updated ?? "2026-09-21"].sort().at(-1) })),
@@ -49,4 +52,4 @@ export function getPublicPages(years: readonly { year: number }[], snapshotDate:
   ];
 }
 
-export const pageGroups = ["Comparisons", "Tools & games", "Player profiles", "Calendar years", "Spanish-season archive", "Articles", "About & policies"];
+export const pageGroups = ["Comparisons", "Tools & games", "Player profiles", "Calendar years", "Club seasons", "Spanish-season archive", "Articles", "About & policies"];

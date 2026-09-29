@@ -28,6 +28,8 @@ This workspace's ignored `.env.local` sets the preview origin to `http://localho
 - Goals, assists, appearances, minutes, contributions, per-appearance and per-90 rates, hat-tricks, penalties/conversion, non-penalty goals, free kicks, scoring locations and body parts.
 - Source explanations for each metric, clipboard sharing, and filter restoration through URL fragments.
 - A 2002–2026 calendar explorer with club/country/league filters, metric selection, per-90 rates and 25 individual year pages. The nine shared-Spain season pages remain a separate archive.
+- Every `/seasons/[year]` page has a calendar-year title, a goals-and-assists search description, a year selector with crawlable links, statistical tables and comparison answers. The current year's description includes its published cutoff; the sitemap and all nine language versions use the same published records.
+- `/club-stats` links to 25 separate two-year club-season pages, from `/club-stats/2002-2003` to `/club-stats/2026-2027`. Each includes all-competition club goals, assists, appearances, minutes, derived rates, source attribution and localized search metadata. This separate snapshot was reviewed on 29 September 2026; 2026/2027 is incomplete. From 2023/2024, Messi's figures use Ronaldo's season period, not a complete MLS season.
 - Eight club records and a team-honours table with participation and counting notes.
 - An interactive Ballon d'Or chart, accessible data table, and award history through the latest completed edition, 2025.
 - Player profiles, original explanatory articles, methodology and source register, coverage matrix, privacy information, photo credits, and a local correction-report generator.

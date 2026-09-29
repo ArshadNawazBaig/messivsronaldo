@@ -6,7 +6,7 @@ import type { CalendarYear } from "@/lib/published-data";
 import { seasons, type SeasonRecord } from "@/lib/seasons";
 import styles from "./archive-summary.module.css";
 
-async function SummaryTable({ title, rows }: { title: string; rows: SummaryRow[] }) {
+export async function SummaryTable({ title, rows }: { title: string; rows: SummaryRow[] }) {
   const { t, numberLocale } = await getI18n();
   return <table className={styles.table}>
     <caption>{title}</caption>
@@ -37,6 +37,19 @@ export async function CalendarSummary({ year, years, snapshotLabel, hasUpdates }
     <p>{t("League figures are part of club totals. Add club and country to obtain the overall total; do not add league figures again.")}</p>
     <p>{t("— = no playing minutes for a rate")} · <Link href="/glossary">{t("Football statistics glossary")}</Link></p>
     <p>{t("Source")}: <Link href={year.source}>{t("{0} calendar-year source", { 0: year.year })}</Link>. {t("Data updated {0}", { 0: t(snapshotLabel) })}.{hasUpdates && <> <Link href="/updates">{t("Published match updates")}</Link>.</>}</p>
+    <dl className={styles.questions} data-year-answers>
+      {(["goals", "assists"] as const).map(metric => {
+        const values = year.career[metric];
+        const leader = values.messi > values.ronaldo ? "Messi" : "Ronaldo";
+        const answer = values.messi === values.ronaldo
+          ? t(metric === "goals" ? "Both players scored {0} goals in {1}." : "Both players provided {0} assists in {1}.", { 0: fmt(values.messi), 1: year.year })
+          : t(metric === "goals" ? "{0} scored more goals in {1}: {2} compared with {3}." : "{0} provided more assists in {1}: {2} compared with {3}.", { 0: t(leader), 1: year.year, 2: fmt(Math.max(values.messi, values.ronaldo)), 3: fmt(Math.min(values.messi, values.ronaldo)) });
+        return <div key={metric}>
+          <dt>{t(metric === "goals" ? "Who scored more goals in {0}?" : "Who provided more assists in {0}?", { 0: year.year })}</dt>
+          <dd>{answer} {t("Club + country")}. <a href={`#scope=career&metric=${metric}&per90=0`}>{t(metric === "goals" ? "Compare goals" : "Compare assists")}</a></dd>
+        </div>;
+      })}
+    </dl>
     <ArchiveNavigation items={years.map(item => ({ slug: String(item.year), label: String(item.year) }))} current={String(year.year)} />
   </section>;
 }

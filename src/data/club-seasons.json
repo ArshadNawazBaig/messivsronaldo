@@ -1,0 +1,630 @@
+{
+  "reviewedAt": "2026-09-29",
+  "seasons": [
+    {
+      "slug": "2002-2003",
+      "label": "2002/2003",
+      "source": "https://www.messivsronaldo.app/club-stats/2002-2003/",
+      "inProgress": false,
+      "alignedPeriod": false,
+      "stats": {
+        "goals": {
+          "messi": 0,
+          "ronaldo": 5
+        },
+        "assists": {
+          "messi": 0,
+          "ronaldo": 4
+        },
+        "appearances": {
+          "messi": 0,
+          "ronaldo": 31
+        },
+        "minutes": {
+          "messi": 0,
+          "ronaldo": 1392
+        }
+      }
+    },
+    {
+      "slug": "2003-2004",
+      "label": "2003/2004",
+      "source": "https://www.messivsronaldo.app/club-stats/2003-2004/",
+      "inProgress": false,
+      "alignedPeriod": false,
+      "stats": {
+        "goals": {
+          "messi": 0,
+          "ronaldo": 6
+        },
+        "assists": {
+          "messi": 0,
+          "ronaldo": 6
+        },
+        "appearances": {
+          "messi": 0,
+          "ronaldo": 40
+        },
+        "minutes": {
+          "messi": 0,
+          "ronaldo": 2356
+        }
+      }
+    },
+    {
+      "slug": "2004-2005",
+      "label": "2004/2005",
+      "source": "https://www.messivsronaldo.app/club-stats/2004-2005/",
+      "inProgress": false,
+      "alignedPeriod": false,
+      "stats": {
+        "goals": {
+          "messi": 1,
+          "ronaldo": 9
+        },
+        "assists": {
+          "messi": 0,
+          "ronaldo": 8
+        },
+        "appearances": {
+          "messi": 9,
+          "ronaldo": 50
+        },
+        "minutes": {
+          "messi": 234,
+          "ronaldo": 3719
+        }
+      }
+    },
+    {
+      "slug": "2005-2006",
+      "label": "2005/2006",
+      "source": "https://www.messivsronaldo.app/club-stats/2005-2006/",
+      "inProgress": false,
+      "alignedPeriod": false,
+      "stats": {
+        "goals": {
+          "messi": 8,
+          "ronaldo": 12
+        },
+        "assists": {
+          "messi": 3,
+          "ronaldo": 8
+        },
+        "appearances": {
+          "messi": 25,
+          "ronaldo": 47
+        },
+        "minutes": {
+          "messi": 1419,
+          "ronaldo": 3413
+        }
+      }
+    },
+    {
+      "slug": "2006-2007",
+      "label": "2006/2007",
+      "source": "https://www.messivsronaldo.app/club-stats/2006-2007/",
+      "inProgress": false,
+      "alignedPeriod": false,
+      "stats": {
+        "goals": {
+          "messi": 17,
+          "ronaldo": 23
+        },
+        "assists": {
+          "messi": 3,
+          "ronaldo": 14
+        },
+        "appearances": {
+          "messi": 36,
+          "ronaldo": 53
+        },
+        "minutes": {
+          "messi": 2765,
+          "ronaldo": 4398
+        }
+      }
+    },
+    {
+      "slug": "2007-2008",
+      "label": "2007/2008",
+      "source": "https://www.messivsronaldo.app/club-stats/2007-2008/",
+      "inProgress": false,
+      "alignedPeriod": false,
+      "stats": {
+        "goals": {
+          "messi": 16,
+          "ronaldo": 42
+        },
+        "assists": {
+          "messi": 13,
+          "ronaldo": 7
+        },
+        "appearances": {
+          "messi": 40,
+          "ronaldo": 49
+        },
+        "minutes": {
+          "messi": 2959,
+          "ronaldo": 4155
+        }
+      }
+    },
+    {
+      "slug": "2008-2009",
+      "label": "2008/2009",
+      "source": "https://www.messivsronaldo.app/club-stats/2008-2009/",
+      "inProgress": false,
+      "alignedPeriod": false,
+      "stats": {
+        "goals": {
+          "messi": 38,
+          "ronaldo": 26
+        },
+        "assists": {
+          "messi": 17,
+          "ronaldo": 9
+        },
+        "appearances": {
+          "messi": 51,
+          "ronaldo": 53
+        },
+        "minutes": {
+          "messi": 3901,
+          "ronaldo": 4322
+        }
+      }
+    },
+    {
+      "slug": "2009-2010",
+      "label": "2009/2010",
+      "source": "https://www.messivsronaldo.app/club-stats/2009-2010/",
+      "inProgress": false,
+      "alignedPeriod": false,
+      "stats": {
+        "goals": {
+          "messi": 47,
+          "ronaldo": 33
+        },
+        "assists": {
+          "messi": 11,
+          "ronaldo": 8
+        },
+        "appearances": {
+          "messi": 53,
+          "ronaldo": 35
+        },
+        "minutes": {
+          "messi": 4406,
+          "ronaldo": 2921
+        }
+      }
+    },
+    {
+      "slug": "2010-2011",
+      "label": "2010/2011",
+      "source": "https://www.messivsronaldo.app/club-stats/2010-2011/",
+      "inProgress": false,
+      "alignedPeriod": false,
+      "stats": {
+        "goals": {
+          "messi": 53,
+          "ronaldo": 53
+        },
+        "assists": {
+          "messi": 23,
+          "ronaldo": 16
+        },
+        "appearances": {
+          "messi": 55,
+          "ronaldo": 54
+        },
+        "minutes": {
+          "messi": 4574,
+          "ronaldo": 4607
+        }
+      }
+    },
+    {
+      "slug": "2011-2012",
+      "label": "2011/2012",
+      "source": "https://www.messivsronaldo.app/club-stats/2011-2012/",
+      "inProgress": false,
+      "alignedPeriod": false,
+      "stats": {
+        "goals": {
+          "messi": 73,
+          "ronaldo": 60
+        },
+        "assists": {
+          "messi": 30,
+          "ronaldo": 15
+        },
+        "appearances": {
+          "messi": 60,
+          "ronaldo": 55
+        },
+        "minutes": {
+          "messi": 5221,
+          "ronaldo": 4902
+        }
+      }
+    },
+    {
+      "slug": "2012-2013",
+      "label": "2012/2013",
+      "source": "https://www.messivsronaldo.app/club-stats/2012-2013/",
+      "inProgress": false,
+      "alignedPeriod": false,
+      "stats": {
+        "goals": {
+          "messi": 60,
+          "ronaldo": 55
+        },
+        "assists": {
+          "messi": 15,
+          "ronaldo": 12
+        },
+        "appearances": {
+          "messi": 50,
+          "ronaldo": 55
+        },
+        "minutes": {
+          "messi": 4067,
+          "ronaldo": 4634
+        }
+      }
+    },
+    {
+      "slug": "2013-2014",
+      "label": "2013/2014",
+      "source": "https://www.messivsronaldo.app/club-stats/2013-2014/",
+      "inProgress": false,
+      "alignedPeriod": false,
+      "stats": {
+        "goals": {
+          "messi": 41,
+          "ronaldo": 51
+        },
+        "assists": {
+          "messi": 14,
+          "ronaldo": 14
+        },
+        "appearances": {
+          "messi": 46,
+          "ronaldo": 47
+        },
+        "minutes": {
+          "messi": 3743,
+          "ronaldo": 4030
+        }
+      }
+    },
+    {
+      "slug": "2014-2015",
+      "label": "2014/2015",
+      "source": "https://www.messivsronaldo.app/club-stats/2014-2015/",
+      "inProgress": false,
+      "alignedPeriod": false,
+      "stats": {
+        "goals": {
+          "messi": 58,
+          "ronaldo": 61
+        },
+        "assists": {
+          "messi": 27,
+          "ronaldo": 21
+        },
+        "appearances": {
+          "messi": 57,
+          "ronaldo": 54
+        },
+        "minutes": {
+          "messi": 5061,
+          "ronaldo": 4641
+        }
+      }
+    },
+    {
+      "slug": "2015-2016",
+      "label": "2015/2016",
+      "source": "https://www.messivsronaldo.app/club-stats/2015-2016/",
+      "inProgress": false,
+      "alignedPeriod": false,
+      "stats": {
+        "goals": {
+          "messi": 41,
+          "ronaldo": 51
+        },
+        "assists": {
+          "messi": 23,
+          "ronaldo": 15
+        },
+        "appearances": {
+          "messi": 49,
+          "ronaldo": 48
+        },
+        "minutes": {
+          "messi": 4229,
+          "ronaldo": 4293
+        }
+      }
+    },
+    {
+      "slug": "2016-2017",
+      "label": "2016/2017",
+      "source": "https://www.messivsronaldo.app/club-stats/2016-2017/",
+      "inProgress": false,
+      "alignedPeriod": false,
+      "stats": {
+        "goals": {
+          "messi": 54,
+          "ronaldo": 42
+        },
+        "assists": {
+          "messi": 16,
+          "ronaldo": 11
+        },
+        "appearances": {
+          "messi": 52,
+          "ronaldo": 46
+        },
+        "minutes": {
+          "messi": 4452,
+          "ronaldo": 4126
+        }
+      }
+    },
+    {
+      "slug": "2017-2018",
+      "label": "2017/2018",
+      "source": "https://www.messivsronaldo.app/club-stats/2017-2018/",
+      "inProgress": false,
+      "alignedPeriod": false,
+      "stats": {
+        "goals": {
+          "messi": 45,
+          "ronaldo": 44
+        },
+        "assists": {
+          "messi": 18,
+          "ronaldo": 8
+        },
+        "appearances": {
+          "messi": 54,
+          "ronaldo": 44
+        },
+        "minutes": {
+          "messi": 4471,
+          "ronaldo": 3670
+        }
+      }
+    },
+    {
+      "slug": "2018-2019",
+      "label": "2018/2019",
+      "source": "https://www.messivsronaldo.app/club-stats/2018-2019/",
+      "inProgress": false,
+      "alignedPeriod": false,
+      "stats": {
+        "goals": {
+          "messi": 51,
+          "ronaldo": 28
+        },
+        "assists": {
+          "messi": 19,
+          "ronaldo": 10
+        },
+        "appearances": {
+          "messi": 50,
+          "ronaldo": 43
+        },
+        "minutes": {
+          "messi": 4024,
+          "ronaldo": 3646
+        }
+      }
+    },
+    {
+      "slug": "2019-2020",
+      "label": "2019/2020",
+      "source": "https://www.messivsronaldo.app/club-stats/2019-2020/",
+      "inProgress": false,
+      "alignedPeriod": false,
+      "stats": {
+        "goals": {
+          "messi": 31,
+          "ronaldo": 37
+        },
+        "assists": {
+          "messi": 25,
+          "ronaldo": 5
+        },
+        "appearances": {
+          "messi": 44,
+          "ronaldo": 46
+        },
+        "minutes": {
+          "messi": 3812,
+          "ronaldo": 4080
+        }
+      }
+    },
+    {
+      "slug": "2020-2021",
+      "label": "2020/2021",
+      "source": "https://www.messivsronaldo.app/club-stats/2020-2021/",
+      "inProgress": false,
+      "alignedPeriod": false,
+      "stats": {
+        "goals": {
+          "messi": 38,
+          "ronaldo": 36
+        },
+        "assists": {
+          "messi": 12,
+          "ronaldo": 5
+        },
+        "appearances": {
+          "messi": 47,
+          "ronaldo": 44
+        },
+        "minutes": {
+          "messi": 4192,
+          "ronaldo": 3751
+        }
+      }
+    },
+    {
+      "slug": "2021-2022",
+      "label": "2021/2022",
+      "source": "https://www.messivsronaldo.app/club-stats/2021-2022/",
+      "inProgress": false,
+      "alignedPeriod": false,
+      "stats": {
+        "goals": {
+          "messi": 11,
+          "ronaldo": 24
+        },
+        "assists": {
+          "messi": 14,
+          "ronaldo": 3
+        },
+        "appearances": {
+          "messi": 34,
+          "ronaldo": 39
+        },
+        "minutes": {
+          "messi": 2871,
+          "ronaldo": 3222
+        }
+      }
+    },
+    {
+      "slug": "2022-2023",
+      "label": "2022/2023",
+      "source": "https://www.messivsronaldo.app/club-stats/2022-2023/",
+      "inProgress": false,
+      "alignedPeriod": false,
+      "stats": {
+        "goals": {
+          "messi": 21,
+          "ronaldo": 17
+        },
+        "assists": {
+          "messi": 20,
+          "ronaldo": 4
+        },
+        "appearances": {
+          "messi": 41,
+          "ronaldo": 35
+        },
+        "minutes": {
+          "messi": 3630,
+          "ronaldo": 2752
+        }
+      }
+    },
+    {
+      "slug": "2023-2024",
+      "label": "2023/2024",
+      "source": "https://www.messivsronaldo.app/club-stats/2023-2024/",
+      "inProgress": false,
+      "alignedPeriod": true,
+      "stats": {
+        "goals": {
+          "messi": 25,
+          "ronaldo": 50
+        },
+        "assists": {
+          "messi": 16,
+          "ronaldo": 13
+        },
+        "appearances": {
+          "messi": 29,
+          "ronaldo": 51
+        },
+        "minutes": {
+          "messi": 2321,
+          "ronaldo": 4477
+        }
+      }
+    },
+    {
+      "slug": "2024-2025",
+      "label": "2024/2025",
+      "source": "https://www.messivsronaldo.app/club-stats/2024-2025/",
+      "inProgress": false,
+      "alignedPeriod": true,
+      "stats": {
+        "goals": {
+          "messi": 33,
+          "ronaldo": 35
+        },
+        "assists": {
+          "messi": 9,
+          "ronaldo": 4
+        },
+        "appearances": {
+          "messi": 39,
+          "ronaldo": 41
+        },
+        "minutes": {
+          "messi": 3202,
+          "ronaldo": 3563
+        }
+      }
+    },
+    {
+      "slug": "2025-2026",
+      "label": "2025/2026",
+      "source": "https://www.messivsronaldo.app/club-stats/2025-2026/",
+      "inProgress": false,
+      "alignedPeriod": true,
+      "stats": {
+        "goals": {
+          "messi": 32,
+          "ronaldo": 30
+        },
+        "assists": {
+          "messi": 25,
+          "ronaldo": 4
+        },
+        "appearances": {
+          "messi": 36,
+          "ronaldo": 37
+        },
+        "minutes": {
+          "messi": 3099,
+          "ronaldo": 3159
+        }
+      }
+    },
+    {
+      "slug": "2026-2027",
+      "label": "2026/2027",
+      "source": "https://www.messivsronaldo.app/club-stats/2026-2027/",
+      "inProgress": true,
+      "alignedPeriod": true,
+      "stats": {
+        "goals": {
+          "messi": 12,
+          "ronaldo": 3
+        },
+        "assists": {
+          "messi": 6,
+          "ronaldo": 0
+        },
+        "appearances": {
+          "messi": 13,
+          "ronaldo": 7
+        },
+        "minutes": {
+          "messi": 1072,
+          "ronaldo": 513
+        }
+      }
+    }
+  ]
+}

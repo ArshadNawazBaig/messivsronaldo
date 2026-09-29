@@ -3,6 +3,8 @@ import { articles } from "./articles";
 import { contentPages } from "./content-pages";
 import { calendarYears } from "./data";
 import { seasons } from "./seasons";
+import { calendarYearTitle } from "./archive-summary";
+import { clubSeasons, clubSeasonTitle } from "./club-seasons";
 
 export const discoveryUpdated = "2026-09-27";
 // Editorial relationships drive navigation without generating article claims.
@@ -23,12 +25,15 @@ export const contentTopics = [
   ["/glossary", "/methodology", "/assists", "/scoring-calculator", "/insights/why-assist-totals-differ", "/insights/totals-vs-scoring-rates"],
   ["/seasons/2011-12", "/seasons/2014-15", "/la-liga", "/insights/messi-2011-12-vs-ronaldo-2014-15-la-liga"],
   ["/seasons/2011-12", "/seasons/2013-14", "/champions-league", "/insights/messi-2011-12-vs-ronaldo-2013-14-champions-league"],
+  ["/club-stats", "/seasons", "/clubs", "/league"],
 ] as const;
 export type RelatedContent = { path: string; title: string; kind: "article" | "comparison" };
 const destinations = (entries: readonly Article[]): RelatedContent[] => [
   ...Object.entries(contentPages).map(([slug, page]) => ({ path: `/${slug}`, title: page.title, kind: "comparison" as const })),
   { path: "/seasons", title: "All years & seasons", kind: "comparison" },
-  ...calendarYears.map(({ year }) => ({ path: `/seasons/${year}`, title: `Messi vs Ronaldo, ${year}`, kind: "comparison" as const })),
+  { path: "/club-stats", title: "All club seasons", kind: "comparison" },
+  ...clubSeasons.map(season => ({ path: `/club-stats/${season.slug}`, title: clubSeasonTitle(season), kind: "comparison" as const })),
+  ...calendarYears.map(({ year }) => ({ path: `/seasons/${year}`, title: calendarYearTitle(year), kind: "comparison" as const })),
   ...seasons.map(season => ({ path: `/seasons/${season.slug}`, title: `Messi vs Ronaldo, ${season.label}`, kind: "comparison" as const })),
   ...entries.map(article => ({ path: `/insights/${article.slug}`, title: article.title, kind: "article" as const })),
 ];

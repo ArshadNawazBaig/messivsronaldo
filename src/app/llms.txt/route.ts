@@ -31,6 +31,7 @@ Career assists follow the secondary reference Messi vs Ronaldo App. Champions Le
 - [Player profiles](${siteUrl}/players/messi): Messi; [Ronaldo](${siteUrl}/players/ronaldo).
 - [2026](${siteUrl}/2026): Year-to-date goals, assists and minutes.
 - [Years & seasons](${siteUrl}/seasons): Twenty-five calendar years and a separate shared-Spain season archive.
+- [Club seasons](${siteUrl}/club-stats): 2002/2003–2026/2027 club-season goals, assists, appearances and minutes, each with a direct source. These snapshots were reviewed on 29 September 2026; 2026/2027 is incomplete. From 2023/2024, Messi's figures follow the same period as Ronaldo's season rather than a full MLS season.
 - [Club records](${siteUrl}/clubs): Eight clubs, including Inter Miami and Al Nassr.
 - [World Cup](${siteUrl}/world-cup): Tournament goals, assists and appearances.
 - [Champions League](${siteUrl}/champions-league): Main competition, excluding qualifiers.

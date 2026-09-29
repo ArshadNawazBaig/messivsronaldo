@@ -1,8 +1,17 @@
 import { ratio, type Pair, type Stats } from "./data";
 import type { SeasonRecord } from "./seasons";
+import type { CalendarYear } from "./published-data";
 
-export const archiveContentUpdated = "2026-09-27";
+export const archiveContentUpdated = "2026-09-29";
 export type SummaryRow = { label: string; values: { messi: number | null; ronaldo: number | null }; decimals?: number };
+
+export const calendarYearTitle = (year: number) => `Messi vs Ronaldo ${year}: Calendar Year Goals & Stats`;
+
+export function calendarYearDescription(year: CalendarYear, snapshotDate: string, snapshotLabel: string) {
+  const comparison = `Messi vs Ronaldo in ${year.year}: ${year.career.goals.messi} vs ${year.career.goals.ronaldo} goals, ${year.career.assists.messi} vs ${year.career.assists.ronaldo} assists.`;
+  const coverage = year.year === Number(snapshotDate.slice(0, 4)) ? `Year to date through ${snapshotLabel}.` : "Compare club and country appearances, minutes and scoring rates.";
+  return { comparison, coverage };
+}
 
 export function calendarSummaryRows(stats: Stats): SummaryRow[] {
   const contributions: Pair = { messi: stats.goals.messi + stats.assists.messi, ronaldo: stats.goals.ronaldo + stats.assists.ronaldo };

@@ -46,7 +46,8 @@ const editorialItems = [
     { href: "/insights", label: "The reading room" },
     { href: "/methodology", label: "Sources & methodology" },
 ];
-const navItems = [...comparisonItems, ...competitionItems, ...honoursItems.slice(1)];
+const clubSeasonLink = { href: "/club-stats", label: "Club seasons" };
+const navItems = [...comparisonItems, ...competitionItems, ...honoursItems.slice(1), clubSeasonLink];
 function isActivePath(pathname: string, href: string) {
     return pathname === href || (href !== "/" && pathname.startsWith(`${href}/`));
 }
@@ -62,7 +63,7 @@ const navigationGroups: {
     items?: typeof navItems;
 }[] = [
     { id: "career", label: "All-time stats", items: comparisonItems.slice(0, 2) },
-    { id: "years", label: "Years & seasons", items: comparisonItems.slice(2, 4) },
+    { id: "years", label: "Years & seasons", items: [...comparisonItems.slice(2, 4), clubSeasonLink] },
     { id: "clubs", label: "Club stats", items: [...competitionItems.slice(0, 3), { href: "/league", label: "All domestic leagues" }, { href: "/european-clubs", label: "European club records" }] },
     { id: "international", label: "International", items: [competitionItems[4], competitionItems[3], { href: "/copa-america-vs-euros", label: "Copa América vs Euros" }] },
     { id: "scoring", label: "Scoring records", items: scoringItems },

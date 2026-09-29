@@ -35,6 +35,27 @@ Each calendar year and club row stores its own direct source URL. The source reg
 - Minutes-based rates use the numerator and playing minutes of the same scope. Undefined rates display a dash, never a fabricated zero.
 - Body-part categories sum to total goals. Goal-location categories exclude penalties and direct free kicks as labelled, making that partition reconcile too.
 
+## Club-season pages — reviewed 29 September 2026
+
+`src/data/club-seasons.json` records goals, assists, appearances and minutes for 25
+two-year club seasons, 2002/2003 through 2026/2027. Each row links directly to its
+numerical source under `https://www.messivsronaldo.app/club-stats/`, for example
+[2012/2013](https://www.messivsronaldo.app/club-stats/2012-2013/): Messi 60 goals,
+15 assists, 50 appearances and 4,067 minutes; Ronaldo 55 goals, 12 assists,
+55 appearances and 4,634 minutes. Headline goals, assists and appearances were
+checked against the source's detail table for every season. Rates are calculated
+locally from the same row, retaining unavailable denominators as dashes.
+
+These are all-competition club figures, excluding national teams and club
+friendlies. They are separate from both January–December totals and the original
+TFF league/Champions League archive. From 2023/2024 the source aligns Messi's
+appearances to Ronaldo's club-season period; this is not a full MLS season.
+2026/2027 is incomplete and explicitly marked as a reviewed snapshot. Review date
+means source retrieval, not independent verification of every match through that
+date. Admin match updates do not automatically update this separate snapshot.
+No source prose, layout or runtime scraping is included. Do not sum calendar
+years to synthesize a season, or mix this review's counts into the older baseline.
+
 ## Honours
 
 [Trophy register](https://www.messivsronaldo.app/honours-and-achievements/) reviewed September 21, 2026. The interface separates domestic league titles, the Supporters' Shield, MLS Cup, conference championship, senior national-team trophies, youth/Olympic awards and participation exceptions. These different achievements are not presented as interchangeable measures. The 2026 Ballon d'Or has not yet been awarded at this cutoff; the award chart ends with the latest completed edition, 2025.
