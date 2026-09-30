@@ -4,7 +4,11 @@ Status: deployed and HTTPS verified on 21 September 2026. Both apex and www DNS 
 
 Vercel project: `arshadnawazbaigs-projects/messivsronaldo17`.
 Canonical origin: `https://messivsronaldo17.com`.
-Database: `rivalry-production`, Neon Free, region `iad1`. The Vercel functions use the same region.
+Database: `rivalry-production`, Neon (plan upgraded by the owner), region `iad1`. The Vercel functions use the same region.
+
+Supabase migration is paused while the owner reviews one month of Neon charges.
+The prepared tooling and cutover steps are saved in [SUPABASE_MIGRATION.md](./SUPABASE_MIGRATION.md)
+on `codex/supabase-migration`. Production remains on Neon.
 
 ## Environment and data
 

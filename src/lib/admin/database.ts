@@ -3,6 +3,7 @@ import { randomBytes } from "node:crypto";
 import type Database from "better-sqlite3";
 import * as local from "./store";
 import { AdminError, type MatchRecord, type RunRecord, type ProviderConnection } from "./model";
+import { initializePostgresSchema } from "./postgres-schema";
 
 let sql: Sql | undefined;
 let initialized: Promise<void> | undefined;
@@ -14,20 +15,7 @@ export async function postgresStore() {
   }
   sql ??= postgres(url, { max: 3, idle_timeout: 20, connect_timeout: 10, prepare: false, onnotice: () => {} });
   const db = sql;
-  initialized ??= db.begin(async tx => {
-    // Serialize first-time initialization across serverless instances.
-    await tx`SELECT pg_advisory_xact_lock(17071700)`;
-    await tx`CREATE TABLE IF NOT EXISTS state (id INTEGER PRIMARY KEY CHECK(id=1), revision INTEGER NOT NULL DEFAULT 0)`;
-    await tx`INSERT INTO state (id) VALUES (1) ON CONFLICT DO NOTHING`;
-    await tx`CREATE TABLE IF NOT EXISTS matches (id TEXT PRIMARY KEY, data TEXT NOT NULL)`;
-    await tx`CREATE TABLE IF NOT EXISTS runs (id SERIAL PRIMARY KEY, at TEXT NOT NULL, date TEXT NOT NULL, action TEXT NOT NULL, status TEXT NOT NULL, message TEXT NOT NULL, before_data TEXT NOT NULL)`;
-    await tx`CREATE TABLE IF NOT EXISTS settings (key TEXT PRIMARY KEY, value TEXT NOT NULL)`;
-    await tx`CREATE TABLE IF NOT EXISTS sessions (token TEXT PRIMARY KEY, expires BIGINT NOT NULL)`;
-    await tx`CREATE TABLE IF NOT EXISTS login_attempts (id SERIAL PRIMARY KEY, at BIGINT NOT NULL)`;
-    await tx`CREATE TABLE IF NOT EXISTS locks (id INTEGER PRIMARY KEY, token TEXT NOT NULL, expires BIGINT NOT NULL)`;
-    await tx`CREATE TABLE IF NOT EXISTS blog_posts (id TEXT PRIMARY KEY, locale TEXT NOT NULL, slug TEXT NOT NULL, revision INTEGER NOT NULL, data TEXT NOT NULL, UNIQUE(locale,slug))`;
-    await tx`CREATE TABLE IF NOT EXISTS blog_media (id TEXT PRIMARY KEY, data BYTEA NOT NULL, created_at TEXT NOT NULL)`;
-  }).then(() => {}).catch(error => { initialized = undefined; throw error; });
+  initialized ??= db.begin(initializePostgresSchema).then(() => {}).catch(error => { initialized = undefined; throw error; });
   await initialized;
   return db;
 }
