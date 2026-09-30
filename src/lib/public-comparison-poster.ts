@@ -29,6 +29,19 @@ export function publicPosterQuery(request: ComparisonPosterRequest) {
   return params.toString();
 }
 
+// Bump when artwork/layout changes independently of the published dataset.
+export const publicPosterRenderVersion = "2";
+export function publicPosterImagePath(request: ComparisonPosterRequest, datasetVersion: string) {
+  const selection = [request.scope, request.format, request.theme, request.showBars === false ? "0" : "1", ...(request.metrics ?? [])].join("~");
+  return `/api/comparison-poster/${encodeURIComponent(`${publicPosterRenderVersion}-${datasetVersion}`)}/${selection}`;
+}
+export function posterSelectionParams(selection: string) {
+  if (selection.length > 500) throw new RangeError("Poster selection is too long.");
+  const [scope, format, theme, bars, ...metrics] = selection.split("~");
+  if (!scope || !format || !theme || !bars) throw new RangeError("Incomplete poster selection.");
+  return new URLSearchParams({ scope, format, theme, bars, ...(metrics.length ? { metrics: metrics.join(",") } : {}) });
+}
+
 export function resolvePublicPoster(params: URLSearchParams, data: PublishedData) {
   const request = parsePublicPoster(params);
   const poster = getComparisonPoster(data, request);

@@ -3,7 +3,7 @@ import { test } from "node:test";
 import { buildPublishedData } from "../src/lib/published-data";
 import { comparisonRows } from "../src/lib/comparison-poster";
 import { posterScopeIds } from "../src/lib/player-poster";
-import { defaultPublicPoster, pagePosterParams, parsePublicPoster, publicPosterQuery, resolvePublicPoster } from "../src/lib/public-comparison-poster";
+import { defaultPublicPoster, pagePosterParams, parsePublicPoster, posterSelectionParams, publicPosterImagePath, publicPosterQuery, resolvePublicPoster } from "../src/lib/public-comparison-poster";
 import { PosterRenderBusy, PosterRenderCache } from "../src/lib/poster-render-cache";
 
 const data = buildPublishedData([], 0);
@@ -31,6 +31,15 @@ test("public exports cannot accept user-supplied facts, assets or ambiguous sele
 test("page attribution parameters are ignored but duplicated selections remain invalid", () => {
   assert.equal(pagePosterParams({ utm_source: "social", scope: "world-cup" }).toString(), "scope=world-cup");
   assert.throws(() => parsePublicPoster(pagePosterParams({ scope: ["career", "world-cup"] })));
+});
+test("persistent image URLs preserve selections and change with the published version", () => {
+  const selection = parsePublicPoster(new URLSearchParams("scope=world-cup&format=story&theme=dark&bars=0&metrics=goals,assists,appearances,contributions"));
+  const path = publicPosterImagePath(selection, "2026-09+r1");
+  assert.deepEqual(parsePublicPoster(posterSelectionParams(path.split("/").at(-1)!)), selection);
+  assert.notEqual(path, publicPosterImagePath(selection, "2026-09+r2"));
+  for (const invalid of ["career", "career~portrait~light~yes", "career~portrait~light~1~goals", "x".repeat(501)]) {
+    assert.throws(() => parsePublicPoster(posterSelectionParams(invalid)));
+  }
 });
 test("public rendering deduplicates identical work and bounds concurrent uncached renders", async () => {
   const cache = new PosterRenderCache(100, 2, 1);

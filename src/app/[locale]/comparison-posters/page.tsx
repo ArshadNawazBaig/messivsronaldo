@@ -11,6 +11,7 @@ import { imageFormats } from "@/lib/stat-image";
 import { toolPages } from "@/lib/tools";
 
 type Props = { searchParams: Promise<Record<string, string | string[] | undefined>> };
+export const dynamic = "force-dynamic";
 const page = toolPages["comparison-posters"];
 export async function generateMetadata({ searchParams }: Props) {
   const data = await getPublishedData();

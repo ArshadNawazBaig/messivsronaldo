@@ -2,6 +2,12 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  experimental: { globalNotFound: true },
+  // Vercel runs native Linux Sharp. Its optional WASM fallback otherwise gets
+  // copied into every image-rendering function alongside the native library.
+  ...(process.env.VERCEL === "1" ? {
+    outputFileTracingExcludes: { "/*": ["./node_modules/@img/sharp-wasm32/**/*"] },
+  } : {}),
   images: {
     // Keep small thumbnails light while preserving detail in player portraits.
     qualities: [75, 85],

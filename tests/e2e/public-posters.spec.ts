@@ -73,11 +73,11 @@ test("visitors customize and share the same poster without a public download but
 });
 
 test("invalid shared selections recover and failed previews can be retried", async ({ page }) => {
-  await page.route("**/api/comparison-poster?**", route => route.fulfill({ status: 500, contentType: "application/json", body: '{"error":"Test failure"}' }));
+  await page.route("**/api/comparison-poster/**", route => route.fulfill({ status: 500, contentType: "application/json", body: '{"error":"Test failure"}' }));
   await page.goto("/comparison-posters?scope=world-cup&metrics=goals,assists,appearances,ballon-dor");
   await expect(page.getByText("This poster link is invalid. Start with career totals below.")).toBeVisible();
   await expect(page.getByText("We could not create the poster. Please try again.")).toBeVisible();
-  await page.unroute("**/api/comparison-poster?**");
+  await page.unroute("**/api/comparison-poster/**");
   await page.getByRole("button", { name: "Try again", exact: true }).click();
   await expect(page.getByRole("region", { name: "Comparison posters", exact: true }).getByRole("img")).toBeVisible({ timeout: 30000 });
 });

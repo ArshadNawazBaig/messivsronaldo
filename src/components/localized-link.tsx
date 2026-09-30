@@ -5,10 +5,12 @@ import { type ComponentProps } from "react";
 import { localizedPath } from "@/lib/i18n/config";
 import { useI18n } from "./i18n-provider";
 
-export default function Link({ href, ...props }: ComponentProps<typeof NextLink>) {
+export default function Link({ href, prefetch = false, ...props }: ComponentProps<typeof NextLink>) {
   const { locale } = useI18n();
   const localized = typeof href === "string" ? localizedPath(href, locale) : { ...href, pathname: href.pathname ? localizedPath(href.pathname, locale) : href.pathname };
-  return <NextLink {...props} href={localized} />;
+  // Public pages carry the statistics dataset. Do not download every visible
+  // navigation/footer destination before the visitor chooses one.
+  return <NextLink {...props} href={localized} prefetch={prefetch} />;
 }
 export function useRouter() {
   const router = useNextRouter();

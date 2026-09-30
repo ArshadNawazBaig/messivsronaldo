@@ -2,7 +2,8 @@ import { cookies } from "next/headers";
 import { createHash, randomBytes, scryptSync, timingSafeEqual } from "node:crypto";
 import { sessionValid, recordLoginAttempt, saveSession, deleteSession } from "./database";
 import { AdminError } from "./model";
-export const cookieName = "rivalry-admin";
+import { cookieName, adminHintCookie } from "./session-cookie";
+export { cookieName } from "./session-cookie";
 export function configured() { return !!process.env.ADMIN_PASSWORD_HASH && (process.env.ADMIN_SESSION_SECRET?.length ?? 0) >= 32; }
 const digest = (token: string) => createHash("sha256").update(token).digest("hex");
 export async function isAdmin() {
@@ -26,9 +27,11 @@ export async function login(password: string) {
   const token = randomBytes(32).toString("hex"); const expires = now + 8 * 60 * 60 * 1000;
   await saveSession(digest(token), expires);
   (await cookies()).set(cookieName, token, { httpOnly: true, sameSite: "strict", secure: process.env.NEXT_PUBLIC_SITE_URL?.startsWith("https://") ?? false, path: "/", maxAge: 8 * 60 * 60 });
+  (await cookies()).set(adminHintCookie, "1", { sameSite: "strict", secure: process.env.NEXT_PUBLIC_SITE_URL?.startsWith("https://") ?? false, path: "/", maxAge: 8 * 60 * 60 });
 }
 export async function logout() {
   const jar = await cookies(); const token = jar.get(cookieName)?.value;
   if (token) await deleteSession(digest(token));
   jar.delete(cookieName);
+  jar.delete(adminHintCookie);
 }

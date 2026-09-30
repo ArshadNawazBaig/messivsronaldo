@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useContext, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import { Download } from "lucide-react";
@@ -7,6 +7,7 @@ import { useFootballData } from "./data-provider";
 import { useI18n } from "./i18n-provider";
 import type { ImagePlayers, ImageTheme, StatImage } from "@/lib/stat-image";
 import styles from "./stat-image-dialog.module.css";
+import { adminHintCookie } from "@/lib/admin/session-cookie";
 
 type Selection = {
   stats: StatImage[];
@@ -22,14 +23,38 @@ const ImageDialog = dynamic(() => import("./stat-image-dialog"), {
 });
 
 export function AdminExportProvider({
-  admin,
+  admin: initialAdmin,
   children,
 }: {
-  admin: boolean;
+  admin?: boolean;
   children: ReactNode;
 }) {
   const [selection, setSelection] = useState<Selection | null>(null);
+  const [admin, setAdmin] = useState(initialAdmin ?? false);
   const pathname = usePathname();
+  useEffect(() => {
+    // Visiting /admin also upgrades sessions created before the UI hint existed.
+    if (initialAdmin) document.cookie = `${adminHintCookie}=1; Path=/; Max-Age=28800; SameSite=Strict${location.protocol === "https:" ? "; Secure" : ""}`;
+    const controller = new AbortController();
+    let pending = false;
+    async function checkSession() {
+      if (pending || document.visibilityState === "hidden") return;
+      if (!document.cookie.split(";").some(cookie => cookie.trim() === `${adminHintCookie}=1`)) {
+        setAdmin(false);
+        return;
+      }
+      pending = true;
+      try {
+        const response = await fetch("/api/admin/session", { cache: "no-store", signal: controller.signal });
+        const result = response.ok ? await response.json() : null;
+        if (!controller.signal.aborted) setAdmin(result?.admin === true);
+      } catch { if (!controller.signal.aborted) setAdmin(false); }
+      finally { pending = false; }
+    }
+    const timer = window.setTimeout(checkSession, 0);
+    window.addEventListener("focus", checkSession);
+    return () => { window.clearTimeout(timer); controller.abort(); window.removeEventListener("focus", checkSession); };
+  }, [initialAdmin, pathname]);
   if (selection && (!admin || selection.path !== pathname)) setSelection(null);
   return (
     <Context.Provider

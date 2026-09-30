@@ -17,12 +17,9 @@ export function proxy(request: NextRequest) {
     if (bare.startsWith("/api/")) return NextResponse.json({ error: "Temporarily unavailable for maintenance. Please try again shortly." }, { status: 503, headers: maintenanceHeaders });
     return maintenanceResponse();
   }
-  const headers = new Headers(request.headers);
-  // Never trust a client-supplied locale header. The URL is authoritative.
-  headers.set("x-rivalry-locale", isPublicPath(bare) ? locale : "en");
   if (!isPublicPath(bare) || bare === "/maintenance") {
     if (path !== bare) { const url = request.nextUrl.clone(); url.pathname = bare; return NextResponse.redirect(url, 308); }
-    return NextResponse.next({ request: { headers } });
+    return NextResponse.next();
   }
   if (path === "/en" || path.startsWith("/en/")) {
     const url = request.nextUrl.clone(); url.pathname = localizedPath(path, "en");
@@ -32,7 +29,7 @@ export function proxy(request: NextRequest) {
     if (!isLanguageCrawler(request.headers.get("user-agent"))) response.cookies.set(languageCookie, "en", { path: "/", maxAge: languageCookieMaxAge, sameSite: "lax", secure: request.nextUrl.protocol === "https:" });
     return response;
   }
-  if (locale !== "en") return NextResponse.next({ request: { headers } });
+  if (locale !== "en") return NextResponse.next();
   const isPageVisit = ["GET", "HEAD"].includes(request.method)
     && request.headers.get("rsc") !== "1"
     && !request.headers.has("next-router-prefetch")
@@ -45,7 +42,9 @@ export function proxy(request: NextRequest) {
     }
   }
   const url = request.nextUrl.clone(); url.pathname = `/en${path === "/" ? "" : path}`;
-  return privateLanguageResponse(NextResponse.rewrite(url, { request: { headers } }));
+  // Language redirects stay private; the page itself is identical for all
+  // visitors and may use the framework's ISR cache. Proxy runs before the cache.
+  return NextResponse.rewrite(url);
 }
 
-export const config = { matcher: ["/((?!_next/static|_next/image).*)"] };
+export const config = { matcher: ["/((?!_next/static|_next/image|images/|fonts/|icon.svg|favicon.ico).*)"] };

@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { ArrowUp, Check, Link2, Moon, RefreshCw, Share2, Sun } from "lucide-react";
 import { comparisonPosterFilename, comparisonRows, comparisonRowValue, getComparisonPoster, type ComparisonPosterRequest } from "@/lib/comparison-poster";
-import { defaultPublicPoster, pagePosterParams, publicPosterQuery, resolvePublicPoster } from "@/lib/public-comparison-poster";
+import { defaultPublicPoster, pagePosterParams, publicPosterImagePath, publicPosterQuery, resolvePublicPoster } from "@/lib/public-comparison-poster";
 import { posterScopeIds } from "@/lib/player-poster";
 import { imageFormats, type ImageFormat } from "@/lib/stat-image";
 import { useFootballData } from "./data-provider";
@@ -27,7 +27,7 @@ export function PublicPosterStudio() {
   }, [search, data]);
   const rows = comparisonRows(poster, request.metrics);
   const query = publicPosterQuery(request);
-  const imageUrl = `/api/comparison-poster?${query}&v=${encodeURIComponent(data.datasetVersion)}`;
+  const imageUrl = publicPosterImagePath(request, data.datasetVersion);
   const [attempt, setAttempt] = useState(0);
   const key = `${imageUrl}:${attempt}`;
   const [ready, setReady] = useState<ReadyPoster | null>(null);

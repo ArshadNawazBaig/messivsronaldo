@@ -1,6 +1,6 @@
 import "server-only";
 import { cache } from "react";
-import { headers } from "next/headers";
+import { locale as routeLocale } from "next/root-params";
 import { isLocale, numberLocales, type Locale } from "./config";
 import { createTranslator, type Messages } from "./translate";
 
@@ -12,8 +12,9 @@ const catalogs: Record<Locale, () => Promise<{ default: Messages }>> = {
   th: () => import("./messages/th.json"),
 };
 export const getI18n = cache(async () => {
-  const requested = (await headers()).get("x-rivalry-locale") ?? "en";
-  const locale = isLocale(requested) ? requested : "en";
+  // Root params are isolated per render and support ISR without request headers.
+  const requested = await routeLocale();
+  const locale = typeof requested === "string" && isLocale(requested) ? requested : "en";
   return getLocaleI18n(locale);
 });
 export const getLocaleI18n = cache(async (locale: Locale) => {

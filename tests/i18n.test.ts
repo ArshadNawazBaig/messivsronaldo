@@ -71,9 +71,11 @@ test("localized links retain comparison state and leave assets, APIs and admin a
 test("locale routing uses the URL, keeps English URLs, and cannot be spoofed by a header", () => {
   const english = proxy(new NextRequest("https://example.com/compare?test=1", { headers: { "x-rivalry-locale": "es" } }));
   assert.equal(english.headers.get("x-middleware-rewrite"), "https://example.com/en/compare?test=1");
-  assert.equal(english.headers.get("x-middleware-request-x-rivalry-locale"), "en");
+  assert.equal(english.headers.get("x-middleware-request-x-rivalry-locale"), null);
+  assert.equal(english.headers.get("cache-control"), null);
   const spanish = proxy(new NextRequest("https://example.com/es/compare"));
-  assert.equal(spanish.headers.get("x-middleware-request-x-rivalry-locale"), "es");
+  assert.equal(spanish.headers.get("x-middleware-next"), "1");
+  assert.equal(spanish.headers.get("x-middleware-request-x-rivalry-locale"), null);
   const duplicate = proxy(new NextRequest("https://example.com/en/seasons?ref=1"));
   assert.equal(duplicate.status, 308);
   assert.equal(duplicate.headers.get("location"), "https://example.com/seasons?ref=1");
@@ -97,7 +99,8 @@ test("Thai paths, preferences and alternates preserve the page and comparison st
   const detected = proxy(new NextRequest("https://example.com/compare?ref=share", { headers: { "accept-language": "th-TH" } }));
   assert.equal(detected.headers.get("location"), "https://example.com/th/compare?ref=share");
   const explicit = proxy(new NextRequest("https://example.com/th/compare", { headers: { "accept-language": "en-US" } }));
-  assert.equal(explicit.headers.get("x-middleware-request-x-rivalry-locale"), "th");
+  assert.equal(explicit.headers.get("x-middleware-next"), "1");
+  assert.equal(explicit.headers.get("x-middleware-request-x-rivalry-locale"), null);
   assert.equal(languageAlternates("/compare", "https://example.com").th, "https://example.com/th/compare");
 });
 

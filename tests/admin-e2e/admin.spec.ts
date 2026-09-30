@@ -82,6 +82,10 @@ test("verified free-kick corrections publish through the editor and undo restore
   await signIn(page);
   const before=await(await page.request.get("/api/admin/state")).json();
   const visitor=await page.context().newPage();
+  await visitor.clock.install();
+  // Exercise refresh after the focus throttle; bypass browser HTTP caching so
+  // advancing the JS clock need not wait for the browser's real-time 30s TTL.
+  await visitor.route("**/api/data-version", route => route.continue());
   await visitor.goto("/free-kicks");
   await expect(visitor.locator(".stats-table tbody tr").first()).toContainText("75");
   await page.getByRole("button",{name:/Match records/}).click();
@@ -95,11 +99,12 @@ test("verified free-kick corrections publish through the editor and undo restore
   try {
     const state=await(await page.request.get("/api/admin/state")).json();
     expect(state.records[0].freeKicks).toBe(1);
+    await visitor.clock.fastForward(61_000);
     await visitor.evaluate(()=>window.dispatchEvent(new Event("focus")));
     await expect(visitor.locator(".stats-table tbody tr").first()).toContainText("76");
     await expect(visitor.locator(".stats-table tbody tr").first()).toContainText("Updated 22 September 2026");
     const version=await visitor.request.get("/api/data-version");
-    expect(version.headers()["cache-control"]).toBe("no-store");
+    expect(version.headers()["cache-control"]).toBe("public, max-age=30, s-maxage=30");
     expect((await version.json()).version).toContain(`+r${state.revision}`);
     const data=await(await page.request.get("/api/comparison/career")).json();
     expect(data.comparison.goals.messi).toBe(931);

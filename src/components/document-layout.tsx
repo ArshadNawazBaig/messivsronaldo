@@ -1,17 +1,18 @@
+/* eslint-disable @next/next/no-head-element -- Shared document for the public and admin root layouts. */
 import { getArticleNavigation, getArticleLanguages } from '@/lib/blog/server';
 import { DataProvider } from '@/components/data-provider';
 import { getPublishedData } from '@/lib/server-data';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import { ThemeInitializer } from '@/components/theme-initializer';
-import './globals.css';
-import './editorial.css';
+import '@/app/globals.css';
+import '@/app/editorial.css';
 import { SiteShell } from '@/components/site-shell';
 import { indexable, jsonLd, publisherOrganization, siteName, siteUrl } from '@/lib/site';
-import { getI18n } from '@/lib/i18n/server';
+import { getLocaleI18n } from '@/lib/i18n/server';
+import type { Locale } from '@/lib/i18n/config';
 import { I18nProvider } from '@/components/i18n-provider';
 import { AdminExportProvider } from '@/components/admin-stat-export';
-import { isAdmin } from '@/lib/admin/auth';
 import { Analytics } from '@vercel/analytics/next';
 import { socialImageAlt, socialImagePath } from '@/lib/social-image';
 
@@ -58,13 +59,10 @@ export const metadata: Metadata = {
   },
 };
 
-export const dynamic = 'force-dynamic';
-
-export default async function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
-  const { locale, messages, t } = await getI18n();
-  const admin = await isAdmin();
+export default async function DocumentLayout({
+  children, locale, admin,
+}: Readonly<{ children: React.ReactNode; locale: Locale; admin?: boolean }>) {
+  const { messages, t } = await getLocaleI18n(locale);
   return (
     <html
       lang={locale}

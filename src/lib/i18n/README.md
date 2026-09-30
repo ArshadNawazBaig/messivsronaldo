@@ -27,6 +27,19 @@ sent to the browser, and English needs no catalog payload. Public translations
 are rendered into HTML before hydration. No visitor text, translation request,
 or football data is sent to a translation service at runtime.
 
+The public root layout is `app/[locale]/layout.tsx`. `getI18n()` reads Next.js
+root parameters, so the URL determines the language without request headers or
+cookies making every page dynamic. Public pages are generated on their first
+visit and cached for one hour; publishing statistics or articles invalidates
+their data tags and dependent pages immediately. The query-dependent comparison
+poster studio remains dynamic. Language-negotiation redirects remain private.
+
+Admin pages use a separate dynamic root layout. Cached public HTML contains no
+admin controls. A readable UI hint cookie only triggers a private session check;
+the server still verifies the HttpOnly session before enabling export controls
+and authorizes every export request. Sessions created before this hint was added
+receive it on their next visit to `/admin`.
+
 ## Editing translations
 
 `messages/en.json` is the message inventory. Readable English message IDs are

@@ -64,6 +64,56 @@ production build, a fresh local `rivalry_test_*` PostgreSQL database in
 `TEST_DATABASE_URL`, and `TEST_POSTGRES_LOG` pointing to its `log_statement=all`
 log. Never use production for write tests.
 
+## Vercel CPU, transfer and function storage
+
+Prepared locally on 30 September 2026; these changes still require deployment:
+
+- Public pages use on-demand ISR with a one-hour lifetime. Publishing invalidates
+  the existing data tags and their rendered pages. Locale comes from the URL;
+  admin session checks run separately so visitor cookies do not disable caching.
+  The query-dependent comparison-poster studio remains dynamic.
+- Public navigation links do not automatically prefetch every visible destination
+  and its statistics payload. Pages load when selected, using the shared cache.
+- Visible tabs check the published version every five minutes, with throttled
+  checks on returning to the tab. The version response has a 30-second browser
+  and CDN lifetime. An already-open page can take a polling interval plus that
+  short cache lifetime to show new statistics; hidden tabs resume checking when visible.
+- Public PNG URLs include the dataset and artwork versions. Completed PNGs use
+  ISR and a one-day browser/CDN lifetime. Old uncached versions redirect to the
+  current version. Bump `publicPosterRenderVersion` after changing poster artwork.
+  Temporary rendering failures throw instead of returning an error response that
+  ISR could persist; overloaded requests can retry without a cached failure.
+  Private admin exports and unpublished blog media retain authorization checks.
+- Vercel function traces exclude Sharp's optional WASM fallback while retaining
+  its native renderer. Verify PNG generation on the deployed Linux runtime.
+
+The read-only deployment audit found 86 retained deployments (84 production,
+two previews), with 30-day retention configured for every status. No deployments
+were deleted. The API rejected a retention update, so those settings are unchanged.
+Review **Project → Settings → Security → Deployment Retention** in Vercel;
+shorter preview/canceled/errored retention can reduce future accumulation. Keep
+the active production deployment, useful rollback deployments, and the Supabase
+migration preview. Most existing deployments are production, so shortening only
+preview retention will have little effect on the current total.
+
+After deployment, check repeated anonymous `/goals` and `/es/goals` requests for
+cache hits, correct language and no admin controls. Publish a controlled real
+update through the normal admin workflow and confirm the new statistics appear;
+never run synthetic write tests against production. Compare Active CPU and Fast
+Origin Transfer against request volume over the following days. Function Storage
+is retained bundle usage billed as GB-month, so the rolling usage chart does not
+immediately reset after a smaller deployment or cleanup. See Vercel's
+[storage documentation](https://vercel.com/docs/deployment-storage) and
+[retention documentation](https://vercel.com/docs/deployment-retention).
+
+Local validation: production build, lint, TypeScript and 149 unit tests passed
+(one PostgreSQL integration test skipped without its isolated test database).
+Browser checks covered all sitemap URLs, desktop and mobile Safari languages,
+404 recovery, authenticated exports, blog publication/access revocation, cache
+invalidation after statistics edits, anonymous request counts, poster reuse and
+recovery after intentionally overloading the renderer. No production write tests
+or deployment cleanup were performed.
+
 ## Schema setup
 
 The request handler only opens its Postgres connection pool; it no longer creates
