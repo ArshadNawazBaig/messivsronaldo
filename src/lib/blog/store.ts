@@ -12,9 +12,10 @@ import { commandSchema, documentImages, publishedArticle, seedDraft, validatePub
 export type ArticleSummary = Pick<Article, "slug" | "title" | "published" | "managed">;
 export type PublishedPost<T = Article> = { locale: Locale; slug: string; deleted: boolean; published: T | null };
 
-export async function readPosts(db?: Database.Database): Promise<BlogPost[]> {
+export async function readPosts(db?: Database.Database, locale?: Locale): Promise<BlogPost[]> {
   const pg = db ? null : await postgresStore();
-  const rows = pg ? await pg`SELECT data FROM blog_posts ORDER BY id` : (db ?? store()).prepare("SELECT data FROM blog_posts ORDER BY id").all() as { data: string }[];
+  const rows = pg ? await pg`SELECT data FROM blog_posts WHERE ${locale ? pg`locale=${locale}` : pg`TRUE`} ORDER BY id`
+    : (db ?? store()).prepare(`SELECT data FROM blog_posts ${locale ? "WHERE locale=?" : ""} ORDER BY id`).all(...(locale ? [locale] : [])) as { data: string }[];
   return rows.map(row => JSON.parse(row.data));
 }
 export function seedPost(article: Article, locale: Locale, translate?: (value: string | number) => string): BlogPost {
@@ -41,15 +42,19 @@ export function mergeArticleIndex(locale: Locale, posts: readonly PublishedPost<
 }
 export async function writePost(input: unknown, db?: Database.Database, translateSeed?: (value: string | number) => string): Promise<BlogPost> {
   const command = commandSchema.parse(input);
-  const posts = await readPosts(db);
-  const saved = posts.find(post => post.id === command.id);
+  const pg = db ? null : await postgresStore();
+  const savedRow = pg ? (await pg`SELECT data FROM blog_posts WHERE id=${command.id}`)[0]
+    : (db ?? store()).prepare("SELECT data FROM blog_posts WHERE id=?").get(command.id) as { data: string } | undefined;
+  const saved: BlogPost | undefined = savedRow ? JSON.parse(savedRow.data) : undefined;
   const original = articles.find(article => article.slug === command.slug);
   if (original && command.id !== `seed:${command.locale}:${command.slug}`) throw new AdminError("That URL belongs to an existing article. Open it from the article list.", 409);
   if (!original && !/^[a-f0-9-]{36}$/.test(command.id)) throw new AdminError("Invalid article ID.");
   const prior = saved ?? (original ? seedPost(original, command.locale, translateSeed) : undefined);
   if ((prior?.revision ?? 0) !== command.revision) throw new AdminError("This article changed in another session. Reload it before saving again.", 409);
   if (prior && (prior.locale !== command.locale || prior.slug !== command.slug)) throw new AdminError("The language and URL cannot change after the first save.");
-  if (posts.some(post => post.id !== command.id && post.locale === command.locale && post.slug === command.slug)) throw new AdminError("An article already uses this URL in this language, including articles in Trash.", 409);
+  const conflicting = pg ? (await pg`SELECT EXISTS(SELECT 1 FROM blog_posts WHERE locale=${command.locale} AND slug=${command.slug} AND id<>${command.id}) AS found`)[0]
+    : (db ?? store()).prepare("SELECT EXISTS(SELECT 1 FROM blog_posts WHERE locale=? AND slug=? AND id<>?) AS found").get(command.locale, command.slug, command.id) as { found: number };
+  if (conflicting.found) throw new AdminError("An article already uses this URL in this language, including articles in Trash.", 409);
   if (!prior && !["save", "publish"].includes(command.action)) throw new AdminError("Save the article first.");
   if (prior?.deleted && command.action !== "restore") throw new AdminError("Restore this article from Trash before editing it.");
   if (["save", "publish"].includes(command.action) && !command.draft) throw new AdminError("Article content is required.");
@@ -58,7 +63,7 @@ export async function writePost(input: unknown, db?: Database.Database, translat
   if (command.action === "save" || command.action === "publish") {
     const imagePaths = [...documentImages(post.draft.body), ...(post.draft.image ? [post.draft.image.path] : [])];
     for (const path of new Set(imagePaths.filter(path => path.startsWith("/media/blog/")))) {
-      if (!await readMedia(path.split("/").at(-1)!, db)) throw new AdminError("An image is missing. Upload it again before saving.");
+      if (await readMediaSize(path.split("/").at(-1)!, db) === null) throw new AdminError("An image is missing. Upload it again before saving.");
     }
     post.draftChanged = true;
   }
@@ -67,7 +72,6 @@ export async function writePost(input: unknown, db?: Database.Database, translat
     post.published = publishedArticle(post, now, original); post.draftChanged = false;
   }
   if (command.action === "delete" || command.action === "unpublish" || command.action === "restore") { post.published = null; post.deleted = command.action === "delete"; post.draftChanged = true; }
-  const pg = db ? null : await postgresStore();
   try {
     let count: number;
     if (pg) {

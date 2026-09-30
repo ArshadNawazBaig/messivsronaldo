@@ -3,6 +3,7 @@ import { resolve } from "node:path";
 import { postgresStore, closeDatabase } from "../src/lib/admin/database";
 import { decryptConnection } from "../src/lib/admin/store";
 import { matchSchema } from "../src/lib/admin/model";
+import { initializePostgresSchema } from "./lib/postgres-schema";
 
 async function main() {
   if (!process.env.DATABASE_URL) throw new Error("Set DATABASE_URL to the destination database before migrating.");
@@ -21,6 +22,7 @@ async function main() {
     const provider = snapshot.settings.find(row => row.key === "provider");
     if (provider) decryptConnection(provider.value); // Verify that the configured secret can decrypt the migrated key.
     const pg = (await postgresStore())!;
+    await pg.begin(initializePostgresSchema);
     await pg.begin(async tx => {
       await tx`SELECT revision FROM state WHERE id=1 FOR UPDATE`;
       const [existing] = await tx`SELECT (SELECT COUNT(*) FROM matches) + (SELECT COUNT(*) FROM runs) + (SELECT COUNT(*) FROM settings) + (SELECT COUNT(*) FROM blog_posts) + (SELECT COUNT(*) FROM blog_media) AS n`;

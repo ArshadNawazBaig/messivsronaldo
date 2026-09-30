@@ -4,7 +4,7 @@ Status: deployed and HTTPS verified on 21 September 2026. Both apex and www DNS 
 
 Vercel project: `arshadnawazbaigs-projects/messivsronaldo17`.
 Canonical origin: `https://messivsronaldo17.com`.
-Database: `rivalry-production`, Neon (plan upgraded by the owner), region `iad1`. The Vercel functions use the same region.
+Database: `rivalry-production`, Neon Launch (verified 30 September 2026), region `iad1`. The Vercel functions use the same region.
 
 Recovery verified on 30 September 2026 after the Neon plan upgrade: `/`,
 `/goals`, `/api/comparison/career`, `/api/data-version`, and `/admin` returned
@@ -17,15 +17,20 @@ Free destination remains connected to preview only; no data was transferred.
 
 ## Environment and data
 
-Production needs `NEXT_PUBLIC_SITE_URL=https://messivsronaldo17.com`, `SITE_INDEXABLE=true`, `DATABASE_URL`, `ADMIN_PASSWORD_HASH`, `ADMIN_SESSION_SECRET`, and `CRON_SECRET` for automatic updates. Keep database and admin secrets private. Google Search Console verification can optionally use `GOOGLE_SITE_VERIFICATION`.
+Production needs `NEXT_PUBLIC_SITE_URL=https://messivsronaldo17.com`, `SITE_INDEXABLE=true`, `DATABASE_URL`, `ADMIN_PASSWORD_HASH`, `ADMIN_SESSION_SECRET`, and `CRON_SECRET` for automatic updates. `HEALTHCHECK_SECRET` authorizes the operational monitor. Keep database and admin secrets private. Google Search Console verification can optionally use `GOOGLE_SITE_VERIFICATION`.
 
 The provider key is encrypted in the database; the app does not need the plain API-Football key in a public environment variable. Keep the existing admin secret when moving the database. Active sessions are intentionally not copied during migration; sign in again with the existing admin password.
 
-## Prepared database-load improvements
+## Database-load improvements
 
-The prepared app changes (not yet deployed) work with Neon and cache public
-statistics and blog reads across requests for up to one hour.
-Admin publications, blog changes, and daily sync expire those entries immediately.
+The original cache improvements were deployed in commit `e766421` on 30 September
+2026. Public statistics and blog reads are cached across requests for up to one hour.
+Statistics, article content per language, navigation metadata, and image visibility
+now have separate invalidation tags. A changed statistics revision expires the
+statistics cache; article publication, unpublication, and deletion expire the
+relevant language, navigation, and visibility caches. Draft saves and syncs that
+publish no changes leave public caches intact. Partial batches still invalidate
+statistics if they committed changes before failing.
 The version endpoint reads the shared snapshot without recalculating statistics
 or querying Postgres on every visitor poll. Caches are isolated by database.
 Admin state, sessions, and writes remain uncached. A cache miss still needs a
@@ -35,10 +40,13 @@ Navigation and language links use a small article index. Article pages fetch
 published content for the requested locale; private drafts are excluded by SQL.
 Unpublished and deleted overrides are retained so built-in articles stay hidden.
 Image access checks return a boolean instead of downloading all blog records.
-Image bytes are cached on the server in 512 KiB chunks, with publication/admin
+Immutable image bytes are cached on the server for a day in 512 KiB chunks, with publication/admin
 access checked on every request. HTTP responses remain `private, no-store` so
 unpublishing is enforced on the next request, including for previously cached
-images. Admin session checks are never cached.
+images. Publication changes expire visibility without downloading the image bytes
+again. Admin session checks are never cached. Admin article lists read only the
+selected language; saving reads the affected article and checks image sizes
+instead of downloading all articles and image contents.
 
 Read-only measurements on 30 September 2026 found 471,191 bytes of stored blog
 records across 17 rows. The new navigation query serialized to 3,582 bytes,
@@ -46,11 +54,79 @@ approximately 99.2% smaller before protocol overhead. This is one query's payloa
 reduction, not a forecast of total Neon charges. Compare daily transfer against
 request volume after deployment to measure the actual savings.
 
-Validation: 146 tests passed including the isolated PostgreSQL suite; lint,
-TypeScript, the production build, and three targeted browser tests passed. A
-local PostgreSQL query-log check recorded zero statements for 12 repeated page,
-version, and image requests after cache warmup. It also verified that unpublishing
-revoked anonymous access to cached images while retaining admin previews.
+Validation: 149 tests passed across the unit and isolated PostgreSQL suites; lint,
+TypeScript, the production build, and four targeted browser tests passed.
+`npm run test:cache` recorded zero statements for 18 repeated page, version,
+article, and image requests after cache warmup. It verified draft/no-op cache
+retention, selective statistics/language refreshes, and anonymous image access
+revocation while retaining admin previews. This integration check requires a
+production build, a fresh local `rivalry_test_*` PostgreSQL database in
+`TEST_DATABASE_URL`, and `TEST_POSTGRES_LOG` pointing to its `log_statement=all`
+log. Never use production for write tests.
+
+## Schema setup
+
+The request handler only opens its Postgres connection pool; it no longer creates
+tables or runs schema checks on each cold start. Existing production tables are
+already initialized. For a new database, supply its private `DATABASE_URL` and run
+`npm run db:setup` before deploying. The command is idempotent and retains data.
+The SQLite migration command also initializes its destination explicitly.
+Future schema changes should be reviewed and applied as explicit migrations.
+
+## Monitoring and cost tracking
+
+The owner selected **US$10 per month** for Neon spending alerts. This is a
+notification threshold, not a spending cap. Applying it and verifying Neon's
+hosted recovery window still require access to the Neon account; the current
+Vercel integration does not expose those controls. Neither is claimed configured.
+In Neon Usage/Billing, record month-to-date cost and daily network transfer,
+compute, and storage, alongside Vercel request counts, during the one-month
+evaluation before deciding whether to use the Supabase migration branch.
+
+The `Production health` GitHub Actions workflow checks the homepage and the
+authenticated `/api/health` endpoint hourly, with three attempts. The health
+endpoint bypasses caches to check the database and detects failed, missing, and
+stalled daily syncs after the Hobby cron window plus grace (10:00 UTC). Partial
+coverage is reported but is not treated as an outage. The monitor uses a separate
+random `HEALTHCHECK_SECRET`, configured in Vercel Production and GitHub Actions;
+it grants no admin or cron access. Missing/invalid authorization returns 401.
+
+Failed checks appear in GitHub Actions. Enable **Settings → Notifications → Actions
+→ Send notifications for failed workflows only** and email delivery in the
+owner's GitHub account; delivery preferences have not been verified. See
+[GitHub workflow notifications](https://docs.github.com/en/actions/concepts/workflows-and-actions/notifications-for-workflow-runs).
+Schedules
+can be delayed, and GitHub disables scheduled workflows in public repositories
+after 60 days without repository activity ([schedule behavior](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule)). This is an hourly operational check,
+not a guaranteed immediate alert for every isolated 500 response.
+Server failures also emit structured `rivalry_server_error` logs with error codes
+and digests while omitting SQL, messages, cookies, credentials, and drafts.
+Vercel's paid built-in anomaly alerts were not enabled on this Hobby project.
+
+## Postgres backup and recovery
+
+`npm run db:backup` creates a private, custom-format dump under the ignored
+`.artifacts/backups/` directory. It uses `DATABASE_URL_UNPOOLED` when available,
+otherwise `DATABASE_URL`, and requires `pg_dump` matching the server major version
+or newer (production is PostgreSQL 18). Set `PG_BIN` if the binaries are outside
+PATH. An optional output filename is accepted after `--`; existing files are
+never overwritten. Backups include article images and encrypted provider
+settings. Retain `ADMIN_SESSION_SECRET` separately to decrypt those settings.
+
+To test recovery, use a **new isolated database**, remove its empty default
+`public` schema without CASCADE, then run `pg_restore --no-owner --no-acl
+--exit-on-error --dbname=<isolated-database> <backup.dump>`. Do not restore over
+production. Compare all table row counts and content hashes against the same
+source snapshot, including image bytes; check sequence values before reopening
+write traffic. Keep an encrypted off-device copy in the owner's backup storage.
+The local dump is a recovery checkpoint, not an automated off-site backup policy.
+
+Restore verified on 30 September 2026: a 297,598-byte snapshot was restored into
+an isolated local PostgreSQL 18 database. All nine tables matched the source
+snapshot by row count and content digest, including 17 article records and 13
+images; both sequence values also matched. Production was only read. The private
+backup is `.artifacts/backups/rivalry-2026-09-30-restore-tested.dump`; its verification
+report is `.artifacts/neon-reliability/backup-verification.json`.
 
 ## Existing SQLite migration
 

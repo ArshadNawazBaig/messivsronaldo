@@ -1,0 +1,48 @@
+name: Production health
+
+on:
+  schedule:
+    - cron: '37 * * * *'
+  workflow_dispatch:
+
+permissions: {}
+concurrency:
+  group: production-health
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Check website, database, and daily updates
+        env:
+          HEALTHCHECK_SECRET: ${{ secrets.HEALTHCHECK_SECRET }}
+        run: |
+          node --input-type=module <<'NODE'
+          const origin = 'https://messivsronaldo17.com';
+          if (!process.env.HEALTHCHECK_SECRET) throw new Error('HEALTHCHECK_SECRET is missing.');
+          async function check(path, authenticated = false) {
+            let failure;
+            for (let attempt = 0; attempt < 3; attempt++) {
+              try {
+                const response = await fetch(origin + path, {
+                  headers: authenticated ? { authorization: `Bearer ${process.env.HEALTHCHECK_SECRET}` } : {},
+                  signal: AbortSignal.timeout(20000),
+                });
+                const text = await response.text();
+                if (!response.ok) {
+                  const detail = authenticated ? JSON.parse(text) : { status: response.status };
+                  throw new Error(`${path}: ${JSON.stringify(detail)}`);
+                }
+                if (authenticated && JSON.parse(text).ok !== true) throw new Error('Health check did not report success.');
+                if (path === '/' && !text.includes('The Rivalry')) throw new Error('Homepage content is missing.');
+                console.log(`${path}: OK`);
+                return;
+              } catch (error) { failure = error; }
+              if (attempt < 2) await new Promise(resolve => setTimeout(resolve, 10000));
+            }
+            throw failure;
+          }
+          await Promise.all([check('/'), check('/api/health', true)]);
+          NODE

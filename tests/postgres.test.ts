@@ -6,6 +6,7 @@ import type { MatchRecord } from "../src/lib/admin/model";
 import { randomUUID } from "node:crypto";
 import { mediaIsPublic, mergePublished, readMedia, readPosts, saveMedia, writePost } from "../src/lib/blog/store";
 import { checkPublicBlogReads } from "./helpers/blog-public";
+import { initializePostgresSchema } from "../scripts/lib/postgres-schema";
 
 // This suite only runs against an explicitly provided, isolated test database.
 test("Postgres persists publications, serializes competing writers, and protects admin state", { skip: !process.env.TEST_DATABASE_URL }, async () => {
@@ -18,8 +19,12 @@ test("Postgres persists publications, serializes competing writers, and protects
   const sample: MatchRecord = { id: "test:messi", player: "messi", date: "2026-09-22", team: "Inter Miami", opponent: "Synthetic opponent", competition: "Test only", category: "league", goals: 1, assists: 0, minutes: 90, appearances: 1, headToHead: false, source: "https://example.com/test", provider: "manual", note: "Synthetic test only", locked: true };
   try {
     const pg = (await db.postgresStore())!;
+    assert.equal((await pg`SELECT to_regclass('public.state') AS table_name`)[0].table_name, null, "opening a connection must not create tables");
+    await pg.begin(initializePostgresSchema);
+    await pg.begin(initializePostgresSchema); // Explicit setup is safe to repeat.
     assert.deepEqual(await db.readSnapshot(), { revision: 0, records: [] });
     await db.commitRecords(0, [sample], sample.date, "manual", "test");
+    assert.equal(await db.revision(), 1);
     await db.closeDatabase();
     assert.deepEqual(await db.readSnapshot(), { revision: 1, records: [sample] });
     await assert.rejects(() => db.commitRecords(0, [], sample.date, "remove", "stale"), /Data changed/);

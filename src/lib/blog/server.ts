@@ -4,15 +4,15 @@ import { unstable_cache } from "next/cache";
 import { locales, localizedUrl, type Locale } from "../i18n/config";
 import { mediaChunkBytes, mergeArticleIndex, mergePublished, readMediaChunk, readMediaSize } from "./store";
 import { readArticleIndex, readMediaVisibility, readPublicPosts } from "./public-store";
-import { publicDatabaseCacheKey, publicDataRevalidate, publicDataTag } from "../public-cache";
+import { articleIndexTag, articleTag, mediaVisibilityTag, publicDatabaseCacheKey, publicDataRevalidate } from "../public-cache";
 
-const getPublicPosts = cache(unstable_cache(
-  (locale: Locale) => readPublicPosts(locale), ["public-blog-posts-v2", publicDatabaseCacheKey],
-  { revalidate: publicDataRevalidate, tags: [publicDataTag] },
-));
+const getPublicPosts = cache((locale: Locale) => unstable_cache(
+  () => readPublicPosts(locale), ["public-blog-posts-v3", publicDatabaseCacheKey, locale],
+  { revalidate: publicDataRevalidate, tags: [articleTag(locale)] },
+)());
 const getArticleIndex = cache(unstable_cache(
-  () => readArticleIndex(), ["public-blog-index-v1", publicDatabaseCacheKey],
-  { revalidate: publicDataRevalidate, tags: [publicDataTag] },
+  () => readArticleIndex(), ["public-blog-index-v2", publicDatabaseCacheKey],
+  { revalidate: publicDataRevalidate, tags: [articleIndexTag] },
 ));
 export const getPublishedArticles = cache(async (locale: Locale) => mergePublished(locale, await getPublicPosts(locale)));
 export const getArticleNavigation = cache(async (locale: Locale) => mergeArticleIndex(locale, await getArticleIndex()));
@@ -24,19 +24,19 @@ export const getArticleLanguages = cache(async () => {
 });
 
 export const getMediaVisibility = unstable_cache(
-  (id: string) => readMediaVisibility(id), ["public-blog-media-visibility-v1", publicDatabaseCacheKey],
-  { revalidate: publicDataRevalidate, tags: [publicDataTag] },
+  (id: string) => readMediaVisibility(id), ["public-blog-media-visibility-v2", publicDatabaseCacheKey],
+  { revalidate: publicDataRevalidate, tags: [mediaVisibilityTag] },
 );
 const getMediaSize = unstable_cache(
-  (id: string) => readMediaSize(id), ["blog-media-size-v1", publicDatabaseCacheKey],
-  { revalidate: publicDataRevalidate, tags: [publicDataTag] },
+  (id: string) => readMediaSize(id), ["blog-media-size-v2", publicDatabaseCacheKey],
+  { revalidate: 86400 },
 );
 // Bounded, JSON-safe chunks keep larger uploads under the cache entry limit.
 // The route checks visibility/admin access before reading any cached bytes.
 const getMediaChunk = unstable_cache(
   async (id: string, offset: number) => (await readMediaChunk(id, offset))?.toString("base64") ?? null,
-  ["blog-media-chunk-v1", publicDatabaseCacheKey],
-  { revalidate: publicDataRevalidate, tags: [publicDataTag] },
+  ["blog-media-chunk-v2", publicDatabaseCacheKey],
+  { revalidate: 86400 },
 );
 export async function getMediaBytes(id: string): Promise<Buffer | null> {
   const size = await getMediaSize(id);

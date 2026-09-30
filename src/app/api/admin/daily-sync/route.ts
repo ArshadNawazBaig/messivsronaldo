@@ -1,7 +1,8 @@
 import { timingSafeEqual } from "node:crypto";
-import { revalidatePublicData } from "@/lib/public-cache";
+import { withStatisticsRevalidation } from "@/lib/public-cache";
 import { runDailySync } from "@/lib/admin/daily-sync";
 import { AdminError } from "@/lib/admin/model";
+import { reportServerError } from "@/lib/operations";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -16,14 +17,13 @@ export async function GET(request: Request) {
     return Response.json({ error: "Unauthorized" }, { status: 401, headers });
   }
   try {
-    const result = await runDailySync();
+    const result = await withStatisticsRevalidation(() => runDailySync());
+    if (result.status === "failed" && !result.skipped) reportServerError({ code: "DAILY_SYNC_FAILED" }, "daily-sync");
     return Response.json(result, { status: result.status === "failed" && !result.skipped ? 503 : 200, headers });
   } catch (error) {
+    reportServerError(error, "daily-sync");
     return Response.json({ error: error instanceof AdminError ? error.message : "Automatic update could not finish." }, {
       status: error instanceof AdminError ? error.status : 500, headers,
     });
-  } finally {
-    // Earlier dates may have published even when a later date failed.
-    revalidatePublicData();
   }
 }

@@ -12,7 +12,10 @@
     "test:e2e": "playwright test",
     "admin:setup": "node scripts/admin-setup.mjs",
     "test:admin": "SITE_INDEXABLE=false NEXT_PUBLIC_SITE_URL=http://localhost:3002 next build && playwright test -c playwright.admin.config.ts",
-    "db:migrate": "tsx --env-file=.env.local scripts/migrate-database.ts"
+    "db:migrate": "tsx --env-file=.env.local scripts/migrate-database.ts",
+    "db:setup": "tsx scripts/setup-postgres.ts",
+    "db:backup": "node scripts/backup-postgres.mjs",
+    "test:cache": "tsx tests/integration/public-cache.ts"
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.2.8",

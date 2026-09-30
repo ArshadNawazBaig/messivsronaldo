@@ -3,7 +3,7 @@ import { randomBytes, randomUUID } from "node:crypto";
 import type Database from "better-sqlite3";
 import { articles } from "../../src/lib/articles";
 import { readArticleIndex, readMediaVisibility, readPublicPosts } from "../../src/lib/blog/public-store";
-import { mediaChunkBytes, mergeArticleIndex, mergePublished, readMediaChunk, readMediaSize, saveMedia, seedPost, writePost } from "../../src/lib/blog/store";
+import { mediaChunkBytes, mergeArticleIndex, mergePublished, readMediaChunk, readMediaSize, readPosts, saveMedia, seedPost, writePost } from "../../src/lib/blog/store";
 
 // Exercise identical privacy and publication behavior through both SQL engines.
 export async function checkPublicBlogReads(db?: Database.Database) {
@@ -18,6 +18,8 @@ export async function checkPublicBlogReads(db?: Database.Database) {
       { type: "blockquote", content: [{ type: "image", attrs: { src: inline, alt: "Nested inline" } }] }] },
   } };
   let post = await writePost(command, db);
+  assert.equal((await readPosts(db, "es")).some(entry => entry.id === post.id), true);
+  assert.equal((await readPosts(db, "en")).some(entry => entry.id === post.id), false);
   assert.equal(await readMediaVisibility(coverId, db), false);
   assert.equal(await readMediaVisibility(inlineId, db), false);
   post = await writePost({ ...command, action: "publish", revision: post.revision }, db);

@@ -1,17 +1,19 @@
 import { z, ZodError } from "zod";
-import { revalidatePublicData } from "@/lib/public-cache";
+import { withStatisticsRevalidation } from "@/lib/public-cache";
 import { checkOrigin, login, logout, requireAdmin } from "@/lib/admin/auth";
 import { AdminError, dateSchema } from "@/lib/admin/model";
 import { getAdminState, removeMatch, saveMatch, syncDate } from "@/lib/admin/service";
 import { connectProvider } from "@/lib/admin/provider";
 import { logRun, saveConnection, undoLast } from "@/lib/admin/database";
 import { syncLatest } from "@/lib/admin/recent-sync";
+import { reportServerError } from "@/lib/operations";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const maxDuration = 300;
 const headers = {"Cache-Control":"no-store", "X-Robots-Tag":"noindex, nofollow"};
 function failure(error: unknown) {
   const status = error instanceof AdminError ? error.status : error instanceof ZodError ? 422 : 500;
+  if (status >= 500) reportServerError(error, "admin-action");
   const message = error instanceof AdminError ? error.message : error instanceof ZodError ? "Some fields or provider records are invalid. Check the date, numbers, and evidence URL." : "The operation could not be completed. No new statistics were published.";
   return Response.json({error:message},{status,headers});
 }
@@ -46,14 +48,15 @@ export async function POST(request: Request, {params}:{params:Promise<{action:st
       message = "API-Football connected. Both players and their club/country identities were verified.";
     } else {
       const {revision} = z.object({revision:z.number().int().nonnegative()}).parse(body);
-      if (action === "sync") { const {date} = z.object({date:dateSchema}).parse(body); message = await syncDate(date,revision); }
-      else if (action === "sync-latest") { const result = await syncLatest(revision); message = result.message; warnings = result.warnings; }
-      else if (action === "match") { const {record} = z.object({record:z.unknown()}).parse(body); await saveMatch(record,revision); message = "Match saved and public totals recalculated."; }
-      else if (action === "remove") { const {id} = z.object({id:z.string().min(1).max(100)}).parse(body); await removeMatch(id,revision); message = "Match removed and totals recalculated."; }
-      else if (action === "undo") { await undoLast(revision); message = "Previous published data restored."; }
-      else throw new AdminError("Unknown admin action.",404);
+      await withStatisticsRevalidation(async () => {
+        if (action === "sync") { const {date} = z.object({date:dateSchema}).parse(body); message = await syncDate(date,revision); }
+        else if (action === "sync-latest") { const result = await syncLatest(revision); message = result.message; warnings = result.warnings; }
+        else if (action === "match") { const {record} = z.object({record:z.unknown()}).parse(body); await saveMatch(record,revision); message = "Match saved and public totals recalculated."; }
+        else if (action === "remove") { const {id} = z.object({id:z.string().min(1).max(100)}).parse(body); await removeMatch(id,revision); message = "Match removed and totals recalculated."; }
+        else if (action === "undo") { await undoLast(revision); message = "Previous published data restored."; }
+        else throw new AdminError("Unknown admin action.",404);
+      });
     }
-    revalidatePublicData();
     return Response.json({message,warnings,state:await getAdminState()},{headers});
   } catch(error) { return failure(error); }
 }
