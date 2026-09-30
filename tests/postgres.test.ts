@@ -5,6 +5,7 @@ import * as db from "../src/lib/admin/database";
 import type { MatchRecord } from "../src/lib/admin/model";
 import { randomUUID } from "node:crypto";
 import { mediaIsPublic, mergePublished, readMedia, readPosts, saveMedia, writePost } from "../src/lib/blog/store";
+import { checkPublicBlogReads } from "./helpers/blog-public";
 
 // This suite only runs against an explicitly provided, isolated test database.
 test("Postgres persists publications, serializes competing writers, and protects admin state", { skip: !process.env.TEST_DATABASE_URL }, async () => {
@@ -78,6 +79,7 @@ test("Postgres persists publications, serializes competing writers, and protects
     assert.equal(mediaIsPublic(mediaId, await readPosts()), false);
     post = await writePost({ ...command, action: "restore", revision: post.revision });
     assert.equal(post.deleted, false); assert.equal(post.published, null);
+    await checkPublicBlogReads();
     // The old connection was closed; all assertions above use fresh connections after restarts.
     assert.ok(pg);
   } finally {

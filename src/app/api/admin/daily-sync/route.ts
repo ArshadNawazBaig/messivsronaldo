@@ -1,5 +1,5 @@
 import { timingSafeEqual } from "node:crypto";
-import { revalidatePath } from "next/cache";
+import { revalidatePublicData } from "@/lib/public-cache";
 import { runDailySync } from "@/lib/admin/daily-sync";
 import { AdminError } from "@/lib/admin/model";
 
@@ -24,6 +24,6 @@ export async function GET(request: Request) {
     });
   } finally {
     // Earlier dates may have published even when a later date failed.
-    revalidatePath("/", "layout");
+    revalidatePublicData();
   }
 }

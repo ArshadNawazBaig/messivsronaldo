@@ -9,6 +9,9 @@ import type { Article } from "../article-types";
 import type { Locale } from "../i18n/config";
 import { commandSchema, documentImages, publishedArticle, seedDraft, validatePublication, type BlogPost } from "./model";
 
+export type ArticleSummary = Pick<Article, "slug" | "title" | "published" | "managed">;
+export type PublishedPost<T = Article> = { locale: Locale; slug: string; deleted: boolean; published: T | null };
+
 export async function readPosts(db?: Database.Database): Promise<BlogPost[]> {
   const pg = db ? null : await postgresStore();
   const rows = pg ? await pg`SELECT data FROM blog_posts ORDER BY id` : (db ?? store()).prepare("SELECT data FROM blog_posts ORDER BY id").all() as { data: string }[];
@@ -20,7 +23,7 @@ export function seedPost(article: Article, locale: Locale, translate?: (value: s
   if (article.slug === "why-assist-totals-differ") draft.citations.push({ title: translate ? translate("Opta event definitions") : "Opta event definitions", url: "https://www.statsperform.com/opta-event-definitions/" });
   return { id: `seed:${locale}:${article.slug}`, locale, slug: article.slug, revision: 0, draft, published: article, deleted: false, createdAt: article.published ?? "2026-09-21", updatedAt: article.updated ?? "2026-09-21", draftChanged: false };
 }
-export function mergePublished(locale: Locale, posts: readonly BlogPost[], seeds: readonly Article[] = articles): Article[] {
+function mergePublishedEntries<T extends Pick<Article, "slug" | "published">>(locale: Locale, posts: readonly PublishedPost<T>[], seeds: readonly T[]): T[] {
   const localized = posts.filter(post => post.locale === locale);
   const overrides = new Map(localized.map(post => [post.slug, post]));
   const result = seeds.flatMap(article => {
@@ -29,6 +32,12 @@ export function mergePublished(locale: Locale, posts: readonly BlogPost[], seeds
   });
   const seedSlugs = new Set(seeds.map(article => article.slug));
   return [...result, ...localized.filter(post => !seedSlugs.has(post.slug) && !post.deleted && post.published).map(post => post.published!)].sort((a, b) => (b.published ?? "2026-09-21").localeCompare(a.published ?? "2026-09-21"));
+}
+export function mergePublished(locale: Locale, posts: readonly PublishedPost[], seeds: readonly Article[] = articles): Article[] {
+  return mergePublishedEntries(locale, posts, seeds);
+}
+export function mergeArticleIndex(locale: Locale, posts: readonly PublishedPost<ArticleSummary>[]): ArticleSummary[] {
+  return mergePublishedEntries(locale, posts, articles.map(({ slug, title, published, managed }) => ({ slug, title, published, managed })));
 }
 export async function writePost(input: unknown, db?: Database.Database, translateSeed?: (value: string | number) => string): Promise<BlogPost> {
   const command = commandSchema.parse(input);
@@ -85,6 +94,19 @@ export async function saveMedia(data: Buffer, db?: Database.Database) {
 export async function readMedia(id: string, db?: Database.Database): Promise<Buffer | null> {
   const pg = db ? null : await postgresStore();
   const row = pg ? (await pg`SELECT data FROM blog_media WHERE id=${id}`)[0] : (db ?? store()).prepare("SELECT data FROM blog_media WHERE id=?").get(id) as { data: Buffer } | undefined;
+  return row?.data ?? null;
+}
+export async function readMediaSize(id: string, db?: Database.Database): Promise<number | null> {
+  const pg = db ? null : await postgresStore();
+  const row = pg ? (await pg`SELECT octet_length(data) AS size FROM blog_media WHERE id=${id}`)[0]
+    : (db ?? store()).prepare("SELECT length(data) AS size FROM blog_media WHERE id=?").get(id) as { size: number } | undefined;
+  return row?.size ?? null;
+}
+export const mediaChunkBytes = 512 * 1024;
+export async function readMediaChunk(id: string, offset: number, db?: Database.Database): Promise<Buffer | null> {
+  const pg = db ? null : await postgresStore();
+  const row = pg ? (await pg`SELECT substring(data FROM ${offset + 1}::int FOR ${mediaChunkBytes}::int) AS data FROM blog_media WHERE id=${id}`)[0]
+    : (db ?? store()).prepare("SELECT substr(data,?,?) AS data FROM blog_media WHERE id=?").get(offset + 1, mediaChunkBytes, id) as { data: Buffer } | undefined;
   return row?.data ?? null;
 }
 export function mediaIsPublic(id: string, posts: readonly BlogPost[]): boolean {

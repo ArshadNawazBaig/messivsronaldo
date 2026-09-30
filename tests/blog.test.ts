@@ -7,6 +7,12 @@ import { cleanDocument, draftSchema, emptyDocument, seedDraft, type BlogDraft, t
 import { mediaIsPublic, mergePublished, readMedia, readPosts, saveMedia, seedPost, writePost } from "../src/lib/blog/store";
 import { getPublicPages } from "../src/lib/public-pages";
 import { relatedContent } from "../src/lib/content-discovery";
+import { checkPublicBlogReads } from "./helpers/blog-public";
+
+test("public blog queries omit drafts, preserve overrides, and check cover and nested image visibility", async () => {
+  const db = openStore(":memory:");
+  try { await checkPublicBlogReads(db); } finally { db.close(); }
+});
 
 const body = (text: string): RichNode => ({ type: "doc", content: [{ type: "paragraph", content: [{ type: "text", text }] }] });
 const draft = (title = "A synthetic article"): BlogDraft => ({ title, description: "An isolated test article, not real football news.", category: "Testing", summary: "", image: null, citations: [], body: body("Original published text") });

@@ -1,4 +1,4 @@
-import { revalidatePath } from "next/cache";
+import { revalidatePublicData } from "@/lib/public-cache";
 import { checkOrigin, requireAdmin } from "@/lib/admin/auth";
 import { articles } from "@/lib/articles";
 import { AdminError } from "@/lib/admin/model";
@@ -27,7 +27,7 @@ export async function POST(request: Request) {
     const requestedLocale = (input as { locale?: unknown } | null)?.locale;
     const { t } = await getArticleI18nForLocale(typeof requestedLocale === "string" && isLocale(requestedLocale) ? requestedLocale : "en");
     const post = await writePost(input, undefined, value => String(t(value)));
-    revalidatePath("/", "layout");
+    revalidatePublicData();
     return Response.json({ post }, { headers: privateHeaders });
   } catch (error) { return blogFailure(error); }
 }

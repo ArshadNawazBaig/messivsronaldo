@@ -4,13 +4,55 @@ Status: deployed and HTTPS verified on 21 September 2026. Both apex and www DNS 
 
 Vercel project: `arshadnawazbaigs-projects/messivsronaldo17`.
 Canonical origin: `https://messivsronaldo17.com`.
-Database: `rivalry-production`, Neon Free, region `iad1`. The Vercel functions use the same region.
+Database: `rivalry-production`, Neon (plan upgraded by the owner), region `iad1`. The Vercel functions use the same region.
+
+Recovery verified on 30 September 2026 after the Neon plan upgrade: `/`,
+`/goals`, `/api/comparison/career`, `/api/data-version`, and `/admin` returned
+HTTP 200. The owner chose to keep Neon; the Supabase migration is paused.
+Production database settings were not changed.
+
+Supabase migration work is saved on `codex/supabase-migration`. Revisit it after
+reviewing one month of charges on the upgraded Neon plan. The unused Supabase
+Free destination remains connected to preview only; no data was transferred.
 
 ## Environment and data
 
 Production needs `NEXT_PUBLIC_SITE_URL=https://messivsronaldo17.com`, `SITE_INDEXABLE=true`, `DATABASE_URL`, `ADMIN_PASSWORD_HASH`, `ADMIN_SESSION_SECRET`, and `CRON_SECRET` for automatic updates. Keep database and admin secrets private. Google Search Console verification can optionally use `GOOGLE_SITE_VERIFICATION`.
 
 The provider key is encrypted in the database; the app does not need the plain API-Football key in a public environment variable. Keep the existing admin secret when moving the database. Active sessions are intentionally not copied during migration; sign in again with the existing admin password.
+
+## Prepared database-load improvements
+
+The prepared app changes (not yet deployed) work with Neon and cache public
+statistics and blog reads across requests for up to one hour.
+Admin publications, blog changes, and daily sync expire those entries immediately.
+The version endpoint reads the shared snapshot without recalculating statistics
+or querying Postgres on every visitor poll. Caches are isolated by database.
+Admin state, sessions, and writes remain uncached. A cache miss still needs a
+working database.
+
+Navigation and language links use a small article index. Article pages fetch
+published content for the requested locale; private drafts are excluded by SQL.
+Unpublished and deleted overrides are retained so built-in articles stay hidden.
+Image access checks return a boolean instead of downloading all blog records.
+Image bytes are cached on the server in 512 KiB chunks, with publication/admin
+access checked on every request. HTTP responses remain `private, no-store` so
+unpublishing is enforced on the next request, including for previously cached
+images. Admin session checks are never cached.
+
+Read-only measurements on 30 September 2026 found 471,191 bytes of stored blog
+records across 17 rows. The new navigation query serialized to 3,582 bytes,
+approximately 99.2% smaller before protocol overhead. This is one query's payload
+reduction, not a forecast of total Neon charges. Compare daily transfer against
+request volume after deployment to measure the actual savings.
+
+Validation: 146 tests passed including the isolated PostgreSQL suite; lint,
+TypeScript, the production build, and three targeted browser tests passed. A
+local PostgreSQL query-log check recorded zero statements for 12 repeated page,
+version, and image requests after cache warmup. It also verified that unpublishing
+revoked anonymous access to cached images while retaining admin previews.
+
+## Existing SQLite migration
 
 The local SQLite database remains the local development default. On Vercel, missing `DATABASE_URL` is an error, not a fallback to temporary local storage. Production is connected to Neon; preview deployments require their own isolated database and admin secrets before the admin or public data routes will work. Never point automated write tests at production.
 

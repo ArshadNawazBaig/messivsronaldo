@@ -1,7 +1,6 @@
-import { getPublishedData } from "@/lib/server-data";
+import { getPublishedVersion } from "@/lib/server-data";
 
 export const dynamic = "force-dynamic";
 export async function GET() {
-  const data = await getPublishedData();
-  return Response.json({version:data.datasetVersion}, {headers:{"Cache-Control":"no-store"}});
+  return Response.json({version:await getPublishedVersion()}, {headers:{"Cache-Control":"no-store"}});
 }

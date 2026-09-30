@@ -1,5 +1,5 @@
 import { z, ZodError } from "zod";
-import { revalidatePath } from "next/cache";
+import { revalidatePublicData } from "@/lib/public-cache";
 import { checkOrigin, login, logout, requireAdmin } from "@/lib/admin/auth";
 import { AdminError, dateSchema } from "@/lib/admin/model";
 import { getAdminState, removeMatch, saveMatch, syncDate } from "@/lib/admin/service";
@@ -53,7 +53,7 @@ export async function POST(request: Request, {params}:{params:Promise<{action:st
       else if (action === "undo") { await undoLast(revision); message = "Previous published data restored."; }
       else throw new AdminError("Unknown admin action.",404);
     }
-    revalidatePath("/","layout");
+    revalidatePublicData();
     return Response.json({message,warnings,state:await getAdminState()},{headers});
   } catch(error) { return failure(error); }
 }

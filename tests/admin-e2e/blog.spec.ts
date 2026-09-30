@@ -81,7 +81,10 @@ test("admin writes, formats, uploads, previews, publishes, edits and deletes a l
   await expect(publicPage.locator('link[rel="alternate"][hreflang="es"]')).toHaveCount(1);
   await expect(publicPage.locator('link[rel="alternate"][hreflang="en"]')).toHaveCount(0);
   expect((await visitor.request.get(`/insights/${slug}`)).status()).toBe(404);
-  expect((await visitor.request.get(mediaPath!)).headers()["content-type"]).toBe("image/webp");
+  const publicImage = await visitor.request.get(mediaPath!);
+  expect(publicImage.headers()["content-type"]).toBe("image/webp");
+  expect(publicImage.headers()["cache-control"]).toBe("private, no-store");
+  expect(await (await visitor.request.get(mediaPath!)).body()).toEqual(await publicImage.body());
   expect(await (await visitor.request.get("/sitemap.xml")).text()).toContain(`/es/insights/${slug}`);
   await publicPage.goto("/es/insights"); await expect(publicPage.locator(`.editorial-card[href="/es/insights/${slug}"]`)).toBeVisible();
   await publicPage.getByRole("button", { name: /Search the site|Buscar en el sitio/ }).click();
@@ -101,6 +104,9 @@ test("admin writes, formats, uploads, previews, publishes, edits and deletes a l
   page.once("dialog", dialog => dialog.accept()); await page.getByRole("button", { name: "Move to Trash" }).click();
   await expect(page.getByRole("button", { name: "Restore as draft" })).toBeVisible();
   expect((await visitor.request.get(`/es/insights/${slug}`)).status()).toBe(404);
+  expect((await visitor.request.get(mediaPath!)).status()).toBe(404);
+  // Cached bytes remain available to the admin, but must not bypass visibility.
+  expect((await page.request.get(mediaPath!)).status()).toBe(200);
   expect((await visitor.request.get(mediaPath!)).status()).toBe(404);
   expect(await (await visitor.request.get("/sitemap.xml")).text()).not.toContain(`/es/insights/${slug}`);
   await page.getByRole("button", { name: "Restore as draft" }).click();

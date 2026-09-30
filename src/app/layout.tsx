@@ -1,4 +1,4 @@
-import { getPublishedArticles, getArticleLanguages } from '@/lib/blog/server';
+import { getArticleNavigation, getArticleLanguages } from '@/lib/blog/server';
 import { DataProvider } from '@/components/data-provider';
 import { getPublishedData } from '@/lib/server-data';
 import type { Metadata } from 'next';
@@ -97,7 +97,7 @@ export default async function RootLayout({
         <I18nProvider locale={locale} messages={messages}>
           <DataProvider value={await getPublishedData()}>
             <AdminExportProvider admin={admin}>
-              <SiteShell articleLinks={(await getPublishedArticles(locale)).map(article => ({ href: `/insights/${article.slug}`, label: article.managed ? article.title : t(article.title) }))} articleLanguages={await getArticleLanguages()}>{children}</SiteShell>
+              <SiteShell articleLinks={(await getArticleNavigation(locale)).map(article => ({ href: `/insights/${article.slug}`, label: article.managed ? article.title : t(article.title) }))} articleLanguages={await getArticleLanguages()}>{children}</SiteShell>
             </AdminExportProvider>
           </DataProvider>
         </I18nProvider>
