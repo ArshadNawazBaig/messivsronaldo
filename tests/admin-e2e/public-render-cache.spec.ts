@@ -2,12 +2,12 @@ import { test, expect } from "@playwright/test";
 
 const origin = "http://localhost:3002";
 test("public HTML is cached per language without exposing admin controls", async ({ request }) => {
-  for (const [path, locale] of [["/goals", "en"], ["/es/goals", "es"], ["/ar/goals", "ar"]]) {
+  for (const [path, locale] of [["/", "en"], ["/goals", "en"], ["/club-stats/2025-2026", "en"], ["/seasons/2026", "en"], ["/insights/why-assist-totals-differ", "en"], ["/players/messi", "en"], ["/es/goals", "es"], ["/ar/goals", "ar"]]) {
     await request.get(path);
     const response = await request.get(path, { headers: { "x-rivalry-locale": "th", Cookie: "rivalry-admin-ui=1; rivalry-admin=forged" } });
     expect(response.status()).toBe(200);
     expect(response.headers()["x-nextjs-cache"]).toBe("HIT");
-    expect(response.headers()["cache-control"]).toContain("s-maxage=3600");
+    expect(response.headers()["cache-control"]).toContain("s-maxage=86400");
     const html = await response.text();
     expect(html).toContain(`lang="${locale}"`);
     expect(html).not.toContain('title="Admin image export"');
@@ -54,7 +54,11 @@ test("anonymous browsing avoids session requests and prefetches and polls every 
     if (request.headers()["next-router-prefetch"] === "1") prefetches.push(request.url());
   });
   await page.goto("/goals");
-  await expect(page.locator("h1")).toBeVisible();
+  // Wait for client hydration before advancing timers; server HTML alone does
+  // not mean DataProvider has installed its polling interval yet.
+  await page.locator(".language-trigger").click();
+  await expect(page.locator(".language-menu")).toBeVisible();
+  await page.keyboard.press("Escape");
   await page.clock.fastForward(1_000);
   const initial = calls.filter(path => path === "/api/data-version").length;
   expect(initial).toBe(0);

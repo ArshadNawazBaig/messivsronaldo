@@ -64,7 +64,9 @@ export function PublicPosterStudio() {
         const shareable = typeof navigator.share === "function" && !!navigator.canShare?.({ files: [file] });
         setReady({ key, url: URL.createObjectURL(blob), file, shareable });
       } catch { if (!cancelled) setErrorKey(key); }
-    }, 250);
+    // Wait for a short burst of option changes to settle. Aborting a fetch does
+    // not stop a PNG renderer already running on the server.
+    }, 600);
     return () => { cancelled = true; clearTimeout(timer); controller.abort(); };
   }, [imageUrl, key, filename]);
   useEffect(() => () => { if (ready) URL.revokeObjectURL(ready.url); }, [ready]);

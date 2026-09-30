@@ -8,7 +8,9 @@ export const statisticsTag = "rivalry-statistics-v2";
 export const articleIndexTag = "rivalry-article-index-v2";
 export const mediaVisibilityTag = "rivalry-media-visibility-v2";
 export const articleTag = (locale: Locale) => `rivalry-articles-v2-${locale}`;
-export const publicDataRevalidate = 3600;
+// Normal publications expire tags immediately. A daily fallback avoids hourly
+// regeneration of the same dataset across hundreds of localized public pages.
+export const publicDataRevalidate = 86400;
 // Separate caches when switching providers or running isolated local databases.
 // Only the digest becomes part of a cache key; credentials are never stored in it.
 export const publicDatabaseCacheKey = createHash("sha256")

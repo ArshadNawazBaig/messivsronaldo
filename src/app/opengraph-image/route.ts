@@ -1,16 +1,13 @@
 import type { NextRequest } from "next/server";
-import { getPublishedData } from "@/lib/server-data";
-import { renderSocialImage } from "@/lib/social-image-renderer";
 
 export const runtime = "nodejs";
 
 export async function GET(request: NextRequest) {
-  // A stable URL per theme lets social crawlers cache each image independently.
+  // Preserve existing share URLs; canonical theme paths use the ISR cache.
   const theme =
     request.nextUrl.searchParams.get("theme") === "light" ? "light" : "dark";
-  const { scopes, snapshotDate } = await getPublishedData();
-  const goals = scopes.career.metrics.find(
-    (metric) => metric.id === "goals",
-  )!.values;
-  return renderSocialImage(theme, { goals, asOf: snapshotDate });
+  return new Response(null, { status: 307, headers: {
+    Location: `/opengraph-image/${theme}`,
+    "Cache-Control": "public, max-age=86400, s-maxage=86400",
+  } });
 }

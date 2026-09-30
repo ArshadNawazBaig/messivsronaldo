@@ -30,7 +30,7 @@ or football data is sent to a translation service at runtime.
 The public root layout is `app/[locale]/layout.tsx`. `getI18n()` reads Next.js
 root parameters, so the URL determines the language without request headers or
 cookies making every page dynamic. Public pages are generated on their first
-visit and cached for one hour; publishing statistics or articles invalidates
+visit and cached for one day; publishing statistics or articles invalidates
 their data tags and dependent pages immediately. The query-dependent comparison
 poster studio remains dynamic. Language-negotiation redirects remain private.
 

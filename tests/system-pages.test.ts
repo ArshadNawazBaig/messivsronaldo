@@ -2,10 +2,20 @@ import assert from "node:assert/strict";
 import { readdirSync } from "node:fs";
 import { test } from "node:test";
 import { NextRequest } from "next/server";
+import { unstable_doesMiddlewareMatch } from "next/experimental/testing/server";
 import { getPublicPages } from "../src/lib/public-pages";
 import { calendarYears, snapshotDate } from "../src/lib/data";
-import { proxy } from "../src/proxy";
+import { proxy, config } from "../src/proxy";
 import { maintenanceResponse } from "../src/lib/maintenance";
+
+test("routing skips exempt requests while preserving locale and public maintenance handling", () => {
+  for (const path of ["/admin", "/admin/blog", "/api/admin/session", "/api/admin/login", "/_vercel/insights/view", "/robots.txt", "/icon.svg", "/images/portrait.jpg", "/fonts/i18n/font.woff2", "/_next/static/chunk.js", "/_next/image"]) {
+    assert.equal(unstable_doesMiddlewareMatch({ config, nextConfig: {}, url: `https://example.com${path}` }), false, path);
+  }
+  for (const path of ["/", "/es/goals", "/es/admin", "/administrator", "/api/administrator", "/sitemap.xml", "/llms.txt", "/opengraph-image/dark", "/api/data-version", "/api/comparison/career", "/media/blog/test.webp"]) {
+    assert.equal(unstable_doesMiddlewareMatch({ config, nextConfig: {}, url: `https://example.com${path}` }), true, path);
+  }
+});
 
 test("the sitemap catalog includes public standalone routes and future published years", () => {
   const paths = getPublicPages([...calendarYears, { year: 2027 }], snapshotDate).map(page => page.path);

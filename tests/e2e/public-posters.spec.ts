@@ -3,6 +3,30 @@ import AxeBuilder from "@axe-core/playwright";
 import { mkdir } from "node:fs/promises";
 
 test.describe.configure({ mode: "serial" });
+test("a burst of poster options generates only the final preview", async ({ page }) => {
+  await page.clock.install();
+  const renders: string[] = [];
+  await page.route("**/api/comparison-poster/**", async route => {
+    renders.push(route.request().url());
+    await route.fulfill({ contentType: "image/png", body: Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jRZkAAAAASUVORK5CYII=", "base64") });
+  });
+  await page.goto("/comparison-posters");
+  const studio = page.getByRole("region", { name: "Comparison posters", exact: true });
+  await page.clock.fastForward(1000);
+  await expect(studio.getByRole("img")).toBeVisible();
+  renders.length = 0;
+  await studio.getByRole("button", { name: /^Square/ }).click();
+  await page.clock.fastForward(200);
+  await studio.getByRole("button", { name: "Dark", exact: true }).click();
+  await page.clock.fastForward(200);
+  await studio.getByRole("button", { name: "Clean table", exact: true }).click();
+  await page.clock.fastForward(200);
+  expect(renders).toEqual([]);
+  await page.clock.fastForward(600);
+  await expect.poll(() => renders.length).toBe(1);
+  expect(renders[0]).toContain("career~square~dark~0");
+});
+
 test("public PNG previews use published selections while admin exports stay protected", async ({ request }) => {
   test.setTimeout(90000);
   expect((await request.get('/api/admin/stat-image?data={}')).status()).toBe(401);

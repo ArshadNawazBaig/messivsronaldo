@@ -66,12 +66,33 @@ log. Never use production for write tests.
 
 ## Vercel CPU, transfer and function storage
 
-Prepared locally on 30 September 2026; these changes still require deployment:
+The initial page/poster optimizations were committed in `5755371`. Follow-up
+production requests to `/`, `/goals` and `/es/goals` returned Vercel `HIT` on
+30 September 2026. The additional CPU changes below are prepared locally and
+still require deployment:
 
-- Public pages use on-demand ISR with a one-hour lifetime. Publishing invalidates
+- Public pages and their shared statistics/article reads use a one-day fallback
+  lifetime instead of regenerating hourly. Publishing invalidates
   the existing data tags and their rendered pages. Locale comes from the URL;
   admin session checks run separately so visitor cookies do not disable caching.
   The query-dependent comparison-poster studio remains dynamic.
+- The comparison API, sitemap, and `llms.txt` use one-hour ISR; `/api/data-version`
+  uses 30-second ISR in addition to its short CDN lifetime. These responses track
+  publication tags, including article removal from both crawler feeds. Metadata
+  routes can expose a browser revalidation header while their ISR lifetime is
+  defined by the prerender manifest. Build-time feed generation now needs the
+  initialized deployment database to be reachable.
+- Shared social previews render at `/opengraph-image/dark` and `/opengraph-image/light`
+  and reuse completed PNG responses with one-hour ISR. Old query-string URLs
+  redirect to these paths. Publishing statistics invalidates the previews.
+- Each server instance retains one calculated statistics snapshot by revision.
+  Every request still reads the tagged source snapshot before reusing calculations,
+  preserving cross-instance publication invalidation. This memory cache is bounded
+  and does not replace the shared data cache.
+- The routing middleware skips already-protected admin routes and Vercel telemetry,
+  as well as exempt assets. Public route maintenance and language handling remain
+  active. Poster option changes wait 600 ms before starting image generation,
+  avoiding intermediate renders that would continue even after fetch cancellation.
 - Public navigation links do not automatically prefetch every visible destination
   and its statistics payload. Pages load when selected, using the shared cache.
 - Visible tabs check the published version every five minutes, with throttled
@@ -87,7 +108,7 @@ Prepared locally on 30 September 2026; these changes still require deployment:
 - Vercel function traces exclude Sharp's optional WASM fallback while retaining
   its native renderer. Verify PNG generation on the deployed Linux runtime.
 
-The read-only deployment audit found 86 retained deployments (84 production,
+The earlier read-only deployment audit found 86 retained deployments (84 production,
 two previews), with 30-day retention configured for every status. No deployments
 were deleted. The API rejected a retention update, so those settings are unchanged.
 Review **Project → Settings → Security → Deployment Retention** in Vercel;
@@ -106,13 +127,27 @@ immediately reset after a smaller deployment or cleanup. See Vercel's
 [storage documentation](https://vercel.com/docs/deployment-storage) and
 [retention documentation](https://vercel.com/docs/deployment-retention).
 
-Local validation: production build, lint, TypeScript and 149 unit tests passed
+The follow-up CPU investigation used the owner's hot-route list: localized
+overview, general comparison pages, club seasons, calendar seasons, articles,
+player profiles, and the comparison-poster studio. Vercel's project and metrics
+APIs returned `403 Not authorized`, so route CPU totals and CPU per invocation
+could not be retrieved. Do not treat a local calculation benchmark or cache hits
+as a measured reduction in billed CPU. Use the same routes and comparable traffic
+windows after deployment, as described in Vercel's
+[Active CPU guide](https://vercel.com/kb/guide/optimize-active-cpu-on-fluid-compute).
+Accumulated usage is not erased by deploying optimizations. Out-of-band database
+edits must also invalidate public tags or wait for the daily fallback; the normal
+admin and scheduled publication workflows already invalidate those tags.
+
+Local validation: production build, lint, TypeScript and 151 unit tests passed
 (one PostgreSQL integration test skipped without its isolated test database).
-Browser checks covered all sitemap URLs, desktop and mobile Safari languages,
+The previous browser pass covered all sitemap URLs, desktop and mobile Safari languages,
 404 recovery, authenticated exports, blog publication/access revocation, cache
 invalidation after statistics edits, anonymous request counts, poster reuse and
 recovery after intentionally overloading the renderer. No production write tests
-or deployment cleanup were performed.
+or deployment cleanup were performed. Follow-up checks cover the reported hot
+page types with one-day cache headers, crawler/social-preview cache reuse,
+statistics and article invalidation, and batching poster option changes.
 
 ## Schema setup
 

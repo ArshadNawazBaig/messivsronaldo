@@ -47,4 +47,6 @@ export function proxy(request: NextRequest) {
   return NextResponse.rewrite(url);
 }
 
-export const config = { matcher: ["/((?!_next/static|_next/image|images/|fonts/|icon.svg|favicon.ico).*)"] };
+// Admin routes already enforce authorization and are maintenance-exempt. Static
+// assets, robots and Vercel telemetry also need no language/maintenance work.
+export const config = { matcher: ["/((?!_next/static|_next/image|_vercel(?:/|$)|admin(?:/|$)|api/admin(?:/|$)|images/|fonts/|icon\\.svg$|favicon\\.ico$|robots\\.txt$).*)"] };
