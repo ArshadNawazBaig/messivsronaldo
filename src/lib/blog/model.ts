@@ -96,8 +96,8 @@ export function seedDraft(article: Article, t: (value: string | number) => strin
   const links = (items: readonly { title: string; url: string }[] = []): RichNode[] => items.map(item => ({ type: "paragraph", content: [{ type: "text", text: t(item.title), marks: [{ type: "link", attrs: { href: item.url } }] }] }));
   return { title: t(article.title), description: t(article.description), category: t(article.category), summary: t(article.summary ?? ""), image: article.image ? { ...article.image, alt: t(article.image.alt) } : null,
     citations: (article.citations ?? []).map(item => ({ ...item, title: t(item.title) })), body: { type: "doc", content: [
+      ...article.sections.flatMap(section => [heading(section.heading), ...t(section.text).split(/\n\s*\n/).filter(Boolean).map(text => ({ type: "paragraph", content: [{ type: "text", text }] } as RichNode)), ...links(section.citations)]),
       ...(article.tables ?? []).flatMap(table => [heading(table.caption), { type: "table", content: [{ type: "tableRow", content: table.columns.map(text => ({ type: "tableHeader", content: [paragraph(text)] })) }, ...table.rows.map(row => ({ type: "tableRow", content: row.cells.map((cell, index) => ({ type: "tableCell", content: [paragraph(String(cell)), ...(index === 0 ? links(row.citations) : [])] })) }))] } as RichNode, ...(table.note ? [paragraph(table.note)] : [])]),
-      ...article.sections.flatMap(section => [heading(section.heading), paragraph(section.text), ...links(section.citations)]),
     ] },
   };
 }

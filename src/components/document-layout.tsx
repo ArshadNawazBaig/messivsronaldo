@@ -13,7 +13,8 @@ import { getLocaleI18n } from '@/lib/i18n/server';
 import type { Locale } from '@/lib/i18n/config';
 import { I18nProvider } from '@/components/i18n-provider';
 import { AdminExportProvider } from '@/components/admin-stat-export';
-import { Analytics } from '@vercel/analytics/next';
+import { PublicAnalytics } from '@/components/public-analytics';
+import { publisherConfiguration } from '@/lib/publisher-config';
 import { socialImageAlt, socialImagePath } from '@/lib/social-image';
 
 const inter = localFont({
@@ -29,6 +30,7 @@ const display = localFont({
   weight: '100 900',
 });
 
+const publisher = publisherConfiguration(process.env);
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
@@ -49,6 +51,7 @@ export const metadata: Metadata = {
     },
   },
   verification: { google: process.env.GOOGLE_SITE_VERIFICATION || undefined },
+  ...(publisher.adsensePublisherId && { other: { 'google-adsense-account': `ca-${publisher.adsensePublisherId}` } }),
   applicationName: siteName,
   openGraph: {
     images: [{ url: socialImagePath, width: 1200, height: 630, type: 'image/png', alt: socialImageAlt }],
@@ -99,7 +102,7 @@ export default async function DocumentLayout({
             </AdminExportProvider>
           </DataProvider>
         </I18nProvider>
-        {process.env.VERCEL === "1" && <Analytics />}
+        {publisher.analyticsEnabled && admin === undefined && <PublicAnalytics />}
       </body>
     </html>
   );

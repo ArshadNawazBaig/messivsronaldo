@@ -57,20 +57,32 @@ test("search navigates to editorial content and theme persists", async ({ page }
   await page.reload();
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
 });
-test("prepares an on-page correction report without offering downloads", async ({ page }) => {
-  await page.goto("/");
-  await expect(page.getByRole("button", { name: /download/i })).toHaveCount(0);
+test("support form retains a failed report and confirms only after a successful response", async ({ page }) => {
+  await page.route("**/api/support", route => {
+    expect(route.request().postDataJSON().category).toBe("rights");
+    return route.fulfill({ status: 503, contentType: "application/json", body: JSON.stringify({ error: "Unavailable" }) });
+  });
   await page.goto("/contact");
-  await page.getByLabel("Page or comparison").fill("Champions League");
-  await page.getByLabel("Statistic to review").fill("Assists");
-  await page.getByLabel("Supporting source URL").fill("https://www.uefa.com/");
-  await page.getByLabel("What should we look at?").fill("Please check the coverage and definition of this statistic.");
-  const downloads: string[] = [];
-  page.on("download", download => downloads.push(download.suggestedFilename()));
-  await page.getByRole("button", { name: "Prepare report" }).click();
-  await expect(page.getByRole("textbox", { name: "Prepared report", exact: true })).toHaveValue(/Page: Champions League[\s\S]*Metric: Assists/);
-  expect(downloads).toEqual([]);
-  await expect(page.getByRole("status")).toContainText("No report has been sent automatically.");
+  const category = page.getByRole("combobox", { name: "What is your message about?" });
+  await category.click();
+  await page.getByRole("option", { name: "Image rights", exact: true }).click();
+  await page.getByLabel("Page or comparison (optional)").fill("Champions League");
+  await page.getByLabel("Supporting source URL (optional)").fill("https://www.uefa.com/");
+  const details = "Please check the coverage and definition of this statistic.";
+  await page.getByLabel("What should we look at?").fill(details);
+  await page.getByRole("button", { name: "Submit report" }).click();
+  await expect(page.locator(".correction-form").getByRole("alert")).toContainText("could not be saved");
+  await expect(page.getByLabel("What should we look at?")).toHaveValue(details);
+  await expect(category).toContainText("Image rights");
+  await page.unroute("**/api/support");
+  await page.route("**/api/support", route => {
+    expect(route.request().postDataJSON().category).toBe("rights");
+    return route.fulfill({ status: 201, contentType: "application/json", body: JSON.stringify({ id: "synthetic-reference" }) });
+  });
+  await page.getByRole("button", { name: "Submit report" }).click();
+  await expect(page.getByRole("status")).toContainText("synthetic-reference");
+  await expect(page.getByLabel("What should we look at?")).toHaveValue("");
+  await expect(category).toContainText("Data correction");
 });
 test("routes, metadata endpoints and invalid scopes have correct behavior", async ({ request }) => {
   for (const path of ["/", "/2026", "/clubs", "/world-cup", "/head-to-head", "/penalties", "/free-kicks", "/hat-tricks", "/league", "/european-clubs", "/copa-america-vs-euros", "/seasons/2026", "/seasons/2025", "/compare", "/goals", "/champions-league", "/la-liga", "/international", "/honours", "/methodology", "/insights", "/insights/why-assist-totals-differ", "/players/messi", "/players/ronaldo", "/about", "/privacy", "/credits", "/sitemap.xml", "/robots.txt", "/llms.txt", "/opengraph-image"]) expect((await request.get(path)).status(), path).toBe(200);

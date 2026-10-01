@@ -29,7 +29,7 @@ export const contentPages: Record<string, { title: string; heading: string; eyeb
   "european-clubs": { title: "Messi vs Ronaldo European Club Career Goals & Assists", heading: "European club records.", eyebrow: "EUROPEAN CLUBS", description: "Competitive club careers before Inter Miami and Al Nassr, from Sporting and Barcelona to Manchester, Madrid, Turin and Paris.", scope: "european-clubs" },
   records: { title: "Messi vs Ronaldo Records: The Race to 1,000 Goals", heading: "The race to 1,000 goals.", eyebrow: "CAREER MILESTONES", description: "Career goals and the distance to 1,000. These are present totals, not predictions about when either player will reach the milestone.", scope: "career" },
   about: { title: "About The Rivalry", heading: "About The Rivalry.", eyebrow: "OUR PHILOSOPHY", description: "Two extraordinary careers deserve more than an argument over a single number." },
-  contact: { title: "Report a Statistical Correction", heading: "Report a correction.", eyebrow: "CORRECTIONS & FEEDBACK", description: "Found a figure that needs another look? Put the claim and its evidence together in a correction report." },
+  contact: { title: "Contact & Support", heading: "Contact the publisher.", eyebrow: "QUESTIONS & CORRECTIONS", description: "Send questions, statistical corrections, privacy requests, accessibility reports or image-rights concerns to The Rivalry." },
   credits: { title: "Photography Credits & Licenses", heading: "Photography & credits.", eyebrow: "PHOTOGRAPHY & ATTRIBUTION", description: "Credits for the player portraits, icons and locally hosted fonts used on The Rivalry." },
   ...Object.fromEntries(awardSlugs.map(slug => {
     const award = awardComparisons[slug];

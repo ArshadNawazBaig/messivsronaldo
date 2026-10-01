@@ -192,8 +192,8 @@
   direction: ltr;
 }
 .designArt b { position: absolute; top: 3px; inset-inline-start: 8px; font: 800 29px/1.1 var(--font-display), sans-serif; }
-.miniMessi, .miniRonaldo { position: absolute; top: 5px; left: 7px; width: 30px; height: 37px; background: url('/images/transparent-argentina-portraits-fifa-world-cup-2026-removebg-preview.png') center top / 100% auto no-repeat; }
-.miniRonaldo { left: 20px; background-image: url('/images/transparent-portugal-portraits-fifa-world-cup-2026-removebg-preview.png'); background-size: 155% auto; background-position: center -2px; }
+.miniMessi, .miniRonaldo { position: absolute; top: 5px; left: 7px; width: 30px; height: 37px; background: url('/images/players/messi-world-cup-2026-cutout.webp') center top / 100% auto no-repeat; }
+.miniRonaldo { left: 20px; background-image: url('/images/players/ronaldo-world-cup-2026-cutout.webp'); background-size: 100% auto; background-position: center top; }
 [data-design='comparison'] .miniMessi { left: -2px; }
 .miniLines { position: absolute; bottom: 6px; left: 7px; right: 7px; height: 8px; border-top: 2px solid #315a4059; border-bottom: 2px solid #315a4030; background: #f7faf0bb; }
 .themes { display: flex; gap: 6px; padding: 4px; background: var(--bg); border-radius: 10px; }

@@ -1,9 +1,13 @@
 import { test, expect } from "@playwright/test";
 import { readFileSync } from "node:fs";
-import { ballonArticles } from "../../src/lib/ballon-articles";
+import { ballonArticles as awardSeeds } from "../../src/lib/ballon-articles";
+import { getArticle } from "../../src/lib/articles";
 import { locales, localizedPath } from "../../src/lib/i18n/config";
 import { calendarYears, snapshotDate } from "../../src/lib/data";
 import { getPublicPages } from "../../src/lib/public-pages";
+
+const ballonArticles = awardSeeds.map(seed => getArticle(seed.slug)!);
+const canonicalOrigin = process.env.NEXT_PUBLIC_SITE_URL || "https://messivsronaldo17.com";
 
 test.describe("crawlable award articles", () => {
   test.use({ javaScriptEnabled: false });
@@ -20,10 +24,10 @@ test.describe("crawlable award articles", () => {
         await expect(page.locator("h1")).toHaveText(shared[article.title]);
         await expect(page.locator("aside p")).toHaveText(body[article.summary!]);
         await expect(page.locator("table tbody tr")).toHaveCount(article.tables![0].rows.length);
-        for (const [index, section] of article.sections.entries()) await expect(page.locator(`#section-${index} + p`)).toHaveText(body[section.text]);
-        await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", `https://messivsronaldo17.com${path}`);
+        for (const [index, section] of article.sections.entries()) await expect(page.locator(`section:has(> #section-${index}) > p`)).toHaveText(body[section.text].split(/\n\s*\n/));
+        await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", `${canonicalOrigin}${path}`);
         await expect(page.locator('link[rel="alternate"][hreflang]')).toHaveCount(locales.length + 1);
-        await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", `https://messivsronaldo17.com${article.image!.path}`);
+        await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", `${canonicalOrigin}${article.image!.path}`);
         await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", shared[article.description]);
         const schemas = await page.locator('script[type="application/ld+json"]').allTextContents();
         const schema = schemas.map(s => JSON.parse(s)).find(s => s["@type"] === "Article");
@@ -44,7 +48,7 @@ test("article navigation hydrates, table links work, and Arabic fits in both the
   page.on("pageerror", error => errors.push(error.message));
   page.on("console", message => { if(message.type() === "error") errors.push(message.text()); });
   await page.goto(`/insights/${ballonArticles[1].slug}`);
-  await page.getByRole("navigation", { name: "In this article" }).getByRole("link").first().click();
+  await page.getByRole("navigation", { name: "In this article" }).locator('a[href="#table-0"]').click();
   await expect(page).toHaveURL(/#table-0$/);
   await expect(page.locator("table tbody tr").first().locator("td")).toHaveText(["61", "42"]);
   await expect(page.locator("table tbody tr").nth(3).locator("td")).toHaveText(["14", "15"]);
@@ -63,8 +67,9 @@ test("article navigation hydrates, table links work, and Arabic fits in both the
 
 test("new articles appear in the sitemap and directory without replacing calculator guides", async ({ page, request }) => {
   const xml = await (await request.get("/sitemap.xml")).text();
-  for(const article of ballonArticles) for(const locale of locales) expect(xml).toContain(`<loc>https://messivsronaldo17.com${localizedPath(`/insights/${article.slug}`,locale)}</loc>`);
-  expect(xml.match(/<url>/g)).toHaveLength(getPublicPages(calendarYears, snapshotDate).length * locales.length);
+  for(const article of ballonArticles) for(const locale of locales) expect(xml).toContain(`<loc>${canonicalOrigin}${localizedPath(`/insights/${article.slug}`,locale)}</loc>`);
+  // Local CMS publications can add URLs beyond the built-in catalog.
+  expect(xml.match(/<url>/g)!.length).toBeGreaterThanOrEqual(getPublicPages(calendarYears, snapshotDate).length * locales.length);
   await page.goto("/insights");
   for(const article of ballonArticles) await expect(page.getByRole("link", { name: new RegExp(article.title.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")) })).toBeVisible();
   await page.goto("/scoring-calculator");

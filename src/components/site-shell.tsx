@@ -1,4 +1,5 @@
 "use client";
+import { playerPhotoLicense } from "@/lib/player-artwork";
 import { LanguageLinks, LanguageSwitcher } from "./language-switcher";
 import { SocialLinks } from "./social-links";
 import { NavigationIcon } from "./ui/navigation-icon";
@@ -213,6 +214,7 @@ export function SiteShell({ children, articleLinks, articleLanguages }: {
           <div><span className="section-kicker">{t("FIND YOUR WAY")}</span><div className="footer-links"><Link href="/contact">{t("Contact & corrections")}</Link><Link href="/accessibility">{t("Accessibility")}</Link><Link href="/sitemap">{t("Site map")}</Link><Link href="/admin">{t("Admin")}</Link></div></div>
         </nav>
         {!pathname.startsWith("/admin") && <LanguageLinks available={availableLanguages} />}
+        <p className="photo-attribution" lang="en">Player photos: {playerPhotoLicense.credit} · <a href={playerPhotoLicense.licenseUrl} rel="license">CC BY-SA 4.0</a> · <Link href="/credits">Sources, crops &amp; reuse</Link></p>
         <div className="footer-bottom"><span>© {t(new Date().getFullYear())}{t(" The Rivalry. An independent football project.")}</span><span>{t("Data updated {0}", { "0": t(snapshotLabel) })}</span></div>
       </footer>
     </div>

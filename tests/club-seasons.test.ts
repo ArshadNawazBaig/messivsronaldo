@@ -49,7 +49,7 @@ test("club-season URLs are registered once and keep the calendar and competition
   for (const season of clubSeasons) {
     const page = clubPages.find(page => page.path === `/club-stats/${season.slug}`)!;
     assert.ok(page.title.includes(season.label));
-    assert.equal(page.updated, clubSeasonsReviewed);
+    assert.ok(page.updated! >= clubSeasonsReviewed, "the page date includes later editorial changes without changing the source review date");
   }
   assert.equal(new Set(pages.map(page => page.path)).size, pages.length);
   assert.ok(pages.some(page => page.path === "/seasons/2012"));

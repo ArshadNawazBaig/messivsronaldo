@@ -7,7 +7,7 @@ import Link from "@/components/localized-link";
 import { ArrowUpRight } from "lucide-react";
 import type { CSSProperties } from "react";
 import { players, type PlayerId } from "@/lib/data";
-import { playerArtworkStyle, transparentPlayerPortraits } from "@/lib/player-artwork";
+import { playerArtworkStyle, playerPortraits } from "@/lib/player-artwork";
 type PlayerMatchupProps = {
     values: Record<PlayerId, number | null>;
     label: string;
@@ -22,7 +22,7 @@ export function PlayerMatchup({ values, label, accessibleLabel, context, details
     return <><div className="player-matchup">
     {(["messi", "ronaldo"] as const).map(id => {
             const player = players[id];
-            const portrait = transparentPlayerPortraits[id];
+            const portrait = playerPortraits[id];
             const colors = playerArtworkStyle(id) as CSSProperties;
             const value = values[id];
             const score = value === null ? "—" : value.toLocaleString(numberLocale, { maximumFractionDigits: decimals, minimumFractionDigits: decimals });
@@ -30,7 +30,7 @@ export function PlayerMatchup({ values, label, accessibleLabel, context, details
         <Link className="player-portrait" href={`/players/${id}`} aria-label={t(`View ${player.name}'s profile`)}>
           <div className="player-card-copy">
             <div className="player-card-stage">
-              <div className="player-photo"><Image src={portrait.src} alt={t(player.imageAlt)} width={portrait.width} height={portrait.height} priority quality={85} sizes={id === "messi" ? "(max-width: 540px) 220px, (max-width: 1000px) 300px, 380px" : "(max-width: 540px) 380px, (max-width: 1000px) 500px, 650px"}/></div>
+              <div className="player-photo"><Image src={portrait.src} alt={t(player.imageAlt)} width={portrait.width} height={portrait.height} priority quality={85} sizes="(max-width: 540px) 220px, (max-width: 1000px) 300px, 380px"/></div>
               <div className="player-country"><span className={`country-flag ${id}`} aria-hidden="true"/><span>{t(player.countryCode)}</span><span className="player-epithet"><span className="country-separator" aria-hidden="true">/</span>{t(id === "messi" ? "The playmaker" : "The goal machine")}</span></div>
               <span className="player-shirt-number" aria-hidden="true">#{player.number}</span>
               <div className="player-identity"><h2><span>{t(id === "messi" ? "Lionel" : "Cristiano")}</span>{t(player.short)}<span className="player-name-period" aria-hidden="true">.</span></h2><p>{t(id === "messi" ? "The art of possibility." : "The pursuit of extraordinary.")}</p></div>

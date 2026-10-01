@@ -5,6 +5,7 @@ import { sources } from "@/lib/data";
 import type { CalendarYear } from "@/lib/published-data";
 import { seasons, type SeasonRecord } from "@/lib/seasons";
 import styles from "./archive-summary.module.css";
+import { ScoringAnalysis } from "./scoring-analysis";
 
 export async function SummaryTable({ title, rows, variant }: { title: string; rows: SummaryRow[]; variant?: "panel" }) {
   const { t, numberLocale } = await getI18n();
@@ -70,6 +71,7 @@ export async function CalendarSummary({ year, years, snapshotLabel, hasUpdates, 
         <SummaryTable title={`${year.year} · ${label}`} rows={calendarSummaryRows(year[scope])} variant="panel" />
       </section>;
     })}</div>
+    <ScoringAnalysis goals={year.career.goals} appearances={year.career.appearances} minutes={year.career.minutes} context={`${year.year} · ${t("Club + country")}`} />
     <div className={styles.seasonNotes}>
       <div className={styles.sourceLine}>
         <span>{t("Source")}: <Link href={year.source}>{t("{0} calendar-year source", { 0: year.year })}</Link></span>
@@ -108,6 +110,10 @@ export async function SeasonSummary({ season }: { season: SeasonRecord }) {
       <SummaryTable title={`${season.label} · ${t("Champions League")}`} rows={seasonSummaryRows(season.ucl)} />
     </div>
     <p>{t("League and Champions League figures are kept separate.")} {t("Domestic cups, national-team games and other competitions are excluded. Champions League figures exclude qualifying rounds.")}</p>
+    {(["league", "ucl"] as const).map(competition => <ScoringAnalysis key={competition}
+      goals={{ messi: season[competition].messi.goals, ronaldo: season[competition].ronaldo.goals }}
+      appearances={{ messi: season[competition].messi.appearances, ronaldo: season[competition].ronaldo.appearances }}
+      context={`${season.label} · ${t(competition === "league" ? "La Liga" : "Champions League")}`} />)}
     <p>{t("Source: the Turkish Football Federation’s July 2020 TamSaha comparison table.")} <a href={sources.liga.url}>{t("Read the publication")}</a></p>
     <ArchiveNavigation items={seasons.map(item => ({ slug: item.slug, label: item.label }))} current={season.slug} />
   </section>;

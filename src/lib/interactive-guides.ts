@@ -31,7 +31,7 @@ export const interactiveGuides = [
   },
   {
     slug: "messi-2011-12-vs-ronaldo-2013-14-champions-league", category: "EUROPEAN SCORING PEAKS", title: "Messi 2011/12 vs Ronaldo 2013/14: 14 vs 17 Champions League goals", description: "Both played 11 matches in these Champions League campaigns. Compare 14 and 17 goals, their scoring rates and the tournament boundaries.",
-    preset: "europe" as CalculatorPreset, readTime: "3 min read", color: "lime", number: "06", published: "2026-09-25", updated: "2026-09-25", sourceIds: ["liga"] as const,
+    preset: "europe" as CalculatorPreset, readTime: "3 min read", color: "lime", number: "06", published: "2026-09-25", updated: "2026-09-25", sourceIds: ["uefa"] as const,
     sections: [
       { heading: "An unusually clean appearance comparison", text: "Messi scored 14 Champions League goals in 11 appearances in 2011/12; Ronaldo scored 17 in 11 in 2013/14. With the same appearance count, Ronaldo leads both the total and the per-appearance rate: 1.545 against 1.273." },
       { heading: "Why the 11-match setting matters", text: "The calculator starts at 11 appearances, reproducing the actual 14 and 17 totals. Move the slider to see how the same rates scale. Changing the number of appearances cannot change which rate is higher; it changes only the size of the calculated gap." },

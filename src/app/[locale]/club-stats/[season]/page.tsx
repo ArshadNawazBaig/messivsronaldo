@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { SummaryTable } from "@/components/archive-summary";
+import { ScoringAnalysis } from "@/components/scoring-analysis";
 import { ClubSeasonNavigation } from "@/components/club-season-navigation";
 import Link from "@/components/localized-link";
 import { PageContext } from "@/components/page-context";
@@ -61,6 +62,7 @@ export default async function ClubSeasonPage({ params }: Props) {
         </div>
       </header>
       <SummaryTable title={`${season.label} · ${t("All club competitions")}`} rows={clubSeasonRows(season)} variant="panel" />
+      <ScoringAnalysis goals={season.stats.goals} appearances={season.stats.appearances} minutes={season.stats.minutes} context={`${season.label} · ${t("All club competitions")}`} />
       <div className={styles.seasonNotes}>
         <div className={styles.sourceLine}>
           <span>{t("Source")}: <a href={season.source}>{t("{0} club-season source", { 0: season.label })}</a></span>

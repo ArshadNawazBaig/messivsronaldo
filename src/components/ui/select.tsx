@@ -11,6 +11,8 @@ export interface SelectOption {
 }
 interface SelectProps {
     id?: string;
+    name?: string;
+    disabled?: boolean;
     label: string;
     menuLabel?: string;
     value: string;
@@ -20,7 +22,7 @@ interface SelectProps {
     className?: string;
     portalContainer?: HTMLElement | null;
 }
-export function Select({ id, label, menuLabel, value, onValueChange, options, icon: Icon, className = "", portalContainer }: SelectProps) {
+export function Select({ id, name, disabled, label, menuLabel, value, onValueChange, options, icon: Icon, className = "", portalContainer }: SelectProps) {
     const { t, locale } = useI18n();
     // Make the surrounding page inert while Radix traps focus in the open menu.
     // The returned ref cleanup restores existing inert states before focus returns.
@@ -47,7 +49,7 @@ export function Select({ id, label, menuLabel, value, onValueChange, options, ic
         };
     }, []);
     const selected = options.find(option => option.value === value);
-    return <SelectPrimitive.Root dir={locale === "ar" ? "rtl" : "ltr"} value={value} onValueChange={onValueChange}>
+    return <SelectPrimitive.Root dir={locale === "ar" ? "rtl" : "ltr"} name={name} disabled={disabled} value={value} onValueChange={onValueChange}>
     <SelectPrimitive.Trigger id={id} className={`select-trigger ${className}`} aria-label={t(label)}>
       {Icon && <Icon size={16} className="select-leading-icon" aria-hidden="true"/>}
       <span className="select-value"><SelectPrimitive.Value>{t(selected?.label)}</SelectPrimitive.Value></span>

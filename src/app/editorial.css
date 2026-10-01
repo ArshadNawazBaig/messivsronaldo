@@ -685,8 +685,8 @@ html {
 .player-card.ronaldo,
 .profile-page.ronaldo,
 .header-player-photo.ronaldo {
-  --portrait-height: 248%;
-  --portrait-top: -10%;
+  --portrait-height: 145%;
+  --portrait-top: -3%;
 }
 .profile-page.messi {
   --player-ink: #142c39;
@@ -2385,3 +2385,12 @@ html:not([lang='en']) .player-epithet {
     font-size: 22px;
   }
 }
+
+/* The photo credit is visible on every public page, independent of its language. */
+.photo-attribution { font-size: 12px; line-height: 1.8; color: var(--muted); }
+.photo-attribution a { text-decoration: underline; text-underline-offset: 3px; }
+.site-footer .photo-attribution { flex-basis: 100%; margin: 0; }
+.photo-credit { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 24px; padding-block: 26px; border-bottom: 1px solid var(--border); scroll-margin-top: 150px; }
+.photo-credit img { width: 150px; height: auto; border-radius: 6px; }
+.photo-credit h2 { margin-top: 0; }
+@media (max-width: 540px) { .photo-credit { grid-template-columns: 1fr; gap: 18px; } }

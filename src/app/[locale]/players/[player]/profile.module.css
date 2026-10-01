@@ -9,7 +9,7 @@
   --portrait-height: 145%;
   --portrait-top: -3%;
 }
-.page[data-player='ronaldo'] { --portrait-height: 248%; --portrait-top: -10%; }
+.page[data-player='ronaldo'] { --portrait-height: 145%; --portrait-top: -3%; }
 :global(:root[data-theme='light']) .page {
   --profile-tint: var(--art-light-tint);
   --profile-center: var(--art-light-center);

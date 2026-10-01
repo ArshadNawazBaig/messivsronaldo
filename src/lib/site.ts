@@ -9,7 +9,7 @@ export const siteName = "The Rivalry";
 export const { siteUrl, indexable } = siteConfiguration(process.env);
 export const publisherOrganization = {
   "@type": "Organization", "@id": `${siteUrl}/#publisher`, name: siteName,
-  url: siteUrl, logo: `${siteUrl}/icon.svg`, sameAs: socialProfiles.map(profile => profile.url),
+  url: siteUrl, contactPoint: { "@type": "ContactPoint", contactType: "Customer support", url: `${siteUrl}/contact` }, publishingPrinciples: `${siteUrl}/about#editorial-responsibility`, correctionsPolicy: `${siteUrl}/methodology`, logo: `${siteUrl}/icon.svg`, sameAs: socialProfiles.map(profile => profile.url),
 } as const;
 export async function pageMetadata(title: string, description: string, path: string): Promise<Metadata> {
   const { locale, t } = await getI18n();

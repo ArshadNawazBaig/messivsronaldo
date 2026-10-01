@@ -1,16 +1,18 @@
 /* eslint-disable @next/next/no-img-element -- Local images embedded into a server-rendered PNG. */
+import { loadPlayerPortrait } from "./player-portrait-assets";
+import { renderPhotoCredit } from "./photo-credit-renderer";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import { imageFormats } from "./stat-image";
-import { playerArtworkColors, transparentPlayerPortraits } from "./player-artwork";
+import { playerArtworkColors, playerPortraits } from "./player-artwork";
 import type { PlayerPoster, PlayerPosterRequest } from "./player-poster";
 import { renderStatImageBrand } from "./stat-image-brand";
 
 function loadAssets() {
   return Promise.all([
-    readFile(join(process.cwd(), `public${transparentPlayerPortraits.messi.src}`)),
-    readFile(join(process.cwd(), `public${transparentPlayerPortraits.ronaldo.src}`)),
+    loadPlayerPortrait("messi"),
+    loadPlayerPortrait("ronaldo"),
     readFile(join(process.cwd(), "public/images/flags/ar.svg")),
     readFile(join(process.cwd(), "public/images/flags/pt.svg")),
     readFile(join(process.cwd(), "public/images/brand/the-rivalry-mark.svg")),
@@ -37,13 +39,12 @@ export async function renderPlayerPoster(request: PlayerPosterRequest, poster: P
   const statsTop = height - 338;
   const portraitTop = format === "square" ? 220 : story ? 445 : 265;
   const portraitHeight = (statsTop + 100 - portraitTop) * 1.12;
-  // Ronaldo's source includes his arms and torso. Frame its head and shoulders
-  // to match Messi's close-up, with aligned head tops and comparable face sizes.
-  const photoScale = isMessi ? portraitHeight / 594 : (portraitHeight / 330) * 0.9;
-  const photoHeight = transparentPlayerPortraits[player].height * photoScale;
-  const photoWidth = transparentPlayerPortraits[player].width * photoScale;
-  const photoLeft = 652 - (isMessi ? 192 : 199) * photoScale;
-  const photoTop = portraitTop - (isMessi ? 0 : 19) * photoScale;
+  // Both approved crops use the same portrait framing and preserve their ratio.
+  const portrait = playerPortraits[player];
+  const photoHeight = portraitHeight;
+  const photoWidth = portraitHeight * portrait.width / portrait.height;
+  const photoLeft = 652 - photoWidth / 2;
+  const photoTop = portraitTop;
   const flagTop = story ? 264 : 190;
   const nameTop = flagTop + (story ? 245 : 168);
   const date = new Date(`${poster.date}T12:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
@@ -101,10 +102,11 @@ export async function renderPlayerPoster(request: PlayerPosterRequest, poster: P
         </div>)}
       </div>
       <div style={{ display: "flex", position: "absolute", left: 56, right: 56, bottom: 108, height: 76, alignItems: "center", color: colors.muted, fontSize: 18, lineHeight: 1.4 }}>{poster.coverage}</div>
-      <div style={{ display: "flex", position: "absolute", bottom: 43, left: 56, right: 56, justifyContent: "space-between", borderTop: `1px solid ${colors.border}`, paddingTop: 21 }}>
+      <div style={{ display: "flex", position: "absolute", bottom: 65, left: 56, right: 56, justifyContent: "space-between", borderTop: `1px solid ${colors.border}`, paddingTop: 21 }}>
         <span style={{ fontWeight: 800, fontSize: 20 }}>messivsronaldo17.com</span>
         <span style={{ color: colors.muted, fontSize: 17 }}>AS OF {date.toUpperCase()}</span>
       </div>
+      {renderPhotoCredit(colors.muted, { player })}
     </div>,
     { width, height, fonts: [
       { name: "Inter", data: regular, weight: 400 },

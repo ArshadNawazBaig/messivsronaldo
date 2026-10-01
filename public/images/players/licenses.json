@@ -1,0 +1,56 @@
+{
+  "verifiedOn": "2026-10-01",
+  "credit": "Bryan Berlin / WikiPortraits",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "creditsUrl": "https://messivsronaldo17.com/credits",
+  "siteChanges": "Original JPEG files are unchanged. Background removed by The Rivalry using local foreground masks. Full-resolution cutout masters retain original visible RGB pixels; web copies are resized and encoded as lossless WebP. Website and export presentation may resize, compress, crop, mask edges, and overlay text. Photo adaptations and generated artwork incorporating these photos are licensed under CC BY-SA 4.0.",
+  "photos": {
+    "messi": {
+      "width": 2059,
+      "height": 3088,
+      "sha256": "fb47f4ad4984ce6662681d141b4e38208fe662f0f1cf51cee42062da35d26c76",
+      "name": "Lionel Messi",
+      "alt": "Lionel Messi facing the camera in Argentina’s blue-and-white shirt",
+      "source": "https://commons.wikimedia.org/wiki/File:Lionel_Messi_Argentina_v_Egypt_7_July_2026-112(cropped).jpg",
+      "original": "https://commons.wikimedia.org/wiki/File:Lionel_Messi_Argentina_v_Egypt_7_July_2026-112.jpg",
+      "download": "https://upload.wikimedia.org/wikipedia/commons/archive/b/b2/20260831172355%21Lionel_Messi_Argentina_v_Egypt_7_July_2026-112%28cropped%29.jpg",
+      "date": "7 July 2026",
+      "description": "Argentina v Egypt at the 2026 FIFA World Cup.",
+      "cropCredit": "THIAGOW13",
+      "sourceChanges": "Cropped by THIAGOW13. We use the original 2,059 × 3,088 crop uploaded on 13 July 2026, before the later upscaled revision.",
+      "src": "/images/players/messi-world-cup-2026.jpg",
+      "cutout": {
+        "src": "/images/players/messi-world-cup-2026-cutout.webp",
+        "width": 1200,
+        "height": 1800,
+        "sha256": "0cf309a741838901c4b0730ce364b8c1568bf4a8f424e39ba0f8436879d0aad6",
+        "modifications": "Background removed by The Rivalry using a local macOS Vision foreground mask on the original photograph. Resized for web and encoded as lossless WebP.",
+        "license": "CC BY-SA 4.0"
+      }
+    },
+    "ronaldo": {
+      "width": 2812,
+      "height": 4215,
+      "sha256": "928a18c8d0655fbbd60c9fabc20fe94da0fae494128ae0f648369f61c1c9c19a",
+      "name": "Cristiano Ronaldo",
+      "alt": "Cristiano Ronaldo facing the camera in Portugal’s white-and-teal away shirt",
+      "source": "https://commons.wikimedia.org/wiki/File:Cristiano_Ronaldo_Croatia_v_Portugal_2_July_2026-075_(cropped).jpg",
+      "original": "https://commons.wikimedia.org/wiki/File:Cristiano_Ronaldo_Croatia_v_Portugal_2_July_2026-075.jpg",
+      "download": "https://upload.wikimedia.org/wikipedia/commons/2/26/Cristiano_Ronaldo_Croatia_v_Portugal_2_July_2026-075_%28cropped%29.jpg",
+      "date": "2 July 2026",
+      "description": "Croatia v Portugal at the 2026 FIFA World Cup.",
+      "cropCredit": "Bryan Berlin",
+      "sourceChanges": "Cropped and rotated −0.3° by Bryan Berlin (Berlination), uploaded on 13 July 2026.",
+      "src": "/images/players/ronaldo-world-cup-2026.jpg",
+      "cutout": {
+        "src": "/images/players/ronaldo-world-cup-2026-cutout.webp",
+        "width": 1201,
+        "height": 1800,
+        "sha256": "bd3d9da59d3a3fbac10b880e4bb0aea0418c2a4a50cd40ff7da801ac0f3b5859",
+        "modifications": "Background removed by The Rivalry using a local macOS Vision foreground mask on the original photograph. Resized for web and encoded as lossless WebP.",
+        "license": "CC BY-SA 4.0"
+      }
+    }
+  }
+}

@@ -1,8 +1,10 @@
 /* eslint-disable @next/next/no-img-element -- ImageResponse renders local assets with Satori, not next/image. */
+import { loadPlayerPortrait } from "./player-portrait-assets";
+import { renderPhotoCredit } from "./photo-credit-renderer";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
-import { playerArtworkColors, transparentPlayerPortraits } from "./player-artwork";
+import { playerArtworkColors, playerPortraits } from "./player-artwork";
 import { renderStatImageBrand, statImagePlayerNameStyle } from "./stat-image-brand";
 import {
   imageFormats,
@@ -13,18 +15,8 @@ import {
 
 function loadAssets() {
   return Promise.all([
-    readFile(
-      join(
-        process.cwd(),
-        `public${transparentPlayerPortraits.messi.src}`,
-      ),
-    ),
-    readFile(
-      join(
-        process.cwd(),
-        `public${transparentPlayerPortraits.ronaldo.src}`,
-      ),
-    ),
+    loadPlayerPortrait("messi"),
+    loadPlayerPortrait("ronaldo"),
     readFile(join(process.cwd(), "public/images/brand/the-rivalry-mark.svg")),
     readFile(join(process.cwd(), "public/fonts/og/inter-latin-400.woff")),
     readFile(join(process.cwd(), "public/fonts/og/inter-latin-800.woff")),
@@ -47,16 +39,16 @@ function portraitLayer(
   const half = 1080 / shown.length;
   const pictures = shown
     .map((player, index) => {
-      const h = imageHeight * (player === "messi" ? 1.45 : 2.48);
-      const w = (h * (player === "messi" ? 384 : 396)) / 594;
+      const h = imageHeight * 1.45;
+      const w = (h * playerPortraits[player].width) / playerPortraits[player].height;
       const left = index * half;
-      return `<g clip-path="url(#crop${index})"><image href="${dataUri(player === "messi" ? messi : ronaldo)}" x="${left + (half - w) / 2}" y="${-imageHeight * (player === "messi" ? 0.03 : 0.1)}" width="${w}" height="${h}" mask="url(#sides${index})"/></g>`;
+      return `<g clip-path="url(#crop${index})"><image href="${dataUri(player === "messi" ? messi : ronaldo)}" x="${left + (half - w) / 2}" y="${-imageHeight * 0.03}" width="${w}" height="${h}" mask="url(#sides${index})"/></g>`;
     })
     .join("");
   const defs = shown
     .map((player, index) => {
       const imageWidth =
-        (imageHeight * (player === "messi" ? 1.45 * 384 : 2.48 * 396)) / 594;
+        (imageHeight * 1.45 * playerPortraits[player].width) / playerPortraits[player].height;
       const maskWidth = Math.min(half, imageWidth);
       const maskLeft = index * half + (half - maskWidth) / 2;
       return `<clipPath id="crop${index}"><rect x="${index * half}" width="${half}" height="${height}"/></clipPath><mask id="sides${index}" maskUnits="userSpaceOnUse" x="${index * half}" y="0" width="${half}" height="${height}"><rect x="${maskLeft}" width="${maskWidth}" height="${height}" fill="url(#horizontal)"/></mask>`;
@@ -100,7 +92,7 @@ export async function renderStatImage({
     .filter(Boolean)
     .join(" ");
   const noteHeight = note ? Math.ceil(note.length / 87) * 25 + 10 : 0;
-  const footerBottom = story ? 155 : 34;
+  const footerBottom = story ? 155 : 65;
   const playerStats = shown.map((player) => {
     const value = imageValue(stat, player);
     // Smaller square-format values leave more room for the portraits above them.
@@ -403,6 +395,7 @@ export async function renderStatImage({
           AS OF {dateLabel}
         </span>
       </div>
+      {renderPhotoCredit(colors.muted, { player: players === "both" ? undefined : players, bottom: story ? 103 : 12 })}
     </div>,
     {
       width,

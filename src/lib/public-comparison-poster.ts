@@ -30,7 +30,7 @@ export function publicPosterQuery(request: ComparisonPosterRequest) {
 }
 
 // Bump when artwork/layout changes independently of the published dataset.
-export const publicPosterRenderVersion = "2";
+export const publicPosterRenderVersion = "4";
 export function publicPosterImagePath(request: ComparisonPosterRequest, datasetVersion: string) {
   const selection = [request.scope, request.format, request.theme, request.showBars === false ? "0" : "1", ...(request.metrics ?? [])].join("~");
   return `/api/comparison-poster/${encodeURIComponent(`${publicPosterRenderVersion}-${datasetVersion}`)}/${selection}`;

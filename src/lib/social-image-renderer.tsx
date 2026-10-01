@@ -1,10 +1,12 @@
 /* eslint-disable @next/next/no-img-element -- ImageResponse uses embedded assets, not next/image. */
+import { loadPlayerPortrait } from "./player-portrait-assets";
+import { renderPhotoCredit } from "./photo-credit-renderer";
 import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import {
   playerArtworkColors,
-  transparentPlayerPortraits,
+  playerPortraits,
 } from "./player-artwork";
 
 type Player = "messi" | "ronaldo";
@@ -21,10 +23,10 @@ function portraits(images: Record<"messi" | "ronaldo", Buffer>) {
     imageHeight = 450;
   const pictures = (["messi", "ronaldo"] as const)
     .map((player, index) => {
-      const h = imageHeight * (player === "messi" ? 1.45 : 2.48),
-        w = (h * transparentPlayerPortraits[player].width) / 594;
+      const h = imageHeight * 1.45,
+        w = (h * playerPortraits[player].width) / playerPortraits[player].height;
       const center = index === 0 ? 180 : 1020;
-      return `<g clip-path="url(#clip${index})"><image href="${uri(images[player])}" x="${center - w / 2}" y="${-imageHeight * (player === "messi" ? 0.03 : 0.1)}" width="${w}" height="${h}" mask="url(#side${index})"/></g>`;
+      return `<g clip-path="url(#clip${index})"><image href="${uri(images[player])}" x="${center - w / 2}" y="${-imageHeight * 0.03}" width="${w}" height="${h}" mask="url(#side${index})"/></g>`;
     })
     .join("");
   const masks = [0, 810]
@@ -42,12 +44,8 @@ function portraits(images: Record<"messi" | "ronaldo", Buffer>) {
 }
 function loadAssets() {
   return Promise.all([
-    readFile(
-      join(process.cwd(), `public${transparentPlayerPortraits.messi.src}`),
-    ),
-    readFile(
-      join(process.cwd(), `public${transparentPlayerPortraits.ronaldo.src}`),
-    ),
+    loadPlayerPortrait("messi"),
+    loadPlayerPortrait("ronaldo"),
     readFile(join(process.cwd(), "public/images/brand/the-rivalry-mark.svg")),
     readFile(join(process.cwd(), "public/fonts/og/inter-latin-400.woff")),
     readFile(join(process.cwd(), "public/fonts/og/inter-latin-800.woff")),
@@ -301,7 +299,7 @@ export async function renderSocialImage(
           style={{
             display: "flex",
             position: "absolute",
-            top: 535,
+            top: 516,
             left: index === 0 ? 42 : 842,
             width: 316,
             justifyContent: "center",
@@ -317,7 +315,7 @@ export async function renderSocialImage(
         style={{
           display: "flex",
           position: "absolute",
-          bottom: 23,
+          bottom: 48,
           left: 46,
           right: 46,
           borderTop: `1px solid ${c.border}`,
@@ -334,6 +332,7 @@ export async function renderSocialImage(
         </span>
         <span style={{ fontSize: 12, color: c.muted }}>AS OF {date}</span>
       </div>
+      {renderPhotoCredit(c.muted, { compact: true, bottom: 6 })}
     </div>,
     {
       width,

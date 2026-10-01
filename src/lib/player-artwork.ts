@@ -1,3 +1,5 @@
+import photoLicenses from "../../public/images/players/licenses.json";
+
 // Shared by comparison cards, profiles, admin exports, and Open Graph artwork.
 export const playerArtworkColors = {
   light: {
@@ -37,12 +39,13 @@ export const playerArtworkColors = {
   },
 } as const;
 
-export const transparentPlayerPortraits = {
-  messi: { src: "/images/transparent-argentina-portraits-fifa-world-cup-2026-removebg-preview.png", width: 384, height: 594 },
-  ronaldo: { src: "/images/transparent-portugal-portraits-fifa-world-cup-2026-removebg-preview.png", width: 396, height: 594 },
-} as const;
+export const playerPortraits = {
+  messi: { ...photoLicenses.photos.messi, ...photoLicenses.photos.messi.cutout },
+  ronaldo: { ...photoLicenses.photos.ronaldo, ...photoLicenses.photos.ronaldo.cutout },
+};
+export const playerPhotoLicense = photoLicenses;
 
-export function playerArtworkStyle(player: keyof typeof transparentPlayerPortraits) {
+export function playerArtworkStyle(player: keyof typeof playerPortraits) {
   return Object.fromEntries((["dark", "light"] as const).flatMap(theme => {
     const palette = playerArtworkColors[theme];
     const colors = {

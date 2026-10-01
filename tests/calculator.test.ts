@@ -5,6 +5,7 @@ import { test } from "node:test";
 import { buildPublishedData } from "../src/lib/published-data";
 import { calculatorRecords, calculatorPresets, calculatorHash, normalizeCalculator, parseCalculator, scoringProjection } from "../src/lib/calculator";
 import { interactiveGuides } from "../src/lib/interactive-guides";
+import { getArticle } from "../src/lib/articles";
 import { getPublicPages } from "../src/lib/public-pages";
 import { locales } from "../src/lib/i18n/config";
 
@@ -44,11 +45,13 @@ test("all interactive guides have complete translations, real presets and dated 
   const pages = getPublicPages(data.calendarYears, data.snapshotDate);
   assert.ok(pages.some(page => page.path === "/scoring-calculator"));
   for (const guide of interactiveGuides) {
-    assert.ok(Object.hasOwn(calculatorPresets, guide.preset));
-    assert.equal(pages.find(page => page.path === `/insights/${guide.slug}`)?.updated, [discoveryUpdated, guide.updated!].sort().at(-1));
+    const article = getArticle(guide.slug)!;
+    assert.equal(article.preset, guide.preset);
+    assert.ok(Object.hasOwn(calculatorPresets, article.preset!));
+    assert.equal(pages.find(page => page.path === `/insights/${article.slug}`)?.updated, [discoveryUpdated, article.updated!].sort().at(-1));
     for (const locale of locales) {
-      const messages = JSON.parse(readFileSync(`src/lib/i18n/messages/${locale}.json`, "utf8"));
-      for (const key of [guide.title, guide.description, guide.category, ...guide.sections.flatMap(section => [section.heading, section.text])]) {
+      const messages = { ...JSON.parse(readFileSync(`src/lib/i18n/messages/${locale}.json`, "utf8")), ...JSON.parse(readFileSync(`src/lib/i18n/article-messages/${locale}.json`, "utf8")) };
+      for (const key of [article.title, article.description, article.category, ...article.sections.flatMap(section => [section.heading, section.text])]) {
         assert.ok(messages[key], `${locale}: missing ${key}`);
         if (locale !== "en") assert.notEqual(messages[key], key, `${locale}: untranslated ${key}`);
       }

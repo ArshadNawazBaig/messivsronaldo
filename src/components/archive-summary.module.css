@@ -69,6 +69,9 @@
 .clubSummary a { color: var(--accent); text-underline-offset: 3px; }
 .sourceLine a { text-decoration: underline; }
 .seasonNotes p { margin: 8px 0 0; }
+.analysis { margin: 20px clamp(18px, 4vw, 32px); padding: 20px; background: var(--panel-raised); border-inline-start: 3px solid var(--accent); }
+.analysis h3 { margin: 0 0 10px; font-size: 20px; line-height: 1.35; }
+.analysis p { margin: 8px 0 0; color: var(--muted); font-size: 13px; line-height: 1.8; }
 .seasonNotes details { margin-top: 12px; }
 .seasonNotes summary { width: fit-content; cursor: pointer; color: var(--text); font-weight: 600; }
 .seasonNotes summary:hover { color: var(--accent); }

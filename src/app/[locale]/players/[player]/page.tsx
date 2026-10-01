@@ -11,7 +11,7 @@ import { players, type PlayerId, type ScopeId } from "@/lib/data";
 import { awardComparisons, awardsReviewed } from "@/lib/awards";
 import { localizedPath } from "@/lib/i18n/config";
 import { getI18n } from "@/lib/i18n/server";
-import { playerArtworkStyle, transparentPlayerPortraits } from "@/lib/player-artwork";
+import { playerArtworkStyle, playerPortraits } from "@/lib/player-artwork";
 import { getPublishedData } from "@/lib/server-data";
 import { jsonLd, pageMetadata, siteUrl } from "@/lib/site";
 import styles from "./profile.module.css";
@@ -43,7 +43,7 @@ export default async function PlayerPage({ params }: { params: Promise<{ player:
   if (player !== "messi" && player !== "ronaldo") notFound();
   const p = players[player];
   const other = players[player === "messi" ? "ronaldo" : "messi"];
-  const portrait = transparentPlayerPortraits[player];
+  const portrait = playerPortraits[player];
   const format = (value: number, decimals = 0) => value.toLocaleString(numberLocale, { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
   const headlineMetrics = scopes.career.metrics.filter(metric => ["goals", "assists", "appearances", "minutes"].includes(metric.id));
   const rateMetrics = scopes.career.metrics.filter(metric => ["goals-per-game", "goals-per-90", "minutes-per-goal"].includes(metric.id));
@@ -65,7 +65,7 @@ export default async function PlayerPage({ params }: { params: Promise<{ player:
     <header className={styles.hero}>
       <div className={styles.nationality}><span className={`country-flag ${player}`} aria-hidden="true" />{t("{0} · PLAYER PROFILE", { "0": t(p.countryCode) })}</div>
       <span className={styles.shirtNumber} aria-hidden="true">#{p.number}</span>
-      <div className={styles.portrait}><Image src={portrait.src} alt={t(p.imageAlt)} width={portrait.width} height={portrait.height} priority quality={85} sizes={player === "messi" ? "(max-width: 720px) 260px, 440px" : "(max-width: 720px) 450px, 760px"} /></div>
+      <div className={styles.portrait}><Image src={portrait.src} alt={t(p.imageAlt)} width={portrait.width} height={portrait.height} priority quality={85} sizes="(max-width: 720px) 260px, 440px" /></div>
       <div className={styles.heroCopy}>
         <p className={styles.epithet}>{t(player === "messi" ? "The playmaker" : "The goal machine")}</p>
         <h1 className={styles.name}><span>{t(player === "messi" ? "Lionel" : "Cristiano")} </span>{t(p.short)}<span className={styles.period} aria-hidden="true">.</span></h1>

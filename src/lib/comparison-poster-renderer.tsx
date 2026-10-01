@@ -1,16 +1,18 @@
 /* eslint-disable @next/next/no-img-element -- Embedded local artwork for ImageResponse. */
+import { loadPlayerPortrait } from "./player-portrait-assets";
+import { renderPhotoCredit } from "./photo-credit-renderer";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
-import { playerArtworkColors, transparentPlayerPortraits } from "./player-artwork";
+import { playerArtworkColors, playerPortraits } from "./player-artwork";
 import { imageFormats } from "./stat-image";
 import { renderStatImageBrand } from "./stat-image-brand";
 import { comparisonBarShare, comparisonBrandHeaderHeight, comparisonLayouts, comparisonRows, comparisonRowValue, type ComparisonPoster, type ComparisonPosterRequest } from "./comparison-poster";
 
 function loadAssets() {
   return Promise.all([
-    readFile(join(process.cwd(), `public${transparentPlayerPortraits.messi.src}`)),
-    readFile(join(process.cwd(), `public${transparentPlayerPortraits.ronaldo.src}`)),
+    loadPlayerPortrait("messi"),
+    loadPlayerPortrait("ronaldo"),
     readFile(join(process.cwd(), "public/images/flags/ar.svg")),
     readFile(join(process.cwd(), "public/images/flags/pt.svg")),
     readFile(join(process.cwd(), "public/images/brand/the-rivalry-mark.svg")),
@@ -23,11 +25,6 @@ let assets: ReturnType<typeof loadAssets> | undefined;
 const uri = (buffer: Buffer, type = "image/svg+xml") => `data:${type};base64,${buffer.toString("base64")}`;
 const players = ["messi", "ronaldo"] as const;
 const frame = { left: 56, width: 968 };
-// Match the head-and-chest crop; Ronaldo's original also includes his arms.
-const portraitCrops = {
-  messi: { top: 38, bottom: 594, center: 192 },
-  ronaldo: { top: 40, bottom: 384, center: 199 },
-} as const;
 
 export async function renderComparisonPoster(request: ComparisonPosterRequest, poster: ComparisonPoster) {
   const [messi, ronaldo, argentina, portugal, mark, regular, bold, condensed] = await (assets ??= loadAssets().catch(error => {
@@ -52,8 +49,8 @@ export async function renderComparisonPoster(request: ComparisonPosterRequest, p
   const photoHeight = layout.tableHeaderTop - layout.photoTop;
   const portraitBottom = tableBottom + 12;
   const halfWidth = width / 2;
-  const portraitWidth = transparentPlayerPortraits.messi.width * layout.photoScale;
-  const portraitHeight = (portraitCrops.messi.bottom - portraitCrops.messi.top) * layout.photoScale;
+  const portraitWidth = 384 * layout.photoScale;
+  const portraitHeight = 576 * layout.photoScale;
   // Every row uses the same size, including long counts and decimal rates.
   const valueFontSize = Math.min(
     layout.valueSize,
@@ -61,12 +58,11 @@ export async function renderComparisonPoster(request: ComparisonPosterRequest, p
     pillHeight / 1.15,
   );
   const pictures = players.map((player, index) => {
-    const crop = portraitCrops[player];
-    const scale = portraitHeight / (crop.bottom - crop.top);
-    const portrait = transparentPlayerPortraits[player];
+    const portrait = playerPortraits[player];
     const center = halfWidth * (index + .5);
-    const x = center - crop.center * scale;
-    const y = layout.headTop - crop.top * scale;
+    const photoWidth = portraitHeight * portrait.width / portrait.height;
+    const x = center - photoWidth / 2;
+    const y = layout.headTop;
     const bottom = Math.min(portraitBottom, layout.headTop + portraitHeight);
     const left = Math.max(index * halfWidth, center - portraitWidth / 2);
     const right = Math.min((index + 1) * halfWidth, center + portraitWidth / 2);
@@ -79,7 +75,7 @@ export async function renderComparisonPoster(request: ComparisonPosterRequest, p
       </linearGradient>
       <mask id="portrait-mask-${index}" maskUnits="userSpaceOnUse" x="0" y="0" width="1080" height="${height}"><rect width="1080" height="${height}" fill="url(#portrait-fade-${index})"/></mask>
       <mask id="portrait-side-mask-${index}" maskUnits="userSpaceOnUse" x="0" y="0" width="1080" height="${height}"><rect width="1080" height="${height}" fill="url(#portrait-edges-${index})"/></mask>
-    </defs><g clip-path="url(#half${index})" mask="url(#portrait-mask-${index})"><image x="${x}" y="${y}" width="${portrait.width * scale}" height="${portrait.height * scale}" href="${uri(player === "messi" ? messi : ronaldo, "image/png")}" mask="url(#portrait-side-mask-${index})"/></g>`;
+    </defs><g clip-path="url(#half${index})" mask="url(#portrait-mask-${index})"><image x="${x}" y="${y}" width="${photoWidth}" height="${portraitHeight}" href="${uri(player === "messi" ? messi : ronaldo, "image/png")}" mask="url(#portrait-side-mask-${index})"/></g>`;
   }).join("");
   const artwork = uri(Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="${height}"><defs>
     <clipPath id="half0"><rect x="0" y="${layout.photoTop}" width="${halfWidth}" height="${portraitBottom - layout.photoTop}"/></clipPath>
@@ -148,7 +144,7 @@ export async function renderComparisonPoster(request: ComparisonPosterRequest, p
       <div style={{ display: "flex", position: "absolute", top: tableBottom + 14, left: frame.left, width: frame.width, fontSize: story ? 16 : 13, lineHeight: 1.4, color: colors.muted }}>
         {poster.notes.join(" ")}
       </div>
-      <span style={{ display: "flex", position: "absolute", bottom: 14, right: 80, fontWeight: 800, fontSize: story ? 18 : 15, lineHeight: 1.2 }}>messivsronaldo17.com</span>
+      {renderPhotoCredit(colors.muted)}
     </div>,
     { width, height, fonts: [
       { name: "Inter", data: regular, weight: 400 },

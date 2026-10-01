@@ -6,6 +6,7 @@ import { locales, localizedPath, languageAlternates, stripLocale } from "../src/
 import { createTranslator, type Messages } from "../src/lib/i18n/translate";
 import { proxy } from "../src/proxy";
 import { browserLocale, preferredLocale, languageCookie } from "../src/lib/i18n/detection";
+import { policies } from "../src/lib/policies";
 
 test("browser language matching handles regions, weights, exclusions and invalid headers", () => {
   for (const [header, expected] of [
@@ -119,6 +120,16 @@ test("every language has complete messages and preserves live-statistic placehol
     assert.equal(t("Lionel Messi"), "Lionel Messi");
     assert.ok(t("All years · {0}", { "0": "2002–2026" }).includes("2002–2026"));
     if (locale !== "en") assert.notEqual(t("Goals"), "Goals");
+    // Catalog parity alone misses source text that was never entered in any catalog.
+    for (const policy of Object.values(policies)) {
+      for (const paragraph of policy.sections.flatMap(section => section.paragraphs)) {
+        assert.ok(messages[paragraph], `${locale}: policy paragraph missing from catalog: ${paragraph}`);
+        if (locale !== "en") assert.notEqual(t(paragraph), paragraph, `${locale}: untranslated policy paragraph`);
+        for (const identifier of paragraph.match(/rivalry-[a-z-]+/g) ?? []) {
+          assert.ok(t(paragraph).includes(identifier), `${locale}: translated storage identifier ${identifier}`);
+        }
+      }
+    }
   }
 });
 

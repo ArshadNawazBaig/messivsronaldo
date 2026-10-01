@@ -7,6 +7,7 @@ import { randomUUID } from "node:crypto";
 import { mediaIsPublic, mergePublished, readMedia, readPosts, saveMedia, writePost } from "../src/lib/blog/store";
 import { checkPublicBlogReads } from "./helpers/blog-public";
 import { initializePostgresSchema } from "../scripts/lib/postgres-schema";
+import { submitSupport, listSupport, changeSupport } from "../src/lib/support/store";
 
 // This suite only runs against an explicitly provided, isolated test database.
 test("Postgres persists publications, serializes competing writers, and protects admin state", { skip: !process.env.TEST_DATABASE_URL }, async () => {
@@ -85,6 +86,16 @@ test("Postgres persists publications, serializes competing writers, and protects
     post = await writePost({ ...command, action: "restore", revision: post.revision });
     assert.equal(post.deleted, false); assert.equal(post.published, null);
     await checkPublicBlogReads();
+    const issue = { category: "privacy", details: "Synthetic support report for database verification." };
+    const supportId = await submitSupport(issue, "postgres-reader");
+    await db.closeDatabase();
+    assert.equal((await listSupport()).tickets[0].id, supportId);
+    const supportWrites = await Promise.allSettled(["reviewing", "resolved"].map(status => changeSupport({ action: "update", id: supportId, revision: 0, status, notes: "Synthetic private note" })));
+    assert.equal(supportWrites.filter(result => result.status === "fulfilled").length, 1);
+    await changeSupport({ action: "delete", id: supportId, revision: 1 });
+    assert.equal((await listSupport()).tickets.length, 0);
+    const reports = await Promise.allSettled(Array.from({ length: 7 }, () => submitSupport(issue, "postgres-concurrent-reader")));
+    assert.equal(reports.filter(result => result.status === "fulfilled").length, 5);
     // The old connection was closed; all assertions above use fresh connections after restarts.
     assert.ok(pg);
   } finally {

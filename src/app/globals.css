@@ -2097,7 +2097,8 @@ dialog::backdrop {
   gap: 20px;
   max-width: 780px;
 }
-.correction-form > label {
+.correction-form > label,
+.correction-form > .correction-field {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -2132,6 +2133,7 @@ dialog::backdrop {
   color: var(--accent);
 }
 .form-success p {
+  overflow-wrap: anywhere;
   color: var(--muted);
   font-size: 11px;
   line-height: 1.8;
@@ -3441,7 +3443,8 @@ dialog::backdrop {
   .correction-form {
     padding: 22px;
   }
-  .correction-form > label {
+  .correction-form > label,
+  .correction-form > .correction-field {
     font-size: 11px;
   }
   .correction-form input,
@@ -5128,6 +5131,8 @@ dialog::backdrop {
 }
 .data-update-note a {
   color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
 }
 .metric-coverage {
   display: block;
