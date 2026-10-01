@@ -1,0 +1,862 @@
+{
+  "title": "Messi Retirement: Argentina’s Farewell and the Football Still Ahead",
+  "description": "Messi has announced his Argentina retirement, while his Inter Miami contract runs through 2028. Explore the farewell, his tactical evolution and what comes next.",
+  "category": "RETIREMENT & LEGACY",
+  "summary": "As of 1 October 2026, Messi has announced international retirement, with an Argentina farewell against Benin scheduled for 6 October. His Inter Miami contract runs through the 2028 MLS season; that is not an announced date for retirement from all football. Argentina must redistribute his creative work, while Miami must build around the qualities he can still bring.",
+  "image": null,
+  "citations": [
+    {
+      "title": "AFA: Messi’s farewell letter, 31 August 2026",
+      "url": "https://www.afa.com.ar/es/posts/gracias-dios-por-hacerme-argentino-la-despedida-de-messi-en-sus-propias-palabras"
+    },
+    {
+      "title": "FIFA: Argentina farewell scheduled for 6 October 2026",
+      "url": "https://www.fifa.com/en/tournaments/mens/worldcup/articles/lionel-messi-argentina-farewell"
+    },
+    {
+      "title": "Inter Miami: official contract extension through 2028",
+      "url": "https://www.intermiamicf.com/news/inter-miami-cf-signs-leo-messi-to-contract-extension"
+    },
+    {
+      "title": "UEFA: Barcelona–Manchester United, 2011 final",
+      "url": "https://www.uefa.com/uefachampionsleague/news/0250-0c50f8161545-f1d22c5e52ca-1000--barcelona-crowned-as-messi-and-villa-see-off-united/"
+    },
+    {
+      "title": "UEFA: 2010/11 Champions League technical report",
+      "url": "https://www.uefa.com/multimediafiles/download/technicalreport/competitions/ucl/01/68/34/73/1683473_download.pdf"
+    },
+    {
+      "title": "UEFA: Barcelona–Roma tactical team sheet, November 2015",
+      "url": "https://www.uefa.com/newsfiles/UCL/2016/2015730_LU.pdf"
+    },
+    {
+      "title": "FIFA: Messi against Croatia, 2022 semi-final",
+      "url": "https://www.fifa.com/en/articles/messi-argentina-world-cup-semi-final-argentina-croatia-qatar-2022-gvardiol"
+    },
+    {
+      "title": "FIFA: Argentina–France, 2022 final",
+      "url": "https://www.fifa.com/en/tournaments/mens/worldcup/articles/argentina-france-2022-final-greatest-games"
+    },
+    {
+      "title": "FIFA: Scaloni on the 2022 final",
+      "url": "https://www.fifa.com/en/articles/lionel-scaloni-argentina-interview-world-cup-2022-final"
+    },
+    {
+      "title": "FIFA Training Centre: Qatar 2022 physical player case studies",
+      "url": "https://www.fifatrainingcentre.com/en/fwc2022/physical-analysis/using-case-studies-to-reveal-the-reasons-why-various-tactical-roles-exert-themselves-physically-during-world-cup-matches.php"
+    },
+    {
+      "title": "FIFA Training Centre: Argentina’s support structure for Messi, 2026",
+      "url": "https://www.fifatrainingcentre.com/en/fifa-world-cup-2026/how-argentina-create-the-conditions-for-messi-to-thrive.php"
+    }
+  ],
+  "body": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Argentina’s goodbye leaves another story unfinished"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Lionel Messi’s retirement has arrived in one dressing room. In another, there is still a shirt waiting for him. That distinction matters more than any dramatic photograph or farewell headline: Argentina must learn to play without its defining footballer, while Inter Miami still has a future to plan around his left foot."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "As of 1 October 2026, Messi has announced his retirement from international football. The Argentine Football Association published his farewell letter on 31 August; FIFA subsequently confirmed a farewell appearance against Benin at the Estadio Monumental scheduled for 6 October."
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "AFA: Messi’s farewell letter;",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://www.afa.com.ar/es/posts/gracias-dios-por-hacerme-argentino-la-despedida-de-messi-en-sus-propias-palabras"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "FIFA: the scheduled Argentina farewell.",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://www.fifa.com/en/tournaments/mens/worldcup/articles/lionel-messi-argentina-farewell"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "This is not an announcement that he has stopped playing professional football. Inter Miami’s official agreement runs through the end of the 2028 MLS season. A contract supplies a working horizon, not a guaranteed retirement date, and it would be misleading to present 2028 as a promise about his final appearance anywhere."
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "Inter Miami: contract extension through 2028.",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://www.intermiamicf.com/news/inter-miami-cf-signs-leo-messi-to-contract-extension"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "The distinction also opens a better football question. What actually leaves a team when Messi leaves it? Goals are part of the answer, but they arrive at the end of a process: a defender steps forward, another hesitates, a passing lane opens, and an attack that looked crowded suddenly has room to breathe."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "For years, teammates could look up from an awkward position and find a solution wearing the number ten. Sometimes he solved it with a dribble. Sometimes he moved barely a few yards, invited the wrong opponent towards him and played a pass that made everyone else look quicker."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Retirement removes that familiar escape route. Argentina will have to distribute the work across several players, while Miami must keep judging which parts of that work Messi can still perform most effectively. Both tasks demand clearer thinking than either sentimental loyalty or the impatient demand to turn every veteran into a substitute."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "The match evidence suggests that his longevity depended on changing the demands of the job while retaining the decisions that made him exceptional. Coaches could alter where he received, who ran beyond him and who covered a turnover. His exit now tests whether Argentina understood those relationships well enough to rebuild them, rather than simply trusting that the next difficult possession would eventually find his left foot."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "How Messi changed the position before age changed the player"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "A conventional winger begins with a recognisable argument: beat the full-back, reach the dangerous space and make the defence turn towards its own goal. Early Messi could make that argument brutally persuasive from the right. His left foot gave him a second route inside, where the winger’s duel could become a central defender’s emergency."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Pep Guardiola’s use of him as a false nine moved that uncertainty into the middle. A forward who retreats towards midfield asks a centre-back an uncomfortable question: follow and open space behind, or remain in position and allow an exceptional dribbler to receive facing the goal. The formation on the television graphic cannot resolve the dilemma."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "The supporting movement does. With wide forwards threatening the space beyond and midfielders available underneath, Messi could become the spare player between units that were each supposed to be responsible for somebody else. Barcelona made the distances short enough for combinations while preserving enough width to stop opponents simply gathering around him."
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "UEFA: the 2010/11 technical report.",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://www.uefa.com/multimediafiles/download/technicalreport/competitions/ucl/01/68/34/73/1683473_download.pdf"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "That arrangement also explains why copying the label rarely reproduces the football. Ask an ordinary forward to drop without sending anyone beyond him and the attack may simply retreat. Give Messi the same instruction with runners holding the last line and the retreat becomes an invitation to advance through the middle."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "The right wing became a starting address"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Under Luis Enrique, the presence of Luis Suárez as the central striker allowed Messi to begin from the right again, with Neymar offering a threat from the other side. UEFA’s team sheet against Roma in November 2015 records that attacking arrangement. Its significance was the division of labour: Messi could arrive inside without the centre-forward’s position being permanently abandoned."
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "UEFA: Barcelona’s November 2015 attacking arrangement.",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://www.uefa.com/newsfiles/UCL/2016/2015730_LU.pdf"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "A defender dealing with Suárez could not always step into Messi’s path. A full-back watching the outside lane could not close the inside lane simultaneously. Messi’s passing made those small conflicts expensive, especially when he could receive with his shoulders already turned towards the next action."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "The older Argentina version required a different bargain. The team needed enough running and defensive cover around its creator to keep him available in places where a touch could change the attack. FIFA’s technical analysis of Argentina in 2026 describes movement designed both to free Messi and to release teammates when he attracted extra pressure."
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "FIFA Training Centre: creating the conditions for Messi.",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://www.fifatrainingcentre.com/en/fifa-world-cup-2026/how-argentina-create-the-conditions-for-messi-to-thrive.php"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Give the passer a forward option: a runner beyond the defence stops a deeper reception from becoming a harmless detour."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Keep the far side occupied: width stretches the opponent’s recovery route when Messi draws attention into one channel."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Protect the next turnover: a creative freedom that leaves nobody behind the ball can become an invitation to counterattack."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Retirement exposes the cost of this arrangement as well as its benefits. Argentina cannot merely remove Messi’s name and hand his entire assignment to another attacker. The ball progression, final pass, finishing and attention he attracted were connected functions; separating them intelligently is the coaching staff’s real selection problem."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Three matches that show what the farewell takes away"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "A career montage usually chooses the spectacular finish and lets the crowd supply the explanation. These matches reward a slower look. Each reveals a different kind of value: the player who unsettles a defensive structure, the dribbler who changes the terms of a physical duel, and the creator who helps a team move the ball faster than he needs to run."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Wembley, 2011: making the space before taking the shot"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Barcelona beat Manchester United 3–1 in the Champions League final on 28 May 2011. Messi scored the second Barcelona goal with a low shot from outside the penalty area, after Pedro and Wayne Rooney had exchanged first-half goals. UEFA’s report preserves the sequence; the useful tactical detail is how dangerous a modest pocket of central space had become."
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "UEFA: the Wembley final report.",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://www.uefa.com/uefachampionsleague/news/0250-0c50f8161545-f1d22c5e52ca-1000--barcelona-crowned-as-messi-and-villa-see-off-united/"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Against a player whose first touch can become a dribble, closing down carries a risk. Against a player who can shoot quickly from the same body position, standing off carries another. The defender’s decision has to arrive before he can be entirely certain which action is coming."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Messi’s value therefore extended beyond the strike. His central presence made teammates’ movements harder to pass between markers because an opponent leaving one responsibility could immediately inherit something worse. When retirement removes such a player, a side loses the hesitation he creates as well as the touches he takes."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "That is why a replacement’s scoring record cannot settle the question by itself. A team can recruit the same number of finishes and still find the route to those finishes narrower, slower and easier to predict."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Croatia, 2022: the duel was about timing"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "In the World Cup semi-final on 13 December 2022, Messi’s run against Joško Gvardiol ended with a cutback for Julián Álvarez in Argentina’s 3–0 victory. FIFA’s account and footage document a passage that deserves better than a simple story about a veteran embarrassing a younger defender. Gvardiol stayed close; the difficulty was knowing when closeness could become a tackle."
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "FIFA: Messi’s decisive run against Croatia.",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://www.fifa.com/en/articles/messi-argentina-world-cup-semi-final-argentina-croatia-qatar-2022-gvardiol"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Read the duel through changes of pace and direction. A defender recovering beside the ball carrier wants the contest to remain a straight race, because then strength and stride can help govern the outcome. A pause or turn interrupts that bargain and asks the defender to reset his feet while still protecting the route to goal."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "The lesson is not that age had ceased to matter. It is that an attacker can narrow a duel to the few movements he still executes exceptionally well. The final pass also matters: Álvarez’s availability turns an individual escape into a team chance, preventing the defender from treating the dribbler as the only problem."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "France, 2022: greatness could mean releasing the ball early"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "The World Cup final on 18 December 2022 finished 3–3 before Argentina won the shootout. Messi scored twice, but Argentina’s second goal offers a different route into his influence: his touch helped connect a counterattack that moved through Álvarez and Alexis Mac Allister before Ángel Di María finished."
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "FIFA: the final and its scoring sequence.",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://www.fifa.com/en/tournaments/mens/worldcup/articles/argentina-france-2022-final-greatest-games"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "FIFA: Scaloni on the final’s tactical plan.",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://www.fifa.com/en/articles/lionel-scaloni-argentina-interview-world-cup-2022-final"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Here, keeping the ball would have been the slower decision. Releasing it allowed the next receiver to face forward and carried the attack into space before France could rebuild its defensive shape. The quality lies partly in declining the extra touch that would make the individual contribution look more conspicuous."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "This is crucial to understanding the later Messi. A team does not always need its best thinker to travel with the ball; it needs the next action to happen early enough to exploit what he has seen. Argentina’s future can preserve that principle even though the particular touch, disguise and judgement cannot simply be reassigned."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Taken together, the three examples resist a single farewell caricature. Messi was neither only the dribbler who passed entire defences nor only the experienced passer who conserved his energy. He changed which skill carried the heaviest load, and the strongest teams around him kept adjusting the supporting jobs."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Longevity: the body still matters when the mind sees the pass"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Football often turns a veteran’s reduced running into an argument about character. It is a poor shortcut. The useful questions concern where the player receives, what he produces from those receptions and how much ground teammates must cover to make the arrangement work against this particular opponent."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "FIFA’s physical analysis of Qatar 2022 describes Messi receiving more frequently in front of and between defensive lines, often at lower intensities, rather than relying primarily on runs behind. That supports a description of his role at that tournament. It does not reveal a private fitness plan or establish how his body feels in October 2026."
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "FIFA Training Centre: physical demands and player roles.",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://www.fifatrainingcentre.com/en/fwc2022/physical-analysis/using-case-studies-to-reveal-the-reasons-why-various-tactical-roles-exert-themselves-physically-during-world-cup-matches.php"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "The first touch can shorten the next run"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Consider a reception near the right edge of midfield. If the player takes the ball square to the touchline, turning towards goal may require another touch and a second contest. If he has checked the inside space and receives half-turned, the next pass can leave before the opponent settles into his challenge."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "That is an economy of actions, not a claim that thought replaces athleticism. A sharp turn still demands balance and force through the planted leg. Protecting the ball still requires a stable base, and making the pass under contact still demands coordination at the precise moment the body is being disturbed."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Messi’s short touches are valuable because they can keep a change of direction available until late in the duel. A long touch may help an attacker win a straight sprint, but it also commits him to chasing the ball. Keeping the ball within another immediate touch gives the defender less certainty about where the next step will lead."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "None of this means an older player can repeat every action indefinitely. A coach still has to consider how often the decisive acceleration arrives, how quickly the player recovers between demanding passages and whether fatigue changes the quality of his next reception. Without club monitoring data, a spectator cannot turn those questions into a precise medical verdict."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Rest is a selection decision, not an insult"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Miami’s practical challenge is to place Messi’s minutes where his contribution outweighs the defensive and physical work required around him. That may favour different choices in a controlled home match, a frantic away game or a crowded sequence of fixtures. The contract does not oblige every match to become a referendum on whether he can complete it."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Nor should Argentina’s farewell be treated as proof of a particular injury or physical threshold. International retirement changes the schedule available to a club player, but how any additional recovery time is used belongs to the player and his staff. The public announcements establish the career decision; they do not authorise an invented explanation of his conditioning."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "The fairest evaluation will start with what happens on the pitch. Can he receive in a useful area, make the opponent move and leave the team better placed after the ball goes? Can the surrounding players sustain the structure when possession is lost? An isolated flash of quality answers only part of that test."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Argentina’s inheritance: distribute the work, keep the courage"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "The temptation after an extraordinary player retires is to search for the next extraordinary player. Argentina would be better served by first listing the ordinary tasks that became easier because Messi was available. The midfielder under pressure had a familiar outlet; the runner had reason to start early; the striker could expect a disguised delivery rather than an obvious cross."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Those relationships can survive in altered form. One midfielder might take more responsibility for progressing the ball, a wide player might supply more final passes, and a centre-forward might become a more consistent reference for combinations. A team can become more balanced while losing its most exceptional individual, but that balance has to be built rather than assumed."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "The risk is to become cautious in the name of becoming collective. If every player waits for a safe pass because nobody is licensed to try the difficult one, the attack may acquire neat possession figures and lose its capacity to unsettle a defence. Sharing responsibility should produce more purposeful decisions, not a committee that continually returns the ball backwards."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Messi’s broader influence lies in the permission his football gave coaches to separate starting position from attacking responsibility. A forward could organise play; a nominal winger could be the central creator; a team could reserve particular freedoms for one player while demanding discipline from the structure around him. Each freedom still required somebody else’s work."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "That last qualification is the part worth teaching. Young players can study the scan before receiving, the angle of the supporting run or the choice to release the ball early. Copying the moments of walking without understanding the surrounding responsibilities would mistake the visible habit for the reason the system functioned."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "For a fuller view of his career across roles and competitions, use our player profile alongside this analysis. Our statistical methodology also explains the scope of the records: retirement does not make club and international totals interchangeable, and a trophy count cannot describe the passing relationships a team now has to replace."
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "Explore Messi’s player profile.",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "/players/messi"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "Read the statistical methodology.",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "/methodology"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "The final date is less useful than the next football question"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "For Argentina, the competitive succession has become an immediate responsibility. The scheduled October farewell offers a public moment to recognise what Messi gave the national team, but the emotional event and the tactical transition are different jobs. A ceremony can honour the player; only matches and training can teach the remaining team its new habits."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "For Miami, the work continues within a contract running through 2028. That date should frame planning, not encourage invented certainty about his last match. His club future deserves to be assessed through the football he can still create and the team required to support it."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "The enduring lesson is a demanding one: Messi made genius look individual while repeatedly revealing how much it depended on well-timed help. When Argentina’s next difficult match reaches the moment that once called for his left foot, who will recognise the problem first—and will the team have given that player enough ways to solve it?"
+          }
+        ]
+      }
+    ]
+  }
+}

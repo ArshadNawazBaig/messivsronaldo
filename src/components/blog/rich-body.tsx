@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element -- The upload endpoint already resizes and encodes images. */
 import { Fragment, type ReactNode } from "react";
 import { safeImage, safeLink, type RichNode } from "@/lib/blog/model";
+import { articleHeadingId } from "@/lib/blog/headings";
 import styles from "./rich-body.module.css";
 
 function render(node: RichNode, key: string): ReactNode {
@@ -20,7 +21,7 @@ function render(node: RichNode, key: string): ReactNode {
   switch (node.type) {
     case "doc": return <Fragment key={key}>{content}</Fragment>;
     case "paragraph": return <p key={key}>{content ?? <br/>}</p>;
-    case "heading": return node.attrs?.level === 3 ? <h3 key={key}>{content}</h3> : node.attrs?.level === 4 ? <h4 key={key}>{content}</h4> : <h2 key={key}>{content}</h2>;
+    case "heading": return node.attrs?.level === 3 ? <h3 key={key} id={articleHeadingId(key)}>{content}</h3> : node.attrs?.level === 4 ? <h4 key={key} id={articleHeadingId(key)}>{content}</h4> : <h2 key={key} id={articleHeadingId(key)}>{content}</h2>;
     case "bulletList": return <ul key={key}>{content}</ul>;
     case "orderedList": return <ol key={key} start={Number(node.attrs?.start) || 1}>{content}</ol>;
     case "listItem": return <li key={key}>{content}</li>;

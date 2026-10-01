@@ -1,0 +1,76 @@
+{
+  "checkedAt": "2026-10-01",
+  "slug": "cristiano-ronaldo-retirement-portugal-al-nassr-future",
+  "language": "en",
+  "status": "draft; not published",
+  "proseWords": 2654,
+  "sources": [
+    {
+      "title": "Vogue: Cristiano Ronaldo interview, published 16 August 2026",
+      "url": "https://www.vogue.com/article/cristiano-ronaldo-and-georgina-rodriguez-wedding",
+      "role": "current factual record",
+      "notes": "Firsthand interview. Conditional retirement wording. Nine quoted words in article; below100derivedwords. No wedding/private-family details reproduced."
+    },
+    {
+      "title": "Saudi Pro League: Ronaldo extends Al Nassr contract to 2027",
+      "url": "https://www.spl.com.sa/en/news/ronaldo-renewal-cristiano-commits-to-al-nassr-until-2027",
+      "role": "current factual record",
+      "notes": "Official league confirms extension through2027. No extrapolated retirement date."
+    },
+    {
+      "title": "EFE: FPF confirms Ronaldo left the Portugal camp, 30 September 2026",
+      "url": "https://efe.com/deportes/2026-09-30/cristiano-ronaldo-federacion-concentracion-seleccion/",
+      "role": "current factual record",
+      "notes": "Direct dated agency coverage of FPF statement. No accessible federation-hosted statement located; article explicitly attributes EFE. EFE says no permanent international retirement announcement."
+    },
+    {
+      "title": "FIFA: Ronaldo confirms his last World Cup, 6 July 2026",
+      "url": "https://www.fifa.com/en/articles/fifa.com/en/articles/cristiano-ronaldo-farewell",
+      "role": "current factual record",
+      "notes": "Indexed official FIFA report July6 confirms last WorldCup. Direct open renders empty; exact-indexed search retrieved source text. No WorldCup final-tournament inference beyond statement."
+    },
+    {
+      "title": "UEFA: Sweden 2–3 Portugal, World Cup play-off, 19 November 2013",
+      "url": "https://www.uefa.com/european-qualifiers/news/0253-0d7eeff62152-38beffc43bd8-1000--ronaldo-hat-trick-takes-portugal-past-sweden/",
+      "role": "historical primary evidence",
+      "notes": "Official report verifies result, three Ronaldo goals, counterattacks and Moutinho contribution. Section ≤200words."
+    },
+    {
+      "title": "UEFA: Real Madrid 4–1 Juventus, Champions League final, 3 June 2017",
+      "url": "https://www.uefa.com/uefachampionsleague/news/0250-0c5117c008df-de0901ea6dae-1000/",
+      "role": "historical primary evidence",
+      "notes": "Official report verifies result and two scoring sequences. Section ≤200words."
+    },
+    {
+      "title": "UEFA: Juventus 3–0 Atlético Madrid, 12 March 2019",
+      "url": "https://www.uefa.com/uefachampionsleague/news/024f-0e9983575768-6b235c77249c-1000--juventus-3-0-atletico-champions-league-at-a-glance/",
+      "role": "historical primary evidence",
+      "notes": "Official report verifies result, two headers, penalty and providers. Section ≤200words."
+    },
+    {
+      "title": "UEFA: Ronaldo discusses rest and preparation before the 2017 final",
+      "url": "https://www.uefa.com/uefachampionsleague/news/0239-0e9730fac548-f4bb616dca71-1000--ronaldo-has-fingers-crossed-as-he-counts-down-to-fifth-final/",
+      "role": "historical primary evidence",
+      "notes": "Firsthand UEFA interview supports2017match-rest example. No medical prescriptions or private training claims."
+    },
+    {
+      "title": "UEFA: The tactical changes during Ancelotti’s first Madrid tenure",
+      "url": "https://www.uefa.com/news-media/news/0221-0e90dc01f053-58b7a7451127-1000--the-highs-and-lows-of-ancelotti-s-madrid-tenure/",
+      "role": "historical primary evidence",
+      "notes": "Official UEFA retrospective supports DiMaría midfield role and attacking trio."
+    },
+    {
+      "title": "Manchester United: The development of Ferguson’s 2006–2009 team",
+      "url": "https://www.manutd.com/en/news/kings-of-the-world-why-were-telling-this-story",
+      "role": "historical primary evidence",
+      "notes": "Club retrospective supports winger-to-goalscorer evolution."
+    }
+  ],
+  "editorialLimitations": [
+    "Retirement and international selection status may change after1October2026; update current-facts section before publication if news changes.",
+    "No definitive all-football retirement date established by checked sources.",
+    "Tactical and biomechanical discussion is editorial interpretation of observable roles and general football mechanics, not access to private training, medical records or team instructions.",
+    "No newly claimed career goal total or training statistic.",
+    "No image included; no image-license expansion implied."
+  ]
+}

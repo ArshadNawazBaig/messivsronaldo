@@ -1,0 +1,144 @@
+{
+  "feature": "messi-retirement-argentina-inter-miami-future",
+  "reportingCutoff": "2026-10-01",
+  "language": "en",
+  "factualPosition": {
+    "internationalRetirement": "Announced 31 August 2026; official AFA farewell letter confirms national-team exit.",
+    "farewellFixture": "FIFA report of 15 September 2026 schedules Argentina v Benin at Estadio Monumental for 6 October 2026. It has not occurred at the reporting cutoff.",
+    "clubFuture": "Inter Miami official announcement dated 23 October 2025 extends contract through the end of the 2028 MLS season.",
+    "totalRetirement": "International retirement must not be described as retirement from all professional football. Contract expiry must not be described as a confirmed final appearance date."
+  },
+  "sources": [
+    {
+      "url": "https://www.afa.com.ar/es/posts/gracias-dios-por-hacerme-argentino-la-despedida-de-messi-en-sus-propias-palabras",
+      "title": "AFA: Messi’s farewell letter, 31 August 2026",
+      "type": "primary",
+      "reviewedAt": "2026-10-01",
+      "quotedWords": 0
+    },
+    {
+      "url": "https://www.fifa.com/en/tournaments/mens/worldcup/articles/lionel-messi-argentina-farewell",
+      "title": "FIFA: Argentina farewell scheduled for 6 October 2026",
+      "type": "primary",
+      "reviewedAt": "2026-10-01",
+      "quotedWords": 0
+    },
+    {
+      "url": "https://www.intermiamicf.com/news/inter-miami-cf-signs-leo-messi-to-contract-extension",
+      "title": "Inter Miami: official contract extension through 2028",
+      "type": "primary",
+      "reviewedAt": "2026-10-01",
+      "quotedWords": 0
+    },
+    {
+      "url": "https://www.uefa.com/uefachampionsleague/news/0250-0c50f8161545-f1d22c5e52ca-1000--barcelona-crowned-as-messi-and-villa-see-off-united/",
+      "title": "UEFA: Barcelona–Manchester United, 2011 final",
+      "type": "primary",
+      "reviewedAt": "2026-10-01",
+      "quotedWords": 0
+    },
+    {
+      "url": "https://www.uefa.com/multimediafiles/download/technicalreport/competitions/ucl/01/68/34/73/1683473_download.pdf",
+      "title": "UEFA: 2010/11 Champions League technical report",
+      "type": "primary",
+      "reviewedAt": "2026-10-01",
+      "quotedWords": 0
+    },
+    {
+      "url": "https://www.uefa.com/newsfiles/UCL/2016/2015730_LU.pdf",
+      "title": "UEFA: Barcelona–Roma tactical team sheet, November 2015",
+      "type": "primary",
+      "reviewedAt": "2026-10-01",
+      "quotedWords": 0
+    },
+    {
+      "url": "https://www.fifa.com/en/articles/messi-argentina-world-cup-semi-final-argentina-croatia-qatar-2022-gvardiol",
+      "title": "FIFA: Messi against Croatia, 2022 semi-final",
+      "type": "primary",
+      "reviewedAt": "2026-10-01",
+      "quotedWords": 0
+    },
+    {
+      "url": "https://www.fifa.com/en/tournaments/mens/worldcup/articles/argentina-france-2022-final-greatest-games",
+      "title": "FIFA: Argentina–France, 2022 final",
+      "type": "primary",
+      "reviewedAt": "2026-10-01",
+      "quotedWords": 0
+    },
+    {
+      "url": "https://www.fifa.com/en/articles/lionel-scaloni-argentina-interview-world-cup-2022-final",
+      "title": "FIFA: Scaloni on the 2022 final",
+      "type": "primary",
+      "reviewedAt": "2026-10-01",
+      "quotedWords": 0
+    },
+    {
+      "url": "https://www.fifatrainingcentre.com/en/fwc2022/physical-analysis/using-case-studies-to-reveal-the-reasons-why-various-tactical-roles-exert-themselves-physically-during-world-cup-matches.php",
+      "title": "FIFA Training Centre: Qatar 2022 physical player case studies",
+      "type": "primary",
+      "reviewedAt": "2026-10-01",
+      "quotedWords": 0
+    },
+    {
+      "url": "https://www.fifatrainingcentre.com/en/fifa-world-cup-2026/how-argentina-create-the-conditions-for-messi-to-thrive.php",
+      "title": "FIFA Training Centre: Argentina’s support structure for Messi, 2026",
+      "type": "primary",
+      "reviewedAt": "2026-10-01",
+      "quotedWords": 0
+    }
+  ],
+  "claimMapping": [
+    {
+      "claim": "International retirement announcement and farewell letter, 31 August 2026.",
+      "sourceIndex": 0
+    },
+    {
+      "claim": "Benin farewell planned for 6 October 2026 at Estadio Monumental.",
+      "sourceIndex": 1
+    },
+    {
+      "claim": "Club contract runs through the 2028 MLS season.",
+      "sourceIndex": 2
+    },
+    {
+      "claim": "Barcelona 3–1 Manchester United, 28 May 2011; scoring sequence and Messi shot from outside area.",
+      "sourceIndex": 3
+    },
+    {
+      "claim": "Barcelona false-nine arrangement and supporting midfield/wide movement.",
+      "sourceIndex": 4
+    },
+    {
+      "claim": "Luis Enrique Barcelona attacking arrangement with Neymar, Suárez and Messi in November 2015.",
+      "sourceIndex": 5
+    },
+    {
+      "claim": "Argentina 3–0 Croatia, 13 December 2022; Messi run past Gvardiol and cutback to Álvarez.",
+      "sourceIndex": 6
+    },
+    {
+      "claim": "Argentina 3–3 France and shootout victory, 18 December 2022; Messi twice and Di María counterattack.",
+      "sourceIndex": 7
+    },
+    {
+      "claim": "Scaloni setup and Mac Allister/Di María roles in 2022 final.",
+      "sourceIndex": 8
+    },
+    {
+      "claim": "Qatar 2022 physical analysis characterises Messi receptions in front/between lines and lower-intensity movement.",
+      "sourceIndex": 9
+    },
+    {
+      "claim": "2026 Argentina attacking structure frees Messi or releases teammates when he draws opponents.",
+      "sourceIndex": 10
+    }
+  ],
+  "editorialApproach": "Fresh tactical interpretation, explicitly identified as interpretation in the lead. No invented interview, byline, private training routine, medical finding, remaining-career forecast, or post-cutoff event.",
+  "sourceUse": "No direct quotations. Match factual descriptions are brief and each case study remains about 200 words; the main body is original football reasoning rather than a restatement of source articles.",
+  "limitations": [
+    "Farewell date is a scheduled future fixture at the reporting cutoff and must be refreshed after 6 October 2026.",
+    "No claim to know Messi’s exact date of retirement from all football.",
+    "No current aggregate career totals used, avoiding incompatible data definitions or stale totals.",
+    "Cover deliberately null; root may attach an already licensed existing image if desired."
+  ]
+}

@@ -152,10 +152,19 @@ statistics and article invalidation, and batching poster option changes.
 ## Schema setup
 
 The request handler only opens its Postgres connection pool; it no longer creates
-tables or runs schema checks on each cold start. Existing production tables are
-already initialized. For a new database, supply its private `DATABASE_URL` and run
-`npm run db:setup` before deploying. The command is idempotent and retains data.
-The SQLite migration command also initializes its destination explicitly.
+tables or runs schema checks on each cold start. Supply the target environment's
+private `DATABASE_URL` and run `npm run db:setup` before the first deployment and
+before any release that adds tables or indexes, including releases to an existing
+database. The command is idempotent and retains existing records and settings.
+
+The support inbox requires `support_tickets`, `support_limits`, and their indexes.
+The dashboard also queries `support_tickets` for its summary; deploying that code
+without applying the schema causes an authenticated dashboard request to fail
+with Postgres error `42P01` (missing relation). Run `npm run db:setup` against the
+same database configured in Vercel Production to apply these additive changes.
+Do not use `db:migrate` for this upgrade: that command imports a local SQLite
+archive into an empty destination.
+
 Future schema changes should be reviewed and applied as explicit migrations.
 
 ## Monitoring and cost tracking

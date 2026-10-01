@@ -1,0 +1,32 @@
+{
+  "status": "Saved as private English drafts in website CMS",
+  "reviewedOn": "2026-10-01",
+  "articles": [
+    {
+      "title": "Messi Retirement: Argentina’s Farewell and the Football Still Ahead",
+      "slug": "messi-retirement-argentina-inter-miami-future",
+      "words": 2519,
+      "maxSentences": 4,
+      "references": 11,
+      "errors": [],
+      "saved": true
+    },
+    {
+      "title": "Cristiano Ronaldo Retirement: What Is Confirmed, and What Comes Next?",
+      "slug": "cristiano-ronaldo-retirement-portugal-al-nassr-future",
+      "words": 2657,
+      "maxSentences": 4,
+      "references": 10,
+      "errors": [],
+      "saved": true
+    }
+  ],
+  "checks": [
+    "Draft schema and publication fields validated",
+    "Primary retirement statements and dated reporting checked",
+    "Historical match passages cross-reviewed",
+    "No duplicate long paragraphs from prior English article batch",
+    "Mobile HTML previews fit 390px viewport",
+    "Saved drafts read back unchanged; existing posts unchanged"
+  ]
+}

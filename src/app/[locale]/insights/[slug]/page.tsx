@@ -10,6 +10,7 @@ import { ArrowUpRight, BookOpen } from "lucide-react";
 import { articles } from "@/lib/articles";
 import { getPublishedArticles, getArticleLanguages, articleAlternates } from "@/lib/blog/server";
 import { RichBody } from "@/components/blog/rich-body";
+import { articleHeadings } from "@/lib/blog/headings";
 import { sources } from "@/lib/data";
 import { translatedDate } from "@/lib/i18n/date-format";
 import { jsonLd, pageMetadata, publisherOrganization, siteUrl } from "@/lib/site";
@@ -44,7 +45,10 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const articleUrl = `${siteUrl}${localizedPath(`/insights/${slug}`, locale)}`;
   const organization = publisherOrganization;
   const chartMetric = ({ "why-assist-totals-differ": "assists", "totals-vs-scoring-rates": "goals-per-90", "what-counts-as-a-career-goal": "goals" } as Record<string, string>)[slug];
-  const chartData = chartMetric && !article.managed ? await getPublishedData() : undefined;
+  const chartData = chartMetric ? await getPublishedData() : undefined;
+  const contents = article.body
+    ? articleHeadings(article.body).filter(heading => heading.level === 2)
+    : [...article.sections.map((section, index) => ({ id: `section-${index}`, title: t(section.heading) })), ...(article.tables ?? []).map((table, index) => ({ id: `table-${index}`, title: t(table.caption) }))];
   return <article className="page-container inner-page article-page">
     <PageContext path={`/insights/${slug}`} title={t(article.title)} description={t(article.description)} players={article.players} mainEntityId="#article" breadcrumbs={[{ path: "/", name: translate("Overview") }, { path: "/insights", name: translate("The reading room") }, { path: `/insights/${slug}`, name: t(article.title) }]} />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd({ "@context": "https://schema.org", "@type": "Article", "@id": `${articleUrl}#article`, url: articleUrl, ...(article.players?.length && { about: article.players.map(id => playerEntity(id, locale, siteUrl)) }), headline: t(article.title), description: t(article.description), datePublished: published, dateModified: updated, author: organization, publisher: organization, articleSection: t(article.category), mainEntityOfPage: { "@id": `${articleUrl}#webpage` }, image: new URL(article.image?.path ?? socialImagePath, siteUrl).href, inLanguage: locale, citation: citations.map(source => source.url) }) }}/>
@@ -52,13 +56,13 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
     <div className="article-byline"><Link href="/about">{translate("The Rivalry")}</Link><time dateTime={updated}>{translatedDate(updated.slice(0, 10), locale)}</time><span><BookOpen size={13}/>{translate("{0} min read", { "0": articleReadingMinutes(article, locale, t) })}</span></div>
     {article.image && <figure className={styles.hero}><img src={article.image.path} alt={t(article.image.alt)}/>{article.image.caption && <figcaption>{article.image.caption}</figcaption>}</figure>}
     {article.summary && <aside className={styles.summary} aria-labelledby="article-answer"><h2 id="article-answer">{translate("At a glance")}</h2><p>{t(article.summary)}</p></aside>}
-    {!article.body && <nav className={styles.contents} aria-label={t("In this article")}><strong>{t("In this article")}</strong><ul>{article.sections.map((section, index) => <li key={section.heading}><a href={`#section-${index}`}>{t(section.heading)}</a></li>)}{article.tables?.map((table, index) => <li key={table.caption}><a href={`#table-${index}`}>{t(table.caption)}</a></li>)}</ul></nav>}
+    {contents.length > 0 && <nav className={styles.contents} aria-label={translate("In this article")}><strong>{translate("In this article")}</strong><ul>{contents.map(heading => <li key={heading.id}><a href={`#${heading.id}`}>{heading.title}</a></li>)}</ul></nav>}
     <div className={`prose panel ${article.summary ? styles.body : ""}`}>{article.body && <RichBody body={article.body}/>} {article.sections.map((section, index) => <section key={section.heading}><h2 id={`section-${index}`}>{t(section.heading)}</h2><>{t(section.text).split(/\n\s*\n/).filter(Boolean).map((paragraph, paragraphIndex) => <p key={paragraphIndex}>{paragraph}</p>)}</>{section.citations && <div className={styles.inlineSources}>{section.citations.map(source => <a key={source.url} href={source.url} target="_blank" rel="noreferrer">{t(source.title)}<ArrowUpRight size={12} aria-hidden="true"/></a>)}</div>}</section>)}
       {citations.length > 0 && <div className="article-sources"><h2>{translate("Sources & further reading")}</h2>{citations.map(source => <a key={source.url} href={source.url} target="_blank" rel="noreferrer">{t(source.title)}<ArrowUpRight size={14}/></a>)}</div>}
     </div>
     {article.preset && <ScoringCalculator preset={article.preset}/>}
     {chartData && <ComparisonChart scope={chartData.scopes.career} metric={chartMetric}/>}
-    {!article.managed && article.relatedSlugs && <AwardChart full/>}
+    {article.relatedSlugs && <AwardChart full/>}
     {article.tables?.map((table, index) => <section className={styles.tableSection} key={table.caption}><h2 id={`table-${index}`}>{t(table.caption)}</h2><div className={styles.tableWrap} role="region" aria-labelledby={`table-${index}`} tabIndex={0}><table><caption className="sr-only">{t(table.caption)}</caption><thead><tr>{table.columns.map(column => <th key={column} scope="col">{t(column)}</th>)}</tr></thead><tbody>{table.rows.map((row, rowIndex) => <tr key={rowIndex}>{row.cells.map((cell, cellIndex) => cellIndex === 0 ? <th key={cellIndex} scope="row">{t(cell)}{row.citations && <span className={styles.rowSources}>{row.citations.map(source => <a key={source.url} href={source.url} target="_blank" rel="noreferrer">{t(source.title)}<ArrowUpRight size={12} aria-hidden="true"/></a>)}</span>}</th> : <td key={cellIndex}>{t(cell)}</td>)}</tr>)}</tbody></table></div>{table.note && <p className={styles.tableNote}>{t(table.note)}</p>}</section>)}
     <Link href={article.preset ? "/scoring-calculator" : article.relatedSlugs ? "/ballon-dor" : "/compare"} className="primary-button">{translate(article.preset ? "Open the calculator" : article.relatedSlugs ? "Messi vs Ronaldo: Ballon d’Or history" : "Compare the statistics ")}<ArrowUpRight size={16}/></Link>
     <RelatedReading path={`/insights/${slug}`} />
