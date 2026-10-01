@@ -12,7 +12,7 @@ import styles from "./interactive-tools.module.css";
 
 const hash = (state: MilestoneState) => `#${new URLSearchParams({ target: String(state.target), messi: String(state.messi), ronaldo: String(state.ronaldo) })}`;
 export function MilestonePlanner() {
-  const { scopes, calendarYears, snapshotLabel } = useFootballData();
+  const { scopes, calendarYears } = useFootballData();
   const { t, numberLocale } = useI18n();
   const uid = useId();
   const updateUrl = useToolUrl();
@@ -34,7 +34,7 @@ export function MilestonePlanner() {
   const fmt = (value: number, decimals = 0) => value.toLocaleString(numberLocale, { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
   const draftValid = /^\d+$/.test(draft) && Number(draft) >= 100 && Number(draft) <= 2000;
   return <section className={styles.panel} aria-label={t("Milestone planner")} data-testid="milestone-planner">
-    <div className={styles.heading}><div><span className="section-kicker">{t("YOUR SCENARIO")}</span><h2>{t("Set the next milestone")}</h2></div><span className={styles.muted}>{t("Data updated {0}", { "0": t(snapshotLabel) })}</span></div>
+    <div className={styles.heading}><div><span className="section-kicker">{t("YOUR SCENARIO")}</span><h2>{t("Set the next milestone")}</h2></div></div>
     <form className={styles.controls} onSubmit={event => { event.preventDefault(); if (draftValid) update({ ...state, target: Number(draft) }); }}><div className={styles.control}><label htmlFor={`${uid}-target`}>{t("Target career goals")}</label><input id={`${uid}-target`} type="number" min="100" max="2000" step="1" required value={draft} aria-describedby={`${uid}-help`} onChange={event => setDraft(event.target.value)}/></div><div className={styles.actions}><button type="submit">{t("Apply target")}</button>{[1000,1100,1200].map(target => <button type="button" key={target} aria-pressed={state.target === target} onClick={() => update({ ...state, target })}>{fmt(target)}</button>)}</div></form>
     <p id={`${uid}-help`} className={styles.muted}>{t("Choose a target from 100 to 2,000 goals. Rates use two decimal places.")}</p>
     <div className={styles.actions}><button type="button" onClick={() => applyRates(false)}>{t("Use career rates")}</button><button type="button" onClick={() => applyRates(true)}>{t("Use latest year rates")}</button></div>

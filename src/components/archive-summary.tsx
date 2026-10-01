@@ -49,7 +49,7 @@ async function ArchiveNavigation({ items, current, panel = false }: { items: { s
   </nav>;
 }
 
-export async function CalendarSummary({ year, years, snapshotLabel, hasUpdates, inProgress }: { year: CalendarYear; years: CalendarYear[]; snapshotLabel: string; hasUpdates: boolean; inProgress: boolean }) {
+export async function CalendarSummary({ year, years, hasUpdates, inProgress }: { year: CalendarYear; years: CalendarYear[]; hasUpdates: boolean; inProgress: boolean }) {
   const { t, numberLocale } = await getI18n();
   const fmt = (value: number) => value.toLocaleString(numberLocale);
   return <section className={styles.clubSummary} aria-labelledby="archive-summary-title" data-archive-summary data-calendar-summary>
@@ -75,7 +75,6 @@ export async function CalendarSummary({ year, years, snapshotLabel, hasUpdates, 
     <div className={styles.seasonNotes}>
       <div className={styles.sourceLine}>
         <span>{t("Source")}: <Link href={year.source}>{t("{0} calendar-year source", { 0: year.year })}</Link></span>
-        <span>{t("Data updated {0}", { 0: t(snapshotLabel) })}.</span>
       </div>
       {hasUpdates && <p><Link href="/updates">{t("Published match updates")}</Link></p>}
       <details>

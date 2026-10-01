@@ -81,7 +81,6 @@ function SiteHeader({ pathname, onSearch, availableLanguages }: {
     const [openGroup, setOpenGroup] = useState<string | null>(null);
     const header = useRef<HTMLElement>(null);
     const menuButton = useRef<HTMLButtonElement>(null);
-    const { snapshotLabel, snapshotDate } = useFootballData();
     function closeNavigation() { setMenuOpen(false); setOpenGroup(null); }
     useEffect(() => {
         const dismissOutside = (event: PointerEvent) => {
@@ -173,7 +172,6 @@ function SiteHeader({ pathname, onSearch, availableLanguages }: {
             </li>;
         })}
         </ul>
-        <Link className="navigation-update" href="/updates" onClick={closeNavigation}><span className="update-indicator"/>{t("Updated ")}<time dateTime={snapshotDate}>{t(snapshotLabel)}</time><ArrowUpRight size={13} aria-hidden="true"/></Link>
         <div className="mobile-profile-links"><Link href="/players/messi" onClick={closeNavigation}>{t("Lionel Messi ")}<ArrowUpRight size={14}/></Link><Link href="/players/ronaldo" onClick={closeNavigation}>{t("Cristiano Ronaldo ")}<ArrowUpRight size={14}/></Link></div>
       </nav>
     </div>
@@ -185,7 +183,7 @@ export function SiteShell({ children, articleLinks, articleLanguages }: {
     articleLanguages: Record<string, Locale[]>;
 }) {
     const { t } = useI18n();
-    const { snapshotLabel } = useFootballData();
+    const { snapshotLabel, snapshotDate } = useFootballData();
     const pathname = stripLocale(usePathname());
     const availableLanguages = pathname.startsWith("/insights/") ? articleLanguages[pathname.slice(10)] ?? [] : locales;
     const allSearchItems = [...searchItems.map(item => ({ ...item, label: t(item.label) })), ...articleLinks];
@@ -215,7 +213,7 @@ export function SiteShell({ children, articleLinks, articleLanguages }: {
         </nav>
         {!pathname.startsWith("/admin") && <LanguageLinks available={availableLanguages} />}
         <p className="photo-attribution" lang="en">Player photos: {playerPhotoLicense.credit} · <a href={playerPhotoLicense.licenseUrl} rel="license">CC BY-SA 4.0</a> · <Link href="/credits">Sources, crops &amp; reuse</Link></p>
-        <div className="footer-bottom"><span>© {t(new Date().getFullYear())}{t(" The Rivalry. An independent football project.")}</span><span>{t("Data updated {0}", { "0": t(snapshotLabel) })}</span></div>
+        <div className="footer-bottom"><span>© {t(new Date().getFullYear())}{t(" The Rivalry. An independent football project.")}</span><Link className="footer-update" href="/updates"><span>{t("Last updated")} <time dateTime={snapshotDate}>{t(snapshotLabel)}</time></span><ArrowUpRight size={13} aria-hidden="true"/></Link></div>
       </footer>
     </div>
     <dialog ref={dialog} className="search-dialog" onClick={event => {

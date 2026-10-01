@@ -353,31 +353,10 @@ html {
 .nav-dropdown a:focus-visible {
   outline-offset: -2px;
 }
-.navigation-update {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  white-space: nowrap;
-  font-size: 9px;
-  color: var(--muted);
-}
-.navigation-update:hover {
-  color: var(--accent);
-}
-.update-indicator {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--accent);
-  margin-right: 3px;
-}
 .mobile-profile-links {
   display: none;
 }
 @media (max-width: 1250px) {
-  .navigation-update {
-    display: none;
-  }
   .primary-nav-list {
     width: 100%;
     justify-content: space-between;
@@ -469,12 +448,6 @@ html {
     min-height: 46px;
     font-size: 12px;
   }
-  .navigation-update {
-    display: flex;
-    min-height: 48px;
-    font-size: 10px;
-    padding: 12px 4px;
-  }
   .mobile-profile-links {
     display: flex;
     gap: 20px;
@@ -546,14 +519,6 @@ html {
   font-size: 10px;
   letter-spacing: 1.1px;
   font-weight: 600;
-}
-.edition-line > a {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  letter-spacing: 0;
-  font-weight: 400;
-  color: var(--muted);
 }
 .page-intro {
   margin: 22px 0 30px;
@@ -671,8 +636,8 @@ html {
   font-size: 10px;
   padding: 14px 0;
 }
-.snapshot-dot {
-  display: none;
+.snapshot-line > a {
+  margin-inline-start: auto;
 }
 
 /* Comparison portraits and social exports use one palette in each theme. */
@@ -1274,6 +1239,26 @@ html {
 .footer-links {
   gap: 18px;
 }
+.footer-bottom {
+  align-items: center;
+  flex-wrap: wrap;
+}
+.footer-update {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.footer-update svg {
+  flex-shrink: 0;
+}
+.footer-update:hover {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 .site-footer {
   align-items: flex-start;
   row-gap: 32px;
@@ -1748,16 +1733,6 @@ html {
     gap: 8px;
     padding-bottom: 11px;
   }
-  .edition-line > a {
-    font-size: 9px;
-    max-width: 140px;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    gap: 3px;
-  }
-  .edition-line > a svg {
-    display: none;
-  }
   .page-intro {
     margin: 22px 0;
   }
@@ -2184,9 +2159,6 @@ html:not([lang='en']) .primary-nav-list {
 }
 html:not([lang='en']) .primary-nav-trigger {
   font-size: 12px;
-}
-html:not([lang='en']) .navigation-update {
-  display: none;
 }
 html:not([lang='en']) .player-epithet {
   letter-spacing: 0.2px;

@@ -51,7 +51,6 @@
 .sectionHeading { display: flex; align-items: end; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 22px; }
 .kicker { display: block; font-size: 10px; font-weight: 600; letter-spacing: 1.2px; color: var(--muted); text-transform: uppercase; }
 .sectionHeading h2 { font-size: 32px; line-height: 1.15; letter-spacing: -.5px; margin: 7px 0 0; }
-.sectionHeading time { font-size: 11px; color: var(--muted); line-height: 1.5; }
 .statGrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid var(--profile-border); border-radius: 10px; background: var(--profile-center); overflow: hidden; }
 .stat { min-width: 0; padding: 26px 28px; container-type: inline-size; }
 .stat + .stat { border-inline-start: 1px solid var(--profile-border); }

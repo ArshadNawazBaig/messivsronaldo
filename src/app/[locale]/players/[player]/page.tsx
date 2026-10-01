@@ -39,7 +39,7 @@ const competitions: { scope: ScopeId; href: string }[] = [
 
 export default async function PlayerPage({ params }: { params: Promise<{ player: string }> }) {
   const { t, locale, numberLocale } = await getI18n();
-  const { scopes, snapshotDate, snapshotLabel } = await getPublishedData();
+  const { scopes, snapshotLabel } = await getPublishedData();
   const { player } = await params;
   if (player !== "messi" && player !== "ronaldo") notFound();
   const p = players[player];
@@ -88,7 +88,6 @@ export default async function PlayerPage({ params }: { params: Promise<{ player:
     <section id="career-stats" className={styles.section} aria-labelledby="career-heading">
       <div className={styles.sectionHeading}>
         <div><span className={styles.kicker}>{t("Club + country")}</span><h2 id="career-heading">{t("Career overview")}</h2></div>
-        <time dateTime={snapshotDate}>{t("Updated {0}", { "0": t(snapshotLabel) })}</time>
       </div>
       <div className={styles.statGrid}>
         {headlineMetrics.map(metric => <div className={styles.stat} key={metric.id} data-metric={metric.id}>

@@ -24,7 +24,7 @@ export function FootballQuiz() {
   function next() { setIndex(index + 1); requestAnimationFrame(() => title.current?.focus()); }
   function restart() { setAnswers([]); setIndex(0); requestAnimationFrame(() => title.current?.focus()); }
   return <section className={styles.panel} aria-label={t("Football quiz")} data-testid="football-quiz">
-    <div className={styles.heading}><span className="section-kicker">{t("PLAY THE RECORDS")}</span><span className={styles.muted}>{t("Data updated {0}", { "0": t(data.snapshotLabel) })}</span></div>
+    <div className={styles.heading}><span className="section-kicker">{t("PLAY THE RECORDS")}</span></div>
     <div className={styles.progress} aria-hidden="true"><span style={{ width: `${answers.length / questions.length * 100}%` }}/></div>
     {!finished ? <>
       <p className={styles.muted}>{t("Question {0} of {1}", { "0": index + 1, "1": questions.length })} · {t(question.context)}</p>

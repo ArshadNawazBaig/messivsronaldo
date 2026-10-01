@@ -16,10 +16,9 @@ export async function generateMetadata() { const { snapshotLabel } = await getPu
 export default async function Home() {
     const { t } = await getI18n();
     const data = await getPublishedData();
-    const { snapshotLabel, snapshotDate } = data;
     return <div className="page-container home-page">
     <PageContext path="/" title={t("Messi vs Ronaldo: Goals, Assists, Stats & Trophies (2026)")} players={["messi", "ronaldo"]} mainEntityId="#comparison-dataset" breadcrumbs={[]} />
-    <div className="edition-line"><span>{t("FOOTBALL / PLAYER COMPARISON")}</span><Link href="/updates">{t("Updated ")}<time dateTime={snapshotDate}>{t(snapshotLabel)}</time><ArrowUpRight size={13}/></Link></div>
+    <div className="edition-line"><span>{t("FOOTBALL / PLAYER COMPARISON")}</span></div>
     <section className="page-intro"><div><h1>{t("Messi ")}<span className="title-vs">{t("vs")}</span>{t(" Ronaldo")}</h1><p>{t("Career goals, assists and trophies. Choose a competition. Compare the records.")}</p></div><Link className="intro-link" href="/methodology">{t("How we count ")}<ArrowUpRight size={16}/></Link></section>
     <Comparison />
     <RecordAnswers answers={buildRecordAnswers(data, t)} compact />
