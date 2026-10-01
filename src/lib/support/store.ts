@@ -1,8 +1,10 @@
+import { defaultAdminPageSize } from "@/lib/admin/pagination";
 import type Database from "better-sqlite3";
 import { randomUUID } from "node:crypto";
 import { postgresStore } from "../admin/database";
 import { store } from "../admin/store";
 import { AdminError } from "../admin/model";
+import { paginationState } from "../admin/pagination";
 import { supportCommand, supportRetentionMs, supportSubmission, type SupportTicket } from "./model";
 
 export async function submitSupport(input: unknown, clientKey: string, db?: Database.Database, now = Date.now()) {
@@ -41,21 +43,36 @@ export async function submitSupport(input: unknown, clientKey: string, db?: Data
   return ticket.id;
 }
 
-export async function listSupport(status: string = "all", offset = 0, db?: Database.Database, now = Date.now()) {
+export async function listSupport(status: string = "all", offset = 0, db?: Database.Database, now = Date.now(), pageSize = defaultAdminPageSize) {
+  if (![10, 20, 50].includes(pageSize) || !Number.isSafeInteger(offset) || offset < 0) throw new AdminError("Invalid pagination.", 422);
   const pg = db ? null : await postgresStore();
   const cutoff = new Date(now - supportRetentionMs).toISOString();
-  let rows: { data: string }[];
+  function result(rows: { data: string }[], total: number, start: number) {
+    return { tickets: rows.map(row => JSON.parse(row.data) as SupportTicket), total, offset: start, pageSize, hasMore: start + rows.length < total };
+  }
   if (pg) {
     await pg`DELETE FROM support_tickets WHERE created_at <= ${cutoff}`;
     await pg`DELETE FROM support_limits WHERE expires <= ${now}`;
-    rows = await pg`SELECT data FROM support_tickets WHERE ${status === "all" ? pg`TRUE` : pg`status=${status}`} ORDER BY created_at DESC,id DESC LIMIT 51 OFFSET ${offset}`;
-  } else {
-    const sqlite = db ?? store();
+    return pg.begin("isolation level repeatable read read only", async tx => {
+      const where = status === "all" ? tx`TRUE` : tx`status=${status}`;
+      const [count] = await tx`SELECT COUNT(*)::integer AS total FROM support_tickets WHERE ${where}`;
+      const total = Number(count.total);
+      const { start } = paginationState(total, Math.floor(offset / pageSize), pageSize);
+      const rows = await tx`SELECT data FROM support_tickets WHERE ${where} ORDER BY created_at DESC,id DESC LIMIT ${pageSize} OFFSET ${start}`;
+      return result([...rows] as { data: string }[], total, start);
+    });
+  }
+  const sqlite = db ?? store();
+  return sqlite.transaction(() => {
     sqlite.prepare("DELETE FROM support_tickets WHERE created_at <= ?").run(cutoff);
     sqlite.prepare("DELETE FROM support_limits WHERE expires <= ?").run(now);
-    rows = sqlite.prepare(`SELECT data FROM support_tickets ${status === "all" ? "" : "WHERE status=?"} ORDER BY created_at DESC,id DESC LIMIT 51 OFFSET ?`).all(...(status === "all" ? [] : [status]), offset) as { data: string }[];
-  }
-  return { tickets: rows.slice(0, 50).map(row => JSON.parse(row.data) as SupportTicket), hasMore: rows.length > 50 };
+    const where = status === "all" ? "" : "WHERE status=?";
+    const values = status === "all" ? [] : [status];
+    const { total } = sqlite.prepare(`SELECT COUNT(*) AS total FROM support_tickets ${where}`).get(...values) as { total: number };
+    const { start } = paginationState(total, Math.floor(offset / pageSize), pageSize);
+    const rows = sqlite.prepare(`SELECT data FROM support_tickets ${where} ORDER BY created_at DESC,id DESC LIMIT ? OFFSET ?`).all(...values, pageSize, start) as { data: string }[];
+    return result(rows, total, start);
+  })();
 }
 
 export async function changeSupport(input: unknown, db?: Database.Database, now = Date.now()) {

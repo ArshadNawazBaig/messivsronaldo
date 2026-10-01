@@ -21,6 +21,8 @@ To rotate the password, run `npm run admin:setup -- --reset` and restart. The se
 
 Player biographies and the reviewed historical baseline remain versioned source content. The dashboard changes post-baseline match records; it does not independently overwrite career totals.
 
+Admin pages share the same heading, card padding, form controls and responsive spacing. All admin tables use shared pagination: 10 (default), 20, or 50 rows per page, page numbers, Previous/Next buttons, and a visible result range. Search and filter changes return to the first page. Articles appear in a table above the editor; choosing an article opens it for editing. Support reports open from their table into a private detail panel. Support and the full activity log fetch one database page at a time, including activity older than the dashboard’s latest 100 records. If deletion removes the last page, pagination returns to the last available page.
+
 ## Daily operation
 
 For articles, open **Posts & articles** from the admin navigation, or go directly to `/admin/blog`. Choose a language, write in the visual editor, upload images, save drafts, preview and publish. Existing articles can be edited, unpublished or moved to recoverable Trash. See [the blog editor guide](docs/blog-editor.md) for the publishing workflow, language versions and storage details.

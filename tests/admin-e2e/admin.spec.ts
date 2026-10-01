@@ -40,9 +40,9 @@ test("login, dashboard navigation, theme and logout work on desktop and mobile",
   await expect(page.getByRole("heading",{name:"Automatic daily updates"})).toBeVisible();
   await expect(page.getByText(/Daily around 1 PM Pakistan time/)).toBeVisible();
   const cookie=(await context.cookies()).find(c=>c.name==="rivalry-admin")!;expect(cookie.httpOnly).toBe(true);expect(cookie.sameSite).toBe("Strict");
-  for(const name of ["Overview","Data updates","Match records","Players","Add statistics","Content review","Support inbox","Activity log","Settings"]) {
+  for(const name of ["Overview","Posts & articles","Data updates","Match records","Players","Add statistics","Content review","Support inbox","Activity log","Settings"]) {
     await navigate(page,name);
-    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
+    await expect.poll(()=>page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),{message:`${name} fits after route layout settles`}).toBe(true);
     const audit=await new AxeBuilder({page}).analyze();expect(audit.violations.map(v=>v.id),name).toEqual([]);
   }
   await expect(page.getByLabel("API-Football key")).toHaveValue("");

@@ -1,3 +1,4 @@
+import { defaultAdminPageSize } from "@/lib/admin/pagination";
 import { z } from "zod";
 import { checkOrigin, requireAdmin } from "@/lib/admin/auth";
 import { AdminError } from "@/lib/admin/model";
@@ -9,8 +10,8 @@ export async function GET(request: Request) {
   try {
     await requireAdmin();
     const query = Object.fromEntries(new URL(request.url).searchParams);
-    const { status, offset } = z.object({ status: z.enum(["all", "new", "reviewing", "resolved", "spam"]).default("all"), offset: z.coerce.number().int().min(0).max(10000).default(0) }).parse(query);
-    return Response.json(await listSupport(status, offset), { headers: privateHeaders });
+    const { status, offset, pageSize } = z.object({ status: z.enum(["all", "new", "reviewing", "resolved", "spam"]).default("all"), offset: z.coerce.number().int().min(0).max(10000).default(0), pageSize: z.coerce.number().pipe(z.union([z.literal(10),z.literal(20),z.literal(50)])).default(defaultAdminPageSize) }).parse(query);
+    return Response.json(await listSupport(status, offset, undefined, Date.now(), pageSize), { headers: privateHeaders });
   } catch (error) { return supportFailure(error); }
 }
 export async function POST(request: Request) {

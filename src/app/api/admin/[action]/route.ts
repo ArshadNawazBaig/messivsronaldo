@@ -7,6 +7,7 @@ import { connectProvider } from "@/lib/admin/provider";
 import { logRun, saveConnection, undoLast } from "@/lib/admin/database";
 import { syncLatest } from "@/lib/admin/recent-sync";
 import { reportServerError } from "@/lib/operations";
+import { listActivity } from "@/lib/admin/activity";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const maxDuration = 300;
@@ -17,10 +18,11 @@ function failure(error: unknown) {
   const message = error instanceof AdminError ? error.message : error instanceof ZodError ? "Some fields or provider records are invalid. Check the date, numbers, and evidence URL." : "The operation could not be completed. No new statistics were published.";
   return Response.json({error:message},{status,headers});
 }
-export async function GET(_request: Request, {params}:{params:Promise<{action:string}>}) {
+export async function GET(request: Request, {params}:{params:Promise<{action:string}>}) {
   try {
     await requireAdmin(); const {action} = await params;
     if (action === "state") return Response.json(await getAdminState(),{headers});
+    if (action === "activity") return Response.json(await listActivity(Object.fromEntries(new URL(request.url).searchParams)),{headers});
     return Response.json({error:"Not found"},{status:404,headers});
   } catch(error) { return failure(error); }
 }

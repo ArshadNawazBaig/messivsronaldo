@@ -44,10 +44,20 @@ test("pagination and the global daily limit bound inbox size and submission volu
   try {
     for (let i = 0; i < 100; i++) await submitSupport(report, `reader-${i}`, db, now + i);
     await assert.rejects(submitSupport(report, "another-reader", db, now + 101), /Too many/);
-    const first = await listSupport("all", 0, db, now + 102);
-    const second = await listSupport("all", 50, db, now + 102);
+    assert.equal((await listSupport("all", 0, db, now + 102)).tickets.length, 10);
+    const first = await listSupport("all", 0, db, now + 102, 50);
+    const second = await listSupport("all", 50, db, now + 102, 50);
     assert.equal(first.hasMore, true); assert.equal(second.hasMore, false);
     assert.equal(new Set([...first.tickets, ...second.tickets].map(ticket => ticket.id)).size, 100);
+    assert.equal(first.total, 100);
+    const sized = await listSupport("all", 90, db, now + 102, 10);
+    assert.equal(sized.tickets.length, 10); assert.equal(sized.hasMore, false);
+    assert.equal(sized.offset, 90);
+    for (const ticket of sized.tickets) await changeSupport({ action: "delete", id: ticket.id, revision: ticket.revision }, db, now + 102);
+    const recovered = await listSupport("all", 90, db, now + 102, 10);
+    assert.equal(recovered.offset, 80); assert.equal(recovered.total, 90);
+    assert.equal(recovered.tickets.length, 10);
+    await assert.rejects(listSupport("all", 0, db, now + 102, 1000), /Invalid pagination/);
   } finally { db.close(); }
 });
 test("server validation rejects executable URLs, oversized messages and invalid categories", () => {

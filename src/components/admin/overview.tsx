@@ -1,3 +1,4 @@
+import { AdminPageHeader } from "./page-header";
 import Image from "next/image";
 import Link from "next/link";
 import { Activity, ArrowRight, ArrowUpRight, CalendarDays, Check, Clock3, FileText, LifeBuoy, Plus, RefreshCw, ShieldCheck, Users } from "lucide-react";
@@ -27,8 +28,8 @@ export function AdminOverview({ state, summary, data }: {state: AdminState; summ
     {href:"/admin/statistics",title:"Add match statistics",description:"Goals, assists and scoring details",icon:Plus},
     {href:"/admin/updates",title:"Check the latest matches",description:"Verify and publish provider updates",icon:RefreshCw},
   ];
-  return <div>
-    <div className={styles.heading}><div><h1>Admin dashboard</h1><p>Welcome back. Here’s what’s happening with your publication.</p></div><div className={styles.headingActions}><Link className="admin-button" href="/admin/blog"><FileText size={15}/> Manage articles</Link><Link className="admin-button primary" href="/admin/statistics"><Plus size={15}/> Add match</Link></div></div>
+  return <div className="page-container admin-page">
+    <AdminPageHeader title="Admin dashboard" description="Welcome back. Here’s what’s happening with your publication." actions={<><Link className="admin-button" href="/admin/blog"><FileText size={15}/> Manage articles</Link><Link className="admin-button primary" href="/admin/statistics"><Plus size={15}/> Add match</Link></>}/>
     <div className={styles.metrics}>{metrics.map(({label,value,note,icon:Icon,href})=><Link className={styles.metric} href={href} key={label}><div className={styles.metricTop}>{label}<span><Icon size={16}/></span></div><strong>{value.toLocaleString("en-GB")}</strong><p>{note}</p></Link>)}</div>
     <div className={styles.overviewGrid}>
       <div className={styles.stack}><section className={styles.card}><div className={styles.cardHeading}><div><h2>Recent activity</h2><p>Updates and publications from your statistics ledger</p></div><Link href="/admin/activity">View log<ArrowUpRight size={13}/></Link></div>{state.history.length ? <ol className={styles.activity}>{state.history.slice(0,3).map(run=><li key={run.id}><span className={styles.activityIcon}>{run.status === "success" ? <Check size={15}/> : <Activity size={15}/>}</span><div><strong>{run.action === "manual" ? "Match record published" : run.action === "sync" ? "Match statistics synced" : run.action === "undo" ? "Publication restored" : run.action === "remove" ? "Match record removed" : "Data update"} · {run.status}</strong><p>{run.message}</p><time dateTime={run.at}>{new Date(run.at).toLocaleString("en-GB",{timeZone:"UTC",dateStyle:"medium",timeStyle:"short"})} UTC</time></div></li>)}</ol> : <div className={styles.empty}><Clock3 size={29}/><strong>Your next update starts here</strong><p>Publish a match or connect your provider. Each update will appear here with its result.</p><Link href="/admin/statistics" className="admin-button">Add your first record<ArrowRight size={13}/></Link></div>}</section>

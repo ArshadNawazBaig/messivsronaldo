@@ -29,6 +29,7 @@ test("visitor submits a report and admin reviews it, saves private notes and del
   await page.getByLabel("Admin password").fill("integration-test-password-only");
   await page.getByRole("button", { name: "Sign in to dashboard" }).click();
   await expect(page.getByRole("heading", { name: "Support inbox" })).toBeVisible();
+  await page.getByRole("button", { name: `Review report ${reference}`, exact: true }).click();
   const ticket = page.getByRole("article").filter({ hasText: reference });
   await expect(ticket).toContainText(details);
   expect((await page.request.get("/api/admin/support")).headers()["cache-control"]).toBe("private, no-store");
@@ -40,6 +41,7 @@ test("visitor submits a report and admin reviews it, saves private notes and del
   await Promise.all([page.waitForResponse(response => response.url().endsWith("/api/admin/support") && response.request().method() === "POST"), ticket.getByRole("button", { name: "Save report" }).click()]);
   await expect(ticket.getByRole("combobox", { name: "Status", exact: true })).toHaveText("In review");
   await page.reload();
+  await page.getByRole("button", { name: `Review report ${reference}`, exact: true }).click();
   await expect(ticket.getByLabel("Private notes")).toHaveValue("Synthetic review note. No email was sent.");
   await ticket.getByRole("button", { name: "Delete report" }).click();
   await ticket.getByRole("button", { name: "Confirm deletion" }).click();

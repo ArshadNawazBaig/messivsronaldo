@@ -1,6 +1,8 @@
 "use client";
+import { AdminPageHeader } from "./page-header";
 /* eslint-disable @next/next/no-img-element -- Uploads are optimized on the server and draft images require session cookies. */
 import { Select } from "@/components/ui/select";
+import { AdminPagination, useTablePagination } from "./pagination";
 import { useEffect, useId, useState } from "react";
 import { ArrowUpRight, ChevronDown, FileText, Globe2, ImagePlus, Plus, Save, Send, Trash2, Undo2, Eye, Pencil, Search } from "lucide-react";
 import { languageNames, locales, localizedPath, type Locale } from "@/lib/i18n/config";
@@ -20,7 +22,7 @@ export default function BlogManager() {
   const [query, setQuery] = useState(""); const [filter, setFilter] = useState("all"); const [reload, setReload] = useState(0);
   const [libraryOpen, setLibraryOpen] = useState(true);
   useEffect(() => {
-    if (!libraryOpen && window.matchMedia("(max-width: 900px)").matches) document.querySelector<HTMLElement>('section[aria-label="Article editor"]')?.focus({ preventScroll: true });
+    if (!libraryOpen) document.querySelector<HTMLElement>('section[aria-label="Article editor"]')?.focus({ preventScroll: true });
   }, [libraryOpen, selected?.id]);
   const libraryId = useId();
   useEffect(() => {
@@ -43,31 +45,28 @@ export default function BlogManager() {
   function open(post: BlogPost) { if (canLeave()) { setSelected(post); setDirty(false); setError(""); setLibraryOpen(false); } }
   const shown = posts.filter(post => (filter === "trash" ? post.deleted : !post.deleted && (filter === "all" || filter === "published" && !!post.published || filter === "draft" && (!post.published || post.draftChanged))) && `${post.draft.title} ${post.slug}`.toLowerCase().includes(query.toLowerCase())).sort((a, b) => b.updatedAt.localeCompare(a.updatedAt));
   const activePosts = posts.filter(post => !post.deleted);
+  const pagination = useTablePagination(shown, `${locale}:${filter}:${query}`);
   return <div className={`page-container admin-page ${styles.workspace}`}>
 
-    <header className={styles.pageHeading}>
-      <div><h1>Blog editor<span className={styles.workspaceBadge}>WORKSPACE</span></h1><p>Write, refine and publish your next story.</p></div>
-      <button className="admin-button primary" disabled={busy || loading} onClick={() => open(newPost(locale))}><Plus size={17}/> New article</button>
-    </header>
+    <AdminPageHeader title="Blog editor" description="Write, refine and publish your next story." actions={<button className="admin-button primary" disabled={busy || loading} onClick={() => open(newPost(locale))}><Plus size={17}/> New article</button>}/>
     <div className={styles.layout}>
       <aside className={styles.library} aria-label="Article library" data-expanded={libraryOpen}>
-        <div className={styles.libraryHeading}><h2><FileText size={17}/> Articles <span>{activePosts.length}</span></h2><button className={styles.libraryToggle} type="button" aria-expanded={libraryOpen} aria-controls={libraryId} onClick={() => setLibraryOpen(value => !value)}>{libraryOpen ? "Hide articles" : "Browse articles"}<ChevronDown size={16}/></button></div>
+        <div className={styles.libraryHeading}><h2><FileText size={17}/> Articles <span>{activePosts.length}</span></h2><button className={`admin-button ${styles.libraryToggle}`} type="button" aria-expanded={libraryOpen} aria-controls={libraryId} onClick={() => setLibraryOpen(value => !value)}>{libraryOpen ? "Hide articles" : "Browse articles"}<ChevronDown size={16}/></button></div>
         <div id={libraryId} className={styles.libraryContent}>
           <div className={styles.libraryFilters}>
             <label className="admin-field">Article language<Select label="Article language" value={locale} disabled={busy} onValueChange={value => { if (!canLeave()) return; setSelected(null); setDirty(false); setLibraryOpen(true); setLoading(true); setError(""); setPosts([]); setLocale(value as Locale); }} options={locales.map(value => ({value,label:languageNames[value]}))}/></label>
             <label className={`admin-field ${styles.filterField}`}>Show<Select label="Show articles" value={filter} onValueChange={setFilter} options={[{value:"all",label:"All articles"},{value:"published",label:"Published"},{value:"draft",label:"Drafts & changes"},{value:"trash",label:"Trash"}]}/></label>
-            <label className={styles.search}><Search size={16}/><input aria-label="Search articles" placeholder="Search articles…" value={query} onChange={event => setQuery(event.target.value)}/></label>
+            <label className={`admin-field ${styles.searchField}`}>Search articles<span className={styles.search}><Search size={16}/><input aria-label="Search articles" placeholder="Search articles…" value={query} onChange={event => setQuery(event.target.value)}/></span></label>
           </div>
           <div className={styles.libraryCount}><span>{shown.length} {shown.length === 1 ? "article" : "articles"}</span><span>{activePosts.filter(post => !!post.published).length} published</span></div>
           {loading && <p role="status" className="admin-help">Loading articles…</p>}
           {error && <div role="alert"><p className="admin-message error">{error}</p><button className="admin-button" onClick={() => { setLoading(true); setError(""); setReload(value => value + 1); }}>Retry</button></div>}
-          <div className={styles.postList}>{shown.map(post => <button type="button" key={post.id} className={selected?.id === post.id ? styles.selected : ""} aria-current={selected?.id === post.id ? "true" : undefined} disabled={busy} onClick={() => open(post)}><span className={styles.postStatus} data-state={post.deleted ? "trash" : post.draftChanged ? "changes" : post.published ? "published" : "draft"}><i/>{status(post)}</span><strong>{post.draft.title || "Untitled article"}</strong><small><span>{post.draft.category}</span><time dateTime={post.updatedAt}>{post.updatedAt.slice(0, 10)}</time></small></button>)}</div>
+          {!loading && !error && <><div className="admin-table-wrap" role="region" aria-label="Article records" tabIndex={0}><table className="admin-table"><caption className="sr-only">Articles</caption><thead><tr><th scope="col">Article</th><th scope="col">Category</th><th scope="col">Status</th><th scope="col">Updated (UTC)</th><th scope="col">Manage</th></tr></thead><tbody>{pagination.rows.map(post => <tr key={post.id} data-selected={selected?.id === post.id}><th scope="row" className="admin-cell-text"><button type="button" className="admin-row-link" disabled={busy} onClick={() => open(post)}>{post.draft.title || "Untitled article"}</button><small>{post.slug}</small></th><td>{post.draft.category}</td><td><span className="admin-status">{status(post)}</span></td><td><time dateTime={post.updatedAt}>{post.updatedAt.slice(0, 10)}</time></td><td><button type="button" className="admin-button" disabled={busy} onClick={() => open(post)} aria-label={`Edit ${post.draft.title || "untitled article"}`}><Pencil size={13}/> Edit</button></td></tr>)}</tbody></table></div><AdminPagination label="Articles" {...pagination} disabled={busy}/></>}
           {!loading && !error && !shown.length && <p className={styles.noResults}>No articles match this view.</p>}
           <p className={styles.libraryNote}><Globe2 size={16}/><span>Publishing in <strong>{languageNames[locale]}</strong>. Each language has its own articles.</span></p>
         </div>
       </aside>
-      {selected ? <ArticleEditor key={`${selected.id}:${selected.revision}`} post={selected} onDirty={setDirty} onBusy={setBusy} onSaved={post => { setPosts(items => [post, ...items.filter(item => item.id !== post.id)]); setSelected(post); setDirty(false); }} onReload={() => { if (canLeave()) { setSelected(null); setDirty(false); setLoading(true); setReload(value => value + 1); } }}/>
-        : <section className={styles.emptyState}><div className={styles.emptyPaper} aria-hidden="true"><span/><span/><span/><span/><div><Pencil size={26}/></div></div><span className={styles.emptyEyebrow}>YOUR EDITORIAL DESK</span><h2>A space for your next story.</h2><p>Choose an article from the library,<br/>or start with a fresh draft.</p><button className="admin-button primary" disabled={busy || loading} onClick={() => open(newPost(locale))}><Plus size={16}/> New article</button><span className={styles.emptyFootnote}><FileText size={14}/> Drafts stay private until you publish.</span></section>}
+      {selected && <ArticleEditor key={`${selected.id}:${selected.revision}`} post={selected} onDirty={setDirty} onBusy={setBusy} onSaved={post => { setPosts(items => [post, ...items.filter(item => item.id !== post.id)]); setSelected(post); setDirty(false); }} onReload={() => { if (canLeave()) { setSelected(null); setDirty(false); setLoading(true); setReload(value => value + 1); } }}/>}
     </div>
   </div>;
 }
