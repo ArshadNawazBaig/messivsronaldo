@@ -1,8 +1,8 @@
 "use client";
 /* eslint-disable @next/next/no-img-element -- Uploads are optimized on the server and draft images require session cookies. */
-import Link from "next/link";
+import { Select } from "@/components/ui/select";
 import { useEffect, useId, useState } from "react";
-import { ArrowLeft, ArrowUpRight, ChevronDown, FileText, Globe2, ImagePlus, Plus, Save, Send, Trash2, Undo2, Eye, Pencil, Search } from "lucide-react";
+import { ArrowUpRight, ChevronDown, FileText, Globe2, ImagePlus, Plus, Save, Send, Trash2, Undo2, Eye, Pencil, Search } from "lucide-react";
 import { languageNames, locales, localizedPath, type Locale } from "@/lib/i18n/config";
 import { emptyDocument, documentText, type BlogDraft, type BlogPost, type BlogCommand } from "@/lib/blog/model";
 import { articleWordCount } from "@/lib/blog/word-count";
@@ -44,7 +44,7 @@ export default function BlogManager() {
   const shown = posts.filter(post => (filter === "trash" ? post.deleted : !post.deleted && (filter === "all" || filter === "published" && !!post.published || filter === "draft" && (!post.published || post.draftChanged))) && `${post.draft.title} ${post.slug}`.toLowerCase().includes(query.toLowerCase())).sort((a, b) => b.updatedAt.localeCompare(a.updatedAt));
   const activePosts = posts.filter(post => !post.deleted);
   return <div className={`page-container admin-page ${styles.workspace}`}>
-    <nav className={styles.breadcrumb} aria-label="Publishing navigation"><Link href="/admin"><ArrowLeft size={15}/> Admin dashboard</Link><span>/</span><span>Publishing</span></nav>
+
     <header className={styles.pageHeading}>
       <div><h1>Blog editor<span className={styles.workspaceBadge}>WORKSPACE</span></h1><p>Write, refine and publish your next story.</p></div>
       <button className="admin-button primary" disabled={busy || loading} onClick={() => open(newPost(locale))}><Plus size={17}/> New article</button>
@@ -54,8 +54,8 @@ export default function BlogManager() {
         <div className={styles.libraryHeading}><h2><FileText size={17}/> Articles <span>{activePosts.length}</span></h2><button className={styles.libraryToggle} type="button" aria-expanded={libraryOpen} aria-controls={libraryId} onClick={() => setLibraryOpen(value => !value)}>{libraryOpen ? "Hide articles" : "Browse articles"}<ChevronDown size={16}/></button></div>
         <div id={libraryId} className={styles.libraryContent}>
           <div className={styles.libraryFilters}>
-            <label className="admin-field">Article language<div className={styles.selectWrap}><Globe2 size={16}/><select value={locale} disabled={busy} onChange={event => { if (!canLeave()) return; setSelected(null); setDirty(false); setLibraryOpen(true); setLoading(true); setError(""); setPosts([]); setLocale(event.target.value as Locale); }}>{locales.map(value => <option key={value} value={value}>{languageNames[value]}</option>)}</select><ChevronDown size={15}/></div></label>
-            <label className={`admin-field ${styles.filterField}`}>Show<div className={styles.selectWrap}><select value={filter} onChange={event => setFilter(event.target.value)}><option value="all">All articles</option><option value="published">Published</option><option value="draft">Drafts & changes</option><option value="trash">Trash</option></select><ChevronDown size={15}/></div></label>
+            <label className="admin-field">Article language<Select label="Article language" value={locale} disabled={busy} onValueChange={value => { if (!canLeave()) return; setSelected(null); setDirty(false); setLibraryOpen(true); setLoading(true); setError(""); setPosts([]); setLocale(value as Locale); }} options={locales.map(value => ({value,label:languageNames[value]}))}/></label>
+            <label className={`admin-field ${styles.filterField}`}>Show<Select label="Show articles" value={filter} onValueChange={setFilter} options={[{value:"all",label:"All articles"},{value:"published",label:"Published"},{value:"draft",label:"Drafts & changes"},{value:"trash",label:"Trash"}]}/></label>
             <label className={styles.search}><Search size={16}/><input aria-label="Search articles" placeholder="Search articles…" value={query} onChange={event => setQuery(event.target.value)}/></label>
           </div>
           <div className={styles.libraryCount}><span>{shown.length} {shown.length === 1 ? "article" : "articles"}</span><span>{activePosts.filter(post => !!post.published).length} published</span></div>
@@ -121,7 +121,7 @@ function ArticleEditor({ post, onDirty, onBusy, onSaved, onReload }: { post: Blo
           <div className={styles.cover}><strong>Cover image</strong>{draft.image ? <><div className={styles.coverPreview}><img src={draft.image.path} alt={draft.image.alt}/></div><label className="admin-field">Cover image alt text<input required maxLength={500} value={draft.image.alt} onChange={event => change("image", { ...draft.image!, alt: event.target.value })}/></label><label className="admin-field">Cover image caption / credit<input maxLength={500} value={draft.image.caption ?? ""} onChange={event => change("image", { ...draft.image!, caption: event.target.value })}/></label><button className="admin-text-button" onClick={() => change("image", null)}>Remove cover</button></> : <p className="admin-help">Shown above the article and when sharing its link.</p>}<button className="admin-button" onClick={() => setUploadCover(true)}><ImagePlus size={16}/>{draft.image ? "Replace cover image" : "Add cover image"}</button></div>
             </fieldset>
           </div>
-        {uploadCover && <ImageUpload onBusy={imageBusy} onCancel={() => setUploadCover(false)} onInsert={(path, alt, caption) => { change("image", { path, alt, caption }); setUploadCover(false); }}/>} 
+        {uploadCover && <ImageUpload onBusy={imageBusy} onCancel={() => setUploadCover(false)} onInsert={(path, alt, caption) => { change("image", { path, alt, caption }); setUploadCover(false); }}/>}
         <fieldset disabled={blocked} className={styles.sources}><legend>Sources & further reading</legend><p className="admin-help">Add references for factual claims. These appear at the end of the article.</p>{draft.citations.map((source, index) => <div className={styles.sourceRow} key={index}><label className="admin-field">Source title<input value={source.title} maxLength={200} onChange={event => change("citations", draft.citations.map((item, position) => position === index ? { ...item, title: event.target.value } : item))}/></label><label className="admin-field">Source URL<input type="url" maxLength={2000} value={source.url} placeholder="https://…" onChange={event => change("citations", draft.citations.map((item, position) => position === index ? { ...item, url: event.target.value } : item))}/></label><button className="admin-button" aria-label={`Remove source ${index + 1}`} onClick={() => change("citations", draft.citations.filter((_, position) => position !== index))}><Trash2 size={15}/></button></div>)}<button className="admin-button" disabled={draft.citations.length >= 100} onClick={() => change("citations", [...draft.citations, { title: "", url: "" }])}><Plus size={15}/> Add source</button></fieldset>
         </div>
       </div>}

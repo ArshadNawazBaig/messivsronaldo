@@ -25,6 +25,7 @@ test("visitor submits a report and admin reviews it, saves private notes and del
   const reference = (await page.getByRole("status").locator("code").innerText()).trim();
   expect(reference).toMatch(/^[a-f0-9-]{36}$/);
   await page.goto("/admin/support");
+  await page.getByLabel("Email address", {exact:true}).fill("admin@example.com");
   await page.getByLabel("Admin password").fill("integration-test-password-only");
   await page.getByRole("button", { name: "Sign in to dashboard" }).click();
   await expect(page.getByRole("heading", { name: "Support inbox" })).toBeVisible();
@@ -33,10 +34,11 @@ test("visitor submits a report and admin reviews it, saves private notes and del
   expect((await page.request.get("/api/admin/support")).headers()["cache-control"]).toBe("private, no-store");
   expect((await page.request.post("/api/admin/support", { headers: { origin: "https://attacker.example" }, data: {} })).status()).toBe(403);
   expect((await new AxeBuilder({ page }).include("main").analyze()).violations).toEqual([]);
-  await ticket.getByRole("combobox", { name: "Status", exact: true }).selectOption("reviewing");
+  await ticket.getByRole("combobox", { name: "Status", exact: true }).click();
+  await page.getByRole("option",{name:"In review",exact:true}).click();
   await ticket.getByLabel("Private notes").fill("Synthetic review note. No email was sent.");
   await Promise.all([page.waitForResponse(response => response.url().endsWith("/api/admin/support") && response.request().method() === "POST"), ticket.getByRole("button", { name: "Save report" }).click()]);
-  await expect(ticket.getByRole("combobox", { name: "Status", exact: true })).toHaveValue("reviewing");
+  await expect(ticket.getByRole("combobox", { name: "Status", exact: true })).toHaveText("In review");
   await page.reload();
   await expect(ticket.getByLabel("Private notes")).toHaveValue("Synthetic review note. No email was sent.");
   await ticket.getByRole("button", { name: "Delete report" }).click();

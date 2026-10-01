@@ -17,9 +17,9 @@ Free destination remains connected to preview only; no data was transferred.
 
 ## Environment and data
 
-Production needs `NEXT_PUBLIC_SITE_URL=https://messivsronaldo17.com`, `SITE_INDEXABLE=true`, `DATABASE_URL`, `ADMIN_PASSWORD_HASH`, `ADMIN_SESSION_SECRET`, and `CRON_SECRET` for automatic updates. `HEALTHCHECK_SECRET` authorizes the operational monitor. Keep database and admin secrets private. Google Search Console verification can optionally use `GOOGLE_SITE_VERIFICATION`.
+Production needs `NEXT_PUBLIC_SITE_URL=https://messivsronaldo17.com`, `SITE_INDEXABLE=true`, `DATABASE_URL`, `ADMIN_EMAIL`, `ADMIN_PASSWORD_HASH`, `ADMIN_SESSION_SECRET`, and `CRON_SECRET` for automatic updates. `HEALTHCHECK_SECRET` authorizes the operational monitor. Keep database and admin secrets private. Google Search Console verification can optionally use `GOOGLE_SITE_VERIFICATION`.
 
-The provider key is encrypted in the database; the app does not need the plain API-Football key in a public environment variable. Keep the existing admin secret when moving the database. Active sessions are intentionally not copied during migration; sign in again with the existing admin password.
+The provider key is encrypted in the database; the app does not need the plain API-Football key in a public environment variable. Keep the existing admin secret when moving the database. Active sessions are intentionally not copied during migration; sign in again with the configured admin email and existing password. The email is private and must not use a `NEXT_PUBLIC_` prefix. When deploying the separate admin workspace, add `ADMIN_EMAIL` to Vercel before deployment; existing password and session-secret values remain unchanged.
 
 ## Database-load improvements
 

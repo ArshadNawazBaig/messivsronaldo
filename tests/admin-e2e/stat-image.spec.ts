@@ -22,7 +22,7 @@ const requestBody = {
 async function login(page: Page) {
   const response = await page.request.post("/api/admin/login", {
     headers: { origin },
-    data: { password: "integration-test-password-only" },
+    data: { email: "admin@example.com", password: "integration-test-password-only" },
   });
   expect(response.status()).toBe(200);
 }

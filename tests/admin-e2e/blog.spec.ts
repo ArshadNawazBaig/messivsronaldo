@@ -4,7 +4,8 @@ import sharp from "sharp";
 test.use({ actionTimeout: 15_000 });
 const origin = "http://localhost:3002";
 async function signIn(page: Page) {
-  await page.goto("/admin/blog"); await page.getByLabel("Admin password").fill("integration-test-password-only");
+  await page.goto("/admin/blog"); await page.getByLabel("Email address", {exact:true}).fill("admin@example.com");
+  await page.getByLabel("Admin password").fill("integration-test-password-only");
   await page.getByRole("button", { name: "Sign in to dashboard" }).click();
   await expect(page.getByRole("heading", { name: "Blog editor" })).toBeVisible();
   await expect(page.getByRole("button", { name: "New article", exact: true }).first()).toBeEnabled();
@@ -29,7 +30,7 @@ test("admin writes, formats, uploads, previews, publishes, edits and deletes a l
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   const libraryAudit = await new AxeBuilder({ page }).include('[aria-label="Article library"]').analyze();
   expect(libraryAudit.violations.map(item => item.id)).toEqual([]);
-  await page.getByLabel("Article language").selectOption("es");
+  await page.getByRole("combobox",{name:"Article language",exact:true}).click(); await page.getByRole("option",{name:"Español",exact:true}).click();
   await expect(page.getByRole("button", { name: "New article", exact: true }).first()).toBeEnabled();
   await page.getByRole("button", { name: "New article", exact: true }).first().click();
   const slug = `editor-${info.project.name}-${Date.now()}`;
@@ -118,7 +119,7 @@ test("admin writes, formats, uploads, previews, publishes, edits and deletes a l
 
 test("inline images, tables, Arabic drafts and unsaved changes survive preview", async ({ page }) => {
   test.setTimeout(90_000);
-  await signIn(page); await page.getByLabel("Article language").selectOption("ar");
+  await signIn(page); await page.getByRole("combobox",{name:"Article language",exact:true}).click(); await page.getByRole("option",{name:"العربية",exact:true}).click();
   await expect(page.getByRole("button", { name: "New article", exact: true }).first()).toBeEnabled();
   await page.getByRole("button", { name: "New article", exact: true }).first().click();
   await page.getByLabel("Article title", { exact: true }).fill("تحليل كرة القدم");
@@ -135,12 +136,14 @@ test("inline images, tables, Arabic drafts and unsaved changes survive preview",
   await page.getByLabel("Image description (alt text)", { exact: true }).fill("A synthetic inline image");
   await page.getByRole("button", { name: "Upload image", exact: true }).click();
   await expect(page.locator(".tiptap img")).toHaveCount(1);
-  page.once("dialog", dialog => dialog.dismiss()); await page.getByRole("link", { name: "Admin dashboard", exact: true }).click();
+  if (await page.getByRole("button",{name:"Open admin navigation"}).isVisible()) await page.getByRole("button",{name:"Open admin navigation"}).click();
+  page.once("dialog", dialog => dialog.dismiss()); await page.getByRole("link", { name: "Overview", exact: true }).filter({visible:true}).click();
+  if (await page.getByRole("button",{name:"Close admin navigation"}).isVisible()) await page.getByRole("button",{name:"Close admin navigation"}).click();
   await expect(page).toHaveURL(/\/admin\/blog$/);
   await page.getByRole("button", { name: "Preview", exact: true }).click(); await expect(page.getByRole("img", { name: "A synthetic inline image" })).toBeVisible();
   await page.getByRole("button", { name: "Continue editing" }).click(); await expect(page.locator(".tiptap img")).toHaveCount(1);
   await page.getByRole("button", { name: "Save draft", exact: true }).click(); await expect(page.getByText("Unsaved changes", { exact: true })).toHaveCount(0);
-  await page.reload(); await page.getByLabel("Article language").selectOption("ar"); await page.getByRole("button", { name: /تحليل كرة القدم/ }).first().click();
+  await page.reload(); await page.getByRole("combobox",{name:"Article language",exact:true}).click(); await page.getByRole("option",{name:"العربية",exact:true}).click(); await page.getByRole("button", { name: /تحليل كرة القدم/ }).first().click();
   await expect(page.locator(".tiptap img")).toHaveCount(1);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
 });

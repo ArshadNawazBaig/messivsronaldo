@@ -22,7 +22,7 @@ This workspace's ignored `.env.local` sets the preview origin to `http://localho
 
 ## What is implemented
 
-- A protected `/admin` dashboard with date-based API-Football sync, verified manual match edits, audit history, undo, and persistent Postgres storage on Vercel (SQLite for local development). Setup and boundaries: [ADMIN_GUIDE.md](ADMIN_GUIDE.md).
+- A protected `/admin/dahsboard` workspace with email/password sign-in, sidebar navigation, article publishing, player and match records, support, API-Football sync, audit history, undo, and persistent Postgres storage on Vercel (SQLite for local development). Setup and boundaries: [ADMIN_GUIDE.md](ADMIN_GUIDE.md).
 - Next.js App Router, TypeScript, locally hosted Inter and Manrope fonts, Lucide icons, and custom responsive CSS.
 - Thirteen comparison scopes: career, 2026, club, country, Champions League, La Liga, World Cup, Copa América/Euros, current clubs, all leagues, European clubs, career excluding USA/Saudi, and direct meetings.
 - Goals, assists, appearances, minutes, contributions, per-appearance and per-90 rates, hat-tricks, penalties/conversion, non-penalty goals, free kicks, scoring locations and body parts.
@@ -89,7 +89,7 @@ The production website is deployed on Vercel at https://messivsronaldo17.com wit
 
 ## Keeping the data current
 
-Use `/admin` to connect API-Football, select a UTC date, and click **Fetch & update stats**. Post-baseline matches update the public site without a rebuild. Repeated imports are idempotent; protected manual corrections, source evidence, historical cutoffs and audit history are retained. Historical dates already covered by the baseline are checked without appending them again. See [ADMIN_GUIDE.md](ADMIN_GUIDE.md) for the complete workflow and provider limitations.
+Sign in at `/admin/dahsboard`, connect API-Football in **Settings**, then open **Data updates** to check recent statistics or a specific UTC date. Post-baseline matches update the public site without a rebuild. Repeated imports are idempotent; protected manual corrections, source evidence, historical cutoffs and audit history are retained. Historical dates already covered by the baseline are checked without appending them again. See [ADMIN_GUIDE.md](ADMIN_GUIDE.md) for the complete workflow and provider limitations.
 
 No live provider key was supplied during implementation, so real provider access remains to be configured and verified. No scheduled background job is enabled. The public `/updates` page lists the actual matches added; unlisted dates are not claimed as verified. Detailed goal-type figures retain their original cutoff when the adapter cannot update them.
 

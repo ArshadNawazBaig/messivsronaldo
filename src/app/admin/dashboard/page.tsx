@@ -1,3 +1,3 @@
 import { redirect } from "next/navigation";
 import { adminHome } from "@/lib/admin/navigation";
-export default function AdminPage() { redirect(adminHome); }
+export default function DashboardAlias() { redirect(adminHome); }

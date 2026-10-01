@@ -11,7 +11,7 @@ test.beforeEach(() => {
   db.close();
 });
 async function login(page: Page) {
-  expect((await page.request.post("/api/admin/login", { headers: { origin }, data: { password: "integration-test-password-only" } })).status()).toBe(200);
+  expect((await page.request.post("/api/admin/login", { headers: { origin }, data: { email: "admin@example.com", password: "integration-test-password-only" } })).status()).toBe(200);
 }
 function dimensions(buffer: Buffer) {
   expect(buffer.subarray(0, 8).toString("hex")).toBe("89504e470d0a1a0a");

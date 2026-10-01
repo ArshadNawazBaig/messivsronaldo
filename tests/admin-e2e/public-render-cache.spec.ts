@@ -19,7 +19,7 @@ test("public HTML is cached per language without exposing admin controls", async
 
 test("publication invalidates warmed pages in every language", async ({ request, playwright }) => {
   const visitor = await playwright.request.newContext({ baseURL: origin });
-  await request.post("/api/admin/login", { headers: { origin }, data: { password: "integration-test-password-only" } });
+  await request.post("/api/admin/login", { headers: { origin }, data: { email: "admin@example.com", password: "integration-test-password-only" } });
   const state = await (await request.get("/api/admin/state")).json();
   const paths = ["/goals", "/es/goals", "/ar/goals"];
   const before = await (await visitor.get("/api/data-version")).json();
@@ -90,7 +90,7 @@ test("versioned posters are reused by ISR and outdated versions redirect", async
 test("poster overload errors are not persisted in ISR and recover on retry", async ({ request }) => {
   test.setTimeout(60000);
   // A publication expires old poster entries, including previous test runs.
-  await request.post("/api/admin/login", { headers: { origin }, data: { password: "integration-test-password-only" } });
+  await request.post("/api/admin/login", { headers: { origin }, data: { email: "admin@example.com", password: "integration-test-password-only" } });
   const state = await (await request.get("/api/admin/state")).json();
   const record = { ...state.records[0], goals: state.records[0].goals + 1 };
   expect((await request.post("/api/admin/match", { headers: { origin }, data: { revision: state.revision, record } })).status()).toBe(200);

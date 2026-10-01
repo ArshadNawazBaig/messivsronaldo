@@ -5,6 +5,7 @@ import { addDays } from "../../src/lib/calendar";
 const longDate = (date: string) => new Intl.DateTimeFormat("en-GB", { dateStyle:"full", timeZone:"UTC" }).format(new Date(`${date}T00:00:00Z`));
 async function signIn(page: Page) {
   await page.goto("/admin");
+  await page.getByLabel("Email address", {exact:true}).fill("admin@example.com");
   await page.getByLabel("Admin password").fill("integration-test-password-only");
   await page.getByRole("button", {name:"Sign in to dashboard"}).click();
   await expect(page.getByRole("heading", {name:"Admin dashboard"})).toBeVisible();
@@ -13,6 +14,8 @@ async function signIn(page: Page) {
 
 test("custom calendar supports bounds, keyboard, month/year selection and both themes", async ({page}, info) => {
   const state = await signIn(page);
+  await page.goto("/admin/updates");
+  await page.getByText("Check a specific match date", {exact:true}).click();
   expect(await page.locator('input[type="date"]').count()).toBe(0);
   const trigger = page.getByRole("button", {name:"Match date", exact:true});
   await trigger.click();
@@ -72,13 +75,13 @@ test("custom calendar supports bounds, keyboard, month/year selection and both t
 
 test("record filter and match editor use the shared picker with their own limits", async ({page}) => {
   const state = await signIn(page);
-  await page.getByRole("button", {name:/Match records/}).click();
+  await page.goto("/admin/matches");
   const filter = page.getByRole("button", {name:"Filter by date", exact:true});
   await expect(filter).toContainText("All dates");
   await filter.click();
   const calendar = page.getByRole("dialog", {name:"Filter by date calendar"});
   await calendar.getByRole("button", {name:longDate(state.today), exact:true}).click();
-  await expect(page.getByText("No records on this date", {exact:true})).toBeVisible();
+  await expect(page.getByText("No matching records", {exact:true})).toBeVisible();
   await filter.click();
   await calendar.getByRole("button", {name:"Clear", exact:true}).click();
   await expect(filter).toContainText("All dates");

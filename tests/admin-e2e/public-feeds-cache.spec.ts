@@ -43,7 +43,7 @@ test("public feeds and social previews reuse completed responses", async ({ requ
 
 test("publishing statistics refreshes cached feeds and social image bytes immediately", async ({ request }) => {
   test.setTimeout(60000);
-  await request.post("/api/admin/login", { headers: { origin }, data: { password: "integration-test-password-only" } });
+  await request.post("/api/admin/login", { headers: { origin }, data: { email: "admin@example.com", password: "integration-test-password-only" } });
   const state = await (await request.get("/api/admin/state")).json();
   for (const path of ["/api/comparison/career", "/opengraph-image/dark", "/api/data-version", "/llms.txt", "/sitemap.xml"]) await warm(request, path);
   const before = await (await request.get("/api/comparison/career")).json();
@@ -70,7 +70,7 @@ test("publishing statistics refreshes cached feeds and social image bytes immedi
 });
 
 test("article publication and unpublication invalidate crawler feeds without exposing drafts", async ({ request }) => {
-  await request.post("/api/admin/login", { headers: { origin }, data: { password: "integration-test-password-only" } });
+  await request.post("/api/admin/login", { headers: { origin }, data: { email: "admin@example.com", password: "integration-test-password-only" } });
   const slug = `feed-cache-${randomUUID()}`;
   const input = { id: randomUUID(), locale: "en", slug, revision: 0, draft: {
     title: "Synthetic feed cache article", description: "An isolated fixture to verify public crawler cache invalidation.", category: "Test", summary: "", citations: [],

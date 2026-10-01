@@ -15,7 +15,7 @@
 .pageHeading > button { flex-shrink: 0; }
 .workspaceBadge { border: 1px solid var(--border); border-radius: 5px; padding: 5px 7px; font-family: var(--font-inter), sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 1.2px; color: var(--muted); }
 .layout { display: grid; grid-template-columns: 280px minmax(0, 1fr); align-items: start; background: var(--studio-tint); border: 1px solid var(--border); border-radius: 14px; box-shadow: 0 8px 32px #14281b06; }
-.library { padding: 24px 18px 18px; position: sticky; top: 156px; min-width: 0; border-radius: 14px 0 0 14px; }
+.library { padding: 24px 18px 18px; position: sticky; top: 96px; min-width: 0; border-radius: 14px 0 0 14px; }
 .libraryHeading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 2px 24px; }
 .libraryHeading h2 { display: flex; gap: 9px; align-items: center; font-family: var(--font-inter), sans-serif; font-size: 14px; margin: 0; font-weight: 650; }
 .libraryHeading h2 > svg { color: var(--muted); }
