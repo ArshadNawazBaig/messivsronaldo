@@ -145,6 +145,41 @@ server, Arabic uses right-to-left layout, and the XML sitemap includes every
 public page in all nine languages with reciprocal `hreflang` alternates.
 See `src/lib/i18n/README.md` for catalog maintenance and translation coverage.
 
+### Fan voting
+
+`/vote` is available in all nine languages, the navigation, tools directory,
+search and sitemaps. It displays publisher-set starting totals of 4,021 for Messi
+and 3,810 for Ronaldo separately from submitted visitor votes. Starting totals
+live in `src/lib/voting/model.ts`; they are never inserted as visitor records.
+
+`GET /api/vote` returns uncached totals and the current browser's choice, setting
+an HTTP-only `rivalry-voter` cookie scoped to `/api/vote`. `POST /api/vote` accepts
+one player and checks the request origin, cookie, content type and body size.
+The database's unique browser hash makes duplicate requests idempotent. A
+transaction updates the vote record and aggregate count together. A keyed IP
+hash limits new votes to 60 per hour per network; raw IP addresses are not stored
+in the voting tables. `ADMIN_SESSION_SECRET` supplies the key in production.
+
+The cookie lasts up to 400 days and is renewed when results load. Clearing it,
+using a private session or switching browsers can permit another vote. This is
+a browser-based fan poll, not proof of one unique person per vote. The page and
+privacy/cookie notices explain these limits and storage use.
+
+New installations get voting tables through the usual database setup. For an
+existing PostgreSQL installation, run the following against the intended database
+before deploying:
+
+```sh
+node --env-file=.env.local --import tsx scripts/setup-voting.ts
+```
+
+Setup
+is additive and never resets existing votes. Voting writes are tested against
+isolated SQLite and PostgreSQL databases; do not use production for write tests.
+After a production build, run `npx playwright test -c playwright.voting.config.ts`
+for the isolated browser suite on port 3012. `VOTING_BUILD_DIR` can point to an
+alternate build directory. The suite resets only `.artifacts/voting-e2e.sqlite`.
+
 ### Admin social images
 
 Sign in at `/admin`, then open a comparison. **Download image** appears next to

@@ -43,10 +43,16 @@
 .site-body .page-container .stats-footnote { margin-top: 0; padding: 16px var(--panel-space); gap: 12px 20px; flex-wrap: wrap; line-height: 1.7; }
 .site-body .page-container .stats-footnote :is(span,a) { min-width: 0; overflow-wrap: anywhere; }
 .site-body .page-container .stats-footnote svg { flex-shrink: 0; }
-.site-body .panel > .year-table-wrap { margin-inline: var(--panel-space); }
+.site-body .panel > .year-table-wrap { position: relative; margin-inline: 0; }
+.site-body .year-table-wrap:has(> .calendar-table) { direction: ltr; }
 .site-body .panel > .year-table-wrap:focus-visible { outline-offset: -2px; }
-.site-body .panel > .year-table-wrap table tr > :first-child { padding-inline-start: 0; }
-.site-body .panel > .year-table-wrap table tr > :last-child { padding-inline-end: 0; }
+/* Content length must not move the comparison columns between periods or filters. */
+.site-body .year-table { table-layout: fixed; }
+.site-body .year-table :is(th,td) { padding-inline: clamp(8px,1.5vw,20px); text-align: center; vertical-align: middle; overflow-wrap: anywhere; }
+.site-body .year-table:not(.calendar-table) tr > :first-child { text-align: start; padding-inline-start: var(--panel-space); }
+.site-body .year-table :is(.messi-text,.ronaldo-text) { white-space: nowrap; }
+.site-body .calendar-table { min-width: 340px; }
+.site-body .calendar-table[data-club-season-index] { min-width: 0; }
 .site-body .panel > .year-table-wrap table:not(:has(tfoot)) tbody tr:last-child > * { border-bottom: 0; }
 .site-body .panel > .year-table-wrap:last-child { padding-bottom: 12px; }
 .site-body .year-legend { padding: 16px var(--panel-space); flex-wrap: wrap; gap: 10px 20px; border-top: 1px solid var(--border-subtle); }
@@ -59,6 +65,9 @@
 .site-body .page-container :is(.honour-player,.source-register-card,.club-card,.correction-form,.methodology-status,.season-controls,.year-controls,.notice-card,.legacy-card) { padding: var(--panel-space); }
 .site-body .page-container .legacy-card { border: 1px solid var(--border); border-radius: var(--panel-radius); }
 .site-body :is(.club-columns,.honours-summary,.sources-grid,.story-grid) { gap: 24px; }
+/* Separate the stacked cards; profile pages retain their own multi-column grid. */
+.site-body :where(.club-column) { display: grid; align-content: start; gap: 24px; }
+.site-body :where(.club-column > h2) { margin: 0; }
 .site-body .story-grid { align-items: start; }
 .site-body .season-explorer > .prose,.site-body .year-controls ~ .prose { margin-top: var(--section-space); }
 .record-explorer { margin-block: var(--section-space); }

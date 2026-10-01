@@ -23,6 +23,7 @@ import { PolicyContent } from "@/components/policy-content";
 import { ScoringCalculator } from "@/components/scoring-calculator";
 import { EditorialCards } from "@/components/editorial";
 import { FootballQuiz } from "@/components/football-quiz";
+import { FanVote } from "@/components/fan-vote";
 import { CareerTimeline } from "@/components/career-timeline";
 import { MilestonePlanner } from "@/components/milestone-planner";
 import { ToolCards, ToolNavigation } from "@/components/tool-cards";
@@ -87,6 +88,7 @@ export default async function ContentPage({ params }: {
     {(Object.hasOwn(toolPages, slug) || slug === "scoring-calculator") && <ToolNavigation current={slug}/>}
     {slug === "tools" && <><ToolCards/><div className="prose panel"><h2>{t("Built for curious football fans")}</h2><p>{t("Our tools turn the published records into questions, charts and calculations you can explore. Every tool runs on this website, with no embedded third-party game or account required.")}</p><p>{t("Quiz answers and chart totals come from the same dataset as the comparison pages. Scenarios use your assumptions. Source references remain available so you can check the underlying records.")}</p><Link className="text-link" href="/methodology">{t("Sources & counting rules")}</Link></div></>}
     {slug === "football-quiz" && <FootballQuiz/>}
+    {slug === "vote" && <FanVote/>}
     {slug === "career-timeline" && <CareerTimeline/>}
     {slug === "milestone-planner" && <MilestonePlanner/>}
     {slug === "scoring-calculator" && <><ScoringCalculator /><EditorialCards limit={3} calculatorsOnly/></>}

@@ -3,7 +3,7 @@ import {
   CalendarDays, CalendarRange, ChartNoAxesCombined, CircleDot, CircleHelp, MessageCircleQuestion,
   Cookie, Earth, Flag, FlagTriangleRight, Gamepad2, Goal, History, ImageDown, Info,
   ListOrdered, Mail, Map, Medal, Milestone, PanelsTopLeft, Route, ScrollText,
-  Shield, ShieldCheck, Shirt, Signpost, Swords, Target, Trophy, Waypoints,
+  Shield, ShieldCheck, Shirt, Signpost, Swords, Target, Trophy, Vote, Waypoints,
   type LucideProps,
 } from "lucide-react";
 
@@ -41,6 +41,7 @@ const icons = {
   "/man-of-the-match": Medal, "/fifa-awards": Award, "/uefa-awards": BadgeCheck,
   "/comparison-posters": ImageDown, "/tools": Gamepad2, "/football-quiz": CircleHelp, "/career-timeline": ChartNoAxesCombined,
   "/milestone-planner": Route, "/insights": BookOpen, "/methodology": ShieldCheck,
+  "/vote": Vote,
   "/glossary": BookText, "/answers": MessageCircleQuestion, "/updates": History, "/about": Info,
   "/terms": ScrollText, "/privacy": Shield, "/cookies": Cookie,
   "/contact": Mail, "/accessibility": Accessibility, "/sitemap": Signpost,

@@ -1,5 +1,6 @@
 import type { TransactionSql } from "postgres";
 import { supportSchema } from "../../src/lib/support/schema";
+import { votingSchema } from "../../src/lib/voting/schema";
 
 // Run explicitly during setup, never on request handling.
 export async function initializePostgresSchema(tx: TransactionSql) {
@@ -16,4 +17,5 @@ export async function initializePostgresSchema(tx: TransactionSql) {
   await tx`CREATE TABLE IF NOT EXISTS blog_posts (id TEXT PRIMARY KEY, locale TEXT NOT NULL, slug TEXT NOT NULL, revision INTEGER NOT NULL, data TEXT NOT NULL, UNIQUE(locale,slug))`;
   await tx`CREATE TABLE IF NOT EXISTS blog_media (id TEXT PRIMARY KEY, data BYTEA NOT NULL, created_at TEXT NOT NULL)`;
   await tx.unsafe(supportSchema);
+  await tx.unsafe(votingSchema);
 }

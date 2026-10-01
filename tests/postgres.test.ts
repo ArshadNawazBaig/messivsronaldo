@@ -8,6 +8,8 @@ import { mediaIsPublic, mergePublished, readMedia, readPosts, saveMedia, writePo
 import { checkPublicBlogReads } from "./helpers/blog-public";
 import { initializePostgresSchema } from "../scripts/lib/postgres-schema";
 import { submitSupport, listSupport, changeSupport } from "../src/lib/support/store";
+import { checkVotingStore, voteTestHash } from "./helpers/voting";
+import { readVote } from "../src/lib/voting/store";
 
 // This suite only runs against an explicitly provided, isolated test database.
 test("Postgres persists publications, serializes competing writers, and protects admin state", { skip: !process.env.TEST_DATABASE_URL }, async () => {
@@ -96,6 +98,11 @@ test("Postgres persists publications, serializes competing writers, and protects
     assert.equal((await listSupport()).tickets.length, 0);
     const reports = await Promise.allSettled(Array.from({ length: 7 }, () => submitSupport(issue, "postgres-concurrent-reader")));
     assert.equal(reports.filter(result => result.status === "fulfilled").length, 5);
+    await checkVotingStore();
+    const votes = await readVote(voteTestHash("first-voter"));
+    await (await db.postgresStore())!.begin(initializePostgresSchema);
+    await db.closeDatabase();
+    assert.deepEqual(await readVote(voteTestHash("first-voter")), votes);
     // The old connection was closed; all assertions above use fresh connections after restarts.
     assert.ok(pg);
   } finally {

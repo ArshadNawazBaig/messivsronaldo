@@ -63,6 +63,62 @@ Supabase migration work is saved on `codex/supabase-migration`. Revisit it after
 reviewing one month of charges on the upgraded Neon plan. The unused Supabase
 Free destination remains connected to preview only; no data was transferred.
 
+## Comparison table layout — 1 October 2026
+
+Table layout release `dpl_3tHWR2VrWV97Z3mvxh9tFE9AzXU6` was deployed on
+1 October 2026. Calendar and club-season index columns now use fixed, equal
+widths with centered headings and values. Honours keep a wider description
+column and equal player columns; award stars no longer offset the numbers.
+Period-change tables use consistent column widths and scroll within their
+container on small screens. Scroll containers contain hidden captions and keep
+Arabic calendar tables from widening the page. Safari menu links also remain
+mounted through taps when a blur event has no next focus target.
+
+Validation: lint, TypeScript and the production build passed, along with six
+chart tests, eight honours/navigation tests, and 36 viewport/language checks
+across Chromium and WebKit. The focused checks covered all nine languages,
+320px and 1440px widths, stable columns after filter changes, related table
+layouts, numeric alignment beside award stars, and accessibility in both themes.
+Navigation tests were updated for current translated titles, touch/keyboard
+focus behavior, and sitemaps containing additional published articles.
+Twelve post-deployment browser checks passed, including Arabic layouts,
+AdSense verification metadata, and Safari menu navigation.
+
+Follow-up release `dpl_9joetCPpjDdksujk76QrM8h7FFBa` restores spacing on the
+club-by-club page. Each player column now uses a grid with 24px gaps between
+cards and below the player heading. Profile pages retain their existing grid
+columns and spacing. Sixteen local and sixteen production Chromium/WebKit checks
+passed across desktop and 320px layouts for English/Arabic club pages and both
+player profiles. The production build passed and the release is deployed.
+
+## Fan voting
+
+Deployment `dpl_2o8EzQscyhKeM6a8xRx5R9Q5rVFK` adds `/vote` in all nine
+languages, navigation, tools, search and sitemaps. The displayed totals begin
+at Messi 4,021 and Ronaldo 3,810, explicitly labelled as publisher-set starting
+values. Actual visitor votes are stored and displayed separately.
+
+An additive production migration created `fan_votes`, `fan_vote_counts` and
+`fan_vote_limits`; both visitor counters were zero before deployment. Existing
+application records were retained. A unique hashed browser identifier and
+transactional count updates prevent duplicate submissions, including races and
+retries. The HTTP-only cookie is scoped to the voting API, with a renewable
+400-day maximum lifetime. Clearing site data or using another browser can allow
+another vote. A keyed network hash limits new votes to 60 per hour. Both storage
+policies document the new feature. The page shell remains cacheable; per-browser
+voting responses use `private, no-store`.
+
+Validation: lint, TypeScript, local and Vercel production builds passed. All 182
+unit/integration cases passed, including SQLite and isolated PostgreSQL voting
+checks. Ten browser cases passed across Chromium and mobile WebKit, covering
+duplicate votes, concurrent tabs, independent browsers, reloads, lost responses,
+blocked cookies, service errors, nine languages, mobile layout and accessibility
+in both themes. Production write tests were not used.
+Eleven live browser/language checks confirmed the starting totals, zero visitor
+votes, cookie attributes, private API responses, rejected invalid submissions,
+translated metadata, sitemaps and storage disclosures. No synthetic vote was
+added to the public poll.
+
 ## Environment and data
 
 Production needs `NEXT_PUBLIC_SITE_URL=https://messivsronaldo17.com`, `SITE_INDEXABLE=true`, `DATABASE_URL`, `ADMIN_EMAIL`, `ADMIN_PASSWORD_HASH`, `ADMIN_SESSION_SECRET`, and `CRON_SECRET` for automatic updates. `HEALTHCHECK_SECRET` authorizes the operational monitor. Keep database and admin secrets private. Google Search Console verification can optionally use `GOOGLE_SITE_VERIFICATION`.

@@ -1,5 +1,6 @@
 import Database from "better-sqlite3";
 import { supportSchema } from "../support/schema";
+import { votingSchema } from "../voting/schema";
 import { mkdirSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { createCipheriv, createDecipheriv, createHash, randomBytes } from "node:crypto";
@@ -20,6 +21,7 @@ export function openStore(path = process.env.ADMIN_DATABASE_PATH || resolve(".da
     CREATE TABLE IF NOT EXISTS blog_posts (id TEXT PRIMARY KEY, locale TEXT NOT NULL, slug TEXT NOT NULL, revision INTEGER NOT NULL, data TEXT NOT NULL, UNIQUE(locale,slug));
     CREATE TABLE IF NOT EXISTS blog_media (id TEXT PRIMARY KEY, data BLOB NOT NULL, created_at TEXT NOT NULL);`);
   db.exec(supportSchema);
+  db.exec(votingSchema);
   return db;
 }
 let singleton: Database.Database | undefined;

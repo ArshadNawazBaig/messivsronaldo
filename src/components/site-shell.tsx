@@ -63,7 +63,7 @@ const navigationGroups: {
     href?: string;
     items?: typeof navItems;
 }[] = [
-    { id: "career", label: "All-time stats", items: comparisonItems.slice(0, 2) },
+    { id: "career", label: "All-time stats", items: [...comparisonItems.slice(0, 2), { href: "/vote", label: "Fan vote" }] },
     { id: "years", label: "Years & seasons", items: [...comparisonItems.slice(2, 4), clubSeasonLink] },
     { id: "clubs", label: "Club stats", items: [...competitionItems.slice(0, 3), { href: "/league", label: "All domestic leagues" }, { href: "/european-clubs", label: "European club records" }] },
     { id: "international", label: "International", items: [competitionItems[4], competitionItems[3], { href: "/copa-america-vs-euros", label: "Copa América vs Euros" }] },
@@ -154,7 +154,9 @@ function SiteHeader({ pathname, onSearch, availableLanguages }: {
             const active = group.href ? isActivePath(pathname, group.href) : group.items?.some(item => isActivePath(pathname, item.href));
             const expanded = openGroup === group.id;
             return <li key={group.id} className={`primary-nav-group ${active ? "is-current" : ""}`} onBlur={event => {
-                    if (!event.currentTarget.contains(event.relatedTarget as Node | null))
+                    // Safari can blur to no target when a menu link is tapped.
+                    // Keep it mounted for the click; outside pointers already dismiss it.
+                    if (event.relatedTarget && !event.currentTarget.contains(event.relatedTarget as Node))
                         setOpenGroup(current => current === group.id ? null : current);
                 }}>
               {group.href ? <Link className="primary-nav-trigger" href={group.href} aria-current={active ? "page" : undefined} onClick={closeNavigation}>{t(group.label)}</Link> : <>

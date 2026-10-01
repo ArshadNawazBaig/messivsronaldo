@@ -29,7 +29,8 @@
 .table th, .table td { overflow-wrap: anywhere; }
 .table th:first-child { width: 50%; }
 .table th:not(:first-child), .table td { width: 25%; text-align: center; }
-.value { display: inline-flex; align-items: center; gap: 9px; }
+.value { position: relative; display: inline-flex; align-items: center; }
+.value :global(.leader-mark) { position: absolute; inset-inline-start: calc(100% + 4px); }
 .sources { gap: 16px; flex-wrap: wrap; }
 .sources > div { display: flex; flex-wrap: wrap; gap: 16px; }
 .sources a { display: inline-flex; align-items: center; gap: 5px; }

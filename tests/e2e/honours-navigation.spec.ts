@@ -1,10 +1,12 @@
-import { locales } from "../../src/lib/i18n/config";
-import { expectedSitemapSize } from "./sitemap-helpers";
+import { locales, localizedPath } from "../../src/lib/i18n/config";
 import { expect, test, type Page } from "@playwright/test";
 
 async function openHonours(page: Page) {
   if (!await page.locator("#nav-trigger-honours").isVisible()) await page.locator(".header-menu-toggle").click();
   await page.locator("#nav-trigger-honours").click();
+  await expect(page.locator("#nav-panel-honours")).toBeVisible();
+  // A touch click in WebKit does not focus buttons for keyboard events.
+  await page.locator("#nav-trigger-honours").focus();
 }
 
 test("honours uses the same accessible dropdown behavior as scoring records", async ({ page }) => {
@@ -72,7 +74,7 @@ test("translated award navigation keeps the selected language and fits both them
     await page.locator(`#nav-panel-honours a[href="/${locale}/golden-boots"]`).click();
     await expect(page).toHaveURL(new RegExp(`/${locale}/golden-boots$`));
     await expect(page.locator("html")).toHaveAttribute("lang", locale);
-    await expect(page.locator("h1")).toHaveText(locale === "es" ? "Botas de Oro" : "الأحذية الذهبية");
+    await expect(page.locator("h1")).toHaveText(locale === "es" ? "Messi vs Ronaldo: Botas de Oro" : "ميسي ضد رونالدو: الأحذية الذهبية");
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
     await page.goto(`/${locale}/man-of-the-match`);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
@@ -87,8 +89,10 @@ test("new award pages are searchable and included in every sitemap language", as
   await expect(page).toHaveURL(/\/golden-boots$/);
   const sitemap = await request.get("/sitemap.xml");
   const xml = await sitemap.text();
-  for (const locale of ["", "/es", "/pt", "/nl", "/fr", "/de", "/ar", "/hi"]) {
-    for (const slug of ["ballon-dor", "golden-boots", "man-of-the-match", "fifa-awards", "uefa-awards"]) expect(xml).toContain(`${locale}/${slug}</loc>`);
+  for (const locale of locales) {
+    for (const slug of ["ballon-dor", "golden-boots", "man-of-the-match", "fifa-awards", "uefa-awards"]) expect(xml).toContain(`${localizedPath(`/${slug}`, locale)}</loc>`);
   }
-  expect((xml.match(/<url>/g) ?? []).length).toBe(expectedSitemapSize);
+  // Published articles can extend the sitemap independently of these award pages.
+  const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1]);
+  expect(new Set(urls).size).toBe(urls.length);
 });
