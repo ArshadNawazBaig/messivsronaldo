@@ -15,6 +15,7 @@ import { playerArtworkStyle, playerPortraits } from "@/lib/player-artwork";
 import { getPublishedData } from "@/lib/server-data";
 import { jsonLd, pageMetadata, siteUrl } from "@/lib/site";
 import styles from "./profile.module.css";
+import portraitStyles from "@/components/player-portrait.module.css";
 
 export function generateStaticParams() {
   return [{ player: "messi" }, { player: "ronaldo" }];
@@ -63,13 +64,19 @@ export default async function PlayerPage({ params }: { params: Promise<{ player:
     </div>
 
     <header className={styles.hero}>
-      <div className={styles.nationality}><span className={`country-flag ${player}`} aria-hidden="true" />{t("{0} · PLAYER PROFILE", { "0": t(p.countryCode) })}</div>
-      <span className={styles.shirtNumber} aria-hidden="true">#{p.number}</span>
-      <div className={styles.portrait}><Image src={portrait.src} alt={t(p.imageAlt)} width={portrait.width} height={portrait.height} priority quality={85} sizes="(max-width: 720px) 260px, 440px" /></div>
-      <div className={styles.heroCopy}>
-        <p className={styles.epithet}>{t(player === "messi" ? "The playmaker" : "The goal machine")}</p>
-        <h1 className={styles.name}><span>{t(player === "messi" ? "Lionel" : "Cristiano")} </span>{t(p.short)}<span className={styles.period} aria-hidden="true">.</span></h1>
-        <p className={styles.biography}>{t(p.tagline)}</p>
+      <div className={styles.heroStage}>
+        <div className={styles.nationality}><span className={`country-flag ${player}`} aria-hidden="true" />{t("{0} · PLAYER PROFILE", { "0": t(p.countryCode) })}</div>
+        <span className={styles.shirtNumber} aria-hidden="true">#{p.number}</span>
+        <div className={`${styles.portrait} ${portraitStyles.frame}`}><Image className={portraitStyles.image} src={portrait.src} alt={t(p.imageAlt)} width={portrait.width} height={portrait.height} priority quality={85} sizes="(max-width: 720px) 300px, 440px" /></div>
+        <div className={styles.heroCopy}>
+          <p className={styles.epithet}>{t(player === "messi" ? "The playmaker" : "The goal machine")}</p>
+          <h1 className={styles.name}><span>{t(player === "messi" ? "Lionel" : "Cristiano")} </span>{t(p.short)}</h1>
+          <p className={styles.biography}>{t(p.tagline)}</p>
+        </div>
+      </div>
+      <div className={styles.heroScore}>
+        <strong>{format(scopes.career.goals[player])}</strong>
+        <div><span>{t("TOTAL GOALS")}</span><span>{t("Career")}</span></div>
         <Link className={styles.compareButton} href="/compare">{t("Compare with {0}", { "0": t(other.short) })}<ArrowUpRight size={17} aria-hidden="true" /></Link>
       </div>
     </header>

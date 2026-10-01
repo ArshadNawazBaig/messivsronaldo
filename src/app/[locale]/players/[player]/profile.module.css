@@ -6,10 +6,10 @@
   --profile-accent: var(--art-dark-accent);
   --profile-border: var(--art-dark-border);
   --profile-button-text: var(--art-dark-canvas);
-  --portrait-height: 145%;
-  --portrait-top: -3%;
+  --portrait-height: 154%;
+  --portrait-top: -14%;
 }
-.page[data-player='ronaldo'] { --portrait-height: 145%; --portrait-top: -3%; }
+.page[data-player='ronaldo'] { --portrait-top: -5%; }
 :global(:root[data-theme='light']) .page {
   --profile-tint: var(--art-light-tint);
   --profile-center: var(--art-light-center);
@@ -22,19 +22,28 @@
 .breadcrumb { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 22px; }
 .breadcrumb a { display: inline-flex; align-items: center; gap: 9px; min-height: 40px; color: var(--muted); font-size: 12px; }
 .breadcrumb a:hover { color: var(--profile-accent); }
-.hero { position: relative; isolation: isolate; overflow: hidden; container-type: inline-size; min-height: 420px; border: 1px solid var(--profile-border); border-radius: 14px; background: linear-gradient(110deg, var(--profile-tint), var(--profile-center)); color: var(--profile-text); direction: ltr; }
-.nationality { position: absolute; inset: 30px auto auto 38px; display: flex; align-items: center; gap: 11px; font-size: 10px; font-weight: 650; letter-spacing: 1.6px; color: var(--profile-muted); z-index: 2; }
-.shirtNumber { position: absolute; top: 28px; right: 38px; z-index: 2; font-family: var(--font-display), sans-serif; color: var(--profile-accent); font-size: 28px; font-weight: 700; line-height: 1; }
-.heroCopy { position: relative; z-index: 1; width: 60%; padding: 99px 44px 42px; }
-.epithet { color: var(--profile-muted); font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; margin: 0 0 24px; }
-.page .hero .name { color: var(--profile-text); font-family: var(--font-display), 'Noto Sans Arabic', 'Noto Sans Devanagari', sans-serif; font-size: clamp(72px, 10cqw, 132px); font-weight: 800; letter-spacing: -3px; line-height: .88; text-transform: uppercase; margin: 0; }
-.name > span:first-child { display: block; font-family: var(--font-inter), sans-serif; font-size: clamp(22px, 2.5cqw, 32px); font-weight: 450; letter-spacing: -.7px; text-transform: none; line-height: 1.3; margin-bottom: 12px; }
-.period { color: var(--profile-accent); }
-.biography { font-size: 13px; line-height: 1.8; color: var(--profile-muted); margin: 24px 0; max-width: 400px; }
-.compareButton { display: inline-flex; gap: 22px; align-items: center; justify-content: space-between; min-height: 46px; padding: 12px 17px; border-radius: 5px; background: var(--profile-accent); color: var(--profile-button-text); font-size: 12px; font-weight: 650; }
-.compareButton:hover { text-decoration: underline; text-underline-offset: 4px; }
-.portrait { position: absolute; top: 50px; bottom: 0; right: 0; width: 49%; overflow: hidden; pointer-events: none; }
-.portrait img { position: absolute; top: var(--portrait-top); left: 50%; width: auto; height: var(--portrait-height); max-width: none; object-fit: contain; transform: translateX(-50%); mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); }
+.hero { position: relative; isolation: isolate; overflow: hidden; container-type: inline-size; border: 1px solid var(--profile-border); border-radius: 16px; background: var(--profile-center); color: var(--profile-text); direction: ltr; box-shadow: 0 3px 12px #07152504; }
+.heroStage { position: relative; isolation: isolate; overflow: hidden; min-height: 380px; background: linear-gradient(115deg,var(--profile-tint),var(--profile-center)); }
+.heroStage::before { content: ''; position: absolute; width: 62%; aspect-ratio: 1; right: -5%; bottom: -60%; border: 1px solid color-mix(in srgb,var(--profile-accent) 14%,transparent); border-radius: 50%; box-shadow: 0 0 0 36px color-mix(in srgb,var(--profile-accent) 3%,transparent),0 0 0 72px color-mix(in srgb,var(--profile-accent) 2%,transparent); pointer-events: none; }
+.nationality { position: absolute; inset: 32px auto auto 40px; display: flex; align-items: center; gap: 10px; font-size: 10px; font-weight: 650; letter-spacing: 1.2px; color: var(--profile-muted); z-index: 2; }
+.shirtNumber { position: absolute; top: 24px; right: 40px; z-index: 2; display: grid; place-items: center; min-width: 48px; height: 38px; padding: 0 10px; border: 1px solid color-mix(in srgb,var(--profile-accent) 18%,transparent); border-radius: 8px; background: color-mix(in srgb,var(--profile-center) 70%,transparent); font: 650 23px/1 var(--font-display),sans-serif; color: var(--profile-accent); }
+.heroCopy { position: relative; z-index: 1; width: 58%; padding: 105px 40px 40px; }
+.epithet { color: var(--profile-muted); font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase; margin: 0 0 18px; }
+.page .hero .name { color: var(--profile-text); font-family: var(--font-display),'Noto Sans Arabic','Noto Sans Devanagari',sans-serif; font-size: clamp(64px,8.2cqw,108px); font-weight: 800; letter-spacing: -2px; line-height: 1.05; text-transform: uppercase; margin: 0; }
+.name > span:first-child { display: block; font-family: var(--font-inter),sans-serif; font-size: clamp(20px,2cqw,26px); font-weight: 450; letter-spacing: 0; text-transform: none; line-height: 1.4; margin-bottom: 5px; color: var(--profile-muted); }
+.biography { font-size: 13px; line-height: 1.8; color: var(--profile-muted); margin: 18px 0 0; max-width: 400px; }
+.portrait { position: absolute; top: 64px; bottom: 0; right: 0; width: 49%; overflow: hidden; pointer-events: none; }
+.portrait img { position: absolute; top: var(--portrait-top); left: 50%; width: auto; height: var(--portrait-height); max-width: none; object-fit: contain; transform: translateX(-50%); }
+.heroScore { position: relative; display: grid; grid-template-columns: auto minmax(0,1fr) auto; align-items: center; gap: 24px; padding: 24px 40px; border-top: 1px solid color-mix(in srgb,var(--profile-accent) 18%,transparent); background: color-mix(in srgb,var(--profile-button-text) 70%,var(--profile-center)); }
+.heroScore::before { content: ''; position: absolute; top: -2px; left: 40px; width: 36px; height: 3px; border-radius: 2px; background: var(--profile-accent); }
+.heroScore > strong { font: 750 clamp(58px,7cqw,80px)/1 var(--font-display),sans-serif; letter-spacing: -1.8px; font-variant-numeric: tabular-nums; color: var(--profile-accent); }
+.heroScore > div { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.heroScore > div > span:first-child { font-size: 10px; font-weight: 650; letter-spacing: 1.1px; line-height: 1.5; text-transform: uppercase; }
+.heroScore > div > span:last-child { font-size: 12px; color: var(--profile-muted); line-height: 1.6; }
+.compareButton { display: inline-flex; gap: 22px; align-items: center; justify-content: space-between; min-height: 44px; padding: 12px 16px; border: 1px solid color-mix(in srgb,var(--profile-accent) 24%,transparent); border-radius: 8px; background: var(--profile-center); color: var(--profile-accent); font-size: 12px; font-weight: 650; line-height: 1.5; transition: background-color .2s,color .2s; }
+.compareButton svg { flex-shrink: 0; }
+.compareButton:is(:hover,:focus-visible) { background: var(--profile-accent); color: var(--profile-button-text); }
+.compareButton:focus-visible { outline: 2px solid var(--profile-accent); outline-offset: 3px; }
 .sectionNav { display: flex; gap: 30px; overflow-x: auto; border-bottom: 1px solid var(--border); padding: 0 2px; margin: 16px 0 40px; }
 .sectionNav a { display: flex; align-items: center; flex-shrink: 0; min-height: 60px; padding: 16px 0; font-size: 12px; font-weight: 550; color: var(--muted); border-bottom: 2px solid transparent; }
 .sectionNav a:hover, .sectionNav a:focus-visible { color: var(--profile-accent); border-color: var(--profile-accent); }
@@ -98,9 +107,11 @@
 .methodology > a { display: inline-flex; align-items: center; gap: 12px; flex-shrink: 0; font-size: 12px; min-height: 44px; color: var(--profile-accent); }
 @media (max-width: 1000px) {
   .heroCopy { padding: 96px 32px 36px; width: 62%; }
-  .hero { min-height: 390px; }
+  .heroStage { min-height: 370px; }
   .nationality { left: 30px; }
-  .portrait { width: 45%; }
+  .portrait { width: 48%; }
+  .heroScore { padding-inline: 32px; }
+  .heroScore::before { left: 32px; }
   .detailGrid { gap: 28px; grid-template-columns: minmax(0, 1.3fr) minmax(260px, 1fr); }
   .stat { padding: 22px; }
   .stat strong { font-size: 48px; }
@@ -109,15 +120,21 @@
   .methodology { flex-direction: column; align-items: flex-start; gap: 14px; }
 }
 @media (max-width: 720px) {
-  .hero { min-height: 0; border-radius: 11px; }
+  .hero { border-radius: 12px; }
+  .heroStage { min-height: 0; }
+  .heroStage::before { width: 100%; right: -15%; top: 48px; bottom: auto; }
   .nationality { top: 24px; left: 22px; font-size: 9px; letter-spacing: 1px; max-width: calc(100% - 95px); }
-  .shirtNumber { top: 20px; right: 22px; font-size: 23px; }
-  .portrait { top: 50px; bottom: auto; right: 0; width: 100%; height: 265px; mask-image: linear-gradient(#000 84%, transparent); }
-  .heroCopy { width: 100%; padding: 327px 24px 30px; }
+  .shirtNumber { top: 16px; right: 22px; font-size: 20px; min-width: 40px; height: 32px; }
+  .portrait { top: 50px; bottom: auto; right: 0; width: 100%; height: 265px; }
+  .heroCopy { width: 100%; padding: 325px 24px 28px; }
   .epithet { margin-bottom: 15px; font-size: 9px; }
-  .page .hero .name { font-size: clamp(60px, 17.5cqw, 96px); letter-spacing: -2px; }
-  .name > span:first-child { font-size: 22px; margin-bottom: 8px; }
-  .biography { font-size: 12px; margin: 20px 0; }
+  .page .hero .name { font-size: clamp(48px,16cqw,88px); letter-spacing: -1.4px; }
+  .name > span:first-child { font-size: 19px; margin-bottom: 5px; }
+  .biography { font-size: 12px; margin: 16px 0 0; }
+  .heroScore { grid-template-columns: auto minmax(0,1fr); gap: 18px; padding: 22px 24px; }
+  .heroScore::before { left: 24px; }
+  .heroScore > strong { font-size: 64px; }
+  .heroScore .compareButton { grid-column: 1/-1; justify-self: start; }
   .sectionNav { gap: 24px; margin-bottom: 30px; }
   .sectionNav a { min-height: 52px; font-size: 11px; }
   .section { scroll-margin-top: 120px; }
@@ -148,10 +165,13 @@
 }
 @media (max-width: 360px) {
   .breadcrumb a { font-size: 11px; }
-  .heroCopy { padding-inline: 20px; }
+  .heroCopy,.heroScore { padding-inline: 20px; }
+  .heroScore::before { left: 20px; }
   .stat { padding: 19px 16px; }
   .stat strong { font-size: 42px; }
   .competitionTable th, .competitionTable td { padding-inline: 5px; }
   .competitionTable tbody th a { gap: 4px; }
   .competitionTable tbody th a svg { display: none; }
 }
+
+@media (prefers-reduced-motion: reduce) { .compareButton { transition: none; } }

@@ -1,0 +1,11 @@
+/* Fade the source edges and the visible crop separately, keeping faces clear.
+   Shared by comparison cards and full player profiles in either theme. */
+.frame.frame {
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 52%, #000000eb 66%, #000000a6 79%, #00000038 91%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 52%, #000000eb 66%, #000000a6 79%, #00000038 91%, transparent 100%);
+}
+
+.image.image {
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #00000040 8%, #000000a6 17%, #000 30%, #000 70%, #000000a6 83%, #00000040 92%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, #00000040 8%, #000000a6 17%, #000 30%, #000 70%, #000000a6 83%, #00000040 92%, transparent 100%);
+}

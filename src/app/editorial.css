@@ -698,6 +698,7 @@ html {
   --player-edge: #50373e;
   --player-cover-accent: #eda29a;
 }
+/* Matched portrait stages keep names, faces and statistics on common baselines. */
 .player-matchup { gap: 24px; align-items: stretch; }
 .calendar-matchup { margin: 20px 0 24px; }
 .calendar-table { min-width: 0; }
@@ -710,13 +711,17 @@ html {
   --player-cover-accent: var(--art-dark-accent);
   --player-edge: var(--art-dark-border);
   --player-badge: var(--art-dark-badge);
+  --player-canvas: var(--art-dark-canvas);
+  --card-gutter: 30px;
   container-type: inline-size;
   height: auto;
   min-width: 0;
   border: 1px solid var(--player-edge);
-  border-radius: 12px;
-  background: linear-gradient(115deg, var(--player-ink), var(--player-center));
+  border-radius: 16px;
+  background: var(--player-center);
   overflow: hidden;
+  box-shadow: 0 3px 12px #07152504;
+  transition: border-color .2s ease, box-shadow .2s ease;
 }
 :root[data-theme='light'] .player-card {
   --player-ink: var(--art-light-tint);
@@ -726,210 +731,88 @@ html {
   --player-cover-accent: var(--art-light-accent);
   --player-edge: var(--art-light-border);
   --player-badge: var(--art-light-badge);
+  --player-canvas: var(--art-light-canvas);
 }
-.player-portrait {
-  position: relative;
-  isolation: isolate;
-  display: flex;
-  height: 100%;
-  overflow: hidden;
-  color: var(--player-text);
-}
-.player-card-copy {
-  position: relative;
-  min-width: 0;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-.player-card-stage {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  min-height: 290px;
-  padding: 26px 30px 32px;
-}
+.player-card.messi { --card-portrait-top: -14%; }
+.player-card.ronaldo { --card-portrait-top: -5%; }
+.player-card:hover { border-color: color-mix(in srgb, var(--player-cover-accent) 48%, var(--player-edge)); box-shadow: 0 8px 28px #0715250c; }
+.player-portrait { position: relative; isolation: isolate; display: flex; height: 100%; overflow: hidden; color: var(--player-text); }
+.player-card-copy { position: relative; min-width: 0; width: 100%; display: flex; flex-direction: column; }
+.player-card-stage { position: relative; isolation: isolate; overflow: hidden; min-height: 310px; padding: 28px var(--card-gutter) 32px; background: linear-gradient(115deg, var(--player-ink), var(--player-center)); }
+.player-card-stage::before { content: ''; position: absolute; width: 64%; aspect-ratio: 1; border-radius: 50%; right: -5%; bottom: -30%; border: 1px solid color-mix(in srgb, var(--player-cover-accent) 14%, transparent); box-shadow: 0 0 0 28px color-mix(in srgb, var(--player-cover-accent) 3%, transparent), 0 0 0 56px color-mix(in srgb, var(--player-cover-accent) 2%, transparent); pointer-events: none; }
 .player-photo,
-.ronaldo .player-photo {
-  position: absolute;
-  inset: 42px -8px 0 44%;
-  width: auto;
-  height: auto;
-  min-width: 0;
-  padding: 0;
-  opacity: 1;
-  background: none;
-  mask-image: none;
-  -webkit-mask-image: none;
-  pointer-events: none;
-}
+.ronaldo .player-photo { position: absolute; inset: 64px -6px 0 48%; width: auto; height: auto; min-width: 0; padding: 0; opacity: 1; background: none; pointer-events: none; }
+/* Profile and header crops remain independent of these comparison cards. */
+.profile-photo img,
+.header-player-photo img { position: absolute; top: var(--portrait-top); left: 50%; width: auto; height: var(--portrait-height); max-width: none; object-fit: contain; object-position: center; filter: none; transform: translateX(-50%); transform-origin: center; display: block; }
 .player-photo img,
 .messi .player-photo img,
-.ronaldo .player-photo img,
-.profile-photo img,
-.header-player-photo img {
-  position: absolute;
-  top: var(--portrait-top);
-  left: 50%;
-  width: auto;
-  height: var(--portrait-height);
-  max-width: none;
-  object-fit: contain;
-  object-position: center;
-  filter: none;
-  transform: translateX(-50%);
-  transform-origin: center;
-  display: block;
-}
-.profile-photo img {
-  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
-}
-.player-photo img {
-  mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
-}
-.player-country {
-  position: relative;
-  z-index: 1;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 10px;
-  letter-spacing: 1.3px;
-  font-weight: 650;
-  color: var(--player-muted);
-  text-transform: uppercase;
-}
+.ronaldo .player-photo img { position: absolute; top: var(--card-portrait-top); left: 50%; width: auto; height: 154%; max-width: none; object-fit: contain; object-position: center; filter: none; transform: translateX(-50%); display: block; }
+.player-country { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 8px; font-size: 10px; letter-spacing: 1.2px; font-weight: 650; color: var(--player-muted); text-transform: uppercase; }
 .player-country::after,
 .ronaldo .player-country::after { content: none; }
 .player-epithet { display: inline-flex; align-items: center; gap: 8px; font-size: 9px; letter-spacing: 1px; }
 .country-separator { color: var(--player-muted); margin: 0 2px; }
-.player-shirt-number { position: absolute; top: 22px; right: 28px; color: var(--player-cover-accent); font-family: var(--font-display), sans-serif; font-size: 22px; font-weight: 650; letter-spacing: -.5px; line-height: 1; }
-.player-identity { position: relative; inset: auto; padding: 0; margin-top: 53px; display: block; max-width: 54%; }
-.player-identity h2 {
-  font-family: var(--font-display), sans-serif;
-  margin: 0;
-  max-width: none;
-  font-size: clamp(46px, 11.8cqw, 78px);
-  font-weight: 800;
-  letter-spacing: -1.7px;
-  line-height: .98;
-  color: var(--player-text);
-  text-transform: uppercase;
-  text-shadow: none;
-}
-.player-identity h2 > span:first-child { display: block; font-family: var(--font-inter), sans-serif; font-size: 17px; line-height: 1.4; letter-spacing: -.2px; font-weight: 450; margin-bottom: 7px; text-transform: none; color: var(--player-muted); }
-.player-name-period,
-.ronaldo .player-name-period { color: var(--player-cover-accent); }
-.player-identity > p { font-size: 11px; line-height: 1.6; color: var(--player-muted); margin-top: 18px; max-width: 220px; }
-.player-profile-link {
-  position: absolute;
-  bottom: 36px;
-  right: 26px;
-  z-index: 3;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 42px;
-  height: 42px;
-  min-height: 0;
-  border: 1px solid color-mix(in srgb, var(--player-cover-accent) 30%, transparent);
-  border-radius: 50%;
-  background: var(--player-badge);
-  color: var(--player-cover-accent);
-  margin: 0;
-  backdrop-filter: none;
-  transition: border-color .15s, background-color .15s;
-}
-.player-profile-link svg { width: 19px; height: 19px; padding: 0; border: 0; border-radius: 0; }
-.player-portrait:hover .player-profile-link { border-color: var(--player-cover-accent); background: var(--player-ink); }
-.player-portrait:focus-visible { outline: 3px solid var(--player-cover-accent); outline-offset: -5px; border-radius: 11px; }
-.player-score {
-  position: relative;
-  inset: auto;
-  min-height: 124px;
-  display: flex;
-  flex: 1;
-  gap: 22px;
-  align-items: center;
-  margin-top: 0;
-  padding: 22px 84px 24px 30px;
-  max-width: none;
-  border: 0;
-  border-top: 1px solid color-mix(in srgb, var(--player-cover-accent) 20%, transparent);
-  background: var(--player-center);
-  z-index: auto;
-}
-.player-score::before { content: ''; position: absolute; top: -1px; left: 30px; width: 30px; height: 2px; background: var(--player-cover-accent); }
+.player-shirt-number { position: absolute; top: 22px; right: var(--card-gutter); display: grid; place-items: center; min-width: 42px; height: 34px; padding: 0 9px; border: 1px solid color-mix(in srgb, var(--player-cover-accent) 18%, transparent); border-radius: 8px; background: color-mix(in srgb, var(--player-center) 70%, transparent); color: var(--player-cover-accent); font: 650 20px/1 var(--font-display),sans-serif; letter-spacing: -.4px; }
+.player-identity { position: relative; inset: auto; padding: 0; margin-top: 65px; display: block; max-width: 57%; }
+.player-identity h2 { font-family: var(--font-display),sans-serif; margin: 0; max-width: none; font-size: clamp(44px,10.8cqw,72px); font-weight: 800; letter-spacing: -1.6px; line-height: 1.05; color: var(--player-text); text-transform: uppercase; text-shadow: none; }
+.player-identity h2 > span:first-child { display: block; font-family: var(--font-inter),sans-serif; font-size: 16px; line-height: 1.4; letter-spacing: 0; font-weight: 450; margin-bottom: 5px; text-transform: none; color: var(--player-muted); }
+.player-identity > p { font-size: 12px; line-height: 1.7; color: var(--player-muted); margin: 16px 0 0; max-width: 210px; }
+.player-score { position: relative; inset: auto; min-height: 118px; display: grid; grid-template-columns: auto minmax(0,1fr) auto; flex: 1; gap: 20px; align-items: center; margin: 0; padding: 22px var(--card-gutter); max-width: none; border: 0; border-top: 1px solid color-mix(in srgb, var(--player-cover-accent) 18%, transparent); background: color-mix(in srgb, var(--player-canvas) 70%, var(--player-center)); z-index: auto; }
+.player-score::before { content: ''; position: absolute; top: -2px; left: var(--card-gutter); width: 36px; height: 3px; border-radius: 2px; background: var(--player-cover-accent); }
 .big-score,
-.ronaldo .big-score {
-  font-family: var(--font-display), sans-serif;
-  font-size: clamp(58px, 12.4cqw, 84px);
-  font-weight: 800;
-  letter-spacing: -2px;
-  line-height: .96;
-  color: var(--player-cover-accent);
-  font-variant-numeric: tabular-nums;
-}
-.big-score.is-wide-score { font-size: clamp(38px, 10cqw, 66px); letter-spacing: -1.5px; }
-.player-score > div { display: flex; flex-direction: column; padding: 0; gap: 7px; min-width: 0; }
-.player-score > div > span:first-child { font-size: 11px; font-weight: 650; letter-spacing: 1.2px; color: var(--player-text); text-transform: uppercase; }
-.player-score > div > span:not(:first-child) { font-size: 11px; color: var(--player-muted); line-height: 1.5; max-width: 100%; }
-.player-matchup .versus-badge {
-  width: 46px;
-  height: 46px;
-  border: 5px solid var(--bg);
-  background: var(--panel);
-  color: var(--muted);
-  box-shadow: inset 0 0 0 1px var(--border);
-  font-family: var(--font-inter), sans-serif;
-  font-size: 10px;
-  font-style: normal;
-  pointer-events: none;
-  top: 145px;
-}
-/* Existing profile/header photos retain their independently approved crops. */
+.ronaldo .big-score { font-family: var(--font-display),sans-serif; font-size: clamp(54px,11.8cqw,78px); font-weight: 750; letter-spacing: -1.8px; line-height: 1; color: var(--player-cover-accent); font-variant-numeric: tabular-nums; }
+.big-score.is-wide-score { font-size: clamp(36px,9.4cqw,62px); letter-spacing: -1.2px; }
+.player-score > div { display: flex; flex-direction: column; padding: 0; gap: 6px; min-width: 0; }
+.player-score > div > span:first-child { font-size: 10px; font-weight: 650; letter-spacing: 1.1px; line-height: 1.5; color: var(--player-text); text-transform: uppercase; }
+.player-score > div > span:not(:first-child) { font-size: 12px; color: var(--player-muted); line-height: 1.6; max-width: 100%; overflow-wrap: anywhere; }
+.player-profile-link { position: static; z-index: auto; display: grid; place-items: center; width: 40px; height: 40px; min-height: 0; border: 1px solid color-mix(in srgb, var(--player-cover-accent) 22%, transparent); border-radius: 50%; background: var(--player-badge); color: var(--player-cover-accent); margin: 0; backdrop-filter: none; transition: border-color .2s, background-color .2s, color .2s; }
+.player-profile-link svg { width: 18px; height: 18px; padding: 0; border: 0; border-radius: 0; }
+.player-portrait:is(:hover,:focus-visible) .player-profile-link { border-color: var(--player-cover-accent); background: var(--player-cover-accent); color: var(--player-canvas); }
+.player-portrait:focus-visible { outline: 3px solid var(--player-cover-accent); outline-offset: -5px; border-radius: 15px; }
+.player-matchup .versus-badge { width: 44px; height: 44px; border: 5px solid var(--bg); background: var(--panel); color: var(--muted); box-shadow: inset 0 0 0 1px var(--border); font-family: var(--font-inter),sans-serif; font-size: 9px; font-style: normal; pointer-events: none; top: 155px; }
+.profile-photo img { mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
 .profile-hero > .profile-photo { position: absolute; top: 0; bottom: 0; height: auto; z-index: 1; overflow: hidden; background: #000; opacity: 1; }
 .profile-photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg, var(--player-ink), transparent 65%); pointer-events: none; }
 @container (max-width: 420px) {
-  .player-card-stage { min-height: 0; padding: calc(clamp(155px, 66cqw, 245px) + 56px) 18px 22px; }
+  .player-card-stage { min-height: 0; padding: calc(clamp(128px,68cqw,214px) + 72px) 18px 22px; }
+  .player-card-stage::before { width: 94%; right: -15%; bottom: 20%; }
   .player-photo,
-  .ronaldo .player-photo { inset: 38px 0 auto; width: 100%; height: clamp(155px, 66cqw, 245px); mask-image: linear-gradient(#000 85%, transparent); -webkit-mask-image: linear-gradient(#000 85%, transparent); }
-  .player-country { position: absolute; top: 18px; left: 18px; font-size: 9px; letter-spacing: .9px; }
+  .ronaldo .player-photo { inset: 52px 0 auto; width: 100%; height: clamp(128px,68cqw,214px); }
+  .player-country { position: absolute; top: 20px; left: 18px; font-size: 9px; letter-spacing: .9px; }
   .player-country .country-flag { width: 16px; height: 11px; }
   .player-epithet { display: none; }
-  .player-shirt-number { top: 15px; right: 18px; font-size: 17px; }
+  .player-shirt-number { top: 12px; right: 18px; min-width: 33px; height: 28px; padding: 0 6px; font-size: 16px; border-radius: 6px; }
   .player-identity { margin-top: 0; max-width: none; }
-  .player-identity h2 { font-size: clamp(27px, 11cqw, 43px); letter-spacing: -.8px; }
-  .player-identity h2 > span:first-child { font-size: 13px; margin-bottom: 5px; }
+  .player-identity h2 { font-size: clamp(23px,14cqw,46px); letter-spacing: -.6px; line-height: 1.15; }
+  .player-identity h2 > span:first-child { font-size: 12px; margin-bottom: 4px; }
   .player-identity > p { display: none; }
-  .player-score { flex-direction: column; align-items: flex-start; justify-content: flex-start; gap: 12px; padding: 18px 18px 22px; min-height: 150px; }
-  .player-score::before { left: 18px; width: 22px; }
-  .big-score, .ronaldo .big-score { font-size: clamp(46px, 23cqw, 70px); letter-spacing: -1.4px; }
-  .big-score.is-wide-score { font-size: clamp(30px, 18cqw, 54px); letter-spacing: -1px; }
-  .player-score > div { gap: 5px; padding: 0 24px 0 0; }
+  .player-score { grid-template-columns: minmax(0,1fr) auto; align-content: start; gap: 12px 8px; padding: 18px; min-height: 150px; }
+  .player-score::before { left: 18px; width: 26px; }
+  .big-score,.ronaldo .big-score { font-size: clamp(40px,28cqw,68px); letter-spacing: -1.3px; }
+  .big-score.is-wide-score { font-size: clamp(20px,15cqw,52px); letter-spacing: -.8px; }
+  .player-score > div { grid-column: 1/-1; grid-row: 2; gap: 4px; }
   .player-score > div > span:first-child { font-size: 9px; letter-spacing: .6px; }
-  .player-score > div > span:not(:first-child) { font-size: 10px; }
-  .player-profile-link { width: 28px; height: 28px; bottom: 18px; right: 12px; }
+  .player-score > div > span:not(:first-child) { font-size: 11px; }
+  .player-profile-link { grid-column: 2; grid-row: 1; width: 30px; height: 30px; }
   .player-profile-link svg { width: 15px; height: 15px; }
-}
-@media (max-width: 940px) {
-  .player-matchup .versus-badge { top: 140px; }
 }
 @media (max-width: 760px) {
   .player-matchup { gap: 14px; }
-  .player-matchup .versus-badge { width: 36px; height: 36px; border-width: 4px; font-size: 8px; }
+  .player-matchup .versus-badge { width: 34px; height: 34px; border-width: 4px; font-size: 8px; top: 145px; }
 }
 @media (max-width: 540px) {
-  .player-card, .player-card.ronaldo { border-radius: 10px; }
-  .player-card-stage { padding-left: 14px; padding-right: 14px; }
-  .player-country { left: 14px; }
-  .player-shirt-number { right: 14px; }
-  .player-score { padding-left: 14px; padding-right: 14px; }
-  .player-score::before { left: 14px; }
-  .player-matchup .versus-badge { top: 118px; }
-  .calendar-table th, .calendar-table td { padding: 14px 10px; font-size: 11px; }
+  .player-card,.player-card.ronaldo { --card-gutter: 14px; border-radius: 12px; }
+  .player-card-stage { padding-left: var(--card-gutter); padding-right: var(--card-gutter); }
+  .player-country { left: var(--card-gutter); }
+  .player-shirt-number { right: var(--card-gutter); }
+  .player-score { padding-left: var(--card-gutter); padding-right: var(--card-gutter); }
+  .player-score::before { left: var(--card-gutter); }
+  .player-matchup .versus-badge { top: 124px; }
+  .calendar-table th,.calendar-table td { padding: 14px 10px; font-size: 11px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .player-card,.player-profile-link { transition: none; }
 }
 
 /* Tables are the core of the site, not another dashboard card. */
@@ -1947,6 +1830,13 @@ html {
   }
   .panel-actions {
     gap: 3px;
+  }
+  .numbers-panel .panel-heading {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .numbers-panel .panel-actions {
+    flex-wrap: wrap;
   }
   .panel-actions .icon-button {
     min-width: 27px;
