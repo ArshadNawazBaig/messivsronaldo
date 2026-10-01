@@ -9,6 +9,7 @@ import { adminEmail, isAdmin } from "@/lib/admin/auth";
 import { getPublishedData } from "@/lib/server-data";
 import { getLocaleI18n } from "@/lib/i18n/server";
 import "@/app/globals.css";
+import "./workspace-base.css";
 import "@/app/editorial.css";
 import "./admin.css";
 const inter = localFont({ src: "../../../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2", variable: "--font-inter", display: "swap", weight: "100 900" });

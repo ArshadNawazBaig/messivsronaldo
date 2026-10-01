@@ -2,14 +2,19 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
-  experimental: { globalNotFound: true },
+  experimental: {
+    globalNotFound: true,
+    // Keep unrelated route and admin styles out of public-page CSS bundles.
+    cssChunking: { type: "graph", requestCost: 5000 },
+  },
   // Vercel runs native Linux Sharp. Its optional WASM fallback otherwise gets
   // copied into every image-rendering function alongside the native library.
   ...(process.env.VERCEL === "1" ? {
     outputFileTracingExcludes: { "/*": ["./node_modules/@img/sharp-wasm32/**/*"] },
   } : {}),
   images: {
-    // Keep small thumbnails light while preserving detail in player portraits.
+    // Include intermediate portrait widths for high-density mobile screens.
+    imageSizes: [32, 48, 64, 96, 128, 160, 192, 256, 320, 384, 480],
     qualities: [75, 85],
   },
   async redirects() {

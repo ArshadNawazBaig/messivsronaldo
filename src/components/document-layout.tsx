@@ -15,6 +15,7 @@ import type { Locale } from '@/lib/i18n/config';
 import { I18nProvider } from '@/components/i18n-provider';
 import { AdminExportProvider } from '@/components/admin-stat-export';
 import { PublicAnalytics } from '@/components/public-analytics';
+import { PublicAdSense } from '@/components/public-adsense';
 import { publisherConfiguration } from '@/lib/publisher-config';
 import { socialImageAlt, socialImagePath } from '@/lib/social-image';
 
@@ -76,6 +77,7 @@ export default async function DocumentLayout({
     >
       <head>
         <ThemeInitializer />
+        {publisher.adsenseScriptEnabled && publisher.adsensePublisherId && admin === undefined && <PublicAdSense publisherId={publisher.adsensePublisherId} adsEnabled={publisher.adsenseAdsEnabled} />}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

@@ -119,6 +119,108 @@ votes, cookie attributes, private API responses, rejected invalid submissions,
 translated metadata, sitemaps and storage disclosures. No synthetic vote was
 added to the public poll.
 
+## AdSense loader — 2 October 2026
+
+Deployment `dpl_G4DpPeQDHCvZMc6M492VNfLorX9H` is live on the canonical domain.
+
+The owner supplied the Google loader for `ca-pub-1970746421579261` and confirmed
+that a European regulations consent message is not yet set up. Production uses
+`ADSENSE_SCRIPT_ENABLED=true` and `ADSENSE_ADS_ENABLED=false`. The public document
+head renders the supplied async script once, with anonymous cross-origin mode,
+after setting `adsbygoogle.pauseAdRequests=1`. Load handlers prevent React from
+hoisting the external script ahead of that initializer. Public client navigation
+does not reload it, and the separate admin document excludes it. The existing
+verification meta tag and `ads.txt` remain unchanged.
+
+The loader can make technical requests to Google while ad requests are paused.
+Privacy/cookie notices describe that behavior in all nine languages. Publishing
+and testing the consent message, confirming Google approval, and reviewing ad
+placement remain account-side activation tasks. The ad-request flag is not a
+consent mechanism and must not be treated as one. See the activation checklist
+in `README.md` and Google's [pause examples](https://support.google.com/adsense/answer/9042142?hl=en)
+and [consent-message setup](https://support.google.com/adsense/answer/10960768?hl=en).
+
+Validation: lint, TypeScript, the production build and 18 targeted unit tests
+passed; the translation/publisher tests also passed with the loader enabled and
+ad requests paused. Eleven Chromium/WebKit checks covered all nine languages,
+the exact server-rendered head markup, pause-before-load ordering, client
+navigation, admin exclusion, verification metadata, `ads.txt` and updated
+disclosures. Browser checks stub Google's script to avoid ad impressions.
+The same eleven checks passed on production after deployment, confirming the
+configured publisher ID and paused requests. Account approval and a published
+Google consent message have not been verified; real consent flows and ad
+delivery were not exercised by the stubbed loader checks.
+
+## PageSpeed improvements — 2 October 2026
+
+Deployment `dpl_ES57Cm8ssP8Tc1nWvzz7ozP71bUQ` is live on the canonical domain.
+
+Comparison portraits now request widths matching their actual CSS crop and use
+quality 75, eager loading and `fetchPriority="high"`. Additional image widths
+avoid large gaps between responsive variants on high-density displays. The
+original licensed assets and export image quality are unchanged.
+
+Admin workspace/calendar styles are imported only by the admin layout. Export
+launch buttons have a small independent stylesheet; dialog styles load with the
+export UI. Turbopack graph chunking with a 5 KB request cost separates unrelated
+route styles. Thai font rules apply to Thai pages, so the English footer's
+language link no longer initiates a Thai-font download.
+
+Closed navigation menus and the search dialog mount their contents when opened;
+navigation artwork loads on demand. Comparison content, editorial text and the
+site-map link remain server-rendered. The mobile options panel uses its fixed
+inset container's height to avoid clipping in Safari landscape.
+
+The AdSense implementation above has been updated: the pause initializer remains
+in the server-rendered head, while Next.js `lazyOnload` loads the Google SDK after
+page load during browser idle time. The verification meta tag and `ads.txt` remain
+server-readable, ad requests stay paused, public navigation deduplicates the SDK,
+and the separate admin document excludes it. This follows the framework's
+[Script loading strategy](https://nextjs.org/docs/app/api-reference/components/script#lazyonload).
+
+CSS inlining and extra chart hydration boundaries were measured in an isolated
+build and omitted because they did not improve this page's mobile audit. The
+remaining legacy-JavaScript finding comes from Next.js's built-in compatibility
+bundle; no framework internals or browser support were removed to suppress it.
+
+Validation: production build, lint and TypeScript passed; 183 unit tests passed
+with one existing PostgreSQL-only test skipped. All 42 selected browser tests
+passed in desktop Chrome, mobile Chrome and mobile Safari, covering comparison
+options, menu keyboard access, search, charts, themes and accessible data pages.
+Eleven loader/font checks covered all nine languages plus Safari, including
+pause-before-execution, load/idle timing, deduplication, admin exclusion and
+verification. The admin export launch/dialog styles were checked with a mocked
+local session; no real export or production write was issued. All eleven
+loader/font checks also passed against the deployed canonical site.
+
+With identical mobile emulation, portrait resource bytes dropped from 196,604
+to 33,314 (83%), uncompressed CSS from 247,292 to 160,095 (35%), and initial DOM
+elements from 1,869 to 957 (49%). Compressed CSS transfer fell 13%; the CSS byte
+and transfer percentages are different measurements. The 26,924-byte Thai font
+is no longer fetched on English pages. These resource figures are more stable
+than individual Lighthouse scores. Both before/after measurements retain the
+page content and responsive image density; no audit-user-agent special case is
+used.
+
+Measurement and browser artifacts are in `.artifacts/pagespeed-fix/`. Google's
+unauthenticated PageSpeed API returned HTTP 429 (shared daily quota exceeded), so
+local Lighthouse reports are labelled separately from Google-hosted PageSpeed
+results. The hosted UI report also remained in its loading state for four
+minutes; it is not evidence of a completed Google-hosted test.
+
+Fresh Lighthouse 13.5.0 runs against the canonical live site measured mobile
+performance 58 before and 83 after, FCP 2.6s → 1.3s, LCP 5.6s → 3.2s, TBT 540ms →
+420ms, and CLS 0. Desktop measured 100 performance, 0.4s FCP, 0.7s LCP and 10ms TBT.
+Accessibility, best practices and SEO measured 100 on both devices. Reports are
+`live-before-mobile.json`, `live-after-mobile.json/html` and
+`live-after-desktop.json/html` in the artifact directory. These are individual
+lab runs; background host activity, network and Google SDK responses can vary.
+The user's earlier 86-point screenshot is a different test, not this baseline.
+A 90+ mobile score has not been established. The remaining JavaScript warnings
+include Google's SDK and framework runtime; preserving those integrations leaves
+some unused/compatibility code in the audit. No arbitrary timer or crawler-specific
+behavior was added to hide work outside the measurement window.
+
 ## Environment and data
 
 Production needs `NEXT_PUBLIC_SITE_URL=https://messivsronaldo17.com`, `SITE_INDEXABLE=true`, `DATABASE_URL`, `ADMIN_EMAIL`, `ADMIN_PASSWORD_HASH`, `ADMIN_SESSION_SECRET`, and `CRON_SECRET` for automatic updates. `HEALTHCHECK_SECRET` authorizes the operational monitor. Keep database and admin secrets private. Google Search Console verification can optionally use `GOOGLE_SITE_VERIFICATION`.

@@ -2,6 +2,7 @@ type Environment = Record<string, string | undefined>;
 export function publisherConfiguration(env: Environment) {
   const publisherId = env.ADSENSE_PUBLISHER_ID?.trim().replace(/^ca-/, "");
   const adsensePublisherId = publisherId && /^pub-\d{16}$/.test(publisherId) ? publisherId : undefined;
+  const adsenseScriptEnabled = !!adsensePublisherId && env.ADSENSE_SCRIPT_ENABLED === "true";
   const editorName = env.EDITOR_NAME?.trim();
   const editorBiography = env.EDITOR_BIO?.trim();
   let editorProfileUrl: string | undefined;
@@ -11,6 +12,8 @@ export function publisherConfiguration(env: Environment) {
   } catch { /* An optional profile is omitted unless it is a valid public URL. */ }
   return {
     adsensePublisherId,
+    adsenseScriptEnabled,
+    adsenseAdsEnabled: adsenseScriptEnabled && env.ADSENSE_ADS_ENABLED === "true",
     // Analytics is optional and never included on the admin document.
     analyticsEnabled: env.VERCEL === "1" && env.WEB_ANALYTICS_ENABLED !== "false",
     contactEmail: env.CONTACT_EMAIL?.trim().match(/^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/)?.[0],

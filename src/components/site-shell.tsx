@@ -2,7 +2,7 @@
 import { playerPhotoLicense } from "@/lib/player-artwork";
 import { LanguageLinks, LanguageSwitcher } from "./language-switcher";
 import { SocialLinks } from "./social-links";
-import { NavigationIcon } from "./ui/navigation-icon";
+import dynamic from "next/dynamic";
 import { stripLocale, locales, type Locale } from "@/lib/i18n/config";
 import { useI18n } from "@/components/i18n-provider";
 import { useFootballData } from "@/components/data-provider";
@@ -14,6 +14,10 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { ArrowUpRight, ChevronDown, ChevronRight, Menu, Moon, Search, Sun, X } from "lucide-react";
+// Menu/search artwork is only needed after the visitor opens those controls.
+const NavigationIcon = dynamic(() => import("./ui/navigation-icon").then(module => module.NavigationIcon), {
+    loading: () => <span aria-hidden="true" style={{ display: "inline-block", width: 20, height: 20, flexShrink: 0 }}/>,
+});
 const comparisonItems = [
     { href: "/", label: "Overview" },
     { href: "/compare", label: "Compare stats" },
@@ -168,7 +172,7 @@ function SiteHeader({ pathname, onSearch, availableLanguages }: {
                         }
                     }}>{t(group.label)}<ChevronDown size={13} aria-hidden="true"/></button>
                 <ul id={`nav-panel-${group.id}`} className="nav-dropdown" hidden={!expanded} aria-labelledby={`nav-trigger-${group.id}`}>
-                  {group.items?.map(({ href, label }) => <li key={href}><Link href={href} aria-current={isActivePath(pathname, href) ? "page" : undefined} onClick={closeNavigation}><NavigationIcon href={href} size={20} strokeWidth={1.65} aria-hidden="true"/><span>{t(label)}</span><ChevronRight size={13} aria-hidden="true"/></Link></li>)}
+                  {expanded && group.items?.map(({ href, label }) => <li key={href}><Link href={href} aria-current={isActivePath(pathname, href) ? "page" : undefined} onClick={closeNavigation}><NavigationIcon href={href} size={20} strokeWidth={1.65} aria-hidden="true"/><span>{t(label)}</span><ChevronRight size={13} aria-hidden="true"/></Link></li>)}
                 </ul>
               </>}
             </li>;
@@ -190,12 +194,16 @@ export function SiteShell({ children, articleLinks, articleLanguages }: {
     const availableLanguages = pathname.startsWith("/insights/") ? articleLanguages[pathname.slice(10)] ?? [] : locales;
     const allSearchItems = [...searchItems.map(item => ({ ...item, label: t(item.label) })), ...articleLinks];
     const [query, setQuery] = useState("");
+    const [searchOpen, setSearchOpen] = useState(false);
     const dialog = useRef<HTMLDialogElement>(null);
+    useEffect(() => {
+        if (searchOpen) dialog.current?.showModal();
+    }, [searchOpen]);
     useEffect(() => {
         const onKey = (event: KeyboardEvent) => {
             if ((event.metaKey || event.ctrlKey) && event.key === "k") {
                 event.preventDefault();
-                dialog.current?.showModal();
+                setSearchOpen(true);
             }
         };
         document.addEventListener("keydown", onKey);
@@ -203,7 +211,7 @@ export function SiteShell({ children, articleLinks, articleLanguages }: {
     }, []);
     return <>
     <a href="#main-content" className="skip-link">{t("Skip to content")}</a>
-    <SiteHeader key={pathname} pathname={pathname} availableLanguages={availableLanguages} onSearch={() => dialog.current?.showModal()}/>
+    <SiteHeader key={pathname} pathname={pathname} availableLanguages={availableLanguages} onSearch={() => setSearchOpen(true)}/>
     <div className="site-body">
       <main id="main-content" tabIndex={-1}>{children}</main>
       <footer className="site-footer">
@@ -218,9 +226,9 @@ export function SiteShell({ children, articleLinks, articleLanguages }: {
         <div className="footer-bottom"><span>© {t(new Date().getFullYear())}{t(" The Rivalry. An independent football project.")}</span><Link className="footer-update" href="/updates"><span>{t("Last updated")} <time dateTime={snapshotDate}>{t(snapshotLabel)}</time></span><ArrowUpRight size={13} aria-hidden="true"/></Link></div>
       </footer>
     </div>
-    <dialog ref={dialog} className="search-dialog" onClick={event => {
+    <dialog ref={dialog} className="search-dialog" onClose={() => setSearchOpen(false)} onClick={event => {
             if (event.target === event.currentTarget)
                 dialog.current?.close();
-        }}><div className="search-dialog-inner"><div className="dialog-search-row"><Search size={21}/><input autoComplete="off" placeholder={t("Players, competitions, stories\u2026")} aria-label={t("Search pages")} value={query} onChange={event => setQuery(event.target.value)}/><button className="icon-button" aria-label={t("Close search")} onClick={() => dialog.current?.close()}><X size={19}/></button></div><div className="search-results">{allSearchItems.filter(item => item.label.toLocaleLowerCase().includes(query.toLocaleLowerCase())).map(({ href, label }) => <Link href={href} key={href} onClick={() => { dialog.current?.close(); setQuery(""); }}><NavigationIcon href={href} size={19} aria-hidden="true"/><span>{label}</span><ArrowUpRight size={15}/></Link>)}{!allSearchItems.some(item => item.label.toLocaleLowerCase().includes(query.toLocaleLowerCase())) && <p className="no-results">{t("No matches. Try \u201Cgoals\u201D, \u201CMessi\u201D or \u201Csources\u201D.")}</p>}</div><div className="search-dialog-footer">{t("Search players, competitions and articles.")}<kbd>{t("ESC to close")}</kbd></div></div></dialog>
+        }}>{searchOpen && <div className="search-dialog-inner"><div className="dialog-search-row"><Search size={21}/><input autoComplete="off" placeholder={t("Players, competitions, stories\u2026")} aria-label={t("Search pages")} value={query} onChange={event => setQuery(event.target.value)}/><button className="icon-button" aria-label={t("Close search")} onClick={() => dialog.current?.close()}><X size={19}/></button></div><div className="search-results">{allSearchItems.filter(item => item.label.toLocaleLowerCase().includes(query.toLocaleLowerCase())).map(({ href, label }) => <Link href={href} key={href} onClick={() => { dialog.current?.close(); setQuery(""); }}><NavigationIcon href={href} size={19} aria-hidden="true"/><span>{label}</span><ArrowUpRight size={15}/></Link>)}{!allSearchItems.some(item => item.label.toLocaleLowerCase().includes(query.toLocaleLowerCase())) && <p className="no-results">{t("No matches. Try \u201Cgoals\u201D, \u201CMessi\u201D or \u201Csources\u201D.")}</p>}</div><div className="search-dialog-footer">{t("Search players, competitions and articles.")}<kbd>{t("ESC to close")}</kbd></div></div>}</dialog>
   </>;
 }

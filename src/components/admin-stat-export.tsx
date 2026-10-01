@@ -6,7 +6,7 @@ import { Download } from "lucide-react";
 import { useFootballData } from "./data-provider";
 import { useI18n } from "./i18n-provider";
 import type { ImagePlayers, ImageTheme, StatImage } from "@/lib/stat-image";
-import styles from "./stat-image-dialog.module.css";
+import styles from "./admin-stat-export.module.css";
 import { adminHintCookie } from "@/lib/admin/session-cookie";
 
 type Selection = {

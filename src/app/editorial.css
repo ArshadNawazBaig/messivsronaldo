@@ -2086,8 +2086,7 @@ html[lang='hi'] :is(h1, h2, h3) {
   letter-spacing: 0;
 }
 html[lang='th'] body,
-[lang='th'],
-[lang='th'] :is(h1, h2, h3) {
+html[lang='th'] :is(h1, h2, h3) {
   font-family: 'Noto Sans Thai', var(--font-inter), Tahoma, sans-serif;
   letter-spacing: 0;
 }
