@@ -3,6 +3,7 @@ import { PageContext } from "@/components/page-context";
 import { RelatedReading } from "@/components/related-reading";
 import { getI18n } from "@/lib/i18n/server";
 import { notFound } from "next/navigation";
+import { PeriodReading, CalendarScopeReading, CompetitionScopeReading } from "@/components/period-reading";
 import { SeasonExplorer } from "@/components/season-explorer";
 import { CalendarExplorer } from "@/components/calendar-explorer";
 import { CalendarYearNavigation } from "@/components/calendar-year-navigation";
@@ -50,6 +51,8 @@ export default async function SeasonPage({ params }: {
             </div></div>
             <CalendarExplorer selected={season}/>
             <CalendarSummary year={year} years={calendarYears} hasUpdates={Boolean(coverageNote)} inProgress={year.year === Number(snapshotDate.slice(0, 4))} />
+            <CalendarScopeReading year={year} />
+            <PeriodReading sample={year.career} previous={calendarYears.find(item => item.year === year.year - 1)?.career} source={year.source} period={String(year.year)} incomplete={year.year === Number(snapshotDate.slice(0, 4))} />
             <CalendarYearNavigation years={calendarYears} selected={year.year} />
             <RelatedReading path={`/seasons/${season}`} />
         </div>;
@@ -58,5 +61,5 @@ export default async function SeasonPage({ params }: {
     if (!item)
         notFound();
     const fullSeason = `${season.slice(0, 4)}-${Number(season.slice(0, 4)) + 1}`;
-    return <div className="page-container inner-page"><PageContext path={`/seasons/${season}`} title={t(`Messi vs Ronaldo ${item.label}: Goals & Scoring Rates`)} players={["messi", "ronaldo"]} breadcrumbs={[{ path: "/", name: t("Overview") }, { path: "/seasons", name: t("Years & seasons") }, { path: `/seasons/${season}`, name: item.label }]} /><div className="page-intro inner-intro"><div><span className="eyebrow">{t("SEASON IN FOCUS")}</span><h1>{t("Messi vs Ronaldo, {0}.", { "0": t(item.label) })}</h1><p>{t("A closer look at their league and Champions League campaigns, with the competition boundaries kept clear.")}</p><div className="archive-link"><Link href={`/club-stats/${fullSeason}`}>{t("All club competitions")}</Link></div></div></div><SeasonExplorer selected={season}/><SeasonSummary season={item} /><RelatedReading path={`/seasons/${season}`} /></div>;
+    return <div className="page-container inner-page"><PageContext path={`/seasons/${season}`} title={t(`Messi vs Ronaldo ${item.label}: Goals & Scoring Rates`)} players={["messi", "ronaldo"]} breadcrumbs={[{ path: "/", name: t("Overview") }, { path: "/seasons", name: t("Years & seasons") }, { path: `/seasons/${season}`, name: item.label }]} /><div className="page-intro inner-intro"><div><span className="eyebrow">{t("SEASON IN FOCUS")}</span><h1>{t("Messi vs Ronaldo, {0}.", { "0": t(item.label) })}</h1><p>{t("A closer look at their league and Champions League campaigns, with the competition boundaries kept clear.")}</p><div className="archive-link"><Link href={`/club-stats/${fullSeason}`}>{t("All club competitions")}</Link></div></div></div><SeasonExplorer selected={season}/><SeasonSummary season={item} /><CompetitionScopeReading season={item} /><RelatedReading path={`/seasons/${season}`} /></div>;
 }

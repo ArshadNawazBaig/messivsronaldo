@@ -1,0 +1,11 @@
+.reading { margin-block: 2rem; }
+.reading .lead { font-size: 1.08rem; max-width: 78ch; }
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; }
+.grid section { min-width: 0; }
+.reading h3 { margin-top: 1.5rem; }
+.tableWrap { max-width: 100%; overflow-x: auto; margin-block: 1rem; }
+.tableWrap table { width: 100%; border-collapse: collapse; font-size: .9rem; font-variant-numeric: tabular-nums; }
+.tableWrap th, .tableWrap td { text-align: start; padding: .75rem; border-bottom: 1px solid var(--border); white-space: nowrap; }
+.tableWrap caption { text-align: start; padding-block: .5rem; }
+.sources { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
+@media (max-width: 640px) { .grid { grid-template-columns: 1fr; gap: 0; } }

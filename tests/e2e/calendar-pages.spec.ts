@@ -38,6 +38,12 @@ test("every published year has its own crawlable page and consistent search meta
         await expect(page.locator(".inner-intro p")).toContainText("Year to date through");
       }
       await expect(page.locator('[data-calendar-years] [aria-current="page"]')).toHaveText(String(year.year));
+      await expect(page.locator("[data-scope-reading]")).toContainText("must not be added again");
+      await expect(page.locator("[data-period-reading]")).toContainText("not a complete creativity or player-quality score");
+      if (year.year === 2026) {
+        await expect(page.locator("[data-period-reading] table")).toHaveCount(0);
+        await expect(page.locator("[data-period-reading]")).toContainText("This period is incomplete.");
+      }
       const prev = page.locator('[data-archive-summary] a[rel="prev"]');
       const next = page.locator('[data-archive-summary] a[rel="next"]');
       if (year.year === calendarYears[0].year) await expect(prev).toHaveCount(0);

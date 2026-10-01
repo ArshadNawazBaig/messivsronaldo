@@ -82,7 +82,8 @@ The production website is deployed on Vercel at https://messivsronaldo17.com wit
 ## Public policies and system pages
 
 - `/terms`, `/privacy`, `/cookies`, `/disclaimer`, and `/accessibility` describe this edition. Policy content is in `src/lib/policies.ts`. Set the publisher's public `CONTACT_EMAIL` to show a real email contact; no contact address or legal entity is invented by the app.
-- `/about`, `/contact`, `/credits`, `/methodology`, and `/updates` provide the existing project information and correction workflow. Preparing a correction report does **not** submit it.
+- `/about`, `/contact`, `/credits`, `/methodology`, and `/updates` provide project information and the correction workflow. Submitting the contact form creates a private report in `/admin/support`, with a receipt reference. No outbound email service is used.
+- Configure `EDITOR_NAME`, `EDITOR_BIO`, and optionally `EDITOR_PROFILE_URL` using the owner's confirmed public details. The About page displays the biography; article editor links and structured data identify the responsible editor without falsely changing historic publication authorship.
 - `/sitemap` is the visitor directory; `/sitemap.xml` uses the same catalog in `src/lib/public-pages.ts`. The catalog includes every public content route, player profile, article, calendar year and archived season. Error responses, `/maintenance`, `/admin`, API endpoints and filter variants are excluded. New `[slug]` pages registered in `content-pages.ts` are included automatically; register any new standalone route in `public-pages.ts` too.
 - Unknown routes use the custom 404. Route rendering failures use `error.tsx`; root-layout failures use the independent `global-error.tsx`. Retry re-fetches the failed route through Next.js.
 - `/maintenance` always serves the maintenance design with HTTP **503**, `Retry-After: 300`, and no caching. It works without the database. To temporarily pause public routes, set `MAINTENANCE_MODE=true` in the host environment and redeploy. Admin routes, admin APIs, assets and `robots.txt` remain accessible; existing admin authentication still applies. Set it back to `false` and redeploy to reopen. Keep this mode brief: prolonged 503 responses can affect search visibility. Normal URLs are not given `noindex` during an outage.
@@ -95,11 +96,23 @@ No live provider key was supplied during implementation, so real provider access
 
 ## Monetization and operations
 
-This edition contains no ads, affiliate tracking, analytics, public user accounts or payments. A single protected administrator account manages statistics. Its essential comparisons remain free. The researched 90-day growth strategy and revenue scenarios are in `WEBSITE_BUILD_PROMPT.md` and `WEBSITE_RESEARCH.md`.
+This edition contains no active ads, affiliate tracking, public user accounts or payments. Vercel Web Analytics runs on public pages in production unless `WEB_ANALYTICS_ENABLED=false`; private routes and URL query/fragment data are excluded. A protected administrator account manages statistics and support reports. Essential comparisons remain free. The researched 90-day growth strategy and revenue scenarios are in `WEBSITE_BUILD_PROMPT.md` and `WEBSITE_RESEARCH.md`.
 
 API-Football credentials and appropriate provider access are required for real statistics imports. Production hosting, a domain, current-data licensing, editorial upkeep and any added email/analytics services must be costed for the chosen providers. No $1,000 earnings or Google/AI ranking promise is made.
 
-Before adding advertising or analytics, configure the services and appropriate privacy/consent controls, update the privacy page, reserve ad dimensions, and recheck performance. Keep the first comparison visible before monetization units.
+Before activating advertising, configure the assigned `ADSENSE_PUBLISHER_ID`, the actual services and appropriate privacy/consent controls, update the privacy page, reserve ad dimensions, and recheck performance. The ID only enables the verification meta tag and `ads.txt`; it does not load ads. Keep the first comparison visible before monetization units.
+
+### AdSense application and activation
+
+The owner confirmed on 1 October 2026 that an AdSense account has not yet been set up. There is no invented publisher ID and no advertising request code. A missing `ads.txt` is expected until Google assigns the real ID. No deployment can grant Google approval.
+
+1. Apply using the owner's Google account and this site's canonical domain. Once Google assigns the publisher ID, set `ADSENSE_PUBLISHER_ID`, redeploy, and verify the generated verification meta tag and `/ads.txt` against the account. Do not reuse a sample ID.
+2. Before serving ads in the EEA, UK or Switzerland, configure and test a Google-certified consent management platform for the actual account. Test consent, refusal and revocation in the applicable regions. Non-personalized ads may still require consent for storage; do not treat them as a blanket exemption. Follow [Google's consent requirements](https://support.google.com/adsense/answer/13554116?hl=en).
+3. Update the privacy and cookie inventory for the services actually activated, including third-party cookies, Google's use of prior visits, personalization choices and the consent controls. The current notice truthfully describes AdSense as planned. Follow [Google's required privacy disclosures](https://support.google.com/adsense/answer/1348695?hl=en).
+4. Initially place ads only on substantive public comparison and article pages. Exclude administrator routes, authentication, errors, contact/confirmation screens and utility-only pages. Clearly distinguish ads from menu controls, download actions, statistics and source links. Reserve dimensions, retain access to content, and test layout shifts and accidental-click risk on mobile before expanding placements.
+5. In the owner's Search Console account, verify the domain, submit `/sitemap.xml`, and inspect representative article, season and translated URLs. Check crawl errors, indexing and real organic queries. Server-rendered content, valid metadata and a sitemap do not prove traffic or indexing.
+
+Editorial changes should preserve each statistic's source, scope and cutoff. Club-season interpretations include individual observations, equal-playing-time calculations and changes from the previous comparable period; incomplete periods and definition changes omit misleading trends. Calendar and La Liga/Champions League pages explain which competition scope changes the answer. Keep the interpretations synchronized with future snapshot corrections. The About page distinguishes sourced facts, interpretation and AI assistance. There is no Google rule requiring 800–1,200 words per page or a particular traffic minimum; useful original content and compliant implementation matter more than padding.
 
 ## Project structure
 

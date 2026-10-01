@@ -6,6 +6,46 @@ Vercel project: `arshadnawazbaigs-projects/messivsronaldo17`.
 Canonical origin: `https://messivsronaldo17.com`.
 Database: `rivalry-production`, Neon Launch (verified 30 September 2026), region `iad1`. The Vercel functions use the same region.
 
+## AdSense preparation — 1 October 2026
+
+Production deployment `dpl_BcQsRAcC4sD6rSEVGLC7MB3HRC4i` adds individual
+interpretations for 25 club seasons, comparable-period changes, equal-time
+calculations, and calendar/competition scope explanations. New content is
+translated into all nine supported languages. Missing-minute samples never
+acquire invented rates, and incomplete periods or changed season definitions
+do not receive misleading previous-period comparisons.
+
+The owner supplied his public editorial name, football/coaching background and
+Facebook profile. `EDITOR_NAME`, `EDITOR_BIO` and `EDITOR_PROFILE_URL` are now
+configured in production. About displays the biography and Person schema;
+articles identify the editor while retaining their publication author. The
+editorial statement explains sources, interpretation, corrections and AI assistance.
+
+The privacy notice describes planned AdSense cookie use and visitor choices.
+The owner has not created an AdSense account. No publisher ID was invented and
+no advertising script was enabled. Follow the application/activation checklist
+in `README.md` after Google assigns the ID; consent and actual ad placements
+must be configured and checked before ad delivery. Search Console account
+verification, indexing and organic traffic have not been verified in this release.
+
+Validation: lint, TypeScript, production build and 179 unit tests passed; one
+isolated PostgreSQL test was skipped without its test database. Eleven browser
+tests passed, including all club seasons without JavaScript, all calendar years,
+nine-language rendering, mobile Safari, accessibility checks, and the support
+submission/review/deletion workflow in a synthetic local database. Four live
+mobile pages passed checks for editor identity, overflow, JavaScript errors and
+unexpected advertising requests. Production support data was not modified.
+The subsequent read-only production crawl checked 111 pages: every response
+was HTTP 200, with matching canonical metadata and no public `noindex` flags.
+It confirmed the new analysis, article editor schema, translated editor profiles
+and planned-advertising notice. The root canonical's optional trailing slash was
+normalized during verification; no production URL change was required.
+
+The unusual duplicated path in the FIFA Ronaldo farewell citation was verified
+as a real indexed FIFA page; it was retained. No external citation was replaced
+merely because its URL looked unusual. This is independent application
+preparation, not an approval issued by Google.
+
 Recovery verified on 30 September 2026 after the Neon plan upgrade: `/`,
 `/goals`, `/api/comparison/career`, `/api/data-version`, and `/admin` returned
 HTTP 200. The owner chose to keep Neon; the Supabase migration is paused.

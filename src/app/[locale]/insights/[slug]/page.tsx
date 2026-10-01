@@ -21,6 +21,7 @@ import { ComparisonChart } from "@/components/record-charts";
 import { AwardChart } from "@/components/award-chart";
 import { getPublishedData } from "@/lib/server-data";
 import styles from "./article.module.css";
+import { publisherConfiguration } from "@/lib/publisher-config";
 
 export function generateStaticParams() { return articles.map(article => ({ slug: article.slug })); }
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
@@ -44,6 +45,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const citations = [...article.sourceIds.map(id => ({ title: sources[id].title, url: sources[id].url })), ...(article.citations ?? [])];
   const articleUrl = `${siteUrl}${localizedPath(`/insights/${slug}`, locale)}`;
   const organization = publisherOrganization;
+  const { editor } = publisherConfiguration(process.env);
   const chartMetric = ({ "why-assist-totals-differ": "assists", "totals-vs-scoring-rates": "goals-per-90", "what-counts-as-a-career-goal": "goals" } as Record<string, string>)[slug];
   const chartData = chartMetric ? await getPublishedData() : undefined;
   const contents = article.body
@@ -51,9 +53,9 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
     : [...article.sections.map((section, index) => ({ id: `section-${index}`, title: t(section.heading) })), ...(article.tables ?? []).map((table, index) => ({ id: `table-${index}`, title: t(table.caption) }))];
   return <article className="page-container inner-page article-page">
     <PageContext path={`/insights/${slug}`} title={t(article.title)} description={t(article.description)} players={article.players} mainEntityId="#article" breadcrumbs={[{ path: "/", name: translate("Overview") }, { path: "/insights", name: translate("The reading room") }, { path: `/insights/${slug}`, name: t(article.title) }]} />
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd({ "@context": "https://schema.org", "@type": "Article", "@id": `${articleUrl}#article`, url: articleUrl, ...(article.players?.length && { about: article.players.map(id => playerEntity(id, locale, siteUrl)) }), headline: t(article.title), description: t(article.description), datePublished: published, dateModified: updated, author: organization, publisher: organization, articleSection: t(article.category), mainEntityOfPage: { "@id": `${articleUrl}#webpage` }, image: new URL(article.image?.path ?? socialImagePath, siteUrl).href, inLanguage: locale, citation: citations.map(source => source.url) }) }}/>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd({ "@context": "https://schema.org", "@type": "Article", "@id": `${articleUrl}#article`, url: articleUrl, ...(article.players?.length && { about: article.players.map(id => playerEntity(id, locale, siteUrl)) }), headline: t(article.title), description: t(article.description), datePublished: published, dateModified: updated, author: organization, publisher: organization, ...(editor && { editor: { "@type": "Person", "@id": `${siteUrl}/about#editor`, name: editor.name, url: `${siteUrl}/about#editor` } }), articleSection: t(article.category), mainEntityOfPage: { "@id": `${articleUrl}#webpage` }, image: new URL(article.image?.path ?? socialImagePath, siteUrl).href, inLanguage: locale, citation: citations.map(source => source.url) }) }}/>
     <div className="page-intro inner-intro"><div><span className="eyebrow">{t(article.category)}</span><h1>{t(article.title)}</h1><p>{t(article.description)}</p></div></div>
-    <div className="article-byline"><Link href="/about">{translate("The Rivalry")}</Link><time dateTime={updated}>{translatedDate(updated.slice(0, 10), locale)}</time><span><BookOpen size={13}/>{translate("{0} min read", { "0": articleReadingMinutes(article, locale, t) })}</span></div>
+    <div className="article-byline"><Link href="/about">{translate("The Rivalry")}</Link>{editor && <Link href="/about#editor">{translate("Editor")}: {editor.name}</Link>}<time dateTime={updated}>{translatedDate(updated.slice(0, 10), locale)}</time><span><BookOpen size={13}/>{translate("{0} min read", { "0": articleReadingMinutes(article, locale, t) })}</span></div>
     {article.image && <figure className={styles.hero}><img src={article.image.path} alt={t(article.image.alt)}/>{article.image.caption && <figcaption>{article.image.caption}</figcaption>}</figure>}
     {article.summary && <aside className={styles.summary} aria-labelledby="article-answer"><h2 id="article-answer">{translate("At a glance")}</h2><p>{t(article.summary)}</p></aside>}
     {contents.length > 0 && <nav className={styles.contents} aria-label={translate("In this article")}><strong>{translate("In this article")}</strong><ul>{contents.map(heading => <li key={heading.id}><a href={`#${heading.id}`}>{heading.title}</a></li>)}</ul></nav>}
