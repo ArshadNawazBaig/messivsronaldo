@@ -22,11 +22,19 @@ articles identify the editor while retaining their publication author. The
 editorial statement explains sources, interpretation, corrections and AI assistance.
 
 The privacy notice describes planned AdSense cookie use and visitor choices.
-The owner has not created an AdSense account. No publisher ID was invented and
-no advertising script was enabled. Follow the application/activation checklist
-in `README.md` after Google assigns the ID; consent and actual ad placements
+The owner subsequently supplied `ca-pub-1970746421579261` on 1 October 2026.
+Production now has `ADSENSE_PUBLISHER_ID=pub-1970746421579261`, which generates
+the verification meta tag and `ads.txt`. Advertising scripts remain inactive.
+Follow the application/activation checklist in `README.md`; consent and actual ad placements
 must be configured and checked before ad delivery. Search Console account
 verification, indexing and organic traffic have not been verified in this release.
+
+AdSense verification deployment `dpl_DQdiCHas4k3k47Pp7Uy3pGkrUNMG` is live.
+The production build and four publisher tests passed. Anonymous crawler requests
+verified the exact account meta tag once in the server-rendered `<head>` on 12
+public pages spanning all nine languages, and `/ads.txt` returned HTTP 200 with
+`google.com, pub-1970746421579261, DIRECT, f08c47fec0942fa0`. Google account-side
+verification and review have not been submitted by this deployment.
 
 Validation: lint, TypeScript, production build and 179 unit tests passed; one
 isolated PostgreSQL test was skipped without its test database. Eleven browser
