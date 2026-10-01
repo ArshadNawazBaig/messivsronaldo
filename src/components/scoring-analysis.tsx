@@ -1,12 +1,13 @@
+"use client";
 import type { Pair } from "@/lib/data";
-import { getI18n } from "@/lib/i18n/server";
+import { useI18n } from "./i18n-provider";
 import { scoringComparison } from "@/lib/scoring-comparison";
 import styles from "./archive-summary.module.css";
 
-export async function ScoringAnalysis({ goals, appearances, minutes, context }: {
+export function ScoringAnalysis({ goals, appearances, minutes, context }: {
   goals: Pair; appearances: Pair; minutes?: Pair; context: string;
 }) {
-  const { t, numberLocale } = await getI18n();
+  const { t, numberLocale } = useI18n();
   const comparison = scoringComparison(goals, appearances, minutes);
   const fmt = (value: number) => value.toLocaleString(numberLocale);
   const rate = (value: number | null) => value === null ? "—" : value.toLocaleString(numberLocale, { minimumFractionDigits: 2, maximumFractionDigits: 2 });

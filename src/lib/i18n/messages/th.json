@@ -1319,5 +1319,19 @@
   "What Counts as a Career Goal? Messi, Ronaldo and the Football Behind the Record": "ประตูตลอดอาชีพนับอะไรบ้าง? เมสซี โรนัลโด และฟุตบอลเบื้องหลังยอดรวม",
   "From World Cup penalties to Champions League headers, understand career-goal counting rules and the tactical work a lifetime total can never show on its own.": "ทำไมลูกยิงที่ตัดสินแชมป์อาจไม่เพิ่มยอดประตูตลอดอาชีพ อ่านเกณฑ์การนับผ่านนัดชิงที่มอสโกและลูเซล พร้อมวิธีเล่นที่เปลี่ยนไปของเมสซีกับโรนัลโด",
   "Messi vs Ronaldo Assists: The Creative Work the Final Pass Cannot Explain": "เมสซีกับโรนัลโด: การสร้างโอกาสที่ยอดแอสซิสต์บอกไม่หมด",
-  "Why assist totals disagree, how Messi and Ronaldo created chances in different systems, and what three major matches reveal beyond the final pass.": "แอสซิสต์เก็บชื่อคนจ่ายสุดท้าย แต่ใครเป็นคนเปิดช่อง? อ่านบทบาทของเมสซี โรนัลโด และเพื่อนร่วมทีมผ่านเวมบลีย์ มิวนิก และลูเซล"
+  "Why assist totals disagree, how Messi and Ronaldo created chances in different systems, and what three major matches reveal beyond the final pass.": "แอสซิสต์เก็บชื่อคนจ่ายสุดท้าย แต่ใครเป็นคนเปิดช่อง? อ่านบทบาทของเมสซี โรนัลโด และเพื่อนร่วมทีมผ่านเวมบลีย์ มิวนิก และลูเซล",
+  "Explore the numbers": "สำรวจตัวเลข",
+  "Interactive comparison": "การเปรียบเทียบแบบโต้ตอบ",
+  "Chart statistic": "สถิติในกราฟ",
+  "Trend line": "เส้นแนวโน้ม",
+  "Bars": "แท่ง",
+  "Explore a record": "สำรวจข้อมูล",
+  "Select a point or use the controls to explore the records.": "เลือกจุดหรือใช้ตัวควบคุมเพื่อสำรวจข้อมูล",
+  "Choose a statistic to see the comparison and its definition.": "เลือกสถิติเพื่อดูการเปรียบเทียบและคำจำกัดความ",
+  "{0} percentage points": "{0} จุดเปอร์เซ็นต์",
+  "Club and country records are combined. Rates do not adjust for opponents, teammates or role.": "รวมสถิติของสโมสรและทีมชาติ อัตราไม่ได้ปรับตามคู่แข่ง เพื่อนร่วมทีม หรือบทบาทการเล่น",
+  "Chart coverage": "ขอบเขตของกราฟ",
+  "Rates and differences are calculated before rounding.": "คำนวณอัตราและผลต่างก่อนปัดเศษ",
+  "Only editions won by either player are shown.": "แสดงเฉพาะครั้งที่ผู้เล่นคนใดคนหนึ่งได้รับรางวัล",
+  "Hover or tap a point to explore. Use arrow keys when the chart is focused.": "เลื่อนเมาส์เหนือจุดหรือแตะจุดเพื่อสำรวจข้อมูล ใช้ปุ่มลูกศรเมื่อโฟกัสอยู่ที่กราฟ"
 }

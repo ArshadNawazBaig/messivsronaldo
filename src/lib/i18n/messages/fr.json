@@ -1319,5 +1319,19 @@
   "What Counts as a Career Goal? Messi, Ronaldo and the Football Behind the Record": "Buts de Messi et Ronaldo : ce qui compte dans un total en carrière, et ce que le chiffre oublie",
   "From World Cup penalties to Champions League headers, understand career-goal counting rules and the tactical work a lifetime total can never show on its own.": "Penalties, tirs au but, matchs amicaux : comprendre les règles du total en carrière et les évolutions tactiques de Messi et Ronaldo derrière chaque but.",
   "Messi vs Ronaldo Assists: The Creative Work the Final Pass Cannot Explain": "Passes décisives de Messi et Ronaldo : ce que la dernière passe ne peut pas expliquer",
-  "Why assist totals disagree, how Messi and Ronaldo created chances in different systems, and what three major matches reveal beyond the final pass.": "Pourquoi les totaux de passes décisives divergent et comment Wembley, Munich et Lusail révèlent le travail créatif de Messi et Ronaldo au-delà du dernier ballon."
+  "Why assist totals disagree, how Messi and Ronaldo created chances in different systems, and what three major matches reveal beyond the final pass.": "Pourquoi les totaux de passes décisives divergent et comment Wembley, Munich et Lusail révèlent le travail créatif de Messi et Ronaldo au-delà du dernier ballon.",
+  "Explore the numbers": "Explorez les chiffres",
+  "Interactive comparison": "Comparaison interactive",
+  "Chart statistic": "Statistique du graphique",
+  "Trend line": "Courbe",
+  "Bars": "Barres",
+  "Explore a record": "Explorer un relevé",
+  "Select a point or use the controls to explore the records.": "Sélectionnez un point ou utilisez les commandes pour explorer les données.",
+  "Choose a statistic to see the comparison and its definition.": "Choisissez une statistique pour voir la comparaison et sa définition.",
+  "{0} percentage points": "{0} points de pourcentage",
+  "Club and country records are combined. Rates do not adjust for opponents, teammates or role.": "Les statistiques en club et en sélection sont réunies. Les moyennes ne tiennent pas compte des adversaires, des coéquipiers ou du rôle.",
+  "Chart coverage": "Périmètre du graphique",
+  "Rates and differences are calculated before rounding.": "Les moyennes et les écarts sont calculés avant arrondi.",
+  "Only editions won by either player are shown.": "Seules les éditions remportées par l’un des deux joueurs sont affichées.",
+  "Hover or tap a point to explore. Use arrow keys when the chart is focused.": "Survolez ou touchez un point pour explorer. Utilisez les flèches du clavier lorsque le graphique a le focus."
 }

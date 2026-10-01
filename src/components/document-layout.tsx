@@ -7,6 +7,7 @@ import localFont from 'next/font/local';
 import { ThemeInitializer } from '@/components/theme-initializer';
 import '@/app/globals.css';
 import '@/app/editorial.css';
+import '@/app/public-layout.css';
 import { SiteShell } from '@/components/site-shell';
 import { indexable, jsonLd, publisherOrganization, siteName, siteUrl } from '@/lib/site';
 import { getLocaleI18n } from '@/lib/i18n/server';

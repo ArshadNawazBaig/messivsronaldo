@@ -1319,5 +1319,19 @@
   "What Counts as a Career Goal? Messi, Ronaldo and the Football Behind the Record": "Was zählt als Karrieretor? Messi, Ronaldo und der Fußball hinter dem Rekord",
   "From World Cup penalties to Champions League headers, understand career-goal counting rules and the tactical work a lifetime total can never show on its own.": "Welche Tore in eine Karrierebilanz gehören, warum das Elfmeterschießen getrennt zählt und welche taktische Arbeit sich hinter einem Torrekord verbirgt.",
   "Messi vs Ronaldo Assists: The Creative Work the Final Pass Cannot Explain": "Messi gegen Ronaldo bei den Vorlagen: Was der letzte Pass nicht erklärt",
-  "Why assist totals disagree, how Messi and Ronaldo created chances in different systems, and what three major matches reveal beyond the final pass.": "Warum Vorlagenbilanzen voneinander abweichen, wie Messi und Ronaldo Chancen schufen und was drei große Spiele über die letzte Ballberührung hinaus zeigen."
+  "Why assist totals disagree, how Messi and Ronaldo created chances in different systems, and what three major matches reveal beyond the final pass.": "Warum Vorlagenbilanzen voneinander abweichen, wie Messi und Ronaldo Chancen schufen und was drei große Spiele über die letzte Ballberührung hinaus zeigen.",
+  "Explore the numbers": "Die Zahlen erkunden",
+  "Interactive comparison": "Interaktiver Vergleich",
+  "Chart statistic": "Diagrammstatistik",
+  "Trend line": "Verlauf",
+  "Bars": "Balken",
+  "Explore a record": "Datensatz erkunden",
+  "Select a point or use the controls to explore the records.": "Wähle einen Punkt oder nutze die Steuerelemente, um die Daten zu erkunden.",
+  "Choose a statistic to see the comparison and its definition.": "Wähle eine Statistik, um den Vergleich und ihre Definition zu sehen.",
+  "{0} percentage points": "{0} Prozentpunkte",
+  "Club and country records are combined. Rates do not adjust for opponents, teammates or role.": "Vereins- und Länderspiele werden zusammengefasst. Die Quoten berücksichtigen weder Gegner noch Mitspieler oder die Rolle im Team.",
+  "Chart coverage": "Diagrammumfang",
+  "Rates and differences are calculated before rounding.": "Quoten und Differenzen werden vor dem Runden berechnet.",
+  "Only editions won by either player are shown.": "Es werden nur Ausgaben gezeigt, die einer der beiden Spieler gewonnen hat.",
+  "Hover or tap a point to explore. Use arrow keys when the chart is focused.": "Bewege den Mauszeiger über einen Punkt oder tippe darauf. Nutze die Pfeiltasten, wenn das Diagramm fokussiert ist."
 }

@@ -1031,7 +1031,7 @@ kbd {
 }
 .stats-footnote {
   border-top: 1px solid var(--border-subtle);
-  padding: 13px 25px !important;
+  padding: 13px 25px;
   display: flex;
   justify-content: space-between;
   color: var(--subtle);
@@ -1183,45 +1183,6 @@ kbd {
 .chart-hoverline {
   stroke: var(--subtle);
   stroke-dasharray: 3 4;
-}
-.chart-data {
-  margin: 0 22px 15px;
-  border-top: 1px solid var(--border-subtle);
-  padding-top: 11px;
-  font-size: 8px;
-  color: var(--subtle);
-}
-.chart-data summary {
-  cursor: pointer;
-  list-style: none;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.chart-data summary:hover {
-  color: var(--text);
-}
-.chart-data > table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 11px;
-  margin-top: 13px;
-  text-align: left;
-}
-.chart-data th,
-.chart-data td {
-  padding: 7px;
-  border-bottom: 1px solid var(--border-subtle);
-}
-.chart-data caption {
-  padding: 10px;
-  color: var(--muted);
-}
-.chart-data > a {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  margin-top: 10px;
 }
 .legacy-card {
   padding: 25px;
@@ -3101,10 +3062,6 @@ dialog::backdrop {
   }
   .chart-container {
     padding: 10px 10px 0;
-  }
-  .chart-data {
-    margin: 6px 15px 13px;
-    font-size: 7px;
   }
   .legacy-card {
     padding: 22px;

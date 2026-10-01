@@ -1,10 +1,10 @@
-.panel { border: 1px solid var(--border); background: var(--panel); padding: 28px; margin: 28px 0; min-width: 0; }
+.panel { border: 1px solid var(--border); border-radius: var(--panel-radius,12px); background: var(--panel); padding: var(--panel-space,28px); margin: var(--section-space,28px) 0; min-width: 0; }
 .heading { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: 24px; }
 .heading h2 { margin: 6px 0; font-size: clamp(25px,3vw,38px); }
 .muted, .note { font-size: 13px; color: var(--muted); line-height: 1.8; }
 .note { padding-top: 18px; border-top: 1px solid var(--border); margin-top: 22px; }
 .grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px; }
-.card { display: flex; flex-direction: column; padding: 28px; border: 1px solid var(--border); min-width: 0; gap: 12px; }
+.card { display: flex; flex-direction: column; padding: var(--panel-space,28px); border: 1px solid var(--border); border-radius: var(--panel-radius,12px); min-width: 0; gap: 12px; }
 .card:hover { border-color: var(--accent); }
 .card h3 { font-size: 28px; margin: 0; }
 .card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.7; }
@@ -52,7 +52,7 @@
 .table caption { text-align: start; font-weight: 600; padding: 14px 0; }
 .review { padding: 18px 0; border-bottom: 1px solid var(--border); }
 .review p { line-height: 1.7; font-size: 13px; }
-.scenario { padding: 24px; background: var(--bg); border: 1px solid var(--border); min-width: 0; }
+.scenario { padding: var(--panel-space,28px); background: var(--bg); border: 1px solid var(--border); border-radius: var(--panel-radius,12px); min-width: 0; }
 .scenario h3 { font-size: 25px; margin: 0 0 10px; }
 .scenario dl { display: flex; gap: 25px; flex-wrap: wrap; }
 .scenario dt { font-size: 12px; color: var(--muted); }
@@ -61,9 +61,9 @@
 .share input { margin-top: 10px; direction: ltr; font-size: 12px; }
 .share p { color: var(--muted); font-size: 12px; }
 @media(max-width:600px) {
-  .panel { padding: 18px; }
+  .panel { padding: var(--panel-space,20px); }
   .grid { grid-template-columns: 1fr; gap: 16px; }
-  .card, .scenario { padding: 20px; }
+  .card, .scenario { padding: var(--panel-space,20px); }
   .answers { grid-template-columns: 1fr; gap: 9px; }
   .answer { min-height: 50px; }
   .feedback { padding: 15px; }

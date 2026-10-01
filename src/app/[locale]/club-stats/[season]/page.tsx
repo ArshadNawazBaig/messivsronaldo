@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { SummaryTable } from "@/components/archive-summary";
 import { ScoringAnalysis } from "@/components/scoring-analysis";
+import { ClubSeasonChart } from "@/components/record-charts";
 import { ClubSeasonNavigation } from "@/components/club-season-navigation";
 import Link from "@/components/localized-link";
 import { PageContext } from "@/components/page-context";
@@ -82,6 +83,7 @@ export default async function ClubSeasonPage({ params }: Props) {
         {next && <Link href={`/club-stats/${next.slug}`} rel="next">{t("Next: {0}", { 0: next.label })}</Link>}
       </nav>
     </section>
+    <ClubSeasonChart selected={slug} />
     <ClubSeasonNavigation selected={slug} />
     <section className="prose panel"><h2>{t("Calendar years & competition breakdowns")}</h2>
       <p>{t("Calendar years run from January to December. Explore either year separately for club and country totals.")}</p>

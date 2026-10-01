@@ -1,4 +1,4 @@
-.summary { padding: 28px; margin-block: 32px; }
+.summary { padding: var(--panel-space,28px); margin-block: var(--section-space,36px); }
 .summary h2 { margin: 0 0 16px; font-family: var(--font-display), sans-serif; font-size: clamp(24px, 3vw, 32px); }
 .summary p { color: var(--muted); line-height: 1.8; margin-block: 20px; }
 .summary a { color: var(--accent); text-decoration: underline; text-underline-offset: 4px; }
@@ -22,7 +22,7 @@
 .messiShare { background: var(--messi); }
 .ronaldoShare { background: var(--ronaldo); }
 .navigation { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; border-top: 1px solid var(--border); padding-top: 20px; font-size: 14px; }
-.years { padding: 20px; margin-block: 24px; }
+.years { padding: var(--panel-space,28px); margin-block: var(--section-space,36px); }
 .years ol { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 14px 0 0; }
 .years a { display: flex; align-items: center; justify-content: center; min-width: 58px; min-height: 44px; padding: 8px 12px; border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums; }
 .years a:hover, .years a[aria-current="page"] { color: var(--accent); border-color: var(--accent); background: var(--panel-raised); }
@@ -30,8 +30,8 @@
 .questions dt { color: var(--text); font-weight: 700; line-height: 1.6; }
 .questions dd { margin: 8px 0 24px; color: var(--muted); line-height: 1.8; }
 
-.clubSummary { margin-block: 32px; border: 1px solid var(--border); border-radius: 8px; background: var(--panel); overflow: hidden; }
-.seasonHeading { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 24px 32px; border-bottom: 1px solid var(--border-subtle); }
+.clubSummary { margin-block: var(--section-space,36px); border: 1px solid var(--border); border-radius: var(--panel-radius,12px); background: var(--panel); overflow: hidden; }
+.seasonHeading { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 24px var(--panel-space,28px); border-bottom: 1px solid var(--border-subtle); }
 .seasonHeading > div:first-child { min-width: 0; }
 .seasonPeriod { color: var(--muted); font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: .06em; }
 .seasonHeading h2 { margin: 4px 0; font-size: 28px; line-height: 1.15; overflow-wrap: anywhere; hyphens: auto; }
@@ -64,7 +64,7 @@
 .seasonTable tr[data-rate-start="true"] { border-top: 2px solid var(--border); }
 .seasonTable tr[data-rate-start="true"] > * { padding-top: 20px; }
 .seasonTable tbody tr:last-child > * { padding-bottom: 20px; }
-.seasonNotes { padding: 20px 32px; border-top: 1px solid var(--border-subtle); color: var(--muted); font-size: 12px; line-height: 1.7; }
+.seasonNotes { padding: 20px var(--panel-space,28px); border-top: 1px solid var(--border-subtle); color: var(--muted); font-size: 12px; line-height: 1.7; }
 .sourceLine { display: flex; flex-wrap: wrap; justify-content: space-between; column-gap: 24px; row-gap: 4px; }
 .clubSummary a { color: var(--accent); text-underline-offset: 3px; }
 .sourceLine a { text-decoration: underline; }
@@ -79,11 +79,11 @@
 .seasonNavigation { padding: 12px 24px; align-items: center; gap: 4px 16px; font-size: 12px; background: color-mix(in srgb, var(--panel-raised) 25%, var(--panel)); }
 .seasonNavigation a { display: inline-flex; align-items: center; min-height: 40px; padding: 8px; border-radius: 4px; font-weight: 600; }
 .seasonNavigation a:hover { background: var(--panel-raised); }
-.calendarIntro { margin: 0; padding: 20px 32px 0; color: var(--muted); font-size: 13px; line-height: 1.8; }
-.calendarGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; gap: 24px; padding: 24px 32px; }
+.calendarIntro { margin: 0; padding: 20px var(--panel-space,28px) 0; color: var(--muted); font-size: 13px; line-height: 1.8; }
+.calendarGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; gap: 24px; padding: 24px var(--panel-space,28px); }
 .scopePanel { min-width: 0; border: 1px solid var(--border-subtle); border-radius: 6px; overflow: hidden; container-type: inline-size; }
 .scopePanel h3 { margin: 0; padding: 16px 20px; font-size: 21px; line-height: 1.3; border-bottom: 1px solid var(--border-subtle); }
-.calendarQuestions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin: 0; padding: 24px 32px; border-color: var(--border-subtle); font-size: 13px; }
+.calendarQuestions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin: 0; padding: 24px var(--panel-space,28px); border-color: var(--border-subtle); font-size: 13px; }
 .calendarQuestions dd { margin-bottom: 0; }
 .calendarQuestions a, .seasonNotes a { text-decoration: underline; }
 @container (max-width: 720px) {
@@ -94,9 +94,9 @@
 }
 @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
 @media (max-width: 800px) { .calendarGrid, .calendarQuestions { grid-template-columns: 1fr; } }
-@media (max-width: 500px) { .summary { padding: 18px; } .table { font-size: 12px; } .table th, .table td { padding: 6px 3px; } }
+@media (max-width: 500px) { .summary { padding: var(--panel-space,20px); } .table { font-size: 12px; } .table th, .table td { padding: 6px 3px; } }
 @media (max-width: 600px) {
-  .seasonHeading { padding: 20px 18px; align-items: flex-start; gap: 12px; }
+  .seasonHeading { padding: 20px var(--panel-space,20px); align-items: flex-start; gap: 12px; }
   .seasonHeading h2 { font-size: 24px; }
   .seasonHeading p { font-size: 12px; }
   .seasonMeta { gap: 12px; max-width: 40%; }
@@ -109,12 +109,12 @@
   .playerHeading strong { font-size: 21px; }
   .seasonTable .balance { width: 100px; }
   .columnLabel { font-size: 9px; }
-  .seasonNotes { padding: 16px 18px; font-size: 11px; }
+  .seasonNotes { padding: 16px var(--panel-space,20px); font-size: 11px; }
   .seasonNavigation { padding: 10px; gap: 2px 8px; }
-  .calendarIntro { padding: 16px 18px 0; font-size: 12px; }
-  .calendarGrid { padding: 18px 12px; gap: 18px; }
+  .calendarIntro { padding: 16px var(--panel-space,20px) 0; font-size: 12px; }
+  .calendarGrid { padding: var(--panel-space,20px); gap: 18px; }
   .scopePanel h3 { padding: 14px 16px; font-size: 20px; }
-  .calendarQuestions { padding: 18px; gap: 20px; font-size: 12px; }
+  .calendarQuestions { padding: var(--panel-space,20px); gap: 20px; font-size: 12px; }
 }
 @container (max-width: 350px) {
   .seasonTable .playerColumn { width: 29%; }

@@ -1319,5 +1319,19 @@
   "What Counts as a Career Goal? Messi, Ronaldo and the Football Behind the Record": "ما الذي يُحتسب هدفًا في المسيرة؟ ميسي ورونالدو وما وراء الرقم",
   "From World Cup penalties to Champions League headers, understand career-goal counting rules and the tactical work a lifetime total can never show on its own.": "من ركلات جزاء كأس العالم إلى رأسيات دوري الأبطال: كيف نحسب أهداف المسيرة، ولماذا لا تكفي الحصيلة وحدها لشرح ما يصنعه المهاجم؟",
   "Messi vs Ronaldo Assists: The Creative Work the Final Pass Cannot Explain": "صناعة الأهداف بين ميسي ورونالدو: ما الذي لا تشرحه التمريرة الأخيرة؟",
-  "Why assist totals disagree, how Messi and Ronaldo created chances in different systems, and what three major matches reveal beyond the final pass.": "لماذا تختلف مجاميع التمريرات الحاسمة، وكيف صنع ميسي ورونالدو الفرص في أنظمة مختلفة؟ ثلاث مباريات كبرى تفتح النقاش على ما قبل اللمسة الأخيرة."
+  "Why assist totals disagree, how Messi and Ronaldo created chances in different systems, and what three major matches reveal beyond the final pass.": "لماذا تختلف مجاميع التمريرات الحاسمة، وكيف صنع ميسي ورونالدو الفرص في أنظمة مختلفة؟ ثلاث مباريات كبرى تفتح النقاش على ما قبل اللمسة الأخيرة.",
+  "Explore the numbers": "استكشف الأرقام",
+  "Interactive comparison": "مقارنة تفاعلية",
+  "Chart statistic": "إحصائية الرسم",
+  "Trend line": "خط الاتجاه",
+  "Bars": "أعمدة",
+  "Explore a record": "استكشف سجلًا",
+  "Select a point or use the controls to explore the records.": "اختر نقطة أو استخدم عناصر التحكم لاستكشاف السجلات.",
+  "Choose a statistic to see the comparison and its definition.": "اختر إحصائية للاطلاع على المقارنة وتعريفها.",
+  "{0} percentage points": "{0} نقطة مئوية",
+  "Club and country records are combined. Rates do not adjust for opponents, teammates or role.": "تُجمع سجلات الأندية والمنتخبات. لا تراعي المعدلات اختلاف المنافسين أو الزملاء أو الدور في الفريق.",
+  "Chart coverage": "نطاق الرسم",
+  "Rates and differences are calculated before rounding.": "تُحسب المعدلات والفروق قبل التقريب.",
+  "Only editions won by either player are shown.": "تُعرض فقط النسخ التي فاز بها أحد اللاعبين.",
+  "Hover or tap a point to explore. Use arrow keys when the chart is focused.": "مرّر المؤشر فوق نقطة أو انقر عليها لاستكشاف البيانات. استخدم مفاتيح الأسهم عندما يكون الرسم البياني محددًا."
 }

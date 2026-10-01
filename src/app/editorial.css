@@ -994,9 +994,6 @@ html {
   font-size: 10px;
   border-radius: 2px;
 }
-.chart-data {
-  font-size: 11px;
-}
 .legacy-card {
   display: flex;
   flex-direction: column;

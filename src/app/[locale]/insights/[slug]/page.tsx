@@ -16,6 +16,9 @@ import { jsonLd, pageMetadata, publisherOrganization, siteUrl } from "@/lib/site
 import { socialImagePath } from "@/lib/social-image";
 import { getArticleI18n } from "@/lib/i18n/article-server";
 import { RelatedReading } from "@/components/related-reading";
+import { ComparisonChart } from "@/components/record-charts";
+import { AwardChart } from "@/components/award-chart";
+import { getPublishedData } from "@/lib/server-data";
 import styles from "./article.module.css";
 
 export function generateStaticParams() { return articles.map(article => ({ slug: article.slug })); }
@@ -40,6 +43,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const citations = [...article.sourceIds.map(id => ({ title: sources[id].title, url: sources[id].url })), ...(article.citations ?? [])];
   const articleUrl = `${siteUrl}${localizedPath(`/insights/${slug}`, locale)}`;
   const organization = publisherOrganization;
+  const chartMetric = ({ "why-assist-totals-differ": "assists", "totals-vs-scoring-rates": "goals-per-90", "what-counts-as-a-career-goal": "goals" } as Record<string, string>)[slug];
+  const chartData = chartMetric && !article.managed ? await getPublishedData() : undefined;
   return <article className="page-container inner-page article-page">
     <PageContext path={`/insights/${slug}`} title={t(article.title)} description={t(article.description)} players={article.players} mainEntityId="#article" breadcrumbs={[{ path: "/", name: translate("Overview") }, { path: "/insights", name: translate("The reading room") }, { path: `/insights/${slug}`, name: t(article.title) }]} />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd({ "@context": "https://schema.org", "@type": "Article", "@id": `${articleUrl}#article`, url: articleUrl, ...(article.players?.length && { about: article.players.map(id => playerEntity(id, locale, siteUrl)) }), headline: t(article.title), description: t(article.description), datePublished: published, dateModified: updated, author: organization, publisher: organization, articleSection: t(article.category), mainEntityOfPage: { "@id": `${articleUrl}#webpage` }, image: new URL(article.image?.path ?? socialImagePath, siteUrl).href, inLanguage: locale, citation: citations.map(source => source.url) }) }}/>
@@ -52,6 +57,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       {citations.length > 0 && <div className="article-sources"><h2>{translate("Sources & further reading")}</h2>{citations.map(source => <a key={source.url} href={source.url} target="_blank" rel="noreferrer">{t(source.title)}<ArrowUpRight size={14}/></a>)}</div>}
     </div>
     {article.preset && <ScoringCalculator preset={article.preset}/>}
+    {chartData && <ComparisonChart scope={chartData.scopes.career} metric={chartMetric}/>}
+    {!article.managed && article.relatedSlugs && <AwardChart full/>}
     {article.tables?.map((table, index) => <section className={styles.tableSection} key={table.caption}><h2 id={`table-${index}`}>{t(table.caption)}</h2><div className={styles.tableWrap} role="region" aria-labelledby={`table-${index}`} tabIndex={0}><table><caption className="sr-only">{t(table.caption)}</caption><thead><tr>{table.columns.map(column => <th key={column} scope="col">{t(column)}</th>)}</tr></thead><tbody>{table.rows.map((row, rowIndex) => <tr key={rowIndex}>{row.cells.map((cell, cellIndex) => cellIndex === 0 ? <th key={cellIndex} scope="row">{t(cell)}{row.citations && <span className={styles.rowSources}>{row.citations.map(source => <a key={source.url} href={source.url} target="_blank" rel="noreferrer">{t(source.title)}<ArrowUpRight size={12} aria-hidden="true"/></a>)}</span>}</th> : <td key={cellIndex}>{t(cell)}</td>)}</tr>)}</tbody></table></div>{table.note && <p className={styles.tableNote}>{t(table.note)}</p>}</section>)}
     <Link href={article.preset ? "/scoring-calculator" : article.relatedSlugs ? "/ballon-dor" : "/compare"} className="primary-button">{translate(article.preset ? "Open the calculator" : article.relatedSlugs ? "Messi vs Ronaldo: Ballon d’Or history" : "Compare the statistics ")}<ArrowUpRight size={16}/></Link>
     <RelatedReading path={`/insights/${slug}`} />

@@ -16,6 +16,7 @@ import { getPublishedData } from "@/lib/server-data";
 import { jsonLd, pageMetadata, siteUrl } from "@/lib/site";
 import styles from "./profile.module.css";
 import portraitStyles from "@/components/player-portrait.module.css";
+import { PlayerCareerChart } from "@/components/record-charts";
 
 export function generateStaticParams() {
   return [{ player: "messi" }, { player: "ronaldo" }];
@@ -50,6 +51,7 @@ export default async function PlayerPage({ params }: { params: Promise<{ player:
   const rateMetrics = scopes.career.metrics.filter(metric => ["goals-per-game", "goals-per-90", "minutes-per-goal"].includes(metric.id));
   const sections = [
     { id: "career-stats", label: "Career overview" },
+    { id: "career-timeline", label: "Career timeline" },
     { id: "competition-records", label: "Competition records" },
     { id: "recognition", label: "Trophies & awards" },
     { id: "club-records", label: "Club by club" },
@@ -100,6 +102,7 @@ export default async function PlayerPage({ params }: { params: Promise<{ player:
       </div>
     </section>
 
+    <div id="career-timeline" className={styles.section}><PlayerCareerChart player={player}/></div>
     <div className={styles.detailGrid}>
       <section id="competition-records" className={styles.section} aria-labelledby="competition-heading">
         <div className={styles.sectionHeading}><div><span className={styles.kicker}>{t("All-time stats")}</span><h2 id="competition-heading">{t("Competition records")}</h2></div></div>

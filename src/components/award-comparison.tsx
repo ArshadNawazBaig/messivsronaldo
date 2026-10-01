@@ -6,6 +6,7 @@ import { awardsReviewed, awardComparisons, awardRows, awardTotals, honoursNaviga
 import { getI18n } from "@/lib/i18n/server";
 import { PlayerMatchup } from "./player-matchup";
 import { AwardChart } from "./award-chart";
+import { InteractiveChart } from "./interactive-chart";
 import styles from "./award-comparison.module.css";
 
 export async function HonoursNavigation({ current }: { current: string }) {
@@ -19,10 +20,20 @@ export async function AwardComparison({ slug }: { slug: AwardSlug }) {
   const { t, numberLocale, locale } = await getI18n();
   const award = awardComparisons[slug];
   const articleAvailable = (await getPublishedArticles(locale)).some(article => article.slug === "ballon-dor-2026-contenders-stats");
+  const rows = awardRows(slug);
+  const running = { messi: 0, ronaldo: 0 };
+  const chartRecords = [...rows].reverse().map(row => {
+    running.messi += row.values.messi; running.ronaldo += row.values.ronaldo;
+    return { id: row.label, label: row.label, values: { annual: row.values, cumulative: { ...running } }, note: "Only editions won by either player are shown." };
+  });
   return <section className={styles.comparison} aria-label={t(award.label)}>
     {slug === "ballon-dor" && articleAvailable && <Link className="text-link" href="/insights/ballon-dor-2026-contenders-stats">{t("Ballon d’Or 2026: contenders, stats and voting guide")}<ArrowUpRight size={16} aria-hidden="true"/></Link>}
     <PlayerMatchup values={awardTotals(slug)} label={t(award.cardLabel)} accessibleLabel={t(award.cardLabel)} context={t(award.context)} exportData={{ title: award.cardLabel, context: award.context, date: awardsReviewed, note: award.note }} />
     <div className={styles.coverage}><span className="section-kicker">{t("Comparison scope")}</span><p>{t(award.note)}</p></div>
+    {slug !== "ballon-dor" && <InteractiveChart title={award.wins ? "Winning editions" : award.label}
+      metrics={award.wins ? [{ id: "cumulative", label: "Cumulative" }, { id: "annual", label: "Annual totals" }] : rows.map((row, index) => ({ id: String(index), label: row.label, unit: row.percent ? "%" : undefined }))}
+      records={award.wins ? chartRecords : [{ id: slug, label: award.context, values: Object.fromEntries(rows.map((row, index) => [String(index), row.values])) }]}
+      source={award.sources[0].url} sourceLabel={award.sources[0].name} />}
     <section className="panel">
       <div className="panel-heading"><div><span className="section-kicker">{t(award.context)}</span><h2>{t(award.wins ? "Winning editions" : "Covered match awards")}</h2></div></div>
       <div className={`year-table-wrap ${styles.tableWrap}`} role="region" aria-label={t(award.label)} tabIndex={0}>

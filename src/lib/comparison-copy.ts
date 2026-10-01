@@ -1,4 +1,4 @@
-import { snapshotLabel, type Pair } from "./data";
+import { snapshotLabel, sources, type Pair, type ScopeId } from "./data";
 import type { PublishedData } from "./published-data";
 import type { createTranslator } from "./i18n/translate";
 
@@ -42,5 +42,20 @@ export function comparisonQuestions(slug: string, data: PublishedData, t: Transl
   if (slug === "honours") return [
     { question: t("Are Ballon d’Or awards included in the trophy total?"), answer: t("Overall trophy totals sum the team honours listed in the table, including youth and Olympic titles and the MLS conference championship. Ballon d’Or and other individual awards are separate. The table identifies youth and Olympic awards, conference championships and senior titles. The Supporters’ Shield and MLS Cup are different achievements. Participation exceptions for super cups are stated next to the category."), href: "/ballon-dor", link: t("Ballon d’Or") },
   ];
-  return [];
+  const scopeByPage: Record<string, ScopeId> = {
+    "champions-league": "champions-league", international: "international", assists: "career", "2026": "2026",
+    "world-cup": "world-cup", "copa-america-vs-euros": "copa-euros", "head-to-head": "head-to-head",
+    clubs: "current-clubs", penalties: "career", "hat-tricks": "career", league: "league", "european-clubs": "european-clubs", records: "career",
+  };
+  const id = scopeByPage[slug];
+  if (!id) return [];
+  const scope = data.scopes[id];
+  const metricId = slug === "assists" ? "assists" : slug === "penalties" ? "penalty-conversion" : slug === "hat-tricks" ? "hatTricks" : "goals-per-90";
+  const metric = scope.metrics.find(item => item.id === metricId);
+  const source = sources[scope.source[0]];
+  return [
+    { question: t("The comparison boundaries"), answer: t(scope.description), href: "/methodology", link: t("Sources & methodology") },
+    ...(metric ? [{ question: t(metric.label), answer: `${t(metric.explanation)}${metric.coverage ? ` ${t(metric.coverage)}.` : ""}`, href: `/glossary#${metric.id}`, link: t("Football statistics glossary") }] : []),
+    { question: t("Where the figures come from"), answer: t(source.note), href: source.url, link: t(source.name) },
+  ];
 }

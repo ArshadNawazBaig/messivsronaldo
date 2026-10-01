@@ -20,11 +20,12 @@ type RangeSliderProps = {
   disabled?: boolean;
   direction?: "ltr" | "rtl";
   tone?: "neutral" | "messi" | "ronaldo";
+  compact?: boolean;
   formatValue?: (value: number) => string;
   onValueChange: (value: number) => void;
 };
 
-export function RangeSlider({ id, label, ariaLabel, min, max, value, step = 1, disabled = false, direction, tone = "neutral", formatValue, onValueChange }: RangeSliderProps) {
+export function RangeSlider({ id, label, ariaLabel, min, max, value, step = 1, disabled = false, direction, tone = "neutral", compact = false, formatValue, onValueChange }: RangeSliderProps) {
   const { locale, numberLocale, t } = useI18n();
   // Keep native controls disabled until React can handle their input events.
   const ready = useSyncExternalStore(subscribe, clientReady, serverReady);
@@ -41,6 +42,11 @@ export function RangeSlider({ id, label, ariaLabel, min, max, value, step = 1, d
   }
 
   function handleArrow(event: KeyboardEvent<HTMLInputElement>) {
+    if (!event.altKey && !event.ctrlKey && !event.metaKey && (event.key === "Home" || event.key === "End")) {
+      event.preventDefault();
+      onValueChange(event.key === "Home" ? min : max);
+      return;
+    }
     if (event.altKey || event.ctrlKey || event.metaKey || !["ArrowLeft", "ArrowRight"].includes(event.key)) return;
     // Safari and Chromium disagree on native horizontal arrows in RTL.
     event.preventDefault();
@@ -48,7 +54,7 @@ export function RangeSlider({ id, label, ariaLabel, min, max, value, step = 1, d
     adjust(change);
   }
 
-  return <div className={styles.range} data-tone={tone} data-disabled={unavailable}>
+  return <div className={styles.range} data-tone={tone} data-disabled={unavailable} data-compact={compact}>
     <div className={styles.captionRow}>
       <label className={styles.caption} htmlFor={id}>{label}</label>
       <div className={styles.adjustments} dir="ltr">

@@ -1,0 +1,78 @@
+/* Shared public-page rhythm. Admin keeps its own workspace layout. */
+.site-body {
+  --section-space: 36px;
+  --panel-space: 28px;
+  --panel-radius: 12px;
+  --page-gutter: clamp(24px,3.1vw,44px);
+}
+.site-body .page-container { padding-inline: var(--page-gutter); padding-block: 32px 48px; }
+.site-body .page-intro { margin-block: 0 var(--section-space); }
+.site-body .home-page .edition-line + .page-intro { margin-top: 24px; }
+.site-body .inner-intro h1 { max-width: 25ch; line-height: 1.1; text-wrap: balance; }
+.site-body .page-intro p { max-width: 75ch; line-height: 1.8; }
+.site-body .page-container .text-link { max-width: 100%; white-space: normal; overflow-wrap: anywhere; line-height: 1.7; }
+.site-body .page-container .text-link svg { flex-shrink: 0; }
+/* A rounded surface needs a complete outline. Editorial dividers stay square. */
+.site-body .page-container .panel:not(.prose) { min-width: 0; border: 1px solid var(--border); border-radius: var(--panel-radius); background: var(--panel); }
+.site-body .page-container .notice-card { border-radius: var(--panel-radius); }
+.site-body .page-container .prose.panel { border: 0; border-top: 1px solid var(--border); border-radius: 0; background: transparent; }
+.site-body .page-container > :is(.panel,.story-grid,.prose,.notice-card,.honours-summary,.trust-banner,.current-strip,.explore-section,.editorial-section) { margin-block: var(--section-space); }
+.site-body .page-container > .page-intro { margin-top: 0; }
+.site-body .page-container .panel-heading { padding: var(--panel-space); gap: 20px; flex-wrap: wrap; }
+.site-body .page-container .panel-heading > div { min-width: 0; }
+.site-body .page-container .panel-actions { flex-wrap: wrap; gap: 8px; }
+.site-body .page-container .panel-heading > h2 { margin: 0; }
+.site-body .page-container .panel-heading h2 { font-size: clamp(24px,2.5vw,30px); line-height: 1.25; }
+.site-body .page-container .section-title-row { gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
+.site-body .prose { padding-block: var(--panel-space); border-radius: 0; }
+.site-body .prose :is(p,li) { max-width: 75ch; font-size: 14px; line-height: 1.85; }
+.site-body .prose > section + section { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border-subtle); }
+.site-body .prose > section > h2:first-child { margin-top: 0; }
+/* Keep comparison controls and coverage copy on the same content edge. */
+.site-body .comparison-toolbar { gap: 12px; padding-block: 0 12px; }
+.site-body .comparison-toolbar .scope-tabs { gap: 24px; }
+.site-body .comparison-toolbar .scope-tabs button { flex-shrink: 0; min-height: 44px; padding: 10px 0; }
+.site-body .comparison-toolbar :is(.select-trigger,.filter-button) { min-height: 44px; }
+.site-body .comparison > .data-update-note { padding: 12px 0; margin: 0; line-height: 1.7; }
+.site-body .comparison > .snapshot-line { padding: 12px 0 16px; gap: 12px; }
+.site-body .comparison .numbers-panel { margin-block: var(--section-space); }
+.site-body .page-container :is(.numbers-panel,.award-chart,.season-chart,.coverage-panel,.panel:has(> .year-table-wrap)) { overflow: hidden; }
+.site-body .numbers-panel .metric-tabs { margin-inline: var(--panel-space); padding: 0 0 12px; gap: 8px 20px; flex-wrap: wrap; }
+.site-body .numbers-panel .comparison-legend { padding: 16px var(--panel-space); gap: 8px 20px; }
+.site-body .numbers-panel .stats-table-wrap { padding-inline: var(--panel-space); }
+.site-body .page-container .stats-footnote { margin-top: 0; padding: 16px var(--panel-space); gap: 12px 20px; flex-wrap: wrap; line-height: 1.7; }
+.site-body .page-container .stats-footnote :is(span,a) { min-width: 0; overflow-wrap: anywhere; }
+.site-body .page-container .stats-footnote svg { flex-shrink: 0; }
+.site-body .panel > .year-table-wrap { margin-inline: var(--panel-space); }
+.site-body .panel > .year-table-wrap:focus-visible { outline-offset: -2px; }
+.site-body .panel > .year-table-wrap table tr > :first-child { padding-inline-start: 0; }
+.site-body .panel > .year-table-wrap table tr > :last-child { padding-inline-end: 0; }
+.site-body .panel > .year-table-wrap table:not(:has(tfoot)) tbody tr:last-child > * { border-bottom: 0; }
+.site-body .panel > .year-table-wrap:last-child { padding-bottom: 12px; }
+.site-body .year-legend { padding: 16px var(--panel-space); flex-wrap: wrap; gap: 10px 20px; border-top: 1px solid var(--border-subtle); }
+.site-body .season-bar-chart { padding: 0 var(--panel-space) var(--panel-space); }
+.site-body .season-bar-row:first-child { margin-top: 0; }
+.site-body .season-bar-row:last-child { margin-bottom: 0; }
+.site-body .award-chart .chart-subline { padding-inline: var(--panel-space); flex-wrap: wrap; gap: 12px; }
+.site-body .award-chart .chart-container { padding: 16px var(--panel-space) var(--panel-space); }
+.site-body .award-chart .chart-container svg:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
+.site-body .page-container :is(.honour-player,.source-register-card,.club-card,.correction-form,.methodology-status,.season-controls,.year-controls,.notice-card,.legacy-card) { padding: var(--panel-space); }
+.site-body .page-container .legacy-card { border: 1px solid var(--border); border-radius: var(--panel-radius); }
+.site-body :is(.club-columns,.honours-summary,.sources-grid,.story-grid) { gap: 24px; }
+.site-body .story-grid { align-items: start; }
+.site-body .season-explorer > .prose,.site-body .year-controls ~ .prose { margin-top: var(--section-space); }
+.record-explorer { margin-block: var(--section-space); }
+.record-explorer-nav { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.record-explorer-nav > button { min-height: 44px; padding: 10px 16px; }
+.record-explorer > [data-interactive-chart] { margin-top: 0; margin-bottom: 0; }
+.record-explorer > [data-scoring-analysis] { margin: 0; border: 1px solid var(--border); border-top: 0; padding: var(--panel-space); border-radius: 0 0 var(--panel-radius) var(--panel-radius); background: color-mix(in srgb,var(--accent) 2%,var(--panel)); }
+.record-explorer:has(> [data-scoring-analysis]) > [data-interactive-chart] { border-end-start-radius: 0; border-end-end-radius: 0; }
+@media (max-width:720px) {
+  .site-body { --section-space: 28px; --panel-space: 20px; --page-gutter: 20px; }
+  .site-body .page-container { padding-block: 24px 36px; }
+  .site-body .page-container .panel-heading { padding-block: var(--panel-space); }
+  .site-body .prose :is(p,li) { font-size: 14px; }
+  .site-body .page-container .section-title-row { align-items: flex-start; }
+  .site-body .comparison-toolbar .scope-tabs { gap: 20px; }
+}
+@media (max-width:380px) { .site-body { --panel-space: 16px; --page-gutter: 16px; } }

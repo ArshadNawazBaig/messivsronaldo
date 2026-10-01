@@ -17,11 +17,11 @@
 .term dt { font-size: 18px; font-weight: 600; color: var(--text); }
 .term dd { margin: 0; }
 .term p, .countingRules p { margin: 0 0 12px; color: var(--muted); line-height: 1.8; }
-.countingRules { padding: 28px; background: var(--panel); border: 1px solid var(--border); }
+.countingRules { padding: var(--panel-space,28px); background: var(--panel); border: 1px solid var(--border); border-radius: var(--panel-radius,12px); }
 .countingRules a { display: inline-block; margin-inline-end: 24px; }
 @media (max-width: 700px) {
   .breadcrumbs { margin-bottom: 20px; font-size: 12px; }
   .term { grid-template-columns: 1fr; gap: 10px; scroll-margin-top: 160px; }
   .termIndex ul { gap: 12px 20px; }
-  .countingRules { padding: 20px; }
+  .countingRules { padding: var(--panel-space,20px); }
 }

@@ -17,7 +17,7 @@
 .answer summary { cursor: pointer; width: fit-content; padding-block: 8px; }
 .answer ul { padding-inline-start: 22px; line-height: 2; }
 .answer li a { color: var(--accent); display: inline-flex; gap: 5px; align-items: center; }
-.search { padding: 24px; border: 1px solid var(--border); background: var(--panel); }
+.search { padding: var(--panel-space,28px); border: 1px solid var(--border); border-radius: var(--panel-radius,12px); background: var(--panel); }
 .search label { display: block; font-weight: 600; margin-bottom: 12px; }
 .search > div { display: flex; align-items: center; gap: 12px; border-bottom: 2px solid var(--text); max-width: 720px; }
 .search input { font: inherit; background: transparent; color: var(--text); border: 0; padding: 12px 0; flex: 1; min-width: 0; border-radius: 0; }
@@ -38,6 +38,6 @@
   .preview, .relatedGrid { grid-template-columns: 1fr; }
   .preview .answer { padding-inline: 0; border-inline: 0; }
   .relatedGrid a:nth-child(odd) { margin-inline-end: 0; }
-  .search { padding: 18px; }
+  .search { padding: var(--panel-space,20px); }
   .answer h2 { font-size: 25px; }
 }

@@ -98,8 +98,15 @@ test("pages fit the viewport and chart switches to annual data", async ({ page }
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   await page.getByRole("button", { name: "By year", exact: true }).click();
   await expect(page.getByRole("img", { name: "Annual Ballon d’Or awards, 2008 to 2025" })).toBeVisible();
-  await page.getByText("View data & source", { exact: false }).click();
-  await expect(page.getByRole("rowheader", { name: "2020 (cancelled)" })).toBeVisible();
+  const award = page.locator(".award-chart");
+  await expect(award.getByRole("slider")).toHaveCount(0);
+  await expect(award.locator("details")).toHaveCount(0);
+  const plot = award.getByRole("img");
+  await plot.focus();
+  await plot.press("Home");
+  await expect(plot).toHaveAccessibleDescription(/2008: Messi 0, Ronaldo 1/);
+  await plot.press("End");
+  await expect(plot).toHaveAccessibleDescription(/2025: Messi 0, Ronaldo 0/);
   for (const path of ["/methodology", "/honours", "/players/ronaldo"]) {
     await page.goto(path);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), path).toBe(true);

@@ -1,4 +1,5 @@
 import { ClubSeasonNavigation } from "@/components/club-season-navigation";
+import { ClubSeasonChart } from "@/components/record-charts";
 import Link from "@/components/localized-link";
 import { PageContext } from "@/components/page-context";
 import { clubSeasons, clubSeasonsReviewed } from "@/lib/club-seasons";
@@ -16,6 +17,7 @@ export default async function ClubSeasonsPage() {
     <PageContext path="/club-stats" title={t(title)} description={t(description)} kind="CollectionPage" players={["messi", "ronaldo"]} breadcrumbs={[{ path: "/", name: t("Overview") }, { path: "/club-stats", name: t("Club seasons") }]} />
     <div className="page-intro inner-intro"><div><span className="eyebrow">{t("CLUB SEASON IN FOCUS")}</span><h1>{t(title)}</h1><p>{t(description)}</p></div></div>
     <ClubSeasonNavigation />
+    <ClubSeasonChart />
     <section className="panel"><div className="panel-heading"><h2>{t("Club season goals")}</h2></div>
       <div className="year-table-wrap"><table className="year-table calendar-table" data-club-season-index>
         <caption className="sr-only">{t("Club season goals")}</caption>
