@@ -8,10 +8,13 @@ const nextConfig: NextConfig = {
     // document and RSC payload. Group chunks to limit first-paint CSS requests.
     cssChunking: { type: "graph", requestCost: 100000 },
   },
-  // Vercel runs native Linux Sharp. Its optional WASM fallback otherwise gets
-  // copied into every image-rendering function alongside the native library.
+  // Vercel uses Postgres and native Linux Sharp. Keep SQLite for local work,
+  // but omit its unused native binary and Sharp's optional WASM fallback there.
   ...(process.env.VERCEL === "1" ? {
-    outputFileTracingExcludes: { "/*": ["./node_modules/@img/sharp-wasm32/**/*"] },
+    outputFileTracingExcludes: { "/*": [
+      "./node_modules/@img/sharp-wasm32/**/*",
+      "./node_modules/better-sqlite3/**/*.node",
+    ] },
   } : {}),
   images: {
     // Include intermediate portrait widths for high-density mobile screens.

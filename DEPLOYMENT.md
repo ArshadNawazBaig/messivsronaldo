@@ -355,6 +355,68 @@ log. Never use production for write tests.
 
 ## Vercel CPU, transfer and function storage
 
+The 2 October usage screenshot shows the most immediate pressure on Active CPU
+(3h 34m / 4h), Functions Storage (8.66 / 10 GB), ISR Writes (151K / 200K), and
+Fast Origin Transfer (6.5 / 10 GB). Function invocations and CDN requests are
+requests, not a count of visitors. These are accumulated usage figures; a new
+release does not erase usage from earlier in the period.
+
+| Resource | Main control in this project |
+| --- | --- |
+| Active CPU and function invocations | Reuse public pages/data/PNG renders, avoid redundant polling and prefetching, run synthetic tests locally. Keep private/admin operations uncached. |
+| Functions Storage | Trim traced dependencies and assets; retain fewer obsolete production deployments and avoid deploying the same change through both CLI and Git. |
+| ISR Writes | Keep rendered payloads small, regenerate on publication, and retain the daily fallback. Do not invalidate public data for unchanged syncs or private draft edits. |
+| Fast Origin Transfer | Reuse CDN/ISR responses and shared static CSS rather than repeatedly transferring full HTML, RSC, and generated images from functions. |
+| Deployment Storage | Reduce retained build outputs; keeping a small function bundle does not remove old builds. |
+| Image transformations and CDN requests | Use stable image URLs and responsive sizes; lazy-load secondary images while prioritizing the main visible portraits. |
+| ISR Reads and CDN Request CPU | Cache reuse is desirable. Keep routing middleware narrow and preserve locale/maintenance behavior. |
+
+The latest read-only inventory found **111 retained deployments**, including
+**106 successful production deployments**, from 22 September onward. All four
+retention durations were 30 days. Obsolete production releases are the main
+cleanup candidates, not just previews. Keep the active release, known-good
+rollback releases, and the migration preview; check assigned aliases before
+deletion. No deployments were removed by this audit. Review retention under
+**Project → Settings → Security → Deployment Retention Policy**.
+
+The bundle optimization now uses literal cutout asset paths so Next's file
+tracing includes only renderer inputs instead of unrelated public photos/fonts.
+When replacing the cutout filenames, update `player-portrait-assets.ts` as well
+as `public/images/players/licenses.json`. Public originals remain available as
+static assets. Vercel builds also exclude the unused SQLite native addon; all
+production database access requires PostgreSQL, while local SQLite remains
+supported. The local store rejects accidental Vercel use before opening a file.
+
+Local macOS trace measurements, excluding Sharp WASM from the baseline because
+it was already excluded on Vercel, were approximately:
+
+| Route trace | Before | After |
+| --- | ---: | ---: |
+| Locale homepage | 10.83 MB | 8.85 MB |
+| Published data version | 4.42 MB | 2.43 MB |
+| Social preview | 38.63 MB | 30.85 MB |
+| Admin image export | 38.69 MB | 30.91 MB |
+
+These are individual, overlapping file traces on macOS, not Linux deployment
+sizes or measured GB-month savings. Validate server rendering against PostgreSQL
+without a SQLite native binary, and test PNG creation using only traced assets
+before deploying. Storage improvements affect future accumulation and do not
+reset the rolling quota.
+
+Validation passed for this change: production build, lint, TypeScript, 183 unit
+tests (one optional database test skipped), and five desktop poster browser
+checks. The PostgreSQL integration ran in an isolated copy with no SQLite native
+addon, only the traced renderer assets, and a guard that rejects any SQLite
+native load. Login, publication, image privacy, and social preview rendering
+passed; 27 warmed public requests issued no SQL. Local `next start` must run
+without the Vercel runtime environment flag; `VERCEL=1` was used for the build
+to verify the production tracing exclusions.
+
+Deployed as `dpl_Ckxo7GvAdqiJTBU3AMWaCsT88sTG` on 2 October 2026. Live public
+pages and anonymous session checks passed; the Linux runtime generated both the
+social PNG and a comparison poster. After initial cache propagation, `/`,
+`/es/goals`, and `/opengraph-image/dark` returned Vercel `HIT`.
+
 The initial page/poster optimizations were committed in `5755371`. Follow-up
 production requests to `/`, `/goals` and `/es/goals` returned Vercel `HIT` on
 30 September 2026. The additional CPU changes below were subsequently deployed:
