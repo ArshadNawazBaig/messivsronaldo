@@ -1,4 +1,4 @@
-import { players, type PlayerId } from "./data";
+import { players, type PlayerId } from "./football";
 import { localizedUrl, type Locale } from "./i18n/config";
 
 export const semanticContentUpdated = "2026-09-27";

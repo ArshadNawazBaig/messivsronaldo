@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { type PlayerId, type ScopeId, ratio } from "./data";
+import { type PlayerId, type ScopeId, ratio } from "./football";
 import type { PublishedData } from "./published-data";
 
 // Only published scopes can be exported; clients never supply poster statistics.

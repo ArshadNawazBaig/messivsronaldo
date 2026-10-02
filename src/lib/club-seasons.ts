@@ -1,6 +1,6 @@
 import snapshot from "@/data/club-seasons.json";
 import { calendarSummaryRows, type SummaryRow } from "./archive-summary";
-import { ratio } from "./data";
+import { ratio } from "./football";
 
 // A separate reviewed snapshot: never add two calendar years to make a season.
 // Since 2023/2024, Messi's sample follows the source's Ronaldo-season period.

@@ -1,4 +1,4 @@
-import { players, sources, type PlayerId } from "./data";
+import { players, sources, type PlayerId } from "./football";
 
 export const awardSlugs = ["ballon-dor", "golden-boots", "man-of-the-match", "fifa-awards", "uefa-awards"] as const;
 export type AwardSlug = typeof awardSlugs[number];

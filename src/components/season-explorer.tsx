@@ -9,7 +9,7 @@ import { useRouter } from "@/components/localized-link";
 import { useEffect, useState } from "react";
 import { ArrowUpRight, CalendarDays, Info } from "lucide-react";
 import { seasons, seasonTotals, type CompetitionId } from "@/lib/seasons";
-import { sources } from "@/lib/data";
+import { sources } from "@/lib/football";
 export function SeasonExplorer({ selected = "all" }: {
     selected?: string;
 }) {

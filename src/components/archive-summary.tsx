@@ -1,7 +1,7 @@
 import Link from "./localized-link";
 import { getI18n } from "@/lib/i18n/server";
 import { calendarSummaryRows, seasonSummaryRows, type SummaryRow } from "@/lib/archive-summary";
-import { sources } from "@/lib/data";
+import { sources } from "@/lib/football";
 import type { CalendarYear } from "@/lib/published-data";
 import { seasons, type SeasonRecord } from "@/lib/seasons";
 import styles from "./archive-summary.module.css";

@@ -5,13 +5,13 @@ import { Activity, ArrowRight, ArrowUpRight, CalendarDays, Check, Clock3, FileTe
 import type { AdminState } from "@/lib/admin/model";
 import type { getAdminSummary } from "@/lib/admin/overview";
 import type { PublishedData } from "@/lib/published-data";
-import { players } from "@/lib/data";
+import { players } from "@/lib/football";
 import styles from "./workspace.module.css";
 type Summary = Awaited<ReturnType<typeof getAdminSummary>>;
 export function PlayerCards({ data }: {data: PublishedData}) {
   const career = data.scopes.career;
   return <div className={styles.players}>{(["messi", "ronaldo"] as const).map(id => <article className={styles.player} key={id}>
-    <div className={styles.playerIdentity}><Image src={players[id].image} width={49} height={55} alt="" sizes="49px"/><div><h2>{players[id].name}</h2><p>{players[id].country} · {id === "messi" ? "Inter Miami" : "Al Nassr"}</p></div><Link href={`/players/${id}`} target="_blank" aria-label={`View ${players[id].short}'s public profile`}><ArrowUpRight size={17}/></Link></div>
+    <div className={styles.playerIdentity}><Image src={players[id].image} width={49} height={55} alt="" sizes="49px" loading="lazy"/><div><h2>{players[id].name}</h2><p>{players[id].country} · {id === "messi" ? "Inter Miami" : "Al Nassr"}</p></div><Link href={`/players/${id}`} target="_blank" aria-label={`View ${players[id].short}'s public profile`}><ArrowUpRight size={17}/></Link></div>
     <dl className={styles.playerMetrics}>{[["Career goals",career.goals[id]],["Assists",career.metrics.find(metric => metric.id === "assists")!.values[id]],["Appearances",career.appearances[id]]].map(([label,value]) => <div key={label}><dt>{label}</dt><dd>{Number(value).toLocaleString("en-GB")}</dd></div>)}</dl>
     <div className={styles.playerActions}><Link className="admin-button" href={`/admin/matches?player=${id}`}>Manage records<ArrowRight size={13}/></Link><Link className="admin-button" href={`/admin/statistics?player=${id}`}><Plus size={13}/> Add match</Link></div>
   </article>)}</div>;

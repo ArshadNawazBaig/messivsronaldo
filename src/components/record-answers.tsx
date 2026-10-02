@@ -4,7 +4,7 @@ import { ArrowUpRight, Search } from "lucide-react";
 import Link from "./localized-link";
 import { useI18n } from "./i18n-provider";
 import { filterRecordAnswers, type RecordAnswer } from "@/lib/record-answers";
-import { sources } from "@/lib/data";
+import { sources } from "@/lib/football";
 import styles from "./discovery.module.css";
 
 export function RecordAnswers({ answers, compact = false }: { answers: RecordAnswer[]; compact?: boolean }) {

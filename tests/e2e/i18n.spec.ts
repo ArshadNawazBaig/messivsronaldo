@@ -113,7 +113,7 @@ test("Thai switching retains filters, Gregorian dates and readable local fonts",
   await expect(page.locator("html")).toHaveAttribute("dir", "ltr");
   await expect(page.locator("#calendar-statistic")).toContainText("แอสซิสต์");
   await expect(page.locator(".checkbox-label input")).toBeChecked();
-  await expect(page.locator(".navigation-update time")).toContainText("ค.ศ. 2026");
+  await expect(page.locator(".footer-update time")).toContainText("ค.ศ. 2026");
   await expect(page.locator('meta[property="og:locale"]')).toHaveAttribute("content", "th_TH");
   const fontReady = await page.evaluate(async () => {
     await document.fonts.load('16px "Noto Sans Thai"', "ภาษาไทย");

@@ -9,7 +9,7 @@ import Link from "./localized-link";
 import { Select } from "./ui/select";
 import { RangeSlider } from "./ui/range-slider";
 import { useToolUrl } from "./use-tool-url";
-import { players, type PlayerId } from "@/lib/data";
+import { players, type PlayerId } from "@/lib/football";
 import { calculatorHash, calculatorPresets, calculatorRecords, normalizeCalculator, parseCalculator, scoringProjection, type CalculatorPreset, type CalculatorState } from "@/lib/calculator";
 import styles from "./scoring-calculator.module.css";
 
@@ -48,7 +48,7 @@ export function ScoringCalculator({ preset = "career" }: { preset?: CalculatorPr
     <div className={styles.heading}><div><span className="section-kicker">{t("TRY THE NUMBERS")}</span><h2>{t("Scoring calculator")}</h2></div><button type="button" className="text-link" onClick={() => update(initial)}><RotateCcw size={14}/>{t("Reset options")}</button></div>
     <div className={styles.presets} aria-label={t("Suggested comparisons")}>{Object.entries(calculatorPresets).map(([key, value]) => <button type="button" key={key} onClick={() => update(value.state)} aria-pressed={JSON.stringify(state) === JSON.stringify(value.state)}>{t(value.label)}</button>)}</div>
     <div className={styles.records}>{(["messi", "ronaldo"] as const).map(player => <section key={player} className={styles.record} data-player={player}>
-      <div className={styles.identity}><span className={`header-player-photo ${player}`}><Image src={players[player].image} width={players[player].imageWidth} height={players[player].imageHeight} sizes="52px" alt=""/></span><h3>{players[player].name}</h3></div>
+      <div className={styles.identity}><span className={`header-player-photo ${player}`}><Image src={players[player].image} width={players[player].imageWidth} height={players[player].imageHeight} sizes="52px" loading="lazy" alt=""/></span><h3>{players[player].name}</h3></div>
       <label htmlFor={`${uid}-${player}`}>{t("Choose a record")}</label><Select id={`${uid}-${player}`} label={player === "messi" ? "Messi record" : "Ronaldo record"} value={state[player]} onValueChange={value => update({ ...state, [player]: value })} options={records.map(record => ({ value: record.id, label: record.label }))}/>
       <dl className={styles.facts}><div><dt>{t("Goals")}</dt><dd>{fmt(selected[player].players[player].goals)}</dd></div><div><dt>{t("Appearances")}</dt><dd>{fmt(selected[player].players[player].appearances)}</dd></div><div><dt>{t("Minutes played")}</dt><dd>{fmt(selected[player].players[player].minutes)}</dd></div></dl>
       <p className={styles.note}>{t(selected[player].coverage)}</p><Link className="text-link" href={selected[player].href}>{t("View original record")}<ArrowUpRight size={13}/></Link>

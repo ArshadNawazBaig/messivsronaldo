@@ -9,7 +9,7 @@ import { InteractiveChart } from "./interactive-chart";
 import { useRouter } from "@/components/localized-link";
 import { useEffect, useState } from "react";
 import { BarChart3, CalendarDays } from "lucide-react";
-import { type PlayerId, type Stats } from "@/lib/data";
+import { type PlayerId, type Stats } from "@/lib/football";
 type YearScope = "career" | "club" | "international" | "league";
 type YearMetric = "goals" | "assists" | "contributions" | "appearances" | "minutes";
 const scopeNames: Record<YearScope, string> = { career: "Club + country", club: "Club", international: "Country", league: "League" };

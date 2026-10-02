@@ -29,7 +29,7 @@ function render(node: RichNode, key: string): ReactNode {
     case "codeBlock": return <pre key={key}><code>{content}</code></pre>;
     case "hardBreak": return <br key={key}/>;
     case "horizontalRule": return <hr key={key}/>;
-    case "image": return safeImage(String(node.attrs?.src ?? "")) ? <figure key={key}>{/* Uploaded images have already been resized and encoded on the server. */}<img src={String(node.attrs?.src)} alt={String(node.attrs?.alt ?? "")} loading="lazy"/>{node.attrs?.title ? <figcaption>{String(node.attrs.title)}</figcaption> : null}</figure> : null;
+    case "image": return safeImage(String(node.attrs?.src ?? "")) ? <figure key={key}>{/* Uploaded images have already been resized and encoded on the server. */}<img src={String(node.attrs?.src)} alt={String(node.attrs?.alt ?? "")} loading="lazy" decoding="async"/>{node.attrs?.title ? <figcaption>{String(node.attrs.title)}</figcaption> : null}</figure> : null;
     case "table": return <div className={styles.table} key={key} role="region" aria-label="Article table" tabIndex={0}><table><tbody>{content}</tbody></table></div>;
     case "tableRow": return <tr key={key}>{content}</tr>;
     case "tableHeader": return <th key={key} colSpan={Number(node.attrs?.colspan) || 1} rowSpan={Number(node.attrs?.rowspan) || 1}>{content}</th>;

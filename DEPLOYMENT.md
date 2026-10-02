@@ -221,6 +221,89 @@ include Google's SDK and framework runtime; preserving those integrations leaves
 some unused/compatibility code in the audit. No arbitrary timer or crawler-specific
 behavior was added to hide work outside the measurement window.
 
+### Core Web Vitals follow-up — 2 October 2026
+
+Deployment `dpl_8JFbqe1EmoN7e8wugGcHK9J8uHkP` is live on
+`https://messivsronaldo17.com`. The previous deployment is
+`dpl_GjRbXeRrwZ9caXghD4c9CDJZWuuf`.
+
+Browser components now import shared player definitions and helpers from
+`src/lib/football.ts`. Historical scope construction remains in `src/lib/data.ts`,
+and published statistics still arrive through the existing data provider. This
+removed 71,668 bytes of uncompressed JavaScript (9,780 compressed bytes) and one
+initial script from the measured homepage. Scope ordering, calculations, source
+definitions and published data are preserved.
+
+The current build enables Next.js `experimental.inlineCss` to deliver styles in
+the initial HTML. The homepage no longer waits for ten external stylesheets
+before its first paint. This framework option is experimental; retest initial
+loads, client navigation and both browser engines when upgrading Next.js.
+The trade-off is larger HTML and less stylesheet caching on full-page visits:
+local gzip HTML measured 39,079 bytes before and 98,097 after, while the initial
+external CSS requests disappear. A separate warm-cache reload measured 0.372 s
+before and 0.528 s after: the larger document costs about 156 ms on a repeat visit,
+in exchange for the roughly one-second improvement on a cold visit in this setup.
+Independent layout data reads now start
+concurrently during page regeneration.
+
+Three alternating before/after Chromium runs used a 412×823 viewport, 1.6 Mbps
+download, 150 ms latency, 4× CPU slowdown and a cold browser cache. Median FCP
+and LCP improved from 1.724 s to 0.684 s; median long-task blocking fell from
+411 ms to 189 ms. CLS changed from 0 to 0.00057, within the good threshold.
+These are controlled local browser measurements, not CrUX or Lighthouse scores.
+The import-only change was measured separately and did not improve first paint;
+the stylesheet delivery change produced the loading improvement. Artifacts and
+measurement scripts are in `.artifacts/core-web-vitals/`.
+
+Validation passed: production build, lint, TypeScript, 183 unit tests (one
+PostgreSQL-only test skipped), and 102 browser checks across desktop Chrome,
+mobile Chrome and mobile Safari. Browser tests use a fresh isolated SQLite
+fixture; measurement builds use identical copies of the existing local data.
+Two existing locale tests now locate the update date in the footer, where the
+current layout renders it. Public-page layout comparisons match across all nine
+languages and representative comparison, article, profile and tool routes.
+Eleven additional live Chromium/WebKit checks passed for deferred AdSense
+loading, pause-before-execution, deduplication, admin exclusion, all locale fonts,
+verification metadata and `ads.txt`.
+
+The fresh default Lighthouse 13.5.0 live mobile audit scored 88, with FCP 1.9 s,
+simulated LCP 2.6 s, TBT 330 ms and CLS 0; accessibility, best practices and SEO
+scored 100. The pre-change run also scored 88 (FCP 1.7 s, simulated LCP 2.0 s,
+TBT 360 ms). The observed LCP in those same traces improved from 2.224 s to
+1.482 s. These individual simulated and observed measurements differ; neither
+establishes an origin-wide Core Web Vitals pass. The default live reports are
+`live-before.json` and `live-after.report.json/html` in the artifact directory.
+An additional live Lighthouse run using applied DevTools mobile throttling
+instead of simulation measured FCP/LCP 1.7 s and CLS 0.001. Its score was 79
+because TBT was 860 ms; remaining JavaScript blocking still limits performance.
+That separate method is recorded in `live-after-throttled.report.json/html` and
+must not be compared directly with the default simulated score. A subsequent
+anonymous request returned HTTP 200 and a Vercel cache `HIT`.
+
+The user's screenshot reports origin-wide mobile CrUX data over a trailing
+28-day window. A deployment cannot immediately replace those historical visits.
+
+### Image lazy loading — 2 October 2026
+
+Deployment `dpl_CTgKfuUNsTQ9P3oyC5HDHnN7oRHr` is live on the canonical domain.
+
+Secondary Next.js images explicitly use `loading="lazy"`: header portraits,
+photo credits, calculator and voting portraits, and admin player thumbnails.
+Next.js already defaults to lazy loading, so those explicit props preserve the
+existing behavior. Native editor cover previews now use lazy loading and
+asynchronous decoding; article-body images retain lazy loading and also use
+asynchronous decoding. Main comparison portraits remain eager/high priority,
+profile portraits remain preloaded, and article covers retain immediate loading.
+Generated poster/social artwork is server-rendered and does not use browser
+lazy loading.
+
+Production build (including TypeScript), lint and 15 image-loading checks passed
+in desktop Chromium, mobile Chromium and mobile WebKit. Checks covered images
+loading after scrolling, the main portrait priorities, image dimensions,
+horizontal overflow and browser errors. Artifacts are in
+`.artifacts/image-lazy-loading/`.
+All 15 checks also passed against the deployed site.
+
 ## Environment and data
 
 Production needs `NEXT_PUBLIC_SITE_URL=https://messivsronaldo17.com`, `SITE_INDEXABLE=true`, `DATABASE_URL`, `ADMIN_EMAIL`, `ADMIN_PASSWORD_HASH`, `ADMIN_SESSION_SECRET`, and `CRON_SECRET` for automatic updates. `HEALTHCHECK_SECRET` authorizes the operational monitor. Keep database and admin secrets private. Google Search Console verification can optionally use `GOOGLE_SITE_VERIFICATION`.

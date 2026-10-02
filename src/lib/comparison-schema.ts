@@ -1,4 +1,4 @@
-import { players, sources, type ScopeId } from "./data";
+import { players, sources, type ScopeId } from "./football";
 import { localizedUrl, type Locale } from "./i18n/config";
 import type { createTranslator } from "./i18n/translate";
 import type { PublishedData } from "./published-data";

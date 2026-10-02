@@ -1,5 +1,5 @@
 "use client";
-import type { Pair } from "@/lib/data";
+import type { Pair } from "@/lib/football";
 import { useI18n } from "./i18n-provider";
 import { scoringComparison } from "@/lib/scoring-comparison";
 import styles from "./archive-summary.module.css";

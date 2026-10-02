@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Check, Vote } from "lucide-react";
 import Link from "./localized-link";
 import { useI18n } from "./i18n-provider";
-import { players } from "@/lib/data";
+import { players } from "@/lib/football";
 import { startingVotes, type VotePlayer, type VoteState } from "@/lib/voting/model";
 import styles from "./fan-vote.module.css";
 
@@ -73,7 +73,7 @@ export function FanVote() {
     <p className={styles.disclosure}>{t("Starting totals set by the publisher: Messi {0}, Ronaldo {1}. These are not visitor votes; new votes are added separately.", { "0": number(startingVotes.messi), "1": number(startingVotes.ronaldo) })}</p>
     <div className={styles.cards}>
       {(["messi", "ronaldo"] as const).map(player => <article className={`${styles.card} ${styles[player]}`} key={player} data-vote-player={player}>
-        <div className={styles.identity}><Image src={players[player].image} alt="" width={players[player].imageWidth} height={players[player].imageHeight} sizes="100px"/><div><span className="section-kicker">{t(player === "messi" ? "ARGENTINA" : "PORTUGAL")}</span><h2>{players[player].name}</h2></div></div>
+        <div className={styles.identity}><Image src={players[player].image} alt="" width={players[player].imageWidth} height={players[player].imageHeight} sizes="100px" loading="lazy"/><div><span className="section-kicker">{t(player === "messi" ? "ARGENTINA" : "PORTUGAL")}</span><h2>{players[player].name}</h2></div></div>
         <strong className={styles.count} data-vote-total={player}>{state ? number(state.totals[player]) : "—"}</strong>
         <span className={styles.totalLabel}>{t("Total including starting votes")}</span>
         <p className={styles.breakdown}>{t("Starting: {0} · Visitor votes: {1}", { "0": number(startingVotes[player]), "1": state ? number(state.visitors[player]) : "—" })}</p>

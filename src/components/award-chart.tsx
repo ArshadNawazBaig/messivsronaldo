@@ -5,7 +5,7 @@ import { useI18n } from "@/components/i18n-provider";
 import Link from "@/components/localized-link";
 import { useId, useState } from "react";
 import { ArrowRight } from "lucide-react";
-import { awardHistory, players } from "@/lib/data";
+import { awardHistory, players } from "@/lib/football";
 export function AwardChart({ full = false }: {
     full?: boolean;
 }) {

@@ -10,7 +10,7 @@ import { ComparisonOptions } from "@/components/comparison-options";
 import Link from "@/components/localized-link";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, ArrowUpRight, Check, Globe2, ImageDown, Info, Link2, ShieldCheck, Star } from "lucide-react";
-import { getGoalValues, isScope, players, scopeIds, sources, type GoalMode, type MetricGroup, type Metric, type PlayerId, type ScopeId } from "@/lib/data";
+import { getGoalValues, isScope, players, scopeIds, sources, type GoalMode, type MetricGroup, type Metric, type PlayerId, type ScopeId } from "@/lib/football";
 export function Comparison({ initialScope = "career", compact = false, initialGroup = "overview", focusMetric }: {
     focusMetric?: FocusMetric;
     initialScope?: ScopeId;

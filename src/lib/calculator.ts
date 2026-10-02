@@ -1,4 +1,4 @@
-import { sources, type PlayerId, type ScopeId } from "./data";
+import { sources, type PlayerId, type ScopeId } from "./football";
 import type { PublishedData } from "./published-data";
 import { seasons } from "./seasons";
 

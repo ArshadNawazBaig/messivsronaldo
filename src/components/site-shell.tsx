@@ -6,7 +6,7 @@ import dynamic from "next/dynamic";
 import { stripLocale, locales, type Locale } from "@/lib/i18n/config";
 import { useI18n } from "@/components/i18n-provider";
 import { useFootballData } from "@/components/data-provider";
-import { players } from "@/lib/data";
+import { players } from "@/lib/football";
 import { honoursNavigation } from "@/lib/awards";
 import { toolLinks } from "@/lib/tools";
 import Link from "@/components/localized-link";
@@ -140,7 +140,7 @@ function SiteHeader({ pathname, onSearch, availableLanguages }: {
       <div className="masthead-identity"><Brand /><p>{t("Two careers.")}<br /><strong>{t("Every chapter.")}</strong></p></div>
       <div className="header-players" aria-label={t("Player profiles")}>
         {(["messi", "ronaldo"] as const).map(player => <Link href={`/players/${player}`} key={player} className="header-player" aria-label={t(`${player === "messi" ? "Lionel Messi" : "Cristiano Ronaldo"} profile`)} aria-current={pathname === `/players/${player}` ? "page" : undefined} onClick={closeNavigation}>
-          <span className={`header-player-photo ${player}`}><Image src={players[player].image} alt={t("")} width={players[player].imageWidth} height={players[player].imageHeight} sizes="60px"/></span>
+          <span className={`header-player-photo ${player}`}><Image src={players[player].image} alt={t("")} width={players[player].imageWidth} height={players[player].imageHeight} sizes="60px" loading="lazy"/></span>
           <span>{t(player === "messi" ? "Lionel Messi" : "Cristiano Ronaldo")}<small>{t(player === "messi" ? "Argentina · No. 10" : "Portugal · No. 7")}</small></span>
         </Link>)}
       </div>

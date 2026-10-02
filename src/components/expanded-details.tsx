@@ -5,7 +5,7 @@ import { getI18n } from "@/lib/i18n/server";
 import Link from "@/components/localized-link";
 import { ArrowUpRight } from "lucide-react";
 import { getPublishedData } from "@/lib/server-data";
-import { players, sources } from "@/lib/data";
+import { players, sources } from "@/lib/football";
 export async function CurrentHighlights() {
     const { t } = await getI18n();
     const { scopes, snapshotLabel } = await getPublishedData();

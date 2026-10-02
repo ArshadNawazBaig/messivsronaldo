@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "@/components/localized-link";
 import { ArrowUpRight } from "lucide-react";
 import type { CSSProperties } from "react";
-import { players, type PlayerId } from "@/lib/data";
+import { players, type PlayerId } from "@/lib/football";
 import { playerArtworkStyle, playerPortraits } from "@/lib/player-artwork";
 import portraitStyles from "./player-portrait.module.css";
 type PlayerMatchupProps = {

@@ -4,6 +4,9 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   experimental: {
     globalNotFound: true,
+    // Deliver first-paint styles with HTML instead of waiting for ten CSS
+    // requests on a cold mobile visit. Client navigation still reuses styles.
+    inlineCss: true,
     // Keep unrelated route and admin styles out of public-page CSS bundles.
     cssChunking: { type: "graph", requestCost: 5000 },
   },

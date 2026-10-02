@@ -1,4 +1,4 @@
-import { ratio, type PlayerId, type Stats } from "./data";
+import { ratio, type PlayerId, type Stats } from "./football";
 
 export type ChartValues = Record<PlayerId, number | null>;
 export type ChartMetric = { id: string; label: string; decimals?: number; unit?: string; lowerIsBetter?: boolean; explanation?: string; coverage?: string };

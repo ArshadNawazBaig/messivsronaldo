@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { awardTotals, awardsReviewed } from "./awards";
-import { type ScopeId, ratio } from "./data";
+import { type ScopeId, ratio } from "./football";
 import type { PublishedData } from "./published-data";
 import { getPlayerPoster, playerPosterSchema, posterNumber } from "./player-poster";
 import { teamTrophyTotals, teamHonoursDate } from "./team-honours";

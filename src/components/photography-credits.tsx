@@ -6,7 +6,7 @@ export function PhotographyCredits() {
   return <div className="prose panel" lang="en">
     <p>The player photographs below are by <strong>{playerPhotoLicense.credit}</strong>, supplied through Wikimedia Commons under <a href={playerPhotoLicense.licenseUrl} rel="license">Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)</a>. This license permits commercial use, including on an advertising-supported website, subject to its terms.</p>
     {Object.entries(playerPortraits).map(([id, photo]) => <section className="photo-credit" id={id} key={id}>
-      <Image src={photo.src} width={photo.width} height={photo.height} sizes="150px" alt={photo.alt} />
+      <Image src={photo.src} width={photo.width} height={photo.height} sizes="150px" loading="lazy" alt={photo.alt} />
       <div>
         <h2>{photo.name}</h2>
         <p>{photo.description} {photo.date}. Photograph © Bryan Berlin / WikiPortraits.</p>

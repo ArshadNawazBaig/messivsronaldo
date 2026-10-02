@@ -67,7 +67,13 @@ export const metadata: Metadata = {
 export default async function DocumentLayout({
   children, locale, admin,
 }: Readonly<{ children: React.ReactNode; locale: Locale; admin?: boolean }>) {
-  const { messages, t } = await getLocaleI18n(locale);
+  // Start independent reads together when a page needs regeneration.
+  const [{ messages, t }, data, articles, articleLanguages] = await Promise.all([
+    getLocaleI18n(locale),
+    getPublishedData(),
+    getArticleNavigation(locale),
+    getArticleLanguages(),
+  ]);
   return (
     <html
       lang={locale}
@@ -99,9 +105,9 @@ export default async function DocumentLayout({
       </head>
       <body className={`${inter.variable} ${display.variable}`}>
         <I18nProvider locale={locale} messages={messages}>
-          <DataProvider value={await getPublishedData()}>
+          <DataProvider value={data}>
             <AdminExportProvider admin={admin}>
-              <SiteShell articleLinks={(await getArticleNavigation(locale)).map(article => ({ href: `/insights/${article.slug}`, label: article.managed ? article.title : t(article.title) }))} articleLanguages={await getArticleLanguages()}>{children}</SiteShell>
+              <SiteShell articleLinks={articles.map(article => ({ href: `/insights/${article.slug}`, label: article.managed ? article.title : t(article.title) }))} articleLanguages={articleLanguages}>{children}</SiteShell>
             </AdminExportProvider>
           </DataProvider>
         </I18nProvider>

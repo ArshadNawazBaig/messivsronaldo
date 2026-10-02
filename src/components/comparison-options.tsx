@@ -3,7 +3,7 @@ import { useI18n } from "@/components/i18n-provider";
 import { useId, useRef, useState } from "react";
 import * as Popover from "@radix-ui/react-popover";
 import { Check, ChevronDown, Hash, RotateCcw, SlidersHorizontal, Timer, UserRound, X } from "lucide-react";
-import type { GoalMode } from "@/lib/data";
+import type { GoalMode } from "@/lib/football";
 import styles from "./comparison-options.module.css";
 const displays = [
     { value: "total", label: "Total goals", description: "Every goal in the selected comparison.", icon: Hash },

@@ -4,7 +4,7 @@ import { InteractiveChart } from "./interactive-chart";
 import { useFootballData } from "./data-provider";
 import { chartMetrics, statsChartValues, type ChartRecord } from "@/lib/chart-data";
 import { clubSeasons } from "@/lib/club-seasons";
-import type { PlayerId, Scope } from "@/lib/data";
+import type { PlayerId, Scope } from "@/lib/football";
 import { useState } from "react";
 import { useI18n } from "./i18n-provider";
 import { ScoringAnalysis } from "./scoring-analysis";

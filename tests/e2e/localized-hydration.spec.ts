@@ -37,7 +37,7 @@ test("Arabic dates and statistics hydrate across different browser locale-data v
     await page.locator(".language-trigger").click();
     await expect(page.locator(".language-menu")).toBeVisible();
     await page.keyboard.press("Escape");
-    await expect(page.locator(".navigation-update time")).toHaveText(serverDate!);
+    await expect(page.locator(".footer-update time")).toHaveText(serverDate!);
     expect(errors, path).toEqual([]);
   }
   expect(await page.evaluate(() => new Intl.DateTimeFormat("ar", {
@@ -49,12 +49,12 @@ test("Arabic dates and statistics hydrate across different browser locale-data v
   await page.locator(".brand").click();
   await expect(page).toHaveURL(/\/ar$/);
   await expect(page.locator(".messi .big-score")).toHaveText("930");
-  await expect(page.locator(".navigation-update time")).toHaveText("21 سبتمبر 2026");
+  await expect(page.locator(".footer-update time")).toHaveText("21 سبتمبر 2026");
   await page.locator(".language-trigger").click();
   await page.locator('.language-menu a[lang="es"]').click();
-  await expect(page.locator(".navigation-update time")).toHaveText("21 de septiembre de 2026");
+  await expect(page.locator(".footer-update time")).toHaveText("21 de septiembre de 2026");
   await page.locator(".language-trigger").click();
   await page.locator('.language-menu a[lang="ar"]').click();
-  await expect(page.locator(".navigation-update time")).toHaveText("21 سبتمبر 2026");
+  await expect(page.locator(".footer-update time")).toHaveText("21 سبتمبر 2026");
   expect(errors).toEqual([]);
 });

@@ -36,6 +36,7 @@ test("award chronology handles the cancelled 2020 award and reconciles winners",
   assert.equal(players.messi.awards.filter(year => ronaldoYears.includes(year)).length, 0);
 });
 test("untrusted scope input cannot select arbitrary object properties", () => {
+  assert.deepEqual(scopeIds, Object.keys(scopes));
   assert.equal(isScope("career"), true);
   assert.equal(isScope("__proto__"), false);
   assert.equal(isScope(null), false);

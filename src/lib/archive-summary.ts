@@ -1,4 +1,4 @@
-import { ratio, type Pair, type Stats } from "./data";
+import { ratio, type Pair, type Stats } from "./football";
 import type { SeasonRecord } from "./seasons";
 import type { CalendarYear } from "./published-data";
 

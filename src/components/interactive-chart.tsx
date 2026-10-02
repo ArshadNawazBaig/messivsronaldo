@@ -6,7 +6,7 @@ import { useI18n } from "./i18n-provider";
 import Link from "./localized-link";
 import { Select } from "./ui/select";
 import { chartMaximum, chartPath, type ChartMetric, type ChartRecord } from "@/lib/chart-data";
-import type { PlayerId } from "@/lib/data";
+import type { PlayerId } from "@/lib/football";
 import styles from "./interactive-chart.module.css";
 
 const bothPlayers: PlayerId[] = ["messi", "ronaldo"];
