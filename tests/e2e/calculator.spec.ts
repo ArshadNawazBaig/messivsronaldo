@@ -79,7 +79,7 @@ test("new tools and guides are discoverable and sitemap lists every language", a
   await page.getByRole("link", { name: "Open the calculator", exact: true }).click();
   await expect(page).toHaveURL(/\/scoring-calculator$/);
   await page.locator(".header-search").click();
-  await page.getByRole("textbox", { name: "Search pages", exact: true }).fill("Messi 2012");
+  await page.getByRole("textbox", { name: "Search pages", exact: true }).fill("2012");
   await page.locator('.search-results a[href="/insights/messi-2012-vs-ronaldo-2013-goals"]').click();
   await expect(page.getByTestId("messi-projection")).toHaveText("65.94");
   const xml = await (await request.get("/sitemap.xml")).text();

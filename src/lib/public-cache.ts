@@ -1,6 +1,6 @@
 import "server-only";
 import { createHash } from "node:crypto";
-import { revalidateTag } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { revision } from "./admin/database";
 import type { Locale } from "./i18n/config";
 
@@ -29,6 +29,11 @@ export async function withStatisticsRevalidation<T>(operation: () => Promise<T>)
   finally {
     let changed = true;
     try { changed = await revision() !== before; } catch { /* A completed write may precede a database outage. */ }
-    if (changed) revalidateTag(statisticsTag, { expire: 0 });
+    if (changed) {
+      revalidateTag(statisticsTag, { expire: 0 });
+      // Explicitly expire generated image responses as well as their source data.
+      revalidatePath("/opengraph-image/dark");
+      revalidatePath("/opengraph-image/light");
+    }
   }
 }

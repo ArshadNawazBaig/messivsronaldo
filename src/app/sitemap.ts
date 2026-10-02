@@ -4,7 +4,7 @@ import { getPublishedData } from "@/lib/server-data";
 import { getPublicPages } from "@/lib/public-pages";
 import { locales, languageAlternates, localizedUrl } from "@/lib/i18n/config";
 import { getPublishedArticles, getArticleLanguages, articleAlternates } from "@/lib/blog/server";
-export const revalidate = 3600;
+export const revalidate = 86400;
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const { calendarYears, snapshotDate } = await getPublishedData();
   const languages = await getArticleLanguages();

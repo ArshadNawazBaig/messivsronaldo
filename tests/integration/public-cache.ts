@@ -29,16 +29,17 @@ async function main() {
   await closeDatabase();
 
   const origin = "http://localhost:3002";
+  const email = "cache-test@example.test";
   const password = "cache-test-password";
   const salt = "cache-test-salt";
   const output = openSync(".artifacts/public-cache-test-server.log", "w", 0o600);
   const app = spawn(process.execPath, ["node_modules/next/dist/bin/next", "start", "--port", "3002", "--hostname", "localhost"], {
     stdio: ["ignore", output, output], env: { ...process.env, VERCEL: "", VERCEL_ENV: "", NEXT_PUBLIC_SITE_URL: origin, SITE_INDEXABLE: "false",
-      ADMIN_PASSWORD_HASH: `${salt}:${scryptSync(password, salt, 64).toString("hex")}`, ADMIN_SESSION_SECRET: "cache-test-secret-with-at-least-32-characters",
+      ADMIN_EMAIL: email, ADMIN_PASSWORD_HASH: `${salt}:${scryptSync(password, salt, 64).toString("hex")}`, ADMIN_SESSION_SECRET: "cache-test-secret-with-at-least-32-characters",
       CRON_SECRET: "cache-test-cron-secret", HEALTHCHECK_SECRET: "cache-test-health-secret" },
   });
   const closed = new Promise(resolve => app.once("close", resolve));
-  const paths = ["/", "/goals", "/api/data-version", `/insights/${post.slug}`, `/es/insights/${spanish.slug}`, mediaPath];
+  const paths = ["/", "/goals", "/api/data-version", "/api/comparison/career", "/sitemap.xml", "/llms.txt", `/insights/${post.slug}`, `/es/insights/${spanish.slug}`, mediaPath];
   const position = () => readFileSync(logFile).length;
   const since = (offset: number) => readFileSync(logFile).subarray(offset).toString();
   async function request(path: string, init?: RequestInit) {
@@ -48,6 +49,12 @@ async function main() {
     return { response, body };
   }
   async function publicReads() { for (const path of paths) await request(path); }
+  async function socialImage() {
+    const response = await fetch(origin + "/opengraph-image/dark");
+    assert.equal(response.status, 200);
+    assert.equal(response.headers.get("content-type"), "image/png");
+    return Buffer.from(await response.arrayBuffer());
+  }
   function noQueries(log: string, context: string) { assert.doesNotMatch(log, /LOG:.*(?:statement:|execute .*:)/, context); }
   try {
     let ready = false;
@@ -56,16 +63,26 @@ async function main() {
       await new Promise(resolve => setTimeout(resolve, 250));
     }
     assert.ok(ready, "Local server must start");
-    await publicReads();
-    let offset = position();
-    for (let repeat = 0; repeat < 3; repeat++) await publicReads();
-    noQueries(since(offset), "Warmed public pages, versions and image requests must not query Postgres");
-
-    const login = await request("/api/admin/login", { method: "POST", headers: { origin, "content-type": "application/json" }, body: JSON.stringify({ password }) });
+    const login = await request("/api/admin/login", { method: "POST", headers: { origin, "content-type": "application/json" }, body: JSON.stringify({ email, password }) });
     const cookie = login.response.headers.getSetCookie().map(value => value.split(";")[0]).join("; ");
     async function mutate(path: string, body: unknown) {
       return JSON.parse((await request(path, { method: "POST", headers: { origin, cookie, "content-type": "application/json" }, body: JSON.stringify(body) })).body);
     }
+    // Invalidate feeds generated at build time before measuring this isolated
+    // database. Every locale in the sitemap must be warmed at runtime as well.
+    post = (await mutate("/api/admin/blog", { ...post, action: "publish", draft })).post;
+    spanish = (await mutate("/api/admin/blog", { ...spanish, action: "publish", draft })).post;
+    await publicReads();
+    assert.ok((await request("/sitemap.xml")).body.includes(post.slug));
+    assert.ok((await request("/sitemap.xml")).body.includes(spanish.slug));
+    assert.ok((await request("/llms.txt")).body.includes(post.slug));
+    const originalVersion = JSON.parse((await request("/api/data-version")).body).version;
+    const originalComparison = JSON.parse((await request("/api/comparison/career")).body);
+    const originalSocial = await socialImage();
+    let offset = position();
+    for (let repeat = 0; repeat < 3; repeat++) await publicReads();
+    noQueries(since(offset), "Warmed public pages, versions and image requests must not query Postgres");
+
     offset = position();
     post = (await mutate("/api/admin/blog", { ...post, action: "save", draft: { ...draft, title: "Private replacement draft" } })).post;
     assert.doesNotMatch(since(offset), /substring\(data|SELECT data FROM blog_posts ORDER BY/, "Saving must not download media bytes or every article");
@@ -85,6 +102,17 @@ async function main() {
     const statQueries = since(offset);
     assert.match(statQueries, /FROM matches/, "Publishing statistics must refresh the snapshot");
     assert.doesNotMatch(statQueries, /FROM blog_posts|FROM blog_media/, "Publishing statistics must preserve article and media caches");
+    assert.notEqual(JSON.parse((await request("/api/data-version")).body).version, originalVersion, "Version polling must see publications without waiting for the daily fallback");
+    const comparison = JSON.parse((await request("/api/comparison/career")).body);
+    assert.equal(comparison.comparison.goals.messi, originalComparison.comparison.goals.messi + 1, "The cached comparison API must refresh after publication");
+    assert.match((await request("/llms.txt")).body, new RegExp(`Career goals: Messi ${comparison.comparison.goals.messi}`), "The crawler feed must refresh after publication");
+    let social = await socialImage();
+    for (let attempt = 0; attempt < 20 && social.equals(originalSocial); attempt++) {
+      await new Promise(resolve => setTimeout(resolve, 250));
+      social = await socialImage();
+    }
+    assert.notDeepEqual(social, originalSocial, "The cached social preview must reflect published statistics");
+    assert.deepEqual(await socialImage(), social, "Repeated social requests must reuse the rendered image");
 
     spanish = (await mutate("/api/admin/blog", { ...spanish, action: "publish", draft: { ...draft, title: "Updated Spanish article" } })).post;
     offset = position();
@@ -100,12 +128,15 @@ async function main() {
 
     await mutate("/api/admin/blog", { ...spanish, action: "unpublish" });
     await mutate("/api/admin/blog", { ...post, action: "unpublish" });
+    assert.ok(!(await request("/sitemap.xml")).body.includes(post.slug), "The sitemap must remove unpublished articles immediately");
+    assert.ok(!(await request("/sitemap.xml")).body.includes(spanish.slug), "The sitemap must remove unpublished localized articles immediately");
+    assert.ok(!(await request("/llms.txt")).body.includes(post.slug), "The crawler feed must remove unpublished articles immediately");
     assert.equal((await fetch(origin + mediaPath)).status, 404);
     assert.equal((await fetch(origin + mediaPath, { headers: { cookie } })).status, 200);
     assert.equal((await fetch(origin + mediaPath)).status, 404);
     assert.equal((await fetch(origin + "/api/health")).status, 401);
     assert.equal(JSON.parse((await request("/api/health", { headers: { authorization: "Bearer cache-test-health-secret" } })).body).ok, true);
-    console.log("PASS: 18 warmed requests issued no SQL; draft/no-op jobs retained caches; statistics and locale changes refreshed only relevant data; image privacy and health authorization passed.");
+    console.log("PASS: 27 warmed requests issued no SQL; draft/no-op jobs retained caches; statistics, version, comparison API, crawler feeds and social previews refreshed after publication; unpublished articles left feeds; image privacy and health authorization passed.");
   } finally { app.kill("SIGTERM"); await closed; closeSync(output); await closeDatabase(); }
 }
 main().catch(error => { console.error(error); process.exitCode = 1; });

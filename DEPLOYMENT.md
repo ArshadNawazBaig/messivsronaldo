@@ -357,22 +357,21 @@ log. Never use production for write tests.
 
 The initial page/poster optimizations were committed in `5755371`. Follow-up
 production requests to `/`, `/goals` and `/es/goals` returned Vercel `HIT` on
-30 September 2026. The additional CPU changes below are prepared locally and
-still require deployment:
+30 September 2026. The additional CPU changes below were subsequently deployed:
 
 - Public pages and their shared statistics/article reads use a one-day fallback
   lifetime instead of regenerating hourly. Publishing invalidates
   the existing data tags and their rendered pages. Locale comes from the URL;
   admin session checks run separately so visitor cookies do not disable caching.
   The query-dependent comparison-poster studio remains dynamic.
-- The comparison API, sitemap, and `llms.txt` use one-hour ISR; `/api/data-version`
-  uses 30-second ISR in addition to its short CDN lifetime. These responses track
+- The comparison API, sitemap, `llms.txt`, and `/api/data-version` now use one-day
+  ISR, with publication tags expiring changed data. These responses track
   publication tags, including article removal from both crawler feeds. Metadata
   routes can expose a browser revalidation header while their ISR lifetime is
   defined by the prerender manifest. Build-time feed generation now needs the
   initialized deployment database to be reachable.
 - Shared social previews render at `/opengraph-image/dark` and `/opengraph-image/light`
-  and reuse completed PNG responses with one-hour ISR. Old query-string URLs
+  and reuse completed PNG responses with one-day ISR. Old query-string URLs
   redirect to these paths. Publishing statistics invalidates the previews.
 - Each server instance retains one calculated statistics snapshot by revision.
   Every request still reads the tagged source snapshot before reusing calculations,
@@ -437,6 +436,66 @@ recovery after intentionally overloading the renderer. No production write tests
 or deployment cleanup were performed. Follow-up checks cover the reported hot
 page types with one-day cache headers, crawler/social-preview cache reuse,
 statistics and article invalidation, and batching poster option changes.
+
+## Traffic and ISR audit — 2 October 2026
+
+Vercel Analytics returned 1,031 production page views and 471 visitor IDs for the
+30-day query ending 2 October (partial day). Recorded data starts on 25 September;
+this does not establish traffic before then. Visitor IDs rotate daily, and owner
+visits and browser testing can be included. Google referred 135 page views.
+The busiest recorded day had 224 page views. This is modest recorded traffic,
+so reducing resource usage is appropriate before attributing the alert to growth.
+
+The email reports team-wide ISR writes, not visitors. Detailed ISR/request queries
+required Observability Plus, and the billing CLI could not provide Hobby usage.
+The exact route/project contribution and bot share remain unverified. The
+deployment API returned 109 retained deployments, including 104 successful
+production deployments since 22 September. Repeated releases and testing are
+plausible contributors to repeated page generation; retained deployment count
+does not itself measure ISR writes. No deployments were deleted or plans upgraded.
+
+The current configuration supersedes the blanket CSS inlining experiment above.
+CSS is served as reusable static files, grouped with Turbopack's graph strategy
+to reduce requests. In matched local homepage output, gzip-compressed English
+HTML fell from about 97 KB to 38 KB, and RSC data from 52 KB to 23 KB. Spanish
+HTML fell from about 169 KB to 109 KB, and RSC data from 122 KB to 93 KB. These
+are payload measurements, not measured billing savings. Static CSS requests
+replace the copies previously stored inside each cached page. The tradeoff is
+a slower cold first paint in the local throttled mobile test: median FCP/LCP
+was about 2.02 seconds with shared CSS versus 0.78 seconds with inline CSS;
+CLS was zero with shared CSS. These lab timings do not establish a field Core
+Web Vitals pass. Public layouts matched in the nine supported languages.
+
+Version responses, comparison JSON, crawler feeds and social previews now share
+the daily fallback used by public data. Publications still invalidate their data
+tags; changed statistics also explicitly invalidate both social-image paths.
+The version endpoint retains its short browser cache header and five-minute
+visible-tab polling. No-op syncs and draft saves preserve public caches. Longer
+intervals avoid unnecessary regeneration work; unchanged revalidations already
+incur no ISR write units, so the interval change alone is not a write-savings
+estimate. See Vercel's [ISR usage documentation](https://vercel.com/docs/incremental-static-regeneration/limits-and-pricing).
+
+Audit evidence and local validation artifacts are in
+`.artifacts/isr-traffic-audit/`. Validation passed: production build, lint,
+TypeScript, 183 unit tests (one optional PostgreSQL unit test skipped), and
+93 browser checks across desktop Chromium, mobile Chromium and mobile WebKit.
+The separate PostgreSQL integration check passed 27 warmed requests without SQL
+and verified publication/version/feed/social-image refresh, no-op retention,
+article removal and media access revocation. An old calculator search test was
+updated for its article's current title; the integration login fixture now
+supplies the required email address.
+
+Deployed to `https://messivsronaldo17.com` on 2 October as
+`dpl_69n3Ca6B8SJgzNxwiHnPWjvd1FV5`. The production build passed. A limited live
+smoke test passed for English and Spanish pages, version JSON, sitemap XML,
+social PNG generation, and mobile image loading/layout/hydration. Analytics
+collection was blocked in the smoke-test browser to avoid counting that visit.
+
+Compare new daily write usage in the Vercel
+dashboard against page views after deployment. Accumulated quota usage will not
+reset from this change. Keep exhaustive crawler/browser checks local and use
+only a small production smoke test to avoid generating every localized page
+on each release.
 
 ## Schema setup
 

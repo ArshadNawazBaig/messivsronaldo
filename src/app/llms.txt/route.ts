@@ -2,7 +2,7 @@ import { getPublishedArticles } from "@/lib/blog/server";
 import { siteUrl } from "@/lib/site";
 import { getPublishedData } from "@/lib/server-data";
 import { locales, languageNames, localizedUrl } from "@/lib/i18n/config";
-export const revalidate = 3600;
+export const revalidate = 86400;
 export async function GET() {
   const { snapshotDate, datasetVersion, scopes, coverageNote } = await getPublishedData();
   const text = `# The Rivalry

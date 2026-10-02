@@ -2,7 +2,7 @@ import { getPublishedData } from "@/lib/server-data";
 import { renderSocialImage } from "@/lib/social-image-renderer";
 
 export const runtime = "nodejs";
-export const revalidate = 3600;
+export const revalidate = 86400;
 export function generateStaticParams() { return []; }
 
 export async function GET(_request: Request, { params }: { params: Promise<{ theme: string }> }) {
@@ -14,6 +14,6 @@ export async function GET(_request: Request, { params }: { params: Promise<{ the
   const image = await renderSocialImage(theme, { goals: scopes.career.goals, asOf: snapshotDate });
   return new Response(await image.arrayBuffer(), { headers: {
     "Content-Type": "image/png", "X-Content-Type-Options": "nosniff",
-    "Cache-Control": "public, max-age=0, s-maxage=3600, must-revalidate",
+    "Cache-Control": "public, max-age=0, s-maxage=86400, must-revalidate",
   } });
 }
