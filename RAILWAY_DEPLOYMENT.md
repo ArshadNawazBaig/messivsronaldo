@@ -139,10 +139,13 @@ query strings on the apex as well as the homepage. Do not assume the forwarding
 service preserves them until tested. Keep the old deployment available until
 these checks pass. Preserve all unrelated DNS records.
 
-Railway reports `plan: HOBBY`, but the billing customer currently reports
-`isTrialing: true`, `state: INACTIVE`, and no paid subscription. The plan label
-alone does not prove paid activation. Complete Hobby checkout in the workspace's
-Plans page and recheck billing state before the production handover.
+Paid Hobby activation was verified on 3 October 2026: `isTrialing: false`,
+`isUsageSubscriber: true`, `state: ACTIVE`, and an active subscription. The plan
+label alone is insufficient to verify billing; these customer fields confirm it.
+The `www` cutover build passed ten hosted checks, including canonical tags,
+indexable robots/sitemap, language redirects preserving the query string,
+authenticated Neon health, and cross-origin rejection. DNS verification remains
+pending in GoDaddy.
 
 Original apex A records were `216.198.79.1` and `64.29.17.1`; original `www`
 CNAME was `671dc91e9e34a9c2.vercel-dns-017.com`. These remain the rollback values.
