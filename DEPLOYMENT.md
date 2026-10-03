@@ -1,13 +1,14 @@
-# Production: www.messivsronaldo17.com
+# Production: messivsronaldo17.com
 
 Railway Hobby deployment and custom-domain HTTPS were verified on 3 October 2026.
 Current configuration, validation and rollback instructions are in
 [RAILWAY_DEPLOYMENT.md](RAILWAY_DEPLOYMENT.md). Canonical origin:
-`https://www.messivsronaldo17.com`. GoDaddy hosts DNS; Cloudflare is not used.
-The apex redirects through the retained Vercel deployment, preserving existing
-page paths and query strings. GoDaddy root forwarding was tested and removed
-because it returned 404 for deep paths. Authoritative DNS is correct; caches
-may temporarily retain earlier records during propagation.
+`https://messivsronaldo17.com`. GoDaddy remains the registrar; Vercel DNS uses an
+apex ALIAS to route requests directly to Railway. Cloudflare and Namecheap are
+not used. The nameserver handover, Railway ownership check and trusted apex
+HTTPS passed. The Railway build uses the apex canonical origin; its `www`
+redirect preserves page paths and query strings. The retained
+Vercel application serves old DNS caches and remains available for rollback.
 
 Database: existing `rivalry-production`, Neon Launch (verified 30 September 2026),
 region `iad1`; production data was retained. Railway runs in US East.

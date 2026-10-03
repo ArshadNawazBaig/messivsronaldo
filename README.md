@@ -1,6 +1,6 @@
 # The Rivalry
 
-A Next.js website for comparing Lionel Messi and Cristiano Ronaldo, with an original responsive interface and a reviewed September 2026 dataset. Production domain: https://www.messivsronaldo17.com. Hosting and database instructions: [DEPLOYMENT.md](DEPLOYMENT.md) and [RAILWAY_DEPLOYMENT.md](RAILWAY_DEPLOYMENT.md).
+A Next.js website for comparing Lionel Messi and Cristiano Ronaldo, with an original responsive interface and a reviewed September 2026 dataset. Production domain: https://messivsronaldo17.com. Hosting and database instructions: [DEPLOYMENT.md](DEPLOYMENT.md) and [RAILWAY_DEPLOYMENT.md](RAILWAY_DEPLOYMENT.md).
 
 ## Run locally
 
@@ -77,7 +77,7 @@ On Railway or Vercel, use Neon Postgres through `DATABASE_URL`; a missing databa
 4. Build with those environment values, then start the production server. Environment changes affecting static metadata require a rebuild.
 5. Check the final domain, HTTPS, canonical tags, sitemap, robots file, social image, source links and actual page content. Verify the property in Search Console and submit the sitemap.
 
-The production website is deployed on Railway Hobby at https://www.messivsronaldo17.com with the existing Neon Postgres database.
+The production website uses Railway Hobby with the existing Neon Postgres database. The canonical origin is https://messivsronaldo17.com; the current DNS cutover status is recorded in [RAILWAY_DEPLOYMENT.md](RAILWAY_DEPLOYMENT.md).
 
 ## Public policies and system pages
 
