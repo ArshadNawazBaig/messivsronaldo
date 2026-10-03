@@ -1,4 +1,5 @@
 import Database from "better-sqlite3";
+import { requiresPostgres } from "../hosting";
 import { supportSchema } from "../support/schema";
 import { votingSchema } from "../voting/schema";
 import { mkdirSync } from "node:fs";
@@ -7,8 +8,8 @@ import { createCipheriv, createDecipheriv, createHash, randomBytes } from "node:
 import { AdminError, type MatchRecord, type ProviderConnection, type RunRecord } from "./model";
 
 export function openStore(path = process.env.ADMIN_DATABASE_PATH || resolve(".data/admin.sqlite")) {
-  // Vercel deployments require Postgres; their bundles omit the SQLite addon.
-  if (process.env.VERCEL) throw new AdminError("Local SQLite storage is unavailable on Vercel. Configure DATABASE_URL.", 503);
+  // Hosted deployments must not fall back to an ephemeral SQLite database.
+  if (requiresPostgres()) throw new AdminError("Local SQLite storage is unavailable on this host. Configure DATABASE_URL.", 503);
   if (path !== ":memory:") mkdirSync(dirname(path), { recursive: true, mode: 0o700 });
   const db = new Database(path);
   db.pragma("journal_mode = WAL"); db.pragma("busy_timeout = 5000");

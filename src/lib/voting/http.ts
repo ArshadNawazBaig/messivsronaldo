@@ -1,5 +1,5 @@
 import { createHash, createHmac } from "node:crypto";
-import { isIP } from "node:net";
+import { clientAddress } from "../hosting";
 import { AdminError } from "../admin/model";
 import { reportServerError } from "../operations";
 import { VoteError } from "./model";
@@ -9,8 +9,8 @@ export const validVoterToken = (value: string | undefined): value is string => !
 export const voterHash = (token: string) => createHash("sha256").update(`fan-vote:${token}`).digest("hex");
 export function votingClientKey(request: Request) {
   const secret = process.env.ADMIN_SESSION_SECRET;
-  const address = process.env.VERCEL === "1" ? request.headers.get("x-vercel-forwarded-for")?.split(",")[0].trim() : "local";
-  if (!secret || secret.length < 32 || (process.env.VERCEL === "1" && (!address || !isIP(address)))) throw new VoteError("unavailable", 503);
+  const address = clientAddress(request);
+  if (!secret || secret.length < 32 || !address) throw new VoteError("unavailable", 503);
   return createHmac("sha256", secret).update(`fan-vote-limit:${address}`).digest("hex");
 }
 export function voteFailure(error: unknown) {

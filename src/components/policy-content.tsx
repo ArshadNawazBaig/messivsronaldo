@@ -8,6 +8,7 @@ export async function PolicyContent({ policy }: {
 }) {
     const { t, locale } = await getI18n();
     const { contactEmail } = publisherConfiguration(process.env);
+    const hostingProvider = process.env.RAILWAY_ENVIRONMENT_ID ? "Railway" : "Vercel";
     return <div className="policy-layout">
     <aside className="policy-index">
       <span className="section-kicker">{t("ON THIS PAGE")}</span>
@@ -18,7 +19,7 @@ export async function PolicyContent({ policy }: {
       {policy.sections.map((section, index) => <section key={section.id} id={section.id} className="policy-section">
         <span className="section-kicker" aria-hidden="true">{t(String(index + 1).padStart(2, "0"))}</span>
         <h2>{t(section.title)}</h2>
-        {section.paragraphs.map(paragraph => <p key={paragraph} lang={locale !== "en" && t(paragraph) === paragraph ? "en" : undefined}>{t(paragraph)}</p>)}
+        {section.paragraphs.map(paragraph => <p key={paragraph} lang={locale !== "en" && t(paragraph) === paragraph ? "en" : undefined}>{t(paragraph, { "0": hostingProvider })}</p>)}
         {section.links && <div className="policy-related">{section.links.map(link => <Link key={link.href} href={link.href}>{t(link.label)}<ArrowUpRight size={15} aria-hidden="true"/></Link>)}</div>}
       </section>)}
       <div className="policy-contact"><h2>{t("Questions about this page?")}</h2>{contactEmail ? <p>{t("Email ")}<a href={`mailto:${contactEmail}`}>{contactEmail}</a>.</p> : <p>{t("See our ")}<Link href="/contact">{t("contact and correction options")}</Link>.</p>}</div>

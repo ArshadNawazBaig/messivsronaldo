@@ -1,5 +1,8 @@
 # Production: messivsronaldo17.com
 
+Railway migration preparation is documented in [RAILWAY_DEPLOYMENT.md](RAILWAY_DEPLOYMENT.md).
+The production status below remains Vercel until the domain handover is verified.
+
 Status: deployed and HTTPS verified on 21 September 2026. Both apex and www DNS records are verified by Vercel.
 
 Vercel project: `arshadnawazbaigs-projects/messivsronaldo17`.

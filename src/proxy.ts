@@ -1,4 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { requestOrigin } from "@/lib/hosting";
 import { maintenanceExempt, maintenanceHeaders, maintenanceResponse } from "@/lib/maintenance";
 import { isPublicPath, localizedPath, pathLocale, stripLocale } from "@/lib/i18n/config";
 import { isLanguageCrawler, languageCookie, languageCookieMaxAge, preferredLocale } from "@/lib/i18n/detection";
@@ -7,6 +8,13 @@ function privateLanguageResponse(response: NextResponse) {
   response.headers.set("Cache-Control", "private, no-store");
   response.headers.append("Vary", "Accept-Language, Cookie, User-Agent");
   return response;
+}
+
+function publicRedirectUrl(request: NextRequest, pathname: string) {
+  const url = new URL(requestOrigin(request) ?? request.nextUrl.origin);
+  url.pathname = pathname;
+  url.search = request.nextUrl.search;
+  return url;
 }
 
 export function proxy(request: NextRequest) {
@@ -18,15 +26,15 @@ export function proxy(request: NextRequest) {
     return maintenanceResponse();
   }
   if (!isPublicPath(bare) || bare === "/maintenance") {
-    if (path !== bare) { const url = request.nextUrl.clone(); url.pathname = bare; return NextResponse.redirect(url, 308); }
+    if (path !== bare) return NextResponse.redirect(publicRedirectUrl(request, bare), 308);
     return NextResponse.next();
   }
   if (path === "/en" || path.startsWith("/en/")) {
-    const url = request.nextUrl.clone(); url.pathname = localizedPath(path, "en");
+    const url = publicRedirectUrl(request, localizedPath(path, "en"));
     const response = privateLanguageResponse(NextResponse.redirect(url, 308));
     // /en explicitly requests English; remember it before removing the prefix
     // so the canonical redirect cannot negotiate another language on arrival.
-    if (!isLanguageCrawler(request.headers.get("user-agent"))) response.cookies.set(languageCookie, "en", { path: "/", maxAge: languageCookieMaxAge, sameSite: "lax", secure: request.nextUrl.protocol === "https:" });
+    if (!isLanguageCrawler(request.headers.get("user-agent"))) response.cookies.set(languageCookie, "en", { path: "/", maxAge: languageCookieMaxAge, sameSite: "lax", secure: url.protocol === "https:" });
     return response;
   }
   if (locale !== "en") return NextResponse.next();
@@ -37,7 +45,7 @@ export function proxy(request: NextRequest) {
   if (isPageVisit && !isLanguageCrawler(request.headers.get("user-agent"))) {
     const preferred = preferredLocale(request.cookies.get(languageCookie)?.value, request.headers.get("accept-language"));
     if (preferred !== "en") {
-      const url = request.nextUrl.clone(); url.pathname = localizedPath(path, preferred);
+      const url = publicRedirectUrl(request, localizedPath(path, preferred));
       return privateLanguageResponse(NextResponse.redirect(url, 307));
     }
   }

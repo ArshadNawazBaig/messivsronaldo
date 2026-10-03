@@ -4,7 +4,7 @@ export const maintenanceHeaders = { "Cache-Control": "no-store, max-age=0", "Ret
 
 export function maintenanceExempt(path: string) {
   return ["/admin", "/api/admin", "/_next", "/images"].some(prefix => path === prefix || path.startsWith(`${prefix}/`))
-    || ["/robots.txt", "/icon.svg", "/favicon.ico", "/maintenance"].includes(path);
+    || ["/api/ready", "/robots.txt", "/icon.svg", "/favicon.ico", "/maintenance"].includes(path);
 }
 
 export function maintenanceResponse(dedicatedPage = false) {

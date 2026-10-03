@@ -1,4 +1,5 @@
 import { cookies } from "next/headers";
+import { requestOrigin } from "../hosting";
 import { createHash, randomBytes } from "node:crypto";
 import { sessionValid, recordLoginAttempt, saveSession, deleteSession } from "./database";
 import { AdminError } from "./model";
@@ -17,7 +18,7 @@ export async function isAdmin() {
 export async function requireAdmin() { if (!await isAdmin()) throw new AdminError("Sign in to continue.", 401); }
 export function checkOrigin(request: Request) {
   const origin = request.headers.get("origin");
-  if (!origin || origin !== new URL(request.url).origin) throw new AdminError("Request origin was rejected.", 403);
+  if (!origin || origin !== requestOrigin(request)) throw new AdminError("Request origin was rejected.", 403);
 }
 export async function login(email: string, password: string) {
   if (!configured()) throw new AdminError("Run npm run admin:setup on the server first.", 503);

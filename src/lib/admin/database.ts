@@ -1,5 +1,6 @@
 import postgres, { type Sql } from "postgres";
 import { randomBytes } from "node:crypto";
+import { requiresPostgres } from "../hosting";
 import type Database from "better-sqlite3";
 import * as local from "./store";
 import { AdminError, type MatchRecord, type RunRecord, type ProviderConnection } from "./model";
@@ -8,7 +9,7 @@ let sql: Sql | undefined;
 export async function postgresStore() {
   const url = process.env.DATABASE_URL;
   if (!url) {
-    if (process.env.VERCEL) throw new AdminError("The production database is not configured.", 503);
+    if (requiresPostgres()) throw new AdminError("The production database is not configured.", 503);
     return null;
   }
   sql ??= postgres(url, { max: 3, idle_timeout: 20, connect_timeout: 10, prepare: false, onnotice: () => {} });

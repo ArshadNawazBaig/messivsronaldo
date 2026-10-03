@@ -1,4 +1,5 @@
 import type Database from "better-sqlite3";
+import { dailySyncConfigured } from "../hosting";
 import { snapshotDate } from "@/lib/data";
 import { AdminError, checkDate, matchSchema, type AdminState, type MatchRecord, type ProviderConnection } from "./model";
 import { acquireSync, commitRecords, getConnection, history, logRun, readRecords, revision, readSnapshot } from "./database";
@@ -7,7 +8,7 @@ import type { ProviderFetch } from "./provider-client";
 import { dailySyncSchedule, readDailySyncState } from "./daily-sync-state";
 export async function getAdminState(): Promise<AdminState> {
   const [connection, snapshot, runs, daily] = await Promise.all([getConnection(), readSnapshot(), history(), readDailySyncState()]);
-  return {revision:snapshot.revision,records:snapshot.records,history:runs,providerConnected:!!connection,baseline:snapshotDate,today:new Date().toISOString().slice(0,10),connection:connection ? {messi:connection.messi,ronaldo:connection.ronaldo} : null, automaticUpdates:{scheduled:process.env.VERCEL_ENV === "production" && !!process.env.CRON_SECRET,schedule:dailySyncSchedule,...daily}};
+  return {revision:snapshot.revision,records:snapshot.records,history:runs,providerConnected:!!connection,baseline:snapshotDate,today:new Date().toISOString().slice(0,10),connection:connection ? {messi:connection.messi,ronaldo:connection.ronaldo} : null, automaticUpdates:{scheduled:dailySyncConfigured(),schedule:dailySyncSchedule,...daily}};
 }
 export function mergeDate(existing: MatchRecord[], incoming: MatchRecord[], date: string, withdrawnIds: string[] = []) {
   const missing = existing.filter(r => r.date === date && !r.locked && r.provider === "api-football" && !incoming.some(n => n.id === r.id) && !withdrawnIds.includes(r.id));
