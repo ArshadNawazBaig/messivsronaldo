@@ -20,7 +20,7 @@ jobs:
           HEALTHCHECK_SECRET: ${{ secrets.HEALTHCHECK_SECRET }}
         run: |
           node --input-type=module <<'NODE'
-          const origin = 'https://messivsronaldo17.com';
+          const origin = 'https://www.messivsronaldo17.com';
           if (!process.env.HEALTHCHECK_SECRET) throw new Error('HEALTHCHECK_SECRET is missing.');
           async function check(path, authenticated = false) {
             let failure;

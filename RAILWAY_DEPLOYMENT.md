@@ -12,8 +12,10 @@ Daily job: `daily-sync` (`87bda577-9333-4de3-a8be-bc4919c4d21c`).
 Both services deploy `ArshadNawazBaig/messivsronaldo`, branch
 `codex/railway-migration`. Switch their source to `main` after the migration
 branch is merged; do not deploy the older `main` code onto Railway.
-The preview remains non-indexable and the Railway daily job remains disabled
-until DNS handover. Keep the existing Neon database; no production data migration
+The initial preview was non-indexable. The cutover build targets
+`https://www.messivsronaldo17.com` and enables indexing for that canonical origin.
+The Railway daily job remains disabled until DNS handover.
+Keep the existing Neon database; no production data migration
 or schema change is required.
 
 Local validation on 3 October 2026 passed: production build with Railway
@@ -107,29 +109,43 @@ no application dependencies and needs only these variables:
 Set `DAILY_SYNC_ENABLED=true` on the web service only after configuring and
 verifying this scheduler. Disable the old Vercel schedule during handover.
 The database lock and date deduplication prevent double processing, but running
-two schedulers is not the intended permanent configuration. The existing GitHub
-production-health workflow continues to monitor the same canonical domain.
+two schedulers is not the intended permanent configuration. The updated GitHub
+production-health workflow calls `www` directly so its Authorization header is
+not lost across a cross-origin redirect. Merge that workflow onto the default
+branch when the `www` domain is live.
 
 ## DNS and account prerequisites
 
-GoDaddy currently hosts DNS (`ns39.domaincontrol.com` and
-`ns40.domaincontrol.com`). Its apex DNS cannot flatten Railway's CNAME. Move DNS
-hosting to a provider with flattening, such as Cloudflare's free DNS service,
-while keeping the domain registration at GoDaddy. Preserve the complete DNS zone,
-including mail and verification records; public DNS queries cannot enumerate it.
-Use DNS-only routing initially so the verified Railway ingress remains the sole
-HTTP proxy. An additional HTTP proxy needs its own client-IP trust verification.
+The user explicitly requested GoDaddy DNS without Cloudflare. Keep the existing
+nameservers (`ns39.domaincontrol.com` and `ns40.domaincontrol.com`). Use `www`
+as the canonical website, connected directly to Railway by CNAME; forward the
+apex to `https://www.messivsronaldo17.com` using GoDaddy's HTTPS forwarding.
+No CNAME flattening or additional DNS provider is required for this setup.
 
-The trial account accepted the apex custom domain but rejected `www` with a
-custom-domain limit. Upgrade the Railway plan before adding the second domain.
-Do not change live DNS until the final canonical-URL build and both domains are
-ready. The current preview uses its Railway URL and `SITE_INDEXABLE=false`.
+The unused, unverified apex custom-domain entry was removed from Railway and
+replaced with `www.messivsronaldo17.com` (ID
+`d2899a00-a004-4a82-9b24-550ffc52a806`). Only one Railway custom domain is needed.
+After the cutover build passes, configure these records in GoDaddy:
 
-The apex record target returned by Railway is `2y3kx6ai.up.railway.app`; retrieve
-the current `_railway-verify` TXT value from the domain settings. Both records are
-required. Add `www` separately after the account upgrade, using its returned
-records. Original apex A records were `216.198.79.1` and `64.29.17.1`; original
-`www` CNAME was `671dc91e9e34a9c2.vercel-dns-017.com`.
+| Type | Name | Value |
+| --- | --- | --- |
+| CNAME | `www` | `gsqacoq9.up.railway.app` |
+| TXT | `_railway-verify.www` | Retrieve the current public verification value from Railway's domain settings |
+
+Wait for Railway's verification and HTTPS certificate before enabling root-domain
+forwarding. Then select permanent 301 forwarding, without masking, to
+`https://www.messivsronaldo17.com`. Check deep article paths, language paths, and
+query strings on the apex as well as the homepage. Do not assume the forwarding
+service preserves them until tested. Keep the old deployment available until
+these checks pass. Preserve all unrelated DNS records.
+
+Railway reports `plan: HOBBY`, but the billing customer currently reports
+`isTrialing: true`, `state: INACTIVE`, and no paid subscription. The plan label
+alone does not prove paid activation. Complete Hobby checkout in the workspace's
+Plans page and recheck billing state before the production handover.
+
+Original apex A records were `216.198.79.1` and `64.29.17.1`; original `www`
+CNAME was `671dc91e9e34a9c2.vercel-dns-017.com`. These remain the rollback values.
 
 ## Checks and domain handover
 
@@ -141,11 +157,10 @@ records. Original apex A records were `216.198.79.1` and `64.29.17.1`; original
    the address used for rate limiting. Remove any temporary diagnostics.
 3. Take a fresh private Neon backup and retain the current Vercel deployment and
    exact DNS records for rollback.
-4. Add apex and `www` domains to Railway. Set
-   `NEXT_PUBLIC_SITE_URL=https://messivsronaldo17.com`, `SITE_INDEXABLE=true`, and
-   rebuild with the existing publisher settings. Configure only the records
-   Railway provides; apex hosting requires ALIAS or CNAME flattening support.
-   Preserve mail and verification records.
+4. Add `www` to Railway. Set
+   `NEXT_PUBLIC_SITE_URL=https://www.messivsronaldo17.com`, `SITE_INDEXABLE=true`,
+   and rebuild with the existing publisher settings. Set the cron's
+   `SYNC_SITE_URL` to the same origin. Configure GoDaddy as described above.
 5. After HTTPS/domain verification, switch traffic and check canonicals,
    robots/sitemap, `ads.txt`, database readiness, admin authentication and media.
    Enable Railway daily sync and disable the Vercel schedule. Confirm the admin
@@ -162,5 +177,6 @@ data. The database and encryption secret remain the same throughout.
 - [Railway Next.js guide](https://docs.railway.com/guides/nextjs)
 - [Railway deployment settings](https://docs.railway.com/integrations/api/manage-services)
 - [Domain and apex DNS requirements](https://docs.railway.com/networking/domains/working-with-domains)
+- [GoDaddy HTTPS domain forwarding](https://www.godaddy.com/help/forward-my-godaddy-domain-12123)
 - [Ingress headers and networking](https://docs.railway.com/networking/public-networking/specs-and-limits)
 - [Cron scheduling](https://docs.railway.com/cron-jobs)

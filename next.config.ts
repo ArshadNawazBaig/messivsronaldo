@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { canonicalHostRedirects } from "./src/lib/site-config";
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
@@ -22,12 +23,7 @@ const nextConfig: NextConfig = {
     qualities: [75, 85],
   },
   async redirects() {
-    return [{
-      source: "/:path*",
-      has: [{ type: "host", value: "www.messivsronaldo17.com" }],
-      destination: "https://messivsronaldo17.com/:path*",
-      permanent: true,
-    }];
+    return canonicalHostRedirects(process.env);
   },
   async headers() {
     return [{ source: "/(.*)", headers: [
