@@ -1,13 +1,16 @@
-# Production: messivsronaldo17.com
+# Production: www.messivsronaldo17.com
 
-Railway migration preparation is documented in [RAILWAY_DEPLOYMENT.md](RAILWAY_DEPLOYMENT.md).
-The production status below remains Vercel until the domain handover is verified.
+Railway Hobby deployment and custom-domain HTTPS were verified on 3 October 2026.
+Current configuration, validation and rollback instructions are in
+[RAILWAY_DEPLOYMENT.md](RAILWAY_DEPLOYMENT.md). Canonical origin:
+`https://www.messivsronaldo17.com`. GoDaddy hosts DNS; Cloudflare is not used.
+The apex currently redirects through the retained Vercel deployment while
+GoDaddy root forwarding is pending. DNS caches may temporarily use Vercel for `www`.
 
-Status: deployed and HTTPS verified on 21 September 2026. Both apex and www DNS records are verified by Vercel.
-
-Vercel project: `arshadnawazbaigs-projects/messivsronaldo17`.
-Canonical origin: `https://messivsronaldo17.com`.
-Database: `rivalry-production`, Neon Launch (verified 30 September 2026), region `iad1`. The Vercel functions use the same region.
+Database: existing `rivalry-production`, Neon Launch (verified 30 September 2026),
+region `iad1`; production data was retained. Railway runs in US East.
+Vercel rollback project: `arshadnawazbaigs-projects/messivsronaldo17`.
+The dated releases below record the earlier Vercel deployment history.
 
 ## AdSense preparation — 1 October 2026
 

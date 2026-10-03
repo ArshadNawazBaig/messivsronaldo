@@ -1,10 +1,10 @@
 # The Rivalry
 
-A Next.js website for comparing Lionel Messi and Cristiano Ronaldo, with an original responsive interface and a reviewed September 2026 dataset. Production domain: https://messivsronaldo17.com. Vercel deployment and database instructions: [DEPLOYMENT.md](DEPLOYMENT.md).
+A Next.js website for comparing Lionel Messi and Cristiano Ronaldo, with an original responsive interface and a reviewed September 2026 dataset. Production domain: https://www.messivsronaldo17.com. Hosting and database instructions: [DEPLOYMENT.md](DEPLOYMENT.md) and [RAILWAY_DEPLOYMENT.md](RAILWAY_DEPLOYMENT.md).
 
 ## Run locally
 
-Requires Node.js 22 (also selected for Vercel).
+Requires Node.js 22 (also used by the production host).
 
 ```sh
 npm ci
@@ -22,7 +22,7 @@ This workspace's ignored `.env.local` sets the preview origin to `http://localho
 
 ## What is implemented
 
-- A protected `/admin/dahsboard` workspace with email/password sign-in, sidebar navigation, article publishing, player and match records, support, API-Football sync, audit history, undo, and persistent Postgres storage on Vercel (SQLite for local development). Setup and boundaries: [ADMIN_GUIDE.md](ADMIN_GUIDE.md).
+- A protected `/admin/dahsboard` workspace with email/password sign-in, sidebar navigation, article publishing, player and match records, support, API-Football sync, audit history, undo, and persistent Postgres storage on Railway (SQLite for local development). Setup and boundaries: [ADMIN_GUIDE.md](ADMIN_GUIDE.md).
 - Next.js App Router, TypeScript, locally hosted Inter and Manrope fonts, Lucide icons, and custom responsive CSS.
 - Thirteen comparison scopes: career, 2026, club, country, Champions League, La Liga, World Cup, Copa América/Euros, current clubs, all leagues, European clubs, career excluding USA/Saudi, and direct meetings.
 - Goals, assists, appearances, minutes, contributions, per-appearance and per-90 rates, hat-tricks, penalties/conversion, non-penalty goals, free kicks, scoring locations and body parts.
@@ -69,15 +69,15 @@ To check development-only React warnings, start `npm run dev` and run `PLAYWRIGH
 
 ## Deploy
 
-On Vercel, use Neon Postgres through `DATABASE_URL`. For a separate Node.js host using SQLite, use persistent writable storage and one application instance; set `ADMIN_DATABASE_PATH` to the persistent volume. Ephemeral serverless filesystems cannot persist the SQLite database. See [ADMIN_GUIDE.md](ADMIN_GUIDE.md) for credentials, backup and deployment details.
+On Railway or Vercel, use Neon Postgres through `DATABASE_URL`; a missing database URL fails closed on these hosts. Local SQLite requires persistent writable storage and one application instance; set `ADMIN_DATABASE_PATH` to the persistent volume. Ephemeral filesystems cannot persist SQLite. See [RAILWAY_DEPLOYMENT.md](RAILWAY_DEPLOYMENT.md) for the current production configuration and [ADMIN_GUIDE.md](ADMIN_GUIDE.md) for administration.
 
 1. Set `NEXT_PUBLIC_SITE_URL` to the final HTTPS origin, without a path. This affects built canonical URLs, sitemap URLs and structured data.
 2. Set `SITE_INDEXABLE=true` only for the intended public site. Private previews should keep it `false`. The code also prevents indexing for localhost origins.
-3. Run `npm run admin:setup` and configure the private admin environment variables. On Vercel, connect a Neon Postgres database and set `DATABASE_URL`; local SQLite requires a persistent disk on other hosts. Optionally configure `CONTACT_EMAIL` and `GOOGLE_SITE_VERIFICATION`. These are publisher configuration values, not football-provider credentials.
+3. For a new, empty database, run `npm run admin:setup` and configure the private admin environment variables. An existing production database must retain its data and encryption secret; do not rerun setup during hosting migration. On Railway or Vercel, connect Neon Postgres through `DATABASE_URL`. Optionally configure `CONTACT_EMAIL` and `GOOGLE_SITE_VERIFICATION`. These are publisher configuration values, not football-provider credentials.
 4. Build with those environment values, then start the production server. Environment changes affecting static metadata require a rebuild.
 5. Check the final domain, HTTPS, canonical tags, sitemap, robots file, social image, source links and actual page content. Verify the property in Search Console and submit the sitemap.
 
-The production website is deployed on Vercel at https://messivsronaldo17.com with Neon Postgres.
+The production website is deployed on Railway Hobby at https://www.messivsronaldo17.com with the existing Neon Postgres database.
 
 ## Public policies and system pages
 
@@ -92,11 +92,11 @@ The production website is deployed on Vercel at https://messivsronaldo17.com wit
 
 Sign in at `/admin/dahsboard`, connect API-Football in **Settings**, then open **Data updates** to check recent statistics or a specific UTC date. Post-baseline matches update the public site without a rebuild. Repeated imports are idempotent; protected manual corrections, source evidence, historical cutoffs and audit history are retained. Historical dates already covered by the baseline are checked without appending them again. See [ADMIN_GUIDE.md](ADMIN_GUIDE.md) for the complete workflow and provider limitations.
 
-No live provider key was supplied during implementation, so real provider access remains to be configured and verified. No scheduled background job is enabled. The public `/updates` page lists the actual matches added; unlisted dates are not claimed as verified. Detailed goal-type figures retain their original cutoff when the adapter cannot update them.
+Production daily updates use the separate Railway `daily-sync` service at 08:00 UTC; activation and verification are recorded in [RAILWAY_DEPLOYMENT.md](RAILWAY_DEPLOYMENT.md). Provider credentials remain private in the existing database. The public `/updates` page lists the actual matches added; unlisted dates are not claimed as verified. Detailed goal-type figures retain their original cutoff when the adapter cannot update them.
 
 ## Monetization and operations
 
-The Google AdSense loader is installed on public pages with ad requests paused pending consent setup. It makes technical requests to Google even while ads are paused; the privacy and cookie notices describe this. There are no affiliate trackers, public user accounts or payments. Vercel Web Analytics runs on public pages in production unless `WEB_ANALYTICS_ENABLED=false`; private routes and URL query/fragment data are excluded. A protected administrator account manages statistics and support reports. Essential comparisons remain free. The researched 90-day growth strategy and revenue scenarios are in `WEBSITE_BUILD_PROMPT.md` and `WEBSITE_RESEARCH.md`.
+The Google AdSense loader is installed on public pages with ad requests paused pending consent setup. It makes technical requests to Google even while ads are paused; the privacy and cookie notices describe this. There are no affiliate trackers, public user accounts or payments. Vercel Web Analytics runs only on Vercel deployments unless `WEB_ANALYTICS_ENABLED=false`; it is disabled on Railway. Private routes and URL query/fragment data are excluded from analytics. A protected administrator account manages statistics and support reports. Essential comparisons remain free. The researched 90-day growth strategy and revenue scenarios are in `WEBSITE_BUILD_PROMPT.md` and `WEBSITE_RESEARCH.md`.
 
 API-Football credentials and appropriate provider access are required for real statistics imports. Production hosting, a domain, current-data licensing, editorial upkeep and any added email/analytics services must be costed for the chosen providers. No $1,000 earnings or Google/AI ranking promise is made.
 
