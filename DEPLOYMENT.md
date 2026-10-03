@@ -4,12 +4,18 @@ Railway Hobby deployment and custom-domain HTTPS were verified on 3 October 2026
 Current configuration, validation and rollback instructions are in
 [RAILWAY_DEPLOYMENT.md](RAILWAY_DEPLOYMENT.md). Canonical origin:
 `https://www.messivsronaldo17.com`. GoDaddy hosts DNS; Cloudflare is not used.
-The apex currently redirects through the retained Vercel deployment while
-GoDaddy root forwarding is pending. DNS caches may temporarily use Vercel for `www`.
+The apex redirects through the retained Vercel deployment, preserving existing
+page paths and query strings. GoDaddy root forwarding was tested and removed
+because it returned 404 for deep paths. Authoritative DNS is correct; caches
+may temporarily retain earlier records during propagation.
 
 Database: existing `rivalry-production`, Neon Launch (verified 30 September 2026),
 region `iad1`; production data was retained. Railway runs in US East.
 Vercel rollback project: `arshadnawazbaigs-projects/messivsronaldo17`.
+Railway's daily job is enabled at 08:00 UTC (1 PM Pakistan), and Vercel's cron is
+disabled. The Railway execution completed; existing API-Football subscription
+restrictions still leave ten dates pending. Authenticated production health and
+the GitHub health workflow passed. Both Railway services now deploy `main`.
 The dated releases below record the earlier Vercel deployment history.
 
 ## AdSense preparation — 1 October 2026

@@ -11,13 +11,15 @@ environment `production`. Web service: `messivsronaldo`
 (`891a9749-7286-4557-a224-6807a077383e`). Generated service URL:
 https://messivsronaldo-production.up.railway.app.
 Daily job: `daily-sync` (`87bda577-9333-4de3-a8be-bc4919c4d21c`).
-Both services use `ArshadNawazBaig/messivsronaldo`. The migration was prepared on
-`codex/railway-migration`; production should track `main` after its fast-forward
-to the migration commits. Do not deploy the older pre-migration code onto Railway.
+Both services deploy `ArshadNawazBaig/messivsronaldo`, branch `main`. The migration
+branch was fast-forwarded onto `main`; both Railway sources were then switched
+to that branch and deployed successfully.
 The initial preview was non-indexable. The cutover build targets
 `https://www.messivsronaldo17.com` and enables indexing for that canonical origin.
 The old Vercel cron was removed in the transition deployment. Railway's daily
-job is being enabled and verified as the final scheduler handover.
+job is enabled, scheduled at 08:00 UTC (1 PM Pakistan), and its manual execution
+completed with `Daily sync finished: partial.` Existing API-Football subscription
+restrictions leave ten historical dates pending; this is not a deployment error.
 Keep the existing Neon database; no production data migration
 or schema change is required.
 
@@ -40,6 +42,15 @@ settings, public routes, generated media, and browser rendering. Health remained
 successful after deleting the temporary test database. The cron image built
 successfully and its manual execution exited with
 `Daily sync is disabled for this deployment.`
+
+Final enabled deployments: web `edd52ffa-5a6e-4f35-a0da-99f650b9eeb3`, cron
+`e892e2d4-0d72-4cc1-9df7-28130f24e3dd`. Eight final checks against the actual
+Railway custom-domain ingress passed with trusted TLS, including metadata,
+localized content, sitemap, publisher verification, readiness, authenticated
+Neon health, and query-preserving locale redirects. The default-branch
+[production-health workflow](https://github.com/ArshadNawazBaig/messivsronaldo/actions/runs/37134036492)
+also passed. Its report was healthy with today's daily-sync state marked
+`partial`; deployment validation does not claim all provider dates are available.
 
 ## Web service
 
@@ -109,7 +120,8 @@ no application dependencies and needs only these variables:
   generated Railway HTTPS origin so the job always reaches the Railway web
   process, including while custom-domain DNS caches still point to Vercel.
 - `CRON_SECRET`: the same private token as the web service.
-- `DAILY_SYNC_ENABLED=false` until the handover is complete; then `true`.
+- `DAILY_SYNC_ENABLED=true` on both current production services. Use `false`
+  while preparing a separate preview or disabling the Railway scheduler.
 
 Set `DAILY_SYNC_ENABLED=true` on the web service only after configuring and
 verifying this scheduler. Disable the old Vercel schedule during handover.
@@ -123,9 +135,19 @@ branch for its hourly schedule to run.
 
 The user explicitly requested GoDaddy DNS without Cloudflare. Keep the existing
 nameservers (`ns39.domaincontrol.com` and `ns40.domaincontrol.com`). Use `www`
-as the canonical website, connected directly to Railway by CNAME; forward the
-apex to `https://www.messivsronaldo17.com` using GoDaddy's HTTPS forwarding.
+as the canonical website, connected directly to Railway by CNAME. Retain the
+apex A records on Vercel, where the transition deployment permanently redirects
+every path and query string to the equivalent `www` URL on Railway.
 No CNAME flattening or additional DNS provider is required for this setup.
+
+GoDaddy's built-in domain forwarding was tested and rejected: its HTTPS homepage
+redirect returned 301, but `/goals`, `/fr/goals`, and `/robots.txt` returned 404;
+the homepage query string was also dropped. These results were reproduced on
+both forwarding IPs. Do not enable it for this site, since existing search and
+shared article links use apex paths. The owner removed that forwarding and
+restored the apex A records below. Both authoritative nameservers now return
+the correct A records and the Railway `www` CNAME. HTTPS redirects on both apex
+IPs preserve the homepage, deep paths, language paths and query strings.
 
 The unused, unverified apex custom-domain entry was removed from Railway and
 replaced with `www.messivsronaldo17.com` (ID
@@ -136,13 +158,13 @@ After the cutover build passes, configure these records in GoDaddy:
 | --- | --- | --- |
 | CNAME | `www` | `gsqacoq9.up.railway.app` |
 | TXT | `_railway-verify.www` | Retrieve the current public verification value from Railway's domain settings |
+| A | `@` | `216.198.79.1` |
+| A | `@` | `64.29.17.1` |
 
-Wait for Railway's verification and HTTPS certificate before enabling root-domain
-forwarding. Then select permanent 301 forwarding, without masking, to
-`https://www.messivsronaldo17.com`. Check deep article paths, language paths, and
-query strings on the apex as well as the homepage. Do not assume the forwarding
-service preserves them until tested. Keep the old deployment available until
-these checks pass. Preserve all unrelated DNS records.
+Railway's verification and HTTPS certificate must be valid before switching
+`www`. Check deep article paths, language paths, and query strings on the apex
+as well as the homepage. Keep the Vercel project and apex domain available for
+this redirect, and preserve all unrelated DNS records.
 
 Paid Hobby activation was verified on 3 October 2026: `isTrialing: false`,
 `isUsageSubscriber: true`, `state: ACTIVE`, and an active subscription. The plan
@@ -154,13 +176,12 @@ and verification TXT are correct, and Railway reports ownership verified and a
 valid certificate. Direct custom-domain checks passed for the homepage,
 French goals page, robots, sitemap and database readiness.
 
-The apex currently remains on Vercel and redirects permanently to `www`,
-preserving paths and query strings. Transition deployment
+The retained Vercel apex handler redirects permanently to `www`, preserving
+paths and query strings. Transition deployment
 `dpl_B8kApghJLdm27yJ26MuN89ftFQpz` also serves cached `www` requests without
 redirecting them back to the apex, preventing a propagation-time redirect loop.
-Vercel reports no cron jobs. GoDaddy root forwarding has been requested from
-the owner; do not remove the Vercel domain/deployment until that forwarding and
-its HTTPS, deep paths and query strings have been verified.
+Vercel reports no cron jobs. Keep this domain/deployment for the apex redirect
+and for cached `www` requests during DNS propagation.
 
 Original apex A records were `216.198.79.1` and `64.29.17.1`; original `www`
 CNAME was `671dc91e9e34a9c2.vercel-dns-017.com`. These remain the rollback values.
@@ -183,8 +204,9 @@ CNAME was `671dc91e9e34a9c2.vercel-dns-017.com`. These remain the rollback value
    robots/sitemap, `ads.txt`, database readiness, admin authentication and media.
    Enable Railway daily sync and disable the Vercel schedule. Confirm the admin
    activity log and authenticated operational monitor.
-6. Watch actual RAM/CPU, transfer, errors and Neon costs. Retain Vercel for
-   rollback until production is stable; only then retire its active deployment.
+6. Watch actual RAM/CPU, transfer, errors and Neon costs. Retain Vercel for the
+   apex redirect and rollback. It cannot be removed completely until an
+   alternative HTTPS redirect preserving all paths/query strings is verified.
 
 Rollback: remove GoDaddy root forwarding if enabled and restore the saved DNS
 records. Disable the Railway scheduler. Restore Vercel's `/api/admin/daily-sync`
