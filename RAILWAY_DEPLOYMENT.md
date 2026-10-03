@@ -9,6 +9,9 @@ environment `production`. Web service: `messivsronaldo`
 (`891a9749-7286-4557-a224-6807a077383e`). Preview:
 https://messivsronaldo-production.up.railway.app.
 Daily job: `daily-sync` (`87bda577-9333-4de3-a8be-bc4919c4d21c`).
+Both services deploy `ArshadNawazBaig/messivsronaldo`, branch
+`codex/railway-migration`. Switch their source to `main` after the migration
+branch is merged; do not deploy the older `main` code onto Railway.
 The preview remains non-indexable and the Railway daily job remains disabled
 until DNS handover. Keep the existing Neon database; no production data migration
 or schema change is required.
@@ -26,6 +29,12 @@ either voting or support. Hosted receipts are in the same artifact directory.
 A private Neon backup was taken before connecting production data. The saved
 encryption secret decrypts the existing provider settings, and the saved health
 token authenticates successfully against current production.
+The preview is now connected to Neon. Twelve read-only checks passed with actual
+production data, including authenticated database health, editor/publisher
+settings, public routes, generated media, and browser rendering. Health remained
+successful after deleting the temporary test database. The cron image built
+successfully and its manual execution exited with
+`Daily sync is disabled for this deployment.`
 
 ## Web service
 
@@ -49,10 +58,12 @@ and Railway's `PORT`. `/api/ready` checks initialized database access and return
 only an HTTP status plus `ok`; detailed monitoring remains at authenticated
 `/api/health`.
 
-Use the existing production values for `DATABASE_URL`, `ADMIN_EMAIL`,
-`ADMIN_PASSWORD_HASH`, `ADMIN_SESSION_SECRET`, `CRON_SECRET`, and
+Use the saved production values for `DATABASE_URL`, `ADMIN_EMAIL`,
+`ADMIN_PASSWORD_HASH`, `ADMIN_SESSION_SECRET`, and
 `HEALTHCHECK_SECRET`. Preserve the session secret exactly: stored football API
 credentials are encrypted with it. Do not print or commit any private values.
+Railway's web and cron services share a newly generated `CRON_SECRET`; the
+existing Vercel secret and scheduler remain unchanged until handover.
 Copy the current public publisher/editor/AdSense/Search Console configuration
 from the production deployment as well. Do not copy `VERCEL`, `VERCEL_ENV`,
 `ADMIN_DATABASE_PATH`, or other Vercel-generated variables.
