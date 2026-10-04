@@ -85,3 +85,12 @@
   .site-body .comparison-toolbar .scope-tabs { gap: 20px; }
 }
 @media (max-width:380px) { .site-body { --panel-space: 16px; --page-gutter: 16px; } }
+
+/* Google marks a slot unfilled only after its ad request finishes. Collapse
+   confirmed empty slots, including their Auto ads wrapper's reserved space.
+   Pending, filled and unfill-optimized slots retain Google's normal layout.
+   https://support.google.com/adsense/answer/10762946 */
+ins.adsbygoogle[data-ad-status="unfilled"],
+.google-auto-placed:has(> ins.adsbygoogle[data-ad-status="unfilled"]:only-child) {
+  display: none !important;
+}
