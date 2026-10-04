@@ -1,5 +1,7 @@
 # Production: messivsronaldo17.com
 
+AdSense activation on 4 October 2026 supersedes the historical paused-ad notes below. The owner confirmed approval and published consent/Auto ads settings; Railway now has both `ADSENSE_SCRIPT_ENABLED=true` and `ADSENSE_ADS_ENABLED=true`. See the activation record in [RAILWAY_DEPLOYMENT.md](RAILWAY_DEPLOYMENT.md).
+
 Railway Hobby deployment and custom-domain HTTPS were verified on 3 October 2026.
 Current configuration, validation and rollback instructions are in
 [RAILWAY_DEPLOYMENT.md](RAILWAY_DEPLOYMENT.md). Canonical origin:

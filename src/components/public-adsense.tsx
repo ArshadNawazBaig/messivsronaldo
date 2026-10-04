@@ -10,7 +10,8 @@ export function PublicAdSense({ publisherId, adsEnabled }: { publisherId: string
       src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-${publisherId}`}
       // The pause is initialized in the document head before any ad code runs.
       // Wait for page load and browser idle time so Google does not compete
-      // with the portraits and hydration. Next deduplicates public navigation.
+        // with the portraits and hydration. Active ads use a new document when
+        // navigating between public pages so Google scans each destination.
     />
   </>;
 }

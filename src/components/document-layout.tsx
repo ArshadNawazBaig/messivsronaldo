@@ -16,6 +16,7 @@ import { I18nProvider } from '@/components/i18n-provider';
 import { AdminExportProvider } from '@/components/admin-stat-export';
 import { PublicAnalytics } from '@/components/public-analytics';
 import { PublicAdSense } from '@/components/public-adsense';
+import { PublicNavigationProvider } from '@/components/localized-link';
 import { publisherConfiguration } from '@/lib/publisher-config';
 import { socialImageAlt, socialImagePath } from '@/lib/social-image';
 
@@ -107,7 +108,9 @@ export default async function DocumentLayout({
         <I18nProvider locale={locale} messages={messages}>
           <DataProvider value={data}>
             <AdminExportProvider admin={admin}>
-              <SiteShell articleLinks={articles.map(article => ({ href: `/insights/${article.slug}`, label: article.managed ? article.title : t(article.title) }))} articleLanguages={articleLanguages}>{children}</SiteShell>
+              <PublicNavigationProvider adsEnabled={publisher.adsenseAdsEnabled && admin === undefined}>
+                <SiteShell articleLinks={articles.map(article => ({ href: `/insights/${article.slug}`, label: article.managed ? article.title : t(article.title) }))} articleLanguages={articleLanguages}>{children}</SiteShell>
+              </PublicNavigationProvider>
             </AdminExportProvider>
           </DataProvider>
         </I18nProvider>

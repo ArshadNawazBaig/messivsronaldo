@@ -55,6 +55,56 @@ Neon health, and query-preserving locale redirects. The default-branch
 also passed. Its report was healthy with today's daily-sync state marked
 `partial`; deployment validation does not claim all provider dates are available.
 
+## AdSense activation — 4 October 2026
+
+The owner confirmed AdSense approval, published Google's European regulations
+message and saved Auto ads settings. A production read found both
+`ADSENSE_SCRIPT_ENABLED` and `ADSENSE_ADS_ENABLED` set to `false`, despite the
+older pre-migration notes. The publisher ID was already correct.
+
+Both flags are now `true` on the `messivsronaldo` web service. Loader deployment
+`ef4e264c-8bf5-4fd6-9fa8-a562d42a2e7b` first enabled the script while keeping ad
+requests paused. After browser consent tests passed, activation deployment
+`ca8f3c02-19a7-4268-8b72-9fe5e1348049` enabled ad requests. Both use the existing
+source commit `3e771cc6cf2f2756213ef0227da8a39e99a9da9f`; no application code,
+database, cron service or website redesign was deployed for this change.
+
+Google's published consent message is tested with its documented
+`?fc=alwaysshow&fctype=gdpr` preview parameters, which override region for testing.
+Desktop (1440px) and mobile (390px) checks cover refusal, acceptance and revocation
+through the automatically added Privacy and cookie settings link. Refusal and
+revocation leave TCF purpose 1/3/4 consent false; acceptance records them true.
+These forced-message tests do not substitute for observing real regional traffic
+or establish ad fill, earnings or a general legal-compliance conclusion.
+
+Receipts, consent screenshots, live-route checks and a public-config rollback
+record are stored in `.artifacts/adsense-activation/`. To pause ad requests, set
+`ADSENSE_ADS_ENABLED=false` on this web service and redeploy. To restore the
+previous fully disabled state, set both activation flags to `false` and redeploy.
+Do not change the publisher ID or database credentials.
+
+### Ads after navigating to another page
+
+Live diagnosis reproduced the homepage-only report: following a client-side link
+to `/goals` removed all six homepage Auto ads placements and did not request ads
+for `/goals`. Loading `/goals` directly created five placements and requested ads
+with that page's URL. `/world-cup` also initialized correctly on a direct visit.
+The test browser received unfilled inventory; these counts describe placements,
+not paid impressions.
+
+With ad requests enabled, public links and year/season selectors now perform a
+document navigation when changing pages. Google initializes normally for each
+destination. Same-page filters and anchors keep their interactive behavior;
+paused/disabled advertising retains Next.js client navigation. Admin pages are
+outside the override. This deliberately trades client-side route transitions for
+reliable Auto ads initialization without reinjecting or refreshing the SDK.
+
+Validation: production build, lint, 193 passing unit tests (one unrelated skipped
+integration test), and nine browser checks across desktop Chromium, mobile
+Chromium and mobile WebKit. Browser checks stub the advertising SDK and cover
+English/French links, Back, year selection and filter preservation. Diagnostic
+receipts are in `.artifacts/adsense-navigation/`.
+
 ## Web service
 
 Use Railpack, Node 22, and a single replica in the US East region
