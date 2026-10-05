@@ -1,5 +1,5 @@
 import { locales } from "../../src/lib/i18n/config";
-import { expectedSitemapSize } from "./sitemap-helpers";
+import { expectedSitemapPaths } from "./sitemap-helpers";
 import { expect, test } from "@playwright/test";
 
 const languages = [
@@ -93,7 +93,12 @@ test("XML sitemap lists all localized pages with reciprocal language alternates"
   const response = await request.get("/sitemap.xml");
   expect(response.status()).toBe(200);
   const xml = await response.text();
-  expect((xml.match(/<url>/g) ?? []).length).toBe(expectedSitemapSize);
+  const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1]);
+  expect(new Set(urls).size).toBe(urls.length);
+  const paths = new Set(urls.map(url => new URL(url).pathname));
+  // Managed articles may add URLs beyond the checked-in editorial catalog.
+  // Verify every baseline destination instead of assuming a fixed total.
+  for (const path of expectedSitemapPaths) expect(paths.has(path), path).toBe(true);
   for (const [locale] of languages) {
     expect(xml).toContain(`hreflang="${locale}"`);
     if (locale !== "en") expect(xml).toContain(`/${locale}/seasons/2026</loc>`);

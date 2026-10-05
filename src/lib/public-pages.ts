@@ -12,6 +12,7 @@ import { discoveryUpdated } from "./content-discovery";
 import { socialProfilesUpdated } from "./social-profiles";
 import { semanticContentUpdated } from "./page-semantics";
 import { clubSeasons, clubSeasonsReviewed, clubSeasonTitle } from "./club-seasons";
+import { homeContentUpdated } from "./home-content";
 
 export type PublicPage = { path: string; title: string; group: string; updated?: string };
 
@@ -20,7 +21,7 @@ export type PublicPage = { path: string; title: string; group: string; updated?:
 export function getPublicPages(years: readonly { year: number }[], snapshotDate: string, entries: readonly Article[] = articles): PublicPage[] {
   const latestArticle = entries.map(article => article.updated ?? article.published ?? "2026-09-21").sort().at(-1) ?? discoveryUpdated;
   return [
-    { path: "/", title: "Messi vs Ronaldo overview", group: "Comparisons", updated: [snapshotDate, toolsUpdated, latestArticle, discoveryUpdated].sort().at(-1) },
+    { path: "/", title: "Messi vs Ronaldo overview", group: "Comparisons", updated: [snapshotDate, toolsUpdated, latestArticle, discoveryUpdated, homeContentUpdated].sort().at(-1) },
     ...Object.entries(contentPages).map(([slug, page]) => {
       let updated = slug === "glossary" ? semanticContentUpdated : slug === "about" || slug === "contact" ? socialProfilesUpdated
         : slug === "ballon-dor" ? [awardsReviewed, ballonReviewed].sort().at(-1)
