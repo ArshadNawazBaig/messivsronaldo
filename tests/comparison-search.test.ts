@@ -3,7 +3,8 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { test } from "node:test";
 import { comparisonFocus } from "../src/lib/comparison-focus";
-import { comparisonIntro, comparisonQuestions } from "../src/lib/comparison-copy";
+import { comparisonDescription, comparisonIntro, comparisonQuestions } from "../src/lib/comparison-copy";
+import { contentPages } from "../src/lib/content-pages";
 import { buildPublishedData } from "../src/lib/published-data";
 import { createTranslator } from "../src/lib/i18n/translate";
 import { locales } from "../src/lib/i18n/config";
@@ -56,6 +57,28 @@ test("missing breakdowns stay unavailable while genuine zeros remain zero", () =
   assert.deepEqual(comparisonFocus(scope, "freeKicks", data.baselineDate, data.snapshotDate).values, { messi: 0, ronaldo: 0 });
 });
 
+test("international assist answers follow national-team records without inheriting club-only updates", () => {
+  const before = buildPublishedData();
+  const clubOnly = buildPublishedData([match], 1);
+  assert.equal(comparisonIntro("international", before, english), comparisonIntro("international", clubOnly, english));
+  const internationalMatch = { ...match, player: "ronaldo" as const, category: "international" as const, assists: 2 };
+  const after = buildPublishedData([internationalMatch], 2);
+  assert.match(comparisonQuestions("international", after, english)[0].answer, /39 international assists/);
+  assert.match(comparisonQuestions("international", after, english)[0].answer, /24 September 2026/);
+  const answer = buildRecordAnswers(after, english).find(row => row.id === "international-assists")!;
+  assert.match(answer.answer, /Ronaldo 39/);
+  assert.equal(answer.date, match.date);
+  for (const locale of locales) {
+    const t = createTranslator(locale, JSON.parse(readFileSync(`src/lib/i18n/messages/${locale}.json`, "utf8")));
+    const intro = comparisonIntro("international", after, t)!;
+    assert.doesNotMatch(intro, /\{\d+\}/);
+    if (locale !== "en") {
+      assert.notEqual(intro, comparisonIntro("international", after, english));
+      assert.notEqual(comparisonQuestions("international", after, t)[0].question, comparisonQuestions("international", after, english)[0].question);
+    }
+  }
+});
+
 test("visible answers and metadata are translated with the same published values", () => {
   const data = buildPublishedData();
   for (const locale of locales) {
@@ -82,5 +105,21 @@ test("sitemap records the content revision separately from the statistic cutoff"
   const pages = getPublicPages(data.calendarYears, data.snapshotDate);
   for (const slug of ["goals", "free-kicks", "la-liga", "honours"]) assert.equal(pages.find(page => page.path === `/${slug}`)!.updated, discoveryUpdated);
   assert.equal(data.snapshotDate, "2026-09-21");
-  assert.equal(getPublicPages(data.calendarYears, "2026-10-01").find(page => page.path === "/goals")!.updated, "2026-10-01");
+  assert.equal(getPublicPages(data.calendarYears, "2026-10-07").find(page => page.path === "/goals")!.updated, "2026-10-07");
+});
+
+test("published matches preserve distinct translated page descriptions and goal-type cutoffs", () => {
+  const data = buildPublishedData([match], 1);
+  const slugs = ["assists", "compare", "records", "penalties", "hat-tricks", "champions-league"];
+  for (const locale of locales) {
+    const t = createTranslator(locale, JSON.parse(readFileSync(`src/lib/i18n/messages/${locale}.json`, "utf8")));
+    const descriptions = slugs.map(slug => comparisonDescription(contentPages[slug], data, t));
+    assert.equal(new Set(descriptions).size, slugs.length, locale);
+    slugs.forEach((slug, index) => assert.ok(descriptions[index].startsWith(t(contentPages[slug].description)), `${locale}: ${slug}`));
+    assert.ok(descriptions[0].includes(t(match.date)));
+    assert.ok(descriptions[3].includes(t(data.baselineDate)), "unclassified penalties retain their own cutoff");
+    assert.ok(descriptions[5].includes(t(data.baselineDate)), "a club match does not refresh Champions League records");
+  }
+  const updated = buildPublishedData([{ ...match, penalties: 1, penaltyAttempts: 1 }], 1);
+  assert.ok(comparisonDescription(contentPages.penalties, updated, english).includes(english(match.date)));
 });

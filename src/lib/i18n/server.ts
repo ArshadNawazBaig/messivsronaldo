@@ -3,6 +3,7 @@ import { cache } from "react";
 import { locale as routeLocale } from "next/root-params";
 import { isLocale, numberLocales, type Locale } from "./config";
 import { createTranslator, type Messages } from "./translate";
+import { clientMessages } from "./client-messages";
 
 const catalogs: Record<Locale, () => Promise<{ default: Messages }>> = {
   en: () => import("./messages/en.json"), es: () => import("./messages/es.json"),
@@ -19,5 +20,5 @@ export const getI18n = cache(async () => {
 });
 export const getLocaleI18n = cache(async (locale: Locale) => {
   const messages = locale === "en" ? {} : (await catalogs[locale]()).default;
-  return { locale, messages, numberLocale: numberLocales[locale], t: createTranslator(locale, messages) };
+  return { locale, messages, clientMessages: clientMessages(messages), numberLocale: numberLocales[locale], t: createTranslator(locale, messages) };
 });

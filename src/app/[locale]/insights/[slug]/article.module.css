@@ -15,6 +15,10 @@
 .tableWrap tbody th { font-weight: 600; width: 42%; }
 .tableWrap tbody tr:last-child > * { border-bottom: 0; }
 .tableWrap td { font-variant-numeric: tabular-nums; }
+.studyTable table { min-width: 0; table-layout: fixed; }
+.studyTable th:first-child { width: 40%; }
+.studyTable th, .studyTable td { overflow-wrap: anywhere; }
+.calculatorAnchor { scroll-margin-top: 230px; }
 .rowSources { display: flex; flex-direction: column; gap: 5px; margin-top: 7px; font-size: 11px; font-weight: 400; }
 .rowSources a, .inlineSources a { display: inline-flex; align-items: center; gap: 4px; }
 .rowSources svg, .inlineSources svg { flex-shrink: 0; }
@@ -28,9 +32,11 @@
   .tableWrap th, .tableWrap td { padding: 14px; }
   .tableSection h2, .body h2 { font-size: 23px; }
   .tableSection h2, .body h2 { scroll-margin-top: 155px; }
+  .calculatorAnchor { scroll-margin-top: 155px; }
 }
 
 .hero { margin: 24px 0 32px; }
-.hero img { display: block; width: 100%; height: auto; max-height: 620px; object-fit: contain; border-radius: 10px; background: var(--panel-raised); }
+.heroFrame { position: relative; aspect-ratio: 1200 / 630; max-height: 620px; border-radius: 10px; overflow: hidden; background: var(--panel-raised); }
+.heroFrame img { object-fit: contain; }
 
 .hero figcaption { font-size: 13px; margin-top: 8px; color: var(--muted); text-align: center; }

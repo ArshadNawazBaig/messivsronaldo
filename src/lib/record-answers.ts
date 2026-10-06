@@ -2,7 +2,7 @@ import type { ScopeId, SourceId } from "./data";
 import type { PublishedData } from "./published-data";
 import type { createTranslator } from "./i18n/translate";
 
-export const answersUpdated = "2026-09-27";
+export const answersUpdated = "2026-10-07";
 type Translate = ReturnType<typeof createTranslator>;
 export type RecordAnswer = {
   id: string; question: string; answer: string; detail: string;
@@ -16,6 +16,7 @@ const records: { id: string; question: string; scope: ScopeId; metric: string; h
   { id: "penalties", question: "How many penalties have Messi and Ronaldo scored?", scope: "career", metric: "penalties", href: "/penalties" },
   { id: "hat-tricks", question: "How many hat-tricks have Messi and Ronaldo scored?", scope: "career", metric: "hatTricks", href: "/hat-tricks" },
   { id: "international", question: "How many international goals do Messi and Ronaldo have?", scope: "international", metric: "goals", href: "/international" },
+  { id: "international-assists", question: "How many international assists do Messi and Ronaldo have?", scope: "international", metric: "assists", href: "/international#record-question-1" },
   { id: "world-cup", question: "How many World Cup goals have Messi and Ronaldo scored?", scope: "world-cup", metric: "goals", href: "/world-cup" },
   { id: "champions-league", question: "How many Champions League goals have Messi and Ronaldo scored?", scope: "champions-league", metric: "goals", href: "/champions-league" },
   { id: "la-liga", question: "Who has more La Liga goals: Messi or Ronaldo?", scope: "la-liga", metric: "goals", href: "/la-liga" },

@@ -1,8 +1,8 @@
 {
   "slug": "messi-2012-vs-ronaldo-2013-goals",
-  "title": "Messi’s 2012 vs Ronaldo’s 2013: How Two Different Attacks Produced Historic Years",
-  "description": "Beyond 91 goals and 69: the positioning, partnerships and decisive matches behind Messi’s 2012 and Ronaldo’s 2013, with an interactive scoring comparison.",
-  "summary": "Messi’s 2012 and Ronaldo’s 2013 share a calendar-year boundary, but they span different teams, managerial transitions and kinds of scoring opportunity. Compare the totals, then examine how each attack generated them.",
+  "title": "Messi 2012 vs Ronaldo 2013: Goals and Scoring Rates",
+  "description": "Messi scored 91 goals in 2012; Ronaldo scored 69 in 2013. Compare calendar-year totals, goals per game and an equal-appearance calculation.",
+  "summary": "Messi scored 91 goals in 2012 and Ronaldo scored 69 in 2013. Both totals combine senior club and international matches from January to December. Compare their scoring rates and the tactical context.",
   "sections": [
     {
       "heading": "Two years that did not play the same football",
@@ -49,6 +49,11 @@
     {
       "title": "FIFA: Messi against Brazil, including the 2012 friendly",
       "url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/lionel-messi-brazil-argentina-south-american-world-cup-qualifiers"
+    },
+    {
+      "title": "UEFA · Messi 2012: goals and appearances",
+      "url": "https://www.uefa.com/news/026c-12f331da0b70-64b0980c3700-1000--messi-leaves-barca-a-salute/"
     }
-  ]
+  ],
+  "updated": "2026-10-07"
 }

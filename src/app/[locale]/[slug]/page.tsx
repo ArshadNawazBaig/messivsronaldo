@@ -28,7 +28,7 @@ import { CareerTimeline } from "@/components/career-timeline";
 import { MilestonePlanner } from "@/components/milestone-planner";
 import { ToolCards, ToolNavigation } from "@/components/tool-cards";
 import { toolPages } from "@/lib/tools";
-import { comparisonIntro } from "@/lib/comparison-copy";
+import { comparisonDescription, comparisonIntro } from "@/lib/comparison-copy";
 import { ComparisonQuestions } from "@/components/comparison-questions";
 import { RecordAnswers } from "@/components/record-answers";
 import { buildRecordAnswers } from "@/lib/record-answers";
@@ -43,7 +43,7 @@ async function getPage(slug: string) {
     const { t } = await getI18n();
     const introduction = comparisonIntro(slug, data, t, teamTrophyTotals);
     if (introduction) return { ...page, description: introduction };
-    return page.scope && data.coverageNote ? { ...page, description: `${data.scopes[page.scope].label}. Reviewed baseline plus published match updates. See each statistic’s coverage and the public update log.` } : page;
+    return { ...page, description: comparisonDescription(page, data, t) };
 }
 export function generateStaticParams() { return Object.keys(pages).filter(slug => slug !== "comparison-posters").map(slug => ({ slug })); }
 export async function generateMetadata({ params }: {

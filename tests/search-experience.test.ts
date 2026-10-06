@@ -5,7 +5,7 @@ import { buildPublishedData } from "../src/lib/published-data";
 import { buildRecordAnswers, filterRecordAnswers } from "../src/lib/record-answers";
 import { createTranslator } from "../src/lib/i18n/translate";
 import { locales } from "../src/lib/i18n/config";
-import { contentTopics, relatedContent } from "../src/lib/content-discovery";
+import { articleTopicLinks, contentTopics, relatedContent } from "../src/lib/content-discovery";
 import { contentReview } from "../src/lib/content-review";
 import { getPublicPages } from "../src/lib/public-pages";
 import { comparisonDataset } from "../src/lib/comparison-schema";
@@ -30,10 +30,10 @@ test("every language has dated numeric answers and accent-insensitive search", (
   for (const locale of locales) {
     const translate = createTranslator(locale, JSON.parse(readFileSync(`src/lib/i18n/messages/${locale}.json`, "utf8")));
     const answers = buildRecordAnswers(baseline, translate);
-    assert.equal(answers.length, 10);
+    assert.equal(answers.length, 11);
     assert.ok(answers.every(a => !/\{\d+\}/.test(`${a.question}${a.answer}`)));
     if (locale !== "en") assert.notEqual(answers[0].question, buildRecordAnswers(baseline, t)[0].question);
-    assert.equal(filterRecordAnswers(answers, "").length, 10);
+    assert.equal(filterRecordAnswers(answers, "").length, 11);
     assert.equal(filterRecordAnswers(answers, "nonexistent-query").length, 0);
   }
   const answers = buildRecordAnswers(baseline, t);
@@ -50,6 +50,21 @@ test("topic links resolve to canonical pages, exclude the current page and keep 
     for (const item of related) { assert.notEqual(item.path, path); assert.ok(pages.has(item.path)); }
   }
   assert.ok(relatedContent("/insights/ballon-dor-2026-contenders-stats").some(item => item.path === "/insights/ballon-dor-2026-date-voting-rules"));
+});
+
+test("CMS topic links are reciprocal and never link to an unpublished translation", () => {
+  const entries = [...articles, { ...articles[0], slug: "messi-ronaldo-free-kick-records", title: "Free-kick analysis", managed: true }];
+  const outgoing = relatedContent("/insights/messi-ronaldo-free-kick-records", 4, entries);
+  assert.ok(outgoing.some(item => item.path === "/free-kicks"));
+  assert.ok(relatedContent("/free-kicks", 4, entries).some(item => item.path === "/insights/messi-ronaldo-free-kick-records"));
+  assert.ok(!relatedContent("/free-kicks", 12, articles).some(item => item.path === "/insights/messi-ronaldo-free-kick-records"));
+  const registered = new Set(getPublicPages(baseline.calendarYears, baseline.snapshotDate).map(page => page.path));
+  for (const paths of Object.values(articleTopicLinks)) for (const path of paths) {
+    if (!path.startsWith("/insights/")) assert.ok(registered.has(path), path);
+  }
+  const unknown = relatedContent("/insights/new-unmapped-article", 4, entries);
+  assert.ok(unknown.length > 0);
+  assert.ok(unknown.every(item => !item.path.startsWith("/insights/")), "unmapped articles should not recommend unrelated news");
 });
 
 test("structured data retains cutoff, definitions, localized identities and actual displayed precision", () => {

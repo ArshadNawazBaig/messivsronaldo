@@ -16,5 +16,6 @@ export function withArticleFeature(article: Article): Article {
   const feature = features.find(item => item.slug === article.slug);
   if (!feature) return article;
   const citations = Array.from(new Map([...(article.citations ?? []), ...feature.citations].map(source => [source.url, source])).values());
-  return { ...article, ...feature, citations, updated: "2026-10-01" };
+  const updated = "updated" in feature && typeof feature.updated === "string" ? feature.updated : "2026-10-01";
+  return { ...article, ...feature, citations, updated };
 }

@@ -34,6 +34,11 @@ const display = localFont({
 });
 
 const publisher = publisherConfiguration(process.env);
+const languageFonts = {
+  ar: '/fonts/i18n/noto-sans-arabic.woff2',
+  hi: '/fonts/i18n/noto-sans-devanagari.woff2',
+  th: '/fonts/i18n/noto-sans-thai.woff2',
+} as const;
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
@@ -69,7 +74,7 @@ export default async function DocumentLayout({
   children, locale, admin,
 }: Readonly<{ children: React.ReactNode; locale: Locale; admin?: boolean }>) {
   // Start independent reads together when a page needs regeneration.
-  const [{ messages, t }, data, articles, articleLanguages] = await Promise.all([
+  const [{ clientMessages, t }, data, articles, articleLanguages] = await Promise.all([
     getLocaleI18n(locale),
     getPublishedData(),
     getArticleNavigation(locale),
@@ -84,6 +89,7 @@ export default async function DocumentLayout({
     >
       <head>
         <ThemeInitializer />
+        {locale in languageFonts && <link rel="preload" href={languageFonts[locale as keyof typeof languageFonts]} as="font" type="font/woff2" crossOrigin="anonymous" />}
         {publisher.adsenseScriptEnabled && publisher.adsensePublisherId && admin === undefined && <PublicAdSense publisherId={publisher.adsensePublisherId} adsEnabled={publisher.adsenseAdsEnabled} />}
         <script
           type="application/ld+json"
@@ -105,7 +111,7 @@ export default async function DocumentLayout({
         />
       </head>
       <body className={`${inter.variable} ${display.variable}`}>
-        <I18nProvider locale={locale} messages={messages}>
+        <I18nProvider locale={locale} messages={clientMessages}>
           <DataProvider value={data}>
             <AdminExportProvider admin={admin}>
               <PublicNavigationProvider adsEnabled={publisher.adsenseAdsEnabled && admin === undefined}>

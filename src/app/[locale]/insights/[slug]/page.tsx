@@ -1,10 +1,11 @@
-/* eslint-disable @next/next/no-img-element -- Images uploaded by the editor are already resized WebP assets. */
 import { articleReadingMinutes } from "@/lib/article-reading-time";
 import { PageContext } from "@/components/page-context";
 import { playerEntity } from "@/lib/page-semantics";
 import { localizedPath, ogLocales } from "@/lib/i18n/config";
 import Link from "@/components/localized-link";
+import Image from "next/image";
 import { ScoringCalculator } from "@/components/scoring-calculator";
+import { PeakYearStudy } from "@/components/peak-year-study";
 import { notFound } from "next/navigation";
 import { ArrowUpRight, BookOpen } from "lucide-react";
 import { articles } from "@/lib/articles";
@@ -56,13 +57,14 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd({ "@context": "https://schema.org", "@type": "Article", "@id": `${articleUrl}#article`, url: articleUrl, ...(article.players?.length && { about: article.players.map(id => playerEntity(id, locale, siteUrl)) }), headline: t(article.title), description: t(article.description), datePublished: published, dateModified: updated, author: organization, publisher: organization, ...(editor && { editor: { "@type": "Person", "@id": `${siteUrl}/about#editor`, name: editor.name, url: `${siteUrl}/about#editor` } }), articleSection: t(article.category), mainEntityOfPage: { "@id": `${articleUrl}#webpage` }, image: new URL(article.image?.path ?? socialImagePath, siteUrl).href, inLanguage: locale, citation: citations.map(source => source.url) }) }}/>
     <div className="page-intro inner-intro"><div><span className="eyebrow">{t(article.category)}</span><h1>{t(article.title)}</h1><p>{t(article.description)}</p></div></div>
     <div className="article-byline"><Link href="/about">{translate("The Rivalry")}</Link>{editor && <Link href="/about#editor">{translate("Editor")}: {editor.name}</Link>}<time dateTime={updated}>{translatedDate(updated.slice(0, 10), locale)}</time><span><BookOpen size={13}/>{translate("{0} min read", { "0": articleReadingMinutes(article, locale, t) })}</span></div>
-    {article.image && <figure className={styles.hero}><img src={article.image.path} alt={t(article.image.alt)}/>{article.image.caption && <figcaption>{article.image.caption}</figcaption>}</figure>}
     {article.summary && <aside className={styles.summary} aria-labelledby="article-answer"><h2 id="article-answer">{translate("At a glance")}</h2><p>{t(article.summary)}</p></aside>}
+    {!article.managed && article.preset === "years" && <PeakYearStudy />}
+    {article.image && <figure className={styles.hero}><div className={styles.heroFrame}><Image src={article.image.path} alt={t(article.image.alt)} fill sizes="(max-width: 700px) calc(100vw - 40px), (max-width: 1280px) calc(100vw - 80px), 1200px" unoptimized={article.image.path.startsWith("/media/blog/")} />{/* CMS media is already compressed; retain its publication visibility checks. */}</div>{article.image.caption && <figcaption>{article.image.caption}</figcaption>}</figure>}
     {contents.length > 0 && <nav className={styles.contents} aria-label={translate("In this article")}><strong>{translate("In this article")}</strong><ul>{contents.map(heading => <li key={heading.id}><a href={`#${heading.id}`}>{heading.title}</a></li>)}</ul></nav>}
     <div className={`prose panel ${article.summary ? styles.body : ""}`}>{article.body && <RichBody body={article.body}/>} {article.sections.map((section, index) => <section key={section.heading}><h2 id={`section-${index}`}>{t(section.heading)}</h2><>{t(section.text).split(/\n\s*\n/).filter(Boolean).map((paragraph, paragraphIndex) => <p key={paragraphIndex}>{paragraph}</p>)}</>{section.citations && <div className={styles.inlineSources}>{section.citations.map(source => <a key={source.url} href={source.url} target="_blank" rel="noreferrer">{t(source.title)}<ArrowUpRight size={12} aria-hidden="true"/></a>)}</div>}</section>)}
       {citations.length > 0 && <div className="article-sources"><h2>{translate("Sources & further reading")}</h2>{citations.map(source => <a key={source.url} href={source.url} target="_blank" rel="noreferrer">{t(source.title)}<ArrowUpRight size={14}/></a>)}</div>}
     </div>
-    {article.preset && <ScoringCalculator preset={article.preset}/>}
+    {article.preset && <div id="scoring-calculator" className={styles.calculatorAnchor}><ScoringCalculator preset={article.preset}/></div>}
     {chartData && <ComparisonChart scope={chartData.scopes.career} metric={chartMetric}/>}
     {article.relatedSlugs && <AwardChart full/>}
     {article.tables?.map((table, index) => <section className={styles.tableSection} key={table.caption}><h2 id={`table-${index}`}>{t(table.caption)}</h2><div className={styles.tableWrap} role="region" aria-labelledby={`table-${index}`} tabIndex={0}><table><caption className="sr-only">{t(table.caption)}</caption><thead><tr>{table.columns.map(column => <th key={column} scope="col">{t(column)}</th>)}</tr></thead><tbody>{table.rows.map((row, rowIndex) => <tr key={rowIndex}>{row.cells.map((cell, cellIndex) => cellIndex === 0 ? <th key={cellIndex} scope="row">{t(cell)}{row.citations && <span className={styles.rowSources}>{row.citations.map(source => <a key={source.url} href={source.url} target="_blank" rel="noreferrer">{t(source.title)}<ArrowUpRight size={12} aria-hidden="true"/></a>)}</span>}</th> : <td key={cellIndex}>{t(cell)}</td>)}</tr>)}</tbody></table></div>{table.note && <p className={styles.tableNote}>{t(table.note)}</p>}</section>)}

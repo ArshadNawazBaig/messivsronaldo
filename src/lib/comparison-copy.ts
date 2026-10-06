@@ -3,13 +3,30 @@ import type { PublishedData } from "./published-data";
 import type { createTranslator } from "./i18n/translate";
 
 type Translate = ReturnType<typeof createTranslator>;
-export const comparisonContentUpdated = "2026-09-26";
+export const comparisonContentUpdated = "2026-10-06";
 export const refreshedComparisons = new Set(["goals", "free-kicks", "la-liga", "honours", "assists", "penalties", "hat-tricks", "compare"]);
+export const internationalAnswerUpdated = "2026-10-07";
+
+// Match imports must not replace distinct page topics with a shared generic
+// description. Goal-type pages retain their own verified classification cutoff.
+export function comparisonDescription(page: { description: string; scope?: ScopeId; scoring?: boolean; focusMetric?: string }, data: PublishedData, t: Translate) {
+  if (!page.scope) return t(page.description);
+  const scope = data.scopes[page.scope];
+  const metric = scope.metrics.find(item => item.id === page.focusMetric);
+  const cutoff = page.scoring ? metric?.updatedThrough ?? data.baselineDate : scope.updatedThrough;
+  return `${t(page.description)} ${t("Data cutoff: ")}${t(cutoff)}.`;
+}
 
 // Metadata and the visible introduction use the same published values. A new
 // match must not make an older goal-type breakdown appear to be up to date.
 export function comparisonIntro(slug: string, data: PublishedData, t: Translate, trophies?: Pair) {
   const career = data.scopes.career;
+  if (slug === "international") {
+    const scope = data.scopes.international;
+    const assists = scope.metrics.find(metric => metric.id === "assists");
+    if (!assists) return undefined;
+    return t("International records: Messi {0} goals and {1} assists; Ronaldo {2} goals and {3} assists. {4}. See the counting rules and sources.", { 0: scope.goals.messi, 1: assists.values.messi, 2: scope.goals.ronaldo, 3: assists.values.ronaldo, 4: t(scope.period) });
+  }
   if (slug === "2026") return t("Goals, assists, appearances and playing minutes from 1 January 2026. {0}. The year is still in progress.", {0:t(data.scopes["2026"].period)});
   if (slug === "goals") return t("Messi has {0} career goals and Ronaldo has {1}. Compare club and international totals, appearances and scoring rates. {2}.", { 0: career.goals.messi, 1: career.goals.ronaldo, 2: t(career.period) });
   if (slug === "free-kicks") {
@@ -26,6 +43,14 @@ export function comparisonIntro(slug: string, data: PublishedData, t: Translate,
 
 export function comparisonQuestions(slug: string, data: PublishedData, t: Translate) {
   const { career, club, international } = data.scopes;
+  if (slug === "international") {
+    const assists = international.metrics.find(metric => metric.id === "assists");
+    if (!assists) return [];
+    return [
+      { question: t("How many international assists does Ronaldo have?"), answer: t("Ronaldo has {0} international assists in this dataset. {1}. Assist totals follow the named provider’s definition.", { 0: assists.values.ronaldo, 1: t(international.period) }), href: "/methodology", link: t("Sources & counting rules") },
+      { question: t("Do international friendlies and club friendlies count?"), answer: t("Career totals include senior competitive club games and recognized senior A internationals, including international friendlies.") + " " + t("Club friendlies, exhibitions, youth/reserve games and shootout kicks are excluded."), href: "/insights/what-counts-as-a-career-goal", link: t("How we count") },
+    ];
+  }
   if (slug === "goals" || slug === "compare") return [
     { question: t("How many matches have Messi and Ronaldo played?"), answer: t("Messi has {0} career appearances and Ronaldo has {1}. A substitute appearance counts as one match. {2}.", { 0: career.appearances.messi, 1: career.appearances.ronaldo, 2: t(career.period) }), href: "/compare", link: t("Messi vs Ronaldo Comparison Explorer") },
     { question: t("How many goals have Messi and Ronaldo scored for club and country?"), answer: t("Messi: {0} club goals and {1} international goals. Ronaldo: {2} club goals and {3} international goals. {4}.", { 0: club.goals.messi, 1: international.goals.messi, 2: club.goals.ronaldo, 3: international.goals.ronaldo, 4: t(career.period) }), href: "/international", link: t("Messi vs Ronaldo International Goals & Assists — 2026") },

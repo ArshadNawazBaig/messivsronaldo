@@ -6,7 +6,8 @@ import { policies, policyUpdated } from "./policies";
 import { seasons } from "./seasons";
 import { awardsReviewed, isAwardSlug } from "./awards";
 import { toolPages, toolsUpdated } from "./tools";
-import { comparisonContentUpdated, refreshedComparisons } from "./comparison-copy";
+import { comparisonContentUpdated, internationalAnswerUpdated, refreshedComparisons } from "./comparison-copy";
+import { answersUpdated } from "./record-answers";
 import { ballonReviewed } from "./ballon-articles";
 import { discoveryUpdated } from "./content-discovery";
 import { socialProfilesUpdated } from "./social-profiles";
@@ -23,9 +24,11 @@ export function getPublicPages(years: readonly { year: number }[], snapshotDate:
   return [
     { path: "/", title: "Messi vs Ronaldo overview", group: "Comparisons", updated: [snapshotDate, toolsUpdated, latestArticle, discoveryUpdated, homeContentUpdated].sort().at(-1) },
     ...Object.entries(contentPages).map(([slug, page]) => {
-      let updated = slug === "glossary" ? semanticContentUpdated : slug === "about" || slug === "contact" ? socialProfilesUpdated
+      let updated = slug === "answers" ? [answersUpdated, snapshotDate].sort().at(-1)
+        : slug === "international" ? [internationalAnswerUpdated, snapshotDate].sort().at(-1)
+        : slug === "glossary" ? semanticContentUpdated : slug === "about" || slug === "contact" ? socialProfilesUpdated
         : slug === "ballon-dor" ? [awardsReviewed, ballonReviewed].sort().at(-1)
-        : refreshedComparisons.has(slug) ? [comparisonContentUpdated, snapshotDate].sort().at(-1)
+        : refreshedComparisons.has(slug) || page.scope ? [comparisonContentUpdated, snapshotDate].sort().at(-1)
         : Object.hasOwn(toolPages, slug) || slug === "scoring-calculator" ? [toolsUpdated, snapshotDate].sort().at(-1)
         : isAwardSlug(slug) ? awardsReviewed
         : Object.hasOwn(policies, slug) ? policyUpdated

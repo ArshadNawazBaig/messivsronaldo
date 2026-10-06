@@ -2201,19 +2201,19 @@ html:not([lang='en']) .player-epithet {
   font-family: 'Noto Sans Arabic';
   src: url('/fonts/i18n/noto-sans-arabic.woff2') format('woff2');
   font-weight: 100 900;
-  font-display: swap;
+  font-display: optional;
 }
 @font-face {
   font-family: 'Noto Sans Devanagari';
   src: url('/fonts/i18n/noto-sans-devanagari.woff2') format('woff2');
   font-weight: 100 900;
-  font-display: swap;
+  font-display: optional;
 }
 @font-face {
   font-family: 'Noto Sans Thai';
   src: url('/fonts/i18n/noto-sans-thai.woff2') format('woff2');
   font-weight: 100 900;
-  font-display: swap;
+  font-display: optional;
 }
 
 /* Keep Messi and Ronaldo columns aligned with the portrait cards in RTL. */

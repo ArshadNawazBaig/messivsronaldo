@@ -6,6 +6,7 @@ import { articles } from "../src/lib/articles";
 import { locales } from "../src/lib/i18n/config";
 import { getPublicPages } from "../src/lib/public-pages";
 import type { Article } from "../src/lib/article-types";
+import { discoveryUpdated } from "../src/lib/content-discovery";
 
 test("award articles keep club and European scoring samples separate and calculate rates from the same sample", () => {
   const rows = ballonArticles[1].tables![0].rows;
@@ -63,8 +64,8 @@ test("articles have valid primary citations, related pages, original share image
     const image = readFileSync(`public${article.image!.path}`);
     assert.equal(image.subarray(1, 4).toString(), "PNG");
     assert.equal(image.readUInt32BE(16), 1200); assert.equal(image.readUInt32BE(20), 630);
-    assert.equal(sitemap.find(page => page.path === `/insights/${article.slug}`)?.updated, article.updated);
+    assert.equal(sitemap.find(page => page.path === `/insights/${article.slug}`)?.updated, [article.updated!, discoveryUpdated].sort().at(-1));
     assert.ok(article.published! <= article.updated!);
   }
-  assert.equal(sitemap.find(page => page.path === "/insights")?.updated, "2026-10-01");
+  assert.equal(sitemap.find(page => page.path === "/insights")?.updated, "2026-10-07");
 });
