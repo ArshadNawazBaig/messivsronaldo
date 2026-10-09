@@ -1,47 +1,39 @@
 /* eslint-disable @next/next/no-img-element -- ImageResponse uses embedded assets, not next/image. */
-import { loadPlayerPortrait } from "./player-portrait-assets";
-import { renderPhotoCredit } from "./photo-credit-renderer";
 import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
-import {
-  playerArtworkColors,
-  playerPortraits,
-} from "./player-artwork";
+import { playerArtworkColors, playerPortraits } from "./player-artwork";
+import { loadPlayerPortrait } from "./player-portrait-assets";
+import { renderPhotoCredit } from "./photo-credit-renderer";
 
 type Player = "messi" | "ronaldo";
 type SocialImageData = { goals: Record<Player, number>; asOf: string };
 export type SocialImageTheme = keyof typeof playerArtworkColors;
 
-// The approved landscape design shares the admin export palette and portraits.
-const width = 1200,
-  height = 630;
+const width = 1200;
+const height = 630;
+const players = ["messi", "ronaldo"] as const;
 const uri = (buffer: Buffer, type = "image/png") =>
   `data:${type};base64,${buffer.toString("base64")}`;
-function portraits(images: Record<"messi" | "ronaldo", Buffer>) {
-  const cropHeight = 452,
-    imageHeight = 450;
-  const pictures = (["messi", "ronaldo"] as const)
-    .map((player, index) => {
-      const h = imageHeight * 1.45,
-        w = (h * playerPortraits[player].width) / playerPortraits[player].height;
-      const center = index === 0 ? 180 : 1020;
-      return `<g clip-path="url(#clip${index})"><image href="${uri(images[player])}" x="${center - w / 2}" y="${-imageHeight * 0.03}" width="${w}" height="${h}" mask="url(#side${index})"/></g>`;
-    })
-    .join("");
-  const masks = [0, 810]
-    .map(
-      (left, index) =>
-        `<clipPath id="clip${index}"><rect x="${left}" width="390" height="${cropHeight}"/></clipPath><mask id="side${index}" maskUnits="userSpaceOnUse" x="${left}" y="0" width="390" height="${cropHeight}"><rect x="${left}" width="390" height="${cropHeight}" fill="url(#sides)"/></mask>`,
-    )
-    .join("");
-  return uri(
-    Buffer.from(
-      `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="${cropHeight}" viewBox="0 0 1200 ${cropHeight}"><defs><linearGradient id="vertical" x2="0" y2="1"><stop stop-color="white"/><stop offset=".82" stop-color="white"/><stop offset="1" stop-color="white" stop-opacity="0"/></linearGradient><linearGradient id="sides"><stop stop-color="white" stop-opacity="0"/><stop offset=".04" stop-color="white"/><stop offset=".96" stop-color="white"/><stop offset="1" stop-color="white" stop-opacity="0"/></linearGradient><mask id="fade"><rect width="1200" height="${cropHeight}" fill="url(#vertical)"/></mask>${masks}</defs><g mask="url(#fade)">${pictures}</g></svg>`,
-    ),
-    "image/svg+xml",
-  );
+
+function portraitLayer(images: Record<Player, Buffer>) {
+  // Fade the sides and lower shirt into either theme without washing out faces.
+  const cropHeight = 350;
+  const imageHeight = 600;
+  const edges = [20, 830].map((left, index) =>
+    `<clipPath id="portrait-${index}"><rect x="${left}" width="350" height="${cropHeight}"/></clipPath><mask id="portrait-sides-${index}" maskUnits="userSpaceOnUse" x="${left}" y="0" width="350" height="${cropHeight}"><rect x="${left}" width="350" height="${cropHeight}" fill="url(#side-fade)"/></mask>`,
+  ).join("");
+  const pictures = players.map((player, index) => {
+    const imageWidth = imageHeight * playerPortraits[player].width / playerPortraits[player].height;
+    const center = index === 0 ? 205 : 995;
+    const top = player === "messi" ? -55 : -20;
+    return `<g clip-path="url(#portrait-${index})" mask="url(#portrait-sides-${index})"><image href="${uri(images[player])}" x="${center - imageWidth / 2}" y="${top}" width="${imageWidth}" height="${imageHeight}"/></g>`;
+  }).join("");
+  return uri(Buffer.from(
+    `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="${cropHeight}" viewBox="0 0 1200 ${cropHeight}"><defs><linearGradient id="shirt-fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="white"/><stop offset=".72" stop-color="white"/><stop offset=".86" stop-color="white" stop-opacity=".6"/><stop offset="1" stop-color="white" stop-opacity="0"/></linearGradient><linearGradient id="side-fade" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="white" stop-opacity="0"/><stop offset=".08" stop-color="white" stop-opacity=".35"/><stop offset=".22" stop-color="white"/><stop offset=".78" stop-color="white"/><stop offset=".92" stop-color="white" stop-opacity=".35"/><stop offset="1" stop-color="white" stop-opacity="0"/></linearGradient><mask id="portrait-fade"><rect width="1200" height="${cropHeight}" fill="url(#shirt-fade)"/></mask>${edges}</defs><g mask="url(#portrait-fade)">${pictures}</g></svg>`,
+  ), "image/svg+xml");
 }
+
 function loadAssets() {
   return Promise.all([
     loadPlayerPortrait("messi"),
@@ -59,288 +51,126 @@ export async function renderSocialImage(
   { goals, asOf }: SocialImageData,
 ) {
   const [messi, ronaldo, mark, regular, bold, condensed] = await (assets ??=
-    loadAssets().catch((error) => {
+    loadAssets().catch(error => {
       assets = undefined;
       throw error;
     }));
-  const photo = portraits({ messi, ronaldo });
-  const date = new Intl.DateTimeFormat("en-GB", {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-    timeZone: "UTC",
-  })
-    .format(new Date(`${asOf}T00:00:00Z`))
-    .toUpperCase();
   const c = playerArtworkColors[theme];
+  const dark = theme === "dark";
+  const date = new Intl.DateTimeFormat("en-GB", {
+    day: "numeric", month: "short", year: "numeric", timeZone: "UTC",
+  }).format(new Date(`${asOf}T00:00:00Z`));
+
   return new ImageResponse(
-    <div
-      style={{
-        display: "flex",
-        position: "relative",
-        width,
-        height,
-        overflow: "hidden",
-        fontFamily: "Inter",
-        background: c.canvas,
-        color: c.ink,
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          position: "absolute",
-          left: 0,
-          top: 0,
-          width,
-          height,
-          backgroundImage: `linear-gradient(90deg,${c.messiTint} 0%,${c.messiCenter} 42%,${c.ronaldoCenter} 58%,${c.ronaldoTint} 100%)`,
-        }}
-      />
-      <div
-        style={{
-          display: "flex",
-          position: "absolute",
-          left: 0,
-          top: 0,
-          width,
-          height,
-          backgroundImage: c.veil,
-        }}
-      />
-      <div
-        style={{
-          display: "flex",
-          position: "absolute",
-          top: 28,
-          left: 0,
-          right: 0,
-          alignItems: "center",
-          justifyContent: "center",
-          gap: 10,
-        }}
-      >
-        <img src={uri(mark, "image/svg+xml")} width={34} height={40} alt="" />
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <span style={{ fontSize: 8, letterSpacing: 3.2 }}>THE</span>
-          <span
-            style={{
-              fontFamily: "Condensed",
-              fontWeight: 800,
-              fontSize: 28,
-              lineHeight: 1,
-            }}
-          >
-            RIVALRY
+    <div style={{
+      display: "flex", position: "relative", width, height, overflow: "hidden",
+      fontFamily: "Inter", color: c.ink, background: c.canvas,
+    }}>
+      <div style={{
+        display: "flex", position: "absolute", inset: 0,
+        backgroundImage: `linear-gradient(110deg,${c.messiTint} 0%,${c.canvas} 45%,${c.canvas} 55%,${c.ronaldoTint} 100%)`,
+      }}/>
+      {/* Original geometric artwork provides depth without extra photography. */}
+      <svg width="1200" height="630" viewBox="0 0 1200 630" style={{ position: "absolute", top: 0, left: 0 }}>
+        <circle cx="194" cy="305" r="196" fill={c.messi} opacity={dark ? 0.055 : 0.045}/>
+        <circle cx="194" cy="305" r="217" fill="none" stroke={c.messi} strokeWidth="1" opacity="0.15"/>
+        <circle cx="1006" cy="305" r="196" fill={c.ronaldo} opacity={dark ? 0.055 : 0.045}/>
+        <circle cx="1006" cy="305" r="217" fill="none" stroke={c.ronaldo} strokeWidth="1" opacity="0.15"/>
+        <path d="M48 89h1104" stroke={c.border} strokeWidth="1"/>
+      </svg>
+
+      <div style={{
+        display: "flex", position: "absolute", left: 48, top: 30, right: 48,
+        alignItems: "center", justifyContent: "space-between",
+      }}>
+        <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+          <img src={uri(mark, "image/svg+xml")} width={31} height={38} alt=""/>
+          <span style={{ fontFamily: "Condensed", fontSize: 30, fontWeight: 800, letterSpacing: 0.4 }}>
+            THE RIVALRY
           </span>
         </div>
+        <span style={{ fontSize: 16, letterSpacing: 2, color: c.muted }}>
+          GOALS. RECORDS. PERSPECTIVE.
+        </span>
       </div>
-      <div
-        style={{
-          display: "flex",
-          position: "absolute",
-          top: 50,
-          left: 46,
-          width: 283,
-          justifyContent: "space-between",
-          color: c.messi,
-          fontSize: 13,
-          letterSpacing: 2,
-        }}
-      >
-        <span>ARGENTINA</span>
-        <span style={{ letterSpacing: 0 }}>NO. 10</span>
-      </div>
-      <div
-        style={{
-          display: "flex",
-          position: "absolute",
-          top: 50,
-          right: 46,
-          width: 283,
-          justifyContent: "space-between",
-          color: c.ronaldo,
-          fontSize: 13,
-          letterSpacing: 2,
-        }}
-      >
-        <span>PORTUGAL</span>
-        <span style={{ letterSpacing: 0 }}>NO. 7</span>
-      </div>
-      <img
-        src={photo}
-        width={1200}
-        height={452}
-        alt=""
-        style={{ position: "absolute", left: 0, top: 96 }}
-      />
-      <div
-        style={{
-          display: "flex",
-          position: "absolute",
-          top: 119,
-          left: 380,
-          width: 440,
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <span
-          style={{
-            fontFamily: "Condensed",
-            fontWeight: 800,
-            fontSize: 99,
-            letterSpacing: -2,
-            lineHeight: 1,
-            color: c.messi,
-          }}
-        >
+
+      <img src={portraitLayer({ messi, ronaldo })} width={1200} height={350} alt=""
+        style={{ position: "absolute", top: 111, left: 0 }}/>
+
+      <div style={{
+        display: "flex", position: "absolute", left: 370, top: 121, width: 460,
+        flexDirection: "column", alignItems: "center",
+      }}>
+        <span style={{ fontFamily: "Condensed", fontSize: 105, fontWeight: 800, lineHeight: 1, letterSpacing: -2 }}>
           MESSI
         </span>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: 15,
-            marginTop: 7,
-            marginBottom: 11,
-          }}
-        >
-          <span style={{ width: 44, height: 1, background: c.border }} />
-          <span style={{ fontSize: 17, color: c.muted }}>VS</span>
-          <span style={{ width: 44, height: 1, background: c.border }} />
+        <div style={{ display: "flex", alignItems: "center", gap: 18, marginTop: 4, marginBottom: 7 }}>
+          <span style={{ width: 45, height: 1, background: c.border }}/>
+          <span style={{ fontSize: 19, color: c.muted }}>vs</span>
+          <span style={{ width: 45, height: 1, background: c.border }}/>
         </div>
-        <span
-          style={{
-            fontFamily: "Condensed",
-            fontWeight: 800,
-            fontSize: 90,
-            letterSpacing: -2,
-            lineHeight: 1,
-            color: c.ronaldo,
-          }}
-        >
+        <span style={{ fontFamily: "Condensed", fontSize: 96, fontWeight: 800, lineHeight: 1, letterSpacing: -2 }}>
           RONALDO
         </span>
-      </div>
-      <div
-        style={{
-          display: "flex",
-          position: "absolute",
-          top: 371,
-          left: 410,
-          width: 380,
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <span style={{ fontSize: 12, fontWeight: 800, letterSpacing: 2.2 }}>
-          CAREER GOALS
+        <span style={{ fontSize: 16, color: c.muted, marginTop: 19 }}>
+          Two careers. One comparison.
         </span>
-        <div
-          style={{
-            display: "flex",
-            width: "100%",
-            marginTop: 14,
-            alignItems: "center",
-          }}
-        >
-          {(["messi", "ronaldo"] as const).map((player, index) => (
-            <div
-              key={player}
-              style={{
-                display: "flex",
-                position: "relative",
-                width: 190,
-                justifyContent: "center",
-                alignItems: "center",
-                borderLeft: index === 1 ? `1px solid ${c.border}` : "none",
-                color: c[player],
-              }}
-            >
-              <span
-                style={{
-                  fontFamily: "Condensed",
-                  fontWeight: 800,
-                  fontSize: 82,
-                  lineHeight: 1,
-                  letterSpacing: -1.5,
-                }}
-              >
-                {goals[player]}
+      </div>
+
+      <div style={{ display: "flex", position: "absolute", top: 404, left: 48, right: 48, gap: 20 }}>
+        {players.map(player => {
+          const value = goals[player].toLocaleString("en-US");
+          const blue = player === "messi";
+          return <div key={player} style={{
+            display: "flex", position: "relative", width: 542, height: 146,
+            overflow: "hidden", borderRadius: 22,
+            border: `1px solid ${dark ? (blue ? "#507e995c" : "#a570765c") : (blue ? "#c9ddea" : "#e8d1cb")}`,
+            backgroundImage: dark
+              ? (blue ? "linear-gradient(125deg,#1c3544,#12212d)" : "linear-gradient(125deg,#402e37,#271b23)")
+              : (blue ? "linear-gradient(125deg,#ffffff,#e7f2fc)" : "linear-gradient(125deg,#ffffff,#fbece5)"),
+            boxShadow: dark ? "0 8px 20px #00000030" : "0 6px 14px #24364a0c",
+            padding: "16px 28px", alignItems: "center", justifyContent: "space-between",
+          }}>
+            <div style={{ display: "flex", position: "absolute", top: 0, left: 28, height: 3, width: 90, background: c[player], borderRadius: 2 }}/>
+            <div style={{ display: "flex", position: "absolute", top: 0, right: 0, width: 194, height: 146,
+              backgroundImage: `linear-gradient(90deg,${dark ? "#ffffff00,#ffffff06" : "#ffffff00,#ffffff88"})`,
+            }}/>
+            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              <span style={{ fontSize: 13, letterSpacing: 1.6, color: c.muted }}>
+                ALL-TIME CAREER
               </span>
-              {goals[player] >=
-                goals[player === "messi" ? "ronaldo" : "messi"] && (
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  style={{ position: "absolute", top: 8, right: 13 }}
-                >
-                  <path
-                    fill="#dbb367"
-                    stroke={c.starOutline}
-                    strokeWidth={theme === "light" ? 0.8 : 0}
-                    d="m12 2 3 6.1 6.7 1-4.9 4.8 1.2 6.7-6-3.2-6 3.2 1.2-6.7L2.3 9.1l6.7-1z"
-                  />
-                </svg>
-              )}
+              <span style={{ fontSize: 24, color: c.ink, fontWeight: 800, letterSpacing: -0.5 }}>
+                {blue ? "Lionel Messi" : "Cristiano Ronaldo"}
+              </span>
+              <span style={{ fontSize: 15, color: c.muted }}>Club + international</span>
             </div>
-          ))}
-        </div>
-        <span style={{ fontSize: 12, color: c.muted, marginTop: 12 }}>
-          Club + country
-        </span>
+            <div style={{ display: "flex", flexDirection: "column", width: 180, alignItems: "center", flexShrink: 0, gap: 3 }}>
+              <span style={{
+                fontFamily: "Condensed", fontSize: value.length > 4 ? 88 : 110,
+                fontWeight: 800, lineHeight: 0.86, letterSpacing: -2, color: c[player],
+              }}>
+                {value}
+              </span>
+              <span style={{ fontSize: 14, lineHeight: 1.2, letterSpacing: 2, color: c[player] }}>
+                GOALS
+              </span>
+            </div>
+          </div>;
+        })}
       </div>
-      {(["messi", "ronaldo"] as const).map((player, index) => (
-        <div
-          key={player}
-          style={{
-            display: "flex",
-            position: "absolute",
-            top: 516,
-            left: index === 0 ? 42 : 842,
-            width: 316,
-            justifyContent: "center",
-            fontSize: 13,
-            letterSpacing: 1.8,
-            color: c[player],
-          }}
-        >
-          {player === "messi" ? "LIONEL MESSI" : "CRISTIANO RONALDO"}
-        </div>
-      ))}
-      <div
-        style={{
-          display: "flex",
-          position: "absolute",
-          bottom: 48,
-          left: 46,
-          right: 46,
-          borderTop: `1px solid ${c.border}`,
-          paddingTop: 16,
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <span style={{ fontSize: 13, color: c.muted }}>
-          GOALS · ASSISTS · TROPHIES
-        </span>
-        <span style={{ fontSize: 17, fontWeight: 800 }}>
-          messivsronaldo17.com
-        </span>
-        <span style={{ fontSize: 12, color: c.muted }}>AS OF {date}</span>
+
+      <div style={{
+        display: "flex", position: "absolute", top: 560, left: 48, right: 48,
+        justifyContent: "space-between", alignItems: "center",
+      }}>
+        <span style={{ fontSize: 21, fontWeight: 800 }}>messivsronaldo17.com</span>
+        <span style={{ fontSize: 16, color: c.muted }}>Stats as of {date}</span>
       </div>
       {renderPhotoCredit(c.muted, { compact: true, bottom: 6 })}
     </div>,
     {
-      width,
-      height,
-      headers: {
-        "Cache-Control":
-          "public, max-age=0, s-maxage=300, stale-while-revalidate=60",
-      },
+      width, height,
+      headers: { "Cache-Control": "public, max-age=0, s-maxage=300, stale-while-revalidate=60" },
       fonts: [
         { name: "Inter", data: regular, weight: 400 },
         { name: "Inter", data: bold, weight: 800 },
