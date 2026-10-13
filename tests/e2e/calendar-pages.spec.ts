@@ -18,7 +18,9 @@ test("every published year has its own crawlable page and consistent search meta
       expect((await page.goto(path))!.status()).toBe(200);
       const heading = `Messi vs Ronaldo ${year.year}: Calendar Year Goals & Stats`;
       await expect(page.locator("h1")).toHaveText(heading);
-      expect(await page.title()).toBe(`${heading} | The Rivalry`);
+      expect(await page.title()).toBe(heading);
+      await expect(page.locator('meta[property="og:title"]')).toHaveAttribute("content", heading);
+      await expect(page.locator('meta[name="twitter:title"]')).toHaveAttribute("content", heading);
       titles.add(await page.title());
       const canonical = await page.locator('link[rel="canonical"]').getAttribute("href");
       expect(canonical).toMatch(new RegExp(`${path}$`));

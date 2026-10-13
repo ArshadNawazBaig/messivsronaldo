@@ -42,10 +42,7 @@ const languageFonts = {
 } as const;
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: {
-    default: 'Messi vs Ronaldo: Goals, Stats & Perspective | The Rivalry',
-    template: '%s | The Rivalry',
-  },
+  title: 'Messi vs Ronaldo: Goals, Stats & Perspective',
   description:
     'Explore Messi vs Ronaldo with sourced statistics updated in 2026, interactive comparisons and clear definitions. Career goals, assists, World Cup, club records and trophies.',
   robots: {

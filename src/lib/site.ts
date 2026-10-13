@@ -17,7 +17,7 @@ export async function pageMetadata(title: string, description: string, path: str
   path = localizedPath(path, locale);
   return {
     title, description, alternates: { canonical: new URL(path, siteUrl).href, languages: languageAlternates(path, siteUrl) },
-    openGraph: { title: `${title} | ${siteName}`, description, url: path, type: "website", siteName, locale: ogLocales[locale], alternateLocale: locales.filter(item => item !== locale).map(item => ogLocales[item]), images: [{ url: socialImagePath, width: 1200, height: 630, type: "image/png", alt: t(socialImageAlt) }] },
+    openGraph: { title, description, url: path, type: "website", siteName, locale: ogLocales[locale], alternateLocale: locales.filter(item => item !== locale).map(item => ogLocales[item]), images: [{ url: socialImagePath, width: 1200, height: 630, type: "image/png", alt: t(socialImageAlt) }] },
     twitter: { card: "summary_large_image", title, description, images: [{ url: socialImagePath, alt: t(socialImageAlt) }] },
   };
 }
