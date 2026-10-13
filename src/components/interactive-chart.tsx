@@ -5,6 +5,7 @@ import { ArrowUpRight, BarChart3, ChartNoAxesCombined } from "lucide-react";
 import { useI18n } from "./i18n-provider";
 import Link from "./localized-link";
 import { Select } from "./ui/select";
+import { ChartBarTooltip, ChartTooltip, useChartTooltip } from "./chart-tooltip";
 import { chartMaximum, chartPath, type ChartMetric, type ChartRecord } from "@/lib/chart-data";
 import type { PlayerId } from "@/lib/football";
 import styles from "./interactive-chart.module.css";
@@ -19,6 +20,7 @@ export function InteractiveChart({ title = "Explore the numbers", records, metri
   const [recordId, setRecordId] = useState(initialRecord ?? records.at(-1)?.id);
   const [view, setView] = useState<"line" | "bars">("line");
   const plot = useRef<HTMLDivElement>(null);
+  const tooltip = useChartTooltip<SVGSVGElement>();
   const [{ width, height }, setPlotSize] = useState({ width: 640, height: 244 });
   const hasSeries = records.length > 1;
   useEffect(() => {
@@ -42,6 +44,8 @@ export function InteractiveChart({ title = "Explore the numbers", records, metri
   const baseline = height - 20;
   const y = (value: number) => baseline - value / maximum * (height - 44);
   const gap = values.messi === null || values.ronaldo === null ? null : Math.abs(values.messi - values.ronaldo);
+  const difference = `${t("Difference")}: ${metric.unit === "%" && gap !== null ? t("{0} percentage points", { 0: gap.toLocaleString(numberLocale, { maximumFractionDigits: metric.decimals ?? 0 }) }) : format(gap)}`;
+  const tooltipEntries = players.map(player => ({ player, value: format(values[player]) }));
   function selectPoint(clientX: number, element: SVGSVGElement) {
     const bounds = element.getBoundingClientRect();
     const relative = (clientX - bounds.left) / bounds.width * width;
@@ -49,9 +53,10 @@ export function InteractiveChart({ title = "Explore the numbers", records, metri
     setRecordId(records[index].id);
   }
 
+  const readoutValues = players.map(player => <div key={player} className={styles.value} data-player={player}><span>{t(player === "messi" ? "Lionel Messi" : "Cristiano Ronaldo")}</span><strong>{format(values[player])}</strong><div className={styles.track} aria-hidden="true"><span style={{ width: `${(values[player] ?? 0) / maximum * 100}%` }}/></div></div>);
   const readout = <div className={styles.readout} aria-live="polite" aria-atomic="true">
           <div className={styles.recordLabel}><strong>{t(active.label)}</strong>{active.href && <Link href={active.href} prefetch={false}>{t("View original record")}<ArrowUpRight size={14} aria-hidden="true"/></Link>}</div>
-          <div className={styles.values}>{players.map(player => <div key={player} className={styles.value} data-player={player}><span>{t(player === "messi" ? "Lionel Messi" : "Cristiano Ronaldo")}</span><strong>{format(values[player])}</strong><div className={styles.track} aria-hidden="true"><span style={{ width: `${(values[player] ?? 0) / maximum * 100}%` }}/></div></div>)}</div>
+          {hasSeries ? <div className={styles.values}>{readoutValues}</div> : <ChartBarTooltip className={styles.values} title={t(active.label)} metric={t(metric.label)} entries={tooltipEntries} footer={players.length === 2 ? difference : undefined}>{readoutValues}</ChartBarTooltip>}
           {players.length === 2 && <p>{t("Difference")}: <strong>{metric.unit === "%" && gap !== null ? t("{0} percentage points", { 0: gap.toLocaleString(numberLocale, { maximumFractionDigits: metric.decimals ?? 0 }) }) : format(gap)}</strong>{metric.lowerIsBetter && <> · {t("Lower minutes per goal is better")}</>}</p>}
         </div>;
 
@@ -74,12 +79,13 @@ export function InteractiveChart({ title = "Explore the numbers", records, metri
             <div className={styles.axis} aria-hidden="true">{[4,3,2,1,0].map(tick => <span key={tick} style={{ top: `${(4 - tick) * 25}%` }}>{(maximum * tick / 4).toLocaleString(numberLocale, { maximumFractionDigits: maximum < 10 ? 2 : 1 })}</span>)}</div>
             <div className={styles.plot}>
               <div ref={plot} className={styles.canvas}>
-              <svg viewBox={`0 0 ${width} ${height}`} role="img" tabIndex={0} aria-label={`${t(metric.label)} · ${t(records[0].label)}–${t(records.at(-1)!.label)}`} aria-describedby={`${id}-instructions`} onKeyDown={event => {
+              <svg {...tooltip.triggerProps} viewBox={`0 0 ${width} ${height}`} role="img" aria-label={`${t(metric.label)} · ${t(records[0].label)}–${t(records.at(-1)!.label)}`} aria-describedby={`${id}-instructions${tooltip.tooltipProps.open ? ` ${tooltip.tooltipProps.id}` : ""}`} onKeyDown={event => {
                 const index = event.key === "Home" ? 0 : event.key === "End" ? records.length - 1 : event.key === "ArrowLeft" ? activeIndex - 1 : event.key === "ArrowRight" ? activeIndex + 1 : null;
                 if (index === null) return;
                 event.preventDefault();
                 setRecordId(records[Math.max(0, Math.min(records.length - 1, index))].id);
-              }} onPointerMove={event => { if (event.pointerType === "mouse") selectPoint(event.clientX, event.currentTarget); }} onPointerDown={event => selectPoint(event.clientX, event.currentTarget)}>
+                tooltip.show();
+              }} onPointerMove={event => { if (event.pointerType === "mouse") { selectPoint(event.clientX, event.currentTarget); tooltip.show(); } }} onPointerDown={event => { selectPoint(event.clientX, event.currentTarget); tooltip.show(); }}>
                 {[0,1,2,3,4].map(tick => <line key={tick} x1="0" x2={width} y1={y(maximum * tick / 4)} y2={y(maximum * tick / 4)} stroke="var(--border-subtle)"/>)}
                 <rect x={x(activeIndex) - (width - 24) / records.length / 2} y="16" width={(width - 24) / records.length} height={baseline - 16} fill="var(--accent)" opacity=".06"/>
                 {players.map((player, playerIndex) => <g key={player}>
@@ -91,6 +97,7 @@ export function InteractiveChart({ title = "Explore the numbers", records, metri
                   {values[player] !== null && <circle cx={x(activeIndex)} cy={y(values[player])} r={view === "line" ? 5 : 0} fill={`var(--${player})`} stroke="var(--panel)" strokeWidth="2"/>}
                 </g>)}
               </svg>
+              <ChartTooltip {...tooltip.tooltipProps} x={x(activeIndex) / width} y={y(Math.max(...players.map(player => values[player] ?? 0))) / height} title={t(active.label)} metric={t(metric.label)} entries={tooltipEntries} footer={players.length === 2 ? difference : undefined} note={active.note ? t(active.note) : undefined}/>
               </div>
               <div className={styles.xAxis} aria-hidden="true"><span>{t(records[0].label)}</span><span>{t(records[Math.floor(records.length / 2)].label)}</span><span>{t(records.at(-1)!.label)}</span></div>
             </div>

@@ -147,6 +147,23 @@ test("website navigation opens from the top and supports keyboard navigation", a
   await years.focus();
   await page.keyboard.press("ArrowDown");
   await expect(navigation.getByRole("link", { name: "2026 stats" })).toBeFocused();
+  await page.keyboard.press("ArrowDown");
+  await expect(navigation.getByRole("link", { name: "Years & seasons", exact: true })).toBeFocused();
+  await page.keyboard.press("End");
+  await expect(navigation.getByRole("link", { name: "Club seasons" })).toBeFocused();
+  await page.keyboard.press("ArrowDown");
+  await expect(navigation.getByRole("link", { name: "2026 stats" })).toBeFocused();
+  await page.keyboard.press("ArrowUp");
+  await expect(navigation.getByRole("link", { name: "Club seasons" })).toBeFocused();
+  await page.keyboard.press("Home");
+  await expect(navigation.getByRole("link", { name: "2026 stats" })).toBeFocused();
+  await page.keyboard.press("Escape");
+  await page.keyboard.press("ArrowUp");
+  await expect(navigation.getByRole("link", { name: "Club seasons" })).toBeFocused();
+  await page.keyboard.press("Tab");
+  await expect(years).toHaveAttribute("aria-expanded", "false");
+  await years.focus();
+  await page.keyboard.press("ArrowUp");
   await page.keyboard.press("Escape");
   await expect(years).toBeFocused();
   await expect(years).toHaveAttribute("aria-expanded", "false");
@@ -166,8 +183,10 @@ test("website navigation opens from the top and supports keyboard navigation", a
   await years.click();
   await expect(navigation.getByRole("link", { name: "Years & seasons", exact: true })).toHaveAttribute("aria-current", "page");
   expect((await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze()).violations).toEqual([]);
-  await page.locator(".page-intro h1").click({ force: true });
-  await expect(years).toHaveAttribute("aria-expanded", "false");
+  const header = await page.locator(".site-header").boundingBox();
+  await page.mouse.click(8, header!.y + header!.height + 8);
+  await expect(page.locator("#nav-trigger-years")).toHaveAttribute("aria-expanded", "false");
+  if (isMobile) await expect(navigation).not.toBeVisible();
 });
 
 

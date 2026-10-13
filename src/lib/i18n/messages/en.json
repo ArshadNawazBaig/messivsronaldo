@@ -1474,5 +1474,6 @@
   "{0} Newer match records still need this classification; this figure retains its reviewed cutoff.": "{0} Newer match records still need this classification; this figure retains its reviewed cutoff.",
   "{0} Reviewed baseline plus verified match details in the public update log. All published match records in this scope are included.": "{0} Reviewed baseline plus verified match details in the public update log. All published match records in this scope are included.",
   "{0} Reviewed baseline plus verified match details in the public update log. {1} match record(s) still need this classification and are not included in this breakdown.": "{0} Reviewed baseline plus verified match details in the public update log. {1} match record(s) still need this classification and are not included in this breakdown.",
-  "Calendar year to date: 1 January to {0}. Includes senior club and country; 2026 is not a completed year. See the update log for coverage.": "Calendar year to date: 1 January to {0}. Includes senior club and country; 2026 is not a completed year. See the update log for coverage."
+  "Calendar year to date: 1 January to {0}. Includes senior club and country; 2026 is not a completed year. See the update log for coverage.": "Calendar year to date: 1 January to {0}. Includes senior club and country; 2026 is not a completed year. See the update log for coverage.",
+  "Career and competition records for Lionel Messi and Cristiano Ronaldo.": "Career and competition records for Lionel Messi and Cristiano Ronaldo."
 }

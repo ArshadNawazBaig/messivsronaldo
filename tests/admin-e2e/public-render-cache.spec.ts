@@ -45,6 +45,51 @@ test("publication invalidates warmed pages in every language", async ({ request,
   }
 });
 
+test("a single-stat edit refreshes the homepage and footer publication date for open and new visits", async ({ page, request }) => {
+  await request.post("/api/admin/login", { headers: { origin }, data: { email: "admin@example.com", password: "integration-test-password-only" } });
+  const before = await (await request.get("/api/admin/state")).json();
+  const coverage = await (await request.get("/api/comparison/career")).json();
+  await page.clock.install();
+  await page.route("**/api/data-version", route => route.continue());
+  await page.goto("/");
+  // Wait for hydration before checking the existing page's refresh behavior.
+  await page.locator(".language-trigger").click();
+  await expect(page.locator(".language-menu")).toBeVisible();
+  await page.keyboard.press("Escape");
+  const heroDate = page.locator('.home-page a[href$="/updates"] time');
+  const footerDate = page.locator(".footer-update time");
+  const previousAt = await heroDate.getAttribute("datetime");
+  const record = { ...before.records[0], assists: before.records[0].assists + 1 };
+  const saved = await request.post("/api/admin/match", { headers: { origin }, data: { revision: before.revision, record } });
+  expect(saved.status()).toBe(200);
+  try {
+    const { state } = await saved.json();
+    const publishedAt = state.history.find((run: { action: string; status: string }) => run.action === "manual" && run.status === "success").at;
+    expect(publishedAt).not.toBe(previousAt);
+    expect(publishedAt.slice(0, 10)).not.toBe(record.date);
+    await page.clock.fastForward(61_000);
+    await page.evaluate(() => window.dispatchEvent(new Event("focus")));
+    await expect(heroDate).toHaveAttribute("datetime", publishedAt);
+    await expect(footerDate).toHaveAttribute("datetime", publishedAt);
+    for (const [path, locale] of [["/", "en-GB"], ["/es", "es-ES"], ["/ar", "ar-u-nu-latn"]]) {
+      await page.goto(path);
+      const label = new Intl.DateTimeFormat(locale, { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(publishedAt));
+      await expect(heroDate).toHaveAttribute("datetime", publishedAt);
+      await expect(heroDate).toHaveText(label);
+      await expect(footerDate).toHaveAttribute("datetime", publishedAt);
+      await expect(footerDate).toHaveText(label);
+    }
+    const after = await (await request.get("/api/comparison/career")).json();
+    expect(after.coverageEnds).toBe(coverage.coverageEnds);
+    expect(after.comparison.goals).toEqual(coverage.comparison.goals);
+    expect(after.comparison.metrics.find((metric: { id: string }) => metric.id === "assists").values[record.player])
+      .toBe(coverage.comparison.metrics.find((metric: { id: string }) => metric.id === "assists").values[record.player] + 1);
+  } finally {
+    const latest = await (await request.get("/api/admin/state")).json();
+    expect((await request.post("/api/admin/undo", { headers: { origin }, data: { revision: latest.revision } })).status()).toBe(200);
+  }
+});
+
 test("anonymous browsing avoids session requests and prefetches and polls every five minutes", async ({ page }) => {
   await page.clock.install();
   const calls: string[] = [];

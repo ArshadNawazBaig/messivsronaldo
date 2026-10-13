@@ -17,15 +17,19 @@ export async function postgresStore() {
 }
 
 async function remote(db?: Database.Database) { return db ? null : postgresStore(); }
-export async function readSnapshot(db?: Database.Database): Promise<{ revision: number; records: MatchRecord[] }> {
+export async function readSnapshot(db?: Database.Database): Promise<{ revision: number; records: MatchRecord[]; publishedAt: string | null }> {
   const pg = await remote(db);
   if (!pg) {
     const sqlite = db ?? local.store();
-    return sqlite.transaction(() => ({ revision: local.revision(sqlite), records: local.readRecords(sqlite) }))();
+    return sqlite.transaction(() => ({ revision: local.revision(sqlite), records: local.readRecords(sqlite), publishedAt: local.lastPublishedAt(sqlite) }))();
   }
-  // One statement keeps the revision and records in the same MVCC snapshot.
-  const [row] = await pg`SELECT revision, (SELECT COALESCE(json_agg(data::json ORDER BY id), '[]'::json) FROM matches) AS records FROM state WHERE id=1`;
-  return { revision: row.revision, records: row.records };
+  // Read the publication timestamp with its revision and records, including
+  // existing publications. Checks and failed syncs must not advance this date.
+  const [row] = await pg`SELECT revision,
+    (SELECT COALESCE(json_agg(data::json ORDER BY id), '[]'::json) FROM matches) AS records,
+    (SELECT at FROM runs WHERE status='success' AND action IN ('sync','manual','remove','undo') ORDER BY id DESC LIMIT 1) AS published_at
+    FROM state WHERE id=1`;
+  return { revision: row.revision, records: row.records, publishedAt: row.published_at };
 }
 export async function readRecords(db?: Database.Database) { return (await readSnapshot(db)).records; }
 export async function revision(): Promise<number> {

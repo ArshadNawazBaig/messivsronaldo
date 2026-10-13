@@ -31,7 +31,7 @@ function HatTrick({ size = 24, strokeWidth = 1.7, ...props }: LucideProps) {
 const icons = {
   "/": PanelsTopLeft, "/compare": ArrowLeftRight,
   "/2026": CalendarDays, "/seasons": CalendarRange,
-  "/clubs": Shirt, "/champions-league": EuropeanCup, "/la-liga": CircleDot,
+  "/clubs": Shirt, "/club-stats": Shirt, "/champions-league": EuropeanCup, "/la-liga": CircleDot,
   "/league": ListOrdered, "/european-clubs": Map,
   "/international": Flag, "/world-cup": Earth, "/copa-america-vs-euros": FlagTriangleRight,
   "/scoring-calculator": Calculator, "/goals": Goal, "/assists": Waypoints,

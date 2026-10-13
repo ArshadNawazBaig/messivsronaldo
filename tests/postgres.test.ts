@@ -25,19 +25,21 @@ test("Postgres persists publications, serializes competing writers, and protects
     assert.equal((await pg`SELECT to_regclass('public.state') AS table_name`)[0].table_name, null, "opening a connection must not create tables");
     await pg.begin(initializePostgresSchema);
     await pg.begin(initializePostgresSchema); // Explicit setup is safe to repeat.
-    assert.deepEqual(await db.readSnapshot(), { revision: 0, records: [] });
+    assert.deepEqual(await db.readSnapshot(), { revision: 0, records: [], publishedAt: null });
     await db.commitRecords(0, [sample], sample.date, "manual", "test");
     assert.equal(await db.revision(), 1);
     await db.closeDatabase();
-    assert.deepEqual(await db.readSnapshot(), { revision: 1, records: [sample] });
+    const publishedAt = (await db.history())[0].at;
+    assert.deepEqual(await db.readSnapshot(), { revision: 1, records: [sample], publishedAt });
     await assert.rejects(() => db.commitRecords(0, [], sample.date, "remove", "stale"), /Data changed/);
     await assert.rejects(() => db.commitRecords(1, [sample, sample], sample.date, "manual", "duplicate"));
     assert.equal((await db.readSnapshot()).revision, 1);
+    assert.equal((await db.readSnapshot()).publishedAt, publishedAt);
     const writes = await Promise.allSettled([2, 3].map(goals => db.commitRecords(1, [{ ...sample, goals }], sample.date, "manual", "competing writer")));
     assert.equal(writes.filter(result => result.status === "fulfilled").length, 1);
     assert.equal((await db.readSnapshot()).revision, 2);
     await db.undoLast(2);
-    assert.deepEqual(await db.readSnapshot(), { revision: 3, records: [sample] });
+    assert.deepEqual(await db.readSnapshot(), { revision: 3, records: [sample], publishedAt: (await db.history())[0].at });
     assert.equal((await db.history()).length, 3);
     assert.equal((await db.fullHistory()).length, 3);
     const release = await db.acquireSync();

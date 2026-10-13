@@ -1474,5 +1474,6 @@
   "{0} Newer match records still need this classification; this figure retains its reviewed cutoff.": "{0} لا تزال سجلات المباريات الأحدث بحاجة إلى هذا التصنيف؛ لذا يحتفظ الرقم بتاريخ التغطية الذي تمت مراجعته.",
   "{0} Reviewed baseline plus verified match details in the public update log. All published match records in this scope are included.": "{0} البيانات الأساسية المراجعة مع تفاصيل المباريات الموثّقة في سجل التحديثات العام. تشمل جميع سجلات المباريات المنشورة ضمن هذا النطاق.",
   "{0} Reviewed baseline plus verified match details in the public update log. {1} match record(s) still need this classification and are not included in this breakdown.": "{0} البيانات الأساسية المراجعة مع تفاصيل المباريات الموثّقة في سجل التحديثات العام. عدد سجلات المباريات التي تحتاج هذا التصنيف وغير المشمولة في هذا التفصيل: {1}.",
-  "Calendar year to date: 1 January to {0}. Includes senior club and country; 2026 is not a completed year. See the update log for coverage.": "السنة الميلادية حتى الآن: من 1 يناير إلى {0}. تشمل الأندية والمنتخبات الأولى؛ ولم تكتمل سنة 2026 بعد. راجع سجل التحديثات لمعرفة التغطية."
+  "Calendar year to date: 1 January to {0}. Includes senior club and country; 2026 is not a completed year. See the update log for coverage.": "السنة الميلادية حتى الآن: من 1 يناير إلى {0}. تشمل الأندية والمنتخبات الأولى؛ ولم تكتمل سنة 2026 بعد. راجع سجل التحديثات لمعرفة التغطية.",
+  "Career and competition records for Lionel Messi and Cristiano Ronaldo.": "إحصائيات مسيرة ليونيل ميسي وكريستيانو رونالدو في مختلف البطولات."
 }

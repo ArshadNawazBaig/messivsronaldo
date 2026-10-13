@@ -3557,6 +3557,13 @@ dialog::backdrop {
   flex-direction: column;
   gap: 8px;
 }
+.season-bar-pair {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 44px;
+  gap: 8px;
+}
 .season-bar {
   display: flex;
   align-items: center;

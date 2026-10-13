@@ -5,11 +5,11 @@ import type { MatchRecord } from "./admin/model";
 // Callers must still read the tagged snapshot first: that read determines the
 // current revision and registers publication invalidation for the rendered page.
 export function createPublishedDataCache() {
-  let previous: { revision: number; data: PublishedData } | undefined;
-  return ({ revision, records }: { revision: number; records: MatchRecord[] }) => {
-    if (previous?.revision === revision) return previous.data;
-    const data = buildPublishedData(records, revision);
-    previous = { revision, data };
+  let previous: { revision: number; publishedAt: string | null; data: PublishedData } | undefined;
+  return ({ revision, records, publishedAt = null }: { revision: number; records: MatchRecord[]; publishedAt?: string | null }) => {
+    if (previous?.revision === revision && previous.publishedAt === publishedAt) return previous.data;
+    const data = buildPublishedData(records, revision, publishedAt);
+    previous = { revision, publishedAt, data };
     return data;
   };
 }

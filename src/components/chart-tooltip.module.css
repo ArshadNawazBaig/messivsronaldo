@@ -1,0 +1,21 @@
+.tooltip { position:fixed; z-index:80; visibility:hidden; width:180px; max-width:calc(100vw - 24px); box-sizing:border-box; padding:9px 10px; border:1px solid var(--border); border-radius:6px; background:var(--panel); color:var(--text); box-shadow:0 4px 16px color-mix(in srgb,var(--text) 10%,transparent),0 1px 3px rgb(0 0 0 / 8%); font-family:var(--font-inter),sans-serif; text-align:start; line-height:1.4; pointer-events:auto; animation:appear 120ms ease-out; }
+.tooltip::after { content:""; position:absolute; left:var(--tooltip-arrow); width:6px; height:6px; background:var(--panel); transform:translateX(-50%) rotate(45deg); }
+.tooltip[data-side='above']::after { bottom:-4px; border-right:1px solid var(--border); border-bottom:1px solid var(--border); }
+.tooltip[data-side='below']::after { top:-4px; border-left:1px solid var(--border); border-top:1px solid var(--border); }
+.heading { display:grid; gap:1px; margin-bottom:6px; }
+.heading strong { font-size:12px; font-weight:650; overflow-wrap:anywhere; }
+.heading > span { font-size:10px; color:var(--muted); }
+.values { display:grid; gap:4px; margin:0; }
+.values > div { display:flex; align-items:baseline; justify-content:space-between; gap:12px; }
+.values dt { display:flex; align-items:center; gap:6px; font-size:11px; }
+.values i { width:6px; height:6px; flex-shrink:0; border-radius:50%; background:var(--messi); }
+.values [data-player='ronaldo'] i { background:var(--ronaldo); border-radius:2px; }
+.values dd { margin:0; font-size:13px; font-weight:650; font-variant-numeric:tabular-nums; }
+.values abbr { text-decoration:none; }
+.footer { border-top:1px solid var(--border-subtle); padding-top:6px; margin:6px 0 0; font-size:10px; }
+.note { margin:6px 0 0; color:var(--muted); font-size:10px; overflow-wrap:anywhere; }
+@keyframes appear { from { opacity:0; } to { opacity:1; } }
+@media (prefers-reduced-motion:reduce) { .tooltip { animation:none; } }
+.tooltip :where(p,dl) { margin-inline:0; }
+:global([data-chart-trigger]:focus-visible) { outline:2px solid var(--accent); outline-offset:4px; border-radius:3px; }
+:global(svg[data-chart-trigger]) { touch-action:pan-y; cursor:crosshair; }

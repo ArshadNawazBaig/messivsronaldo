@@ -26,20 +26,12 @@ test("homepage player summaries follow the selected competition and preserve tot
     const appearances = card.locator(".player-supporting-stats > div").filter({ has: page.getByText("Appearances", { exact: true }) });
     await expect(appearances.locator("dd")).toHaveText(comparison.appearances[player].toLocaleString("en-US"));
   }
-  await expect(page.locator(".comparison-coverage time")).toHaveAttribute("datetime", comparison.updatedThrough);
 });
 
-test("homepage sources, timeline and contextual answers can be explored with the keyboard", async ({ page }) => {
+test("homepage timeline and contextual answers can be explored with the keyboard", async ({ page }) => {
   await page.goto("/");
-  const coverage = page.locator(".comparison-coverage");
   const timeline = page.locator(".comparison-timeline");
-  await expect(coverage.getByRole("link", { name: "Sources & methodology", exact: true })).toBeHidden();
   await expect(timeline.locator("[data-interactive-chart]")).toBeHidden();
-
-  await coverage.locator("summary").focus();
-  await page.keyboard.press("Enter");
-  await expect(coverage.getByRole("link", { name: "Sources & methodology", exact: true })).toBeVisible();
-  await expect(coverage.getByRole("link", { name: /View update log/ })).toBeVisible();
 
   await timeline.locator("summary").focus();
   await page.keyboard.press("Enter");

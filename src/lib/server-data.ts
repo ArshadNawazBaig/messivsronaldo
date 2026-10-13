@@ -6,10 +6,15 @@ import { readSnapshot } from "./admin/database";
 import { datasetVersion } from "./data";
 import { publicDatabaseCacheKey, publicDataRevalidate, statisticsTag } from "./public-cache";
 
-export const getPublishedSnapshot = unstable_cache(
-  () => readSnapshot(), ["published-football-snapshot-v2", publicDatabaseCacheKey],
+const getCachedPublishedSnapshot = unstable_cache(
+  () => readSnapshot(), ["published-football-snapshot-v3", publicDatabaseCacheKey],
   { revalidate: publicDataRevalidate, tags: [statisticsTag] },
 );
+// Local previews may receive database imports outside the admin API. Read the
+// current snapshot on each request there; production retains tagged caching.
+export const getPublishedSnapshot = process.env.NODE_ENV === "development"
+  ? cache(() => readSnapshot())
+  : getCachedPublishedSnapshot;
 const calculatePublishedData = createPublishedDataCache();
 export const getPublishedData = cache(async () => calculatePublishedData(await getPublishedSnapshot()));
 

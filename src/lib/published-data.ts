@@ -5,7 +5,7 @@ const dateLabel = (date: string) => new Intl.DateTimeFormat("en-GB", {day:"numer
 export type CalendarYear = { year: number; source: string; career: Stats; club: Stats; international: Stats; league: Stats };
 const fields = ["goals", "assists", "appearances", "minutes"] as const;
 const blank = (): Stats => ({goals:{messi:0,ronaldo:0},assists:{messi:0,ronaldo:0},appearances:{messi:0,ronaldo:0},minutes:{messi:0,ronaldo:0}});
-export function buildPublishedData(records: MatchRecord[] = [], revision = 0) {
+export function buildPublishedData(records: MatchRecord[] = [], revision = 0, publishedAt: string | null = null) {
   const scopes = structuredClone(baselineScopes);
   const calendarYears: CalendarYear[] = structuredClone(baselineYears);
   const clubs = structuredClone(baselineClubs);
@@ -91,6 +91,8 @@ export function buildPublishedData(records: MatchRecord[] = [], revision = 0) {
     updated.answer = `${updated.answer} Check each scoring breakdown's individual coverage notes.`;
     scopes[id] = updated;
   }
-  return {scopes,calendarYears:calendarYears.sort((a,b)=>a.year-b.year),clubs,snapshotDate:latest,snapshotLabel:dateLabel(latest),reviewedDate:baselineReviewed,datasetVersion:revision ? `${baselineVersion}+r${revision}` : baselineVersion,coverageNote:records.length ? `Reviewed baseline: ${baselineLabel}. Later totals include the dated matches in the update log; unlisted dates have not been verified. Scoring breakdowns include verified match details; incomplete classifications are marked separately. Assist definitions may differ between providers.` : "",baselineDate};
+  // Publication freshness is independent of the dates of the matches covered.
+  const lastUpdatedAt = publishedAt ?? `${latest}T00:00:00.000Z`;
+  return {scopes,calendarYears:calendarYears.sort((a,b)=>a.year-b.year),clubs,snapshotDate:latest,snapshotLabel:dateLabel(latest),lastUpdatedAt,lastUpdatedLabel:dateLabel(lastUpdatedAt.slice(0,10)),reviewedDate:baselineReviewed,datasetVersion:revision ? `${baselineVersion}+r${revision}` : baselineVersion,coverageNote:records.length ? `Reviewed baseline: ${baselineLabel}. Later totals include the dated matches in the update log; unlisted dates have not been verified. Scoring breakdowns include verified match details; incomplete classifications are marked separately. Assist definitions may differ between providers.` : "",baselineDate};
 }
 export type PublishedData = ReturnType<typeof buildPublishedData>;

@@ -16,10 +16,11 @@ type PlayerMatchupProps = {
     context: string;
     details?: Record<PlayerId, string>;
     supportingStats?: { label: string; values: Record<PlayerId, number> }[];
+    editorial?: boolean;
     decimals?: number;
     exportData: Omit<StatImage, "values" | "decimals">;
 };
-export function PlayerMatchup({ values, label, accessibleLabel, context, details, supportingStats, decimals = 0, exportData }: PlayerMatchupProps) {
+export function PlayerMatchup({ values, label, accessibleLabel, context, details, supportingStats, editorial = false, decimals = 0, exportData }: PlayerMatchupProps) {
     const { t, numberLocale } = useI18n();
     return <><div className="player-matchup">
     {(["messi", "ronaldo"] as const).map(id => {
@@ -34,9 +35,9 @@ export function PlayerMatchup({ values, label, accessibleLabel, context, details
             <div className="player-card-stage">
               {/* Match the 154%-height portrait crop, including the narrow-card layout. */}
               <div className={`player-photo ${portraitStyles.frame}`}><Image className={portraitStyles.image} src={portrait.src} alt={t(player.imageAlt)} width={portrait.width} height={portrait.height} loading="eager" fetchPriority="high" quality={75} sizes="(max-width: 440px) 132px, (max-width: 700px) calc(35vw - 20px), (max-width: 925px) 220px, 253px"/></div>
-              <div className="player-country"><span className={`country-flag ${id}`} aria-hidden="true"/><span>{t(player.countryCode)}</span><span className="player-epithet"><span className="country-separator" aria-hidden="true">/</span>{t(id === "messi" ? "The playmaker" : "The goal machine")}</span></div>
-              <span className="player-shirt-number" aria-hidden="true">#{player.number}</span>
-              <div className="player-identity"><h2><span>{t(id === "messi" ? "Lionel" : "Cristiano")}</span>{t(player.short)}</h2><p>{t(id === "messi" ? "The art of possibility." : "The pursuit of extraordinary.")}</p></div>
+              <div className="player-country"><span className={`country-flag ${id}`} aria-hidden="true"/><span>{t(player.countryCode)}</span>{!editorial && <span className="player-epithet"><span className="country-separator" aria-hidden="true">/</span>{t(id === "messi" ? "The playmaker" : "The goal machine")}</span>}</div>
+              {!editorial && <span className="player-shirt-number" aria-hidden="true">#{player.number}</span>}
+              <div className="player-identity"><h2><span>{t(id === "messi" ? "Lionel" : "Cristiano")}</span>{t(player.short)}</h2>{!editorial && <p>{t(id === "messi" ? "The art of possibility." : "The pursuit of extraordinary.")}</p>}</div>
             </div>
             <div className="player-score"><span className={`big-score${score.length > 4 ? " is-wide-score" : ""}`}>{t(score)}</span><div><span>{t(label)}</span><span>{t(context)}</span>{details && <span>{t(details[id])}</span>}</div><span className="player-profile-link" aria-hidden="true"><ArrowUpRight size={20}/></span></div>
             {supportingStats && <dl className="player-supporting-stats">{supportingStats.map(stat => <div key={stat.label}><dt>{t(stat.label)}</dt><dd>{stat.values[id].toLocaleString(numberLocale)}</dd></div>)}</dl>}
@@ -44,6 +45,6 @@ export function PlayerMatchup({ values, label, accessibleLabel, context, details
         </Link>
       </article>;
         })}
-    <span className="versus-badge" aria-hidden="true">{t("VS")}</span>
+    {!editorial && <span className="versus-badge" aria-hidden="true">{t("VS")}</span>}
   </div><StatImageButton placement="toolbar" stat={{ ...exportData, values, decimals }}/></>;
 }

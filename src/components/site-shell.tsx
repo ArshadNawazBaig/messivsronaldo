@@ -13,7 +13,7 @@ import Link from "@/components/localized-link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { ArrowUpRight, ChevronDown, ChevronRight, Menu, Moon, Search, Sun, X } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Check, ChevronDown, Menu, Moon, Search, Sun, X } from "lucide-react";
 const comparisonItems = [
     { href: "/", label: "Overview" },
     { href: "/compare", label: "Compare stats" },
@@ -161,14 +161,34 @@ function SiteHeader({ pathname, onSearch, availableLanguages }: {
                 }}>
               {group.href ? <Link className="primary-nav-trigger" href={group.href} aria-current={active ? "page" : undefined} onClick={closeNavigation}>{t(group.label)}</Link> : <>
                 <button id={`nav-trigger-${group.id}`} className="primary-nav-trigger" aria-expanded={expanded} aria-controls={`nav-panel-${group.id}`} onClick={() => setOpenGroup(expanded ? null : group.id)} onKeyDown={event => {
-                        if (event.key === "ArrowDown") {
+                        if (event.key === "ArrowDown" || event.key === "ArrowUp") {
                             event.preventDefault();
                             setOpenGroup(group.id);
-                            requestAnimationFrame(() => header.current?.querySelector<HTMLElement>(`#nav-panel-${group.id} a`)?.focus());
+                            const fromEnd = event.key === "ArrowUp";
+                            requestAnimationFrame(() => {
+                                const links = header.current?.querySelectorAll<HTMLAnchorElement>(`#nav-panel-${group.id} a`);
+                                links?.[fromEnd ? links.length - 1 : 0]?.focus();
+                            });
                         }
                     }}>{t(group.label)}<ChevronDown size={13} aria-hidden="true"/></button>
-                <ul id={`nav-panel-${group.id}`} className="nav-dropdown" hidden={!expanded} aria-labelledby={`nav-trigger-${group.id}`}>
-                  {expanded && group.items?.map(({ href, label }) => <li key={href}><Link href={href} aria-current={isActivePath(pathname, href) ? "page" : undefined} onClick={closeNavigation}><NavigationIcon href={href} size={20} strokeWidth={1.65} aria-hidden="true"/><span>{t(label)}</span><ChevronRight size={13} aria-hidden="true"/></Link></li>)}
+                <ul id={`nav-panel-${group.id}`} className="nav-dropdown" hidden={!expanded} aria-labelledby={`nav-trigger-${group.id}`} onKeyDown={event => {
+                        if (event.altKey || event.ctrlKey || event.metaKey || !["ArrowDown", "ArrowUp", "Home", "End"].includes(event.key))
+                            return;
+                        const links = Array.from(event.currentTarget.querySelectorAll<HTMLAnchorElement>("a"));
+                        const index = links.indexOf(document.activeElement as HTMLAnchorElement);
+                        if (index < 0) return;
+                        event.preventDefault();
+                        const next = event.key === "Home" ? 0 : event.key === "End" ? links.length - 1 : (index + (event.key === "ArrowDown" ? 1 : -1) + links.length) % links.length;
+                        links[next]?.focus();
+                    }}>
+                  {expanded && group.items?.map(({ href, label }) => {
+                      const current = isActivePath(pathname, href);
+                      return <li key={href}><Link href={href} aria-current={current ? "page" : undefined} onClick={closeNavigation}>
+                        <NavigationIcon href={href} size={18} strokeWidth={1.7} aria-hidden="true"/>
+                        <span>{t(label)}</span>
+                        {current ? <Check className="nav-link-current" size={14} aria-hidden="true"/> : <ArrowRight className="nav-link-arrow" size={14} aria-hidden="true"/>}
+                      </Link></li>;
+                  })}
                 </ul>
               </>}
             </li>;
@@ -185,7 +205,7 @@ export function SiteShell({ children, articleLinks, articleLanguages }: {
     articleLanguages: Record<string, Locale[]>;
 }) {
     const { t } = useI18n();
-    const { snapshotLabel, snapshotDate } = useFootballData();
+    const { lastUpdatedLabel, lastUpdatedAt } = useFootballData();
     const pathname = stripLocale(usePathname());
     const availableLanguages = pathname.startsWith("/insights/") ? articleLanguages[pathname.slice(10)] ?? [] : locales;
     const allSearchItems = [...searchItems.map(item => ({ ...item, label: t(item.label) })), ...articleLinks];
@@ -219,7 +239,7 @@ export function SiteShell({ children, articleLinks, articleLanguages }: {
         </nav>
         {!pathname.startsWith("/admin") && <LanguageLinks available={availableLanguages} />}
         <p className="photo-attribution" lang="en">Player photos: {playerPhotoLicense.credit} · <a href={playerPhotoLicense.licenseUrl} rel="license">CC BY-SA 4.0</a> · <Link href="/credits">Sources, crops &amp; reuse</Link></p>
-        <div className="footer-bottom"><span>© {t(new Date().getFullYear())}{t(" The Rivalry. An independent football project.")}</span><Link className="footer-update" href="/updates"><span>{t("Last updated")} <time dateTime={snapshotDate}>{t(snapshotLabel)}</time></span><ArrowUpRight size={13} aria-hidden="true"/></Link></div>
+        <div className="footer-bottom"><span>© {t(new Date().getFullYear())}{t(" The Rivalry. An independent football project.")}</span><Link className="footer-update" href="/updates"><span>{t("Last updated")} <time dateTime={lastUpdatedAt}>{t(lastUpdatedLabel)}</time></span><ArrowUpRight size={13} aria-hidden="true"/></Link></div>
       </footer>
     </div>
     <dialog ref={dialog} className="search-dialog" onClose={() => setSearchOpen(false)} onClick={event => {

@@ -31,6 +31,10 @@ let singleton: Database.Database | undefined;
 export const store = () => singleton ??= openStore();
 export function readRecords(db = store()): MatchRecord[] { return (db.prepare("SELECT data FROM matches ORDER BY id").all() as {data: string}[]).map(row => JSON.parse(row.data)); }
 export function revision(db = store()) { return (db.prepare("SELECT revision FROM state WHERE id = 1").get() as {revision: number}).revision; }
+export function lastPublishedAt(db = store()): string | null {
+  const row = db.prepare("SELECT at FROM runs WHERE status = 'success' AND action IN ('sync','manual','remove','undo') ORDER BY id DESC LIMIT 1").get() as { at: string } | undefined;
+  return row?.at ?? null;
+}
 export function history(db = store()): RunRecord[] { return db.prepare("SELECT id, at, date, action, status, message FROM runs ORDER BY id DESC LIMIT 100").all() as RunRecord[]; }
 export function logRun(date: string, action: string, status: string, message: string, before: MatchRecord[] = [], db = store()) {
   db.prepare("INSERT INTO runs (at,date,action,status,message,before_data) VALUES (?,?,?,?,?,?)").run(new Date().toISOString(), date, action, status, message, JSON.stringify(before));

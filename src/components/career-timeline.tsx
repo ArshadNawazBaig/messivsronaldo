@@ -9,6 +9,7 @@ import { useToolUrl } from "./use-tool-url";
 import Link from "./localized-link";
 import { normalizeTimeline, timelineRows, type TimelineMetric, type TimelineState } from "@/lib/engagement";
 import { ToolShare } from "./tool-shared";
+import { ChartTooltip, useChartTooltip } from "./chart-tooltip";
 import styles from "./interactive-tools.module.css";
 
 const metricLabels: Record<TimelineMetric, string> = { goals: "Goals", assists: "Assists", contributions: "Goals + assists" };
@@ -19,6 +20,7 @@ export function CareerTimeline() {
   const [state, setState] = useState(() => normalizeTimeline(new URLSearchParams(), calendarYears));
   const [selected, setSelected] = useState(calendarYears.at(-1)!.year);
   const uid = useId();
+  const tooltip = useChartTooltip<SVGSVGElement>();
   const updateUrl = useToolUrl();
   useEffect(() => {
     function restore() { const next = normalizeTimeline(new URLSearchParams(window.location.hash.slice(1)), calendarYears); setState(next); setSelected(next.to); }
@@ -38,6 +40,13 @@ export function CareerTimeline() {
   const x = (index: number) => rows.length === 1 ? 320 : index / (rows.length - 1) * 620 + 10;
   const y = (value: number) => 210 - value / maximum * 200;
   const fmt = (value: number) => value.toLocaleString(numberLocale);
+  function selectPoint(clientX: number, element: SVGSVGElement) {
+    const bounds = element.getBoundingClientRect();
+    const point = (clientX - bounds.left) / bounds.width * 640;
+    const index = Math.max(0, Math.min(rows.length - 1, Math.round((point - 10) / 620 * (rows.length - 1))));
+    setSelected(rows[index].year);
+    tooltip.show();
+  }
   return <section className={styles.panel} aria-label={t("Career timeline")} data-testid="career-timeline">
     <div className={styles.controls}>
       {(["from", "to"] as const).map(key => <div className={styles.control} key={key}><label htmlFor={`${uid}-${key}`}>{t(key === "from" ? "Start year" : "End year")}</label><Select id={`${uid}-${key}`} label={key === "from" ? "Start year" : "End year"} value={String(state[key])} options={calendarYears.map(row => ({ value: String(row.year), label: String(row.year) }))} onValueChange={value => update({ ...state, [key]: Number(value) })}/></div>)}
@@ -46,11 +55,17 @@ export function CareerTimeline() {
     </div>
     <div className={styles.heading}><div><span className="section-kicker">{state.from}–{state.to}</span><h2>{t(metricLabels[state.metric])}</h2></div><span className={styles.muted}>{t(state.cumulative ? "Running total starts at the selected first year." : "Each point is one calendar year.")}</span></div>
     <div className={styles.summary} aria-label={t("Selected range totals")}><div><span>Messi</span><strong className={styles.messi} data-testid="timeline-messi-total">{fmt(totals.messi)}</strong></div><div><span>Ronaldo</span><strong className={styles.ronaldo} data-testid="timeline-ronaldo-total">{fmt(totals.ronaldo)}</strong></div><p className={styles.muted}>{t("Totals for the selected years")}</p></div><StatImageButton placement="toolbar" stat={{ title: metricLabels[state.metric], context: `${state.from}–${state.to} · Club & country`, values: totals, note: "Totals for the selected calendar years; latest year is incomplete." }}/>
-    <figure style={{ margin: 0 }}><div className={styles.plot}><div className={styles.axis} aria-hidden="true">{[4,3,2,1,0].map(tick => <span key={tick}>{fmt(maximum * tick / 4)}</span>)}</div><svg className={styles.chart} viewBox="0 0 640 220" role="img" aria-label={t("Messi and Ronaldo across the selected years")}>
+    <figure style={{ margin: 0 }}><div className={styles.plot}><div className={styles.axis} aria-hidden="true">{[4,3,2,1,0].map(tick => <span key={tick}>{fmt(maximum * tick / 4)}</span>)}</div><svg {...tooltip.triggerProps} className={styles.chart} viewBox="0 0 640 220" role="img" aria-label={t("Messi and Ronaldo across the selected years")} onPointerMove={event => { if (event.pointerType === "mouse") selectPoint(event.clientX, event.currentTarget); }} onPointerDown={event => selectPoint(event.clientX, event.currentTarget)} onKeyDown={event => {
+      const index = event.key === "Home" ? 0 : event.key === "End" ? rows.length - 1 : event.key === "ArrowLeft" ? selectedIndex - 1 : event.key === "ArrowRight" ? selectedIndex + 1 : null;
+      if (index === null) return;
+      event.preventDefault();
+      setSelected(rows[Math.max(0, Math.min(rows.length - 1, index))].year);
+      tooltip.show();
+    }}>
       {[0,1,2,3,4].map(tick => <line key={tick} x1="10" x2="630" y1={y(maximum * tick / 4)} y2={y(maximum * tick / 4)} stroke="var(--border)" vectorEffect="non-scaling-stroke"/>)}
       <line x1={x(selectedIndex)} x2={x(selectedIndex)} y1="10" y2="210" stroke="var(--muted)" strokeDasharray="4 5" vectorEffect="non-scaling-stroke"/>
       {(["messi", "ronaldo"] as const).map(player => <g key={player}><polyline points={rows.map((row, i) => `${x(i)},${y(row.values[player])}`).join(" ")} stroke={`var(--${player})`} strokeWidth="2.5" strokeDasharray={player === "ronaldo" ? "6 4" : undefined} fill="none" vectorEffect="non-scaling-stroke"/><circle cx={x(selectedIndex)} cy={y(active.values[player])} r="5" fill={`var(--${player})`}/></g>)}
-    </svg></div><div className={styles.xAxis} aria-hidden="true"><span>{state.from}</span><span>{state.to}</span></div><figcaption className={styles.chartCaption}>{t("Messi: solid line. Ronaldo: dashed line. Move through the years below or open the data table.")}</figcaption></figure>
+    </svg><ChartTooltip {...tooltip.tooltipProps} x={x(selectedIndex) / 640} y={y(Math.max(active.values.messi, active.values.ronaldo)) / 220} title={state.cumulative ? `${state.from}–${active.year}` : String(active.year)} metric={t(metricLabels[state.metric])} entries={(["messi", "ronaldo"] as const).map(player => ({ player, value: fmt(active.values[player]) }))} note={t(state.cumulative ? "Cumulative within range" : "Annual totals")}/></div><div className={styles.xAxis} aria-hidden="true"><span>{state.from}</span><span>{state.to}</span></div><figcaption className={styles.chartCaption}>{t("Messi: solid line. Ronaldo: dashed line. Move through the years below or open the data table.")}</figcaption></figure>
     <RangeSlider id={`${uid}-year`} label={t("Explore a year")} direction="ltr" min={0} max={Math.max(0, rows.length - 1)} disabled={rows.length === 1} value={selectedIndex} formatValue={index => String(rows[index].year)} onValueChange={index => setSelected(rows[index].year)}/>
     <div className={styles.selectedYear} aria-live="polite"><b>{active.year}</b><span className={styles.messi}>Messi <strong>{fmt(active.values.messi)}</strong></span><span className={styles.ronaldo}>Ronaldo <strong>{fmt(active.values.ronaldo)}</strong></span><Link className="text-link" href={`/seasons/${active.year}`}>{t("View original record")}</Link><StatImageButton stat={{ title: metricLabels[state.metric], context: `${state.cumulative ? `${state.from}–${active.year}` : active.year} · Club & country`, values: active.values, note: state.cumulative ? "Cumulative within selected range" : "Calendar year totals; latest year is incomplete." }}/></div>
     <div className={styles.actions}><ToolShare key={hash(state)} hash={hash(state)}/></div>

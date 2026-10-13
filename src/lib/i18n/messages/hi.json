@@ -1474,5 +1474,6 @@
   "{0} Newer match records still need this classification; this figure retains its reviewed cutoff.": "{0} नए मैच रिकॉर्ड का यह वर्गीकरण अभी बाकी है; इसलिए यह आँकड़ा अपनी समीक्षित अंतिम तारीख बनाए रखता है।",
   "{0} Reviewed baseline plus verified match details in the public update log. All published match records in this scope are included.": "{0} सार्वजनिक अपडेट लॉग के समीक्षित आधार और सत्यापित मैच विवरण। इस दायरे के सभी प्रकाशित मैच रिकॉर्ड शामिल हैं।",
   "{0} Reviewed baseline plus verified match details in the public update log. {1} match record(s) still need this classification and are not included in this breakdown.": "{0} सार्वजनिक अपडेट लॉग के समीक्षित आधार और सत्यापित मैच विवरण। {1} मैच रिकॉर्ड का यह वर्गीकरण अभी बाकी है और वे इस विवरण में शामिल नहीं हैं।",
-  "Calendar year to date: 1 January to {0}. Includes senior club and country; 2026 is not a completed year. See the update log for coverage.": "इस कैलेंडर वर्ष में अब तक: 1 जनवरी से {0} तक। सीनियर क्लब और अंतरराष्ट्रीय मैच शामिल हैं; वर्ष 2026 अभी पूरा नहीं हुआ है। कवरेज के लिए अपडेट लॉग देखें।"
+  "Calendar year to date: 1 January to {0}. Includes senior club and country; 2026 is not a completed year. See the update log for coverage.": "इस कैलेंडर वर्ष में अब तक: 1 जनवरी से {0} तक। सीनियर क्लब और अंतरराष्ट्रीय मैच शामिल हैं; वर्ष 2026 अभी पूरा नहीं हुआ है। कवरेज के लिए अपडेट लॉग देखें।",
+  "Career and competition records for Lionel Messi and Cristiano Ronaldo.": "लियोनेल मेसी और क्रिस्टियानो रोनाल्डो के करियर और प्रतियोगिताओं के आँकड़े।"
 }

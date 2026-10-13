@@ -2,12 +2,11 @@ import Link from "./localized-link";
 import { ArrowUpRight } from "lucide-react";
 import { getI18n } from "@/lib/i18n/server";
 import { toolLinks } from "@/lib/tools";
-import { NavigationIcon } from "./ui/navigation-icon";
 import styles from "./interactive-tools.module.css";
 
 export async function ToolCards({ compact = false }: { compact?: boolean } = {}) {
   const { t } = await getI18n();
-  return <section className={compact ? styles.compactTools : undefined} aria-label={t("Tools & games")}><div className="section-title-row"><h2>{t("Explore. Play. Compare.")}</h2><Link className="text-link" href="/tools">{t("Tools & games")}<ArrowUpRight size={14}/></Link></div><div className={styles.grid}>{toolLinks.map(tool => <Link className={styles.card} href={tool.href} key={tool.href}>{compact ? <span className={styles.toolIcon}><NavigationIcon href={tool.href} size={21} strokeWidth={1.7} aria-hidden="true"/></span> : <span>{tool.number} / {t("THE RIVALRY")}</span>}<h3>{t(tool.label)}</h3><p>{t(tool.description)}</p><ArrowUpRight size={compact ? 16 : 20} aria-hidden="true"/></Link>)}</div></section>;
+  return <section className={compact ? styles.compactTools : undefined} aria-label={t("Tools & games")}><div className="section-title-row"><h2>{t(compact ? "Tools & games" : "Explore. Play. Compare.")}</h2>{!compact && <Link className="text-link" href="/tools">{t("Tools & games")}<ArrowUpRight size={14}/></Link>}</div><div className={styles.grid}>{toolLinks.map(tool => <Link className={styles.card} href={tool.href} key={tool.href}>{!compact && <span>{tool.number} / {t("THE RIVALRY")}</span>}<h3>{t(tool.label)}</h3><p>{t(tool.description)}</p><ArrowUpRight size={compact ? 16 : 20} aria-hidden="true"/></Link>)}</div></section>;
 }
 export async function ToolNavigation({ current }: { current: string }) {
   const { t } = await getI18n();

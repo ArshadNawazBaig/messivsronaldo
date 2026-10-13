@@ -1,7 +1,7 @@
 import { PageContext } from '@/components/page-context';
 import { getI18n } from '@/lib/i18n/server';
 import Link from '@/components/localized-link';
-import { ArrowUp, ArrowUpRight, Clock3, ShieldCheck } from 'lucide-react';
+import { ArrowUp, ArrowUpRight } from 'lucide-react';
 import { ComparisonGuide } from '@/components/comparison-guide';
 import { Comparison, ExploreCards } from '@/components/comparison';
 import { AwardChart } from '@/components/award-chart';
@@ -41,8 +41,7 @@ export default async function Home() {
       <div className={styles.edition}>
         <span>{t('FOOTBALL / PLAYER COMPARISON')}</span>
         <Link href="/updates" className={styles.updated}>
-          <Clock3 size={13} aria-hidden="true" />
-          <span>{t('Last updated')} <time dateTime={data.snapshotDate}>{t(data.snapshotLabel)}</time></span>
+          <span>{t('Last updated')} <time dateTime={data.lastUpdatedAt}>{t(data.lastUpdatedLabel)}</time></span>
         </Link>
       </div>
       <section className={`page-intro ${styles.intro}`}>
@@ -54,12 +53,11 @@ export default async function Home() {
           </h1>
           <p>
             {t(
-              'Career goals, assists and trophies. Choose a competition. Compare the records.',
+              'Career and competition records for Lionel Messi and Cristiano Ronaldo.',
             )}
           </p>
         </div>
         <Link className={styles.methodology} href="/methodology">
-          <ShieldCheck size={17} aria-hidden="true" />
           {t('How we count ')}
           <ArrowUpRight size={14} aria-hidden="true" />
         </Link>
@@ -81,10 +79,9 @@ export default async function Home() {
       <RecordAnswers answers={buildRecordAnswers(data, t)} compact />
       <ComparisonGuide />
       <section className={styles.trust}>
-        <ShieldCheck className={styles.trustIcon} size={28} aria-hidden="true" />
         <div>
           <span className="section-kicker">{t('ABOUT THE DATA')}</span>
-          <h2>{t('A comparison you can check.')}</h2>
+          <h2>{t('Sources & methodology')}</h2>
           <p>
             {t(
               'Every statistic links to its source. Counting rules, coverage dates and corrections are public.',
