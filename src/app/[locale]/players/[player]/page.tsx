@@ -47,8 +47,8 @@ export default async function PlayerPage({ params }: { params: Promise<{ player:
   const other = players[player === "messi" ? "ronaldo" : "messi"];
   const portrait = playerPortraits[player];
   const format = (value: number, decimals = 0) => value.toLocaleString(numberLocale, { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
-  const headlineMetrics = scopes.career.metrics.filter(metric => ["goals", "assists", "appearances", "minutes"].includes(metric.id));
-  const rateMetrics = scopes.career.metrics.filter(metric => ["goals-per-game", "goals-per-90", "minutes-per-goal"].includes(metric.id));
+  const headlineMetrics = scopes.career.metrics.filter(metric => ["goals", "assists", "appearances"].includes(metric.id));
+  const detailMetrics = scopes.career.metrics.filter(metric => ["minutes", "goals-per-game", "goals-per-90", "minutes-per-goal"].includes(metric.id));
   const sections = [
     { id: "career-stats", label: "Career overview" },
     { id: "career-timeline", label: "Career timeline" },
@@ -58,28 +58,30 @@ export default async function PlayerPage({ params }: { params: Promise<{ player:
   ];
 
   return <div className={`page-container inner-page ${styles.page}`} data-player={player} style={playerArtworkStyle(player) as CSSProperties}>
-    <PageContext path={`/players/${player}`} title={t(p.name)} players={[player]} mainEntityId={`${siteUrl}/players/${player}#person`} breadcrumbs={[{ path: "/", name: t("Overview") }, { path: `/players/${player}`, name: t(p.name) }]} />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd({ "@context": "https://schema.org", ...playerEntity(player, locale, siteUrl), mainEntityOfPage: { "@id": `${siteUrl}${localizedPath(`/players/${player}`, locale)}#webpage` }, birthDate: p.born, nationality: { "@type": "Country", name: p.country }, image: `${siteUrl}${portrait.src}`, url: `${siteUrl}${localizedPath(`/players/${player}`, locale)}` }) }} />
 
-    <div className={styles.breadcrumb}>
-      <Link href={`/players/${player === "messi" ? "ronaldo" : "messi"}`}>{t(other.name)}<ArrowUpRight size={15} aria-hidden="true" /></Link>
+    <div className={styles.profileNavigation}>
+      <PageContext path={`/players/${player}`} title={t(p.name)} players={[player]} mainEntityId={`${siteUrl}/players/${player}#person`} breadcrumbs={[{ path: "/", name: t("Overview") }, { path: `/players/${player}`, name: t(p.name) }]} />
+      <Link className={styles.otherPlayer} href={`/players/${player === "messi" ? "ronaldo" : "messi"}`}>{t(other.name)}<ArrowRight size={14} aria-hidden="true" /></Link>
     </div>
 
     <header className={styles.hero}>
       <div className={styles.heroStage}>
-        <div className={styles.nationality}><span className={`country-flag ${player}`} aria-hidden="true" />{t("{0} · PLAYER PROFILE", { "0": t(p.countryCode) })}</div>
-        <span className={styles.shirtNumber} aria-hidden="true">#{p.number}</span>
-        <div className={`${styles.portrait} ${portraitStyles.frame}`}><Image className={portraitStyles.image} src={portrait.src} alt={t(p.imageAlt)} width={portrait.width} height={portrait.height} priority quality={85} sizes="(max-width: 720px) 300px, 440px" /></div>
+        <div className={`${styles.portrait} ${portraitStyles.frame}`}><Image className={portraitStyles.image} src={portrait.src} alt={t(p.imageAlt)} width={portrait.width} height={portrait.height} priority quality={85} sizes="(max-width: 720px) 260px, 440px" /></div>
         <div className={styles.heroCopy}>
-          <p className={styles.epithet}>{t(player === "messi" ? "The playmaker" : "The goal machine")}</p>
+          <div className={styles.nationality}><span className={`country-flag ${player}`} aria-hidden="true" />{t("{0} · PLAYER PROFILE", { "0": t(p.countryCode) })}</div>
           <h1 className={styles.name}><span>{t(player === "messi" ? "Lionel" : "Cristiano")} </span>{t(p.short)}</h1>
           <p className={styles.biography}>{t(p.tagline)}</p>
+          <Link className={styles.compareButton} href="/compare">{t("Compare with {0}", { "0": t(other.short) })}<ArrowRight size={16} aria-hidden="true" /></Link>
         </div>
       </div>
-      <div className={styles.heroScore}>
-        <strong>{format(scopes.career.goals[player])}</strong>
-        <div><span>{t("TOTAL GOALS")}</span><span>{t("Career")}</span></div>
-        <Link className={styles.compareButton} href="/compare">{t("Compare with {0}", { "0": t(other.short) })}<ArrowUpRight size={17} aria-hidden="true" /></Link>
+      <div className={styles.careerSummary}>
+        <div className={styles.summaryLabel}><span>{t("Career")}</span><span>{t("Club + country")}</span></div>
+        <dl className={styles.summaryStats}>
+          {headlineMetrics.map(metric => <div key={metric.id} data-summary-metric={metric.id}>
+            <dt>{t(metric.label)}<StatImageButton player={player} stat={{ title: metric.label, context: "Career · Club & country", values: metric.values, decimals: metric.decimals, note: metric.coverage }} /></dt><dd>{format(metric.values[player], metric.decimals)}</dd>
+          </div>)}
+        </dl>
       </div>
     </header>
 
@@ -91,14 +93,8 @@ export default async function PlayerPage({ params }: { params: Promise<{ player:
       <div className={styles.sectionHeading}>
         <div><span className={styles.kicker}>{t("Club + country")}</span><h2 id="career-heading">{t("Career overview")}</h2></div>
       </div>
-      <div className={styles.statGrid}>
-        {headlineMetrics.map(metric => <div className={styles.stat} key={metric.id} data-metric={metric.id}>
-          <span>{t(metric.label)}</span><strong>{format(metric.values[player], metric.decimals)}</strong>
-          <StatImageButton player={player} stat={{ title: metric.label, context: "Career · Club & country", values: metric.values, decimals: metric.decimals, note: metric.coverage }} />
-        </div>)}
-      </div>
       <div className={styles.rateGrid}>
-        {rateMetrics.map(metric => <div key={metric.id}><span>{t(metric.label)}</span><strong>{format(metric.values[player], metric.decimals)}</strong><StatImageButton player={player} stat={{ title: metric.label, context: "Career · Club & country", values: metric.values, decimals: metric.decimals, lowerIsBetter: metric.lowerIsBetter }} /></div>)}
+        {detailMetrics.map(metric => <div key={metric.id} data-metric={metric.id}><span>{t(metric.label)}</span><strong>{format(metric.values[player], metric.decimals)}</strong><StatImageButton player={player} stat={{ title: metric.label, context: "Career · Club & country", values: metric.values, decimals: metric.decimals, lowerIsBetter: metric.lowerIsBetter, note: metric.coverage }} /></div>)}
       </div>
     </section>
 

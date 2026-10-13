@@ -202,6 +202,7 @@
 .formats button:hover { border-color: var(--accent); }
 .formats button[aria-pressed='true'] { border-color: var(--accent); color: var(--text); background: color-mix(in srgb, var(--accent) 6%, var(--panel)); }
 .formats small { font-size: 9px; white-space: nowrap; color: var(--muted); }
+.formats button[aria-pressed='true'] small { color: var(--text); }
 .shape { height: 25px; border: 1.5px solid currentColor; border-radius: 3px; }
 .formats button[aria-pressed='true'] .shape { color: var(--accent); background: color-mix(in srgb, var(--accent) 14%, transparent); }
 .statistics { border-block: 1px solid var(--border); }

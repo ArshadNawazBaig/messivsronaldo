@@ -1,5 +1,5 @@
 import { locales } from "../../src/lib/i18n/config";
-import { expectedSitemapSize } from "./sitemap-helpers";
+import { expectedSitemapPaths } from "./sitemap-helpers";
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
@@ -76,14 +76,17 @@ test("calculator is accessible and fits desktop, mobile and Arabic in both theme
 
 test("new tools and guides are discoverable and sitemap lists every language", async ({ page, request }) => {
   await page.goto("/");
-  await page.getByRole("link", { name: "Open the calculator", exact: true }).click();
+  await page.locator('.home-page a[href="/scoring-calculator"]').first().click();
   await expect(page).toHaveURL(/\/scoring-calculator$/);
   await page.locator(".header-search").click();
   await page.getByRole("textbox", { name: "Search pages", exact: true }).fill("2012");
   await page.locator('.search-results a[href="/insights/messi-2012-vs-ronaldo-2013-goals"]').click();
   await expect(page.getByTestId("messi-projection")).toHaveText("65.94");
   const xml = await (await request.get("/sitemap.xml")).text();
-  expect(xml.match(/<url>/g)).toHaveLength(expectedSitemapSize);
+  // Published CMS articles can extend the built-in page directory.
+  const paths = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => new URL(match[1]).pathname);
+  expect(paths).toEqual(expect.arrayContaining(expectedSitemapPaths));
+  expect(new Set(paths).size).toBe(paths.length);
   for (const locale of ["", "/es", "/pt", "/nl", "/fr", "/de", "/ar", "/hi"]) {
     expect(xml).toContain(`${locale}/scoring-calculator</loc>`);
     expect(xml).toContain(`${locale}/insights/messi-2012-vs-ronaldo-2013-goals</loc>`);
