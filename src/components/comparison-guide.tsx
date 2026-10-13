@@ -7,6 +7,7 @@ import { awardComparisons, awardTotals } from "@/lib/awards";
 import type { ScopeId } from "@/lib/football";
 import styles from "./comparison-guide.module.css";
 import { translatedDate } from "@/lib/i18n/date-format";
+import { ChevronDown } from "lucide-react";
 export async function ComparisonGuide() {
     const { t, numberLocale, locale } = await getI18n();
     const data = await getPublishedData();
@@ -33,6 +34,7 @@ export async function ComparisonGuide() {
     <span className="section-kicker">{t("THE COMPARISON, IN CONTEXT")}</span>
     <h2 id="comparison-guide-title">{t("Ronaldo vs Messi: how do their records compare?")}</h2>
     <p>{t("Compare Lionel Messi and Cristiano Ronaldo across their careers, clubs and national teams. The published figures below run through ")}<time dateTime={snapshotDate}>{t(snapshotLabel)}</time>{t(". Each competition has its own boundary and supporting sources.")}</p>
+    <div className={styles.columns}><div>
     <table className={styles.table}>
       <caption>{t("Messi vs Ronaldo: key career and competition records")}</caption>
       <thead><tr><th scope="col">{t("Record")}</th><th scope="col">{t("Messi")}</th><th scope="col">{t("Ronaldo")}</th></tr></thead>
@@ -45,14 +47,20 @@ export async function ComparisonGuide() {
       </tbody>
     </table>
     <p className={styles.note}>{t("Competition totals are part of career totals; these rows should not be added together.")} <Link href="/methodology">{t("Sources & counting rules")}</Link> · <Link href="/updates">{t("Public update log")}</Link></p>
-    <h3>{t("Who has scored more career goals?")}</h3>
+    </div><div className={styles.questions}>
+    <details><summary><h3>{t("Who has scored more career goals?")}</h3><ChevronDown size={17} aria-hidden="true"/></summary>
     <p>{t("Messi has {0} career goals and Ronaldo has {1}. These totals include senior competitive club matches and recognized senior internationals. Club friendlies, youth matches and penalty shootouts are excluded. ", { "0": t(goals.messi.toLocaleString(numberLocale)), "1": t(goals.ronaldo.toLocaleString(numberLocale)) })}<Link href="/goals">{t("Explore the full goals comparison")}</Link>.</p>
     {rate && <p>{t("Messi averages {0} goals per appearance; Ronaldo averages {1}. This adjusts for match count, but not minutes played, opposition or role.", { 0: format(rate.values.messi, rate.decimals), 1: format(rate.values.ronaldo, rate.decimals) })} <Link href="/scoring-calculator">{t("Open the calculator")}</Link>.</p>}
-    <h3>{t("How do their assists compare?")}</h3>
+    </details>
+    <details><summary><h3>{t("How do their assists compare?")}</h3><ChevronDown size={17} aria-hidden="true"/></summary>
     <p>{t("The career comparison records {0} assists for Messi and {1} for Ronaldo. Assist definitions differ between providers, so compare totals using the same source and scope. ", { "0": t(assists.messi), "1": t(assists.ronaldo) })}<Link href="/assists">{t("See assists, goal contributions and counting rules")}</Link>.</p>
-    <h3>{t("How are team trophies and individual awards counted?")}</h3>
+    </details>
+    <details><summary><h3>{t("How are team trophies and individual awards counted?")}</h3><ChevronDown size={17} aria-hidden="true"/></summary>
     <p>{t("Team trophies are listed by competition, with youth, Olympic and conference titles identified. Ballon d\u2019Or awards are shown separately. ")}<Link href="/honours">{t("Compare the complete trophy cabinet")}</Link>.</p>
-    <h3>{t("Does a higher total settle who is better?")}</h3>
+    </details>
+    <details><summary><h3>{t("Does a higher total settle who is better?")}</h3><ChevronDown size={17} aria-hidden="true"/></summary>
     <p>{t("A total answers one question. Playing time, competition, role and the length of each career add context. Use total goals alongside appearances and per-90 rates, or explore ")}<Link href="/head-to-head">{t("matches in which both players appeared")}</Link>{t(". Our ")}<Link href="/methodology">{t("methodology")}</Link>{t(" explains the limits and sources.")}</p>
+    </details>
+    </div></div>
   </section>;
 }

@@ -15,10 +15,11 @@ type PlayerMatchupProps = {
     accessibleLabel: string;
     context: string;
     details?: Record<PlayerId, string>;
+    supportingStats?: { label: string; values: Record<PlayerId, number> }[];
     decimals?: number;
     exportData: Omit<StatImage, "values" | "decimals">;
 };
-export function PlayerMatchup({ values, label, accessibleLabel, context, details, decimals = 0, exportData }: PlayerMatchupProps) {
+export function PlayerMatchup({ values, label, accessibleLabel, context, details, supportingStats, decimals = 0, exportData }: PlayerMatchupProps) {
     const { t, numberLocale } = useI18n();
     return <><div className="player-matchup">
     {(["messi", "ronaldo"] as const).map(id => {
@@ -38,6 +39,7 @@ export function PlayerMatchup({ values, label, accessibleLabel, context, details
               <div className="player-identity"><h2><span>{t(id === "messi" ? "Lionel" : "Cristiano")}</span>{t(player.short)}</h2><p>{t(id === "messi" ? "The art of possibility." : "The pursuit of extraordinary.")}</p></div>
             </div>
             <div className="player-score"><span className={`big-score${score.length > 4 ? " is-wide-score" : ""}`}>{t(score)}</span><div><span>{t(label)}</span><span>{t(context)}</span>{details && <span>{t(details[id])}</span>}</div><span className="player-profile-link" aria-hidden="true"><ArrowUpRight size={20}/></span></div>
+            {supportingStats && <dl className="player-supporting-stats">{supportingStats.map(stat => <div key={stat.label}><dt>{t(stat.label)}</dt><dd>{stat.values[id].toLocaleString(numberLocale)}</dd></div>)}</dl>}
           </div>
         </Link>
       </article>;

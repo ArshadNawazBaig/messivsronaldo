@@ -9,6 +9,23 @@
 .table td:last-child, .table thead th:last-child { padding-inline-end: 0; }
 .coverage { display: block; color: var(--muted); font-size: 12px; font-weight: 400; line-height: 1.5; margin-block-start: 4px; }
 .note { font-size: 13px; }
+.columns { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); align-items: start; gap: 48px; margin-top: 24px; }
+.columns > div { min-width: 0; }
+.columns .table { margin-top: 0; font-size: 13px; }
+.columns .table caption { font-size: 13px; line-height: 1.6; }
+.columns .table th:first-child { width: 60%; }
+.columns .coverage { font-size: 11px; }
+.questions { border-top: 1px solid var(--border); }
+.questions details { border-bottom: 1px solid var(--border); }
+.questions summary { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 20px 0; list-style: none; cursor: pointer; }
+.questions summary::-webkit-details-marker { display: none; }
+.questions summary h3 { margin: 0; font-family: var(--font-inter),sans-serif; font-size: 15px; line-height: 1.6; font-weight: 550; }
+.questions summary svg { flex-shrink: 0; color: var(--muted); }
+.questions details[open] summary svg { transform: rotate(180deg); }
+.questions details p { margin: 0 0 20px; font-size: 13px; }
+.questions summary:hover { color: var(--accent); }
+.questions summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+@media (max-width: 900px) { .columns { grid-template-columns: 1fr; gap: 24px; } }
 @media (max-width: 600px) {
   .table { font-size: 13px; }
   .table th, .table td { padding: 12px 6px; }

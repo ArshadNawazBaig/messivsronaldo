@@ -1,7 +1,7 @@
 import { PageContext } from '@/components/page-context';
 import { getI18n } from '@/lib/i18n/server';
 import Link from '@/components/localized-link';
-import { ArrowDown, ArrowUpRight } from 'lucide-react';
+import { ArrowUp, ArrowUpRight, Clock3, ShieldCheck } from 'lucide-react';
 import { ComparisonGuide } from '@/components/comparison-guide';
 import { Comparison, ExploreCards } from '@/components/comparison';
 import { AwardChart } from '@/components/award-chart';
@@ -13,6 +13,7 @@ import { RecordAnswers } from '@/components/record-answers';
 import { buildRecordAnswers } from '@/lib/record-answers';
 import { ToolCards } from '@/components/tool-cards';
 import { homeTitle } from '@/lib/home-content';
+import styles from './home.module.css';
 export async function generateMetadata() {
   const { t } = await getI18n();
   const { snapshotLabel } = await getPublishedData();
@@ -29,7 +30,7 @@ export default async function Home() {
   const { t } = await getI18n();
   const data = await getPublishedData();
   return (
-    <div className="page-container home-page">
+    <div className={`page-container home-page ${styles.home}`}>
       <PageContext
         path="/"
         title={t(homeTitle)}
@@ -37,10 +38,14 @@ export default async function Home() {
         mainEntityId="#comparison-dataset"
         breadcrumbs={[]}
       />
-      <div className="edition-line">
+      <div className={styles.edition}>
         <span>{t('FOOTBALL / PLAYER COMPARISON')}</span>
+        <Link href="/updates" className={styles.updated}>
+          <Clock3 size={13} aria-hidden="true" />
+          <span>{t('Last updated')} <time dateTime={data.snapshotDate}>{t(data.snapshotLabel)}</time></span>
+        </Link>
       </div>
-      <section className="page-intro">
+      <section className={`page-intro ${styles.intro}`}>
         <div>
           <h1>
             {t('Messi ')}
@@ -53,35 +58,30 @@ export default async function Home() {
             )}
           </p>
         </div>
-        <Link className="intro-link" href="/methodology">
+        <Link className={styles.methodology} href="/methodology">
+          <ShieldCheck size={17} aria-hidden="true" />
           {t('How we count ')}
-          <ArrowUpRight size={16} />
+          <ArrowUpRight size={14} aria-hidden="true" />
         </Link>
       </section>
-      <Comparison />
-      <RecordAnswers answers={buildRecordAnswers(data, t)} compact />
-      <CurrentHighlights />
-      <AwardChart />
-      <ExploreCards />
-      <ComparisonGuide />
-      <ToolCards />
-      <section className="trust-banner">
-        <div>
-          <span className="section-kicker">{t('THE SCORING CALCULATOR')}</span>
-          <h2>{t('Same opportunity. Your comparison.')}</h2>
-          <p>
-            {t(
-              'Choose a record for each player. Compare their goals at equal minutes or appearances, explore peak seasons, and share your calculation.',
-            )}
-          </p>
+      <Comparison homepage />
+      <div className={styles.section} id="home-explore">
+        <ExploreCards />
+      </div>
+      <div className={styles.section}>
+        <div className="section-title-row">
+          <h2>{t('2026 highlights')}</h2>
+          <Link href="/2026" className="text-link">{t('2026 stats')}<ArrowUpRight size={16} aria-hidden="true" /></Link>
         </div>
-        <Link href="/scoring-calculator">
-          {t('Open the calculator')}
-          <ArrowUpRight size={17} />
-        </Link>
-      </section>
-      <EditorialCards limit={3} />
-      <section className="trust-banner">
+        <CurrentHighlights />
+      </div>
+      <div className={styles.section} id="home-awards"><AwardChart /></div>
+      <div className={styles.section} id="home-tools"><ToolCards compact /></div>
+      <div className={styles.section} id="home-reading"><EditorialCards limit={3} /></div>
+      <RecordAnswers answers={buildRecordAnswers(data, t)} compact />
+      <ComparisonGuide />
+      <section className={styles.trust}>
+        <ShieldCheck className={styles.trustIcon} size={28} aria-hidden="true" />
         <div>
           <span className="section-kicker">{t('ABOUT THE DATA')}</span>
           <h2>{t('A comparison you can check.')}</h2>
@@ -91,15 +91,15 @@ export default async function Home() {
             )}
           </p>
         </div>
-        <Link href="/methodology">
-          {t('Sources & methodology ')}
-          <ArrowUpRight size={17} />
-        </Link>
+        <div className={styles.trustLinks}>
+          <Link href="/methodology">{t('Sources & methodology ')}<ArrowUpRight size={17} aria-hidden="true" /></Link>
+          <Link href="/updates">{t('Public update log')}<ArrowUpRight size={17} aria-hidden="true" /></Link>
+        </div>
       </section>
-      <div className="back-to-data">
+      <div className={styles.backToData}>
         <a href="#comparison">
           {t('Back to the comparison ')}
-          <ArrowDown size={13} />
+          <ArrowUp size={15} aria-hidden="true" />
         </a>
       </div>
     </div>
