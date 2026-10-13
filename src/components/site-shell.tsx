@@ -2,7 +2,7 @@
 import { playerPhotoLicense } from "@/lib/player-artwork";
 import { LanguageLinks, LanguageSwitcher } from "./language-switcher";
 import { SocialLinks } from "./social-links";
-import dynamic from "next/dynamic";
+import { NavigationIcon } from "./ui/navigation-icon";
 import { stripLocale, locales, type Locale } from "@/lib/i18n/config";
 import { useI18n } from "@/components/i18n-provider";
 import { useFootballData } from "@/components/data-provider";
@@ -14,10 +14,6 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { ArrowUpRight, ChevronDown, ChevronRight, Menu, Moon, Search, Sun, X } from "lucide-react";
-// Menu/search artwork is only needed after the visitor opens those controls.
-const NavigationIcon = dynamic(() => import("./ui/navigation-icon").then(module => module.NavigationIcon), {
-    loading: () => <span aria-hidden="true" style={{ display: "inline-block", width: 20, height: 20, flexShrink: 0 }}/>,
-});
 const comparisonItems = [
     { href: "/", label: "Overview" },
     { href: "/compare", label: "Compare stats" },
