@@ -280,7 +280,7 @@ html {
   border-bottom: 2px solid transparent;
   color: var(--muted);
   font-size: 12px;
-  font-weight: 550;
+  font-weight: 600;
   white-space: nowrap;
 }
 .primary-nav-trigger:hover,
@@ -336,7 +336,7 @@ html {
   border-radius: 4px;
   color: var(--text);
   font-size: 13px;
-  font-weight: 450;
+  font-weight: 500;
   line-height: 1.4;
   transition: background-color 0.12s, color 0.12s;
 }

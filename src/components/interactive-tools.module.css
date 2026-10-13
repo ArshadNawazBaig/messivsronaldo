@@ -8,8 +8,8 @@
 .card:hover { border-color: var(--accent); }
 .compactTools .grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 0 40px; }
 .compactTools .card { display: grid; grid-template-columns: minmax(0,1fr) 16px; gap: 7px 20px; padding: 20px 0; border: 0; border-bottom: 1px solid var(--border); border-radius: 0; background: none; }
-.compactTools .card h3 { grid-column: 1; font-family: var(--font-inter),sans-serif; font-size: 16px; font-weight: 600; line-height: 1.4; }
-.compactTools .card p { grid-column: 1; font-size: 13px; }
+.compactTools .card h3 { grid-column: 1; font-family: var(--font-inter),sans-serif; font-size: 17px; font-weight: 600; line-height: 1.4; letter-spacing: -.01em; }
+.compactTools .card p { grid-column: 1; font-size: 14px; line-height: 1.75; }
 .compactTools .card > svg { grid-column: 2; grid-row: 1; margin: 3px 0 0; color: var(--muted); }
 .compactTools .card:hover h3 { text-decoration: underline; text-underline-offset: 4px; }
 @media(max-width:540px) { .compactTools .grid { grid-template-columns: 1fr; gap: 0; } }
