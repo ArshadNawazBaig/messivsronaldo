@@ -17,7 +17,7 @@ function loadAssets() {
   return Promise.all([
     loadPlayerPortrait("messi"),
     loadPlayerPortrait("ronaldo"),
-    readFile(join(process.cwd(), "public/images/brand/the-rivalry-mark.svg")),
+    readFile(join(process.cwd(), "public/images/brand/the-rivalry-mark-lime.svg")),
     readFile(join(process.cwd(), "public/fonts/og/inter-latin-400.woff")),
     readFile(join(process.cwd(), "public/fonts/og/inter-latin-800.woff")),
     readFile(join(process.cwd(), "public/fonts/og/roboto-condensed-800.ttf")),

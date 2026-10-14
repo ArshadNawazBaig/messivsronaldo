@@ -30,6 +30,9 @@
 .actions button, .answer { border: 1px solid var(--border); background: var(--bg); color: var(--text); padding: 12px 18px; font: inherit; font-size: 13px; cursor: pointer; }
 .actions button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
 .actions button[aria-pressed=true], .answer[aria-pressed=true] { background: var(--text); color: var(--bg); border-color: var(--text); }
+.calculationActions button { background: #131416; color: var(--brand-accent); border-color: #434a2e; }
+.calculationActions button:hover { border-color: var(--brand-accent); }
+.calculationActions button[aria-pressed=true] { background: #252c14; color: var(--brand-accent); border-color: var(--brand-accent); box-shadow: inset 0 -2px var(--brand-accent); }
 .panel button:focus-visible, .card:focus-visible, .panel input:not([type=range]):focus-visible, .panel summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 .question { font-family: var(--font-reading); font-size: clamp(21px,2.5vw,28px); font-weight: 600; letter-spacing: -.02em; line-height: 1.4; max-width: 800px; margin: 22px 0; }
 .answers { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; }

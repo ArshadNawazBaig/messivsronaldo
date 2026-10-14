@@ -22,7 +22,7 @@ const html = home.bytes.toString();
 const js = html.match(/src="([^"]*\/_next\/static\/[^"]+\.js)"/)?.[1];
 const css = html.match(/href="([^"]*\/_next\/static\/[^"]+\.css)"/)?.[1];
 assert.ok(js && css, "Find deployed JavaScript and CSS assets");
-const assets = [js, css, "/fonts/i18n/noto-sans-arabic.woff2", "/images/brand/the-rivalry-mark.svg",
+const assets = [js, css, "/fonts/i18n/noto-sans-arabic.woff2", "/images/brand/the-rivalry-mark-lime.svg",
   "/_next/image?url=%2Fimages%2Fplayers%2Fmessi-world-cup-2026-cutout.webp&w=256&q=75"];
 for (const path of assets) {
   const headers = { accept: "image/webp,*/*" };
