@@ -57,6 +57,10 @@ The activity log retains publication history and supports undoing the last publi
 
 ### Download stat images and player posters
 
+Poster creation is admin-only. The public poster studio, creation links and
+unauthenticated image routes have been removed. Every preview and download uses
+the authenticated `/api/admin/stat-image` endpoint.
+
 While signed in as an administrator, open a public comparison page and choose **Download image** beside a statistic. **Stat card** exports that comparison. Select **Player poster** for a poster featuring a player photo, national flag and tournament statistics in the site's colors.
 
 Choose **Lionel Messi** or **Cristiano Ronaldo**, then choose a **Tournament / competition**. Messi uses Argentina's flag; Ronaldo uses Portugal's. The tournament list includes the Champions League, World Cup stats, La Liga and each player's continental championship, plus career, club and international scopes. World Cup stats cover tournament matches across all rounds, excluding qualifiers and shootouts. Copa América and the European Championship, and Inter Miami and Al Nassr, switch to the correct player automatically. Posters show goals, matches, assists, minutes and goals per game, using the same published data and assist conventions as the site. Every image includes its scope's data date and coverage notes.

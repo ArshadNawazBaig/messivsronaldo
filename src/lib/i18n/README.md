@@ -31,8 +31,8 @@ The public root layout is `app/[locale]/layout.tsx`. `getI18n()` reads Next.js
 root parameters, so the URL determines the language without request headers or
 cookies making every page dynamic. Public pages are generated on their first
 visit and cached for one day; publishing statistics or articles invalidates
-their data tags and dependent pages immediately. The query-dependent comparison
-poster studio remains dynamic. Language-negotiation redirects remain private.
+their data tags and dependent pages immediately. Poster creation is available
+only through authenticated admin exports. Language-negotiation redirects remain private.
 
 Admin pages use a separate dynamic root layout. Cached public HTML contains no
 admin controls. A readable UI hint cookie only triggers a private session check;

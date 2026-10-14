@@ -22,6 +22,7 @@ This workspace's ignored `.env.local` sets the preview origin to `http://localho
 
 ## What is implemented
 
+- Poster creation is available only to signed-in administrators through the image export controls. The former public `/comparison-posters` page and `/api/comparison-poster` image routes are removed, along with their public links and sitemap entries.
 - A protected `/admin/dahsboard` workspace with email/password sign-in, sidebar navigation, article publishing, player and match records, support, API-Football sync, audit history, undo, and persistent Postgres storage on Railway (SQLite for local development). Setup and boundaries: [ADMIN_GUIDE.md](ADMIN_GUIDE.md).
 - Next.js App Router, TypeScript, locally hosted Inter and Manrope fonts, Lucide icons, and custom responsive CSS.
 - Thirteen comparison scopes: career, 2026, club, country, Champions League, La Liga, World Cup, Copa América/Euros, current clubs, all leagues, European clubs, career excluding USA/Saudi, and direct meetings.

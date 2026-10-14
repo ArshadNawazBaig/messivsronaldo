@@ -9,6 +9,12 @@ import { getPublicPages } from "../src/lib/public-pages";
 import { locales } from "../src/lib/i18n/config";
 
 const data = buildPublishedData();
+test("poster creation is excluded from public tools and the shared page catalog", () => {
+  assert.equal(Object.hasOwn(toolPages, "comparison-posters"), false);
+  assert.ok(toolLinks.every(tool => tool.href !== "/comparison-posters"));
+  assert.ok(getPublicPages(data.calendarYears, data.snapshotDate).every(page => page.path !== "/comparison-posters"));
+});
+
 test("quiz derives eight answers from published records, including ties and lower-is-better rates", () => {
   const questions = quizQuestions(data);
   assert.equal(questions.length, 8);

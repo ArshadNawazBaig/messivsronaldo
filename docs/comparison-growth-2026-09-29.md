@@ -1,8 +1,13 @@
 # Public posters and historical comparison research
 
-Reviewed 29 September 2026. The public poster studio is implemented at `/comparison-posters`. Match histories, opponent records and age comparisons below are the next implementation plan; complete historical pages have not been shipped.
+Reviewed 29 September 2026. The public poster studio described below was removed
+from the implementation on 14 October 2026 at the owner's request. Its page,
+image endpoints and public discovery links are removed; authenticated admin
+poster exports remain available. The former design notes below are historical.
+Match histories, opponent records and age comparisons below are a research plan;
+complete historical pages have not been shipped.
 
-## Public poster studio
+## Former public poster studio
 
 - Available without an account from comparison tables, Tools, site navigation, site search and the localized sitemap.
 - Reuses the approved player portraits, blue/red colors, backgrounds, typography and logo placement.

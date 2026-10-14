@@ -9,7 +9,7 @@
     "prebuild": "npm run i18n:client",
     "build": "next build",
     "start": "next start",
-    "start:railway": "node scripts/check-railway-env.mjs && exec next start --hostname 0.0.0.0 --port \"${PORT:-3000}\"",
+    "start:railway": "node scripts/check-railway-env.mjs && MALLOC_ARENA_MAX=\"${MALLOC_ARENA_MAX:-2}\" exec next start --hostname 0.0.0.0 --port \"${PORT:-3000}\"",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "pretest": "node scripts/build-client-messages.mjs --check",

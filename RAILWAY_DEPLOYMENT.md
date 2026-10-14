@@ -107,6 +107,122 @@ receipts are in `.artifacts/adsense-navigation/`.
 
 ## Web service
 
+### Memory tuning — 14 October 2026 rollout
+
+The measurements in this section predate the subsequent removal of the public
+poster creator. Poster creation is now restricted in the implementation to the
+authenticated admin exporter. The additional production cost effect of removing
+public poster requests has not been measured.
+
+The CDN optimization rollout includes these locally validated changes:
+
+- Next.js keeps 16 MiB of page/data cache in memory instead of 50 MiB. Its
+  disk-backed ISR/data cache and publication invalidation remain enabled.
+- Page modules load on demand instead of all being preloaded at startup. Modules
+  remain loaded after use; this is primarily a startup saving.
+- The Node instrumentation hook disables Sharp's intermediate operation cache
+  and sets one processing thread per image. This covers both `next/image` and
+  the Sharp renderer used by `next/og`; completed images still use their existing
+  response caches. This does not serialize all requests or reduce image quality.
+- `start:railway` defaults `MALLOC_ARENA_MAX` to `2` before Node starts, following
+  [Sharp's Linux allocator guidance](https://sharp.pixelplumbing.com/performance/).
+  An explicit Railway value overrides the default. No service memory limit or
+  JavaScript heap cap was lowered.
+
+The controlled local comparison used separate production builds, empty runtime
+page/poster/image caches, the same isolated SQLite fixture, 75 page/API requests
+across nine languages, 12 image transformations, eight poster/social renders,
+33 repeated requests, and a 20-second idle period. Both runs used Node 22.22.2
+on macOS. All requested responses returned 200 and PNG signatures were checked.
+
+| Measurement (MiB RSS) | Before | After |
+| --- | ---: | ---: |
+| Startup | 139 | 130 |
+| Peak during poster rendering | 1,575 | 1,381 |
+| After the final idle period | 1,447 | 1,244 |
+
+This is a 14% reduction in final resident memory for this workload, not a
+production billing measurement. Page, image and poster timings were similar
+in this run; different workloads and Linux allocation behavior can differ.
+The allocator setting's effect cannot be measured on macOS.
+
+Railway's observed preceding-hour average was approximately 1,204 MiB, with
+one web replica. If its billable average falls by the same 14%, the previous
+$13.70 project projection would become roughly $12 per full billing period,
+saving about $2/month. Further allocator savings are not included. After
+deployment, compare at least 24–48 hours of average RAM, CPU, errors and request
+latency, including uncached poster generation, before revising that estimate.
+The Hobby minimum remains $5 for the account; other projects also count.
+
+Benchmark scripts, samples and build/check logs are saved locally in
+`.artifacts/memory-optimization/`. Validation passed: production build, lint,
+203 unit tests (one skipped), and the existing PostgreSQL cache integration
+test. The latter verified publication refresh, unchanged-cache reuse, image
+privacy and health authorization against a fresh local database and build.
+Run this test from a fresh build: reusing ISR response files from a benchmark
+with a different database can contaminate its initial versions and images.
+Rollback consists of removing these config,
+instrumentation and start-command changes and redeploying; no data migration is
+involved.
+
+### CDN caching — 14 October 2026 rollout
+
+Railway's built-in CDN is configured for public assets on the `messivsronaldo`
+web service. The allowlist is checked in at `deployment/railway-edge-rules.json`;
+its single rule bypasses the edge cache for every path except `/_next/static/*`,
+`/_next/image`, `/images/*`, `/fonts/*`, `/icon.svg` and `/favicon.ico`.
+Railway's API validation accepted this rule with no diagnostics.
+
+The CDN settings are HTML caching **Never**, fallback TTL **1 day**, honor SWR
+**On**, and purge on successful deployment **All**. Install the bypass rule
+before enabling caching. These settings apply to all three existing domains;
+DNS, the Hobby plan, one replica and the existing Neon database stay in place.
+The ruleset is stored through `updateServiceEdgeRules`; inspect and preserve any
+other existing rules before applying it. Configuration is service state and is
+not automatically applied from the JSON file by a GitHub deployment.
+
+Public HTML and statistics still use the existing daily Next.js ISR/data cache,
+which publication invalidates immediately. They bypass the CDN because language
+negotiation depends on request cookies/headers and the edge otherwise retains
+old publications after `revalidateTag`. This also keeps RSC navigation, voting,
+maintenance mode, feeds, CMS media, admin sessions and authenticated exports out
+of the shared edge cache. No Railway API credentials are added to the app.
+
+Next's hashed JavaScript/CSS/font files retain their immutable cache policy.
+Checked-in `/images/` and `/fonts/` files use a one-hour browser lifetime and a
+one-day shared lifetime. Optimized images use at least one day and accept only
+checked-in `/images/` inputs (plus Next's built-in static-import paths), without
+source query strings. CMS media stays unoptimized with publication/auth checks;
+it cannot enter the public image optimizer. Use a new filename when replacing an
+asset that must change immediately for browsers with a cached copy.
+
+Before rollout, a fresh mobile-browser sample of `/`, `/goals` and `/assists`
+transferred 653,996 bytes from the site, of which 543,061 (83%) were eligible
+assets. Homepage assets alone represented 91% of its first-party transfer. This
+is potential egress offload for those visits after cache warm-up, not a measured
+site-wide hit rate or total-bill reduction. Third-party advertising traffic is
+excluded. Railway does not provide a CDN hit-rate dashboard; compare origin
+egress over representative traffic and inspect `x-cache`/`age` headers.
+
+Run the read-only hosted check after rollout:
+
+```sh
+node scripts/check-railway-cdn.mjs
+```
+
+It verifies asset cache hits, unchanged asset bytes, origin-served mutable
+content, private responses, browser/cookie language redirects, removal of public
+posters, and rejection of CMS media through the image optimizer. Local tests
+exercise publication and unpublication against synthetic data only. Deployment
+and benchmark receipts live in `.artifacts/cdn-optimization/`.
+
+To roll back the CDN immediately, run
+`npx @railway/cli@5.68.0 cdn disable --service messivsronaldo`.
+Do not enable whole-page edge caching without implementing publication purges
+and testing language negotiation and RSC cache separation first.
+
+### Runtime settings
+
 Use Railpack, Node 22, and a single replica in the US East region
 nearest the existing Neon `iad1` database. Settings are stored on the Railway
 service via the dashboard/API. Railway rejects legacy Config as Code for new

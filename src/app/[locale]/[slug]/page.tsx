@@ -45,7 +45,7 @@ async function getPage(slug: string) {
     if (introduction) return { ...page, description: introduction };
     return { ...page, description: comparisonDescription(page, data, t) };
 }
-export function generateStaticParams() { return Object.keys(pages).filter(slug => slug !== "comparison-posters").map(slug => ({ slug })); }
+export function generateStaticParams() { return Object.keys(pages).map(slug => ({ slug })); }
 export async function generateMetadata({ params }: {
     params: Promise<{
         slug: string;

@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "rules": [
+    {
+      "description": "Cache public assets only; preserve language negotiation, publication freshness and private responses",
+      "priority": 10,
+      "enabled": true,
+      "if": {
+        "not": {
+          "or": [
+            { "attr": "http.path", "op": "matches", "value": "/_next/static/*" },
+            { "attr": "http.path", "op": "eq", "value": "/_next/image" },
+            { "attr": "http.path", "op": "matches", "value": "/images/*" },
+            { "attr": "http.path", "op": "matches", "value": "/fonts/*" },
+            { "attr": "http.path", "op": "eq", "value": "/icon.svg" },
+            { "attr": "http.path", "op": "eq", "value": "/favicon.ico" }
+          ]
+        }
+      },
+      "then": { "action": "cache_override", "params": { "bypass": true } }
+    }
+  ]
+}

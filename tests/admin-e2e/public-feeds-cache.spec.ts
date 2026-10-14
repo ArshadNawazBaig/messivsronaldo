@@ -18,8 +18,8 @@ test("public feeds and social previews reuse completed responses", async ({ requ
     expect(first.status(), path).toBe(200);
     expect(cached.headers()["x-nextjs-cache"], path).toBe("HIT");
     // Next's metadata-route handler gives sitemap.xml a browser revalidation
-    // header; its one-hour ISR lifetime is carried in the prerender manifest.
-    if (path !== "/sitemap.xml") expect(cached.headers()["cache-control"], path).toContain(path === "/api/data-version" ? "s-maxage=30" : "s-maxage=3600");
+    // header; its daily ISR lifetime is carried in the prerender manifest.
+    if (path !== "/sitemap.xml") expect(cached.headers()["cache-control"], path).toContain(path === "/api/data-version" ? "s-maxage=30" : "s-maxage=86400");
     expect(cached.headers()["cache-control"], path).not.toContain("no-store");
     expect(await cached.body()).toEqual(await first.body());
   }
