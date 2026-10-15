@@ -1,0 +1,920 @@
+[
+  {
+    "id": "f05cbfc1-d50b-4b91-88e7-c8fbf8cea4ea",
+    "locale": "en",
+    "slug": "messi-final-match-argentina-2026",
+    "revision": 5,
+    "publishedAt": "2026-10-15T11:41:22.689Z",
+    "originalPublicationDate": "2026-10-05T14:22:54.948Z",
+    "draftHash": "b8f7ecc1e5f99266d15f7d95221db005afd48a166922dd79d65dfc5b5fbb6e78"
+  },
+  {
+    "id": "71ba74e2-b343-c411-e758-7f19d6bc525b",
+    "locale": "en",
+    "slug": "messi-ronaldo-penalty-records",
+    "revision": 4,
+    "publishedAt": "2026-10-15T11:41:23.161Z",
+    "originalPublicationDate": "2026-09-28T05:26:25.318Z",
+    "draftHash": "b2fbd95e7fac5d36c563ba51b78acf1e827752582626152d4ec655e0e0441dd0"
+  },
+  {
+    "id": "seed:en:what-counts-as-a-career-goal",
+    "locale": "en",
+    "slug": "what-counts-as-a-career-goal",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:23.728Z",
+    "originalPublicationDate": "2026-10-01T16:18:38.223Z",
+    "draftHash": "756811e4c9b5c72cd3f160f954c5d60960cda75cbc8fadc5dc6966369dc66552"
+  },
+  {
+    "id": "3a66ebf2-9c49-5e8d-f6c3-561f844007ce",
+    "locale": "en",
+    "slug": "messi-ronaldo-2017-stats",
+    "revision": 4,
+    "publishedAt": "2026-10-15T11:41:24.247Z",
+    "originalPublicationDate": "2026-09-28T05:26:24.875Z",
+    "draftHash": "3a6f9dcc6f7865b187dc8e6bb2698653259da350934fc131398e661fcf501b7b"
+  },
+  {
+    "id": "536894ba-afec-7d02-d2f5-6c4232941602",
+    "locale": "en",
+    "slug": "messi-stats-career-guide",
+    "revision": 5,
+    "publishedAt": "2026-10-15T11:41:24.841Z",
+    "originalPublicationDate": "2026-09-28T14:30:48.843Z",
+    "draftHash": "e80caa817d0b30a38364cb44cd25998cdf542bb7977636d9a2684dcf563a7942"
+  },
+  {
+    "id": "6131456d-c781-4ca9-aa97-a8034293e039",
+    "locale": "en",
+    "slug": "most-expensive-football-signings-neymar-s-record-and-the-biggest-deals",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:25.318Z",
+    "originalPublicationDate": "2026-10-12T06:20:31.151Z",
+    "draftHash": "77c6045da0b707c314dc4e9486a6f15e43a5a8dd31163e6d05eb402333966996"
+  },
+  {
+    "id": "637fa6f7-99a0-0b5a-9d84-4db622941d77",
+    "locale": "en",
+    "slug": "messi-vs-ronaldo-stats-guide",
+    "revision": 6,
+    "publishedAt": "2026-10-15T11:41:25.862Z",
+    "originalPublicationDate": "2026-09-28T14:31:40.198Z",
+    "draftHash": "297550874da45834794f872dadc787f4834997893cb277145e5d6b328377717d"
+  },
+  {
+    "id": "75feef36-5766-100a-23a8-91f575480013",
+    "locale": "en",
+    "slug": "messi-ronaldo-la-liga-records",
+    "revision": 4,
+    "publishedAt": "2026-10-15T11:41:26.352Z",
+    "originalPublicationDate": "2026-09-28T05:26:22.470Z",
+    "draftHash": "07bb6104b89d19069bce81cbafc6ce18a451feeff3b0251f18980f17380f75fa"
+  },
+  {
+    "id": "91224b48-7a63-a4f1-0036-44deb7288301",
+    "locale": "en",
+    "slug": "messi-retirement-argentina-inter-miami-future",
+    "revision": 3,
+    "publishedAt": "2026-10-15T11:41:26.828Z",
+    "originalPublicationDate": "2026-10-01T16:38:23.927Z",
+    "draftHash": "34be7f988f08b479ca6347e3eab722a770f83597eba7b52db24bebbcbb7dae3c"
+  },
+  {
+    "id": "aa69554b-6d30-7a29-efcd-2f6033be96a9",
+    "locale": "en",
+    "slug": "messi-ronaldo-individual-awards",
+    "revision": 4,
+    "publishedAt": "2026-10-15T11:41:27.278Z",
+    "originalPublicationDate": "2026-09-28T05:26:27.198Z",
+    "draftHash": "8cf67eff55ebd95550b6810ca9b26df1b3e9ddd9904abee807e8203744abcd28"
+  },
+  {
+    "id": "c44f5e62-5076-e927-dde3-a33a6f3bb587",
+    "locale": "en",
+    "slug": "messi-ronaldo-free-kick-records",
+    "revision": 4,
+    "publishedAt": "2026-10-15T11:41:27.915Z",
+    "originalPublicationDate": "2026-09-28T05:26:27.547Z",
+    "draftHash": "cbe451a0f0ae498e294ed65f633055f3f829b20f671eb4f93e828fa6408f7d00"
+  },
+  {
+    "id": "ca4aca44-5d0e-3af7-d5f6-d1ac8db23e53",
+    "locale": "en",
+    "slug": "cristiano-ronaldo-retirement-portugal-al-nassr-future",
+    "revision": 4,
+    "publishedAt": "2026-10-15T11:41:28.616Z",
+    "originalPublicationDate": "2026-10-01T16:40:15.045Z",
+    "draftHash": "2bac3f4864b5b7aba52618adead34f1995cd60c909f494898aadfa01feba5b43"
+  },
+  {
+    "id": "f03b2a03-e9ea-c8d9-c2ff-07a1a1608a90",
+    "locale": "en",
+    "slug": "ronaldo-stats-career-guide",
+    "revision": 5,
+    "publishedAt": "2026-10-15T11:41:29.077Z",
+    "originalPublicationDate": "2026-09-28T14:29:58.604Z",
+    "draftHash": "896a1edd44dd9201cd5522f92350d85c6c66d84e08e203c96818caa969294e12"
+  },
+  {
+    "id": "seed:en:ballon-dor-2026-contenders-stats",
+    "locale": "en",
+    "slug": "ballon-dor-2026-contenders-stats",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:29.563Z",
+    "originalPublicationDate": "2026-09-27",
+    "draftHash": "fde4353d3e0e10ec9fc9fffb3e4f778caf40f1eecc0316dc90572d974ccc6e61"
+  },
+  {
+    "id": "seed:en:ballon-dor-2026-date-voting-rules",
+    "locale": "en",
+    "slug": "ballon-dor-2026-date-voting-rules",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:30.021Z",
+    "originalPublicationDate": "2026-09-27",
+    "draftHash": "ed474b76d774ec6bc29d7fb932b774996d41981542a1898c872b365e8d346bbc"
+  },
+  {
+    "id": "seed:en:kane-vs-mbappe-ballon-dor-2026-stats",
+    "locale": "en",
+    "slug": "kane-vs-mbappe-ballon-dor-2026-stats",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:30.462Z",
+    "originalPublicationDate": "2026-09-27",
+    "draftHash": "604f81d25f8ab1f614cf5220bd54fecc063a26dae2553baee68523378925e715"
+  },
+  {
+    "id": "seed:en:messi-2011-12-vs-ronaldo-2013-14-champions-league",
+    "locale": "en",
+    "slug": "messi-2011-12-vs-ronaldo-2013-14-champions-league",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:30.913Z",
+    "originalPublicationDate": "2026-09-25",
+    "draftHash": "e598858a436bae30fddb9b436325f211707e99ff601659c00580d38942142095"
+  },
+  {
+    "id": "seed:en:messi-2011-12-vs-ronaldo-2014-15-la-liga",
+    "locale": "en",
+    "slug": "messi-2011-12-vs-ronaldo-2014-15-la-liga",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:31.381Z",
+    "originalPublicationDate": "2026-09-25",
+    "draftHash": "e60ff7668bf386e9d51ff5a1303cfae98a9cf64bfad0b0a8dbaf21a064e421d5"
+  },
+  {
+    "id": "seed:en:messi-2012-vs-ronaldo-2013-goals",
+    "locale": "en",
+    "slug": "messi-2012-vs-ronaldo-2013-goals",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:31.839Z",
+    "originalPublicationDate": "2026-09-25",
+    "draftHash": "de039ac2daf81bb8b4c01961f15fb6f03819f6b711c4edcd4f023d013818be3d"
+  },
+  {
+    "id": "seed:en:totals-vs-scoring-rates",
+    "locale": "en",
+    "slug": "totals-vs-scoring-rates",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:32.286Z",
+    "originalPublicationDate": "2026-10-01T16:18:37.478Z",
+    "draftHash": "4f43eda04dec8aaab0d9efe834e785a7b7e304e272b34ebf31729ec50e72a4e7"
+  },
+  {
+    "id": "seed:en:why-assist-totals-differ",
+    "locale": "en",
+    "slug": "why-assist-totals-differ",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:32.781Z",
+    "originalPublicationDate": "2026-10-01T16:18:36.719Z",
+    "draftHash": "0c72db0a64e008961ec9963a07092ae921a4e620070396b785358f9d71ccfb88"
+  },
+  {
+    "id": "ad8cf466-7880-a24b-2ba0-5945d618ec8e",
+    "locale": "es",
+    "slug": "messi-goals-2009",
+    "revision": 4,
+    "publishedAt": "2026-10-15T11:41:33.252Z",
+    "originalPublicationDate": "2026-09-28T05:26:26.667Z",
+    "draftHash": "b9177c62b39c2b1e5c5a1512fd130848ee30f270d77da0bf665b4783efed9f97"
+  },
+  {
+    "id": "seed:es:ballon-dor-2026-contenders-stats",
+    "locale": "es",
+    "slug": "ballon-dor-2026-contenders-stats",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:33.737Z",
+    "originalPublicationDate": "2026-09-27",
+    "draftHash": "62a6655d99b120ebefb00eb14bd5b9d24a626c4eb813e8c927bb9c6ef3693e3b"
+  },
+  {
+    "id": "seed:es:ballon-dor-2026-date-voting-rules",
+    "locale": "es",
+    "slug": "ballon-dor-2026-date-voting-rules",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:34.193Z",
+    "originalPublicationDate": "2026-09-27",
+    "draftHash": "efd2fd14cc3e9b175952a6d2ebd7e9fdf593f97c20b4716c0dba655ed6347672"
+  },
+  {
+    "id": "seed:es:kane-vs-mbappe-ballon-dor-2026-stats",
+    "locale": "es",
+    "slug": "kane-vs-mbappe-ballon-dor-2026-stats",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:34.641Z",
+    "originalPublicationDate": "2026-09-27",
+    "draftHash": "97b6c37a0c460c1d8b628959cb9357a06680bc4d68a10b7bf39bff547f883224"
+  },
+  {
+    "id": "seed:es:messi-2011-12-vs-ronaldo-2013-14-champions-league",
+    "locale": "es",
+    "slug": "messi-2011-12-vs-ronaldo-2013-14-champions-league",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:35.097Z",
+    "originalPublicationDate": "2026-09-25",
+    "draftHash": "8d26d9cceae76e9c489d30d91a66a74b9617b70f5078bc33b40e201c3dd8956c"
+  },
+  {
+    "id": "seed:es:messi-2011-12-vs-ronaldo-2014-15-la-liga",
+    "locale": "es",
+    "slug": "messi-2011-12-vs-ronaldo-2014-15-la-liga",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:35.840Z",
+    "originalPublicationDate": "2026-09-25",
+    "draftHash": "775f380c31722072f3f1b548d18beb5549a4c747993dcadb83b8de8d56b95cc8"
+  },
+  {
+    "id": "seed:es:messi-2012-vs-ronaldo-2013-goals",
+    "locale": "es",
+    "slug": "messi-2012-vs-ronaldo-2013-goals",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:36.292Z",
+    "originalPublicationDate": "2026-09-25",
+    "draftHash": "46fdb6b14427fd79a6aa95d986100c24e4c0466fc0f16a21123cb80d26271f09"
+  },
+  {
+    "id": "seed:es:totals-vs-scoring-rates",
+    "locale": "es",
+    "slug": "totals-vs-scoring-rates",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:36.754Z",
+    "originalPublicationDate": "2026-10-01T16:18:45.015Z",
+    "draftHash": "148f64a969b730727cedc69d0ea0d9d20854aede0dd23d87a15f90c799bbf5ea"
+  },
+  {
+    "id": "seed:es:what-counts-as-a-career-goal",
+    "locale": "es",
+    "slug": "what-counts-as-a-career-goal",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:37.207Z",
+    "originalPublicationDate": "2026-10-01T16:18:45.973Z",
+    "draftHash": "183bed3bf598d94c324c13102ab910b5050f63eaa6fbfdf3656a0de3cb02da5a"
+  },
+  {
+    "id": "seed:es:why-assist-totals-differ",
+    "locale": "es",
+    "slug": "why-assist-totals-differ",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:37.679Z",
+    "originalPublicationDate": "2026-10-01T16:18:44.255Z",
+    "draftHash": "507bc7b9bb9785731474a6e2e7dd81263e6793fc72df507141635ef1290000c5"
+  },
+  {
+    "id": "08738255-89fa-b1b0-6b3b-4d593dfde5ba",
+    "locale": "pt",
+    "slug": "messi-career-goals",
+    "revision": 4,
+    "publishedAt": "2026-10-15T11:41:38.344Z",
+    "originalPublicationDate": "2026-09-28T05:26:21.682Z",
+    "draftHash": "38cab3bd1e14291336e7985069ca23f47f95f8be221a3c2498c4baa8b0421278"
+  },
+  {
+    "id": "88f3aa4a-c43d-47fa-400f-65484444087c",
+    "locale": "pt",
+    "slug": "messi-ronaldo-hat-tricks",
+    "revision": 4,
+    "publishedAt": "2026-10-15T11:41:38.912Z",
+    "originalPublicationDate": "2026-09-28T05:26:25.942Z",
+    "draftHash": "a3a4d17ca69ad90114c6a035cc159e275545802da81c34c11df65d1dc65a538b"
+  },
+  {
+    "id": "seed:pt:ballon-dor-2026-contenders-stats",
+    "locale": "pt",
+    "slug": "ballon-dor-2026-contenders-stats",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:39.424Z",
+    "originalPublicationDate": "2026-09-27",
+    "draftHash": "2ec86ff514cd9c55faa8270d39560cfb31feaf5890be48c7ff296cca349d2d85"
+  },
+  {
+    "id": "seed:pt:ballon-dor-2026-date-voting-rules",
+    "locale": "pt",
+    "slug": "ballon-dor-2026-date-voting-rules",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:39.904Z",
+    "originalPublicationDate": "2026-09-27",
+    "draftHash": "98a580a3fe89bdee9313959780cd30b420f5b126876b7cec88cda5ace8b787db"
+  },
+  {
+    "id": "seed:pt:kane-vs-mbappe-ballon-dor-2026-stats",
+    "locale": "pt",
+    "slug": "kane-vs-mbappe-ballon-dor-2026-stats",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:40.413Z",
+    "originalPublicationDate": "2026-09-27",
+    "draftHash": "a1b79ee14c3d6955526a1842ac37476b24987754b1f43e51d2e3ddab005fcbbc"
+  },
+  {
+    "id": "seed:pt:messi-2011-12-vs-ronaldo-2013-14-champions-league",
+    "locale": "pt",
+    "slug": "messi-2011-12-vs-ronaldo-2013-14-champions-league",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:40.923Z",
+    "originalPublicationDate": "2026-09-25",
+    "draftHash": "6caceb3caec2294317b583e13bdb5634aae9905badd21b78798bbac2d3a8ba7c"
+  },
+  {
+    "id": "seed:pt:messi-2011-12-vs-ronaldo-2014-15-la-liga",
+    "locale": "pt",
+    "slug": "messi-2011-12-vs-ronaldo-2014-15-la-liga",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:41.397Z",
+    "originalPublicationDate": "2026-09-25",
+    "draftHash": "a866af0bb3d07e0c2b2a253959fa920f17342e0642748b684ac43c0eead9210d"
+  },
+  {
+    "id": "seed:pt:messi-2012-vs-ronaldo-2013-goals",
+    "locale": "pt",
+    "slug": "messi-2012-vs-ronaldo-2013-goals",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:41.865Z",
+    "originalPublicationDate": "2026-09-25",
+    "draftHash": "1710d73253cc4c86f0d59ae99f32210c4a564b7497dbe9e5617ceeb36ac8fd33"
+  },
+  {
+    "id": "seed:pt:totals-vs-scoring-rates",
+    "locale": "pt",
+    "slug": "totals-vs-scoring-rates",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:42.352Z",
+    "originalPublicationDate": "2026-10-01T16:18:53.134Z",
+    "draftHash": "c62c26a73191801ccc0c5cf0974542210faa31d1f5838e582098f151944d01d4"
+  },
+  {
+    "id": "seed:pt:what-counts-as-a-career-goal",
+    "locale": "pt",
+    "slug": "what-counts-as-a-career-goal",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:42.813Z",
+    "originalPublicationDate": "2026-10-01T16:18:53.875Z",
+    "draftHash": "962bba2e7c3c1db6025f84d9c982edd72aad07bd65f6638f00abcbe8c0421156"
+  },
+  {
+    "id": "seed:pt:why-assist-totals-differ",
+    "locale": "pt",
+    "slug": "why-assist-totals-differ",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:43.260Z",
+    "originalPublicationDate": "2026-10-01T16:18:52.370Z",
+    "draftHash": "ac5f4ff305fa3db7e0a1577c03bbcacf5d16b52de7856766de991cdfa8674c26"
+  },
+  {
+    "id": "4f5db4f6-1221-05ac-3004-2db492a0a6fd",
+    "locale": "nl",
+    "slug": "messi-ronaldo-team-trophies",
+    "revision": 4,
+    "publishedAt": "2026-10-15T11:41:43.936Z",
+    "originalPublicationDate": "2026-09-28T05:26:24.497Z",
+    "draftHash": "7a92ccf0ceaa754689e0028e1a9bf2a89df55d737d6f2488c0cc750f7d5da22c"
+  },
+  {
+    "id": "seed:nl:ballon-dor-2026-contenders-stats",
+    "locale": "nl",
+    "slug": "ballon-dor-2026-contenders-stats",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:44.493Z",
+    "originalPublicationDate": "2026-09-27",
+    "draftHash": "cffcf4f3c011b3fb1ff18f18d62e12e6934aee28ebf3843871b20f083c2059fb"
+  },
+  {
+    "id": "seed:nl:ballon-dor-2026-date-voting-rules",
+    "locale": "nl",
+    "slug": "ballon-dor-2026-date-voting-rules",
+    "revision": 3,
+    "publishedAt": "2026-10-15T11:41:45.608Z",
+    "originalPublicationDate": "2026-09-27",
+    "draftHash": "a0d0d9c3c61d38a20ba57048da6822efca2837d84baeb0537b6fd9287e7340c6"
+  },
+  {
+    "id": "seed:nl:kane-vs-mbappe-ballon-dor-2026-stats",
+    "locale": "nl",
+    "slug": "kane-vs-mbappe-ballon-dor-2026-stats",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:47.139Z",
+    "originalPublicationDate": "2026-09-27",
+    "draftHash": "fa237de0c2712d1d687cc767245322e377a8c574503e3923c3f91fd062db0046"
+  },
+  {
+    "id": "seed:nl:messi-2011-12-vs-ronaldo-2013-14-champions-league",
+    "locale": "nl",
+    "slug": "messi-2011-12-vs-ronaldo-2013-14-champions-league",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:48.390Z",
+    "originalPublicationDate": "2026-09-25",
+    "draftHash": "1217e9433c64214cf7ffaf413c774874b98f6780c485c737e73cffc035edbecc"
+  },
+  {
+    "id": "seed:nl:messi-2011-12-vs-ronaldo-2014-15-la-liga",
+    "locale": "nl",
+    "slug": "messi-2011-12-vs-ronaldo-2014-15-la-liga",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:49.352Z",
+    "originalPublicationDate": "2026-09-25",
+    "draftHash": "9edeba486757fde5366e8911ca97aa7390ef5f131a37cd331fb10668ca22ba5f"
+  },
+  {
+    "id": "seed:nl:messi-2012-vs-ronaldo-2013-goals",
+    "locale": "nl",
+    "slug": "messi-2012-vs-ronaldo-2013-goals",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:50.195Z",
+    "originalPublicationDate": "2026-09-25",
+    "draftHash": "23d4abea145eec0bf9a304ffe5f919a5e5d31e816a41d52a12b67fd4bc81aaee"
+  },
+  {
+    "id": "seed:nl:totals-vs-scoring-rates",
+    "locale": "nl",
+    "slug": "totals-vs-scoring-rates",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:50.920Z",
+    "originalPublicationDate": "2026-10-01T16:19:01.523Z",
+    "draftHash": "17bb396a04d5ad9f2c0d41e0687d19850768536902ad9caa2dc2ae93a18b29db"
+  },
+  {
+    "id": "seed:nl:what-counts-as-a-career-goal",
+    "locale": "nl",
+    "slug": "what-counts-as-a-career-goal",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:51.593Z",
+    "originalPublicationDate": "2026-10-01T16:19:02.258Z",
+    "draftHash": "5da161c05f9e8f91bd474667785676c93da3ff4f0c174fb9c0b5be10d91400b6"
+  },
+  {
+    "id": "seed:nl:why-assist-totals-differ",
+    "locale": "nl",
+    "slug": "why-assist-totals-differ",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:52.237Z",
+    "originalPublicationDate": "2026-10-01T16:19:00.808Z",
+    "draftHash": "00b11b46cd9677869e892324c7b4ac06f318307490b7cc00cce0e53aedab88a0"
+  },
+  {
+    "id": "0df097df-8731-f4e7-2359-2e9272a7c59a",
+    "locale": "fr",
+    "slug": "messi-ronaldo-career-appearances",
+    "revision": 4,
+    "publishedAt": "2026-10-15T11:41:52.834Z",
+    "originalPublicationDate": "2026-09-28T05:26:26.313Z",
+    "draftHash": "89104a82ae0c8530bef669faefd9cc96bb580a5f4a349a3124439d091537e366"
+  },
+  {
+    "id": "3e5d2b1b-b1d4-e10b-c197-69d86c348377",
+    "locale": "fr",
+    "slug": "messi-ronaldo-free-kick-records",
+    "revision": 4,
+    "publishedAt": "2026-10-15T11:41:53.552Z",
+    "originalPublicationDate": "2026-09-28T05:26:23.044Z",
+    "draftHash": "06a81c1e5cb1dcdc5776b68814ba4df5e296ada09cbdf8d2b094dd8ab1839026"
+  },
+  {
+    "id": "seed:fr:ballon-dor-2026-contenders-stats",
+    "locale": "fr",
+    "slug": "ballon-dor-2026-contenders-stats",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:54.303Z",
+    "originalPublicationDate": "2026-09-27",
+    "draftHash": "2b2bc759fee92a5a807a0988066f295ffa8812a9d89cfc389548e31b1dcae425"
+  },
+  {
+    "id": "seed:fr:ballon-dor-2026-date-voting-rules",
+    "locale": "fr",
+    "slug": "ballon-dor-2026-date-voting-rules",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:55.179Z",
+    "originalPublicationDate": "2026-09-27",
+    "draftHash": "960cfe1def3f11e12f5b551bac0ee9a0d014e0afc423f0f0bf2ff7d69ff3d742"
+  },
+  {
+    "id": "seed:fr:kane-vs-mbappe-ballon-dor-2026-stats",
+    "locale": "fr",
+    "slug": "kane-vs-mbappe-ballon-dor-2026-stats",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:55.771Z",
+    "originalPublicationDate": "2026-09-27",
+    "draftHash": "a8bd57c186df4db44a1573d8c5a4f346cb5f7dba2ece540a01de48942c79bbf6"
+  },
+  {
+    "id": "seed:fr:messi-2011-12-vs-ronaldo-2013-14-champions-league",
+    "locale": "fr",
+    "slug": "messi-2011-12-vs-ronaldo-2013-14-champions-league",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:56.395Z",
+    "originalPublicationDate": "2026-09-25",
+    "draftHash": "26151e646b942d9a9799fe2b49eceef51e593ebf69aba4ec5936cb87c89a3a3b"
+  },
+  {
+    "id": "seed:fr:messi-2011-12-vs-ronaldo-2014-15-la-liga",
+    "locale": "fr",
+    "slug": "messi-2011-12-vs-ronaldo-2014-15-la-liga",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:57.002Z",
+    "originalPublicationDate": "2026-09-25",
+    "draftHash": "9d70c58f4bfe27e8a74f4a267605e46cff1daee196bc4b3f5798f013621c7ee3"
+  },
+  {
+    "id": "seed:fr:messi-2012-vs-ronaldo-2013-goals",
+    "locale": "fr",
+    "slug": "messi-2012-vs-ronaldo-2013-goals",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:57.610Z",
+    "originalPublicationDate": "2026-09-25",
+    "draftHash": "ab27f3fa49a04cbd037fefa926912401bc1399d2d99924ffaf379d8e37311fb5"
+  },
+  {
+    "id": "seed:fr:totals-vs-scoring-rates",
+    "locale": "fr",
+    "slug": "totals-vs-scoring-rates",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:58.186Z",
+    "originalPublicationDate": "2026-10-01T16:19:11.531Z",
+    "draftHash": "18250f2743ce43cd961df2928af9cae20217373c611ecaca19b99b6591fa50ac"
+  },
+  {
+    "id": "seed:fr:what-counts-as-a-career-goal",
+    "locale": "fr",
+    "slug": "what-counts-as-a-career-goal",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:58.750Z",
+    "originalPublicationDate": "2026-10-01T16:19:12.335Z",
+    "draftHash": "7c1ad62c8cd41eb04ae92b738e97391ad421007bd1b71ecd370ab84fbb938676"
+  },
+  {
+    "id": "seed:fr:why-assist-totals-differ",
+    "locale": "fr",
+    "slug": "why-assist-totals-differ",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:41:59.308Z",
+    "originalPublicationDate": "2026-10-01T16:19:10.922Z",
+    "draftHash": "69ca55211469296b9b5f5a72d05f6a55cbe526be80e8e800db714bc2b9545609"
+  },
+  {
+    "id": "3293cb01-57c4-556a-9187-a08915836f38",
+    "locale": "de",
+    "slug": "messi-ronaldo-free-kick-records",
+    "revision": 4,
+    "publishedAt": "2026-10-15T11:41:59.834Z",
+    "originalPublicationDate": "2026-09-28T05:26:23.580Z",
+    "draftHash": "2b327117eb04775d8903b92c8f4c40d2dc384af85b841598929e5d8615756f64"
+  },
+  {
+    "id": "seed:de:ballon-dor-2026-contenders-stats",
+    "locale": "de",
+    "slug": "ballon-dor-2026-contenders-stats",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:42:00.570Z",
+    "originalPublicationDate": "2026-09-27",
+    "draftHash": "9bc1625d8014d5fc94e532dfea38b2f6446f46592072641701c46722a50ad030"
+  },
+  {
+    "id": "seed:de:ballon-dor-2026-date-voting-rules",
+    "locale": "de",
+    "slug": "ballon-dor-2026-date-voting-rules",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:42:01.197Z",
+    "originalPublicationDate": "2026-09-27",
+    "draftHash": "914545e751e141fa7f1e78c7b08b02ba02de487e170d066ecde7b011f3b84777"
+  },
+  {
+    "id": "seed:de:kane-vs-mbappe-ballon-dor-2026-stats",
+    "locale": "de",
+    "slug": "kane-vs-mbappe-ballon-dor-2026-stats",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:42:03.468Z",
+    "originalPublicationDate": "2026-09-27",
+    "draftHash": "99908782e5f1c00a200ca0c34fb2aa463a892c68e6b6f5f1b5d919456a60f6b6"
+  },
+  {
+    "id": "seed:de:messi-2011-12-vs-ronaldo-2013-14-champions-league",
+    "locale": "de",
+    "slug": "messi-2011-12-vs-ronaldo-2013-14-champions-league",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:42:04.101Z",
+    "originalPublicationDate": "2026-09-25",
+    "draftHash": "24a0ef2ce8a3c4ea0381f3c391ea0f79b47ddeacb28cb40e53188f811bfab0f8"
+  },
+  {
+    "id": "seed:de:messi-2011-12-vs-ronaldo-2014-15-la-liga",
+    "locale": "de",
+    "slug": "messi-2011-12-vs-ronaldo-2014-15-la-liga",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:42:04.716Z",
+    "originalPublicationDate": "2026-09-25",
+    "draftHash": "917b82c58b72e9ad2d220b8a78d61668012ee44e130514f99cc1773485a3f88b"
+  },
+  {
+    "id": "seed:de:messi-2012-vs-ronaldo-2013-goals",
+    "locale": "de",
+    "slug": "messi-2012-vs-ronaldo-2013-goals",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:42:05.344Z",
+    "originalPublicationDate": "2026-09-25",
+    "draftHash": "0c71e7f78920d147bb06dac92b14813c10c316c9182723689290d365dff828c5"
+  },
+  {
+    "id": "seed:de:totals-vs-scoring-rates",
+    "locale": "de",
+    "slug": "totals-vs-scoring-rates",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:42:05.972Z",
+    "originalPublicationDate": "2026-10-01T16:19:20.033Z",
+    "draftHash": "599faf8492cf346f86087a3fea47bb887a75a0ae78f3d588f411cecbacb00256"
+  },
+  {
+    "id": "seed:de:what-counts-as-a-career-goal",
+    "locale": "de",
+    "slug": "what-counts-as-a-career-goal",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:42:06.538Z",
+    "originalPublicationDate": "2026-10-01T16:19:20.934Z",
+    "draftHash": "106ec5cef13ae2a7905995d110064c2f9429065674c1a1ba76da0f2c1e1edc60"
+  },
+  {
+    "id": "seed:de:why-assist-totals-differ",
+    "locale": "de",
+    "slug": "why-assist-totals-differ",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:42:07.272Z",
+    "originalPublicationDate": "2026-10-01T16:19:19.297Z",
+    "draftHash": "2c2551bb6f6ecf2c3a88f04c06164edf30f5e54240bf0cc8274aae60a89c0ef1"
+  },
+  {
+    "id": "346329ad-345c-c1ef-c361-79aed51a313a",
+    "locale": "ar",
+    "slug": "messi-ronaldo-2026-goals-comparison",
+    "revision": 4,
+    "publishedAt": "2026-10-15T11:42:07.821Z",
+    "originalPublicationDate": "2026-09-28T05:26:23.940Z",
+    "draftHash": "b0be127082f67e64af3aebe43f9597b2f1385d814ecc9c3d0432413f9c07c83e"
+  },
+  {
+    "id": "seed:ar:ballon-dor-2026-contenders-stats",
+    "locale": "ar",
+    "slug": "ballon-dor-2026-contenders-stats",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:42:08.699Z",
+    "originalPublicationDate": "2026-09-27",
+    "draftHash": "fdd675a579fd842601c2c588233f2f36409bad05438aaa47baa576dea1265221"
+  },
+  {
+    "id": "seed:ar:ballon-dor-2026-date-voting-rules",
+    "locale": "ar",
+    "slug": "ballon-dor-2026-date-voting-rules",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:42:09.384Z",
+    "originalPublicationDate": "2026-09-27",
+    "draftHash": "22a9f02e3f203855262e1280a070fd15eec78d96a0f3cd50fbb2c099efc4d572"
+  },
+  {
+    "id": "seed:ar:kane-vs-mbappe-ballon-dor-2026-stats",
+    "locale": "ar",
+    "slug": "kane-vs-mbappe-ballon-dor-2026-stats",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:42:10.224Z",
+    "originalPublicationDate": "2026-09-27",
+    "draftHash": "bef7fa20d4f20181438258d60469ae526d97cec627f8f167f747733c1d160b68"
+  },
+  {
+    "id": "seed:ar:messi-2011-12-vs-ronaldo-2013-14-champions-league",
+    "locale": "ar",
+    "slug": "messi-2011-12-vs-ronaldo-2013-14-champions-league",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:42:10.847Z",
+    "originalPublicationDate": "2026-09-25",
+    "draftHash": "aa26d66975a9a01b246df46f1695fbca54af564bfd954b5ee6303d663bf18de3"
+  },
+  {
+    "id": "seed:ar:messi-2011-12-vs-ronaldo-2014-15-la-liga",
+    "locale": "ar",
+    "slug": "messi-2011-12-vs-ronaldo-2014-15-la-liga",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:42:11.467Z",
+    "originalPublicationDate": "2026-09-25",
+    "draftHash": "7f0eccfd8ed59b0ce5eaae9c883765d2bd15ada0ab690d457df58f3b724ec012"
+  },
+  {
+    "id": "seed:ar:messi-2012-vs-ronaldo-2013-goals",
+    "locale": "ar",
+    "slug": "messi-2012-vs-ronaldo-2013-goals",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:42:12.080Z",
+    "originalPublicationDate": "2026-09-25",
+    "draftHash": "c33e6366613df8fdf72e55fb6c8e2025594863fcd3333e4ce0b29d50af61bce7"
+  },
+  {
+    "id": "seed:ar:totals-vs-scoring-rates",
+    "locale": "ar",
+    "slug": "totals-vs-scoring-rates",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:42:12.689Z",
+    "originalPublicationDate": "2026-10-01T16:19:28.731Z",
+    "draftHash": "817a0b35eec9abbf57e29786a32566235a4b01ab78b84411153eede54db4de24"
+  },
+  {
+    "id": "seed:ar:what-counts-as-a-career-goal",
+    "locale": "ar",
+    "slug": "what-counts-as-a-career-goal",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:42:13.237Z",
+    "originalPublicationDate": "2026-10-01T16:19:29.480Z",
+    "draftHash": "d201dcfa920e1e683310f867752a034f67c39b6c962279edf1142fbb87c35ba3"
+  },
+  {
+    "id": "seed:ar:why-assist-totals-differ",
+    "locale": "ar",
+    "slug": "why-assist-totals-differ",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:42:13.797Z",
+    "originalPublicationDate": "2026-10-01T16:19:27.725Z",
+    "draftHash": "51ef0690d96129a728cd5f9cfef546b4e27b32f1516307ee0ea52b85d309b080"
+  },
+  {
+    "id": "seed:hi:ballon-dor-2026-contenders-stats",
+    "locale": "hi",
+    "slug": "ballon-dor-2026-contenders-stats",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:42:14.344Z",
+    "originalPublicationDate": "2026-09-27",
+    "draftHash": "23241860d15894a66a5f83188085237c0badf7c824caf0551adc2f4ad97c8fa6"
+  },
+  {
+    "id": "seed:hi:ballon-dor-2026-date-voting-rules",
+    "locale": "hi",
+    "slug": "ballon-dor-2026-date-voting-rules",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:42:15.094Z",
+    "originalPublicationDate": "2026-09-27",
+    "draftHash": "f6cb58e382ea4e84d9f50881f4262b8e9e473cecebb8b066496c958645641fc6"
+  },
+  {
+    "id": "seed:hi:kane-vs-mbappe-ballon-dor-2026-stats",
+    "locale": "hi",
+    "slug": "kane-vs-mbappe-ballon-dor-2026-stats",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:42:15.765Z",
+    "originalPublicationDate": "2026-09-27",
+    "draftHash": "e0909caf087c64dff5a72f850f39bfdd6ab36ab08c28499903408db832dbb12d"
+  },
+  {
+    "id": "seed:hi:messi-2011-12-vs-ronaldo-2013-14-champions-league",
+    "locale": "hi",
+    "slug": "messi-2011-12-vs-ronaldo-2013-14-champions-league",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:42:16.380Z",
+    "originalPublicationDate": "2026-09-25",
+    "draftHash": "45acffed96619e750cb3d545ba9ccb3eb0e944fe64d19b088f8619705911b7ff"
+  },
+  {
+    "id": "seed:hi:messi-2011-12-vs-ronaldo-2014-15-la-liga",
+    "locale": "hi",
+    "slug": "messi-2011-12-vs-ronaldo-2014-15-la-liga",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:42:17.013Z",
+    "originalPublicationDate": "2026-09-25",
+    "draftHash": "51652b8c1b3617a0eb700d3a18d198527a18dd0fc74de124b2c406586d4180aa"
+  },
+  {
+    "id": "seed:hi:messi-2012-vs-ronaldo-2013-goals",
+    "locale": "hi",
+    "slug": "messi-2012-vs-ronaldo-2013-goals",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:42:17.648Z",
+    "originalPublicationDate": "2026-09-25",
+    "draftHash": "07bb86ab43b6fcd39b1feec1840df6d7636758c79b5fedfbdfbcbbbe43345d93"
+  },
+  {
+    "id": "seed:hi:totals-vs-scoring-rates",
+    "locale": "hi",
+    "slug": "totals-vs-scoring-rates",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:42:18.271Z",
+    "originalPublicationDate": "2026-10-01T16:19:37.519Z",
+    "draftHash": "bfdbd66e7a94c0201577f91847ed78673ed50f9907053e9bed0fbb2105125134"
+  },
+  {
+    "id": "seed:hi:what-counts-as-a-career-goal",
+    "locale": "hi",
+    "slug": "what-counts-as-a-career-goal",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:42:18.834Z",
+    "originalPublicationDate": "2026-10-01T16:19:38.465Z",
+    "draftHash": "99fa09affe5c2f906c0ffdb300ebbb33927e7dac61f177212c6cb5da413d252c"
+  },
+  {
+    "id": "seed:hi:why-assist-totals-differ",
+    "locale": "hi",
+    "slug": "why-assist-totals-differ",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:42:19.415Z",
+    "originalPublicationDate": "2026-10-01T16:19:36.539Z",
+    "draftHash": "2772179d31885607ec76fb7ce2fcc4a75db3e1558585a4b5b99d2a670a5079e8"
+  },
+  {
+    "id": "6b55a4b6-a1b9-8d50-a67b-fc0ec0d397d8",
+    "locale": "th",
+    "slug": "messi-vs-ronaldo-stats-guide",
+    "revision": 3,
+    "publishedAt": "2026-10-15T11:42:19.992Z",
+    "originalPublicationDate": "2026-09-28T17:54:56.842Z",
+    "draftHash": "d5715d513d7c85c8e86a0536d08be1e65f23d83efd0760d735e32e7b26fc68b5"
+  },
+  {
+    "id": "seed:th:ballon-dor-2026-contenders-stats",
+    "locale": "th",
+    "slug": "ballon-dor-2026-contenders-stats",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:42:20.679Z",
+    "originalPublicationDate": "2026-09-27",
+    "draftHash": "3d8ca26677a058c6974e0df9a0668894228ff7ac17dd251b2ddd0dce9c9431cf"
+  },
+  {
+    "id": "seed:th:ballon-dor-2026-date-voting-rules",
+    "locale": "th",
+    "slug": "ballon-dor-2026-date-voting-rules",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:42:21.810Z",
+    "originalPublicationDate": "2026-09-27",
+    "draftHash": "d5a4c088807978e78a09eeb9da6d11e502f1978dad99b91d9f9425f85e02f842"
+  },
+  {
+    "id": "seed:th:kane-vs-mbappe-ballon-dor-2026-stats",
+    "locale": "th",
+    "slug": "kane-vs-mbappe-ballon-dor-2026-stats",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:42:22.390Z",
+    "originalPublicationDate": "2026-09-27",
+    "draftHash": "83ffb2e4e4a3292d4dacde79f0812f6bf199abcef2fc1f30c45a4d0a09d0e855"
+  },
+  {
+    "id": "seed:th:messi-2011-12-vs-ronaldo-2013-14-champions-league",
+    "locale": "th",
+    "slug": "messi-2011-12-vs-ronaldo-2013-14-champions-league",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:42:23.010Z",
+    "originalPublicationDate": "2026-09-25",
+    "draftHash": "a90543d292122992d3c3f5824328ede466580e4395423ee2da9de1e5b47151ee"
+  },
+  {
+    "id": "seed:th:messi-2011-12-vs-ronaldo-2014-15-la-liga",
+    "locale": "th",
+    "slug": "messi-2011-12-vs-ronaldo-2014-15-la-liga",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:42:23.658Z",
+    "originalPublicationDate": "2026-09-25",
+    "draftHash": "087116bc5527bb412a5f14fbdec469a89fad31ad2138b88eec1001310643dc07"
+  },
+  {
+    "id": "seed:th:messi-2012-vs-ronaldo-2013-goals",
+    "locale": "th",
+    "slug": "messi-2012-vs-ronaldo-2013-goals",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:42:24.295Z",
+    "originalPublicationDate": "2026-09-25",
+    "draftHash": "fc0bf0fc1405f7018117c98d6a5fa663a4d2c25de616633d7e3e8b2512e2d4ab"
+  },
+  {
+    "id": "seed:th:totals-vs-scoring-rates",
+    "locale": "th",
+    "slug": "totals-vs-scoring-rates",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:42:25.142Z",
+    "originalPublicationDate": "2026-10-01T16:19:47.159Z",
+    "draftHash": "600e2ac4d27641ac881ed219215b1d9c6a4f9e06d6044c10de74eb27fda90f5c"
+  },
+  {
+    "id": "seed:th:what-counts-as-a-career-goal",
+    "locale": "th",
+    "slug": "what-counts-as-a-career-goal",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:42:25.705Z",
+    "originalPublicationDate": "2026-10-01T16:19:48.076Z",
+    "draftHash": "18de1dfd4f7b03115dc341099e332555118ab36d93819cabb5d2c3e26f27e6fc"
+  },
+  {
+    "id": "seed:th:why-assist-totals-differ",
+    "locale": "th",
+    "slug": "why-assist-totals-differ",
+    "revision": 2,
+    "publishedAt": "2026-10-15T11:42:27.081Z",
+    "originalPublicationDate": "2026-10-01T16:19:46.417Z",
+    "draftHash": "ff53c317da1aea4d1dd89fc59722abbab1d2b3eadf3219aaaa0f511447da45a5"
+  }
+]

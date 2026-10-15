@@ -1,0 +1,41 @@
+{
+  "verifiedAt": "2026-10-15T11:46:19.786850+00:00",
+  "publishedArticles": 102,
+  "liveHtmlArticlesVerified": 102,
+  "visibleTextBlocksVerified": 3828,
+  "summariesMetadataSourcesAndPublicationDatesMatch": true,
+  "sitemapUrls": 1065,
+  "updatedArticleSitemapDatesVerified": 102,
+  "liveBrowserChecks": 24,
+  "browserLocales": [
+    "ar",
+    "de",
+    "en",
+    "es",
+    "fr",
+    "hi",
+    "nl",
+    "pt",
+    "th"
+  ],
+  "viewports": [
+    "desktop",
+    "mobile"
+  ],
+  "articleContentAxeViolations": 0,
+  "horizontalOverflowFailures": 0,
+  "localPublicationChecks": {
+    "count": 102,
+    "staleRevisionRejected": 102,
+    "mediaChecked": 13,
+    "originalPublicationDatesPreserved": true,
+    "matchLedgerUnchanged": true
+  },
+  "translationFallbackEntries": [],
+  "lint": "passed",
+  "typecheck": "passed",
+  "applicationRendererChanged": false,
+  "publicationMechanism": "production CMS revision-checked publish API",
+  "productionMatchLedgerUnchanged": true,
+  "productionMatchRevision": 10
+}

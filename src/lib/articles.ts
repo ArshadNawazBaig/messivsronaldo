@@ -5,7 +5,9 @@ import { withArticleFeature } from "./article-features";
 
 export type { Article } from "./article-types";
 
-const seedArticles: readonly Article[] = [
+// Export the concise, sourced explainers for editorial migrations as well as
+// the long-form features used by unmodified seed records.
+export const seedArticles: readonly Article[] = [
   ...ballonArticles,
   ...interactiveGuides.map(article => ({ ...article, players: ["messi", "ronaldo"] as const })),
   {

@@ -1,0 +1,34 @@
+{
+  "sitemapUrls": 1065,
+  "statusCounts": {
+    "200": 1065
+  },
+  "missingDescriptions": 0,
+  "h1Issues": 0,
+  "canonicalMismatches": 0,
+  "unexpectedNoindex": 0,
+  "decisions": {
+    "retain": 963,
+    "update": 102
+  },
+  "families": {
+    "statistical comparison": 234,
+    "publisher or policy": 72,
+    "methodology and evidence": 36,
+    "interactive tool": 54,
+    "navigation": 36,
+    "period archive": 531,
+    "article": 102
+  },
+  "locales": {
+    "en": 128,
+    "ar": 117,
+    "de": 117,
+    "es": 117,
+    "fr": 118,
+    "hi": 116,
+    "nl": 117,
+    "pt": 118,
+    "th": 117
+  }
+}
