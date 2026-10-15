@@ -1,0 +1,304 @@
+{
+  "research_date": "2026-10-15",
+  "source_directory": "/Users/arshadnawaz/Downloads/messivsronaldo17",
+  "filters": [
+    {
+      "Filter": "Search type",
+      "Value": "Web (text-based)"
+    },
+    {
+      "Filter": "Date",
+      "Value": "Last 28 days"
+    }
+  ],
+  "property": "Not recorded in the supplied exports; page URLs are on messivsronaldo17.com and host/protocol variants.",
+  "input_sha256": {
+    "Chart.csv": "64f090b6c32c410258f13159afc2c765eacc1e6a41ce5889e3567bf4f956d864",
+    "Countries.csv": "c07104ed29b92a524e31f8ea540f8241c25e6e45684a77bd294be2db7c11d08a",
+    "Devices.csv": "729b9126a89d9c62ec31318acb982efaff6655c4140328ac986edd131d049af5",
+    "Filters.csv": "f1105f5dddd2bd878e136898e15ae5c73fd841d793dc4fb462953a3aa05aebd0",
+    "Pages.csv": "c44021169e1d90411dc0e88fb089267d083ff9e63d02f7bf8d231431e177ed02",
+    "Queries.csv": "287d63c70c779acec24f36880740c08b42387458403fc51f8fd0607f3627192a",
+    "Search appearance.csv": "eed9ceafb9193e5e3d034f5897ad992bc851f1998204cd98f0b0f6873fbfc8b2"
+  },
+  "reports": {
+    "Chart": {
+      "rows": 23,
+      "clicks": 346,
+      "impressions": 30358,
+      "ctr_percent": 1.1397325251992885,
+      "approx_impression_weighted_position": 7.359124448250872,
+      "duplicate_dimension_rows": 0,
+      "blank_fields": {
+        "Date": 0,
+        "Clicks": 0,
+        "Impressions": 0,
+        "CTR": 1,
+        "Position": 1
+      },
+      "invalid_rows": []
+    },
+    "Countries": {
+      "rows": 190,
+      "clicks": 346,
+      "impressions": 30358,
+      "ctr_percent": 1.1397325251992885,
+      "approx_impression_weighted_position": 7.359686738256802,
+      "duplicate_dimension_rows": 0,
+      "blank_fields": {
+        "Country": 0,
+        "Clicks": 0,
+        "Impressions": 0,
+        "CTR": 0,
+        "Position": 0
+      },
+      "invalid_rows": []
+    },
+    "Devices": {
+      "rows": 3,
+      "clicks": 346,
+      "impressions": 30358,
+      "ctr_percent": 1.1397325251992885,
+      "approx_impression_weighted_position": 7.355654522695829,
+      "duplicate_dimension_rows": 0,
+      "blank_fields": {
+        "Device": 0,
+        "Clicks": 0,
+        "Impressions": 0,
+        "CTR": 0,
+        "Position": 0
+      },
+      "invalid_rows": []
+    },
+    "Filters": {
+      "rows": 2
+    },
+    "Pages": {
+      "rows": 623,
+      "clicks": 346,
+      "impressions": 31422,
+      "ctr_percent": 1.101139329132455,
+      "approx_impression_weighted_position": 7.431721723633123,
+      "duplicate_dimension_rows": 0,
+      "blank_fields": {
+        "Top pages": 0,
+        "Clicks": 0,
+        "Impressions": 0,
+        "CTR": 0,
+        "Position": 0
+      },
+      "invalid_rows": []
+    },
+    "Queries": {
+      "rows": 1000,
+      "clicks": 42,
+      "impressions": 6984,
+      "ctr_percent": 0.6013745704467354,
+      "approx_impression_weighted_position": 8.395410939289805,
+      "duplicate_dimension_rows": 0,
+      "blank_fields": {
+        "Top queries": 0,
+        "Clicks": 0,
+        "Impressions": 0,
+        "CTR": 0,
+        "Position": 0
+      },
+      "invalid_rows": []
+    },
+    "Search appearance": {
+      "rows": 0
+    }
+  },
+  "query_groups_overlap": true,
+  "dates": {
+    "first": "2026-09-20",
+    "last": "2026-10-12",
+    "missing_inside_interval": [],
+    "nominal_filter": "Last 28 days",
+    "observed_days": 23,
+    "preliminary_status": "Unknown: CSV has no final/preliminary marker."
+  },
+  "page_locale_groups": {
+    "fr": {
+      "rows": 62,
+      "clicks": 101,
+      "impressions": 4594,
+      "ctr_percent": 2.198519808445799,
+      "approx_impression_weighted_position": 6.404686547670876
+    },
+    "en": {
+      "rows": 100,
+      "clicks": 76,
+      "impressions": 11251,
+      "ctr_percent": 0.675495511510088,
+      "approx_impression_weighted_position": 7.8393671673629015
+    },
+    "es": {
+      "rows": 89,
+      "clicks": 35,
+      "impressions": 3704,
+      "ctr_percent": 0.9449244060475162,
+      "approx_impression_weighted_position": 7.615261879049676
+    },
+    "pt": {
+      "rows": 51,
+      "clicks": 46,
+      "impressions": 2245,
+      "ctr_percent": 2.048997772828508,
+      "approx_impression_weighted_position": 8.08238307349666
+    },
+    "de": {
+      "rows": 71,
+      "clicks": 29,
+      "impressions": 2436,
+      "ctr_percent": 1.1904761904761905,
+      "approx_impression_weighted_position": 7.819343185550083
+    },
+    "ar": {
+      "rows": 83,
+      "clicks": 34,
+      "impressions": 3459,
+      "ctr_percent": 0.982943047123446,
+      "approx_impression_weighted_position": 6.271633420063603
+    },
+    "nl": {
+      "rows": 52,
+      "clicks": 14,
+      "impressions": 2586,
+      "ctr_percent": 0.5413766434648105,
+      "approx_impression_weighted_position": 8.047246713070379
+    },
+    "th": {
+      "rows": 79,
+      "clicks": 11,
+      "impressions": 739,
+      "ctr_percent": 1.4884979702300405,
+      "approx_impression_weighted_position": 6.00553450608931
+    },
+    "hi": {
+      "rows": 36,
+      "clicks": 0,
+      "impressions": 408,
+      "ctr_percent": 0.0,
+      "approx_impression_weighted_position": 8.71093137254902
+    }
+  },
+  "page_hosts": {
+    "messivsronaldo17.com": 622,
+    "www.messivsronaldo17.com": 1
+  },
+  "page_protocols": {
+    "https": 622,
+    "http": 1
+  },
+  "zero_click_page_rows": 504,
+  "query_groups": [
+    {
+      "group": "international_player_records",
+      "definition": "Contains international and Messi/Ronaldo/CR7; excludes unrelated international queries",
+      "proposed_destination_not_observed_attribution": "/international",
+      "rows": 62,
+      "clicks": 4,
+      "impressions": 936,
+      "ctr_percent": 0.42735042735042733,
+      "approx_impression_weighted_position": 6.252873931623932
+    },
+    {
+      "group": "ronaldo_international_assists_only",
+      "definition": "Subset of international: contains assist and Ronaldo/CR7; excludes Messi and goal",
+      "proposed_destination_not_observed_attribution": "/international",
+      "rows": 24,
+      "clicks": 4,
+      "impressions": 492,
+      "ctr_percent": 0.8130081300813008,
+      "approx_impression_weighted_position": 4.811808943089431
+    },
+    {
+      "group": "english_penalty_terms",
+      "definition": "English lexical penalty/penalties, including non-penalty and generic wording; mixed subintents",
+      "proposed_destination_not_observed_attribution": "/penalties and explanatory article, by intent",
+      "rows": 31,
+      "clicks": 0,
+      "impressions": 211,
+      "ctr_percent": 0.0,
+      "approx_impression_weighted_position": 10.265071090047392
+    },
+    {
+      "group": "english_free_kicks",
+      "definition": "Contains free kick, free-kick or freekick; English lexical grouping",
+      "proposed_destination_not_observed_attribution": "/free-kicks",
+      "rows": 23,
+      "clicks": 1,
+      "impressions": 161,
+      "ctr_percent": 0.6211180124223602,
+      "approx_impression_weighted_position": 11.217018633540373
+    },
+    {
+      "group": "year_2017",
+      "definition": "Contains 2017; mixed calendar/season and language intent, needs manual review",
+      "proposed_destination_not_observed_attribution": "/seasons/2017 or club-season URL, by intent",
+      "rows": 24,
+      "clicks": 0,
+      "impressions": 165,
+      "ctr_percent": 0.0,
+      "approx_impression_weighted_position": 7.448545454545455
+    },
+    {
+      "group": "years_2012_or_2013",
+      "definition": "Contains 2012 or 2013; mixed calendar/season/language, NOT a peak-comparison cluster",
+      "proposed_destination_not_observed_attribution": "Existing calendar-year/club-season/peak article, by intent",
+      "rows": 34,
+      "clicks": 1,
+      "impressions": 147,
+      "ctr_percent": 0.6802721088435374,
+      "approx_impression_weighted_position": 9.061292517006803
+    },
+    {
+      "group": "broad_comparison_exact",
+      "definition": "Exact Messi vs Ronaldo / Ronaldo vs Messi, optionally stats or statistics",
+      "proposed_destination_not_observed_attribution": "/",
+      "rows": 4,
+      "clicks": 0,
+      "impressions": 36,
+      "ctr_percent": 0.0,
+      "approx_impression_weighted_position": 40.05583333333333
+    },
+    {
+      "group": "owned_brand_strict",
+      "definition": "Contains domain messivsronaldo17 or phrase the rivalry; player names are not publisher brand",
+      "proposed_destination_not_observed_attribution": "/",
+      "rows": 0,
+      "clicks": 0,
+      "impressions": 0,
+      "ctr_percent": null,
+      "approx_impression_weighted_position": null
+    },
+    {
+      "group": "ambiguous_domain_navigation",
+      "definition": "Contains concatenated messivsronaldo but not messivsronaldo17, or Messi vs Ronaldo app",
+      "proposed_destination_not_observed_attribution": "Ambiguous or competitor navigation; no new page",
+      "rows": 4,
+      "clicks": 0,
+      "impressions": 55,
+      "ctr_percent": 0.0,
+      "approx_impression_weighted_position": 10.37890909090909
+    }
+  ],
+  "position_triage": {
+    "4.00_to_10.00": {
+      "rows": 560,
+      "clicks": 24,
+      "impressions": 4955,
+      "ctr_percent": 0.4843592330978809,
+      "approx_impression_weighted_position": 7.62604843592331
+    },
+    "11.00_to_20.00": {
+      "rows": 57,
+      "clicks": 2,
+      "impressions": 355,
+      "ctr_percent": 0.5633802816901409,
+      "approx_impression_weighted_position": 12.830732394366196
+    }
+  },
+  "position_triage_note": "Literal inclusive ranges; averages 3.xx and 10.xx are outside these two filters. No rounded ranks or promises."
+}

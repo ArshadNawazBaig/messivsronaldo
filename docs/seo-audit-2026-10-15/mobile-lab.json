@@ -1,0 +1,286 @@
+{
+  "allowed": {
+    "origin": "https://messivsronaldo17.com",
+    "checkedAt": "2026-10-15T07:05:45.629Z",
+    "kind": "laboratory; not field Core Web Vitals or a Lighthouse score",
+    "setup": {
+      "device": "iPhone 13 viewport in Chromium",
+      "cpuSlowdown": 4,
+      "latencyMs": 150,
+      "downloadMbps": 1.6,
+      "uploadMbps": 0.75,
+      "coldBrowserContexts": true,
+      "ads": "allow",
+      "observationMsAfterDomReady": 7000,
+      "runs": 2
+    },
+    "pages": [
+      {
+        "path": "/",
+        "run": 1,
+        "status": 200,
+        "lcpMsObserved": 2012,
+        "clsObserved": 0.22064625508521576,
+        "shifts": [
+          {
+            "timeMs": 5141.700000000186,
+            "value": 0.22064625508521576,
+            "sources": [
+              {
+                "element": "DIV.player-matchup",
+                "previous": {
+                  "x": 20,
+                  "y": 393.015625,
+                  "width": 350,
+                  "height": 270.984375,
+                  "top": 393.015625,
+                  "right": 370,
+                  "bottom": 664,
+                  "left": 20
+                },
+                "current": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0,
+                  "top": 0,
+                  "right": 0,
+                  "bottom": 0,
+                  "left": 0
+                }
+              }
+            ]
+          }
+        ],
+        "documentTransferBytes": 40249,
+        "documentDecodedBytes": 349721,
+        "resourceTransferBytes": 838715,
+        "ttfbMs": 373.6999999997206,
+        "hasAdLoader": true,
+        "adsEnabledInDocument": true,
+        "horizontalOverflow": false,
+        "pageErrors": []
+      },
+      {
+        "path": "/",
+        "run": 2,
+        "status": 200,
+        "lcpMsObserved": 1728,
+        "clsObserved": 0.22064625508521576,
+        "shifts": [
+          {
+            "timeMs": 4790,
+            "value": 0.22064625508521576,
+            "sources": [
+              {
+                "element": "DIV.player-matchup",
+                "previous": {
+                  "x": 20,
+                  "y": 393.015625,
+                  "width": 350,
+                  "height": 270.984375,
+                  "top": 393.015625,
+                  "right": 370,
+                  "bottom": 664,
+                  "left": 20
+                },
+                "current": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0,
+                  "top": 0,
+                  "right": 0,
+                  "bottom": 0,
+                  "left": 0
+                }
+              }
+            ]
+          }
+        ],
+        "documentTransferBytes": 40249,
+        "documentDecodedBytes": 349721,
+        "resourceTransferBytes": 838648,
+        "ttfbMs": 375.1999999997206,
+        "hasAdLoader": true,
+        "adsEnabledInDocument": true,
+        "horizontalOverflow": false,
+        "pageErrors": []
+      },
+      {
+        "path": "/international",
+        "run": 1,
+        "status": 200,
+        "lcpMsObserved": 1644,
+        "clsObserved": 0.13882598280052555,
+        "shifts": [
+          {
+            "timeMs": 5061.300000000279,
+            "value": 0.13882598280052555,
+            "sources": [
+              {
+                "element": "SECTION.comparison ",
+                "previous": {
+                  "x": 20,
+                  "y": 423.046875,
+                  "width": 350,
+                  "height": 240.953125,
+                  "top": 423.046875,
+                  "right": 370,
+                  "bottom": 664,
+                  "left": 20
+                },
+                "current": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0,
+                  "top": 0,
+                  "right": 0,
+                  "bottom": 0,
+                  "left": 0
+                }
+              }
+            ]
+          }
+        ],
+        "documentTransferBytes": 34580,
+        "documentDecodedBytes": 303067,
+        "resourceTransferBytes": 932778,
+        "ttfbMs": 356.79999999981374,
+        "hasAdLoader": true,
+        "adsEnabledInDocument": true,
+        "horizontalOverflow": false,
+        "pageErrors": []
+      },
+      {
+        "path": "/international",
+        "run": 2,
+        "status": 200,
+        "lcpMsObserved": 2044,
+        "clsObserved": 0.13882598280052555,
+        "shifts": [
+          {
+            "timeMs": 5279.100000000093,
+            "value": 0.13882598280052555,
+            "sources": [
+              {
+                "element": "SECTION.comparison ",
+                "previous": {
+                  "x": 20,
+                  "y": 423.046875,
+                  "width": 350,
+                  "height": 240.953125,
+                  "top": 423.046875,
+                  "right": 370,
+                  "bottom": 664,
+                  "left": 20
+                },
+                "current": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0,
+                  "top": 0,
+                  "right": 0,
+                  "bottom": 0,
+                  "left": 0
+                }
+              }
+            ]
+          }
+        ],
+        "documentTransferBytes": 34580,
+        "documentDecodedBytes": 303067,
+        "resourceTransferBytes": 933247,
+        "ttfbMs": 403.3000000002794,
+        "hasAdLoader": true,
+        "adsEnabledInDocument": true,
+        "horizontalOverflow": false,
+        "pageErrors": []
+      }
+    ]
+  },
+  "blocked": {
+    "origin": "https://messivsronaldo17.com",
+    "checkedAt": "2026-10-15T07:08:00.521Z",
+    "kind": "laboratory; not field Core Web Vitals or a Lighthouse score",
+    "setup": {
+      "device": "iPhone 13 viewport in Chromium",
+      "cpuSlowdown": 4,
+      "latencyMs": 150,
+      "downloadMbps": 1.6,
+      "uploadMbps": 0.75,
+      "coldBrowserContexts": true,
+      "ads": "block",
+      "observationMsAfterDomReady": 7000,
+      "runs": 2
+    },
+    "pages": [
+      {
+        "path": "/",
+        "run": 1,
+        "status": 200,
+        "lcpMsObserved": 1868,
+        "clsObserved": 0,
+        "shifts": [],
+        "documentTransferBytes": 40249,
+        "documentDecodedBytes": 349721,
+        "resourceTransferBytes": 473437,
+        "ttfbMs": 375.29999999981374,
+        "hasAdLoader": true,
+        "adsEnabledInDocument": true,
+        "horizontalOverflow": false,
+        "pageErrors": []
+      },
+      {
+        "path": "/",
+        "run": 2,
+        "status": 200,
+        "lcpMsObserved": 1840,
+        "clsObserved": 0,
+        "shifts": [],
+        "documentTransferBytes": 40249,
+        "documentDecodedBytes": 349721,
+        "resourceTransferBytes": 473437,
+        "ttfbMs": 678.4000000003725,
+        "hasAdLoader": true,
+        "adsEnabledInDocument": true,
+        "horizontalOverflow": false,
+        "pageErrors": []
+      },
+      {
+        "path": "/international",
+        "run": 1,
+        "status": 200,
+        "lcpMsObserved": 1820,
+        "clsObserved": 0,
+        "shifts": [],
+        "documentTransferBytes": 34580,
+        "documentDecodedBytes": 303067,
+        "resourceTransferBytes": 580171,
+        "ttfbMs": 386,
+        "hasAdLoader": true,
+        "adsEnabledInDocument": true,
+        "horizontalOverflow": false,
+        "pageErrors": []
+      },
+      {
+        "path": "/international",
+        "run": 2,
+        "status": 200,
+        "lcpMsObserved": 1632,
+        "clsObserved": 0,
+        "shifts": [],
+        "documentTransferBytes": 34580,
+        "documentDecodedBytes": 303067,
+        "resourceTransferBytes": 580171,
+        "ttfbMs": 355.19999999925494,
+        "hasAdLoader": true,
+        "adsEnabledInDocument": true,
+        "horizontalOverflow": false,
+        "pageErrors": []
+      }
+    ]
+  }
+}

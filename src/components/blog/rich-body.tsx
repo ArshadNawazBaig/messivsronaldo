@@ -37,4 +37,10 @@ function render(node: RichNode, key: string): ReactNode {
     default: return null;
   }
 }
-export function RichBody({ body }: { body: RichNode }) { return <div className={styles.body}>{render(body, "body")}</div>; }
+// Retain original document positions when an opening table moves above the cover,
+// so table-of-contents anchors still match the body headings.
+export function RichBody({ body, startIndex = 0, endIndex }: { body: RichNode; startIndex?: number; endIndex?: number }) {
+  return <div className={styles.body}>{body.type === "doc"
+    ? body.content?.slice(startIndex, endIndex).map((node, index) => render(node, `body-${index + startIndex}`))
+    : render(body, "body")}</div>;
+}

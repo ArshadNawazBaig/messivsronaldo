@@ -25,7 +25,7 @@ export function comparisonDataset(data: PublishedData, scopeId: ScopeId, path: s
       "@type": "PropertyValue", name: `${players[player].name} · ${t(metric.label)}`,
       propertyID: `${localizedUrl("/glossary", locale, origin)}#${metric.id}`,
       value: Number(metric.values[player].toFixed(metric.decimals ?? 0)), ...(metric.unit ? { unitText: metric.unit } : {}),
-      description: `${t(metric.explanation)} ${t(metric.coverage ?? scope.period)}`,
+      description: `${t(metric.explanation)} ${t(metric.coverage ?? scope.period)}${metric.ratioInputs ? ` (${t(metric.ratioInputs.numerator[player])} ÷ ${t(metric.ratioInputs.denominator[player])} × 100).` : ""}`,
     }))),
   };
 }

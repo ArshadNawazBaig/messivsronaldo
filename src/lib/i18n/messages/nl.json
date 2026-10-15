@@ -1475,5 +1475,17 @@
   "{0} Reviewed baseline plus verified match details in the public update log. All published match records in this scope are included.": "{0} Gecontroleerde basis plus geverifieerde wedstrijddetails uit het openbare updatelog. Alle gepubliceerde wedstrijden binnen deze afbakening zijn opgenomen.",
   "{0} Reviewed baseline plus verified match details in the public update log. {1} match record(s) still need this classification and are not included in this breakdown.": "{0} Gecontroleerde basis plus geverifieerde wedstrijddetails uit het openbare updatelog. {1} wedstrijdrecords moeten nog worden ingedeeld en zijn niet in deze uitsplitsing opgenomen.",
   "Calendar year to date: 1 January to {0}. Includes senior club and country; 2026 is not a completed year. See the update log for coverage.": "Kalenderjaar tot nu toe: 1 januari tot {0}. Inclusief seniorenclubvoetbal en interlands; 2026 is nog niet voltooid. Bekijk de dekking in het updatelog.",
-  "Career and competition records for Lionel Messi and Cristiano Ronaldo.": "Carrièrestatistieken en cijfers per competitie van Lionel Messi en Cristiano Ronaldo."
+  "Career and competition records for Lionel Messi and Cristiano Ronaldo.": "Carrièrestatistieken en cijfers per competitie van Lionel Messi en Cristiano Ronaldo.",
+  "Penalty goals in this sample": "Benutte strafschoppen in deze steekproef",
+  "Unsuccessful attempts": "Niet-benutte pogingen",
+  "Conversion for the verified sample": "Benuttingspercentage van de gecontroleerde steekproef",
+  "Only penalties with both scored and attempted counts verified enter this calculation. Newer penalty goals may appear above without entering this sample. Shootouts are excluded.": "Deze berekening bevat alleen strafschoppen waarvoor zowel doelpunten als pogingen zijn gecontroleerd. Nieuwere strafschopdoelpunten kunnen hierboven staan zonder deel uit te maken van deze steekproef. Strafschoppenseries zijn uitgesloten.",
+  "Latest verified penalty goals": "Laatst gecontroleerde strafschopdoelpunten",
+  "International goals and assists": "Doelpunten en assists in interlands",
+  "Penalty goals and conversion": "Strafschopdoelpunten en benuttingspercentage",
+  "These are separate January–December records for senior club and country, not the 2012/13 club season. The 50-appearance row is a calculation, not a forecast.": "Dit zijn afzonderlijke records van januari tot december voor seniorenclubs en nationale teams, niet voor het clubseizoen 2012/13. De rij met 50 wedstrijden is een berekening, geen voorspelling.",
+  "2012/13 club season": "Clubseizoen 2012/13",
+  "Why can international assist totals differ?": "Waarom kunnen assisttotalen in interlands verschillen?",
+  "Assist totals depend on the matches covered and the provider’s definition of the final action before a goal. Compare definitions and cutoff dates. Our baseline source and later match additions are documented separately.": "Assisttotalen hangen af van de opgenomen wedstrijden en de definitie van de laatste actie vóór een doelpunt bij de gegevensleverancier. Vergelijk definities en peildata. Onze basisbron en latere wedstrijdtoevoegingen worden apart gedocumenteerd.",
+  "Why assist totals differ": "Waarom assisttotalen verschillen"
 }

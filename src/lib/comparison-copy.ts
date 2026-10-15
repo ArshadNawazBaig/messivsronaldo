@@ -5,7 +5,7 @@ import type { createTranslator } from "./i18n/translate";
 type Translate = ReturnType<typeof createTranslator>;
 export const comparisonContentUpdated = "2026-10-06";
 export const refreshedComparisons = new Set(["goals", "free-kicks", "la-liga", "honours", "assists", "penalties", "hat-tricks", "compare"]);
-export const internationalAnswerUpdated = "2026-10-07";
+export const internationalAnswerUpdated = "2026-10-15";
 
 // Match imports must not replace distinct page topics with a shared generic
 // description. Goal-type pages retain their own verified classification cutoff.
@@ -48,6 +48,7 @@ export function comparisonQuestions(slug: string, data: PublishedData, t: Transl
     if (!assists) return [];
     return [
       { question: t("How many international assists does Ronaldo have?"), answer: t("Ronaldo has {0} international assists in this dataset. {1}. Assist totals follow the named provider’s definition.", { 0: assists.values.ronaldo, 1: t(international.period) }), href: "/methodology", link: t("Sources & counting rules") },
+      { question: t("Why can international assist totals differ?"), answer: t("Assist totals depend on the matches covered and the provider’s definition of the final action before a goal. Compare definitions and cutoff dates. Our baseline source and later match additions are documented separately."), href: "/insights/why-assist-totals-differ", link: t("Why assist totals differ") },
       { question: t("Do international friendlies and club friendlies count?"), answer: t("Career totals include senior competitive club games and recognized senior A internationals, including international friendlies.") + " " + t("Club friendlies, exhibitions, youth/reserve games and shootout kicks are excluded."), href: "/insights/what-counts-as-a-career-goal", link: t("How we count") },
     ];
   }
@@ -79,6 +80,7 @@ export function comparisonQuestions(slug: string, data: PublishedData, t: Transl
   const metric = scope.metrics.find(item => item.id === metricId);
   const source = sources[scope.source[0]];
   return [
+    ...(slug === "assists" ? [{ question: t("International goals and assists"), answer: comparisonIntro("international", data, t)!, href: "/international", link: t("International goals and assists") }] : []),
     { question: t("The comparison boundaries"), answer: t(scope.description), href: "/methodology", link: t("Sources & methodology") },
     ...(metric ? [{ question: t(metric.label), answer: `${t(metric.explanation)}${metric.coverage ? ` ${t(metric.coverage)}.` : ""}`, href: `/glossary#${metric.id}`, link: t("Football statistics glossary") }] : []),
     { question: t("Where the figures come from"), answer: t(source.note), href: source.url, link: t(source.name) },

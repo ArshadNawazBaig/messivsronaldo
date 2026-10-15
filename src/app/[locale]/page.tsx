@@ -12,6 +12,7 @@ import { pageMetadata } from '@/lib/site';
 import { RecordAnswers } from '@/components/record-answers';
 import { buildRecordAnswers } from '@/lib/record-answers';
 import { ToolCards } from '@/components/tool-cards';
+import { getPublishedArticles } from '@/lib/blog/server';
 import { homeTitle } from '@/lib/home-content';
 import styles from './home.module.css';
 export async function generateMetadata() {
@@ -27,7 +28,8 @@ export async function generateMetadata() {
   );
 }
 export default async function Home() {
-  const { t } = await getI18n();
+  const { t, locale } = await getI18n();
+  const hasPeakArticle = (await getPublishedArticles(locale)).some(article => article.slug === "messi-2012-vs-ronaldo-2013-goals");
   const data = await getPublishedData();
   return (
     <div className={`page-container home-page ${styles.home}`}>
@@ -44,7 +46,7 @@ export default async function Home() {
           <span>{t('Last updated')} <time dateTime={data.lastUpdatedAt}>{t(data.lastUpdatedLabel)}</time></span>
         </Link>
       </div>
-      <section className={`page-intro ${styles.intro}`}>
+      <section className={`page-intro ${styles.intro}`} id="page-introduction">
         <div>
           <h1>
             {t('Messi ')}
@@ -63,6 +65,11 @@ export default async function Home() {
         </Link>
       </section>
       <Comparison homepage />
+      <nav className="comparison-reading" aria-label={t('More comparisons')}>
+        <Link href="/international">{t('International goals and assists')}</Link>
+        <Link href="/penalties">{t('Penalty goals and conversion')}</Link>
+        {hasPeakArticle && <Link href="/insights/messi-2012-vs-ronaldo-2013-goals">{t('Peak calendar years')}</Link>}
+      </nav>
       <div className={styles.section} id="home-explore">
         <ExploreCards />
       </div>

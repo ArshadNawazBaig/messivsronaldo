@@ -1475,5 +1475,17 @@
   "{0} Reviewed baseline plus verified match details in the public update log. All published match records in this scope are included.": "{0} सार्वजनिक अपडेट लॉग के समीक्षित आधार और सत्यापित मैच विवरण। इस दायरे के सभी प्रकाशित मैच रिकॉर्ड शामिल हैं।",
   "{0} Reviewed baseline plus verified match details in the public update log. {1} match record(s) still need this classification and are not included in this breakdown.": "{0} सार्वजनिक अपडेट लॉग के समीक्षित आधार और सत्यापित मैच विवरण। {1} मैच रिकॉर्ड का यह वर्गीकरण अभी बाकी है और वे इस विवरण में शामिल नहीं हैं।",
   "Calendar year to date: 1 January to {0}. Includes senior club and country; 2026 is not a completed year. See the update log for coverage.": "इस कैलेंडर वर्ष में अब तक: 1 जनवरी से {0} तक। सीनियर क्लब और अंतरराष्ट्रीय मैच शामिल हैं; वर्ष 2026 अभी पूरा नहीं हुआ है। कवरेज के लिए अपडेट लॉग देखें।",
-  "Career and competition records for Lionel Messi and Cristiano Ronaldo.": "लियोनेल मेसी और क्रिस्टियानो रोनाल्डो के करियर और प्रतियोगिताओं के आँकड़े।"
+  "Career and competition records for Lionel Messi and Cristiano Ronaldo.": "लियोनेल मेसी और क्रिस्टियानो रोनाल्डो के करियर और प्रतियोगिताओं के आँकड़े।",
+  "Penalty goals in this sample": "इस नमूने में पेनल्टी गोल",
+  "Unsuccessful attempts": "असफल प्रयास",
+  "Conversion for the verified sample": "सत्यापित नमूने की सफलता दर",
+  "Only penalties with both scored and attempted counts verified enter this calculation. Newer penalty goals may appear above without entering this sample. Shootouts are excluded.": "इस गणना में केवल वे पेनल्टी शामिल हैं जिनके गोल और प्रयास दोनों सत्यापित हैं। ऊपर दिख रहे नए पेनल्टी गोल इस नमूने में शामिल न भी हों। शूटआउट शामिल नहीं हैं।",
+  "Latest verified penalty goals": "नवीनतम सत्यापित पेनल्टी गोल",
+  "International goals and assists": "अंतरराष्ट्रीय गोल और असिस्ट",
+  "Penalty goals and conversion": "पेनल्टी गोल और सफलता दर",
+  "These are separate January–December records for senior club and country, not the 2012/13 club season. The 50-appearance row is a calculation, not a forecast.": "ये सीनियर क्लब और राष्ट्रीय टीम के अलग-अलग जनवरी–दिसंबर रिकॉर्ड हैं, 2012/13 क्लब सीज़न के नहीं। 50 मैचों वाली पंक्ति एक गणना है, भविष्यवाणी नहीं।",
+  "2012/13 club season": "2012/13 क्लब सीज़न",
+  "Why can international assist totals differ?": "अंतरराष्ट्रीय असिस्ट के कुल आँकड़े अलग क्यों हो सकते हैं?",
+  "Assist totals depend on the matches covered and the provider’s definition of the final action before a goal. Compare definitions and cutoff dates. Our baseline source and later match additions are documented separately.": "असिस्ट के कुल आँकड़े शामिल मैचों और गोल से पहले की अंतिम कार्रवाई की डेटा प्रदाता द्वारा दी गई परिभाषा पर निर्भर करते हैं। परिभाषाओं और अंतिम शामिल तारीखों की तुलना करें। हमारे आधार स्रोत और बाद में जोड़े गए मैचों का अलग-अलग विवरण दिया गया है।",
+  "Why assist totals differ": "असिस्ट के कुल आँकड़े अलग क्यों हैं"
 }

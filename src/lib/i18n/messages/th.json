@@ -1475,5 +1475,17 @@
   "{0} Reviewed baseline plus verified match details in the public update log. All published match records in this scope are included.": "{0} ข้อมูลตั้งต้นที่ตรวจทานแล้วรวมกับรายละเอียดแมตช์ที่ยืนยันในบันทึกสาธารณะ รวมบันทึกแมตช์ที่เผยแพร่ทั้งหมดในขอบเขตนี้",
   "{0} Reviewed baseline plus verified match details in the public update log. {1} match record(s) still need this classification and are not included in this breakdown.": "{0} ข้อมูลตั้งต้นที่ตรวจทานแล้วรวมกับรายละเอียดแมตช์ที่ยืนยันในบันทึกสาธารณะ ยังมี {1} แมตช์ที่ต้องจัดประเภทและไม่ได้รวมในรายละเอียดนี้",
   "Calendar year to date: 1 January to {0}. Includes senior club and country; 2026 is not a completed year. See the update log for coverage.": "ปีปฏิทินจนถึงปัจจุบัน: 1 มกราคมถึง {0} รวมสโมสรและทีมชาติชุดใหญ่ ปี 2026 ยังไม่สิ้นสุด ดูขอบเขตข้อมูลในบันทึกอัปเดต",
-  "Career and competition records for Lionel Messi and Cristiano Ronaldo.": "สถิติตลอดอาชีพและในแต่ละรายการของลิโอเนล เมสซีและคริสเตียโน โรนัลโด"
+  "Career and competition records for Lionel Messi and Cristiano Ronaldo.": "สถิติตลอดอาชีพและในแต่ละรายการของลิโอเนล เมสซีและคริสเตียโน โรนัลโด",
+  "Penalty goals in this sample": "ประตูจากจุดโทษในตัวอย่างนี้",
+  "Unsuccessful attempts": "จำนวนครั้งที่ยิงไม่เข้า",
+  "Conversion for the verified sample": "อัตราการยิงเข้าของตัวอย่างที่ตรวจสอบแล้ว",
+  "Only penalties with both scored and attempted counts verified enter this calculation. Newer penalty goals may appear above without entering this sample. Shootouts are excluded.": "การคำนวณนี้ใช้เฉพาะลูกจุดโทษที่ตรวจสอบทั้งจำนวนประตูและจำนวนครั้งที่ยิงแล้ว ประตูจากจุดโทษที่ใหม่กว่าอาจแสดงอยู่ด้านบนโดยยังไม่รวมในตัวอย่างนี้ ไม่รวมการดวลจุดโทษ",
+  "Latest verified penalty goals": "ยอดประตูจากจุดโทษล่าสุดที่ตรวจสอบแล้ว",
+  "International goals and assists": "ประตูและแอสซิสต์ในทีมชาติ",
+  "Penalty goals and conversion": "ประตูจากจุดโทษและอัตราการยิงเข้า",
+  "These are separate January–December records for senior club and country, not the 2012/13 club season. The 50-appearance row is a calculation, not a forecast.": "นี่คือสถิติเดือนมกราคม–ธันวาคมของคนละปีสำหรับสโมสรชุดใหญ่และทีมชาติชุดใหญ่ ไม่ใช่ฤดูกาลสโมสร 2012/13 แถว 50 นัดเป็นการคำนวณ ไม่ใช่การคาดการณ์",
+  "2012/13 club season": "ฤดูกาลสโมสร 2012/13",
+  "Why can international assist totals differ?": "ทำไมยอดแอสซิสต์ในทีมชาติจึงอาจแตกต่างกัน?",
+  "Assist totals depend on the matches covered and the provider’s definition of the final action before a goal. Compare definitions and cutoff dates. Our baseline source and later match additions are documented separately.": "ยอดแอสซิสต์ขึ้นอยู่กับนัดที่ครอบคลุมและนิยามของผู้ให้ข้อมูลต่อจังหวะสุดท้ายก่อนเกิดประตู ควรเปรียบเทียบนิยามและวันที่สิ้นสุดข้อมูล เราบันทึกแหล่งข้อมูลตั้งต้นและนัดที่เพิ่มภายหลังแยกกัน",
+  "Why assist totals differ": "เหตุผลที่ยอดแอสซิสต์แตกต่างกัน"
 }

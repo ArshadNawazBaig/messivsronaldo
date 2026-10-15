@@ -1,0 +1,10 @@
+group,definition,proposed_destination_not_observed_attribution,rows,clicks,impressions,ctr_percent,approx_impression_weighted_position
+international_player_records,Contains international and Messi/Ronaldo/CR7; excludes unrelated international queries,/international,62,4,936,0.42735042735042733,6.252873931623932
+ronaldo_international_assists_only,Subset of international: contains assist and Ronaldo/CR7; excludes Messi and goal,/international,24,4,492,0.8130081300813008,4.811808943089431
+english_penalty_terms,"English lexical penalty/penalties, including non-penalty and generic wording; mixed subintents","/penalties and explanatory article, by intent",31,0,211,0.0,10.265071090047392
+english_free_kicks,"Contains free kick, free-kick or freekick; English lexical grouping",/free-kicks,23,1,161,0.6211180124223602,11.217018633540373
+year_2017,"Contains 2017; mixed calendar/season and language intent, needs manual review","/seasons/2017 or club-season URL, by intent",24,0,165,0.0,7.448545454545455
+years_2012_or_2013,"Contains 2012 or 2013; mixed calendar/season/language, NOT a peak-comparison cluster","Existing calendar-year/club-season/peak article, by intent",34,1,147,0.6802721088435374,9.061292517006803
+broad_comparison_exact,"Exact Messi vs Ronaldo / Ronaldo vs Messi, optionally stats or statistics",/,4,0,36,0.0,40.05583333333333
+owned_brand_strict,Contains domain messivsronaldo17 or phrase the rivalry; player names are not publisher brand,/,0,0,0,,
+ambiguous_domain_navigation,"Contains concatenated messivsronaldo but not messivsronaldo17, or Messi vs Ronaldo app",Ambiguous or competitor navigation; no new page,4,0,55,0.0,10.37890909090909

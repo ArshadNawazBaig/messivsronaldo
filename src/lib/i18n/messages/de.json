@@ -1475,5 +1475,17 @@
   "{0} Reviewed baseline plus verified match details in the public update log. All published match records in this scope are included.": "{0} Geprüfte Basis plus verifizierte Spieldetails aus dem öffentlichen Änderungsprotokoll. Alle veröffentlichten Spiele dieses Bereichs sind enthalten.",
   "{0} Reviewed baseline plus verified match details in the public update log. {1} match record(s) still need this classification and are not included in this breakdown.": "{0} Geprüfte Basis plus verifizierte Spieldetails aus dem öffentlichen Änderungsprotokoll. {1} Spielaufzeichnungen benötigen noch diese Zuordnung und sind nicht in dieser Aufschlüsselung enthalten.",
   "Calendar year to date: 1 January to {0}. Includes senior club and country; 2026 is not a completed year. See the update log for coverage.": "Bisheriges Kalenderjahr: 1. Januar bis {0}. Einschließlich Vereins- und A-Länderspielen; 2026 ist noch nicht abgeschlossen. Die Abdeckung steht im Änderungsprotokoll.",
-  "Career and competition records for Lionel Messi and Cristiano Ronaldo.": "Karriere- und Wettbewerbsstatistiken von Lionel Messi und Cristiano Ronaldo."
+  "Career and competition records for Lionel Messi and Cristiano Ronaldo.": "Karriere- und Wettbewerbsstatistiken von Lionel Messi und Cristiano Ronaldo.",
+  "Penalty goals in this sample": "Elfmetertore in dieser Stichprobe",
+  "Unsuccessful attempts": "Nicht verwandelte Versuche",
+  "Conversion for the verified sample": "Trefferquote der überprüften Stichprobe",
+  "Only penalties with both scored and attempted counts verified enter this calculation. Newer penalty goals may appear above without entering this sample. Shootouts are excluded.": "Diese Berechnung umfasst nur Elfmeter, bei denen sowohl Tore als auch Versuche überprüft wurden. Neuere Elfmetertore können oben erscheinen, ohne Teil dieser Stichprobe zu sein. Elfmeterschießen sind ausgeschlossen.",
+  "Latest verified penalty goals": "Neuester überprüfter Stand der Elfmetertore",
+  "International goals and assists": "Tore und Vorlagen in Länderspielen",
+  "Penalty goals and conversion": "Elfmetertore und Trefferquote",
+  "These are separate January–December records for senior club and country, not the 2012/13 club season. The 50-appearance row is a calculation, not a forecast.": "Dies sind getrennte Januar–Dezember-Bilanzen für Profiklubs und A-Nationalteams, nicht für die Klubsaison 2012/13. Die Zeile mit 50 Einsätzen ist eine Berechnung, keine Prognose.",
+  "2012/13 club season": "Klubsaison 2012/13",
+  "Why can international assist totals differ?": "Warum können sich Assistzahlen in Länderspielen unterscheiden?",
+  "Assist totals depend on the matches covered and the provider’s definition of the final action before a goal. Compare definitions and cutoff dates. Our baseline source and later match additions are documented separately.": "Assistzahlen hängen von den erfassten Spielen und der Definition des Datenanbieters für die letzte Aktion vor einem Tor ab. Vergleichen Sie Definitionen und Stichtage. Unsere Ausgangsquelle und später ergänzte Spiele sind getrennt dokumentiert.",
+  "Why assist totals differ": "Warum sich Assistzahlen unterscheiden"
 }

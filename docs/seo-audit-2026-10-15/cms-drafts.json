@@ -1,0 +1,1939 @@
+{
+  "preparedAt": "2026-10-15T07:40:43.604Z",
+  "commands": [
+    {
+      "action": "save",
+      "id": "seed:en:messi-2012-vs-ronaldo-2013-goals",
+      "revision": 1,
+      "locale": "en",
+      "slug": "messi-2012-vs-ronaldo-2013-goals",
+      "draft": {
+        "title": "Messi 2012 vs Ronaldo 2013: Goals and Scoring Rates",
+        "description": "Messi scored 91 goals in 2012; Ronaldo scored 69 in 2013. Compare calendar-year totals, goals per game and an equal-appearance calculation.",
+        "category": "PEAK CALENDAR YEARS",
+        "summary": "Lionel Messi scored 91 goals in 69 appearances in 2012. Cristiano Ronaldo scored 69 goals in 59 appearances in 2013. Both figures cover senior club and country football within January–December. Messi scored 22 more goals across 10 more appearances; the scoring rates were 1.32 and 1.17 goals per appearance.",
+        "body": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Two years that did not play the same football"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Watch the defender rather than the scorer. Against Messi, he may be pulled forward by a short reception and exposed by the next combination. Against Ronaldo, he may already be turning towards his own goal. Their extraordinary calendar years began with different ways of making that defender choose."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Messi’s 2012 and Ronaldo’s 2013 belong in that frame. The familiar comparison is ninety-one goals against sixty-nine. Both totals cover competitive club football and senior internationals within a calendar year. "
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Those are meaningful boundaries. They are not proof that the playing conditions inside them were equivalent, or that one neat subtraction explains the difference between the performances."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Barcelona built much of Messi’s access to goal through possession that made the centre of the pitch unstable for opponents. Short combinations encouraged defenders to step, retreat and hand over responsibility. Messi could begin outside their immediate reach, help move the ball and then enter the space that had opened. His scoring was intertwined with the way Barcelona repeatedly reconstructed the attack around him."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Ronaldo’s work in 2013 more often invites attention to the first moment a defence lost its balance. Madrid and Portugal could use his running to turn a regained ball into an urgent retreat. He was dangerous before the pass arrived because defenders knew he could attack the space behind them. The passer’s decision and the runner’s timing therefore belonged to the same action, even when the final finish looked brutally direct."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "These are tendencies, not rigid player categories. Messi could devastate an open field; Ronaldo could finish intricate possession moves. The interesting difference concerns where their teams most consistently placed the decisive burden. "
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Was the scorer also being asked to create the opening between lines? Was he being preserved as the player who would exploit it? Which teammates made those choices sustainable?"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Those questions lead from managerial change to international football, and from the shape of an attack to the mechanics of a single step. Betis and Sweden offer high-pressure case studies; a meeting between Argentina and Brazil adds a deliberately different competitive context. The official sources establish what happened. Our analysis explains why the arrangements around the scorer matter, while the calculator lets you explore the recorded pace without pretending that a hypothetical sample actually took place."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "A better comparison should leave the reader with more than a winner. It should make the next match easier to understand: the run that appears early, the midfielder who delays a release, the defender who turns towards his own goal a fraction too late."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The tactical shift: central overloads against the threat of depth"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Messi’s annual record straddled Guardiola’s final months at Barcelona and Tito Vilanova’s first season in charge. The continuity in personnel and technical habits matters as much as the change of coach. Barcelona could still find combinations through midfield and use a central forward who did not remain fixed between centre-backs. Messi’s movement towards the ball could create an extra passing option without ending his involvement as a scorer."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The mechanism relied on spacing. If every attacker came short, the opposing defence could advance together and compress the area around Messi. A runner threatening beyond the line prevented that comfortable response. "
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Width also held full-backs away from the centre. The player receiving between lines benefited from teammates who were not immediately participating in the exchange but were making their defenders reluctant to leave."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Messi’s first touch and body orientation helped preserve the advantage. He could receive with a possible return pass still available, making a defender wary of committing. If the defender held off, he could carry into shooting range. "
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "If the defender stepped, a short combination could remove him from the next phase. The goals grew from repeated access to such decisions, not from a false-nine label alone."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Ronaldo’s year crossed the change from Mourinho to Ancelotti at Madrid. The counterattacking threat remained, but the supporting relationships were being reorganised. Benzema could connect play and occupy central defenders; Bale’s arrival added another powerful route from deeper or wider positions. Ronaldo did not need to begin every attack as the carrier when teammates could advance the ball and release him at speed."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Portugal added a different setting under Paulo Bento. International football offers less daily rehearsal than club football, so clear relationships become valuable: who offers the first forward pass, who carries through midfield and who threatens the last line. Ronaldo’s runs could make a simple release highly productive. "
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "That does not mean the passing was easy. The supplier needed to judge both the defensive line and the runner’s acceleration."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The key contrast is the defender’s preferred response. Against a central Messi reception, stepping forward could expose the space behind, while staying deep could concede the turn. Against Ronaldo threatening depth, retreating early could protect the race but concede territory to the passer. "
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Both players created dilemmas. They often began those dilemmas from different positions and with different distributions of the ball among teammates."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "That distinction helps explain why equalising appearances is useful but incomplete. The annual samples include different domestic opponents, international fixtures and tactical assignments. A scaled rate can show the frequency of recorded goals under those conditions. "
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "It cannot remove the conditions. To understand the extraordinary output, we need to keep the calendar boundary and then open up the football inside it, rather than treating the boundary as a claim of perfect comparability."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 3
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The space each attack wanted"
+                }
+              ]
+            },
+            {
+              "type": "bulletList",
+              "content": [
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "Messi between the lines: a short pass invites pressure, while a nearby teammate offers a return route beyond it. The speed of the exchange matters more than its distance."
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "Ronaldo behind the line: the runner threatens depth before the pass leaves the boot. That threat can stretch the pitch even when the ball goes elsewhere."
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "Both after the first chance: follow the rebound and reset the position. An annual scoring record includes second efforts as well as the move everyone remembers."
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Betis, Sweden and Brazil: three ways to make a defence choose"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 3
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Betis: why the return pass matters"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "At Betis in December 2012, Messi’s scoring carried an immediate historical focus as he passed Gerd Müller’s calendar-year mark. Barcelona also had a match to win. UEFA’s account records Messi driving into the area for one finish and combining with an Iniesta backheel for the other, before Betis made the contest uncomfortable. The record and the competitive task occupied the same evening."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The combination with Iniesta is revealing because a small exchange can do more than a long carry. The ball moves away from the shooter just long enough to alter a defender’s attention, then returns into a different angle. A backheel can keep the exchange flowing without requiring the supplier to turn fully towards the intended receiver. "
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The receiver benefits only if his movement anticipates that possibility. Technical invention and shared understanding meet in a very short space."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "There is also a lesson in Barcelona having to protect the lead. A prolific scorer can determine the attacking side of a match without making the opponent harmless. Once Betis threatened, the rest of the team’s control and defending mattered to the value of the goals. The annual total records the successful finishes; it cannot describe every period in which those finishes had to be preserved by collective work."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 3
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Sweden: pressure that opens the pitch"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Sweden’s home playoff against Portugal in November 2013 presented Ronaldo with another kind of pressure. Portugal arrived with an advantage, Sweden’s goals revived the tie, and Ronaldo’s hat-trick ultimately took his country through. UEFA’s report confirms the outcome and the decisive running behind the defence. "
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "This was not simply a productive night added to an annual spreadsheet. It settled access to the World Cup."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The tactical pressure in such a tie is unusual. The side chasing qualification must advance enough players to score, but doing so can expose the space that a fast forward most wants. A passer looking up after a regain does not need to dismantle a settled block if the opponent’s shape is already stretched. He needs to release the runner before the defensive line can recover its depth and orientation."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Ronaldo’s timing was part of the construction. A run begun too soon risks offside or forces the pass into a predictable lane. A run begun too late allows the centre-back to turn comfortably. "
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The useful moment is when the passer can play forward and the defender must still divide attention between ball and runner. The subsequent finish demands control at speed; the opportunity begins with reading that shared moment."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Psychological momentum is often used as a vague explanation for matches like this. Here it has a concrete tactical expression. Sweden’s need to score influenced how much risk it had to accept. "
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Portugal’s ability to threaten the space behind influenced how safely Sweden could take that risk. We do not need to guess private feelings to explain why the contest could become more open as its stakes increased."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 3
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Brazil: the diagonal carry changes the question"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Argentina’s 2012 friendly against Brazil supplies a different lens and should be labelled as such. It was a senior international, but not a knockout qualifier. FIFA’s retrospective describes Messi’s winning run from the right towards a left-footed finish. The action is useful because it challenges the lazy idea that his annual output existed only inside Barcelona’s short-passing environment."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "A diagonal carry changes the angles for successive defenders. The first opponent confronts a player near the outside channel; the next must protect the route towards the centre and the shooting foot. If the carrier keeps the ball close enough to alter direction, the defender cannot simply sprint alongside him. "
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "He must prepare for the next touch while moving. Messi’s threat came from keeping that uncertainty alive until the shot became available."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Taken together, the matches explain more than a list of peak totals. Betis shows the productivity of close combination. Sweden shows the relationship between qualification pressure and depth running. "
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Brazil shows an individual carry working in a different team and competitive context. Each belongs inside the annual record, but each asks for its own football explanation."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The physical peak, and the adaptations that followed"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "These years belong to the players’ athletic prime, but it would be a mistake to describe that prime only through speed or strength. Repeated elite finishing also depends on coordination under changing conditions: controlling a ball while accelerating, adjusting the stride before a shot and reacting when a defender alters the expected route. The most valuable physical advantage is often the ability to keep several technical options available while moving quickly."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Messi’s carrying offers a clear example. Frequent touches can let the attacker change the ball’s direction without a long interval in which an opponent can predict its destination. That places demands on balance and timing rather than simply maximum running speed. "
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The defender must react to the ball and the attacker together. A small change can therefore create a large difference in who is prepared for the next action."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Ronaldo’s runs beyond the line emphasise another coordination problem. The first acceleration must match the pass, and the approach to goal must leave him able to finish rather than merely arrive. A heavy touch can turn a winning run into a goalkeeper’s interception. "
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "A rushed shot can waste the separation already earned. The quality lies in connecting the run to the finish, not treating them as separate athletic and technical achievements."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Their later careers help identify which parts of those mechanisms were adaptable. Ronaldo could concentrate more of his decisive work near the penalty area, reducing the need to create every chance through a long carry. Messi could influence attacks from deeper receiving positions and select the moments to accelerate. "
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Neither change erased physical demands. It redistributed them across the player’s actions and across the team."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The supporting cast becomes more important when a senior attacker chooses his bursts. Teammates must progress the ball, occupy defenders and cover space without possession. If that structure fails, the star may have to travel farther for a useful touch or receive with fewer options. "
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Longevity is therefore partly a story about roles that remain coherent as physical priorities shift. It is not solely a contest between individual recovery habits."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Repetition in these attacks means more than taking the same shot again. Change the angle of the pass or the starting position of the defender and the forward must reorganise his approach: a shorter step to control the ball, a wider first movement to remain available, or a delayed run to keep the lane open. That ability to preserve the purpose of an action while changing its execution is a better football explanation of repeated scoring than simply calling a player relentless."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "A fair historical comparison respects that distinction. The extraordinary annual output demonstrates sustained execution across many circumstances. It does not prove the players were operating without fatigue or discomfort, nor does it tell us how their coaches balanced every training load. We can admire the physical repeatability while remaining precise about what the evidence shows: the actions they continued to perform and the systems that continued to place them in range."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Why these years changed what clubs expected from a forward"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The influence of these peaks extends beyond record chasing. They encouraged teams and supporters to see the main scorer as a player whose starting position could be manipulated, rather than a fixed centre-forward waiting for service. A central attacker could help make the midfield overload. "
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "A wide attacker could be the preferred target of the decisive pass. The route to goal became a design question across the whole attack."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "That freedom is costly when copied badly. Asking a promising player to wander like Messi without providing width and depth can leave the team crowded around the ball. Asking a winger to score like Ronaldo without giving him runners and delivery can strand him between a full-back and a centre-back. "
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The spectacular individual action is the visible part of a supporting arrangement. Copying the visible part alone often misses the cause."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "For coaches, the transferable lesson is to align the attack with the player’s strongest decisions. If he reads the line exceptionally well, give the passer time and a clear route to release him. If he can receive between opponents and turn, preserve enough width that those opponents cannot simply collapse around him. The team should create the recurring question that its best attacker answers better than the defence."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "For readers, the calculator offers a narrower but useful exercise. The recorded goals and appearances can be scaled to the same hypothetical number of matches. That makes the scoring frequency easier to compare. "
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "It does not create an alternative history in which Messi played Ronaldo’s opponents or Ronaldo received Messi’s service. The displayed answer should prompt another question about the sample, not close the discussion."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The calendar-year view also teaches restraint about managerial credit. Both totals cross club seasons and coaching transitions. It would be misleading to assign every goal in the year to one manager’s system. "
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "International contributions add another coaching context. A historically responsible explanation follows those changes instead of using the annual boundary to erase them."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The enduring attraction of these years is their variety. Close combinations, runs in behind, set pieces and improvised finishes all entered the record. The total makes their scale visible. The matches show how much different football had to succeed to sustain it."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Two peaks, several valid questions"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Messi’s 2012 leads the annual total in this comparison. Ronaldo’s 2013 remains a study in repeated depth running, decisive finishing and the ability to carry that threat between club and country. Recognising the larger number does not require flattening the smaller one into an inferior version of the same performance."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The better verdict identifies the question. For accumulated goals within the calendar boundary, the record answers clearly. For how a team should build around an exceptional scorer, both years provide different lessons. For a claim about what either player would have done in the other’s setting, the evidence cannot supply certainty."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Keep the record and the football together. Then the comparison becomes more interesting than a subtraction. If you were designing an attack around one recurring advantage, would you begin with the player who makes the central defence hesitate over whom to follow, or the runner who makes it afraid to step forward?"
+                }
+              ]
+            }
+          ]
+        },
+        "image": null,
+        "citations": [
+          {
+            "title": "Barcelona: Messi’s 91 goals in 2012",
+            "url": "https://www.fcbarcelona.com/en/football/first-team/news/1670444/-91-/featured"
+          },
+          {
+            "title": "UEFA: Ronaldo’s 2013 scoring year",
+            "url": "https://www.uefa.com/uefachampionsleague/news/0211-0e8866833d94-86d200f75b0a-1000--cristiano-ronaldo-takes-2013-by-storm/"
+          },
+          {
+            "title": "2012 calendar-year records",
+            "url": "https://www.messivsronaldo.app/calendar-year-stats/2012/"
+          },
+          {
+            "title": "2013 calendar-year records",
+            "url": "https://www.messivsronaldo.app/calendar-year-stats/2013/"
+          },
+          {
+            "title": "UEFA: Messi at Betis in December 2012",
+            "url": "https://www.uefa.com/news-media/news/0204-0e8262d686ad-9fddb55c5ba4-1000--messi-passes-muller-s-mark-falcao-fires-five/"
+          },
+          {
+            "title": "UEFA: Sweden–Portugal playoff, 2013",
+            "url": "https://www.uefa.com/european-qualifiers/news/0253-0d7eeff62152-38beffc43bd8-1000--ronaldo-hat-trick-takes-portugal-past-sweden/"
+          },
+          {
+            "title": "FIFA: Messi against Brazil, including the 2012 friendly",
+            "url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/lionel-messi-brazil-argentina-south-american-world-cup-qualifiers"
+          }
+        ]
+      }
+    },
+    {
+      "action": "save",
+      "id": "71ba74e2-b343-c411-e758-7f19d6bc525b",
+      "revision": 3,
+      "locale": "en",
+      "slug": "messi-ronaldo-penalty-records",
+      "draft": {
+        "title": "Messi vs Ronaldo Penalty Records: Conversion Explained",
+        "description": "How Messi and Ronaldo’s penalty conversion rates are calculated, why shootouts are separate, and what dated attempts reveal about goals and misses.",
+        "category": "Set-piece analysis",
+        "summary": "In The Rivalry’s snapshot of 21 September 2026, Messi scored 114 of 149 in-match penalties and Ronaldo scored 184 of 220. That gives conversion rates of 76.51% and 83.64%. The example excludes penalty shootouts and preserves one common cutoff. For the latest published goal totals and their coverage notes, open the penalty statistics page.",
+        "body": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "table",
+              "content": [
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableHeader",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "In-match penalties · 21 September 2026"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableHeader",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "Messi"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableHeader",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "Ronaldo"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableHeader",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "Scored"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "114"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "184"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableHeader",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "Attempts"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "149"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "220"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableHeader",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "Unsuccessful attempts"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "35"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "36"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableHeader",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "Conversion"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "76.51%"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "83.64%"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Historical example from the site’s dated statistical reference. Shootout attempts are excluded. These are not presented as today’s complete totals."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "For the latest published goal totals and their individual coverage notes, open the "
+                },
+                {
+                  "type": "text",
+                  "text": "penalty statistics page",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "/penalties"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": ". This example remains fixed at 21 September 2026; its revision date does not extend the statistical cutoff."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "How is penalty conversion calculated?"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Penalty conversion is scored penalties divided by attempts, multiplied by 100. Here, 114 ÷ 149 × 100 = 76.51%, and 184 ÷ 220 × 100 = 83.64%. Unsuccessful attempts are attempts minus scored penalties, including saves and other misses."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Ronaldo’s conversion rate in this sample is 7.13 percentage points higher. His 36 unsuccessful attempts should not be compared with Messi’s 35 without also comparing their 220 and 149 attempts. The percentage describes this historical sample; it does not predict the next kick."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Why might current goals and conversion have different dates?"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "A new scored penalty can be verified before every attempt in the wider record has been checked. A current goal total must not be divided by an older attempt total. Use the scored and attempted counts from the same verified sample, or keep the previous conversion example clearly dated until the missing attempts are reconciled."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Match penalties and post-match shootouts answer different questions. Keep them in separate records so the numerator and denominator describe the same type of kick."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "A penalty removes most of football’s usual clutter. No defender can tackle the taker, no teammate needs to find a passing lane and the ball is already placed near goal. The simplicity is deceptive: the player must complete a familiar physical action while an opponent tries to turn that familiarity into something predictable."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Messi and Ronaldo have approached that problem across very different phases of their careers. Their reputations invite a tidy contrast between subtlety and force, but individual kicks resist the stereotype. Either can vary placement, pace and rhythm; the meaningful distinction is the decision made on a particular attempt, not a permanent personality assigned to a run-up."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The public record is equally vulnerable to shortcuts. One unforgettable miss can overwhelm years of successful kicks in memory, while a large goal total can conceal how many attempts were required. A serious comparison needs to preserve the denominator and still explain what the percentage cannot see."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "This article uses the site’s snapshot dated 21 September 2026: Messi converted 114 of 149 in-match penalties, while Ronaldo converted 184 of 220. The figures were attributed to the "
+                },
+                {
+                  "type": "text",
+                  "text": "penalty statistical reference",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://www.messivsronaldo.app/detailed-stats/penalties/"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " in the published record. They are dated source entries, not newly audited running totals, and exclude post-match shootouts."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Those numbers produce conversion rates of roughly 76.5% and 83.6%, respectively. They also produce almost the same number of unsuccessful attempts: 35 for Messi and 36 for Ronaldo. That apparent contradiction disappears once opportunity enters the picture, because Ronaldo took substantially more kicks within the recorded sample."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The interesting question is therefore not whether a miss exists on somebody’s highlights reel. Both have missed when the stakes were enormous. It is how technique, selection, opposition and match context shape the outcomes, and how to discuss those outcomes without pretending that a career percentage can read a player’s mind."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The denominator changes the argument"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Counting misses alone rewards the player who had fewer opportunities to fail. Counting goals alone rewards volume without showing efficiency. Goals, attempts and conversion need to sit together because each answers a different question about the same record."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "In this snapshot, Ronaldo has 71 additional attempts and 70 additional successful kicks. That arithmetic explains why the unsuccessful totals are so close despite a large gap in goals. It does not tell us that all attempts were equally difficult psychologically or that the same difference would recur in a new sample."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The conversion gap is about 7.1 percentage points, calculated by subtracting one rate from the other. It describes what happened within the recorded attempts. Treating it as a promise about the next hundred kicks would confuse a historical summary with a forecast of future performance."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 3
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "A missed kick is not always the same event"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "An unsuccessful attempt can be saved, strike the woodwork or miss the target. Those outcomes may have different technical explanations, even though all reduce the conversion rate. A goalkeeper’s excellent intervention should not automatically be described as identical to a poorly directed strike."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The same caution applies to a successful penalty. A shot can beat a goalkeeper who chose the wrong side, or reach a difficult corner despite the keeper reading the direction. Both count as goals, but the underlying interaction differs, which is why a total alone cannot establish the quality of every individual decision."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Two decisions before the foot meets the ball"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Broadly, a taker can commit to a destination and execute it, or retain enough flexibility to respond to the goalkeeper’s movement. The first approach prioritises a rehearsed strike; the second prioritises information gathered during the approach. Real attempts can combine elements of both, so the categories should be treated as analytical tools rather than rigid labels."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Committing early may allow a cleaner, more forceful contact because the body is organised around one action. The trade-off is that the goalkeeper may anticipate the destination. Waiting for information can improve the choice of side, but leaves less time to adjust the strike if the keeper delays his own movement."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Neither strategy escapes risk. A powerful shot can rise or drift outside the target, while a slower placement can be reachable if the goalkeeper remains balanced. The taker is managing a trade between precision, speed and uncertainty, with no option that guarantees success."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 3
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Rhythm is a tool, not a personality test"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "A change of pace during the approach can encourage the goalkeeper to move early. If the keeper commits, the taker may have space on the other side; if he waits, the attempted disruption may produce little advantage. The effectiveness depends on the interaction, not on how theatrical the run-up looks."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "IFAB’s penalty law",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://www.theifab.com/laws/latest/the-penalty-kick/"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " distinguishes permitted feinting during the run-up from an illegal feint to kick once the run-up is completed. That boundary matters when discussing technique. The legal room for variation is real, but it is not unlimited."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Messi against Chelsea: the limits of a single image"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Messi struck the crossbar from the penalty spot against Chelsea in the 2012 Champions League semi-final second leg. UEFA’s "
+                },
+                {
+                  "type": "text",
+                  "text": "contemporary analysis",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://www.uefa.com/uefachampionsleague/news/0254-0d7dd1dcde84-83592fb48163-1000--chelsea-belief-blind-sides-barcelona/"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " places the miss within Barcelona’s unsuccessful attempt to turn territorial dominance into passage to the final. The moment became a shorthand for the night because its consequence was immediate and visible."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "That visibility makes it tempting to assign a sweeping psychological explanation. Yet the replay establishes the flight of the ball, not the private cause of the error. A technical action can fail under pressure without proving that the player lacks the capacity to succeed under pressure in every other situation."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The broader attacking context also matters. A penalty can emerge from sustained pressure, movement inside a crowded box and defenders struggling to control runners. The taker inherits the chance created by that collective work, which makes the miss consequential without making him the only participant in the team’s failure to score enough."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "This is a useful discipline for reviewing any famous miss: identify the observable action, state the match consequence and resist inventing the internal explanation. That approach remains fair to the player while preserving accountability for the attempt. It also avoids treating hindsight as evidence that a different technique was certain to succeed."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Ronaldo against Bayern: one night, two different categories"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The following evening, Ronaldo scored an in-match penalty for Real Madrid against Bayern Munich and later had his shootout attempt saved. Bayern’s "
+                },
+                {
+                  "type": "text",
+                  "text": "official match report",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://fcbayern.com/en/news/matchreports/2012/04/bayern-through-to-final-after-shoot-out-thriller"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " records both events. The contrast makes the match a particularly useful case study: one player, one evening and two outcomes that belong in different statistical ledgers."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The in-match kick contributed to the score that decided whether the tie would continue. The shootout kick belonged to the procedure used after the football had failed to separate the teams. Combining them without a label would obscure both the rules and the conditions under which they were taken."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "It also complicates claims about a fixed competitive mentality. A successful kick does not make a later miss impossible, and a later miss does not erase the earlier execution. The responsible conclusion is narrower: Ronaldo performed one action successfully and another unsuccessfully in a highly consequential match."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "For coaching analysis, that invites practical questions rather than character judgements. Did the placement change, did the goalkeeper read a cue, and did the chosen pace leave a save possible? Answering them requires evidence from the attempts themselves, not a reputation imported before the ball was struck."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Qatar showed why the match sheet and the shootout must stay separate"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Messi scored a penalty during the 2022 World Cup final and converted again in the shootout. FIFA’s "
+                },
+                {
+                  "type": "text",
+                  "text": "official match report",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://fdp.fifa.org/assetspublic/ce44/r2864/pdf/FullTimeMatchReport-English.pdf"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " records the match goals, while its "
+                },
+                {
+                  "type": "text",
+                  "text": "shootout footage",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://www.youtube.com/watch?v=MCWJNOfJoSM"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " preserves the separate deciding sequence. A career goals table cannot simply add every successful kick from that evening as though each were a match goal."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The distinction follows the competition’s structure. A penalty in normal time or extra time is part of the match; a shootout is a method of determining a winner after that phase has ended. "
+                },
+                {
+                  "type": "text",
+                  "text": "IFAB’s match-outcome law",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://www.theifab.com/laws/latest/determining-the-outcome-of-a-match/"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " sets out the separate procedure."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The football context is different too. During a match, teammates prepare for a possible rebound and the taker must remain involved if play continues. In a shootout, the immediate task is isolated from the normal flow of open play, with a different sequence of waiting, watching and walking to the spot."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "None of that proves one category is universally harder. The pressure of a particular in-match kick can exceed that of an early shootout attempt, and the reverse can also be true. The defensible point is that the categories differ and should be analysed explicitly before they are combined for any wider study."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Placement is a choice about the margin for error"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The corner that is hardest for a goalkeeper to reach also leaves the taker less room for an inaccurate strike. Aim closer to the centre and the target becomes more forgiving, but the save may become easier if the keeper remains there. Every proposed perfect penalty therefore contains a trade-off between defeating the opponent and keeping the ball inside the goal."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Height creates another version of the same choice. A high finish can be difficult to stop, yet introduces the risk of clearing the crossbar. A low strike avoids that particular outcome but still needs sufficient direction or pace to beat a goalkeeper who anticipates its route."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The technique should be evaluated against the decision the player intended to execute, where that intention is supported by observable evidence. A weakly struck attempt towards a reachable area presents a different problem from a firm strike saved near a corner. Describing both merely as a lack of nerve replaces useful technical analysis with a verdict the footage cannot establish."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The goalkeeper is also learning. Previous kicks may reveal preferred destinations or changes in approach, while the taker knows those preferences can be studied. Variation matters because a reliable action can become less effective when an opponent predicts it, although changing technique too often can introduce a different kind of inconsistency."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "For Messi and Ronaldo, long careers mean that an overall rate combines many such interactions with different goalkeepers. It also combines different phases of their own technique. A season-level or competition-level sample can help investigate change, provided it is large enough to be informative and is not selected solely because it produces an attractive conclusion."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The cleanest analysis would pair the outcome with the ball’s destination and the goalkeeper’s response. Did the keeper move early, hold his position or reach a well-directed strike? That information would help explain why the kick succeeded or failed while leaving private thoughts, training habits and unmeasured physical claims outside the account."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "For the reader, this offers a practical alternative to replaying only the result. Follow the approach, the keeper’s first committed movement and the direction of the contact in sequence. The contest becomes an exchange of decisions rather than a simple test of whether a famous player deserves to be called brave."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The teammate who wins the penalty belongs in the story"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "A penalty-goal tally identifies the scorer, not necessarily the player who created the situation. A winger may beat a defender, a striker may attack a through ball or sustained pressure may force a desperate challenge. The specialist then completes the final act on behalf of the team."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "That distribution of labour explains why removing penalties can be useful for one question without making them worthless for another. A non-penalty tally offers a narrower view of scoring from other situations. It does not deny the contribution of a taker who repeatedly converts chances his teammates have earned."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Teams also decide who receives those opportunities. A recognised first-choice taker can accumulate attempts that another excellent scorer would not receive at the same club. Penalty volume therefore reflects tactical pressure, refereeing decisions and internal responsibility as well as individual technique."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 3
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "What non-penalty goals actually include"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Using this same September 21 snapshot, the site records 930 total Messi goals and 979 Ronaldo goals. Removing the corresponding in-match penalty goals produces 816 and 795 non-penalty goals. These are calculations within that specific snapshot; the Messi total in a later career article can differ because its review date is later."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Non-penalty does not mean open play. The category still includes direct free kicks and goals arising from corners or other set pieces. Precision in the label prevents a legitimate narrower comparison from turning into a misleading claim about how every remaining goal was created."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "How to judge a penalty record without choosing the answer first"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Start by deciding what you want to know. Reliability from the spot, total contribution as a designated taker and performance in major knockout matches are all reasonable subjects. They require different selections, and none should be quietly substituted for another halfway through an argument."
+                }
+              ]
+            },
+            {
+              "type": "bulletList",
+              "content": [
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "Keep in-match penalties and shootouts separate, or label clearly when a study includes both."
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "Use scored attempts and total attempts from the same source, dates and competitions."
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "Describe an unsuccessful kick accurately when its outcome is known: save, woodwork or off target."
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "Separate the result of the kick from unsupported claims about the taker’s private thoughts."
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "Preserve the date when sharing career totals, because additional attempts change both the count and the rate."
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "A stronger future analysis would also examine where the shots went and how the goalkeeper moved. Placement, pace and keeper commitment can help explain whether a method was executed well, even when the outcome was unfavourable. Those details require consistent event or tracking evidence; they should not be invented to decorate a percentage."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "A clear statistical lead still leaves room for football"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Ronaldo leads both penalty goals and conversion in the site’s dated record. That is a clear result, and there is no need to obscure it. It remains one part of scoring, rather than a complete verdict on the two players’ attacking careers."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The deeper lesson is that apparent simplicity concentrates responsibility. The ball is stationary and the target familiar, yet the taker must coordinate judgement and technique against a goalkeeper actively trying to disrupt both. When the next argument begins with one famous miss, ask whether it explains the record—or merely the moment everyone remembers."
+                }
+              ]
+            }
+          ]
+        },
+        "image": {
+          "path": "/media/blog/81fcca0a-860e-4924-b4c7-ef5a2e1d8624.webp",
+          "alt": "In-match penalty goals at 21 September 2026: Messi 114, Ronaldo 184. Shootouts excluded."
+        },
+        "citations": [
+          {
+            "title": "penalty statistical reference",
+            "url": "https://www.messivsronaldo.app/detailed-stats/penalties/"
+          },
+          {
+            "title": "IFAB’s penalty law",
+            "url": "https://www.theifab.com/laws/latest/the-penalty-kick/"
+          },
+          {
+            "title": "contemporary analysis",
+            "url": "https://www.uefa.com/uefachampionsleague/news/0254-0d7dd1dcde84-83592fb48163-1000--chelsea-belief-blind-sides-barcelona/"
+          },
+          {
+            "title": "official match report",
+            "url": "https://fcbayern.com/en/news/matchreports/2012/04/bayern-through-to-final-after-shoot-out-thriller"
+          },
+          {
+            "title": "official match report",
+            "url": "https://fdp.fifa.org/assetspublic/ce44/r2864/pdf/FullTimeMatchReport-English.pdf"
+          },
+          {
+            "title": "shootout footage",
+            "url": "https://www.youtube.com/watch?v=MCWJNOfJoSM"
+          },
+          {
+            "title": "IFAB’s match-outcome law",
+            "url": "https://www.theifab.com/laws/latest/determining-the-outcome-of-a-match/"
+          }
+        ]
+      }
+    }
+  ]
+}

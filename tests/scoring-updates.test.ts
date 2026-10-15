@@ -42,11 +42,29 @@ test("partially classified matches cannot advance complete coverage or mix penal
   const data=buildPublishedData(records);
   const conversion=data.scopes.career.metrics.find(m=>m.id === "penalty-conversion")!;
   assert.equal(conversion.values.messi,114/150*100,"exclude the unverified denominator match from both sides of the ratio");
+  assert.deepEqual(conversion.ratioInputs, { numerator: { messi: 114, ronaldo: 184 }, denominator: { messi: 150, ronaldo: 220 } });
+  assert.equal(data.scopes.career.metrics.find(m => m.id === "penalties")!.values.messi, 115, "latest scored total remains independent of the matched sample");
   assert.match(conversion.coverage!,/partial coverage/);
   const leftFoot=data.scopes.career.metrics.find(m=>m.id === "leftFoot")!;
   assert.match(leftFoot.coverage!,/partial coverage/);
   assert.match(leftFoot.explanation,/1 match record/);
   assert.equal(matchScoring(match).leftFoot,undefined);
+});
+
+test("conversion inputs remain dated when only a newer penalty goal is verified", () => {
+  const data = buildPublishedData([{ ...match, penalties: 1 }]);
+  const before = buildPublishedData();
+  const conversion = data.scopes.career.metrics.find(m => m.id === "penalty-conversion")!;
+  assert.deepEqual(conversion.ratioInputs, before.scopes.career.metrics.find(m => m.id === "penalty-conversion")!.ratioInputs);
+  assert.match(conversion.coverage!, /21 September 2026/);
+  for (const scope of Object.values(data.scopes)) {
+    const metric = scope.metrics.find(m => m.id === "penalty-conversion");
+    if (!metric) continue;
+    for (const player of ["messi", "ronaldo"] as const) {
+      assert.ok(metric.ratioInputs, `${scope.id}: conversion must expose its inputs`);
+      assert.equal(metric.values[player], metric.ratioInputs.numerator[player] / metric.ratioInputs.denominator[player] * 100);
+    }
+  }
 });
 
 test("hat-tricks derive from goals and complete body partitions infer the remaining zeros", () => {

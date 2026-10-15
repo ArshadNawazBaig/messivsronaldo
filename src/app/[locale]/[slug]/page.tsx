@@ -80,7 +80,7 @@ export default async function ContentPage({ params }: {
       players={page.scope || slug === "honours" || isAwardSlug(slug) || slug === "answers" ? ["messi", "ronaldo"] : undefined}
       mainEntityId={page.scope ? "#comparison-dataset" : slug === "glossary" ? "#terms" : undefined}
       breadcrumbs={[{ path: "/", name: t("Overview") }, ...(parent ? [parent] : []), { path: `/${slug}`, name: t(page.heading) }]} />
-    <div className="page-intro inner-intro"><div><span className="eyebrow"><span className="tiny-dot"/>{t(page.eyebrow)}</span><h1>{t(heading)}</h1><p>{t(page.description)}</p></div></div>
+    <div className="page-intro inner-intro" id="page-introduction"><div><span className="eyebrow"><span className="tiny-dot"/>{t(page.eyebrow)}</span><h1>{t(heading)}</h1><p>{t(page.description)}</p></div></div>
     {slug === "glossary" && <StatGlossary />}
     {slug === "answers" && <RecordAnswers answers={buildRecordAnswers(liveData, t)} />}
     {page.scope && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(comparisonDataset(liveData, page.scope, `/${slug}`, locale, siteUrl, t, page.scoring)) }}/>}
@@ -93,7 +93,7 @@ export default async function ContentPage({ params }: {
     {slug === "milestone-planner" && <MilestonePlanner/>}
     {slug === "scoring-calculator" && <><ScoringCalculator /><EditorialCards limit={3} calculatorsOnly/></>}
     {slug === "records" && <CurrentHighlights />}
-    {page.scope && <><Comparison initialScope={page.scope} initialGroup={page.scoring ? "scoring" : "overview"} focusMetric={page.focusMetric}/>{slug === "clubs" && <ClubBreakdown />}<ComparisonQuestions slug={slug} data={liveData}/><RelatedReading path={`/${slug}`} /></>}
+    {page.scope && <><Comparison initialScope={page.scope} initialGroup={page.scoring ? "scoring" : "overview"} focusMetric={page.focusMetric}>{slug === "international" && <ComparisonQuestions slug={slug} data={liveData}/>}</Comparison>{slug === "clubs" && <ClubBreakdown />}{slug !== "international" && <ComparisonQuestions slug={slug} data={liveData}/>}<RelatedReading path={`/${slug}`} /></>}
     {(slug === "honours" || isAwardSlug(slug)) && <HonoursNavigation current={slug} />}
     {isAwardSlug(slug) && <><AwardComparison slug={slug} /><RelatedReading path={`/${slug}`} /></>}
     {slug === "honours" && <>

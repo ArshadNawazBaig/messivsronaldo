@@ -1475,5 +1475,17 @@
   "{0} Reviewed baseline plus verified match details in the public update log. All published match records in this scope are included.": "{0} البيانات الأساسية المراجعة مع تفاصيل المباريات الموثّقة في سجل التحديثات العام. تشمل جميع سجلات المباريات المنشورة ضمن هذا النطاق.",
   "{0} Reviewed baseline plus verified match details in the public update log. {1} match record(s) still need this classification and are not included in this breakdown.": "{0} البيانات الأساسية المراجعة مع تفاصيل المباريات الموثّقة في سجل التحديثات العام. عدد سجلات المباريات التي تحتاج هذا التصنيف وغير المشمولة في هذا التفصيل: {1}.",
   "Calendar year to date: 1 January to {0}. Includes senior club and country; 2026 is not a completed year. See the update log for coverage.": "السنة الميلادية حتى الآن: من 1 يناير إلى {0}. تشمل الأندية والمنتخبات الأولى؛ ولم تكتمل سنة 2026 بعد. راجع سجل التحديثات لمعرفة التغطية.",
-  "Career and competition records for Lionel Messi and Cristiano Ronaldo.": "إحصائيات مسيرة ليونيل ميسي وكريستيانو رونالدو في مختلف البطولات."
+  "Career and competition records for Lionel Messi and Cristiano Ronaldo.": "إحصائيات مسيرة ليونيل ميسي وكريستيانو رونالدو في مختلف البطولات.",
+  "Penalty goals in this sample": "أهداف ركلات الجزاء في هذه العينة",
+  "Unsuccessful attempts": "المحاولات غير الناجحة",
+  "Conversion for the verified sample": "نسبة التسجيل في العينة الموثقة",
+  "Only penalties with both scored and attempted counts verified enter this calculation. Newer penalty goals may appear above without entering this sample. Shootouts are excluded.": "يشمل هذا الحساب ركلات الجزاء التي جرى التحقق من عدد أهدافها ومحاولاتها معًا فقط. قد تظهر أعلاه أهداف جزاء أحدث لا تدخل في هذه العينة. تُستبعد ركلات الترجيح.",
+  "Latest verified penalty goals": "أحدث حصيلة موثقة لأهداف ركلات الجزاء",
+  "International goals and assists": "الأهداف والتمريرات الحاسمة الدولية",
+  "Penalty goals and conversion": "أهداف ركلات الجزاء ونسبة التسجيل",
+  "These are separate January–December records for senior club and country, not the 2012/13 club season. The 50-appearance row is a calculation, not a forecast.": "هذه حصيلتان منفصلتان من يناير إلى ديسمبر للأندية والمنتخبات الأولى، وليستا حصيلة موسم الأندية 2012/13. صف المشاركات الخمسين حساب توضيحي وليس توقعًا.",
+  "2012/13 club season": "موسم الأندية 2012/13",
+  "Why can international assist totals differ?": "لماذا قد تختلف أعداد التمريرات الحاسمة الدولية؟",
+  "Assist totals depend on the matches covered and the provider’s definition of the final action before a goal. Compare definitions and cutoff dates. Our baseline source and later match additions are documented separately.": "تعتمد أعداد التمريرات الحاسمة على المباريات المشمولة وتعريف مزود البيانات للفعل الأخير قبل الهدف. قارن التعريفات وتواريخ التغطية. نوثق مصدر البيانات الأساسي والمباريات المضافة لاحقًا بصورة منفصلة.",
+  "Why assist totals differ": "لماذا تختلف أعداد التمريرات الحاسمة"
 }

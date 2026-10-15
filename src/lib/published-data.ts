@@ -70,6 +70,7 @@ export function buildPublishedData(records: MatchRecord[] = [], revision = 0, pu
         : scoring[metricId] !== undefined);
       if (!verified.length) return {...m,coverage:`Through ${baselineLabel}`,explanation:`${m.explanation} Newer match records still need this classification; this figure retains its reviewed cutoff.`};
       const values = {...m.values};
+      let ratioInputs = m.ratioInputs;
       if (conversion) {
         // Both parts of the ratio must cover the same matches.
         const penalties = {...old.metrics.find(metric => metric.id === "penalties")!.values};
@@ -79,12 +80,13 @@ export function buildPublishedData(records: MatchRecord[] = [], revision = 0, pu
           attempts[record.player] += scoring.penaltyAttempts!;
         }
         for (const player of ["messi","ronaldo"] as const) values[player] = penalties[player] / attempts[player] * 100;
+        ratioInputs = { numerator: penalties, denominator: attempts };
       } else {
         for (const {record,scoring} of verified) values[record.player] += scoring[metricId]!;
       }
       const updatedThrough = verified.map(({record}) => record.date).sort().at(-1)!;
       const unclassified = matches.length - verified.length;
-      return {...m,values,source:[...m.source,"updates" as const],updatedThrough,
+      return {...m,values,...(ratioInputs && {ratioInputs}),source:[...m.source,"updates" as const],updatedThrough,
         coverage:unclassified ? `Verified records to ${dateLabel(updatedThrough)} · partial coverage` : `Updated ${dateLabel(updatedThrough)}`,
         explanation:`${m.explanation} Reviewed baseline plus verified match details in the public update log.${unclassified ? ` ${unclassified} match record(s) still need this classification and are not included in this breakdown.` : " All published match records in this scope are included."}`};
     }));
