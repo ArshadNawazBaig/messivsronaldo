@@ -5,7 +5,7 @@ import { buildPublishedData } from "../src/lib/published-data";
 import { buildRecordAnswers, filterRecordAnswers } from "../src/lib/record-answers";
 import { createTranslator } from "../src/lib/i18n/translate";
 import { locales } from "../src/lib/i18n/config";
-import { articleTopicLinks, contentTopics, relatedContent } from "../src/lib/content-discovery";
+import { articleComparisonLink, articleTopicLinks, contentTopics, relatedContent } from "../src/lib/content-discovery";
 import { contentReview } from "../src/lib/content-review";
 import { getPublicPages } from "../src/lib/public-pages";
 import { comparisonDataset } from "../src/lib/comparison-schema";
@@ -65,6 +65,14 @@ test("CMS topic links are reciprocal and never link to an unpublished translatio
   const unknown = relatedContent("/insights/new-unmapped-article", 4, entries);
   assert.ok(unknown.length > 0);
   assert.ok(unknown.every(item => !item.path.startsWith("/insights/")), "unmapped articles should not recommend unrelated news");
+});
+
+test("article calls to action resolve to the exact record even for CMS-only explainers", () => {
+  assert.equal(articleComparisonLink("messi-ronaldo-free-kick-records")?.path, "/free-kicks");
+  assert.equal(articleComparisonLink("messi-ronaldo-penalty-records")?.path, "/penalties");
+  assert.equal(articleComparisonLink("messi-ronaldo-2026-goals-comparison")?.path, "/2026");
+  assert.equal(articleComparisonLink("unknown-article"), undefined);
+  for (const slug of Object.keys(articleTopicLinks)) assert.equal(articleComparisonLink(slug)?.kind, "comparison", slug);
 });
 
 test("structured data retains cutoff, definitions, localized identities and actual displayed precision", () => {

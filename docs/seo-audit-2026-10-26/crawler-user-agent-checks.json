@@ -1,0 +1,35 @@
+[
+  {
+    "userAgent": "Googlebot/2.1 (+http://www.google.com/bot.html)",
+    "status": 200,
+    "location": null,
+    "rootLangEnglish": true,
+    "scopeCaveat": "Simulated user-agent from audit workstation IP, not a verified request from the actual crawler network.",
+    "canonical": [
+      "https://messivsronaldo17.com"
+    ],
+    "canonicalMatchesRoot": true
+  },
+  {
+    "userAgent": "OAI-SearchBot/1.0; +https://openai.com/searchbot",
+    "status": 200,
+    "location": null,
+    "rootLangEnglish": true,
+    "scopeCaveat": "Simulated user-agent from audit workstation IP, not a verified request from the actual crawler network.",
+    "canonical": [
+      "https://messivsronaldo17.com"
+    ],
+    "canonicalMatchesRoot": true
+  },
+  {
+    "userAgent": "PerplexityBot/1.0; +https://perplexity.ai/perplexitybot",
+    "status": 200,
+    "location": null,
+    "rootLangEnglish": true,
+    "scopeCaveat": "Simulated user-agent from audit workstation IP, not a verified request from the actual crawler network.",
+    "canonical": [
+      "https://messivsronaldo17.com"
+    ],
+    "canonicalMatchesRoot": true
+  }
+]

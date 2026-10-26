@@ -60,6 +60,12 @@ const destinations = (entries: readonly Article[]): RelatedContent[] => [
   ...seasons.map(season => ({ path: `/seasons/${season.slug}`, title: `Messi vs Ronaldo, ${season.label}`, kind: "comparison" as const })),
   ...entries.map(article => ({ path: `/insights/${article.slug}`, title: article.title, kind: "article" as const })),
 ];
+// Keep the primary record link independent of CMS body revisions and avoid
+// sending a reader of a specific record explanation to a generic explorer.
+export function articleComparisonLink(slug: string): RelatedContent | undefined {
+  const path = articleTopicLinks[slug]?.[0];
+  return path ? destinations([]).find(item => item.path === path && item.kind === "comparison") : undefined;
+}
 export function relatedContent(path: string, limit = 4, entries: readonly Article[] = articles): RelatedContent[] {
   const topicPath = path.startsWith("/seasons/") && !contentTopics.some(topic => (topic as readonly string[]).includes(path)) ? "/seasons" : path;
   const topics: readonly string[][] = [

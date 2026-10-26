@@ -1,0 +1,216 @@
+{
+  "reviewed_on": "2026-10-26",
+  "status": "Draft content briefs; only explicitly marked code changes are implemented.",
+  "rules": [
+    "Substitute dynamic placeholders only from the published dataset and its own scope cutoff.",
+    "Do not reset article dates or describe historical snapshots as live data.",
+    "Proposed title lengths are editorial guidelines, not Google ranking constraints.",
+    "CMS-managed article changes require editing the managed record; seed changes alone can be masked.",
+    "Native-language review remains appropriate for translated editorial copy."
+  ],
+  "briefs": [
+    {
+      "path": "/fr/goals",
+      "intent": "Career goals as of the current 2026 cutoff, distinct from goals scored only in 2026.",
+      "evidence": {
+        "impressions": 1433,
+        "clicks": 20,
+        "position": 5.54
+      },
+      "status": "Keep existing dynamic answer and short title; calendar-year distinction and /2026 link implemented.",
+      "title": "Messi vs Ronaldo : buts en carrière (2026)",
+      "description_template": "Messi compte {messi_career_goals} buts en carrière et Ronaldo {ronaldo_career_goals}. Comparez club, sélection et moyennes. Données au {career_cutoff}.",
+      "intro_template": "Messi compte {messi_career_goals} buts en carrière et Ronaldo {ronaldo_career_goals}, dans le périmètre senior défini sur cette page. Ces totaux incluent les buts de 2026 sans se limiter à cette année. Comparez les buts en club et en sélection, les matchs et les moyennes, puis consultez les sources et leur date de couverture.",
+      "headings": [
+        "Combien de buts Messi et Ronaldo ont-ils marqués en carrière ?",
+        "Combien de buts en club et en sélection ?",
+        "Combien de buts ont-ils marqués en 2026 uniquement ?",
+        "Quels matchs sont inclus ?"
+      ],
+      "links": [
+        "/fr/2026",
+        "/fr/international",
+        "/fr/methodology"
+      ],
+      "original_evidence_next": "Expose a downloadable reconciliation by club and country from existing maintained records; do not label the secondary baseline an original independently audited match ledger."
+    },
+    {
+      "path": "/fr/2026",
+      "intent": "Goals and assists from January 1 within the 2026 calendar year.",
+      "evidence": {
+        "impressions": 1002,
+        "clicks": 11,
+        "position": 5.84
+      },
+      "status": "Dynamic numeric introduction and scope distinction implemented in all 9 locales. Title below is a draft for future controlled snippet test.",
+      "title": "Messi vs Ronaldo en 2026 : buts, passes et matchs",
+      "description_template": "Buts en 2026 : Messi {messi_2026_goals}, Ronaldo {ronaldo_2026_goals}. Club et sélection depuis le 1er janvier. Données au {year_cutoff}.",
+      "intro_template": "Buts en 2026 : Messi {messi_2026_goals}, Ronaldo {ronaldo_2026_goals}. En club et en sélection, depuis le 1er janvier. {year_period}. Comparez aussi les passes décisives, les matchs et les minutes.",
+      "headings": [
+        "Combien de buts en 2026 ?",
+        "Les buts de 2026 correspondent-ils aux totaux de carrière ?",
+        "D’où viennent les chiffres ?"
+      ],
+      "links": [
+        "/fr/goals",
+        "/fr/seasons/2026",
+        "/fr/updates"
+      ],
+      "original_evidence_next": "Reconcile club-plus-country split and latest included match against the published update ledger. Keep /seasons/2026 only if its year narrative/visualization serves a distinct purpose; inspect query×page overlap before consolidation."
+    },
+    {
+      "path": "/fr/insights/messi-ronaldo-free-kick-records",
+      "intent": "Explain historical free-kick records and techniques; route current-count intent to the maintained record.",
+      "evidence": {
+        "impressions": 1857,
+        "clicks": 27,
+        "position": 6.23
+      },
+      "status": "Exact /free-kicks record link added above body and at CTA; CMS title/intro draft below is not published. Existing historical 75/65 snapshot must keep its September 21 date.",
+      "title": "Messi vs Ronaldo : coups francs, records et technique",
+      "description_template": "Comparez les records de coups francs de Messi et Ronaldo : un relevé daté, la définition du coup franc direct et les limites des taux de réussite.",
+      "intro_template": "Cet article analyse les coups francs directs de Messi et Ronaldo dans un relevé daté du 21 septembre 2026. Les chiffres historiques illustrent les différences de périmètre et de technique ; le tableau des coups francs suit les mises à jour vérifiées. Un total de buts ne suffit pas à calculer un taux de réussite.",
+      "headings": [
+        "Combien de coups francs dans ce relevé historique ?",
+        "Où consulter les totaux mis à jour ?",
+        "Qu’est-ce qu’un coup franc direct ?",
+        "Pourquoi le taux de réussite exige le nombre de tentatives ?"
+      ],
+      "links": [
+        "/fr/free-kicks",
+        "/fr/penalties",
+        "/fr/glossary",
+        "/fr/updates"
+      ],
+      "original_evidence_next": "Create a verified event-level table for new free kicks: match date, opponent, competition, official attribution and direct source. Do not invent complete career attempt data."
+    },
+    {
+      "path": "/international",
+      "intent": "Senior national-team goals and assists, including the specific query Ronaldo international assists.",
+      "evidence": {
+        "impressions": 1498,
+        "clicks": 7,
+        "position": 7.13
+      },
+      "status": "Current live answer already states 37 with provider context; retain dynamic value and do not substitute another provider total without reconciliation. Draft below only.",
+      "title": "Messi vs Ronaldo International Goals, Assists & Stats",
+      "description_template": "Ronaldo has {ronaldo_international_assists} international assists in this dataset. Compare Messi and Ronaldo for Portugal and Argentina, with dates and provider definitions.",
+      "intro_template": "Ronaldo has {ronaldo_international_assists} international assists in this dataset through {international_cutoff}. The comparison uses the named statistical reference and includes senior A internationals. Messi and Ronaldo’s goals and assists are shown together below. Different provider totals require checking competition coverage and definitions before deciding that a figure is wrong.",
+      "headings": [
+        "How many international assists does Ronaldo have?",
+        "Which international matches are included?",
+        "Why do assist totals differ between sources?",
+        "How do World Cup records fit inside international totals?"
+      ],
+      "links": [
+        "/assists",
+        "/insights/why-assist-totals-differ",
+        "/world-cup",
+        "/methodology"
+      ],
+      "original_evidence_next": "Publish a documented provider-and-competition reconciliation; .app labels 37 while Opta Analyst overview shows 20 and career-history table displays a different selected match sample. These are observed differences, not proof of an error or an explanation of its cause."
+    },
+    {
+      "path": "/club-stats/2008-2009",
+      "intent": "Compare 2008/09 club season; distinguish Messi 2009 versus Ronaldo 2008 individual peak years.",
+      "evidence": {
+        "impressions": 1692,
+        "clicks": 3,
+        "position": 8.25
+      },
+      "status": "Draft only; preserve archive and scope rather than pruning.",
+      "title": "Messi vs Ronaldo 2008/09: Club Goals, Assists & Stats",
+      "description_template": "Compare Messi and Ronaldo in the 2008/09 club season: goals, assists, appearances and scoring rates. See the exact dates and competition scope.",
+      "intro_template": "This page compares Messi and Ronaldo during the 2008/09 club season. It is a different window from Messi’s 2009 calendar year or Ronaldo’s 2008 calendar year. Use the club totals and scoring rates together, and follow the year links when your question concerns their individual award-winning calendar years.",
+      "headings": [
+        "What dates does the 2008/09 comparison cover?",
+        "Who scored more for club in 2008/09?",
+        "How does this differ from Messi 2009 versus Ronaldo 2008?",
+        "Which competitions and sources are included?"
+      ],
+      "links": [
+        "/seasons/2008",
+        "/seasons/2009",
+        "/club-stats",
+        "/insights/messi-goals-2009"
+      ],
+      "original_evidence_next": "Explicit bridge to existing cross-year calculator; do not create another near-duplicate page without query×page evidence."
+    },
+    {
+      "path": "/insights/messi-ronaldo-penalty-records",
+      "intent": "Scored, missed and conversion comparison with matched attempts.",
+      "evidence": {
+        "impressions": 1447,
+        "clicks": 4,
+        "position": 8.3
+      },
+      "status": "Opening matched-cutoff table already live; precise /penalties links implemented. Draft title/description only.",
+      "title": "Messi vs Ronaldo Penalties: Scored, Missed & Rates",
+      "description_template": "Compare Messi and Ronaldo’s penalty goals, attempts, misses and conversion in one dated sample. See why shootouts and later goals need separate treatment.",
+      "intro_template": "This explainer compares penalty goals and attempts from one dated sample so the conversion rates remain meaningful. The table separates scored and unsuccessful kicks and excludes shootouts. For newer published totals, use the maintained penalty record and its coverage notes; a later goal cannot safely be divided by an older attempt total.",
+      "headings": [
+        "What are the scored, missed and conversion figures?",
+        "Why must goals and attempts share a cutoff?",
+        "Do shootouts count as career goals?",
+        "Where are the latest verified penalty totals?"
+      ],
+      "links": [
+        "/penalties",
+        "/goals",
+        "/methodology",
+        "/updates"
+      ],
+      "original_evidence_next": "Maintain the dated worked example; prioritize verification of missing attempt coverage over extra explanatory word count."
+    },
+    {
+      "path": "/insights/messi-2012-vs-ronaldo-2013-goals",
+      "intent": "Peak calendar-year comparison, with fair rate arithmetic.",
+      "evidence": {
+        "impressions": 1323,
+        "clicks": 5,
+        "position": 8.3
+      },
+      "status": "91/69 goals and 69/59 appearances table plus 50-appearance calculation and CSV already live. Keep as a useful original calculation; draft wording only.",
+      "title": "Messi 2012 vs Ronaldo 2013: Goals and Scoring Rates",
+      "description_template": "Messi scored 91 goals in 69 games in 2012; Ronaldo scored 69 in 59 in 2013. Compare calendar-year totals and rates with sources and a downloadable calculation.",
+      "intro_template": "Messi scored 91 goals in 69 appearances in 2012; Ronaldo scored 69 in 59 during 2013. Both records cover senior club and country from January to December. The worked comparison scales their scoring rates to the same number of appearances without claiming to equalize opponents, playing roles or match difficulty.",
+      "headings": [
+        "What were their goals and appearances?",
+        "What changes at equal appearances?",
+        "Why is a calendar year different from a club season?",
+        "How can I reproduce the calculation?"
+      ],
+      "links": [
+        "/seasons/2012",
+        "/seasons/2013",
+        "/scoring-calculator"
+      ],
+      "original_evidence_next": "Promote the existing reproducible calculation to football researchers and writers. Do not add redundant prose or market a scenario as a forecast."
+    },
+    {
+      "path": "/nl/insights/ballon-dor-2026-date-voting-rules",
+      "intent": "Ceremony time/date, watch information and annual voting rules.",
+      "evidence": {
+        "impressions": 3837,
+        "clicks": 5,
+        "position": 8.99
+      },
+      "status": "Complete event-sensitive CMS draft in nl-ceremony-content-draft.json. No CMS mutation.",
+      "title": "Ballon d’Or 2026: tijd, datum, kijken en stemregels",
+      "description_template": "De Ballon d’Or 2026 is op 26 oktober om 21.00 uur Nederlandse tijd in Londen. Bekijk de officiële kijkinformatie, beoordelingsperiode en stemregels.",
+      "intro_template": "Use proposed_fields.summary in nl-ceremony-content-draft.json only within its publication guard.",
+      "headings": [
+        "Hoe laat begint de Ballon d’Or 2026 in Nederland?",
+        "Waar kun je de Ballon d’Or 2026 officieel kijken?",
+        "Telt het WK 2026 mee?",
+        "Hoe werkt het puntensysteem?"
+      ],
+      "links": [
+        "/nl/insights/ballon-dor-2026-contenders-stats",
+        "/nl/insights/kane-vs-mbappe-ballon-dor-2026-stats",
+        "/nl/ballon-dor"
+      ],
+      "original_evidence_next": "After confirmed result, retain as dated rules archive and add an official-results link. Expect ceremony demand to expire; falling impressions afterwards need not indicate an SEO problem."
+    }
+  ]
+}

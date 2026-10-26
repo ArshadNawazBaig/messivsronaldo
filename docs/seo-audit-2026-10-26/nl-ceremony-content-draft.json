@@ -1,0 +1,103 @@
+{
+  "status": "DRAFT — not published to the CMS",
+  "target_url": "https://messivsronaldo17.com/nl/insights/ballon-dor-2026-date-voting-rules",
+  "locale": "nl",
+  "reviewed_on": "2026-10-26",
+  "evidence_label": "CONFIRMED by data",
+  "gsc_export": {
+    "clicks": 5,
+    "impressions": 3837,
+    "ctr": "0.13%",
+    "average_position": 8.99
+  },
+  "current_page_findings": [
+    "Live page already has an answer-first title, a summary, the correct 26 October London ceremony date, official judging dates and a sourced voting table. These are not missing.",
+    "Live page reviewed on 26 October does not state the ceremony start time or link to official viewing information.",
+    "The published article body can come from CMS records; editing only src/lib/ballon-articles.ts does not replace a managed CMS version."
+  ],
+  "publication_guard": {
+    "event_start_utc": "2026-10-26T20:00:00Z",
+    "upcoming_copy_valid_only_before": "2026-10-26T20:00:00Z",
+    "before_publish": "Reopen the official ceremony and broadcast pages and verify their latest wording. This draft is not an automated publication instruction.",
+    "once_event_starts": "Use present or past tense appropriate to the current event state. Remove upcoming language. Link to the organizer for live information; do not infer a winner.",
+    "after_official_results": "Add a brief dated result only after confirmation from UEFA or France Football, link to that result, and retain this URL as the 2026 procedure/date archive. Change title to retrospective wording if search intent has shifted.",
+    "new_review_date": "Set a new visible editorial review date and matching Article dateModified only when the body changes are actually published."
+  },
+  "proposed_fields": {
+    "title": "Ballon d’Or 2026: tijd, datum, kijken en stemregels",
+    "description": "De Ballon d’Or 2026 is op 26 oktober om 21.00 uur Nederlandse tijd in Londen. Bekijk de officiële kijkinformatie, beoordelingsperiode en stemregels.",
+    "summary": "De Ballon d’Or 2026 begint op maandag 26 oktober om 21.00 uur Nederlandse tijd (20.00 GMT) in het London Palladium Theatre. UEFA bevestigt datum, locatie en starttijd. De officiële kijkgids vermeldt de uitzendpartners per land. De prijs beoordeelt prestaties van 3 augustus 2025 tot en met 19 juli 2026.",
+    "sections_to_prepend": [
+      {
+        "heading": "Hoe laat begint de Ballon d’Or 2026 in Nederland?",
+        "text": "De uitreiking begint op maandag 26 oktober om 21.00 uur Nederlandse tijd (CET), gelijk aan 20.00 GMT in Londen. De ceremonie vindt plaats in het London Palladium Theatre. Dit is de aangekondigde starttijd van de ceremonie; de aanvang van een voorprogramma kan per omroep verschillen.",
+        "source_ids": [
+          "ceremony-guide",
+          "ticket-faq"
+        ]
+      },
+      {
+        "heading": "Waar kun je de Ballon d’Or 2026 officieel kijken?",
+        "text": "UEFA publiceert een overzicht van officiële uitzendpartners en livestreams per land. Controleer daar de vermelding voor Nederland en het actuele programma van de aanbieder. Die lijst geeft kijkinformatie; de officiële uitslag en stemprocedure staan bij UEFA en France Football. Een fanpeiling bepaalt de jaarlijkse mannenprijs niet.",
+        "source_ids": [
+          "broadcast-guide",
+          "voting-rules"
+        ],
+        "link": {
+          "text": "Officiële uitzendpartners en livestreams bij UEFA",
+          "url": "https://www.uefa.com/ballondor/news/02aa-21e300b43166-1cde2af6c1f4-1000--where-to-watch-the-2026-ballon-d-or-ceremony-tv-broadcast-p/"
+        }
+      }
+    ],
+    "table_rows_to_add": [
+      {
+        "label": "Starttijd in Nederland",
+        "value": "26 oktober 2026, 21.00 uur CET",
+        "source_ids": [
+          "ceremony-guide"
+        ]
+      },
+      {
+        "label": "Starttijd in Londen",
+        "value": "26 oktober 2026, 20.00 uur GMT",
+        "source_ids": [
+          "ceremony-guide",
+          "ticket-faq"
+        ]
+      }
+    ],
+    "retain_existing_sections": [
+      "Telt het WK 2026 mee?",
+      "Wat beoordeelt de jury?",
+      "Hoe werkt het puntensysteem?",
+      "Kunnen fans stemmen voor de mannen-Ballon d’Or?"
+    ]
+  },
+  "sources": [
+    {
+      "id": "ceremony-guide",
+      "publisher": "UEFA",
+      "url": "https://www.uefa.com/ballondor/news/02aa-21dcfc743210-2786daba77d8-1000--2026-ballon-d-or-ceremony-when-and-where-all-the-nominees-/",
+      "supports": "26 October 2026, London Palladium Theatre, 20:00 GMT / 21:00 CET; official broadcast link."
+    },
+    {
+      "id": "ticket-faq",
+      "publisher": "UEFA official Ballon d’Or ticket support",
+      "url": "https://support.tickets-ballondor.uefa.com/hc/en-us/articles/29825565046556-When-and-where-will-the-70th-Ballon-d-Or-ceremony-take-place",
+      "supports": "Date, venue and 20:00 GMT start."
+    },
+    {
+      "id": "broadcast-guide",
+      "publisher": "UEFA",
+      "url": "https://www.uefa.com/ballondor/news/02aa-21e300b43166-1cde2af6c1f4-1000--where-to-watch-the-2026-ballon-d-or-ceremony-tv-broadcast-p/",
+      "supports": "Official country-specific TV and streaming guide."
+    },
+    {
+      "id": "voting-rules",
+      "publisher": "France Football / Ballon d’Or",
+      "url": "https://ballondor.com/fr/news/posts/tous-les-criteres-et-le-reglement-complet-du-ballon-dor-2026",
+      "supports": "Reference period, journalist jury and annual award criteria."
+    }
+  ],
+  "separate_event_warning": "The Ballon d’Or Of All Time public vote and its prize draw are different from the annual men’s Ballon d’Or journalist ballot. Do not use https://ballondor.com/voting-terms-and-conditions as the rules source for the annual award."
+}

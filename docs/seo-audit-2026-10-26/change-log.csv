@@ -1,0 +1,6 @@
+change_id,prepared_date,deployed_at_utc,release_id,affected_paths,change,status,verification
+C1,2026-10-26,,,/2026;/goals;/compare and locales,Dated year-only answers and links to career/year comparisons,prepared locally; not deployed,
+C2,2026-10-26,,,/insights/* and supported locales,Topic-specific links from explanatory articles to maintained statistics,prepared locally; not deployed,
+C3,2026-10-26,,,/sitemap.xml,Use actual content revision for changed comparison routes,prepared locally; not deployed,
+A1,2026-10-26,,,/;/international;article introductions,Configure AdSense excluded areas around primary content,account action required; not applied,
+C4,2026-10-26,,,French statistical explanatory copy,Correct pricing terminology to statistical ratios in five translations,prepared locally; not deployed,JSON parsed; generated client-message consistency check and diff whitespace check passed

@@ -1,0 +1,162 @@
+{
+  "reviewed_on": "2026-10-26",
+  "method": "First five ordinary web results returned per query, excluding separately returned news/social blocks. This is a search-tool sample, not a controlled Google top-five ranking capture. Results can mix language, location, cache age and intent. Some entries were reviewed as result snippets only; coverage is recorded per entry. No rank positions are claimed.",
+  "samples": [
+    {
+      "query": "wanneer ballon d or 2026 tijd datum stemmen",
+      "our_priority_url": "https://messivsronaldo17.com/nl/insights/ballon-dor-2026-date-voting-rules",
+      "results": [
+        {
+          "url": "https://www.uefa.com/ballondor/news/02aa-21dcfc743210-2786daba77d8-1000--2026-ballon-d-or-ceremony-when-and-where-all-the-nominees-/",
+          "review": "full page",
+          "observation": "Official organizer guide gives date, venue, 20:00 GMT / 21:00 CET, nominees and viewing link. Stronger immediate time/viewing answer than current site article."
+        },
+        {
+          "url": "https://ballondor.com/voting-terms-and-conditions",
+          "review": "full text from result",
+          "observation": "Separate Ballon d’Or Of All Time public vote and draw. Not annual journalist award rules; demonstrates mixed intent and why a ballot distinction matters."
+        },
+        {
+          "url": "https://www.voetbalprimeur.nl/nieuws/2150244/waar-en-hoe-laat-kijk-je-naar-de-ballon-d-or-uitreiking-2026.html",
+          "review": "result snippet",
+          "observation": "Dutch question title focuses on where/when to watch and answers 21:00 Netherlands time."
+        },
+        {
+          "url": "https://www.ziggo.nl/entertainment/sport/voetbal/ballon-dor-live-kijken",
+          "review": "result snippet",
+          "observation": "Broadcaster viewing intent, event-time-channel table; result title and body displayed different years, so do not trust the snippet for factual publication."
+        },
+        {
+          "url": "https://www.uefa.com/news-media/news/02a9-218afc0b9ae8-b59f54b95799-1000--nominees-announced-for-2026-ballon-d-or-awards/",
+          "review": "result snippet",
+          "observation": "Official nominee announcement addresses shortlist rather than start time."
+        }
+      ],
+      "action": "Keep already-correct short voting explanation; add verified start time and official watching link. Use event-date guard; update only after official result."
+    },
+    {
+      "query": "messi ronaldo coups francs nombre buts",
+      "our_priority_url": "https://messivsronaldo17.com/fr/insights/messi-ronaldo-free-kick-records",
+      "results": [
+        {
+          "url": "https://messivsronaldo17.com/fr/free-kicks",
+          "review": "page and source code",
+          "observation": "Existing dynamic direct-free-kick total page; this should own current numerical answer."
+        },
+        {
+          "url": "https://www.messistat.com/fr/messi-vs-ronaldo",
+          "review": "result snippet",
+          "observation": "Multi-metric table includes direct free kicks with broad career comparison. Different totals mean scopes/cutoffs must be inspected; not evidence to silently replace site data."
+        },
+        {
+          "url": "https://goalassistlab.com/records.html?lang=fr",
+          "review": "result snippet",
+          "observation": "Records index claims match-by-match counts and a free-kick leaderboard. Underlying records were not independently audited."
+        },
+        {
+          "url": "https://messivsronaldo17.com/fr/insights/messi-ronaldo-free-kick-records",
+          "review": "full page",
+          "observation": "Own article already has dated 75/65 snapshot, historical examples with Barcelona/UEFA citations, definitions, and honest absence of complete attempt denominators. Title is much longer than direct record intent."
+        },
+        {
+          "url": "https://messiorronaldo.com/?lang=fr",
+          "review": "result snippet",
+          "observation": "Vote-and-stats page combines milestones and fan comparison; broader intent than direct free-kick totals."
+        }
+      ],
+      "action": "Keep historical explainer and current record distinct. Implemented specific record link above body and exact CTA; title shortening is a CMS draft, not a silent historical-stat update."
+    },
+    {
+      "query": "ronaldo international assists",
+      "our_priority_url": "https://messivsronaldo17.com/international",
+      "results": [
+        {
+          "url": "https://theanalyst.com/players/13574/cristiano-ronaldo/national/career",
+          "review": "full page",
+          "observation": "Primary provider competition/year table displays selected coverage; strong traceability. Visible row sample is not a complete independent audit of every career match."
+        },
+        {
+          "url": "https://www.messivsronaldo.app/detailed-stats/opta-assists/",
+          "review": "full relevant section",
+          "observation": "Shows 37 international assists plus year-by-year rows and definition discussion. Explicitly says it does not use Opta as a direct source, despite its Opta label."
+        },
+        {
+          "url": "https://theanalyst.com/players/13574/cristiano-ronaldo/national",
+          "review": "result snippet",
+          "observation": "Provider overview snippet states a different assist total (20). Difference is confirmed at presentation level; cause and total sample were not reconciled."
+        },
+        {
+          "url": "https://www.uefa.com/uefaeuro/history/news/0257-0e001aafb4e9-7c6ad3889ce0-1000--cristiano-ronaldos-104-international-goals-who-what-when-how/",
+          "review": "result snippet",
+          "observation": "Goals-focused official page asks who assisted Ronaldo, which is different from assists Ronaldo provided."
+        },
+        {
+          "url": "https://www.messivsronaldo.app/international-stats/2026/",
+          "review": "result snippet",
+          "observation": "Year-only national-team assists, not all-career national-team assists; further scope ambiguity."
+        }
+      ],
+      "action": "Maintain named-source dynamic answer already present; prioritize event/competition reconciliation and a provider-coverage table. Do not claim all discrepancy is a definition issue without checking."
+    },
+    {
+      "query": "messi ronaldo total buts 2026",
+      "our_priority_url": "https://messivsronaldo17.com/fr/goals",
+      "results": [
+        {
+          "url": "https://messivsronaldo.football/stats/year/2026",
+          "review": "full text from result",
+          "observation": "Direct year goals answer, goals/assists/appearances table and explicit calendar-year versus season note."
+        },
+        {
+          "url": "https://messivsronaldo17.com/2026",
+          "review": "full live page plus search snippet",
+          "observation": "Own live page had generic intro without numeric answer; search snippet used an older snapshot. Search cache age is not proof live data is stale."
+        },
+        {
+          "url": "https://messivsronaldo17.com/fr/goals",
+          "review": "full live page",
+          "observation": "Own current career totals answer competes for year-qualified phrasing; separate annual intent needs clearer navigation."
+        },
+        {
+          "url": "https://messiandronaldo.com/",
+          "review": "result snippet",
+          "observation": "Career milestone tracker emphasizing distance to 1,000 and dated individual milestones; not a January-to-December comparison."
+        },
+        {
+          "url": "https://goatnumbers.com/football/messi-vs-ronaldo/",
+          "review": "result snippet",
+          "observation": "Total, per-game and age comparisons with season notes; broader comparative intent."
+        }
+      ],
+      "action": "Implemented dynamic yearly total in /2026 intro and reciprocal /goals↔/2026 answers. Query-page export needed to establish cannibalization rather than guessing from similar titles."
+    }
+  ],
+  "named_competitor_review": {
+    "urls": [
+      "https://www.messivsronaldo.app/",
+      "https://www.messivsronaldo.app/detailed-stats/free-kicks/",
+      "https://www.messivsronaldo.app/international-stats/",
+      "https://www.messivsronaldo.app/detailed-stats/opta-assists/"
+    ],
+    "confirmed": [
+      "Structured career comparisons and broad topical navigation exist.",
+      "Free-kick and assist pages provide year breakdowns.",
+      "Match-history, opponent, age and other filter destinations are exposed in navigation.",
+      "The Rivalry methodology identifies this competitor as the secondary baseline source."
+    ],
+    "likely_implication": "A site reusing its main baseline needs distinct reader value and independently traceable additions to be a better citation target. Existing equal-appearance calculations and explicit coverage gaps are useful differentiators.",
+    "not_measured": [
+      "Relative backlink quantity or quality",
+      "Google ranking causes",
+      "Search market share",
+      "Core Web Vitals comparison",
+      "Full accuracy of the competitor ledger"
+    ]
+  },
+  "already_fixed_live_do_not_repeat": [
+    "Peak-year article includes the numeric comparison table, 50-appearance worked calculation and downloadable CSV.",
+    "Penalty article includes matched-date scored, attempts, misses and conversion table at the top.",
+    "About page identifies Arshad Nawaz Baig as editor and contains an existing biography, profile link and AI-assistance/editorial-policy disclosure.",
+    "Main comparisons and article text are visible in fetched HTML; generic JavaScript-only content is not a supported diagnosis."
+  ]
+}

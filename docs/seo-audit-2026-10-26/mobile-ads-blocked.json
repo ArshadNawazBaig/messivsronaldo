@@ -1,0 +1,82 @@
+{
+  "origin": "https://messivsronaldo17.com",
+  "checkedAt": "2026-10-26T16:01:23.650Z",
+  "kind": "laboratory; not field Core Web Vitals or a Lighthouse score",
+  "setup": {
+    "device": "iPhone 13 viewport in Chromium",
+    "cpuSlowdown": 4,
+    "latencyMs": 150,
+    "downloadMbps": 1.6,
+    "uploadMbps": 0.75,
+    "coldBrowserContexts": true,
+    "ads": "block",
+    "observationMsAfterDomReady": 7000,
+    "runs": 2
+  },
+  "pages": [
+    {
+      "path": "/",
+      "run": 1,
+      "status": 200,
+      "lcpMsObserved": 2764,
+      "clsObserved": 0,
+      "shifts": [],
+      "documentTransferBytes": 41003,
+      "documentDecodedBytes": 351286,
+      "resourceTransferBytes": 474335,
+      "ttfbMs": 748.1000000089407,
+      "hasAdLoader": true,
+      "adsEnabledInDocument": true,
+      "horizontalOverflow": false,
+      "pageErrors": []
+    },
+    {
+      "path": "/",
+      "run": 2,
+      "status": 200,
+      "lcpMsObserved": 2780,
+      "clsObserved": 0,
+      "shifts": [],
+      "documentTransferBytes": 41003,
+      "documentDecodedBytes": 351286,
+      "resourceTransferBytes": 474335,
+      "ttfbMs": 365.90000000596046,
+      "hasAdLoader": true,
+      "adsEnabledInDocument": true,
+      "horizontalOverflow": false,
+      "pageErrors": []
+    },
+    {
+      "path": "/international",
+      "run": 1,
+      "status": 200,
+      "lcpMsObserved": 1940,
+      "clsObserved": 0,
+      "shifts": [],
+      "documentTransferBytes": 35055,
+      "documentDecodedBytes": 306371,
+      "resourceTransferBytes": 581037,
+      "ttfbMs": 351,
+      "hasAdLoader": true,
+      "adsEnabledInDocument": true,
+      "horizontalOverflow": false,
+      "pageErrors": []
+    },
+    {
+      "path": "/international",
+      "run": 2,
+      "status": 200,
+      "lcpMsObserved": 1628,
+      "clsObserved": 0,
+      "shifts": [],
+      "documentTransferBytes": 35055,
+      "documentDecodedBytes": 306371,
+      "resourceTransferBytes": 581037,
+      "ttfbMs": 356.69999998807907,
+      "hasAdLoader": true,
+      "adsEnabledInDocument": true,
+      "horizontalOverflow": false,
+      "pageErrors": []
+    }
+  ]
+}

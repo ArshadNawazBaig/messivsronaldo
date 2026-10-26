@@ -1,0 +1,77 @@
+{
+  "method": "Initial HTML anchor extraction from each locale /sitemap directory; compare against all current XML sitemap URLs of that locale. URL equality ignores root trailing slash. Does not establish Google crawl frequency or contextual link strength.",
+  "results": [
+    {
+      "locale": "en",
+      "directoryUrl": "https://messivsronaldo17.com/sitemap",
+      "status": 200,
+      "expectedSitemapUrls": 129,
+      "linkedExpectedUrls": 129,
+      "missingExpectedUrls": []
+    },
+    {
+      "locale": "es",
+      "directoryUrl": "https://messivsronaldo17.com/es/sitemap",
+      "status": 200,
+      "expectedSitemapUrls": 117,
+      "linkedExpectedUrls": 117,
+      "missingExpectedUrls": []
+    },
+    {
+      "locale": "pt",
+      "directoryUrl": "https://messivsronaldo17.com/pt/sitemap",
+      "status": 200,
+      "expectedSitemapUrls": 118,
+      "linkedExpectedUrls": 118,
+      "missingExpectedUrls": []
+    },
+    {
+      "locale": "nl",
+      "directoryUrl": "https://messivsronaldo17.com/nl/sitemap",
+      "status": 200,
+      "expectedSitemapUrls": 117,
+      "linkedExpectedUrls": 117,
+      "missingExpectedUrls": []
+    },
+    {
+      "locale": "fr",
+      "directoryUrl": "https://messivsronaldo17.com/fr/sitemap",
+      "status": 200,
+      "expectedSitemapUrls": 119,
+      "linkedExpectedUrls": 119,
+      "missingExpectedUrls": []
+    },
+    {
+      "locale": "de",
+      "directoryUrl": "https://messivsronaldo17.com/de/sitemap",
+      "status": 200,
+      "expectedSitemapUrls": 117,
+      "linkedExpectedUrls": 117,
+      "missingExpectedUrls": []
+    },
+    {
+      "locale": "ar",
+      "directoryUrl": "https://messivsronaldo17.com/ar/sitemap",
+      "status": 200,
+      "expectedSitemapUrls": 117,
+      "linkedExpectedUrls": 117,
+      "missingExpectedUrls": []
+    },
+    {
+      "locale": "hi",
+      "directoryUrl": "https://messivsronaldo17.com/hi/sitemap",
+      "status": 200,
+      "expectedSitemapUrls": 116,
+      "linkedExpectedUrls": 116,
+      "missingExpectedUrls": []
+    },
+    {
+      "locale": "th",
+      "directoryUrl": "https://messivsronaldo17.com/th/sitemap",
+      "status": 200,
+      "expectedSitemapUrls": 117,
+      "linkedExpectedUrls": 117,
+      "missingExpectedUrls": []
+    }
+  ]
+}

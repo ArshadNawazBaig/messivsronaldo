@@ -6,7 +6,7 @@ import { policies, policyUpdated } from "./policies";
 import { seasons } from "./seasons";
 import { awardsReviewed, isAwardSlug } from "./awards";
 import { toolPages, toolsUpdated } from "./tools";
-import { comparisonContentUpdated, internationalAnswerUpdated, refreshedComparisons } from "./comparison-copy";
+import { comparisonContentRevisions, comparisonContentUpdated, internationalAnswerUpdated, refreshedComparisons } from "./comparison-copy";
 import { answersUpdated } from "./record-answers";
 import { ballonReviewed } from "./ballon-articles";
 import { discoveryUpdated } from "./content-discovery";
@@ -36,6 +36,10 @@ export function getPublicPages(years: readonly { year: number }[], snapshotDate:
       if (slug === "answers" || page.scope || slug === "honours" || isAwardSlug(slug)) {
         updated = [updated ?? snapshotDate, discoveryUpdated].sort().at(-1);
       }
+      // A targeted editorial revision updates only the affected page's lastmod.
+      // Keep the statistic cutoff and unrelated comparison dates independent.
+      const editorialRevision = comparisonContentRevisions[slug];
+      if (editorialRevision) updated = [updated ?? editorialRevision, editorialRevision].sort().at(-1);
       return {
         path: `/${slug}`, title: page.title,
         group: slug === "answers" ? "Comparisons" : Object.hasOwn(toolPages, slug) || slug === "scoring-calculator" ? "Tools & games" : page.scope || slug === "honours" || isAwardSlug(slug) ? "Comparisons" : "About & policies",

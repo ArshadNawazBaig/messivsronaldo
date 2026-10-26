@@ -6,6 +6,9 @@ type Translate = ReturnType<typeof createTranslator>;
 export const comparisonContentUpdated = "2026-10-06";
 export const refreshedComparisons = new Set(["goals", "free-kicks", "la-liga", "honours", "assists", "penalties", "hat-tricks", "compare"]);
 export const internationalAnswerUpdated = "2026-10-15";
+export const comparisonContentRevisions: Record<string, string> = {
+  "2026": "2026-10-26", goals: "2026-10-26", compare: "2026-10-26",
+};
 
 // Match imports must not replace distinct page topics with a shared generic
 // description. Goal-type pages retain their own verified classification cutoff.
@@ -27,7 +30,10 @@ export function comparisonIntro(slug: string, data: PublishedData, t: Translate,
     if (!assists) return undefined;
     return t("International records: Messi {0} goals and {1} assists; Ronaldo {2} goals and {3} assists. {4}. See the counting rules and sources.", { 0: scope.goals.messi, 1: assists.values.messi, 2: scope.goals.ronaldo, 3: assists.values.ronaldo, 4: t(scope.period) });
   }
-  if (slug === "2026") return t("Goals, assists, appearances and playing minutes from 1 January 2026. {0}. The year is still in progress.", {0:t(data.scopes["2026"].period)});
+  if (slug === "2026") {
+    const year = data.scopes["2026"];
+    return t("2026 goals so far: Messi {0}, Ronaldo {1}. Club and country, from 1 January. {2}. Compare assists, appearances and minutes.", { 0: year.goals.messi, 1: year.goals.ronaldo, 2: t(year.period) });
+  }
   if (slug === "goals") return t("Messi has {0} career goals and Ronaldo has {1}. Compare club and international totals, appearances and scoring rates. {2}.", { 0: career.goals.messi, 1: career.goals.ronaldo, 2: t(career.period) });
   if (slug === "free-kicks") {
     const metric = career.metrics.find(item => item.id === "freeKicks");
@@ -43,6 +49,18 @@ export function comparisonIntro(slug: string, data: PublishedData, t: Translate,
 
 export function comparisonQuestions(slug: string, data: PublishedData, t: Translate) {
   const { career, club, international } = data.scopes;
+  const year = data.scopes["2026"];
+  const yearQuestion = {
+    question: t("How many goals have Messi and Ronaldo scored in 2026?"),
+    answer: t("In the 2026 calendar year, Messi has {0} goals and Ronaldo has {1}. {2}. These are senior club and international goals from 1 January, not all-time career totals. The match update log documents later additions.", { 0: year.goals.messi, 1: year.goals.ronaldo, 2: t(year.period) }),
+    href: slug === "2026" ? "/updates" : "/2026",
+    link: t(slug === "2026" ? "Published match updates" : "Messi vs Ronaldo 2026 Goals, Assists & Stats"),
+  };
+  if (slug === "2026") return [
+    yearQuestion,
+    { question: t("Are 2026 goals the same as career totals?"), answer: t("No. The 2026 comparison counts matches from 1 January 2026. Career totals cover all included senior seasons: Messi {0} goals and Ronaldo {1}. {2}. A goal scored in 2026 belongs to both views, so the two totals must not be added together.", { 0: career.goals.messi, 1: career.goals.ronaldo, 2: t(career.period) }), href: "/goals", link: t("Messi vs Ronaldo career goals") },
+    { question: t("Where the figures come from"), answer: t(sources[year.source[0]].note), href: sources[year.source[0]].url, link: t(sources[year.source[0]].name) },
+  ];
   if (slug === "international") {
     const assists = international.metrics.find(metric => metric.id === "assists");
     if (!assists) return [];
@@ -56,6 +74,7 @@ export function comparisonQuestions(slug: string, data: PublishedData, t: Transl
     { question: t("How many matches have Messi and Ronaldo played?"), answer: t("Messi has {0} career appearances and Ronaldo has {1}. A substitute appearance counts as one match. {2}.", { 0: career.appearances.messi, 1: career.appearances.ronaldo, 2: t(career.period) }), href: "/compare", link: t("Messi vs Ronaldo Comparison Explorer") },
     { question: t("How many goals have Messi and Ronaldo scored for club and country?"), answer: t("Messi: {0} club goals and {1} international goals. Ronaldo: {2} club goals and {3} international goals. {4}.", { 0: club.goals.messi, 1: international.goals.messi, 2: club.goals.ronaldo, 3: international.goals.ronaldo, 4: t(career.period) }), href: "/international", link: t("Messi vs Ronaldo International Goals & Assists — 2026") },
     { question: t("Do international friendlies and club friendlies count?"), answer: t("Career totals include senior competitive club games and recognized senior A internationals, including international friendlies.") + " " + t("Club friendlies, exhibitions, youth/reserve games and shootout kicks are excluded."), href: "/insights/what-counts-as-a-career-goal", link: t("How we count") },
+    yearQuestion,
   ];
   if (slug === "free-kicks") return [
     { question: t("What counts as a direct free-kick goal?"), answer: t("A direct free-kick goal is scored from the kick itself. A goal after a pass from a free kick is not a direct free-kick goal. Penalty goals are counted separately."), href: "/penalties", link: t("Messi vs Ronaldo Penalties: Scored, Missed & Conversion") },

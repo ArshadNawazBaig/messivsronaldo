@@ -1,0 +1,26 @@
+prompt_id,language,prompt,candidate_url,basis
+P01,en,"Who has more senior career goals, Messi or Ronaldo, and what is the cutoff date?",https://messivsronaldo17.com/goals,editorial monitoring prompt; not evidence of existing citations
+P02,en,How many goals have Messi and Ronaldo scored in 2026 only?,https://messivsronaldo17.com/2026,editorial monitoring prompt; not evidence of existing citations
+P03,fr,Quel est le total de buts en carrière de Messi et Ronaldo en 2026 ?,https://messivsronaldo17.com/fr/goals,editorial monitoring prompt; not evidence of existing citations
+P04,fr,Combien de buts Messi et Ronaldo ont-ils marqués pendant 2026 uniquement ?,https://messivsronaldo17.com/fr/2026,editorial monitoring prompt; not evidence of existing citations
+P05,es,¿Cuántos goles y asistencias llevan Messi y Cristiano Ronaldo en 2026?,https://messivsronaldo17.com/es/2026,editorial monitoring prompt; not evidence of existing citations
+P06,de,Wie viele Freistoßtore hat Messi und bis zu welchem Datum?,https://messivsronaldo17.com/de/free-kicks,editorial monitoring prompt; not evidence of existing citations
+P07,fr,"Qui a marqué le plus de coups francs directs, Messi ou Ronaldo ?",https://messivsronaldo17.com/fr/free-kicks,editorial monitoring prompt; not evidence of existing citations
+P08,en,How many direct free-kick goals have Messi and Ronaldo scored?,https://messivsronaldo17.com/free-kicks,editorial monitoring prompt; not evidence of existing citations
+P09,en,How many international assists does Cristiano Ronaldo have for Portugal?,https://messivsronaldo17.com/international,editorial monitoring prompt; not evidence of existing citations
+P10,en,Why do sources give different assist totals for Messi and Ronaldo?,https://messivsronaldo17.com/insights/why-assist-totals-differ,editorial monitoring prompt; not evidence of existing citations
+P11,en,Do Messi and Ronaldo career goal totals include youth games and friendlies?,https://messivsronaldo17.com/insights/what-counts-as-a-career-goal,editorial monitoring prompt; not evidence of existing citations
+P12,en,What are Messi and Ronaldo penalty conversion rates using matched attempts?,https://messivsronaldo17.com/penalties,editorial monitoring prompt; not evidence of existing citations
+P13,en,Are penalty shootouts counted in Messi and Ronaldo goal totals?,https://messivsronaldo17.com/insights/messi-ronaldo-penalty-records,editorial monitoring prompt; not evidence of existing citations
+P14,en,Compare Messi 2012 with Ronaldo 2013 goals per appearance.,https://messivsronaldo17.com/insights/messi-2012-vs-ronaldo-2013-goals,editorial monitoring prompt; not evidence of existing citations
+P15,en,Compare Ronaldo in 2008 with Messi in 2009 using calendar years.,https://messivsronaldo17.com/seasons/2008,editorial monitoring prompt; not evidence of existing citations
+P16,en,What is the difference between calendar-year and club-season football statistics?,https://messivsronaldo17.com/seasons,editorial monitoring prompt; not evidence of existing citations
+P17,en,Compare Messi and Ronaldo in the 2008/09 club season.,https://messivsronaldo17.com/club-stats/2008-2009,editorial monitoring prompt; not evidence of existing citations
+P18,en,Who scored more goals in Messi and Ronaldo direct meetings?,https://messivsronaldo17.com/head-to-head,editorial monitoring prompt; not evidence of existing citations
+P19,en,Compare Messi and Ronaldo Champions League goals and appearances.,https://messivsronaldo17.com/champions-league,editorial monitoring prompt; not evidence of existing citations
+P20,en,Compare Messi and Ronaldo World Cup goals and appearances.,https://messivsronaldo17.com/world-cup,editorial monitoring prompt; not evidence of existing citations
+P21,pt,Quantos golos têm Messi e Ronaldo pela seleção principal?,https://messivsronaldo17.com/pt/international,editorial monitoring prompt; not evidence of existing citations
+P22,de,"Wer ist 2026 besser, Messi oder Ronaldo, nach Toren und Vorlagen?",https://messivsronaldo17.com/de/2026,editorial monitoring prompt; not evidence of existing citations
+P23,nl,Wanneer was de Ballon d’Or-uitreiking van 2026 en waar werd die gehouden?,https://messivsronaldo17.com/nl/insights/ballon-dor-2026-date-voting-rules,editorial monitoring prompt; not evidence of existing citations
+P24,en,How does The Rivalry verify Messi and Ronaldo statistics and corrections?,https://messivsronaldo17.com/methodology,editorial monitoring prompt; not evidence of existing citations
+P25,en,"How do Messi and Ronaldo goals per 90 compare, and what minutes are covered?",https://messivsronaldo17.com/scoring-calculator,editorial monitoring prompt; not evidence of existing citations

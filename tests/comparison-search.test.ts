@@ -83,7 +83,7 @@ test("visible answers and metadata are translated with the same published values
   const data = buildPublishedData();
   for (const locale of locales) {
     const t = createTranslator(locale, JSON.parse(readFileSync(`src/lib/i18n/messages/${locale}.json`, "utf8")));
-    for (const slug of ["goals", "free-kicks", "la-liga", "honours"]) {
+    for (const slug of ["goals", "free-kicks", "la-liga", "honours", "2026"]) {
       const intro = comparisonIntro(slug, data, t, { messi: 48, ronaldo: 36 })!;
       assert.ok(intro.length > 50, `${locale}/${slug}`);
       assert.doesNotMatch(intro, /\{\d+\}/);
@@ -100,12 +100,27 @@ test("visible answers and metadata are translated with the same published values
   assert.match(answers[2].answer, /international friendlies.*Club friendlies.*excluded/);
 });
 
+test("calendar-year answers keep annual goals distinct from career totals after a published match", () => {
+  const data = buildPublishedData([match], 1);
+  const year = data.scopes["2026"];
+  const intro = comparisonIntro("2026", data, english)!;
+  assert.ok(intro.includes(`Messi ${year.goals.messi}, Ronaldo ${year.goals.ronaldo}`));
+  assert.match(intro, /Updated 24 September 2026/);
+  const questions = comparisonQuestions("2026", data, english);
+  assert.ok(questions[0].answer.includes(`Messi has ${year.goals.messi} goals`));
+  assert.ok(questions[1].answer.includes(`Messi ${data.scopes.career.goals.messi} goals`));
+  assert.equal(questions[1].href, "/goals");
+  assert.ok(comparisonQuestions("goals", data, english).some(question => question.href === "/2026"));
+});
+
 test("sitemap records the content revision separately from the statistic cutoff", () => {
   const data = buildPublishedData();
   const pages = getPublicPages(data.calendarYears, data.snapshotDate);
-  for (const slug of ["goals", "free-kicks", "la-liga", "honours"]) assert.equal(pages.find(page => page.path === `/${slug}`)!.updated, discoveryUpdated);
+  for (const slug of ["2026", "goals", "compare"]) assert.equal(pages.find(page => page.path === `/${slug}`)!.updated, "2026-10-26");
+  for (const slug of ["free-kicks", "la-liga", "honours"]) assert.equal(pages.find(page => page.path === `/${slug}`)!.updated, discoveryUpdated);
   assert.equal(data.snapshotDate, "2026-09-21");
-  assert.equal(getPublicPages(data.calendarYears, "2026-10-07").find(page => page.path === "/goals")!.updated, "2026-10-07");
+  assert.equal(getPublicPages(data.calendarYears, "2026-10-07").find(page => page.path === "/goals")!.updated, "2026-10-26");
+  assert.equal(getPublicPages(data.calendarYears, "2026-10-27").find(page => page.path === "/goals")!.updated, "2026-10-27");
 });
 
 test("published matches preserve distinct translated page descriptions and goal-type cutoffs", () => {

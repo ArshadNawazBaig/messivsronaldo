@@ -1487,5 +1487,10 @@
   "2012/13 club season": "2012/13 क्लब सीज़न",
   "Why can international assist totals differ?": "अंतरराष्ट्रीय असिस्ट के कुल आँकड़े अलग क्यों हो सकते हैं?",
   "Assist totals depend on the matches covered and the provider’s definition of the final action before a goal. Compare definitions and cutoff dates. Our baseline source and later match additions are documented separately.": "असिस्ट के कुल आँकड़े शामिल मैचों और गोल से पहले की अंतिम कार्रवाई की डेटा प्रदाता द्वारा दी गई परिभाषा पर निर्भर करते हैं। परिभाषाओं और अंतिम शामिल तारीखों की तुलना करें। हमारे आधार स्रोत और बाद में जोड़े गए मैचों का अलग-अलग विवरण दिया गया है।",
-  "Why assist totals differ": "असिस्ट के कुल आँकड़े अलग क्यों हैं"
+  "Why assist totals differ": "असिस्ट के कुल आँकड़े अलग क्यों हैं",
+  "2026 goals so far: Messi {0}, Ronaldo {1}. Club and country, from 1 January. {2}. Compare assists, appearances and minutes.": "2026 में अब तक गोल: मेसी {0}, रोनाल्डो {1}। क्लब और देश के लिए, 1 जनवरी से। {2}। असिस्ट, मैच और मिनटों की तुलना करें।",
+  "How many goals have Messi and Ronaldo scored in 2026?": "मेसी और रोनाल्डो ने 2026 में कितने गोल किए हैं?",
+  "In the 2026 calendar year, Messi has {0} goals and Ronaldo has {1}. {2}. These are senior club and international goals from 1 January, not all-time career totals. The match update log documents later additions.": "कैलेंडर वर्ष 2026 में मेसी के {0} गोल और रोनाल्डो के {1} गोल हैं। {2}। ये 1 जनवरी से सीनियर क्लब और राष्ट्रीय टीम के गोल हैं, पूरे करियर के कुल गोल नहीं। बाद में जोड़े गए मैच अपडेट लॉग में दर्ज हैं।",
+  "Are 2026 goals the same as career totals?": "क्या 2026 के गोल और करियर के कुल गोल एक ही हैं?",
+  "No. The 2026 comparison counts matches from 1 January 2026. Career totals cover all included senior seasons: Messi {0} goals and Ronaldo {1}. {2}. A goal scored in 2026 belongs to both views, so the two totals must not be added together.": "नहीं। 2026 की तुलना में 1 जनवरी 2026 से खेले गए मैच गिने जाते हैं। करियर के कुल आंकड़ों में शामिल सभी सीनियर सीज़न आते हैं: मेसी {0} गोल और रोनाल्डो {1}। {2}। 2026 का एक गोल दोनों दृश्यों में शामिल है, इसलिए दोनों कुलों को जोड़ना नहीं चाहिए।"
 }

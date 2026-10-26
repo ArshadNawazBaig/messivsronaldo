@@ -1,0 +1,163 @@
+{
+  "kind": "isolated preview; baseline statistics and synthetic CMS fixtures, not production content",
+  "observations": [
+    {
+      "path": "/2026",
+      "javascript": false,
+      "status": 200,
+      "answers": 3,
+      "overflow": false
+    },
+    {
+      "path": "/fr/2026",
+      "javascript": false,
+      "status": 200,
+      "answers": 3,
+      "overflow": false
+    },
+    {
+      "path": "/es/2026",
+      "javascript": false,
+      "status": 200,
+      "answers": 3,
+      "overflow": false
+    },
+    {
+      "path": "/pt/2026",
+      "javascript": false,
+      "status": 200,
+      "answers": 3,
+      "overflow": false
+    },
+    {
+      "path": "/de/2026",
+      "javascript": false,
+      "status": 200,
+      "answers": 3,
+      "overflow": false
+    },
+    {
+      "path": "/nl/2026",
+      "javascript": false,
+      "status": 200,
+      "answers": 3,
+      "overflow": false
+    },
+    {
+      "path": "/ar/2026",
+      "javascript": false,
+      "status": 200,
+      "answers": 3,
+      "overflow": false
+    },
+    {
+      "path": "/hi/2026",
+      "javascript": false,
+      "status": 200,
+      "answers": 3,
+      "overflow": false
+    },
+    {
+      "path": "/th/2026",
+      "javascript": false,
+      "status": 200,
+      "answers": 3,
+      "overflow": false
+    },
+    {
+      "path": "/insights/messi-ronaldo-free-kick-records",
+      "javascript": false,
+      "status": 200,
+      "recordLinks": 2,
+      "syntheticBodyPreserved": true,
+      "overflow": false
+    },
+    {
+      "path": "/fr/insights/messi-ronaldo-free-kick-records",
+      "javascript": false,
+      "status": 200,
+      "recordLinks": 2,
+      "syntheticBodyPreserved": true,
+      "overflow": false
+    },
+    {
+      "path": "/2026",
+      "javascript": true,
+      "status": 200,
+      "answers": 3,
+      "overflow": false
+    },
+    {
+      "path": "/fr/2026",
+      "javascript": true,
+      "status": 200,
+      "answers": 3,
+      "overflow": false
+    },
+    {
+      "path": "/es/2026",
+      "javascript": true,
+      "status": 200,
+      "answers": 3,
+      "overflow": false
+    },
+    {
+      "path": "/pt/2026",
+      "javascript": true,
+      "status": 200,
+      "answers": 3,
+      "overflow": false
+    },
+    {
+      "path": "/de/2026",
+      "javascript": true,
+      "status": 200,
+      "answers": 3,
+      "overflow": false
+    },
+    {
+      "path": "/nl/2026",
+      "javascript": true,
+      "status": 200,
+      "answers": 3,
+      "overflow": false
+    },
+    {
+      "path": "/ar/2026",
+      "javascript": true,
+      "status": 200,
+      "answers": 3,
+      "overflow": false
+    },
+    {
+      "path": "/hi/2026",
+      "javascript": true,
+      "status": 200,
+      "answers": 3,
+      "overflow": false
+    },
+    {
+      "path": "/th/2026",
+      "javascript": true,
+      "status": 200,
+      "answers": 3,
+      "overflow": false
+    },
+    {
+      "path": "/insights/messi-ronaldo-free-kick-records",
+      "javascript": true,
+      "status": 200,
+      "recordLinks": 2,
+      "syntheticBodyPreserved": true,
+      "overflow": false
+    },
+    {
+      "path": "/fr/insights/messi-ronaldo-free-kick-records",
+      "javascript": true,
+      "status": 200,
+      "recordLinks": 2,
+      "syntheticBodyPreserved": true,
+      "overflow": false
+    }
+  ]
+}

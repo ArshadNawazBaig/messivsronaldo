@@ -1487,5 +1487,10 @@
   "2012/13 club season": "Temporada de clubes 2012/13",
   "Why can international assist totals differ?": "Por que os totais de assistências pelas seleções podem variar?",
   "Assist totals depend on the matches covered and the provider’s definition of the final action before a goal. Compare definitions and cutoff dates. Our baseline source and later match additions are documented separately.": "Os totais de assistências dependem dos jogos incluídos e da definição do provedor para a última ação antes do gol. Compare definições e datas de corte. Nossa fonte de referência e as partidas adicionadas depois são documentadas separadamente.",
-  "Why assist totals differ": "Por que os totais de assistências variam"
+  "Why assist totals differ": "Por que os totais de assistências variam",
+  "2026 goals so far: Messi {0}, Ronaldo {1}. Club and country, from 1 January. {2}. Compare assists, appearances and minutes.": "Golos em 2026: Messi {0}, Ronaldo {1}. Clube e seleção, desde 1 de janeiro. {2}. Compara assistências, jogos e minutos.",
+  "How many goals have Messi and Ronaldo scored in 2026?": "Quantos golos marcaram Messi e Ronaldo em 2026?",
+  "In the 2026 calendar year, Messi has {0} goals and Ronaldo has {1}. {2}. These are senior club and international goals from 1 January, not all-time career totals. The match update log documents later additions.": "No ano civil de 2026, Messi tem {0} golos e Ronaldo {1}. {2}. São golos por clubes e seleções principais desde 1 de janeiro, não os totais da carreira. O registo de atualizações documenta os acréscimos posteriores.",
+  "Are 2026 goals the same as career totals?": "Os golos de 2026 são os mesmos que os totais da carreira?",
+  "No. The 2026 comparison counts matches from 1 January 2026. Career totals cover all included senior seasons: Messi {0} goals and Ronaldo {1}. {2}. A goal scored in 2026 belongs to both views, so the two totals must not be added together.": "Não. A comparação de 2026 conta jogos desde 1 de janeiro de 2026. Os totais da carreira abrangem todas as épocas seniores incluídas: Messi {0} golos e Ronaldo {1}. {2}. Um golo de 2026 aparece nas duas vistas, por isso os totais não devem ser somados."
 }

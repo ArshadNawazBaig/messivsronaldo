@@ -1487,5 +1487,10 @@
   "2012/13 club season": "موسم الأندية 2012/13",
   "Why can international assist totals differ?": "لماذا قد تختلف أعداد التمريرات الحاسمة الدولية؟",
   "Assist totals depend on the matches covered and the provider’s definition of the final action before a goal. Compare definitions and cutoff dates. Our baseline source and later match additions are documented separately.": "تعتمد أعداد التمريرات الحاسمة على المباريات المشمولة وتعريف مزود البيانات للفعل الأخير قبل الهدف. قارن التعريفات وتواريخ التغطية. نوثق مصدر البيانات الأساسي والمباريات المضافة لاحقًا بصورة منفصلة.",
-  "Why assist totals differ": "لماذا تختلف أعداد التمريرات الحاسمة"
+  "Why assist totals differ": "لماذا تختلف أعداد التمريرات الحاسمة",
+  "2026 goals so far: Messi {0}, Ronaldo {1}. Club and country, from 1 January. {2}. Compare assists, appearances and minutes.": "أهداف 2026 حتى الآن: ميسي {0}، رونالدو {1}. مع النادي والمنتخب منذ 1 يناير. {2}. قارن التمريرات الحاسمة والمشاركات والدقائق.",
+  "How many goals have Messi and Ronaldo scored in 2026?": "كم هدفًا سجل ميسي ورونالدو في عام 2026؟",
+  "In the 2026 calendar year, Messi has {0} goals and Ronaldo has {1}. {2}. These are senior club and international goals from 1 January, not all-time career totals. The match update log documents later additions.": "في السنة التقويمية 2026، سجل ميسي {0} هدفًا ورونالدو {1}. {2}. هذه أهداف الفريق الأول والمنتخب الأول منذ 1 يناير، وليست إجمالي أهداف المسيرة. يوثق سجل تحديثات المباريات الإضافات اللاحقة.",
+  "Are 2026 goals the same as career totals?": "هل أهداف 2026 هي نفسها إجمالي أهداف المسيرة؟",
+  "No. The 2026 comparison counts matches from 1 January 2026. Career totals cover all included senior seasons: Messi {0} goals and Ronaldo {1}. {2}. A goal scored in 2026 belongs to both views, so the two totals must not be added together.": "لا. تحسب مقارنة 2026 المباريات منذ 1 يناير 2026. وتشمل إجماليات المسيرة جميع مواسم الفريق الأول المحتسبة: ميسي {0} هدفًا ورونالدو {1}. {2}. يظهر الهدف المسجل في 2026 في كلا العرضين، لذلك يجب عدم جمع الإجماليين معًا."
 }

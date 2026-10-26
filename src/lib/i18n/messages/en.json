@@ -1487,5 +1487,10 @@
   "2012/13 club season": "2012/13 club season",
   "Why can international assist totals differ?": "Why can international assist totals differ?",
   "Assist totals depend on the matches covered and the provider’s definition of the final action before a goal. Compare definitions and cutoff dates. Our baseline source and later match additions are documented separately.": "Assist totals depend on the matches covered and the provider’s definition of the final action before a goal. Compare definitions and cutoff dates. Our baseline source and later match additions are documented separately.",
-  "Why assist totals differ": "Why assist totals differ"
+  "Why assist totals differ": "Why assist totals differ",
+  "2026 goals so far: Messi {0}, Ronaldo {1}. Club and country, from 1 January. {2}. Compare assists, appearances and minutes.": "2026 goals so far: Messi {0}, Ronaldo {1}. Club and country, from 1 January. {2}. Compare assists, appearances and minutes.",
+  "How many goals have Messi and Ronaldo scored in 2026?": "How many goals have Messi and Ronaldo scored in 2026?",
+  "In the 2026 calendar year, Messi has {0} goals and Ronaldo has {1}. {2}. These are senior club and international goals from 1 January, not all-time career totals. The match update log documents later additions.": "In the 2026 calendar year, Messi has {0} goals and Ronaldo has {1}. {2}. These are senior club and international goals from 1 January, not all-time career totals. The match update log documents later additions.",
+  "Are 2026 goals the same as career totals?": "Are 2026 goals the same as career totals?",
+  "No. The 2026 comparison counts matches from 1 January 2026. Career totals cover all included senior seasons: Messi {0} goals and Ronaldo {1}. {2}. A goal scored in 2026 belongs to both views, so the two totals must not be added together.": "No. The 2026 comparison counts matches from 1 January 2026. Career totals cover all included senior seasons: Messi {0} goals and Ronaldo {1}. {2}. A goal scored in 2026 belongs to both views, so the two totals must not be added together."
 }

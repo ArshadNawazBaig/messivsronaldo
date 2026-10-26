@@ -1,0 +1,3229 @@
+{
+  "filters": [
+    {
+      "Filter": "Search type",
+      "Value": "Web (text-based)"
+    },
+    {
+      "Filter": "Date",
+      "Value": "Last 28 days"
+    }
+  ],
+  "daily_coverage": {
+    "start": "2026-09-27",
+    "end": "2026-10-24",
+    "days": 28
+  },
+  "source_sha256": {
+    "Chart.csv": "1b708ad7dc55f5b6b9eb06e9ca47732e63c9acc4572ac1c15c8477a0ca635954",
+    "Pages.csv": "2a14430f9bcadb8cf5a43f8e1cc27a3fdbdf189ecd1a3fbe0ec24e051ab82e42",
+    "Queries.csv": "891648bf9148edd1afe909359ccf350bc31887c0c866e56918a3f9d8c2bcf232",
+    "Countries.csv": "bce0c797c71f0cae47fd1c6537e6909e88372a642b6f1b2c69bb469be58d84d7",
+    "Devices.csv": "618855dc03b65c2e48af2cac7da8451ad1648721a0684b706413df499f7ea677",
+    "Search appearance.csv": "eed9ceafb9193e5e3d034f5897ad992bc851f1998204cd98f0b0f6873fbfc8b2",
+    "Filters.csv": "f1105f5dddd2bd878e136898e15ae5c73fd841d793dc4fb462953a3aa05aebd0"
+  },
+  "totals_by_dimension": {
+    "Chart": {
+      "rows": 28,
+      "clicks": 731,
+      "impressions": 68884,
+      "ctr_percent": 1.0612043435340572,
+      "approx_position_from_rounded_rows": 7.528183613030603
+    },
+    "Pages": {
+      "rows": 908,
+      "clicks": 736,
+      "impressions": 72307,
+      "ctr_percent": 1.0178820861050797,
+      "approx_position_from_rounded_rows": 7.611317161547292
+    },
+    "Queries": {
+      "rows": 1000,
+      "clicks": 78,
+      "impressions": 14402,
+      "ctr_percent": 0.541591445632551,
+      "approx_position_from_rounded_rows": 8.85821621996945
+    },
+    "Countries": {
+      "rows": 199,
+      "clicks": 731,
+      "impressions": 68884,
+      "ctr_percent": 1.0612043435340572,
+      "approx_position_from_rounded_rows": 7.5342562859299695
+    },
+    "Devices": {
+      "rows": 3,
+      "clicks": 731,
+      "impressions": 68884,
+      "ctr_percent": 1.0612043435340572,
+      "approx_position_from_rounded_rows": 7.534617763196097
+    },
+    "Search appearance": {
+      "rows": 0,
+      "clicks": 0,
+      "impressions": 0,
+      "ctr_percent": null,
+      "approx_position_from_rounded_rows": null
+    }
+  },
+  "country_device_reconciliation": {
+    "Countries": {
+      "clicks": true,
+      "impressions": true
+    },
+    "Devices": {
+      "clicks": true,
+      "impressions": true
+    }
+  },
+  "query_table_share": {
+    "clicks_percent": 10.6703146374829,
+    "impressions_percent": 20.907612798327623
+  },
+  "latest_two_complete_seven_day_blocks": [
+    {
+      "start": "2026-10-11",
+      "end": "2026-10-17",
+      "rows": 7,
+      "clicks": 192,
+      "impressions": 22072,
+      "ctr_percent": 0.8698803914461761,
+      "approx_position_from_rounded_rows": 7.275625226531353
+    },
+    {
+      "start": "2026-10-18",
+      "end": "2026-10-24",
+      "rows": 7,
+      "clicks": 264,
+      "impressions": 23878,
+      "ctr_percent": 1.1056202362006868,
+      "approx_position_from_rounded_rows": 7.876765223218024
+    }
+  ],
+  "url_language_totals": {
+    "ar": {
+      "rows": 99,
+      "clicks": 65,
+      "impressions": 7107,
+      "ctr_percent": 0.9145912480652878,
+      "approx_position_from_rounded_rows": 6.2387885183621785
+    },
+    "de": {
+      "rows": 106,
+      "clicks": 58,
+      "impressions": 6269,
+      "ctr_percent": 0.9251874302121551,
+      "approx_position_from_rounded_rows": 7.7248428776519384
+    },
+    "en": {
+      "rows": 124,
+      "clicks": 123,
+      "impressions": 20894,
+      "ctr_percent": 0.5886857471044319,
+      "approx_position_from_rounded_rows": 8.387507418397627
+    },
+    "es": {
+      "rows": 104,
+      "clicks": 88,
+      "impressions": 10651,
+      "ctr_percent": 0.8262135010797108,
+      "approx_position_from_rounded_rows": 7.690164303821238
+    },
+    "fr": {
+      "rows": 106,
+      "clicks": 270,
+      "impressions": 12316,
+      "ctr_percent": 2.192270217603118,
+      "approx_position_from_rounded_rows": 6.144950470932121
+    },
+    "hi": {
+      "rows": 80,
+      "clicks": 0,
+      "impressions": 2755,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 8.976751361161524
+    },
+    "nl": {
+      "rows": 87,
+      "clicks": 23,
+      "impressions": 6156,
+      "ctr_percent": 0.37361923326835605,
+      "approx_position_from_rounded_rows": 9.05969460688759
+    },
+    "pt": {
+      "rows": 100,
+      "clicks": 82,
+      "impressions": 4327,
+      "ctr_percent": 1.8950774208458516,
+      "approx_position_from_rounded_rows": 7.623217009475388
+    },
+    "th": {
+      "rows": 102,
+      "clicks": 27,
+      "impressions": 1832,
+      "ctr_percent": 1.4737991266375545,
+      "approx_position_from_rounded_rows": 6.146058951965065
+    }
+  },
+  "page_family_totals": {
+    "/": {
+      "rows": 12,
+      "clicks": 42,
+      "impressions": 2941,
+      "ctr_percent": 1.4280856851411086,
+      "approx_position_from_rounded_rows": 6.817072424345461
+    },
+    "/2026": {
+      "rows": 9,
+      "clicks": 43,
+      "impressions": 2742,
+      "ctr_percent": 1.5681983953318746,
+      "approx_position_from_rounded_rows": 5.887505470459519
+    },
+    "/about": {
+      "rows": 2,
+      "clicks": 1,
+      "impressions": 2,
+      "ctr_percent": 50.0,
+      "approx_position_from_rounded_rows": 5.5
+    },
+    "/accessibility": {
+      "rows": 1,
+      "clicks": 0,
+      "impressions": 3,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 5.0
+    },
+    "/answers": {
+      "rows": 7,
+      "clicks": 1,
+      "impressions": 82,
+      "ctr_percent": 1.2195121951219512,
+      "approx_position_from_rounded_rows": 8.645975609756098
+    },
+    "/assists": {
+      "rows": 9,
+      "clicks": 10,
+      "impressions": 581,
+      "ctr_percent": 1.721170395869191,
+      "approx_position_from_rounded_rows": 8.239621342512908
+    },
+    "/ballon-dor": {
+      "rows": 7,
+      "clicks": 5,
+      "impressions": 351,
+      "ctr_percent": 1.4245014245014245,
+      "approx_position_from_rounded_rows": 11.685897435897436
+    },
+    "/career-timeline": {
+      "rows": 5,
+      "clicks": 1,
+      "impressions": 23,
+      "ctr_percent": 4.3478260869565215,
+      "approx_position_from_rounded_rows": 9.041739130434783
+    },
+    "/champions-league": {
+      "rows": 8,
+      "clicks": 2,
+      "impressions": 631,
+      "ctr_percent": 0.31695721077654515,
+      "approx_position_from_rounded_rows": 8.528034865293186
+    },
+    "/club-stats": {
+      "rows": 7,
+      "clicks": 0,
+      "impressions": 89,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 8.675393258426967
+    },
+    "/club-stats/2002-2003": {
+      "rows": 6,
+      "clicks": 1,
+      "impressions": 90,
+      "ctr_percent": 1.1111111111111112,
+      "approx_position_from_rounded_rows": 6.721111111111111
+    },
+    "/club-stats/2003-2004": {
+      "rows": 8,
+      "clicks": 1,
+      "impressions": 111,
+      "ctr_percent": 0.9009009009009009,
+      "approx_position_from_rounded_rows": 7.514414414414414
+    },
+    "/club-stats/2004-2005": {
+      "rows": 8,
+      "clicks": 1,
+      "impressions": 209,
+      "ctr_percent": 0.4784688995215311,
+      "approx_position_from_rounded_rows": 7.96641148325359
+    },
+    "/club-stats/2005-2006": {
+      "rows": 8,
+      "clicks": 3,
+      "impressions": 233,
+      "ctr_percent": 1.2875536480686696,
+      "approx_position_from_rounded_rows": 6.769957081545065
+    },
+    "/club-stats/2006-2007": {
+      "rows": 8,
+      "clicks": 2,
+      "impressions": 293,
+      "ctr_percent": 0.6825938566552902,
+      "approx_position_from_rounded_rows": 6.52122866894198
+    },
+    "/club-stats/2007-2008": {
+      "rows": 9,
+      "clicks": 2,
+      "impressions": 386,
+      "ctr_percent": 0.5181347150259067,
+      "approx_position_from_rounded_rows": 7.372176165803109
+    },
+    "/club-stats/2008-2009": {
+      "rows": 9,
+      "clicks": 14,
+      "impressions": 3722,
+      "ctr_percent": 0.37614185921547555,
+      "approx_position_from_rounded_rows": 7.674492208490059
+    },
+    "/club-stats/2009-2010": {
+      "rows": 9,
+      "clicks": 2,
+      "impressions": 440,
+      "ctr_percent": 0.45454545454545453,
+      "approx_position_from_rounded_rows": 8.353704545454544
+    },
+    "/club-stats/2010-2011": {
+      "rows": 9,
+      "clicks": 1,
+      "impressions": 569,
+      "ctr_percent": 0.1757469244288225,
+      "approx_position_from_rounded_rows": 8.158277680140598
+    },
+    "/club-stats/2011-2012": {
+      "rows": 9,
+      "clicks": 1,
+      "impressions": 681,
+      "ctr_percent": 0.14684287812041116,
+      "approx_position_from_rounded_rows": 7.767386196769456
+    },
+    "/club-stats/2012-2013": {
+      "rows": 9,
+      "clicks": 2,
+      "impressions": 592,
+      "ctr_percent": 0.33783783783783783,
+      "approx_position_from_rounded_rows": 7.484037162162163
+    },
+    "/club-stats/2013-2014": {
+      "rows": 8,
+      "clicks": 1,
+      "impressions": 617,
+      "ctr_percent": 0.1620745542949757,
+      "approx_position_from_rounded_rows": 7.364311183144246
+    },
+    "/club-stats/2014-2015": {
+      "rows": 9,
+      "clicks": 3,
+      "impressions": 372,
+      "ctr_percent": 0.8064516129032258,
+      "approx_position_from_rounded_rows": 7.4252419354838715
+    },
+    "/club-stats/2015-2016": {
+      "rows": 7,
+      "clicks": 1,
+      "impressions": 286,
+      "ctr_percent": 0.34965034965034963,
+      "approx_position_from_rounded_rows": 7.125734265734265
+    },
+    "/club-stats/2016-2017": {
+      "rows": 8,
+      "clicks": 3,
+      "impressions": 416,
+      "ctr_percent": 0.7211538461538461,
+      "approx_position_from_rounded_rows": 7.788028846153846
+    },
+    "/club-stats/2017-2018": {
+      "rows": 8,
+      "clicks": 2,
+      "impressions": 393,
+      "ctr_percent": 0.5089058524173028,
+      "approx_position_from_rounded_rows": 7.6007888040712475
+    },
+    "/club-stats/2018-2019": {
+      "rows": 7,
+      "clicks": 1,
+      "impressions": 312,
+      "ctr_percent": 0.32051282051282054,
+      "approx_position_from_rounded_rows": 7.65602564102564
+    },
+    "/club-stats/2019-2020": {
+      "rows": 9,
+      "clicks": 1,
+      "impressions": 314,
+      "ctr_percent": 0.3184713375796178,
+      "approx_position_from_rounded_rows": 7.3546178343949045
+    },
+    "/club-stats/2020-2021": {
+      "rows": 9,
+      "clicks": 1,
+      "impressions": 317,
+      "ctr_percent": 0.31545741324921134,
+      "approx_position_from_rounded_rows": 8.176782334384859
+    },
+    "/club-stats/2021-2022": {
+      "rows": 8,
+      "clicks": 1,
+      "impressions": 582,
+      "ctr_percent": 0.1718213058419244,
+      "approx_position_from_rounded_rows": 8.040120274914088
+    },
+    "/club-stats/2022-2023": {
+      "rows": 7,
+      "clicks": 3,
+      "impressions": 440,
+      "ctr_percent": 0.6818181818181818,
+      "approx_position_from_rounded_rows": 9.285977272727273
+    },
+    "/club-stats/2023-2024": {
+      "rows": 9,
+      "clicks": 0,
+      "impressions": 276,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 11.614057971014493
+    },
+    "/club-stats/2024-2025": {
+      "rows": 9,
+      "clicks": 2,
+      "impressions": 269,
+      "ctr_percent": 0.7434944237918215,
+      "approx_position_from_rounded_rows": 8.628624535315986
+    },
+    "/club-stats/2025-2026": {
+      "rows": 9,
+      "clicks": 6,
+      "impressions": 768,
+      "ctr_percent": 0.78125,
+      "approx_position_from_rounded_rows": 7.601796875000001
+    },
+    "/club-stats/2026-2027": {
+      "rows": 8,
+      "clicks": 22,
+      "impressions": 1776,
+      "ctr_percent": 1.2387387387387387,
+      "approx_position_from_rounded_rows": 6.093186936936937
+    },
+    "/clubs": {
+      "rows": 9,
+      "clicks": 4,
+      "impressions": 421,
+      "ctr_percent": 0.9501187648456056,
+      "approx_position_from_rounded_rows": 7.168551068883611
+    },
+    "/compare": {
+      "rows": 9,
+      "clicks": 3,
+      "impressions": 336,
+      "ctr_percent": 0.8928571428571429,
+      "approx_position_from_rounded_rows": 8.302767857142857
+    },
+    "/comparison-posters": {
+      "rows": 4,
+      "clicks": 0,
+      "impressions": 8,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 5.5
+    },
+    "/contact": {
+      "rows": 3,
+      "clicks": 0,
+      "impressions": 3,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 4.0
+    },
+    "/cookies": {
+      "rows": 3,
+      "clicks": 0,
+      "impressions": 4,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 8.75
+    },
+    "/copa-america-vs-euros": {
+      "rows": 9,
+      "clicks": 2,
+      "impressions": 317,
+      "ctr_percent": 0.6309148264984227,
+      "approx_position_from_rounded_rows": 7.238296529968454
+    },
+    "/credits": {
+      "rows": 1,
+      "clicks": 0,
+      "impressions": 1,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 3.0
+    },
+    "/disclaimer": {
+      "rows": 3,
+      "clicks": 0,
+      "impressions": 5,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 2.6
+    },
+    "/european-clubs": {
+      "rows": 8,
+      "clicks": 4,
+      "impressions": 430,
+      "ctr_percent": 0.9302325581395349,
+      "approx_position_from_rounded_rows": 7.532209302325581
+    },
+    "/fifa-awards": {
+      "rows": 8,
+      "clicks": 0,
+      "impressions": 124,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 8.596935483870968
+    },
+    "/football-quiz": {
+      "rows": 4,
+      "clicks": 1,
+      "impressions": 12,
+      "ctr_percent": 8.333333333333334,
+      "approx_position_from_rounded_rows": 7.333333333333333
+    },
+    "/free-kicks": {
+      "rows": 9,
+      "clicks": 15,
+      "impressions": 2080,
+      "ctr_percent": 0.7211538461538461,
+      "approx_position_from_rounded_rows": 7.306961538461538
+    },
+    "/glossary": {
+      "rows": 7,
+      "clicks": 0,
+      "impressions": 60,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 9.266666666666667
+    },
+    "/goals": {
+      "rows": 9,
+      "clicks": 38,
+      "impressions": 2879,
+      "ctr_percent": 1.3199027440083362,
+      "approx_position_from_rounded_rows": 7.1042584230635635
+    },
+    "/golden-boots": {
+      "rows": 9,
+      "clicks": 1,
+      "impressions": 458,
+      "ctr_percent": 0.2183406113537118,
+      "approx_position_from_rounded_rows": 7.473056768558951
+    },
+    "/hat-tricks": {
+      "rows": 8,
+      "clicks": 1,
+      "impressions": 355,
+      "ctr_percent": 0.28169014084507044,
+      "approx_position_from_rounded_rows": 8.84938028169014
+    },
+    "/head-to-head": {
+      "rows": 8,
+      "clicks": 1,
+      "impressions": 395,
+      "ctr_percent": 0.25316455696202533,
+      "approx_position_from_rounded_rows": 14.512835443037973
+    },
+    "/honours": {
+      "rows": 9,
+      "clicks": 6,
+      "impressions": 848,
+      "ctr_percent": 0.7075471698113207,
+      "approx_position_from_rounded_rows": 6.601438679245284
+    },
+    "/insights": {
+      "rows": 3,
+      "clicks": 0,
+      "impressions": 11,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 6.275454545454545
+    },
+    "/insights/ballon-dor-2026-contenders-stats": {
+      "rows": 9,
+      "clicks": 33,
+      "impressions": 1496,
+      "ctr_percent": 2.2058823529411766,
+      "approx_position_from_rounded_rows": 9.182727272727274
+    },
+    "/insights/ballon-dor-2026-date-voting-rules": {
+      "rows": 9,
+      "clicks": 17,
+      "impressions": 5468,
+      "ctr_percent": 0.3108997805413314,
+      "approx_position_from_rounded_rows": 8.866656912948061
+    },
+    "/insights/cristiano-ronaldo-retirement-portugal-al-nassr-future": {
+      "rows": 1,
+      "clicks": 0,
+      "impressions": 51,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 8.8
+    },
+    "/insights/kane-vs-mbappe-ballon-dor-2026-stats": {
+      "rows": 9,
+      "clicks": 169,
+      "impressions": 1640,
+      "ctr_percent": 10.304878048780488,
+      "approx_position_from_rounded_rows": 4.489536585365854
+    },
+    "/insights/messi-2011-12-vs-ronaldo-2013-14-champions-league": {
+      "rows": 8,
+      "clicks": 0,
+      "impressions": 132,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 7.305681818181817
+    },
+    "/insights/messi-2011-12-vs-ronaldo-2014-15-la-liga": {
+      "rows": 9,
+      "clicks": 5,
+      "impressions": 245,
+      "ctr_percent": 2.0408163265306123,
+      "approx_position_from_rounded_rows": 6.063673469387756
+    },
+    "/insights/messi-2012-vs-ronaldo-2013-goals": {
+      "rows": 9,
+      "clicks": 5,
+      "impressions": 1589,
+      "ctr_percent": 0.3146633102580239,
+      "approx_position_from_rounded_rows": 8.15504719949654
+    },
+    "/insights/messi-final-match-argentina-2026": {
+      "rows": 1,
+      "clicks": 0,
+      "impressions": 10,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 5.4
+    },
+    "/insights/messi-goals-2009": {
+      "rows": 1,
+      "clicks": 2,
+      "impressions": 340,
+      "ctr_percent": 0.5882352941176471,
+      "approx_position_from_rounded_rows": 4.93
+    },
+    "/insights/messi-retirement-argentina-inter-miami-future": {
+      "rows": 1,
+      "clicks": 0,
+      "impressions": 4,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 6.75
+    },
+    "/insights/messi-ronaldo-2017-stats": {
+      "rows": 1,
+      "clicks": 2,
+      "impressions": 477,
+      "ctr_percent": 0.4192872117400419,
+      "approx_position_from_rounded_rows": 7.33
+    },
+    "/insights/messi-ronaldo-2026-goals-comparison": {
+      "rows": 1,
+      "clicks": 2,
+      "impressions": 280,
+      "ctr_percent": 0.7142857142857143,
+      "approx_position_from_rounded_rows": 6.07
+    },
+    "/insights/messi-ronaldo-career-appearances": {
+      "rows": 1,
+      "clicks": 0,
+      "impressions": 5,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 6.2
+    },
+    "/insights/messi-ronaldo-free-kick-records": {
+      "rows": 3,
+      "clicks": 29,
+      "impressions": 2118,
+      "ctr_percent": 1.3692162417374882,
+      "approx_position_from_rounded_rows": 6.9280169971671395
+    },
+    "/insights/messi-ronaldo-hat-tricks": {
+      "rows": 1,
+      "clicks": 1,
+      "impressions": 200,
+      "ctr_percent": 0.5,
+      "approx_position_from_rounded_rows": 6.08
+    },
+    "/insights/messi-ronaldo-individual-awards": {
+      "rows": 1,
+      "clicks": 0,
+      "impressions": 133,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 15.48
+    },
+    "/insights/messi-ronaldo-la-liga-records": {
+      "rows": 1,
+      "clicks": 1,
+      "impressions": 97,
+      "ctr_percent": 1.0309278350515463,
+      "approx_position_from_rounded_rows": 6.02
+    },
+    "/insights/messi-ronaldo-penalty-records": {
+      "rows": 1,
+      "clicks": 4,
+      "impressions": 1447,
+      "ctr_percent": 0.27643400138217,
+      "approx_position_from_rounded_rows": 8.3
+    },
+    "/insights/messi-ronaldo-team-trophies": {
+      "rows": 1,
+      "clicks": 1,
+      "impressions": 231,
+      "ctr_percent": 0.4329004329004329,
+      "approx_position_from_rounded_rows": 6.74
+    },
+    "/insights/messi-stats-career-guide": {
+      "rows": 1,
+      "clicks": 1,
+      "impressions": 225,
+      "ctr_percent": 0.4444444444444444,
+      "approx_position_from_rounded_rows": 7.52
+    },
+    "/insights/messi-vs-ronaldo-stats-guide": {
+      "rows": 1,
+      "clicks": 0,
+      "impressions": 31,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 23.48
+    },
+    "/insights/ronaldo-stats-career-guide": {
+      "rows": 1,
+      "clicks": 0,
+      "impressions": 528,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 16.64
+    },
+    "/insights/totals-vs-scoring-rates": {
+      "rows": 8,
+      "clicks": 0,
+      "impressions": 28,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 6.714285714285714
+    },
+    "/insights/what-counts-as-a-career-goal": {
+      "rows": 8,
+      "clicks": 4,
+      "impressions": 926,
+      "ctr_percent": 0.4319654427645788,
+      "approx_position_from_rounded_rows": 6.802850971922247
+    },
+    "/insights/why-assist-totals-differ": {
+      "rows": 7,
+      "clicks": 0,
+      "impressions": 140,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 11.41992857142857
+    },
+    "/international": {
+      "rows": 9,
+      "clicks": 16,
+      "impressions": 2005,
+      "ctr_percent": 0.7980049875311721,
+      "approx_position_from_rounded_rows": 7.391905236907731
+    },
+    "/la-liga": {
+      "rows": 9,
+      "clicks": 32,
+      "impressions": 1768,
+      "ctr_percent": 1.8099547511312217,
+      "approx_position_from_rounded_rows": 6.610429864253393
+    },
+    "/league": {
+      "rows": 7,
+      "clicks": 0,
+      "impressions": 77,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 9.728441558441558
+    },
+    "/man-of-the-match": {
+      "rows": 4,
+      "clicks": 0,
+      "impressions": 57,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 8.126315789473685
+    },
+    "/methodology": {
+      "rows": 6,
+      "clicks": 0,
+      "impressions": 30,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 7.765333333333333
+    },
+    "/milestone-planner": {
+      "rows": 5,
+      "clicks": 0,
+      "impressions": 11,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 4.363636363636363
+    },
+    "/penalties": {
+      "rows": 8,
+      "clicks": 4,
+      "impressions": 654,
+      "ctr_percent": 0.6116207951070336,
+      "approx_position_from_rounded_rows": 8.051269113149846
+    },
+    "/players/messi": {
+      "rows": 9,
+      "clicks": 8,
+      "impressions": 1329,
+      "ctr_percent": 0.6019563581640331,
+      "approx_position_from_rounded_rows": 14.808788562829196
+    },
+    "/players/ronaldo": {
+      "rows": 9,
+      "clicks": 4,
+      "impressions": 939,
+      "ctr_percent": 0.42598509052183176,
+      "approx_position_from_rounded_rows": 11.440095846645367
+    },
+    "/records": {
+      "rows": 9,
+      "clicks": 9,
+      "impressions": 699,
+      "ctr_percent": 1.2875536480686696,
+      "approx_position_from_rounded_rows": 8.467753934191702
+    },
+    "/scoring-calculator": {
+      "rows": 8,
+      "clicks": 4,
+      "impressions": 224,
+      "ctr_percent": 1.7857142857142858,
+      "approx_position_from_rounded_rows": 6.799419642857143
+    },
+    "/seasons": {
+      "rows": 9,
+      "clicks": 7,
+      "impressions": 630,
+      "ctr_percent": 1.1111111111111112,
+      "approx_position_from_rounded_rows": 8.234126984126984
+    },
+    "/seasons/2002": {
+      "rows": 8,
+      "clicks": 0,
+      "impressions": 170,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 6.84664705882353
+    },
+    "/seasons/2003": {
+      "rows": 8,
+      "clicks": 0,
+      "impressions": 96,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 6.5711458333333335
+    },
+    "/seasons/2004": {
+      "rows": 8,
+      "clicks": 0,
+      "impressions": 205,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 6.394975609756098
+    },
+    "/seasons/2005": {
+      "rows": 9,
+      "clicks": 1,
+      "impressions": 148,
+      "ctr_percent": 0.6756756756756757,
+      "approx_position_from_rounded_rows": 6.626013513513513
+    },
+    "/seasons/2006": {
+      "rows": 8,
+      "clicks": 0,
+      "impressions": 152,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 5.907960526315789
+    },
+    "/seasons/2007": {
+      "rows": 9,
+      "clicks": 5,
+      "impressions": 269,
+      "ctr_percent": 1.858736059479554,
+      "approx_position_from_rounded_rows": 6.938884758364312
+    },
+    "/seasons/2008": {
+      "rows": 9,
+      "clicks": 12,
+      "impressions": 1794,
+      "ctr_percent": 0.6688963210702341,
+      "approx_position_from_rounded_rows": 6.836243032329988
+    },
+    "/seasons/2009": {
+      "rows": 9,
+      "clicks": 3,
+      "impressions": 609,
+      "ctr_percent": 0.49261083743842365,
+      "approx_position_from_rounded_rows": 6.563612479474548
+    },
+    "/seasons/2009-10": {
+      "rows": 9,
+      "clicks": 1,
+      "impressions": 266,
+      "ctr_percent": 0.37593984962406013,
+      "approx_position_from_rounded_rows": 7.799774436090225
+    },
+    "/seasons/2010": {
+      "rows": 9,
+      "clicks": 1,
+      "impressions": 428,
+      "ctr_percent": 0.2336448598130841,
+      "approx_position_from_rounded_rows": 5.700093457943925
+    },
+    "/seasons/2010-11": {
+      "rows": 8,
+      "clicks": 0,
+      "impressions": 87,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 7.116551724137931
+    },
+    "/seasons/2011": {
+      "rows": 9,
+      "clicks": 4,
+      "impressions": 262,
+      "ctr_percent": 1.5267175572519085,
+      "approx_position_from_rounded_rows": 5.069427480916031
+    },
+    "/seasons/2011-12": {
+      "rows": 9,
+      "clicks": 1,
+      "impressions": 237,
+      "ctr_percent": 0.4219409282700422,
+      "approx_position_from_rounded_rows": 7.581350210970464
+    },
+    "/seasons/2012": {
+      "rows": 9,
+      "clicks": 14,
+      "impressions": 1064,
+      "ctr_percent": 1.3157894736842106,
+      "approx_position_from_rounded_rows": 6.6821710526315785
+    },
+    "/seasons/2012-13": {
+      "rows": 9,
+      "clicks": 3,
+      "impressions": 653,
+      "ctr_percent": 0.45941807044410415,
+      "approx_position_from_rounded_rows": 7.90114854517611
+    },
+    "/seasons/2013": {
+      "rows": 9,
+      "clicks": 7,
+      "impressions": 932,
+      "ctr_percent": 0.7510729613733905,
+      "approx_position_from_rounded_rows": 6.068208154506438
+    },
+    "/seasons/2013-14": {
+      "rows": 8,
+      "clicks": 1,
+      "impressions": 322,
+      "ctr_percent": 0.3105590062111801,
+      "approx_position_from_rounded_rows": 8.323012422360248
+    },
+    "/seasons/2014": {
+      "rows": 9,
+      "clicks": 1,
+      "impressions": 412,
+      "ctr_percent": 0.24271844660194175,
+      "approx_position_from_rounded_rows": 5.80876213592233
+    },
+    "/seasons/2014-15": {
+      "rows": 9,
+      "clicks": 1,
+      "impressions": 164,
+      "ctr_percent": 0.6097560975609756,
+      "approx_position_from_rounded_rows": 7.444634146341464
+    },
+    "/seasons/2015": {
+      "rows": 8,
+      "clicks": 4,
+      "impressions": 473,
+      "ctr_percent": 0.8456659619450317,
+      "approx_position_from_rounded_rows": 5.777568710359408
+    },
+    "/seasons/2015-16": {
+      "rows": 8,
+      "clicks": 1,
+      "impressions": 185,
+      "ctr_percent": 0.5405405405405406,
+      "approx_position_from_rounded_rows": 7.710810810810811
+    },
+    "/seasons/2016": {
+      "rows": 8,
+      "clicks": 4,
+      "impressions": 358,
+      "ctr_percent": 1.1173184357541899,
+      "approx_position_from_rounded_rows": 6.820754189944134
+    },
+    "/seasons/2016-17": {
+      "rows": 8,
+      "clicks": 0,
+      "impressions": 117,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 6.972478632478634
+    },
+    "/seasons/2017": {
+      "rows": 9,
+      "clicks": 0,
+      "impressions": 288,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 6.614548611111111
+    },
+    "/seasons/2017-18": {
+      "rows": 9,
+      "clicks": 0,
+      "impressions": 526,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 8.555342205323193
+    },
+    "/seasons/2018": {
+      "rows": 9,
+      "clicks": 2,
+      "impressions": 407,
+      "ctr_percent": 0.4914004914004914,
+      "approx_position_from_rounded_rows": 7.4574447174447185
+    },
+    "/seasons/2019": {
+      "rows": 8,
+      "clicks": 2,
+      "impressions": 286,
+      "ctr_percent": 0.6993006993006993,
+      "approx_position_from_rounded_rows": 5.926853146853147
+    },
+    "/seasons/2020": {
+      "rows": 9,
+      "clicks": 2,
+      "impressions": 599,
+      "ctr_percent": 0.333889816360601,
+      "approx_position_from_rounded_rows": 6.574373956594323
+    },
+    "/seasons/2021": {
+      "rows": 9,
+      "clicks": 4,
+      "impressions": 456,
+      "ctr_percent": 0.8771929824561403,
+      "approx_position_from_rounded_rows": 6.469978070175438
+    },
+    "/seasons/2022": {
+      "rows": 8,
+      "clicks": 0,
+      "impressions": 382,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 5.419869109947643
+    },
+    "/seasons/2023": {
+      "rows": 9,
+      "clicks": 1,
+      "impressions": 259,
+      "ctr_percent": 0.3861003861003861,
+      "approx_position_from_rounded_rows": 6.5297683397683395
+    },
+    "/seasons/2024": {
+      "rows": 9,
+      "clicks": 3,
+      "impressions": 404,
+      "ctr_percent": 0.7425742574257426,
+      "approx_position_from_rounded_rows": 6.670049504950495
+    },
+    "/seasons/2025": {
+      "rows": 8,
+      "clicks": 3,
+      "impressions": 283,
+      "ctr_percent": 1.0600706713780919,
+      "approx_position_from_rounded_rows": 4.773215547703181
+    },
+    "/seasons/2026": {
+      "rows": 9,
+      "clicks": 27,
+      "impressions": 1580,
+      "ctr_percent": 1.7088607594936709,
+      "approx_position_from_rounded_rows": 5.152253164556963
+    },
+    "/sitemap": {
+      "rows": 3,
+      "clicks": 0,
+      "impressions": 7,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 7.428571428571429
+    },
+    "/terms": {
+      "rows": 1,
+      "clicks": 0,
+      "impressions": 4,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 4.25
+    },
+    "/tools": {
+      "rows": 2,
+      "clicks": 0,
+      "impressions": 3,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 3.3333333333333335
+    },
+    "/uefa-awards": {
+      "rows": 8,
+      "clicks": 0,
+      "impressions": 218,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 9.279128440366973
+    },
+    "/updates": {
+      "rows": 1,
+      "clicks": 0,
+      "impressions": 2,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 9.5
+    },
+    "/vote": {
+      "rows": 9,
+      "clicks": 9,
+      "impressions": 96,
+      "ctr_percent": 9.375,
+      "approx_position_from_rounded_rows": 6.062916666666667
+    },
+    "/world-cup": {
+      "rows": 8,
+      "clicks": 1,
+      "impressions": 184,
+      "ctr_percent": 0.5434782608695652,
+      "approx_position_from_rounded_rows": 9.410108695652173
+    }
+  },
+  "pages_with_at_least_100_impressions_and_no_clicks": [
+    {
+      "Top pages": "https://messivsronaldo17.com/insights/ronaldo-stats-career-guide",
+      "Clicks": 0,
+      "Impressions": 528,
+      "CTR": "0%",
+      "Position": 16.64
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/free-kicks",
+      "Clicks": 0,
+      "Impressions": 439,
+      "CTR": "0%",
+      "Position": 10.33
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/champions-league",
+      "Clicks": 0,
+      "Impressions": 338,
+      "CTR": "0%",
+      "Position": 9.96
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/club-stats/2025-2026",
+      "Clicks": 0,
+      "Impressions": 316,
+      "CTR": "0%",
+      "Position": 8.72
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/es/seasons/2008",
+      "Clicks": 0,
+      "Impressions": 294,
+      "CTR": "0%",
+      "Position": 6.59
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/hi/seasons/2012-13",
+      "Clicks": 0,
+      "Impressions": 291,
+      "CTR": "0%",
+      "Position": 8.43
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/seasons/2012",
+      "Clicks": 0,
+      "Impressions": 284,
+      "CTR": "0%",
+      "Position": 7.98
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/seasons/2017-18",
+      "Clicks": 0,
+      "Impressions": 269,
+      "CTR": "0%",
+      "Position": 8.16
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/hi/records",
+      "Clicks": 0,
+      "Impressions": 252,
+      "CTR": "0%",
+      "Position": 9.05
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/hi",
+      "Clicks": 0,
+      "Impressions": 251,
+      "CTR": "0%",
+      "Position": 8.64
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/seasons/2020",
+      "Clicks": 0,
+      "Impressions": 249,
+      "CTR": "0%",
+      "Position": 6.92
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/es/club-stats/2013-2014",
+      "Clicks": 0,
+      "Impressions": 227,
+      "CTR": "0%",
+      "Position": 7.38
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/fr/players/ronaldo",
+      "Clicks": 0,
+      "Impressions": 216,
+      "CTR": "0%",
+      "Position": 10.24
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/club-stats/2021-2022",
+      "Clicks": 0,
+      "Impressions": 212,
+      "CTR": "0%",
+      "Position": 8.83
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/pt/players/messi",
+      "Clicks": 0,
+      "Impressions": 212,
+      "CTR": "0%",
+      "Position": 15.47
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/es/seasons/2009",
+      "Clicks": 0,
+      "Impressions": 211,
+      "CTR": "0%",
+      "Position": 6.68
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/seasons/2013",
+      "Clicks": 0,
+      "Impressions": 209,
+      "CTR": "0%",
+      "Position": 8.32
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/club-stats/2011-2012",
+      "Clicks": 0,
+      "Impressions": 208,
+      "CTR": "0%",
+      "Position": 8.04
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/hi/goals",
+      "Clicks": 0,
+      "Impressions": 202,
+      "CTR": "0%",
+      "Position": 9.54
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/es/club-stats/2011-2012",
+      "Clicks": 0,
+      "Impressions": 201,
+      "CTR": "0%",
+      "Position": 7.38
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/club-stats/2022-2023",
+      "Clicks": 0,
+      "Impressions": 197,
+      "CTR": "0%",
+      "Position": 8.91
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/de/seasons/2012",
+      "Clicks": 0,
+      "Impressions": 196,
+      "CTR": "0%",
+      "Position": 6.85
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/ar/club-stats/2011-2012",
+      "Clicks": 0,
+      "Impressions": 196,
+      "CTR": "0%",
+      "Position": 7.99
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/hi/seasons/2008",
+      "Clicks": 0,
+      "Impressions": 192,
+      "CTR": "0%",
+      "Position": 8.63
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/es/seasons/2026",
+      "Clicks": 0,
+      "Impressions": 190,
+      "CTR": "0%",
+      "Position": 6.43
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/es/players/messi",
+      "Clicks": 0,
+      "Impressions": 187,
+      "CTR": "0%",
+      "Position": 37.17
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/nl/international",
+      "Clicks": 0,
+      "Impressions": 177,
+      "CTR": "0%",
+      "Position": 7.59
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/copa-america-vs-euros",
+      "Clicks": 0,
+      "Impressions": 174,
+      "CTR": "0%",
+      "Position": 8.13
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/players/ronaldo",
+      "Clicks": 0,
+      "Impressions": 174,
+      "CTR": "0%",
+      "Position": 9.55
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/seasons/2022",
+      "Clicks": 0,
+      "Impressions": 165,
+      "CTR": "0%",
+      "Position": 6.58
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/club-stats/2014-2015",
+      "Clicks": 0,
+      "Impressions": 164,
+      "CTR": "0%",
+      "Position": 7.63
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/de/international",
+      "Clicks": 0,
+      "Impressions": 161,
+      "CTR": "0%",
+      "Position": 10.12
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/hi/seasons",
+      "Clicks": 0,
+      "Impressions": 160,
+      "CTR": "0%",
+      "Position": 9.85
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/seasons/2010",
+      "Clicks": 0,
+      "Impressions": 157,
+      "CTR": "0%",
+      "Position": 6.76
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/es/seasons",
+      "Clicks": 0,
+      "Impressions": 153,
+      "CTR": "0%",
+      "Position": 7.16
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/seasons/2016",
+      "Clicks": 0,
+      "Impressions": 153,
+      "CTR": "0%",
+      "Position": 7.98
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/club-stats/2010-2011",
+      "Clicks": 0,
+      "Impressions": 150,
+      "CTR": "0%",
+      "Position": 7.89
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/ar/club-stats/2012-2013",
+      "Clicks": 0,
+      "Impressions": 149,
+      "CTR": "0%",
+      "Position": 6.13
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/seasons/2021",
+      "Clicks": 0,
+      "Impressions": 147,
+      "CTR": "0%",
+      "Position": 6.98
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/es/insights/what-counts-as-a-career-goal",
+      "Clicks": 0,
+      "Impressions": 147,
+      "CTR": "0%",
+      "Position": 8.44
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/es/club-stats/2021-2022",
+      "Clicks": 0,
+      "Impressions": 145,
+      "CTR": "0%",
+      "Position": 7.77
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/ar/club-stats/2021-2022",
+      "Clicks": 0,
+      "Impressions": 141,
+      "CTR": "0%",
+      "Position": 6.33
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/european-clubs",
+      "Clicks": 0,
+      "Impressions": 141,
+      "CTR": "0%",
+      "Position": 8.18
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/es/seasons/2024",
+      "Clicks": 0,
+      "Impressions": 140,
+      "CTR": "0%",
+      "Position": 5.44
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/seasons/2015",
+      "Clicks": 0,
+      "Impressions": 140,
+      "CTR": "0%",
+      "Position": 7.26
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/fr/head-to-head",
+      "Clicks": 0,
+      "Impressions": 137,
+      "CTR": "0%",
+      "Position": 18.44
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/seasons/2009",
+      "Clicks": 0,
+      "Impressions": 136,
+      "CTR": "0%",
+      "Position": 7.8
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/goals",
+      "Clicks": 0,
+      "Impressions": 136,
+      "CTR": "0%",
+      "Position": 11.41
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/insights/messi-ronaldo-individual-awards",
+      "Clicks": 0,
+      "Impressions": 133,
+      "CTR": "0%",
+      "Position": 15.48
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/club-stats/2018-2019",
+      "Clicks": 0,
+      "Impressions": 132,
+      "CTR": "0%",
+      "Position": 8.32
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/de/players/ronaldo",
+      "Clicks": 0,
+      "Impressions": 132,
+      "CTR": "0%",
+      "Position": 12.46
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/hi/seasons/2013-14",
+      "Clicks": 0,
+      "Impressions": 130,
+      "CTR": "0%",
+      "Position": 9.47
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/club-stats/2013-2014",
+      "Clicks": 0,
+      "Impressions": 129,
+      "CTR": "0%",
+      "Position": 7.84
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/hi/seasons/2017-18",
+      "Clicks": 0,
+      "Impressions": 129,
+      "CTR": "0%",
+      "Position": 9.42
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/fr/seasons/2009",
+      "Clicks": 0,
+      "Impressions": 127,
+      "CTR": "0%",
+      "Position": 6.27
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/ar/seasons/2025",
+      "Clicks": 0,
+      "Impressions": 123,
+      "CTR": "0%",
+      "Position": 5.11
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/ar/seasons/2004",
+      "Clicks": 0,
+      "Impressions": 122,
+      "CTR": "0%",
+      "Position": 6.04
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/clubs",
+      "Clicks": 0,
+      "Impressions": 119,
+      "CTR": "0%",
+      "Position": 7.76
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/pt/golden-boots",
+      "Clicks": 0,
+      "Impressions": 117,
+      "CTR": "0%",
+      "Position": 7.25
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/es/free-kicks",
+      "Clicks": 0,
+      "Impressions": 116,
+      "CTR": "0%",
+      "Position": 6.34
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/ar/seasons/2014",
+      "Clicks": 0,
+      "Impressions": 111,
+      "CTR": "0%",
+      "Position": 4.29
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/club-stats/2015-2016",
+      "Clicks": 0,
+      "Impressions": 105,
+      "CTR": "0%",
+      "Position": 8.45
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/es/golden-boots",
+      "Clicks": 0,
+      "Impressions": 104,
+      "CTR": "0%",
+      "Position": 8.07
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/es/club-stats/2017-2018",
+      "Clicks": 0,
+      "Impressions": 103,
+      "CTR": "0%",
+      "Position": 8.83
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/de/head-to-head",
+      "Clicks": 0,
+      "Impressions": 103,
+      "CTR": "0%",
+      "Position": 12.78
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/es/seasons/2022",
+      "Clicks": 0,
+      "Impressions": 102,
+      "CTR": "0%",
+      "Position": 3.43
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/club-stats/2024-2025",
+      "Clicks": 0,
+      "Impressions": 101,
+      "CTR": "0%",
+      "Position": 11.07
+    }
+  ],
+  "notes": [
+    "Chart totals are the baseline; Pages impressions have a different aggregation.",
+    "Query rows may be incomplete. No query-to-page join is present in these separate tables.",
+    "Position aggregates here are estimates weighted from already rounded exported values.",
+    "Date labels are retained as supplied; daily Search Console reports use Pacific Time.",
+    "URL language groups describe URL prefixes, not the searcher's language or country.",
+    "A page absent from Pages.csv is not thereby known to be unindexed.",
+    "A page with impressions was credited search visibility during this window; its current indexing state is unknown.",
+    "No page-by-date or query-by-page table was supplied: page gains/losses and cannibalization cannot be established.",
+    "No expected CTR curve is supplied. Low-CTR thresholds are triage rules, not causal findings or industry benchmarks.",
+    "Intent, question, comparison and site-brand labels are transparent heuristics; names Messi and Ronaldo alone are not site brand.",
+    "All measurements retain the Filters.csv search type, including its Web (text-based) wording; no AI report is present.",
+    "Exactly 1,000 exported query rows suggests a UI row limit; anonymized/omitted queries also prevent complete query coverage."
+  ],
+  "performance_bucket_definitions": {
+    "indexing": "No category a (not indexed) assignment is possible from these performance CSVs.",
+    "priority_order": "near-zero impressions, low CTR, position 8-30, relatively healthy, other; additional flags retain overlaps",
+    "b_near_zero_impressions_current_indexing_unknown": "0-10 impressions in the supplied window; current indexing state unknown",
+    "c_very_low_ctr_review": "At least 100 impressions and calculated CTR below 1%; operational threshold, not a position-adjusted benchmark",
+    "d_average_position_8_to_30": "Average exported position from 8 through 30 inclusive, after prior buckets",
+    "e_relatively_healthy_observed_performance": "At least 100 impressions, 3 clicks, 1% CTR and average position below 8, after prior buckets",
+    "f_limited_sample_or_other_performance_review": "Remaining rows; avoids mislabelling small samples or poor positions as healthy"
+  },
+  "performance_bucket_totals": {
+    "b_near_zero_impressions_current_indexing_unknown": {
+      "rows": 300,
+      "clicks": 14,
+      "impressions": 1284,
+      "ctr_percent": 1.0903426791277258,
+      "approx_position_from_rounded_rows": 8.072266355140187
+    },
+    "c_very_low_ctr_review": {
+      "rows": 123,
+      "clicks": 105,
+      "impressions": 36671,
+      "ctr_percent": 0.28632979738758146,
+      "approx_position_from_rounded_rows": 8.211678983392872
+    },
+    "d_average_position_8_to_30": {
+      "rows": 137,
+      "clicks": 51,
+      "impressions": 7296,
+      "ctr_percent": 0.6990131578947368,
+      "approx_position_from_rounded_rows": 10.376114309210527
+    },
+    "e_relatively_healthy_observed_performance": {
+      "rows": 31,
+      "clicks": 400,
+      "impressions": 14009,
+      "ctr_percent": 2.855307302448426,
+      "approx_position_from_rounded_rows": 5.811622528374617
+    },
+    "f_limited_sample_or_other_performance_review": {
+      "rows": 317,
+      "clicks": 166,
+      "impressions": 13047,
+      "ctr_percent": 1.2723231394190235,
+      "approx_position_from_rounded_rows": 6.264818732275619
+    }
+  },
+  "page_counts": {
+    "with_impressions": 908,
+    "with_clicks": 228,
+    "without_clicks": 680,
+    "average_position_8_to_30_all_samples": 274,
+    "at_least_100_impressions_and_ctr_below_1_percent": 123
+  },
+  "click_concentration": {
+    "denominator": "Sum of page table clicks (different aggregation from Chart)",
+    "top_1_percent": 15.081521739130435,
+    "top_2_percent": 18.75,
+    "top_10_percent": 38.858695652173914
+  },
+  "top_pages_by_clicks": [
+    {
+      "Top pages": "https://messivsronaldo17.com/fr/insights/kane-vs-mbappe-ballon-dor-2026-stats",
+      "Clicks": 111,
+      "Impressions": 740,
+      "CTR": "15%",
+      "Position": 3.98
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/fr/insights/messi-ronaldo-free-kick-records",
+      "Clicks": 27,
+      "Impressions": 1857,
+      "CTR": "1.45%",
+      "Position": 6.23
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/insights/kane-vs-mbappe-ballon-dor-2026-stats",
+      "Clicks": 26,
+      "Impressions": 393,
+      "CTR": "6.62%",
+      "Position": 4.62
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/",
+      "Clicks": 25,
+      "Impressions": 513,
+      "CTR": "4.87%",
+      "Position": 7.75
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/es/insights/kane-vs-mbappe-ballon-dor-2026-stats",
+      "Clicks": 21,
+      "Impressions": 248,
+      "CTR": "8.47%",
+      "Position": 5.01
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/fr/goals",
+      "Clicks": 20,
+      "Impressions": 1433,
+      "CTR": "1.4%",
+      "Position": 5.54
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/es/2026",
+      "Clicks": 16,
+      "Impressions": 783,
+      "CTR": "2.04%",
+      "Position": 5.62
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/fr/insights/ballon-dor-2026-contenders-stats",
+      "Clicks": 16,
+      "Impressions": 592,
+      "CTR": "2.7%",
+      "Position": 7.86
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/de/free-kicks",
+      "Clicks": 13,
+      "Impressions": 903,
+      "CTR": "1.44%",
+      "Position": 6.43
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/fr/2026",
+      "Clicks": 11,
+      "Impressions": 1002,
+      "CTR": "1.1%",
+      "Position": 5.84
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/pt/goals",
+      "Clicks": 10,
+      "Impressions": 563,
+      "CTR": "1.78%",
+      "Position": 8.76
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/fr/seasons/2026",
+      "Clicks": 9,
+      "Impressions": 793,
+      "CTR": "1.13%",
+      "Position": 3.95
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/fr/la-liga",
+      "Clicks": 9,
+      "Impressions": 225,
+      "CTR": "4%",
+      "Position": 4.91
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/pt/international",
+      "Clicks": 9,
+      "Impressions": 116,
+      "CTR": "7.76%",
+      "Position": 5.89
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/pt/la-liga",
+      "Clicks": 8,
+      "Impressions": 236,
+      "CTR": "3.39%",
+      "Position": 5.3
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/de/insights/kane-vs-mbappe-ballon-dor-2026-stats",
+      "Clicks": 8,
+      "Impressions": 93,
+      "CTR": "8.6%",
+      "Position": 4.2
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/pt/club-stats/2026-2027",
+      "Clicks": 8,
+      "Impressions": 81,
+      "CTR": "9.88%",
+      "Position": 5.96
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/international",
+      "Clicks": 7,
+      "Impressions": 1498,
+      "CTR": "0.47%",
+      "Position": 7.13
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/ar/seasons/2008",
+      "Clicks": 7,
+      "Impressions": 521,
+      "CTR": "1.34%",
+      "Position": 6.12
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/pt/2026",
+      "Clicks": 7,
+      "Impressions": 354,
+      "CTR": "1.98%",
+      "Position": 5.76
+    }
+  ],
+  "high_impression_low_ctr_pages": [
+    {
+      "Top pages": "https://messivsronaldo17.com/nl/insights/ballon-dor-2026-date-voting-rules",
+      "Clicks": 5,
+      "Impressions": 3837,
+      "CTR": "0.13%",
+      "Position": 8.99
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/club-stats/2008-2009",
+      "Clicks": 3,
+      "Impressions": 1692,
+      "CTR": "0.18%",
+      "Position": 8.25
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/international",
+      "Clicks": 7,
+      "Impressions": 1498,
+      "CTR": "0.47%",
+      "Position": 7.13
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/insights/messi-ronaldo-penalty-records",
+      "Clicks": 4,
+      "Impressions": 1447,
+      "CTR": "0.28%",
+      "Position": 8.3
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/es/club-stats/2008-2009",
+      "Clicks": 5,
+      "Impressions": 1382,
+      "CTR": "0.36%",
+      "Position": 7.37
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/insights/messi-2012-vs-ronaldo-2013-goals",
+      "Clicks": 5,
+      "Impressions": 1323,
+      "CTR": "0.38%",
+      "Position": 8.3
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/de",
+      "Clicks": 6,
+      "Impressions": 962,
+      "CTR": "0.62%",
+      "Position": 6.68
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/la-liga",
+      "Clicks": 4,
+      "Impressions": 775,
+      "CTR": "0.52%",
+      "Position": 7.87
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/insights/what-counts-as-a-career-goal",
+      "Clicks": 4,
+      "Impressions": 657,
+      "CTR": "0.61%",
+      "Position": 6.49
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/club-stats/2026-2027",
+      "Clicks": 3,
+      "Impressions": 656,
+      "CTR": "0.46%",
+      "Position": 6.05
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/insights/ronaldo-stats-career-guide",
+      "Clicks": 0,
+      "Impressions": 528,
+      "CTR": "0%",
+      "Position": 16.64
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/de/insights/ballon-dor-2026-date-voting-rules",
+      "Clicks": 4,
+      "Impressions": 515,
+      "CTR": "0.78%",
+      "Position": 8.81
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/insights/messi-ronaldo-2017-stats",
+      "Clicks": 2,
+      "Impressions": 477,
+      "CTR": "0.42%",
+      "Position": 7.33
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/seasons/2008",
+      "Clicks": 1,
+      "Impressions": 470,
+      "CTR": "0.21%",
+      "Position": 7.72
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/fr/free-kicks",
+      "Clicks": 1,
+      "Impressions": 449,
+      "CTR": "0.22%",
+      "Position": 6.63
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/free-kicks",
+      "Clicks": 0,
+      "Impressions": 439,
+      "CTR": "0%",
+      "Position": 10.33
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/fr/honours",
+      "Clicks": 4,
+      "Impressions": 429,
+      "CTR": "0.93%",
+      "Position": 6.08
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/fr/players/messi",
+      "Clicks": 2,
+      "Impressions": 350,
+      "CTR": "0.57%",
+      "Position": 7.98
+    },
+    {
+      "Top pages": "https://www.messivsronaldo17.com/",
+      "Clicks": 1,
+      "Impressions": 346,
+      "CTR": "0.29%",
+      "Position": 2.72
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/es/insights/messi-goals-2009",
+      "Clicks": 2,
+      "Impressions": 340,
+      "CTR": "0.59%",
+      "Position": 4.93
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/champions-league",
+      "Clicks": 0,
+      "Impressions": 338,
+      "CTR": "0%",
+      "Position": 9.96
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/club-stats/2025-2026",
+      "Clicks": 0,
+      "Impressions": 316,
+      "CTR": "0%",
+      "Position": 8.72
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/ar/club-stats/2008-2009",
+      "Clicks": 1,
+      "Impressions": 312,
+      "CTR": "0.32%",
+      "Position": 6.03
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/fr/club-stats/2026-2027",
+      "Clicks": 2,
+      "Impressions": 296,
+      "CTR": "0.68%",
+      "Position": 6.55
+    },
+    {
+      "Top pages": "https://messivsronaldo17.com/es/seasons/2008",
+      "Clicks": 0,
+      "Impressions": 294,
+      "CTR": "0%",
+      "Position": 6.59
+    }
+  ],
+  "top_page_families_by_clicks": [
+    {
+      "path_without_language_prefix": "/insights/kane-vs-mbappe-ballon-dor-2026-stats",
+      "rows": 9,
+      "clicks": 169,
+      "impressions": 1640,
+      "ctr_percent": 10.304878048780488,
+      "approx_position_from_rounded_rows": 4.489536585365854
+    },
+    {
+      "path_without_language_prefix": "/2026",
+      "rows": 9,
+      "clicks": 43,
+      "impressions": 2742,
+      "ctr_percent": 1.5681983953318746,
+      "approx_position_from_rounded_rows": 5.887505470459519
+    },
+    {
+      "path_without_language_prefix": "/",
+      "rows": 12,
+      "clicks": 42,
+      "impressions": 2941,
+      "ctr_percent": 1.4280856851411086,
+      "approx_position_from_rounded_rows": 6.817072424345461
+    },
+    {
+      "path_without_language_prefix": "/goals",
+      "rows": 9,
+      "clicks": 38,
+      "impressions": 2879,
+      "ctr_percent": 1.3199027440083362,
+      "approx_position_from_rounded_rows": 7.1042584230635635
+    },
+    {
+      "path_without_language_prefix": "/insights/ballon-dor-2026-contenders-stats",
+      "rows": 9,
+      "clicks": 33,
+      "impressions": 1496,
+      "ctr_percent": 2.2058823529411766,
+      "approx_position_from_rounded_rows": 9.182727272727274
+    },
+    {
+      "path_without_language_prefix": "/la-liga",
+      "rows": 9,
+      "clicks": 32,
+      "impressions": 1768,
+      "ctr_percent": 1.8099547511312217,
+      "approx_position_from_rounded_rows": 6.610429864253393
+    },
+    {
+      "path_without_language_prefix": "/insights/messi-ronaldo-free-kick-records",
+      "rows": 3,
+      "clicks": 29,
+      "impressions": 2118,
+      "ctr_percent": 1.3692162417374882,
+      "approx_position_from_rounded_rows": 6.9280169971671395
+    },
+    {
+      "path_without_language_prefix": "/seasons/2026",
+      "rows": 9,
+      "clicks": 27,
+      "impressions": 1580,
+      "ctr_percent": 1.7088607594936709,
+      "approx_position_from_rounded_rows": 5.152253164556963
+    },
+    {
+      "path_without_language_prefix": "/club-stats/2026-2027",
+      "rows": 8,
+      "clicks": 22,
+      "impressions": 1776,
+      "ctr_percent": 1.2387387387387387,
+      "approx_position_from_rounded_rows": 6.093186936936937
+    },
+    {
+      "path_without_language_prefix": "/insights/ballon-dor-2026-date-voting-rules",
+      "rows": 9,
+      "clicks": 17,
+      "impressions": 5468,
+      "ctr_percent": 0.3108997805413314,
+      "approx_position_from_rounded_rows": 8.866656912948061
+    },
+    {
+      "path_without_language_prefix": "/international",
+      "rows": 9,
+      "clicks": 16,
+      "impressions": 2005,
+      "ctr_percent": 0.7980049875311721,
+      "approx_position_from_rounded_rows": 7.391905236907731
+    },
+    {
+      "path_without_language_prefix": "/free-kicks",
+      "rows": 9,
+      "clicks": 15,
+      "impressions": 2080,
+      "ctr_percent": 0.7211538461538461,
+      "approx_position_from_rounded_rows": 7.306961538461538
+    },
+    {
+      "path_without_language_prefix": "/seasons/2012",
+      "rows": 9,
+      "clicks": 14,
+      "impressions": 1064,
+      "ctr_percent": 1.3157894736842106,
+      "approx_position_from_rounded_rows": 6.6821710526315785
+    },
+    {
+      "path_without_language_prefix": "/club-stats/2008-2009",
+      "rows": 9,
+      "clicks": 14,
+      "impressions": 3722,
+      "ctr_percent": 0.37614185921547555,
+      "approx_position_from_rounded_rows": 7.674492208490059
+    },
+    {
+      "path_without_language_prefix": "/seasons/2008",
+      "rows": 9,
+      "clicks": 12,
+      "impressions": 1794,
+      "ctr_percent": 0.6688963210702341,
+      "approx_position_from_rounded_rows": 6.836243032329988
+    },
+    {
+      "path_without_language_prefix": "/assists",
+      "rows": 9,
+      "clicks": 10,
+      "impressions": 581,
+      "ctr_percent": 1.721170395869191,
+      "approx_position_from_rounded_rows": 8.239621342512908
+    },
+    {
+      "path_without_language_prefix": "/records",
+      "rows": 9,
+      "clicks": 9,
+      "impressions": 699,
+      "ctr_percent": 1.2875536480686696,
+      "approx_position_from_rounded_rows": 8.467753934191702
+    },
+    {
+      "path_without_language_prefix": "/vote",
+      "rows": 9,
+      "clicks": 9,
+      "impressions": 96,
+      "ctr_percent": 9.375,
+      "approx_position_from_rounded_rows": 6.062916666666667
+    },
+    {
+      "path_without_language_prefix": "/players/messi",
+      "rows": 9,
+      "clicks": 8,
+      "impressions": 1329,
+      "ctr_percent": 0.6019563581640331,
+      "approx_position_from_rounded_rows": 14.808788562829196
+    },
+    {
+      "path_without_language_prefix": "/seasons",
+      "rows": 9,
+      "clicks": 7,
+      "impressions": 630,
+      "ctr_percent": 1.1111111111111112,
+      "approx_position_from_rounded_rows": 8.234126984126984
+    }
+  ],
+  "query_brand_heuristic": {
+    "definition": "Explicit contiguous domain/name messivsronaldo17; entity names and season queries such as 17/18 do not count",
+    "totals": {
+      "explicit_site_brand": {
+        "rows": 0,
+        "clicks": 0,
+        "impressions": 0,
+        "ctr_percent": null,
+        "approx_position_from_rounded_rows": null
+      },
+      "no_explicit_site_brand": {
+        "rows": 1000,
+        "clicks": 78,
+        "impressions": 14402,
+        "ctr_percent": 0.541591445632551,
+        "approx_position_from_rounded_rows": 8.85821621996945
+      }
+    },
+    "limitation": "Absence of branded rows does not prove absence of brand demand; query export is incomplete"
+  },
+  "query_intent_heuristic": {
+    "informational_candidate": {
+      "rows": 965,
+      "clicks": 74,
+      "impressions": 14094,
+      "ctr_percent": 0.5250461189158507,
+      "approx_position_from_rounded_rows": 8.83497516673762
+    },
+    "navigational": {
+      "rows": 0,
+      "clicks": 0,
+      "impressions": 0,
+      "ctr_percent": null,
+      "approx_position_from_rounded_rows": null
+    },
+    "navigational_candidate": {
+      "rows": 4,
+      "clicks": 1,
+      "impressions": 54,
+      "ctr_percent": 1.8518518518518519,
+      "approx_position_from_rounded_rows": 10.83148148148148
+    },
+    "commercial_candidate": {
+      "rows": 0,
+      "clicks": 0,
+      "impressions": 0,
+      "ctr_percent": null,
+      "approx_position_from_rounded_rows": null
+    },
+    "transactional_candidate": {
+      "rows": 0,
+      "clicks": 0,
+      "impressions": 0,
+      "ctr_percent": null,
+      "approx_position_from_rounded_rows": null
+    },
+    "ambiguous_short_query": {
+      "rows": 31,
+      "clicks": 3,
+      "impressions": 254,
+      "ctr_percent": 1.1811023622047243,
+      "approx_position_from_rounded_rows": 9.728307086614175
+    }
+  },
+  "question_query_heuristic": {
+    "totals": {
+      "rows": 250,
+      "clicks": 3,
+      "impressions": 4283,
+      "ctr_percent": 0.07004436142890497,
+      "approx_position_from_rounded_rows": 9.308426336679897
+    },
+    "top_30": [
+      {
+        "Top queries": "wanneer wordt de ballon d or uitgereikt 2026",
+        "Clicks": 0,
+        "Impressions": 448,
+        "CTR": "0%",
+        "Position": 8.62
+      },
+      {
+        "Top queries": "wanneer is de ballon d'or uitreiking 2026",
+        "Clicks": 0,
+        "Impressions": 443,
+        "CTR": "0%",
+        "Position": 8.69
+      },
+      {
+        "Top queries": "wanneer is de ballon d or uitreiking 2026",
+        "Clicks": 0,
+        "Impressions": 330,
+        "CTR": "0%",
+        "Position": 8.71
+      },
+      {
+        "Top queries": "wanneer is ballon d or uitreiking 2026",
+        "Clicks": 0,
+        "Impressions": 243,
+        "CTR": "0%",
+        "Position": 7.77
+      },
+      {
+        "Top queries": "wie viele freistoßtore hat messi",
+        "Clicks": 1,
+        "Impressions": 122,
+        "CTR": "0.82%",
+        "Position": 6.53
+      },
+      {
+        "Top queries": "wanneer is de ballon d'or uitreiking",
+        "Clicks": 0,
+        "Impressions": 118,
+        "CTR": "0%",
+        "Position": 9.47
+      },
+      {
+        "Top queries": "wanneer ballon d'or 2026",
+        "Clicks": 0,
+        "Impressions": 104,
+        "CTR": "0%",
+        "Position": 10.51
+      },
+      {
+        "Top queries": "wanneer is ballon d'or 2026",
+        "Clicks": 0,
+        "Impressions": 103,
+        "CTR": "0%",
+        "Position": 9.83
+      },
+      {
+        "Top queries": "how many international assists does ronaldo have",
+        "Clicks": 0,
+        "Impressions": 81,
+        "CTR": "0%",
+        "Position": 6.1
+      },
+      {
+        "Top queries": "wer ist besser messi oder ronaldo 2026",
+        "Clicks": 0,
+        "Impressions": 70,
+        "CTR": "0%",
+        "Position": 9.44
+      },
+      {
+        "Top queries": "wanneer uitreiking ballon d or 2026",
+        "Clicks": 0,
+        "Impressions": 59,
+        "CTR": "0%",
+        "Position": 8.41
+      },
+      {
+        "Top queries": "hoe laat is de ballon d or uitreiking 2026",
+        "Clicks": 0,
+        "Impressions": 55,
+        "CTR": "0%",
+        "Position": 8.47
+      },
+      {
+        "Top queries": "wanneer is ballon d'or uitreiking",
+        "Clicks": 0,
+        "Impressions": 52,
+        "CTR": "0%",
+        "Position": 9.35
+      },
+      {
+        "Top queries": "quantos golos tem messi e ronaldo",
+        "Clicks": 0,
+        "Impressions": 49,
+        "CTR": "0%",
+        "Position": 9.18
+      },
+      {
+        "Top queries": "ballon d or 2026 wanneer",
+        "Clicks": 0,
+        "Impressions": 48,
+        "CTR": "0%",
+        "Position": 10.4
+      },
+      {
+        "Top queries": "wie heeft meer prijzen messi of ronaldo",
+        "Clicks": 0,
+        "Impressions": 40,
+        "CTR": "0%",
+        "Position": 6.85
+      },
+      {
+        "Top queries": "wanneer is de ballon d'or 2026",
+        "Clicks": 0,
+        "Impressions": 39,
+        "CTR": "0%",
+        "Position": 9.31
+      },
+      {
+        "Top queries": "wanneer is ballon d'or uitreiking 2026",
+        "Clicks": 0,
+        "Impressions": 38,
+        "CTR": "0%",
+        "Position": 9.13
+      },
+      {
+        "Top queries": "wanneer ballon dor 2026",
+        "Clicks": 0,
+        "Impressions": 37,
+        "CTR": "0%",
+        "Position": 10.46
+      },
+      {
+        "Top queries": "wie viele freistoßtore hat ronaldo",
+        "Clicks": 0,
+        "Impressions": 35,
+        "CTR": "0%",
+        "Position": 9.69
+      },
+      {
+        "Top queries": "wer hat mehr freistoßtore messi oder ronaldo",
+        "Clicks": 0,
+        "Impressions": 33,
+        "CTR": "0%",
+        "Position": 6.18
+      },
+      {
+        "Top queries": "qui a marqué plus de coup franc entre messi et ronaldo",
+        "Clicks": 0,
+        "Impressions": 33,
+        "CTR": "0%",
+        "Position": 7.36
+      },
+      {
+        "Top queries": "entre messi et ronaldo qui a marqué plus de coup franc",
+        "Clicks": 0,
+        "Impressions": 31,
+        "CTR": "0%",
+        "Position": 7.45
+      },
+      {
+        "Top queries": "wanneer wordt de ballon d'or 2026 uitgereikt",
+        "Clicks": 0,
+        "Impressions": 30,
+        "CTR": "0%",
+        "Position": 8.53
+      },
+      {
+        "Top queries": "wanneer wordt de ballon d'or uitgereikt 2026",
+        "Clicks": 0,
+        "Impressions": 30,
+        "CTR": "0%",
+        "Position": 9.23
+      },
+      {
+        "Top queries": "wanneer is ballon d or 2026",
+        "Clicks": 0,
+        "Impressions": 29,
+        "CTR": "0%",
+        "Position": 10.03
+      },
+      {
+        "Top queries": "wanneer ballon d'or uitreiking",
+        "Clicks": 0,
+        "Impressions": 27,
+        "CTR": "0%",
+        "Position": 9.67
+      },
+      {
+        "Top queries": "cuantos goles lleva messi y cr7 2026",
+        "Clicks": 0,
+        "Impressions": 26,
+        "CTR": "0%",
+        "Position": 4.62
+      },
+      {
+        "Top queries": "wanneer is de uitreiking van de ballon d'or 2026",
+        "Clicks": 0,
+        "Impressions": 26,
+        "CTR": "0%",
+        "Position": 8.69
+      },
+      {
+        "Top queries": "cuantos goles hizo messi en 2009",
+        "Clicks": 0,
+        "Impressions": 24,
+        "CTR": "0%",
+        "Position": 6.62
+      }
+    ]
+  },
+  "comparison_or_best_query_heuristic": {
+    "rows": 322,
+    "clicks": 18,
+    "impressions": 3717,
+    "ctr_percent": 0.48426150121065376,
+    "approx_position_from_rounded_rows": 9.59904761904762
+  },
+  "selected_query_clusters": {
+    "dutch_ballon_ceremony_date": {
+      "definition": "Query contains ballon and at least one of wanneer, uitreik, hoe laat; observed query rows only",
+      "rows": 57,
+      "clicks": 0,
+      "impressions": 2800,
+      "ctr_percent": 0.0,
+      "approx_position_from_rounded_rows": 9.063107142857143
+    },
+    "messi_ronaldo_2008_2009": {
+      "definition": "Query contains both 2008 and 2009, plus messi or ronaldo; observed query rows only",
+      "rows": 18,
+      "clicks": 1,
+      "impressions": 712,
+      "ctr_percent": 0.1404494382022472,
+      "approx_position_from_rounded_rows": 8.782036516853934
+    }
+  },
+  "visible_head_query_examples": [
+    {
+      "Top queries": "messi vs ronaldo",
+      "Clicks": 1,
+      "Impressions": 60,
+      "CTR": "1.67%",
+      "Position": 21.3
+    },
+    {
+      "Top queries": "ronaldo vs messi",
+      "Clicks": 0,
+      "Impressions": 11,
+      "CTR": "0%",
+      "Position": 64.09
+    },
+    {
+      "Top queries": "ronaldo stats",
+      "Clicks": 0,
+      "Impressions": 10,
+      "CTR": "0%",
+      "Position": 3.1
+    },
+    {
+      "Top queries": "messi vs ronaldo stats",
+      "Clicks": 0,
+      "Impressions": 6,
+      "CTR": "0%",
+      "Position": 65.5
+    }
+  ],
+  "queries_position_8_to_20_at_least_30_impressions": [
+    {
+      "Top queries": "wanneer wordt de ballon d or uitgereikt 2026",
+      "Clicks": 0,
+      "Impressions": 448,
+      "CTR": "0%",
+      "Position": 8.62
+    },
+    {
+      "Top queries": "wanneer is de ballon d'or uitreiking 2026",
+      "Clicks": 0,
+      "Impressions": 443,
+      "CTR": "0%",
+      "Position": 8.69
+    },
+    {
+      "Top queries": "wanneer is de ballon d or uitreiking 2026",
+      "Clicks": 0,
+      "Impressions": 330,
+      "CTR": "0%",
+      "Position": 8.71
+    },
+    {
+      "Top queries": "2008 ronaldo vs 2009 messi stats",
+      "Clicks": 0,
+      "Impressions": 165,
+      "CTR": "0%",
+      "Position": 8.22
+    },
+    {
+      "Top queries": "ballon d'or uitreiking 2026",
+      "Clicks": 0,
+      "Impressions": 151,
+      "CTR": "0%",
+      "Position": 10.11
+    },
+    {
+      "Top queries": "ronaldo 2008 vs messi 2009",
+      "Clicks": 0,
+      "Impressions": 122,
+      "CTR": "0%",
+      "Position": 8.84
+    },
+    {
+      "Top queries": "messi 2009 vs ronaldo 2008",
+      "Clicks": 0,
+      "Impressions": 119,
+      "CTR": "0%",
+      "Position": 9.34
+    },
+    {
+      "Top queries": "wanneer is de ballon d'or uitreiking",
+      "Clicks": 0,
+      "Impressions": 118,
+      "CTR": "0%",
+      "Position": 9.47
+    },
+    {
+      "Top queries": "wanneer ballon d'or 2026",
+      "Clicks": 0,
+      "Impressions": 104,
+      "CTR": "0%",
+      "Position": 10.51
+    },
+    {
+      "Top queries": "wanneer is ballon d'or 2026",
+      "Clicks": 0,
+      "Impressions": 103,
+      "CTR": "0%",
+      "Position": 9.83
+    },
+    {
+      "Top queries": "messi vs ronaldo free kick goals",
+      "Clicks": 0,
+      "Impressions": 94,
+      "CTR": "0%",
+      "Position": 9.11
+    },
+    {
+      "Top queries": "total goals scored by messi and ronaldo",
+      "Clicks": 0,
+      "Impressions": 89,
+      "CTR": "0%",
+      "Position": 9.73
+    },
+    {
+      "Top queries": "2008 ronaldo vs 2009 messi",
+      "Clicks": 0,
+      "Impressions": 75,
+      "CTR": "0%",
+      "Position": 8.8
+    },
+    {
+      "Top queries": "uitreiking ballon d or 2026",
+      "Clicks": 0,
+      "Impressions": 73,
+      "CTR": "0%",
+      "Position": 9.77
+    },
+    {
+      "Top queries": "wer ist besser messi oder ronaldo 2026",
+      "Clicks": 0,
+      "Impressions": 70,
+      "CTR": "0%",
+      "Position": 9.44
+    },
+    {
+      "Top queries": "messi and ronaldo total goals",
+      "Clicks": 0,
+      "Impressions": 67,
+      "CTR": "0%",
+      "Position": 10.37
+    },
+    {
+      "Top queries": "wanneer uitreiking ballon d or 2026",
+      "Clicks": 0,
+      "Impressions": 59,
+      "CTR": "0%",
+      "Position": 8.41
+    },
+    {
+      "Top queries": "messi and ronaldo international goals",
+      "Clicks": 0,
+      "Impressions": 57,
+      "CTR": "0%",
+      "Position": 8.81
+    },
+    {
+      "Top queries": "hoe laat is de ballon d or uitreiking 2026",
+      "Clicks": 0,
+      "Impressions": 55,
+      "CTR": "0%",
+      "Position": 8.47
+    },
+    {
+      "Top queries": "wanneer is ballon d'or uitreiking",
+      "Clicks": 0,
+      "Impressions": 52,
+      "CTR": "0%",
+      "Position": 9.35
+    },
+    {
+      "Top queries": "messi vs ronaldo international goals",
+      "Clicks": 0,
+      "Impressions": 49,
+      "CTR": "0%",
+      "Position": 8.67
+    },
+    {
+      "Top queries": "quantos golos tem messi e ronaldo",
+      "Clicks": 0,
+      "Impressions": 49,
+      "CTR": "0%",
+      "Position": 9.18
+    },
+    {
+      "Top queries": "ballon d or 2026 wanneer",
+      "Clicks": 0,
+      "Impressions": 48,
+      "CTR": "0%",
+      "Position": 10.4
+    },
+    {
+      "Top queries": "messi vs ronaldo penalty stats",
+      "Clicks": 0,
+      "Impressions": 44,
+      "CTR": "0%",
+      "Position": 10.55
+    },
+    {
+      "Top queries": "messivsronaldo",
+      "Clicks": 1,
+      "Impressions": 42,
+      "CTR": "2.38%",
+      "Position": 11.95
+    },
+    {
+      "Top queries": "messi total goals vs ronaldo total goals",
+      "Clicks": 0,
+      "Impressions": 42,
+      "CTR": "0%",
+      "Position": 9.36
+    },
+    {
+      "Top queries": "statistiques du ballon d'or 2026",
+      "Clicks": 0,
+      "Impressions": 41,
+      "CTR": "0%",
+      "Position": 8.76
+    },
+    {
+      "Top queries": "les statistiques du ballon d'or 2026",
+      "Clicks": 0,
+      "Impressions": 40,
+      "CTR": "0%",
+      "Position": 8.6
+    },
+    {
+      "Top queries": "2009 messi vs 2008 ronaldo",
+      "Clicks": 0,
+      "Impressions": 40,
+      "CTR": "0%",
+      "Position": 8.97
+    },
+    {
+      "Top queries": "wanneer is de ballon d'or 2026",
+      "Clicks": 0,
+      "Impressions": 39,
+      "CTR": "0%",
+      "Position": 9.31
+    },
+    {
+      "Top queries": "si",
+      "Clicks": 0,
+      "Impressions": 39,
+      "CTR": "0%",
+      "Position": 10.21
+    },
+    {
+      "Top queries": "messi karriere tore",
+      "Clicks": 1,
+      "Impressions": 38,
+      "CTR": "2.63%",
+      "Position": 10.26
+    },
+    {
+      "Top queries": "wanneer is ballon d'or uitreiking 2026",
+      "Clicks": 0,
+      "Impressions": 38,
+      "CTR": "0%",
+      "Position": 9.13
+    },
+    {
+      "Top queries": "messi golos",
+      "Clicks": 0,
+      "Impressions": 38,
+      "CTR": "0%",
+      "Position": 10.95
+    },
+    {
+      "Top queries": "yes",
+      "Clicks": 0,
+      "Impressions": 38,
+      "CTR": "0%",
+      "Position": 11.55
+    },
+    {
+      "Top queries": "wanneer ballon dor 2026",
+      "Clicks": 0,
+      "Impressions": 37,
+      "CTR": "0%",
+      "Position": 10.46
+    },
+    {
+      "Top queries": "cr7 2008 vs messi 2009",
+      "Clicks": 0,
+      "Impressions": 36,
+      "CTR": "0%",
+      "Position": 8.25
+    },
+    {
+      "Top queries": "statistiques ballon d'or 2026",
+      "Clicks": 0,
+      "Impressions": 35,
+      "CTR": "0%",
+      "Position": 8.26
+    },
+    {
+      "Top queries": "ballon dor datum",
+      "Clicks": 0,
+      "Impressions": 35,
+      "CTR": "0%",
+      "Position": 9.26
+    },
+    {
+      "Top queries": "wie viele freistoßtore hat ronaldo",
+      "Clicks": 0,
+      "Impressions": 35,
+      "CTR": "0%",
+      "Position": 9.69
+    },
+    {
+      "Top queries": "messi 2009 vs ronaldo 2008 stats",
+      "Clicks": 1,
+      "Impressions": 34,
+      "CTR": "2.94%",
+      "Position": 8.41
+    },
+    {
+      "Top queries": "golos de pênalti ronaldo vs messi",
+      "Clicks": 0,
+      "Impressions": 34,
+      "CTR": "0%",
+      "Position": 8.21
+    },
+    {
+      "Top queries": "ballon d or uitreiking 2026",
+      "Clicks": 0,
+      "Impressions": 33,
+      "CTR": "0%",
+      "Position": 9.94
+    },
+    {
+      "Top queries": "cr7 vs messi trophée individuel",
+      "Clicks": 0,
+      "Impressions": 31,
+      "CTR": "0%",
+      "Position": 8.48
+    },
+    {
+      "Top queries": "messi 2009 vs cr7 2008",
+      "Clicks": 0,
+      "Impressions": 31,
+      "CTR": "0%",
+      "Position": 9.03
+    },
+    {
+      "Top queries": "trophée individuel de cr7 et messi",
+      "Clicks": 0,
+      "Impressions": 31,
+      "CTR": "0%",
+      "Position": 9.48
+    },
+    {
+      "Top queries": "free kick goals messi vs ronaldo",
+      "Clicks": 0,
+      "Impressions": 31,
+      "CTR": "0%",
+      "Position": 10.71
+    },
+    {
+      "Top queries": "wanneer wordt de ballon d'or 2026 uitgereikt",
+      "Clicks": 0,
+      "Impressions": 30,
+      "CTR": "0%",
+      "Position": 8.53
+    },
+    {
+      "Top queries": "wanneer wordt de ballon d'or uitgereikt 2026",
+      "Clicks": 0,
+      "Impressions": 30,
+      "CTR": "0%",
+      "Position": 9.23
+    },
+    {
+      "Top queries": "نعم",
+      "Clicks": 0,
+      "Impressions": 30,
+      "CTR": "0%",
+      "Position": 11.33
+    }
+  ],
+  "top_10_distinct_editorial_query_opportunities": [
+    {
+      "priority": 1,
+      "query": "total de but de messi et ronaldo 2026",
+      "clicks": 11,
+      "impressions": 1486,
+      "ctr_percent": 0.7402422611036339,
+      "average_position": 4.54,
+      "signal": "visible_demand_review_answer_and_snippet",
+      "candidate_url": "https://messivsronaldo17.com/fr/goals",
+      "secondary_candidate_url": "https://messivsronaldo17.com/fr/2026",
+      "candidate_url_has_own_page_export_row": true,
+      "mapping_evidence": "editorial_topic_match_only_not_query_page_attribution",
+      "action": "Clarify career totals versus 2026-only totals in the first answer; show as-of date and sources.",
+      "verification": "Filter the exact query in GSC and open Pages before changing URL targeting; compare matched dates/device/country."
+    },
+    {
+      "priority": 2,
+      "query": "wanneer wordt de ballon d or uitgereikt 2026",
+      "clicks": 0,
+      "impressions": 448,
+      "ctr_percent": 0.0,
+      "average_position": 8.62,
+      "signal": "average_position_8_to_20",
+      "candidate_url": "https://messivsronaldo17.com/nl/insights/ballon-dor-2026-date-voting-rules",
+      "secondary_candidate_url": "",
+      "candidate_url_has_own_page_export_row": true,
+      "mapping_evidence": "editorial_topic_match_only_not_query_page_attribution",
+      "action": "Verify the official ceremony date/status and lead with it in Dutch; do not infer a date or treat an elapsed event as upcoming.",
+      "verification": "Filter the exact query in GSC and open Pages before changing URL targeting; compare matched dates/device/country."
+    },
+    {
+      "priority": 3,
+      "query": "ronaldo international assists",
+      "clicks": 2,
+      "impressions": 287,
+      "ctr_percent": 0.6968641114982579,
+      "average_position": 6.33,
+      "signal": "visible_demand_review_answer_and_snippet",
+      "candidate_url": "https://messivsronaldo17.com/international",
+      "secondary_candidate_url": "",
+      "candidate_url_has_own_page_export_row": true,
+      "mapping_evidence": "editorial_topic_match_only_not_query_page_attribution",
+      "action": "Answer Portugal senior assists directly with provider definition, as-of date and source; distinguish competitive matches and friendlies.",
+      "verification": "Filter the exact query in GSC and open Pages before changing URL targeting; compare matched dates/device/country."
+    },
+    {
+      "priority": 4,
+      "query": "nombre de coup franc marqué par messi et ronaldo",
+      "clicks": 6,
+      "impressions": 239,
+      "ctr_percent": 2.510460251046025,
+      "average_position": 5.69,
+      "signal": "visible_demand_review_answer_and_snippet",
+      "candidate_url": "https://messivsronaldo17.com/fr/insights/messi-ronaldo-free-kick-records",
+      "secondary_candidate_url": "https://messivsronaldo17.com/fr/free-kicks",
+      "candidate_url_has_own_page_export_row": true,
+      "mapping_evidence": "editorial_topic_match_only_not_query_page_attribution",
+      "action": "State sourced direct-free-kick totals and exclusions in French; assign a distinct role to the records article and stats table.",
+      "verification": "Filter the exact query in GSC and open Pages before changing URL targeting; compare matched dates/device/country."
+    },
+    {
+      "priority": 5,
+      "query": "2008 ronaldo vs 2009 messi stats",
+      "clicks": 0,
+      "impressions": 165,
+      "ctr_percent": 0.0,
+      "average_position": 8.22,
+      "signal": "average_position_8_to_20",
+      "candidate_url": "https://messivsronaldo17.com/seasons/2008",
+      "secondary_candidate_url": "https://messivsronaldo17.com/seasons/2009",
+      "candidate_url_has_own_page_export_row": true,
+      "mapping_evidence": "editorial_topic_match_only_not_query_page_attribution",
+      "action": "Confirm the actual landing page in GSC; link the existing year pages and compare matching calendar-year scopes before considering one dedicated comparison.",
+      "verification": "Filter the exact query in GSC and open Pages before changing URL targeting; compare matched dates/device/country."
+    },
+    {
+      "priority": 6,
+      "query": "messi vs cr7 estadísticas 2026",
+      "clicks": 1,
+      "impressions": 124,
+      "ctr_percent": 0.8064516129032258,
+      "average_position": 7.24,
+      "signal": "visible_demand_review_answer_and_snippet",
+      "candidate_url": "https://messivsronaldo17.com/es/2026",
+      "secondary_candidate_url": "",
+      "candidate_url_has_own_page_export_row": true,
+      "mapping_evidence": "editorial_topic_match_only_not_query_page_attribution",
+      "action": "Provide a Spanish year-to-date comparison with a timestamp, competition coverage and definition of goals/assists.",
+      "verification": "Filter the exact query in GSC and open Pages before changing URL targeting; compare matched dates/device/country."
+    },
+    {
+      "priority": 7,
+      "query": "wie viele freistoßtore hat messi",
+      "clicks": 1,
+      "impressions": 122,
+      "ctr_percent": 0.819672131147541,
+      "average_position": 6.53,
+      "signal": "visible_demand_review_answer_and_snippet",
+      "candidate_url": "https://messivsronaldo17.com/de/free-kicks",
+      "secondary_candidate_url": "",
+      "candidate_url_has_own_page_export_row": true,
+      "mapping_evidence": "editorial_topic_match_only_not_query_page_attribution",
+      "action": "Place a sourced German direct answer above the free-kick table with update date and counting rules.",
+      "verification": "Filter the exact query in GSC and open Pages before changing URL targeting; compare matched dates/device/country."
+    },
+    {
+      "priority": 8,
+      "query": "messi vs ronaldo free kick goals",
+      "clicks": 0,
+      "impressions": 94,
+      "ctr_percent": 0.0,
+      "average_position": 9.11,
+      "signal": "average_position_8_to_20",
+      "candidate_url": "https://messivsronaldo17.com/free-kicks",
+      "secondary_candidate_url": "",
+      "candidate_url_has_own_page_export_row": true,
+      "mapping_evidence": "editorial_topic_match_only_not_query_page_attribution",
+      "action": "Improve the direct answer and table labels for total direct free kicks; cite sources and link the methodology.",
+      "verification": "Filter the exact query in GSC and open Pages before changing URL targeting; compare matched dates/device/country."
+    },
+    {
+      "priority": 9,
+      "query": "total goals scored by messi and ronaldo",
+      "clicks": 0,
+      "impressions": 89,
+      "ctr_percent": 0.0,
+      "average_position": 9.73,
+      "signal": "average_position_8_to_20",
+      "candidate_url": "https://messivsronaldo17.com/goals",
+      "secondary_candidate_url": "",
+      "candidate_url_has_own_page_export_row": true,
+      "mapping_evidence": "editorial_topic_match_only_not_query_page_attribution",
+      "action": "Lead with career club-plus-country totals, date and scope; retain separate year-only and non-penalty breakdowns.",
+      "verification": "Filter the exact query in GSC and open Pages before changing URL targeting; compare matched dates/device/country."
+    },
+    {
+      "priority": 10,
+      "query": "wer ist besser messi oder ronaldo 2026",
+      "clicks": 0,
+      "impressions": 70,
+      "ctr_percent": 0.0,
+      "average_position": 9.44,
+      "signal": "average_position_8_to_20",
+      "candidate_url": "https://messivsronaldo17.com/de/2026",
+      "secondary_candidate_url": "",
+      "candidate_url_has_own_page_export_row": true,
+      "mapping_evidence": "editorial_topic_match_only_not_query_page_attribution",
+      "action": "Answer with transparent 2026 comparison criteria and sourced statistics; avoid presenting an opinion as an objective winner.",
+      "verification": "Filter the exact query in GSC and open Pages before changing URL targeting; compare matched dates/device/country."
+    }
+  ],
+  "opportunity_selection": "Ten manually selected distinct query/topic tasks from this audit's data, balancing impressions, CTR and position; no projected clicks or inferred URL attribution",
+  "devices": [
+    {
+      "Device": "Mobile",
+      "Clicks": 630,
+      "Impressions": 58013,
+      "CTR": "1.09%",
+      "Position": 6.86
+    },
+    {
+      "Device": "Desktop",
+      "Clicks": 98,
+      "Impressions": 9336,
+      "CTR": "1.05%",
+      "Position": 11.78
+    },
+    {
+      "Device": "Tablet",
+      "Clicks": 3,
+      "Impressions": 1535,
+      "CTR": "0.2%",
+      "Position": 7.21
+    }
+  ],
+  "top_countries_by_clicks": [
+    {
+      "Country": "France",
+      "Clicks": 118,
+      "Impressions": 1743,
+      "CTR": "6.77%",
+      "Position": 7.08
+    },
+    {
+      "Country": "Portugal",
+      "Clicks": 63,
+      "Impressions": 1666,
+      "CTR": "3.78%",
+      "Position": 7.36
+    },
+    {
+      "Country": "Germany",
+      "Clicks": 50,
+      "Impressions": 4310,
+      "CTR": "1.16%",
+      "Position": 7.78
+    },
+    {
+      "Country": "Spain",
+      "Clicks": 46,
+      "Impressions": 1497,
+      "CTR": "3.07%",
+      "Position": 9.81
+    },
+    {
+      "Country": "Pakistan",
+      "Clicks": 33,
+      "Impressions": 1066,
+      "CTR": "3.1%",
+      "Position": 7.51
+    },
+    {
+      "Country": "Congo - Kinshasa",
+      "Clicks": 28,
+      "Impressions": 1520,
+      "CTR": "1.84%",
+      "Position": 5.74
+    },
+    {
+      "Country": "Thailand",
+      "Clicks": 24,
+      "Impressions": 1607,
+      "CTR": "1.49%",
+      "Position": 6.29
+    },
+    {
+      "Country": "Netherlands",
+      "Clicks": 21,
+      "Impressions": 5038,
+      "CTR": "0.42%",
+      "Position": 8.98
+    },
+    {
+      "Country": "Egypt",
+      "Clicks": 19,
+      "Impressions": 1856,
+      "CTR": "1.02%",
+      "Position": 6.53
+    },
+    {
+      "Country": "Belgium",
+      "Clicks": 16,
+      "Impressions": 1515,
+      "CTR": "1.06%",
+      "Position": 8.49
+    },
+    {
+      "Country": "Cameroon",
+      "Clicks": 16,
+      "Impressions": 1101,
+      "CTR": "1.45%",
+      "Position": 5.37
+    },
+    {
+      "Country": "Côte d’Ivoire",
+      "Clicks": 14,
+      "Impressions": 1433,
+      "CTR": "0.98%",
+      "Position": 5.78
+    },
+    {
+      "Country": "Burkina Faso",
+      "Clicks": 12,
+      "Impressions": 477,
+      "CTR": "2.52%",
+      "Position": 5.3
+    },
+    {
+      "Country": "Mali",
+      "Clicks": 10,
+      "Impressions": 408,
+      "CTR": "2.45%",
+      "Position": 5.75
+    },
+    {
+      "Country": "United States",
+      "Clicks": 9,
+      "Impressions": 2286,
+      "CTR": "0.39%",
+      "Position": 10.32
+    }
+  ],
+  "search_appearance": {
+    "rows": 0,
+    "interpretation": "Empty table; cannot infer rich-result eligibility, absence of features or AI visibility"
+  },
+  "highest_impression_day_and_last_day": {
+    "highest_impression_day": {
+      "Date": "2026-10-18",
+      "Clicks": 53,
+      "Impressions": 5334,
+      "CTR": "0.99%",
+      "Position": 7.1
+    },
+    "last_day": {
+      "Date": "2026-10-24",
+      "Clicks": 33,
+      "Impressions": 2397,
+      "CTR": "1.38%",
+      "Position": 8.7
+    },
+    "caveat": "Descriptive daily values; weekday mix, demand, query mix and reporting effects prevent a causal conclusion"
+  },
+  "first_vs_last_seven_days": {
+    "before": {
+      "start": "2026-09-27",
+      "end": "2026-10-03",
+      "rows": 7,
+      "clicks": 138,
+      "impressions": 9894,
+      "ctr_percent": 1.3947847180109156,
+      "approx_position_from_rounded_rows": 7.758489993935719
+    },
+    "after": {
+      "start": "2026-10-18",
+      "end": "2026-10-24",
+      "rows": 7,
+      "clicks": 264,
+      "impressions": 23878,
+      "ctr_percent": 1.1056202362006868,
+      "approx_position_from_rounded_rows": 7.876765223218024
+    },
+    "change_percent": {
+      "clicks": 91.30434782608697,
+      "impressions": 141.33818475843944
+    },
+    "ctr_change_percentage_points": -0.2891644818102288
+  },
+  "previous_vs_latest_seven_days": {
+    "before": {
+      "start": "2026-10-11",
+      "end": "2026-10-17",
+      "rows": 7,
+      "clicks": 192,
+      "impressions": 22072,
+      "ctr_percent": 0.8698803914461761,
+      "approx_position_from_rounded_rows": 7.275625226531353
+    },
+    "after": {
+      "start": "2026-10-18",
+      "end": "2026-10-24",
+      "rows": 7,
+      "clicks": 264,
+      "impressions": 23878,
+      "ctr_percent": 1.1056202362006868,
+      "approx_position_from_rounded_rows": 7.876765223218024
+    },
+    "change_percent": {
+      "clicks": 37.5,
+      "impressions": 8.182312432040595
+    },
+    "ctr_change_percentage_points": 0.2357398447545107
+  },
+  "first_vs_second_fourteen_days": {
+    "before": {
+      "start": "2026-09-27",
+      "end": "2026-10-10",
+      "rows": 14,
+      "clicks": 275,
+      "impressions": 22934,
+      "ctr_percent": 1.1990930496206507,
+      "approx_position_from_rounded_rows": 7.408319525595186
+    },
+    "after": {
+      "start": "2026-10-11",
+      "end": "2026-10-24",
+      "rows": 14,
+      "clicks": 456,
+      "impressions": 45950,
+      "ctr_percent": 0.9923830250272034,
+      "approx_position_from_rounded_rows": 7.588008705114254
+    },
+    "change_percent": {
+      "clicks": 65.81818181818181,
+      "impressions": 100.35754774570505
+    },
+    "ctr_change_percentage_points": -0.20671002459344723
+  },
+  "four_seven_day_blocks": [
+    {
+      "start": "2026-09-27",
+      "end": "2026-10-03",
+      "rows": 7,
+      "clicks": 138,
+      "impressions": 9894,
+      "ctr_percent": 1.3947847180109156,
+      "approx_position_from_rounded_rows": 7.758489993935719
+    },
+    {
+      "start": "2026-10-04",
+      "end": "2026-10-10",
+      "rows": 7,
+      "clicks": 137,
+      "impressions": 13040,
+      "ctr_percent": 1.0506134969325154,
+      "approx_position_from_rounded_rows": 7.142630368098159
+    },
+    {
+      "start": "2026-10-11",
+      "end": "2026-10-17",
+      "rows": 7,
+      "clicks": 192,
+      "impressions": 22072,
+      "ctr_percent": 0.8698803914461761,
+      "approx_position_from_rounded_rows": 7.275625226531353
+    },
+    {
+      "start": "2026-10-18",
+      "end": "2026-10-24",
+      "rows": 7,
+      "clicks": 264,
+      "impressions": 23878,
+      "ctr_percent": 1.1056202362006868,
+      "approx_position_from_rounded_rows": 7.876765223218024
+    }
+  ]
+}

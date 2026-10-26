@@ -1,0 +1,289 @@
+{
+  "origin": "https://messivsronaldo17.com",
+  "checkedAt": "2026-10-26T16:00:18.360Z",
+  "kind": "laboratory; not field Core Web Vitals or a Lighthouse score",
+  "setup": {
+    "device": "iPhone 13 viewport in Chromium",
+    "cpuSlowdown": 4,
+    "latencyMs": 150,
+    "downloadMbps": 1.6,
+    "uploadMbps": 0.75,
+    "coldBrowserContexts": true,
+    "ads": "allow",
+    "observationMsAfterDomReady": 7000,
+    "runs": 2
+  },
+  "pages": [
+    {
+      "path": "/",
+      "run": 1,
+      "status": 200,
+      "lcpMsObserved": 1664,
+      "clsObserved": 0.33796329897904875,
+      "shifts": [
+        {
+          "timeMs": 5377.399999991059,
+          "value": 0.33796329897904875,
+          "sources": [
+            {
+              "element": "SECTION.comparison ",
+              "previous": {
+                "x": 20,
+                "y": 261.015625,
+                "width": 350,
+                "height": 402.984375,
+                "top": 261.015625,
+                "right": 370,
+                "bottom": 664,
+                "left": 20
+              },
+              "current": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ]
+        }
+      ],
+      "documentTransferBytes": 41003,
+      "documentDecodedBytes": 351286,
+      "resourceTransferBytes": 859789,
+      "ttfbMs": 349.70000000298023,
+      "hasAdLoader": true,
+      "adsEnabledInDocument": true,
+      "horizontalOverflow": false,
+      "pageErrors": []
+    },
+    {
+      "path": "/",
+      "run": 2,
+      "status": 200,
+      "lcpMsObserved": 2000,
+      "clsObserved": 0.33796329897904875,
+      "shifts": [
+        {
+          "timeMs": 5090.4000000059605,
+          "value": 0.33796329897904875,
+          "sources": [
+            {
+              "element": "SECTION.comparison ",
+              "previous": {
+                "x": 20,
+                "y": 261.015625,
+                "width": 350,
+                "height": 402.984375,
+                "top": 261.015625,
+                "right": 370,
+                "bottom": 664,
+                "left": 20
+              },
+              "current": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ]
+        }
+      ],
+      "documentTransferBytes": 41003,
+      "documentDecodedBytes": 351286,
+      "resourceTransferBytes": 829378,
+      "ttfbMs": 352,
+      "hasAdLoader": true,
+      "adsEnabledInDocument": true,
+      "horizontalOverflow": false,
+      "pageErrors": []
+    },
+    {
+      "path": "/international",
+      "run": 1,
+      "status": 200,
+      "lcpMsObserved": 1644,
+      "clsObserved": 0.20897480096474869,
+      "shifts": [
+        {
+          "timeMs": 5509.399999991059,
+          "value": 0.20897480096474869,
+          "sources": [
+            {
+              "element": "SECTION.comparison ",
+              "previous": {
+                "x": 20,
+                "y": 423.046875,
+                "width": 350,
+                "height": 240.953125,
+                "top": 423.046875,
+                "right": 370,
+                "bottom": 664,
+                "left": 20
+              },
+              "current": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ]
+        },
+        {
+          "timeMs": 8013.70000000298,
+          "value": 0.013392047104078967,
+          "sources": [
+            {
+              "element": "IFRAME.",
+              "previous": {
+                "x": 0,
+                "y": 423.046875,
+                "width": 390,
+                "height": 240.953125,
+                "top": 423.046875,
+                "right": 390,
+                "bottom": 664,
+                "left": 0
+              },
+              "current": {
+                "x": 0,
+                "y": 447.546875,
+                "width": 390,
+                "height": 216.453125,
+                "top": 447.546875,
+                "right": 390,
+                "bottom": 664,
+                "left": 0
+              }
+            }
+          ]
+        }
+      ],
+      "documentTransferBytes": 35055,
+      "documentDecodedBytes": 306371,
+      "resourceTransferBytes": 930022,
+      "ttfbMs": 370.5,
+      "hasAdLoader": true,
+      "adsEnabledInDocument": true,
+      "horizontalOverflow": false,
+      "pageErrors": []
+    },
+    {
+      "path": "/international",
+      "run": 2,
+      "status": 200,
+      "lcpMsObserved": 1808,
+      "clsObserved": 0.20897480096474869,
+      "shifts": [
+        {
+          "timeMs": 2515.7999999970198,
+          "value": 0.012049280300069602,
+          "sources": [
+            {
+              "element": "SECTION.comparison ",
+              "previous": {
+                "x": 19,
+                "y": 447.546875,
+                "width": 351,
+                "height": 216.453125,
+                "top": 447.546875,
+                "right": 370,
+                "bottom": 664,
+                "left": 19
+              },
+              "current": {
+                "x": 20,
+                "y": 423.046875,
+                "width": 350,
+                "height": 240.953125,
+                "top": 423.046875,
+                "right": 370,
+                "bottom": 664,
+                "left": 20
+              }
+            }
+          ]
+        },
+        {
+          "timeMs": 5705.29999999702,
+          "value": 0.20897480096474869,
+          "sources": [
+            {
+              "element": "SECTION.comparison ",
+              "previous": {
+                "x": 20,
+                "y": 423.046875,
+                "width": 350,
+                "height": 240.953125,
+                "top": 423.046875,
+                "right": 370,
+                "bottom": 664,
+                "left": 20
+              },
+              "current": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ]
+        },
+        {
+          "timeMs": 8161.399999991059,
+          "value": 0.013392047104078967,
+          "sources": [
+            {
+              "element": "IFRAME.",
+              "previous": {
+                "x": 0,
+                "y": 423.046875,
+                "width": 390,
+                "height": 240.953125,
+                "top": 423.046875,
+                "right": 390,
+                "bottom": 664,
+                "left": 0
+              },
+              "current": {
+                "x": 0,
+                "y": 447.546875,
+                "width": 390,
+                "height": 216.453125,
+                "top": 447.546875,
+                "right": 390,
+                "bottom": 664,
+                "left": 0
+              }
+            }
+          ]
+        }
+      ],
+      "documentTransferBytes": 35055,
+      "documentDecodedBytes": 306371,
+      "resourceTransferBytes": 932015,
+      "ttfbMs": 571.5,
+      "hasAdLoader": true,
+      "adsEnabledInDocument": true,
+      "horizontalOverflow": false,
+      "pageErrors": []
+    }
+  ]
+}

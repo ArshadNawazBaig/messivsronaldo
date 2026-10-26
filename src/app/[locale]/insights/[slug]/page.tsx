@@ -23,6 +23,7 @@ import { AwardChart } from "@/components/award-chart";
 import { getPublishedData } from "@/lib/server-data";
 import styles from "./article.module.css";
 import { publisherConfiguration } from "@/lib/publisher-config";
+import { articleComparisonLink } from "@/lib/content-discovery";
 
 export function generateStaticParams() { return articles.map(article => ({ slug: article.slug })); }
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
@@ -50,6 +51,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const chartMetric = ({ "why-assist-totals-differ": "assists", "totals-vs-scoring-rates": "goals-per-90", "what-counts-as-a-career-goal": "goals" } as Record<string, string>)[slug];
   const chartData = chartMetric ? await getPublishedData() : undefined;
   const openingTable = slug === "messi-ronaldo-penalty-records" && article.body?.content?.[0]?.type === "table";
+  const recordLink = articleComparisonLink(slug);
   const contents = article.body
     ? articleHeadings(article.body).filter(heading => heading.level === 2)
     : [...article.sections.map((section, index) => ({ id: `section-${index}`, title: t(section.heading) })), ...(article.tables ?? []).map((table, index) => ({ id: `table-${index}`, title: t(table.caption) }))];
@@ -59,6 +61,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
     <div className="page-intro inner-intro" id="page-introduction"><div><span className="eyebrow">{t(article.category)}</span><h1>{t(article.title)}</h1><p>{t(article.description)}</p></div></div>
     <div className="article-byline"><Link href="/about">{translate("The Rivalry")}</Link>{editor && <Link href="/about#editor">{translate("Editor")}: {editor.name}</Link>}<time dateTime={updated}>{translatedDate(updated.slice(0, 10), locale)}</time><span><BookOpen size={13}/>{translate("{0} min read", { "0": articleReadingMinutes(article, locale, t) })}</span></div>
     {article.summary && <aside id="article-summary" className={styles.summary} aria-labelledby="article-answer"><h2 id="article-answer">{translate("At a glance")}</h2><p>{t(article.summary)}</p></aside>}
+    {recordLink && <p className={styles.tableNote} data-article-record-link><Link href={recordLink.path}>{translate(recordLink.title)} <ArrowUpRight size={14} aria-hidden="true"/></Link></p>}
     {slug === "messi-2012-vs-ronaldo-2013-goals" && <PeakYearStudy />}
     {openingTable && article.body && <div id="article-opening-table"><RichBody body={article.body} endIndex={1}/></div>}
     {article.image && <figure className={styles.hero}><div className={styles.heroFrame}><Image src={article.image.path} alt={t(article.image.alt)} fill sizes="(max-width: 700px) calc(100vw - 40px), (max-width: 1280px) calc(100vw - 80px), 1200px" unoptimized={article.image.path.startsWith("/media/blog/")} />{/* CMS media is already compressed; retain its publication visibility checks. */}</div>{article.image.caption && <figcaption>{article.image.caption}</figcaption>}</figure>}
@@ -70,7 +73,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
     {chartData && <ComparisonChart scope={chartData.scopes.career} metric={chartMetric}/>}
     {article.relatedSlugs && <AwardChart full/>}
     {article.tables?.map((table, index) => <section className={styles.tableSection} key={table.caption}><h2 id={`table-${index}`}>{t(table.caption)}</h2><div className={styles.tableWrap} role="region" aria-labelledby={`table-${index}`} tabIndex={0}><table><caption className="sr-only">{t(table.caption)}</caption><thead><tr>{table.columns.map(column => <th key={column} scope="col">{t(column)}</th>)}</tr></thead><tbody>{table.rows.map((row, rowIndex) => <tr key={rowIndex}>{row.cells.map((cell, cellIndex) => cellIndex === 0 ? <th key={cellIndex} scope="row">{t(cell)}{row.citations && <span className={styles.rowSources}>{row.citations.map(source => <a key={source.url} href={source.url} target="_blank" rel="noreferrer">{t(source.title)}<ArrowUpRight size={12} aria-hidden="true"/></a>)}</span>}</th> : <td key={cellIndex}>{t(cell)}</td>)}</tr>)}</tbody></table></div>{table.note && <p className={styles.tableNote}>{t(table.note)}</p>}</section>)}
-    <Link href={article.preset ? "/scoring-calculator" : article.relatedSlugs ? "/ballon-dor" : "/compare"} className="primary-button">{translate(article.preset ? "Open the calculator" : article.relatedSlugs ? "Messi vs Ronaldo: Ballon d’Or history" : "Compare the statistics ")}<ArrowUpRight size={16}/></Link>
+    <Link href={article.preset ? "/scoring-calculator" : recordLink?.path ?? (article.relatedSlugs ? "/ballon-dor" : "/compare")} className="primary-button">{translate(article.preset ? "Open the calculator" : recordLink?.title ?? (article.relatedSlugs ? "Messi vs Ronaldo: Ballon d’Or history" : "Compare the statistics "))}<ArrowUpRight size={16}/></Link>
     <RelatedReading path={`/insights/${slug}`} />
   </article>;
 }

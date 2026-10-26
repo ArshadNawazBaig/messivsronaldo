@@ -1487,5 +1487,10 @@
   "2012/13 club season": "Clubseizoen 2012/13",
   "Why can international assist totals differ?": "Waarom kunnen assisttotalen in interlands verschillen?",
   "Assist totals depend on the matches covered and the provider’s definition of the final action before a goal. Compare definitions and cutoff dates. Our baseline source and later match additions are documented separately.": "Assisttotalen hangen af van de opgenomen wedstrijden en de definitie van de laatste actie vóór een doelpunt bij de gegevensleverancier. Vergelijk definities en peildata. Onze basisbron en latere wedstrijdtoevoegingen worden apart gedocumenteerd.",
-  "Why assist totals differ": "Waarom assisttotalen verschillen"
+  "Why assist totals differ": "Waarom assisttotalen verschillen",
+  "2026 goals so far: Messi {0}, Ronaldo {1}. Club and country, from 1 January. {2}. Compare assists, appearances and minutes.": "Doelpunten in 2026: Messi {0}, Ronaldo {1}. Club en land, vanaf 1 januari. {2}. Vergelijk assists, wedstrijden en minuten.",
+  "How many goals have Messi and Ronaldo scored in 2026?": "Hoeveel doelpunten hebben Messi en Ronaldo in 2026 gemaakt?",
+  "In the 2026 calendar year, Messi has {0} goals and Ronaldo has {1}. {2}. These are senior club and international goals from 1 January, not all-time career totals. The match update log documents later additions.": "In het kalenderjaar 2026 heeft Messi {0} doelpunten en Ronaldo {1}. {2}. Dit zijn doelpunten voor club en nationaal A-elftal vanaf 1 januari, geen carrièretotalen. Het updatelogboek documenteert later toegevoegde wedstrijden.",
+  "Are 2026 goals the same as career totals?": "Zijn de doelpunten van 2026 hetzelfde als de carrièretotalen?",
+  "No. The 2026 comparison counts matches from 1 January 2026. Career totals cover all included senior seasons: Messi {0} goals and Ronaldo {1}. {2}. A goal scored in 2026 belongs to both views, so the two totals must not be added together.": "Nee. De vergelijking voor 2026 telt wedstrijden vanaf 1 januari 2026. De carrièretotalen omvatten alle meegenomen seniorenseizoenen: Messi {0} doelpunten en Ronaldo {1}. {2}. Een doelpunt uit 2026 staat in beide overzichten. De twee totalen mogen daarom niet bij elkaar worden opgeteld."
 }

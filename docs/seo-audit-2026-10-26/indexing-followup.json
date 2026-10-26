@@ -1,0 +1,547 @@
+{
+  "evidence_source": "Four user-provided Search Console screenshots; transcribed without inferring sitewide totals.",
+  "recorded_date": "2026-10-26",
+  "screenshot_summary": {
+    "redirect_validation": {
+      "started": "2026-10-15",
+      "failed": "2026-10-20",
+      "pending": 0,
+      "failed_count": 4
+    },
+    "crawled_not_indexed": {
+      "report_last_updated": "2026-10-23",
+      "affected_count": 7,
+      "validation_started": "2026-10-23",
+      "validation_failed": "2026-10-24",
+      "pending": 6,
+      "failed_count": 1
+    },
+    "pt_inspection": {
+      "inspected_url": "https://messivsronaldo17.com/pt/",
+      "last_crawl": "2026-10-20 16:35:04 (timezone not shown)",
+      "crawler": "Googlebot smartphone",
+      "crawl_allowed": true,
+      "page_fetch": "Successful",
+      "indexing_allowed": true,
+      "user_declared_canonical": "https://messivsronaldo17.com/pt",
+      "google_selected_canonical": "Same as user-declared canonical",
+      "sitemaps_discovery_field": "Temporary processing error"
+    }
+  },
+  "reported_urls": [
+    {
+      "url": "http://messivsronaldo17.com/",
+      "screenshot_reason": "Page with redirect",
+      "last_crawl_date": "2026-10-23",
+      "validation_status": "Failed",
+      "resource_type": "canonicalization_redirect"
+    },
+    {
+      "url": "http://www.messivsronaldo17.com/",
+      "screenshot_reason": "Page with redirect",
+      "last_crawl_date": "2026-10-23",
+      "validation_status": "Failed",
+      "resource_type": "canonicalization_redirect"
+    },
+    {
+      "url": "https://www.messivsronaldo17.com/",
+      "screenshot_reason": "Page with redirect",
+      "last_crawl_date": "2026-10-23",
+      "validation_status": "Failed",
+      "resource_type": "canonicalization_redirect"
+    },
+    {
+      "url": "https://messivsronaldo17.com/pt/",
+      "screenshot_reason": "Page with redirect",
+      "last_crawl_date": "2026-10-20",
+      "validation_status": "Failed",
+      "resource_type": "canonicalization_redirect"
+    },
+    {
+      "url": "https://messivsronaldo17.com/opengraph-image/light?v=career-comparison-refined-cards-20261009",
+      "screenshot_reason": "Crawled - currently not indexed",
+      "last_crawl_date": "2026-10-24",
+      "validation_status": "Failed",
+      "resource_type": "social_preview_image"
+    },
+    {
+      "url": "https://messivsronaldo17.com/opengraph-image/dark?v=licensed-cutouts-20261001",
+      "screenshot_reason": "Crawled - currently not indexed",
+      "last_crawl_date": "2026-10-22",
+      "validation_status": "Pending",
+      "resource_type": "social_preview_image"
+    },
+    {
+      "url": "https://messivsronaldo17.com/opengraph-image/dark",
+      "screenshot_reason": "Crawled - currently not indexed",
+      "last_crawl_date": "2026-10-22",
+      "validation_status": "Pending",
+      "resource_type": "social_preview_image"
+    },
+    {
+      "url": "https://messivsronaldo17.com/opengraph-image?theme=dark&v=download-widget-2",
+      "screenshot_reason": "Crawled - currently not indexed",
+      "last_crawl_date": "2026-10-22",
+      "validation_status": "Pending",
+      "resource_type": "social_preview_image_redirect"
+    },
+    {
+      "url": "https://messivsronaldo17.com/fr/seasons",
+      "screenshot_reason": "Crawled - currently not indexed",
+      "last_crawl_date": "2026-10-13",
+      "validation_status": "Pending",
+      "resource_type": "content_html"
+    },
+    {
+      "url": "https://messivsronaldo17.com/sitemap.xml",
+      "screenshot_reason": "Crawled - currently not indexed",
+      "last_crawl_date": "2026-10-12",
+      "validation_status": "Pending",
+      "resource_type": "xml_sitemap"
+    },
+    {
+      "url": "https://messivsronaldo17.com/de/insights/ballon-dor-2026-date-voting-rules",
+      "screenshot_reason": "Crawled - currently not indexed",
+      "last_crawl_date": "2026-09-27",
+      "validation_status": "Pending",
+      "resource_type": "content_html"
+    }
+  ],
+  "live_system_url_checks": {
+    "checked_at_utc": "2026-10-26T16:33:17.220854+00:00",
+    "method": "Unauthenticated GET requests, redirects manually followed; not Googlebot IP or Search Console Live Test.",
+    "responses": [
+      {
+        "requested_url": "http://messivsronaldo17.com/",
+        "chain": [
+          {
+            "url": "http://messivsronaldo17.com/",
+            "status": 301,
+            "content_type": null,
+            "location": "https://messivsronaldo17.com/",
+            "x_robots_tag": null,
+            "bytes": 0
+          },
+          {
+            "url": "https://messivsronaldo17.com/",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "location": null,
+            "x_robots_tag": null,
+            "bytes": 351286,
+            "canonicals": [
+              "https://messivsronaldo17.com"
+            ],
+            "robots": [
+              {
+                "name": "robots",
+                "content": "index, follow"
+              },
+              {
+                "name": "googlebot",
+                "content": "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "requested_url": "http://www.messivsronaldo17.com/",
+        "chain": [
+          {
+            "url": "http://www.messivsronaldo17.com/",
+            "status": 301,
+            "content_type": null,
+            "location": "https://www.messivsronaldo17.com/",
+            "x_robots_tag": null,
+            "bytes": 0
+          },
+          {
+            "url": "https://www.messivsronaldo17.com/",
+            "status": 308,
+            "content_type": "text/plain; charset=utf-8",
+            "location": "https://messivsronaldo17.com",
+            "x_robots_tag": null,
+            "bytes": 28
+          },
+          {
+            "url": "https://messivsronaldo17.com",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "location": null,
+            "x_robots_tag": null,
+            "bytes": 351286,
+            "canonicals": [
+              "https://messivsronaldo17.com"
+            ],
+            "robots": [
+              {
+                "name": "robots",
+                "content": "index, follow"
+              },
+              {
+                "name": "googlebot",
+                "content": "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "requested_url": "https://www.messivsronaldo17.com/",
+        "chain": [
+          {
+            "url": "https://www.messivsronaldo17.com/",
+            "status": 308,
+            "content_type": null,
+            "location": "https://messivsronaldo17.com",
+            "x_robots_tag": null,
+            "bytes": 28
+          },
+          {
+            "url": "https://messivsronaldo17.com",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "location": null,
+            "x_robots_tag": null,
+            "bytes": 351286,
+            "canonicals": [
+              "https://messivsronaldo17.com"
+            ],
+            "robots": [
+              {
+                "name": "robots",
+                "content": "index, follow"
+              },
+              {
+                "name": "googlebot",
+                "content": "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "requested_url": "https://messivsronaldo17.com/pt/",
+        "chain": [
+          {
+            "url": "https://messivsronaldo17.com/pt/",
+            "status": 308,
+            "content_type": null,
+            "location": "/pt",
+            "x_robots_tag": null,
+            "bytes": 3
+          },
+          {
+            "url": "https://messivsronaldo17.com/pt",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "location": null,
+            "x_robots_tag": null,
+            "bytes": 430269,
+            "canonicals": [
+              "https://messivsronaldo17.com/pt"
+            ],
+            "robots": [
+              {
+                "name": "robots",
+                "content": "index, follow"
+              },
+              {
+                "name": "googlebot",
+                "content": "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "requested_url": "https://messivsronaldo17.com/",
+        "chain": [
+          {
+            "url": "https://messivsronaldo17.com/",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "location": null,
+            "x_robots_tag": null,
+            "bytes": 351286,
+            "canonicals": [
+              "https://messivsronaldo17.com"
+            ],
+            "robots": [
+              {
+                "name": "robots",
+                "content": "index, follow"
+              },
+              {
+                "name": "googlebot",
+                "content": "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "requested_url": "https://messivsronaldo17.com/pt",
+        "chain": [
+          {
+            "url": "https://messivsronaldo17.com/pt",
+            "status": 200,
+            "content_type": "text/html; charset=utf-8",
+            "location": null,
+            "x_robots_tag": null,
+            "bytes": 430269,
+            "canonicals": [
+              "https://messivsronaldo17.com/pt"
+            ],
+            "robots": [
+              {
+                "name": "robots",
+                "content": "index, follow"
+              },
+              {
+                "name": "googlebot",
+                "content": "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "requested_url": "https://messivsronaldo17.com/opengraph-image/light?v=career-comparison-refined-cards-20261009",
+        "chain": [
+          {
+            "url": "https://messivsronaldo17.com/opengraph-image/light?v=career-comparison-refined-cards-20261009",
+            "status": 200,
+            "content_type": "image/png",
+            "location": null,
+            "x_robots_tag": null,
+            "bytes": 402554,
+            "valid_png_signature": true
+          }
+        ]
+      },
+      {
+        "requested_url": "https://messivsronaldo17.com/opengraph-image/dark?v=licensed-cutouts-20261001",
+        "chain": [
+          {
+            "url": "https://messivsronaldo17.com/opengraph-image/dark?v=licensed-cutouts-20261001",
+            "status": 200,
+            "content_type": "image/png",
+            "location": null,
+            "x_robots_tag": null,
+            "bytes": 419767,
+            "valid_png_signature": true
+          }
+        ]
+      },
+      {
+        "requested_url": "https://messivsronaldo17.com/opengraph-image/dark",
+        "chain": [
+          {
+            "url": "https://messivsronaldo17.com/opengraph-image/dark",
+            "status": 200,
+            "content_type": "image/png",
+            "location": null,
+            "x_robots_tag": null,
+            "bytes": 419767,
+            "valid_png_signature": true
+          }
+        ]
+      },
+      {
+        "requested_url": "https://messivsronaldo17.com/opengraph-image?theme=dark&v=download-widget-2",
+        "chain": [
+          {
+            "url": "https://messivsronaldo17.com/opengraph-image?theme=dark&v=download-widget-2",
+            "status": 307,
+            "content_type": null,
+            "location": "/opengraph-image/dark",
+            "x_robots_tag": null,
+            "bytes": 0
+          },
+          {
+            "url": "https://messivsronaldo17.com/opengraph-image/dark",
+            "status": 200,
+            "content_type": "image/png",
+            "location": null,
+            "x_robots_tag": null,
+            "bytes": 419767,
+            "valid_png_signature": true
+          }
+        ]
+      },
+      {
+        "requested_url": "https://messivsronaldo17.com/sitemap.xml",
+        "chain": [
+          {
+            "url": "https://messivsronaldo17.com/sitemap.xml",
+            "status": 200,
+            "content_type": "application/xml",
+            "location": null,
+            "x_robots_tag": null,
+            "bytes": 1164887,
+            "xml_parse": "success",
+            "url_count": 1067,
+            "unique_urls": 1067,
+            "unexpected_asset_entries": [],
+            "pt_canonical_present": true,
+            "pt_slash_present": false
+          }
+        ]
+      }
+    ]
+  },
+  "live_content_checks": [
+    {
+      "checkedAt": "2026-10-26T16:31:39.403Z",
+      "url": "https://messivsronaldo17.com/fr/seasons",
+      "status": 200,
+      "finalUrl": "https://messivsronaldo17.com/fr/seasons",
+      "lang": "fr",
+      "title": "Messi contre Ronaldo par année : 2002-2026 Buts marqués et passes décisives",
+      "description": "Comparez chaque année civile jusqu'en 2026 : buts marqués, passes décisives, minutes, matchs joués et taux par 90 pour le football de club, de pays et de ligue.",
+      "robots": "index, follow",
+      "canonicals": [
+        "https://messivsronaldo17.com/fr/seasons"
+      ],
+      "alternates": [
+        {
+          "lang": "en",
+          "url": "https://messivsronaldo17.com/seasons"
+        },
+        {
+          "lang": "es",
+          "url": "https://messivsronaldo17.com/es/seasons"
+        },
+        {
+          "lang": "pt",
+          "url": "https://messivsronaldo17.com/pt/seasons"
+        },
+        {
+          "lang": "nl",
+          "url": "https://messivsronaldo17.com/nl/seasons"
+        },
+        {
+          "lang": "fr",
+          "url": "https://messivsronaldo17.com/fr/seasons"
+        },
+        {
+          "lang": "de",
+          "url": "https://messivsronaldo17.com/de/seasons"
+        },
+        {
+          "lang": "ar",
+          "url": "https://messivsronaldo17.com/ar/seasons"
+        },
+        {
+          "lang": "hi",
+          "url": "https://messivsronaldo17.com/hi/seasons"
+        },
+        {
+          "lang": "th",
+          "url": "https://messivsronaldo17.com/th/seasons"
+        },
+        {
+          "lang": "x-default",
+          "url": "https://messivsronaldo17.com/seasons"
+        }
+      ],
+      "tableCount": 1,
+      "tableRowCount": 26,
+      "xRobotsTag": null,
+      "contentType": "text/html; charset=utf-8",
+      "h1": [
+        "Messi contre Ronaldo par année : 2002-2026 Buts marqués et passes décisives"
+      ],
+      "article_dates": [],
+      "raw_evidence_file": ".artifacts/seo-audit-2026-10-26/indexing-followup/fr-seasons.json"
+    },
+    {
+      "checkedAt": "2026-10-26T16:31:40.094Z",
+      "url": "https://messivsronaldo17.com/de/insights/ballon-dor-2026-date-voting-rules",
+      "status": 200,
+      "finalUrl": "https://messivsronaldo17.com/de/insights/ballon-dor-2026-date-voting-rules",
+      "lang": "de",
+      "title": "Ballon d’Or 2026 erklärt: Termin, Wahlregeln und der Blick auf den Fußball",
+      "description": "Der Ballon d’Or 2026 wird am 26. Oktober in London verliehen. Alle Infos zu Bewertungszeitraum, Jury, Punkten und zur Rolle der WM.",
+      "robots": "index, follow",
+      "canonicals": [
+        "https://messivsronaldo17.com/de/insights/ballon-dor-2026-date-voting-rules"
+      ],
+      "alternates": [
+        {
+          "lang": "en",
+          "url": "https://messivsronaldo17.com/insights/ballon-dor-2026-date-voting-rules"
+        },
+        {
+          "lang": "es",
+          "url": "https://messivsronaldo17.com/es/insights/ballon-dor-2026-date-voting-rules"
+        },
+        {
+          "lang": "pt",
+          "url": "https://messivsronaldo17.com/pt/insights/ballon-dor-2026-date-voting-rules"
+        },
+        {
+          "lang": "nl",
+          "url": "https://messivsronaldo17.com/nl/insights/ballon-dor-2026-date-voting-rules"
+        },
+        {
+          "lang": "fr",
+          "url": "https://messivsronaldo17.com/fr/insights/ballon-dor-2026-date-voting-rules"
+        },
+        {
+          "lang": "de",
+          "url": "https://messivsronaldo17.com/de/insights/ballon-dor-2026-date-voting-rules"
+        },
+        {
+          "lang": "ar",
+          "url": "https://messivsronaldo17.com/ar/insights/ballon-dor-2026-date-voting-rules"
+        },
+        {
+          "lang": "hi",
+          "url": "https://messivsronaldo17.com/hi/insights/ballon-dor-2026-date-voting-rules"
+        },
+        {
+          "lang": "th",
+          "url": "https://messivsronaldo17.com/th/insights/ballon-dor-2026-date-voting-rules"
+        },
+        {
+          "lang": "x-default",
+          "url": "https://messivsronaldo17.com/insights/ballon-dor-2026-date-voting-rules"
+        }
+      ],
+      "tableCount": 1,
+      "tableRowCount": 7,
+      "xRobotsTag": null,
+      "contentType": "text/html; charset=utf-8",
+      "h1": [
+        "Ballon d’Or 2026 erklärt: Termin, Wahlregeln und der Blick auf den Fußball"
+      ],
+      "article_dates": [
+        {
+          "datePublished": "2026-09-27",
+          "dateModified": "2026-10-15T11:42:01.197Z"
+        }
+      ],
+      "raw_evidence_file": ".artifacts/seo-audit-2026-10-26/indexing-followup/de-ballon-dor.json"
+    }
+  ],
+  "limitations": [
+    "HTTP checks do not establish Google index inclusion or verified Googlebot-network access.",
+    "Two content URLs occur in this supplied exclusion bucket; this is not a sitewide count of unindexed content.",
+    "Performance impressions are historical, whereas screenshot exclusions describe a later report state.",
+    "Current Sitemaps report fetch/processing status was not supplied."
+  ],
+  "local_followup_change": {
+    "path": "src/lib/i18n/messages/fr.json",
+    "change": "Correct tarif/tarifs to ratio/ratios for statistical rates in five existing values.",
+    "status": "Prepared locally, not deployed; not a diagnosed indexing cause."
+  },
+  "references": [
+    "https://support.google.com/webmasters/answer/7440203?hl=en",
+    "https://support.google.com/webmasters/answer/9012289?hl=en",
+    "https://support.google.com/webmasters/answer/7451001?hl=en",
+    "https://developers.google.com/search/docs/crawling-indexing/ask-google-to-recrawl"
+  ]
+}

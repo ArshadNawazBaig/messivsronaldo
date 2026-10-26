@@ -62,10 +62,14 @@ test("targeted pages and all locale URLs retain canonical sitemap entries", asyn
   const response = await request.get("/sitemap.xml");
   expect(response.status()).toBe(200);
   const xml = await response.text();
-  for (const locale of locales) for (const slug of ["goals", "free-kicks", "la-liga", "honours"]) {
+  const statistics = await request.get("/api/comparison/career");
+  expect(statistics.status()).toBe(200);
+  const { coverageEnds } = await statistics.json();
+  for (const locale of locales) for (const slug of ["2026", "goals", "compare", "free-kicks", "la-liga", "honours"]) {
     const path = `${locale === "en" ? "" : `/${locale}`}/${slug}`;
     const entry = xml.split("<url>").find(item => item.includes(`${path}</loc>`));
     expect(entry, path).toBeDefined();
-    expect(entry).toContain(discoveryUpdated);
+    const editorialDate = ["2026", "goals", "compare"].includes(slug) ? "2026-10-26" : discoveryUpdated;
+    expect(entry).toContain(`<lastmod>${[coverageEnds, editorialDate].sort().at(-1)}</lastmod>`);
   }
 });

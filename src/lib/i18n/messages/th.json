@@ -1487,5 +1487,10 @@
   "2012/13 club season": "ฤดูกาลสโมสร 2012/13",
   "Why can international assist totals differ?": "ทำไมยอดแอสซิสต์ในทีมชาติจึงอาจแตกต่างกัน?",
   "Assist totals depend on the matches covered and the provider’s definition of the final action before a goal. Compare definitions and cutoff dates. Our baseline source and later match additions are documented separately.": "ยอดแอสซิสต์ขึ้นอยู่กับนัดที่ครอบคลุมและนิยามของผู้ให้ข้อมูลต่อจังหวะสุดท้ายก่อนเกิดประตู ควรเปรียบเทียบนิยามและวันที่สิ้นสุดข้อมูล เราบันทึกแหล่งข้อมูลตั้งต้นและนัดที่เพิ่มภายหลังแยกกัน",
-  "Why assist totals differ": "เหตุผลที่ยอดแอสซิสต์แตกต่างกัน"
+  "Why assist totals differ": "เหตุผลที่ยอดแอสซิสต์แตกต่างกัน",
+  "2026 goals so far: Messi {0}, Ronaldo {1}. Club and country, from 1 January. {2}. Compare assists, appearances and minutes.": "ประตูในปี 2026 จนถึงตอนนี้: เมสซี {0} โรนัลโด {1} รวมสโมสรและทีมชาติ ตั้งแต่วันที่ 1 มกราคม {2} เปรียบเทียบแอสซิสต์ จำนวนนัด และนาทีที่ลงเล่น",
+  "How many goals have Messi and Ronaldo scored in 2026?": "เมสซีและโรนัลโดยิงกี่ประตูในปี 2026?",
+  "In the 2026 calendar year, Messi has {0} goals and Ronaldo has {1}. {2}. These are senior club and international goals from 1 January, not all-time career totals. The match update log documents later additions.": "ในปีปฏิทิน 2026 เมสซียิง {0} ประตู และโรนัลโดยิง {1} ประตู {2} ตัวเลขนี้นับประตูของสโมสรชุดใหญ่และทีมชาติชุดใหญ่ตั้งแต่วันที่ 1 มกราคม ไม่ใช่ยอดรวมตลอดอาชีพ บันทึกการอัปเดตจะแสดงรายการแข่งขันที่เพิ่มภายหลัง",
+  "Are 2026 goals the same as career totals?": "ประตูในปี 2026 เหมือนกับยอดรวมตลอดอาชีพหรือไม่?",
+  "No. The 2026 comparison counts matches from 1 January 2026. Career totals cover all included senior seasons: Messi {0} goals and Ronaldo {1}. {2}. A goal scored in 2026 belongs to both views, so the two totals must not be added together.": "ไม่เหมือนกัน การเปรียบเทียบปี 2026 นับการแข่งขันตั้งแต่วันที่ 1 มกราคม 2026 ส่วนยอดรวมตลอดอาชีพครอบคลุมทุกฤดูกาลระดับชุดใหญ่ที่รวมไว้: เมสซี {0} ประตู และโรนัลโด {1} ประตู {2} ประตูที่ยิงในปี 2026 จะอยู่ในทั้งสองมุมมอง จึงไม่ควรนำยอดรวมทั้งสองมาบวกกัน"
 }

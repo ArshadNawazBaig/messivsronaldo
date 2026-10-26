@@ -1,0 +1,755 @@
+diff --git a/scripts/analyze-search-console.py b/scripts/analyze-search-console.py
+index 9e64e92..1867743 100644
+--- a/scripts/analyze-search-console.py
++++ b/scripts/analyze-search-console.py
+@@ -3,6 +3,7 @@
+ 
+ python3 scripts/analyze-search-console.py --input /path/to/export --output .artifacts/search-console-summary.json
+ Uses only the standard library. Missing query rows are never interpreted as zero demand.
++Add --artifacts-dir /path/to/audit to also write URL buckets and query review CSVs.
+ """
+ import argparse
+ from collections import defaultdict
+@@ -11,6 +12,8 @@ from datetime import date, timedelta
+ from hashlib import sha256
+ import json
+ from pathlib import Path
++import re
++import unicodedata
+ from urllib.parse import urlsplit
+ 
+ 
+@@ -20,6 +23,148 @@ DIMENSIONS = {
+ }
+ LOCALES = {"ar", "de", "es", "fr", "hi", "nl", "pt", "th"}
+ 
++# Operational review thresholds, not Google classifications or CTR benchmarks.
++NEAR_ZERO_MAX = 10
++LOW_CTR_MIN_IMPRESSIONS = 100
++LOW_CTR_PERCENT = 1.0
++QUESTION_WORDS = re.compile(
++    r"\b(who|what|why|when|where|how|which|combien|quel|quelle|quels|quelles|qui|"
++    r"wer|wie|wann|warum|wieviel|wanneer|hoe|hoeveel|wat|cuantos|cuantas|quien|"
++    r"cuando|como|quantos|quantas|quem|quanto|كم|متى|كيف|لماذا)\b|من (?:هو|الافضل)|[?؟]"
++)
++COMPARISON_WORDS = re.compile(r"\b(vs|versus|better|best|besser|beter|meilleur|mejor|melhor)\b")
++
++
++def normalized(value):
++    return "".join(char for char in unicodedata.normalize("NFKD", value.casefold())
++                   if not unicodedata.combining(char))
++
++
++def query_tags(query):
++    text = normalized(query)
++    # Keep the distinctive brand contiguous: stripping punctuation would
++    # incorrectly classify the season query "messi vs ronaldo 17/18" as brand.
++    branded = bool(re.search(r"\bmessivsronaldo17(?:\.com)?\b", text))
++    if branded:
++        intent = "navigational"
++    elif re.search(r"\b(buy|purchase|tickets|comprar|acheter)\b", text):
++        intent = "transactional_candidate"
++    elif re.search(r"\b(price|pricing|subscription|coupon)\b", text):
++        intent = "commercial_candidate"
++    elif text.endswith(" app") or ".com" in text or re.search(r"\bmessivsronaldo\b", text):
++        intent = "navigational_candidate"
++    elif len(text) < 4 or re.fullmatch(r"[\d /-]+", text):
++        intent = "ambiguous_short_query"
++    else:
++        intent = "informational_candidate"
++    return {
++        "brand_class": "explicit_site_brand" if branded else "no_explicit_site_brand",
++        "intent_heuristic": intent,
++        "question_heuristic": bool(QUESTION_WORDS.search(text)),
++        "comparison_or_best_heuristic": bool(COMPARISON_WORDS.search(text)),
++    }
++
++
++def page_bucket(row):
++    impressions, clicks, position = row["Impressions"], row["Clicks"], row["Position"]
++    ctr = 100 * clicks / impressions if impressions else 0
++    near_zero = impressions <= NEAR_ZERO_MAX
++    low_ctr = impressions >= LOW_CTR_MIN_IMPRESSIONS and ctr < LOW_CTR_PERCENT
++    striking = position is not None and 8 <= position <= 30
++    healthy = (impressions >= 100 and clicks >= 3 and ctr >= 1
++               and position is not None and position < 8)
++    if near_zero:
++        bucket = "b_near_zero_impressions_current_indexing_unknown"
++    elif low_ctr:
++        bucket = "c_very_low_ctr_review"
++    elif striking:
++        bucket = "d_average_position_8_to_30"
++    elif healthy:
++        bucket = "e_relatively_healthy_observed_performance"
++    else:
++        bucket = "f_limited_sample_or_other_performance_review"
++    return {
++        "performance_bucket": bucket,
++        "near_zero_impressions_flag": near_zero,
++        "very_low_ctr_flag": low_ctr,
++        "position_8_to_30_flag": striking,
++        "healthy_observed_flag": healthy,
++        "current_indexing_status": "unknown_requires_page_indexing_or_url_inspection",
++        "exact_not_indexed_reason": "not_available_in_performance_export",
++    }
++
++
++def change_between(before, after):
++    earlier, later = totals(before), totals(after)
++    return {
++        "before": {"start": before[0]["Date"], "end": before[-1]["Date"], **earlier},
++        "after": {"start": after[0]["Date"], "end": after[-1]["Date"], **later},
++        "change_percent": {
++            key: 100 * (later[key] / earlier[key] - 1) if earlier[key] else None
++            for key in ("clicks", "impressions")
++        },
++        "ctr_change_percentage_points": later["ctr_percent"] - earlier["ctr_percent"],
++    }
++
++
++def write_csv(path, rows):
++    if not rows:
++        raise ValueError(f"Cannot infer CSV columns for empty output {path}")
++    with path.open("w", encoding="utf-8", newline="") as handle:
++        writer = csv.DictWriter(handle, fieldnames=list(rows[0]))
++        writer.writeheader()
++        writer.writerows(rows)
++
++
++# Editorially selected distinct tasks for this export. Query metrics always come
++# from the exact query row. Candidate URLs are suggestions, never joined GSC data.
++OPPORTUNITIES = [
++    ("total de but de messi et ronaldo 2026", "/fr/goals", "/fr/2026",
++     "Clarify career totals versus 2026-only totals in the first answer; show as-of date and sources."),
++    ("wanneer wordt de ballon d or uitgereikt 2026", "/nl/insights/ballon-dor-2026-date-voting-rules", "",
++     "Verify the official ceremony date/status and lead with it in Dutch; do not infer a date or treat an elapsed event as upcoming."),
++    ("ronaldo international assists", "/international", "",
++     "Answer Portugal senior assists directly with provider definition, as-of date and source; distinguish competitive matches and friendlies."),
++    ("nombre de coup franc marqué par messi et ronaldo", "/fr/insights/messi-ronaldo-free-kick-records", "/fr/free-kicks",
++     "State sourced direct-free-kick totals and exclusions in French; assign a distinct role to the records article and stats table."),
++    ("2008 ronaldo vs 2009 messi stats", "/seasons/2008", "/seasons/2009",
++     "Confirm the actual landing page in GSC; link the existing year pages and compare matching calendar-year scopes before considering one dedicated comparison."),
++    ("messi vs cr7 estadísticas 2026", "/es/2026", "",
++     "Provide a Spanish year-to-date comparison with a timestamp, competition coverage and definition of goals/assists."),
++    ("wie viele freistoßtore hat messi", "/de/free-kicks", "",
++     "Place a sourced German direct answer above the free-kick table with update date and counting rules."),
++    ("messi vs ronaldo free kick goals", "/free-kicks", "",
++     "Improve the direct answer and table labels for total direct free kicks; cite sources and link the methodology."),
++    ("total goals scored by messi and ronaldo", "/goals", "",
++     "Lead with career club-plus-country totals, date and scope; retain separate year-only and non-penalty breakdowns."),
++    ("wer ist besser messi oder ronaldo 2026", "/de/2026", "",
++     "Answer with transparent 2026 comparison criteria and sourced statistics; avoid presenting an opinion as an objective winner."),
++]
++
++
++def query_opportunities(rows, pages):
++    queries = {row["Top queries"]: row for row in rows}
++    observed_pages = {row["Top pages"] for row in pages}
++    output = []
++    for query, path, secondary_path, action in OPPORTUNITIES:
++        if query not in queries:
++            continue
++        row = queries[query]
++        url = "https://messivsronaldo17.com" + path
++        output.append({
++            "priority": len(output) + 1, "query": query, "clicks": row["Clicks"],
++            "impressions": row["Impressions"], "ctr_percent": 100 * row["Clicks"] / row["Impressions"],
++            "average_position": row["Position"],
++            "signal": "average_position_8_to_20" if 8 <= row["Position"] <= 20 else "visible_demand_review_answer_and_snippet",
++            "candidate_url": url,
++            "secondary_candidate_url": "https://messivsronaldo17.com" + secondary_path if secondary_path else "",
++            "candidate_url_has_own_page_export_row": url in observed_pages,
++            "mapping_evidence": "editorial_topic_match_only_not_query_page_attribution",
++            "action": action,
++            "verification": "Filter the exact query in GSC and open Pages before changing URL targeting; compare matched dates/device/country.",
++        })
++    return output
++
+ 
+ def totals(rows):
+     clicks = sum(row["Clicks"] for row in rows)
+@@ -64,6 +209,8 @@ def main():
+     parser = argparse.ArgumentParser(description=__doc__)
+     parser.add_argument("--input", type=Path, required=True)
+     parser.add_argument("--output", type=Path, required=True)
++    parser.add_argument("--artifacts-dir", type=Path,
++                        help="Optionally write performance buckets and query review CSVs here")
+     args = parser.parse_args()
+     tables = {name: load_table(args.input, name, key) for name, key in DIMENSIONS.items()}
+     with (args.input / "Filters.csv").open(encoding="utf-8-sig", newline="") as handle:
+@@ -101,7 +248,14 @@ def main():
+         "Date labels are retained as supplied; daily Search Console reports use Pacific Time.",
+         "URL language groups describe URL prefixes, not the searcher's language or country.",
+         "A page absent from Pages.csv is not thereby known to be unindexed.",
++        "A page with impressions was credited search visibility during this window; its current indexing state is unknown.",
++        "No page-by-date or query-by-page table was supplied: page gains/losses and cannibalization cannot be established.",
++        "No expected CTR curve is supplied. Low-CTR thresholds are triage rules, not causal findings or industry benchmarks.",
++        "Intent, question, comparison and site-brand labels are transparent heuristics; names Messi and Ronaldo alone are not site brand.",
++        "All measurements retain the Filters.csv search type, including its Web (text-based) wording; no AI report is present.",
+     ]
++    if len(tables["Queries"]) == 1000:
++        notes.append("Exactly 1,000 exported query rows suggests a UI row limit; anonymized/omitted queries also prevent complete query coverage.")
+     if not all(all(values.values()) for values in reconciliation.values()):
+         notes.append("Country/device counts differ from Chart; inspect filters, limits and export consistency.")
+     report = {
+@@ -122,8 +276,121 @@ def main():
+         ],
+         "notes": notes,
+     }
++    bucket_rows, bucket_groups = [], defaultdict(list)
++    for row in tables["Pages"]:
++        tags = page_bucket(row)
++        bucket_groups[tags["performance_bucket"]].append(row)
++        bucket_rows.append({
++            "url": row["Top pages"], "clicks": row["Clicks"], "impressions": row["Impressions"],
++            "ctr_percent": 100 * row["Clicks"] / row["Impressions"] if row["Impressions"] else 0,
++            "average_position": row["Position"], **tags,
++        })
++    query_rows, intent_groups, brand_groups = [], defaultdict(list), defaultdict(list)
++    question_rows, comparison_rows = [], []
++    for row in tables["Queries"]:
++        tags = query_tags(row["Top queries"])
++        intent_groups[tags["intent_heuristic"]].append(row)
++        brand_groups[tags["brand_class"]].append(row)
++        query_rows.append({"query": row["Top queries"], "clicks": row["Clicks"],
++                           "impressions": row["Impressions"], "ctr": row["CTR"],
++                           "average_position": row["Position"], **tags})
++        if tags["question_heuristic"]:
++            question_rows.append(row)
++        if tags["comparison_or_best_heuristic"]:
++            comparison_rows.append(row)
++    pages_sorted = sorted(tables["Pages"], key=lambda row: (row["Clicks"], row["Impressions"]), reverse=True)
++    page_totals = summary["Pages"]
++    opportunities = query_opportunities(tables["Queries"], tables["Pages"])
++    report.update({
++        "performance_bucket_definitions": {
++            "indexing": "No category a (not indexed) assignment is possible from these performance CSVs.",
++            "priority_order": "near-zero impressions, low CTR, position 8-30, relatively healthy, other; additional flags retain overlaps",
++            "b_near_zero_impressions_current_indexing_unknown": "0-10 impressions in the supplied window; current indexing state unknown",
++            "c_very_low_ctr_review": "At least 100 impressions and calculated CTR below 1%; operational threshold, not a position-adjusted benchmark",
++            "d_average_position_8_to_30": "Average exported position from 8 through 30 inclusive, after prior buckets",
++            "e_relatively_healthy_observed_performance": "At least 100 impressions, 3 clicks, 1% CTR and average position below 8, after prior buckets",
++            "f_limited_sample_or_other_performance_review": "Remaining rows; avoids mislabelling small samples or poor positions as healthy",
++        },
++        "performance_bucket_totals": {key: totals(rows) for key, rows in sorted(bucket_groups.items())},
++        "page_counts": {
++            "with_impressions": sum(row["Impressions"] > 0 for row in tables["Pages"]),
++            "with_clicks": sum(row["Clicks"] > 0 for row in tables["Pages"]),
++            "without_clicks": sum(row["Clicks"] == 0 for row in tables["Pages"]),
++            "average_position_8_to_30_all_samples": sum(row["position_8_to_30_flag"] for row in bucket_rows),
++            "at_least_100_impressions_and_ctr_below_1_percent": sum(row["very_low_ctr_flag"] for row in bucket_rows),
++        },
++        "click_concentration": {
++            "denominator": "Sum of page table clicks (different aggregation from Chart)",
++            "top_1_percent": 100 * pages_sorted[0]["Clicks"] / page_totals["clicks"],
++            "top_2_percent": 100 * sum(row["Clicks"] for row in pages_sorted[:2]) / page_totals["clicks"],
++            "top_10_percent": 100 * sum(row["Clicks"] for row in pages_sorted[:10]) / page_totals["clicks"],
++        } if page_totals["clicks"] else {},
++        "top_pages_by_clicks": pages_sorted[:20],
++        "high_impression_low_ctr_pages": sorted(
++            [row for row in tables["Pages"] if page_bucket(row)["very_low_ctr_flag"]],
++            key=lambda row: row["Impressions"], reverse=True)[:25],
++        "top_page_families_by_clicks": [
++            {"path_without_language_prefix": key, **totals(rows)}
++            for key, rows in sorted(families.items(), key=lambda item: totals(item[1])["clicks"], reverse=True)[:20]
++        ],
++        "query_brand_heuristic": {
++            "definition": "Explicit contiguous domain/name messivsronaldo17; entity names and season queries such as 17/18 do not count",
++            "totals": {key: totals(brand_groups[key]) for key in ("explicit_site_brand", "no_explicit_site_brand")},
++            "limitation": "Absence of branded rows does not prove absence of brand demand; query export is incomplete",
++        },
++        "query_intent_heuristic": {key: totals(intent_groups[key]) for key in (
++            "informational_candidate", "navigational", "navigational_candidate", "commercial_candidate",
++            "transactional_candidate", "ambiguous_short_query")},
++        "question_query_heuristic": {"totals": totals(question_rows), "top_30": sorted(
++            question_rows, key=lambda row: row["Impressions"], reverse=True)[:30]},
++        "comparison_or_best_query_heuristic": totals(comparison_rows),
++        "selected_query_clusters": {
++            "dutch_ballon_ceremony_date": {
++                "definition": "Query contains ballon and at least one of wanneer, uitreik, hoe laat; observed query rows only",
++                **totals([row for row in tables["Queries"] if "ballon" in row["Top queries"]
++                          and any(term in row["Top queries"] for term in ("wanneer", "uitreik", "hoe laat"))]),
++            },
++            "messi_ronaldo_2008_2009": {
++                "definition": "Query contains both 2008 and 2009, plus messi or ronaldo; observed query rows only",
++                **totals([row for row in tables["Queries"] if "2008" in row["Top queries"]
++                          and "2009" in row["Top queries"]
++                          and any(term in row["Top queries"] for term in ("messi", "ronaldo"))]),
++            },
++        },
++        "visible_head_query_examples": [row for row in tables["Queries"] if row["Top queries"] in (
++            "messi vs ronaldo", "ronaldo vs messi", "messi vs ronaldo stats", "messi stats", "ronaldo stats")],
++        "queries_position_8_to_20_at_least_30_impressions": sorted(
++            [row for row in tables["Queries"] if row["Position"] is not None
++             and 8 <= row["Position"] <= 20 and row["Impressions"] >= 30],
++            key=lambda row: row["Impressions"], reverse=True),
++        "top_10_distinct_editorial_query_opportunities": opportunities,
++        "opportunity_selection": "Ten manually selected distinct query/topic tasks from this audit's data, balancing impressions, CTR and position; no projected clicks or inferred URL attribution",
++        "devices": tables["Devices"],
++        "top_countries_by_clicks": sorted(tables["Countries"], key=lambda row: row["Clicks"], reverse=True)[:15],
++        "search_appearance": {"rows": len(tables["Search appearance"]), "interpretation": "Empty table; cannot infer rich-result eligibility, absence of features or AI visibility"},
++        "highest_impression_day_and_last_day": {
++            "highest_impression_day": max(chart, key=lambda row: row["Impressions"]),
++            "last_day": chart[-1],
++            "caveat": "Descriptive daily values; weekday mix, demand, query mix and reporting effects prevent a causal conclusion",
++        },
++    })
++    if len(chart) >= 14:
++        report["first_vs_last_seven_days"] = change_between(chart[:7], chart[-7:])
++        report["previous_vs_latest_seven_days"] = change_between(chart[-14:-7], chart[-7:])
++    if len(chart) == 28:
++        report["first_vs_second_fourteen_days"] = change_between(chart[:14], chart[14:])
++        report["four_seven_day_blocks"] = [
++            {"start": chart[index]["Date"], "end": chart[index + 6]["Date"], **totals(chart[index:index + 7])}
++            for index in range(0, 28, 7)
++        ]
+     args.output.parent.mkdir(parents=True, exist_ok=True)
+     args.output.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n")
++    if args.artifacts_dir:
++        args.artifacts_dir.mkdir(parents=True, exist_ok=True)
++        write_csv(args.artifacts_dir / "url-buckets.csv", bucket_rows)
++        write_csv(args.artifacts_dir / "query-segments.csv", query_rows)
++        if opportunities:
++            write_csv(args.artifacts_dir / "query-opportunities.csv", opportunities)
+     print(json.dumps({"daily_coverage": report["daily_coverage"], "baseline": baseline,
+                       "totals_by_dimension": summary, "reconciliation": reconciliation}, indent=2))
+ 
+diff --git a/src/app/[locale]/insights/[slug]/page.tsx b/src/app/[locale]/insights/[slug]/page.tsx
+index 1ef7371..0aa8496 100644
+--- a/src/app/[locale]/insights/[slug]/page.tsx
++++ b/src/app/[locale]/insights/[slug]/page.tsx
+@@ -23,6 +23,7 @@ import { AwardChart } from "@/components/award-chart";
+ import { getPublishedData } from "@/lib/server-data";
+ import styles from "./article.module.css";
+ import { publisherConfiguration } from "@/lib/publisher-config";
++import { articleComparisonLink } from "@/lib/content-discovery";
+ 
+ export function generateStaticParams() { return articles.map(article => ({ slug: article.slug })); }
+ export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+@@ -50,6 +51,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug:
+   const chartMetric = ({ "why-assist-totals-differ": "assists", "totals-vs-scoring-rates": "goals-per-90", "what-counts-as-a-career-goal": "goals" } as Record<string, string>)[slug];
+   const chartData = chartMetric ? await getPublishedData() : undefined;
+   const openingTable = slug === "messi-ronaldo-penalty-records" && article.body?.content?.[0]?.type === "table";
++  const recordLink = articleComparisonLink(slug);
+   const contents = article.body
+     ? articleHeadings(article.body).filter(heading => heading.level === 2)
+     : [...article.sections.map((section, index) => ({ id: `section-${index}`, title: t(section.heading) })), ...(article.tables ?? []).map((table, index) => ({ id: `table-${index}`, title: t(table.caption) }))];
+@@ -59,6 +61,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug:
+     <div className="page-intro inner-intro" id="page-introduction"><div><span className="eyebrow">{t(article.category)}</span><h1>{t(article.title)}</h1><p>{t(article.description)}</p></div></div>
+     <div className="article-byline"><Link href="/about">{translate("The Rivalry")}</Link>{editor && <Link href="/about#editor">{translate("Editor")}: {editor.name}</Link>}<time dateTime={updated}>{translatedDate(updated.slice(0, 10), locale)}</time><span><BookOpen size={13}/>{translate("{0} min read", { "0": articleReadingMinutes(article, locale, t) })}</span></div>
+     {article.summary && <aside id="article-summary" className={styles.summary} aria-labelledby="article-answer"><h2 id="article-answer">{translate("At a glance")}</h2><p>{t(article.summary)}</p></aside>}
++    {recordLink && <p className={styles.tableNote} data-article-record-link><Link href={recordLink.path}>{translate(recordLink.title)} <ArrowUpRight size={14} aria-hidden="true"/></Link></p>}
+     {slug === "messi-2012-vs-ronaldo-2013-goals" && <PeakYearStudy />}
+     {openingTable && article.body && <div id="article-opening-table"><RichBody body={article.body} endIndex={1}/></div>}
+     {article.image && <figure className={styles.hero}><div className={styles.heroFrame}><Image src={article.image.path} alt={t(article.image.alt)} fill sizes="(max-width: 700px) calc(100vw - 40px), (max-width: 1280px) calc(100vw - 80px), 1200px" unoptimized={article.image.path.startsWith("/media/blog/")} />{/* CMS media is already compressed; retain its publication visibility checks. */}</div>{article.image.caption && <figcaption>{article.image.caption}</figcaption>}</figure>}
+@@ -70,7 +73,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug:
+     {chartData && <ComparisonChart scope={chartData.scopes.career} metric={chartMetric}/>}
+     {article.relatedSlugs && <AwardChart full/>}
+     {article.tables?.map((table, index) => <section className={styles.tableSection} key={table.caption}><h2 id={`table-${index}`}>{t(table.caption)}</h2><div className={styles.tableWrap} role="region" aria-labelledby={`table-${index}`} tabIndex={0}><table><caption className="sr-only">{t(table.caption)}</caption><thead><tr>{table.columns.map(column => <th key={column} scope="col">{t(column)}</th>)}</tr></thead><tbody>{table.rows.map((row, rowIndex) => <tr key={rowIndex}>{row.cells.map((cell, cellIndex) => cellIndex === 0 ? <th key={cellIndex} scope="row">{t(cell)}{row.citations && <span className={styles.rowSources}>{row.citations.map(source => <a key={source.url} href={source.url} target="_blank" rel="noreferrer">{t(source.title)}<ArrowUpRight size={12} aria-hidden="true"/></a>)}</span>}</th> : <td key={cellIndex}>{t(cell)}</td>)}</tr>)}</tbody></table></div>{table.note && <p className={styles.tableNote}>{t(table.note)}</p>}</section>)}
+-    <Link href={article.preset ? "/scoring-calculator" : article.relatedSlugs ? "/ballon-dor" : "/compare"} className="primary-button">{translate(article.preset ? "Open the calculator" : article.relatedSlugs ? "Messi vs Ronaldo: Ballon d’Or history" : "Compare the statistics ")}<ArrowUpRight size={16}/></Link>
++    <Link href={article.preset ? "/scoring-calculator" : recordLink?.path ?? (article.relatedSlugs ? "/ballon-dor" : "/compare")} className="primary-button">{translate(article.preset ? "Open the calculator" : recordLink?.title ?? (article.relatedSlugs ? "Messi vs Ronaldo: Ballon d’Or history" : "Compare the statistics "))}<ArrowUpRight size={16}/></Link>
+     <RelatedReading path={`/insights/${slug}`} />
+   </article>;
+ }
+diff --git a/src/lib/comparison-copy.ts b/src/lib/comparison-copy.ts
+index 5eccb71..89d2876 100644
+--- a/src/lib/comparison-copy.ts
++++ b/src/lib/comparison-copy.ts
+@@ -6,6 +6,9 @@ type Translate = ReturnType<typeof createTranslator>;
+ export const comparisonContentUpdated = "2026-10-06";
+ export const refreshedComparisons = new Set(["goals", "free-kicks", "la-liga", "honours", "assists", "penalties", "hat-tricks", "compare"]);
+ export const internationalAnswerUpdated = "2026-10-15";
++export const comparisonContentRevisions: Record<string, string> = {
++  "2026": "2026-10-26", goals: "2026-10-26", compare: "2026-10-26",
++};
+ 
+ // Match imports must not replace distinct page topics with a shared generic
+ // description. Goal-type pages retain their own verified classification cutoff.
+@@ -27,7 +30,10 @@ export function comparisonIntro(slug: string, data: PublishedData, t: Translate,
+     if (!assists) return undefined;
+     return t("International records: Messi {0} goals and {1} assists; Ronaldo {2} goals and {3} assists. {4}. See the counting rules and sources.", { 0: scope.goals.messi, 1: assists.values.messi, 2: scope.goals.ronaldo, 3: assists.values.ronaldo, 4: t(scope.period) });
+   }
+-  if (slug === "2026") return t("Goals, assists, appearances and playing minutes from 1 January 2026. {0}. The year is still in progress.", {0:t(data.scopes["2026"].period)});
++  if (slug === "2026") {
++    const year = data.scopes["2026"];
++    return t("2026 goals so far: Messi {0}, Ronaldo {1}. Club and country, from 1 January. {2}. Compare assists, appearances and minutes.", { 0: year.goals.messi, 1: year.goals.ronaldo, 2: t(year.period) });
++  }
+   if (slug === "goals") return t("Messi has {0} career goals and Ronaldo has {1}. Compare club and international totals, appearances and scoring rates. {2}.", { 0: career.goals.messi, 1: career.goals.ronaldo, 2: t(career.period) });
+   if (slug === "free-kicks") {
+     const metric = career.metrics.find(item => item.id === "freeKicks");
+@@ -43,6 +49,18 @@ export function comparisonIntro(slug: string, data: PublishedData, t: Translate,
+ 
+ export function comparisonQuestions(slug: string, data: PublishedData, t: Translate) {
+   const { career, club, international } = data.scopes;
++  const year = data.scopes["2026"];
++  const yearQuestion = {
++    question: t("How many goals have Messi and Ronaldo scored in 2026?"),
++    answer: t("In the 2026 calendar year, Messi has {0} goals and Ronaldo has {1}. {2}. These are senior club and international goals from 1 January, not all-time career totals. The match update log documents later additions.", { 0: year.goals.messi, 1: year.goals.ronaldo, 2: t(year.period) }),
++    href: slug === "2026" ? "/updates" : "/2026",
++    link: t(slug === "2026" ? "Published match updates" : "Messi vs Ronaldo 2026 Goals, Assists & Stats"),
++  };
++  if (slug === "2026") return [
++    yearQuestion,
++    { question: t("Are 2026 goals the same as career totals?"), answer: t("No. The 2026 comparison counts matches from 1 January 2026. Career totals cover all included senior seasons: Messi {0} goals and Ronaldo {1}. {2}. A goal scored in 2026 belongs to both views, so the two totals must not be added together.", { 0: career.goals.messi, 1: career.goals.ronaldo, 2: t(career.period) }), href: "/goals", link: t("Messi vs Ronaldo career goals") },
++    { question: t("Where the figures come from"), answer: t(sources[year.source[0]].note), href: sources[year.source[0]].url, link: t(sources[year.source[0]].name) },
++  ];
+   if (slug === "international") {
+     const assists = international.metrics.find(metric => metric.id === "assists");
+     if (!assists) return [];
+@@ -56,6 +74,7 @@ export function comparisonQuestions(slug: string, data: PublishedData, t: Transl
+     { question: t("How many matches have Messi and Ronaldo played?"), answer: t("Messi has {0} career appearances and Ronaldo has {1}. A substitute appearance counts as one match. {2}.", { 0: career.appearances.messi, 1: career.appearances.ronaldo, 2: t(career.period) }), href: "/compare", link: t("Messi vs Ronaldo Comparison Explorer") },
+     { question: t("How many goals have Messi and Ronaldo scored for club and country?"), answer: t("Messi: {0} club goals and {1} international goals. Ronaldo: {2} club goals and {3} international goals. {4}.", { 0: club.goals.messi, 1: international.goals.messi, 2: club.goals.ronaldo, 3: international.goals.ronaldo, 4: t(career.period) }), href: "/international", link: t("Messi vs Ronaldo International Goals & Assists — 2026") },
+     { question: t("Do international friendlies and club friendlies count?"), answer: t("Career totals include senior competitive club games and recognized senior A internationals, including international friendlies.") + " " + t("Club friendlies, exhibitions, youth/reserve games and shootout kicks are excluded."), href: "/insights/what-counts-as-a-career-goal", link: t("How we count") },
++    yearQuestion,
+   ];
+   if (slug === "free-kicks") return [
+     { question: t("What counts as a direct free-kick goal?"), answer: t("A direct free-kick goal is scored from the kick itself. A goal after a pass from a free kick is not a direct free-kick goal. Penalty goals are counted separately."), href: "/penalties", link: t("Messi vs Ronaldo Penalties: Scored, Missed & Conversion") },
+diff --git a/src/lib/content-discovery.ts b/src/lib/content-discovery.ts
+index 247fb1f..d01f812 100644
+--- a/src/lib/content-discovery.ts
++++ b/src/lib/content-discovery.ts
+@@ -60,6 +60,12 @@ const destinations = (entries: readonly Article[]): RelatedContent[] => [
+   ...seasons.map(season => ({ path: `/seasons/${season.slug}`, title: `Messi vs Ronaldo, ${season.label}`, kind: "comparison" as const })),
+   ...entries.map(article => ({ path: `/insights/${article.slug}`, title: article.title, kind: "article" as const })),
+ ];
++// Keep the primary record link independent of CMS body revisions and avoid
++// sending a reader of a specific record explanation to a generic explorer.
++export function articleComparisonLink(slug: string): RelatedContent | undefined {
++  const path = articleTopicLinks[slug]?.[0];
++  return path ? destinations([]).find(item => item.path === path && item.kind === "comparison") : undefined;
++}
+ export function relatedContent(path: string, limit = 4, entries: readonly Article[] = articles): RelatedContent[] {
+   const topicPath = path.startsWith("/seasons/") && !contentTopics.some(topic => (topic as readonly string[]).includes(path)) ? "/seasons" : path;
+   const topics: readonly string[][] = [
+diff --git a/src/lib/i18n/client-message-keys.json b/src/lib/i18n/client-message-keys.json
+index 639eb06..b1b07ba 100644
+--- a/src/lib/i18n/client-message-keys.json
++++ b/src/lib/i18n/client-message-keys.json
+@@ -10,6 +10,7 @@
+   "2025 MLS Eastern Conference. A stage on the way to the MLS Cup; listed separately to make the overlap clear.",
+   "2025 playoff championship.",
+   "2026 club and country",
++  "2026 goals so far: Messi {0}, Ronaldo {1}. Club and country, from 1 January. {2}. Compare assists, appearances and minutes.",
+   "2026 goals, assists and appearances",
+   "2026 is not a completed year. Reviewed baseline through {0}, plus recorded matches to {1}. See the update log for coverage.",
+   "2026 stats",
+@@ -355,6 +356,7 @@
+   "In UEFA’s Champions League main competition, {0} recorded {1} goals in {2} appearances. Qualifying rounds are excluded.",
+   "In progress",
+   "In progress; source reviewed {0}.",
++  "In the 2026 calendar year, Messi has {0} goals and Ronaldo has {1}. {2}. These are senior club and international goals from 1 January, not all-time career totals. The match update log documents later additions.",
+   "In this {0} comparison, Messi has {1} goals and {2} assists in {3} appearances. Ronaldo has {4} goals and {5} assists in {6} appearances. {7}. {8}",
+   "In this {0} selection, Messi scored {1} goals in {2} appearances and Ronaldo scored {3} in {4}.",
+   "In {0}, Messi recorded {1} goals and {2} assists in {3} appearances; Ronaldo recorded {4} goals and {5} assists in {6} appearances.",
+@@ -467,6 +469,7 @@
+   "No matches. Try “goals”, “Messi” or “sources”.",
+   "No matching answers. Try a shorter search or browse all answers.",
+   "No rate is available without recorded playing time or appearances.",
++  "No. The 2026 comparison counts matches from 1 January 2026. Career totals cover all included senior seasons: Messi {0} goals and Ronaldo {1}. {2}. A goal scored in 2026 belongs to both views, so the two totals must not be added together.",
+   "Non-penalty goals",
+   "Not available",
+   "Not this time.",
+diff --git a/src/lib/i18n/messages/ar.json b/src/lib/i18n/messages/ar.json
+index d2b68ff..26b8ecc 100644
+--- a/src/lib/i18n/messages/ar.json
++++ b/src/lib/i18n/messages/ar.json
+@@ -1487,5 +1487,10 @@
+   "2012/13 club season": "موسم الأندية 2012/13",
+   "Why can international assist totals differ?": "لماذا قد تختلف أعداد التمريرات الحاسمة الدولية؟",
+   "Assist totals depend on the matches covered and the provider’s definition of the final action before a goal. Compare definitions and cutoff dates. Our baseline source and later match additions are documented separately.": "تعتمد أعداد التمريرات الحاسمة على المباريات المشمولة وتعريف مزود البيانات للفعل الأخير قبل الهدف. قارن التعريفات وتواريخ التغطية. نوثق مصدر البيانات الأساسي والمباريات المضافة لاحقًا بصورة منفصلة.",
+-  "Why assist totals differ": "لماذا تختلف أعداد التمريرات الحاسمة"
++  "Why assist totals differ": "لماذا تختلف أعداد التمريرات الحاسمة",
++  "2026 goals so far: Messi {0}, Ronaldo {1}. Club and country, from 1 January. {2}. Compare assists, appearances and minutes.": "أهداف 2026 حتى الآن: ميسي {0}، رونالدو {1}. مع النادي والمنتخب منذ 1 يناير. {2}. قارن التمريرات الحاسمة والمشاركات والدقائق.",
++  "How many goals have Messi and Ronaldo scored in 2026?": "كم هدفًا سجل ميسي ورونالدو في عام 2026؟",
++  "In the 2026 calendar year, Messi has {0} goals and Ronaldo has {1}. {2}. These are senior club and international goals from 1 January, not all-time career totals. The match update log documents later additions.": "في السنة التقويمية 2026، سجل ميسي {0} هدفًا ورونالدو {1}. {2}. هذه أهداف الفريق الأول والمنتخب الأول منذ 1 يناير، وليست إجمالي أهداف المسيرة. يوثق سجل تحديثات المباريات الإضافات اللاحقة.",
++  "Are 2026 goals the same as career totals?": "هل أهداف 2026 هي نفسها إجمالي أهداف المسيرة؟",
++  "No. The 2026 comparison counts matches from 1 January 2026. Career totals cover all included senior seasons: Messi {0} goals and Ronaldo {1}. {2}. A goal scored in 2026 belongs to both views, so the two totals must not be added together.": "لا. تحسب مقارنة 2026 المباريات منذ 1 يناير 2026. وتشمل إجماليات المسيرة جميع مواسم الفريق الأول المحتسبة: ميسي {0} هدفًا ورونالدو {1}. {2}. يظهر الهدف المسجل في 2026 في كلا العرضين، لذلك يجب عدم جمع الإجماليين معًا."
+ }
+diff --git a/src/lib/i18n/messages/de.json b/src/lib/i18n/messages/de.json
+index 15901e1..0009c81 100644
+--- a/src/lib/i18n/messages/de.json
++++ b/src/lib/i18n/messages/de.json
+@@ -1487,5 +1487,10 @@
+   "2012/13 club season": "Klubsaison 2012/13",
+   "Why can international assist totals differ?": "Warum können sich Assistzahlen in Länderspielen unterscheiden?",
+   "Assist totals depend on the matches covered and the provider’s definition of the final action before a goal. Compare definitions and cutoff dates. Our baseline source and later match additions are documented separately.": "Assistzahlen hängen von den erfassten Spielen und der Definition des Datenanbieters für die letzte Aktion vor einem Tor ab. Vergleichen Sie Definitionen und Stichtage. Unsere Ausgangsquelle und später ergänzte Spiele sind getrennt dokumentiert.",
+-  "Why assist totals differ": "Warum sich Assistzahlen unterscheiden"
++  "Why assist totals differ": "Warum sich Assistzahlen unterscheiden",
++  "2026 goals so far: Messi {0}, Ronaldo {1}. Club and country, from 1 January. {2}. Compare assists, appearances and minutes.": "Tore 2026 bisher: Messi {0}, Ronaldo {1}. Verein und Nationalteam seit dem 1. Januar. {2}. Vergleiche Vorlagen, Einsätze und Spielminuten.",
++  "How many goals have Messi and Ronaldo scored in 2026?": "Wie viele Tore haben Messi und Ronaldo 2026 erzielt?",
++  "In the 2026 calendar year, Messi has {0} goals and Ronaldo has {1}. {2}. These are senior club and international goals from 1 January, not all-time career totals. The match update log documents later additions.": "Im Kalenderjahr 2026 hat Messi {0} Tore erzielt, Ronaldo {1}. {2}. Gezählt werden Tore für Verein und A-Nationalteam seit dem 1. Januar, nicht die gesamte Karriere. Später ergänzte Spiele sind im Aktualisierungsprotokoll dokumentiert.",
++  "Are 2026 goals the same as career totals?": "Sind die Tore von 2026 mit den Karrieretoren identisch?",
++  "No. The 2026 comparison counts matches from 1 January 2026. Career totals cover all included senior seasons: Messi {0} goals and Ronaldo {1}. {2}. A goal scored in 2026 belongs to both views, so the two totals must not be added together.": "Nein. Der Vergleich für 2026 zählt Spiele seit dem 1. Januar 2026. Die Karrieresummen umfassen alle berücksichtigten Spielzeiten im Seniorenbereich: Messi {0} Tore, Ronaldo {1}. {2}. Ein Tor aus 2026 erscheint in beiden Ansichten. Deshalb dürfen die beiden Summen nicht addiert werden."
+ }
+diff --git a/src/lib/i18n/messages/en.json b/src/lib/i18n/messages/en.json
+index a7eccb2..69946b0 100644
+--- a/src/lib/i18n/messages/en.json
++++ b/src/lib/i18n/messages/en.json
+@@ -1487,5 +1487,10 @@
+   "2012/13 club season": "2012/13 club season",
+   "Why can international assist totals differ?": "Why can international assist totals differ?",
+   "Assist totals depend on the matches covered and the provider’s definition of the final action before a goal. Compare definitions and cutoff dates. Our baseline source and later match additions are documented separately.": "Assist totals depend on the matches covered and the provider’s definition of the final action before a goal. Compare definitions and cutoff dates. Our baseline source and later match additions are documented separately.",
+-  "Why assist totals differ": "Why assist totals differ"
++  "Why assist totals differ": "Why assist totals differ",
++  "2026 goals so far: Messi {0}, Ronaldo {1}. Club and country, from 1 January. {2}. Compare assists, appearances and minutes.": "2026 goals so far: Messi {0}, Ronaldo {1}. Club and country, from 1 January. {2}. Compare assists, appearances and minutes.",
++  "How many goals have Messi and Ronaldo scored in 2026?": "How many goals have Messi and Ronaldo scored in 2026?",
++  "In the 2026 calendar year, Messi has {0} goals and Ronaldo has {1}. {2}. These are senior club and international goals from 1 January, not all-time career totals. The match update log documents later additions.": "In the 2026 calendar year, Messi has {0} goals and Ronaldo has {1}. {2}. These are senior club and international goals from 1 January, not all-time career totals. The match update log documents later additions.",
++  "Are 2026 goals the same as career totals?": "Are 2026 goals the same as career totals?",
++  "No. The 2026 comparison counts matches from 1 January 2026. Career totals cover all included senior seasons: Messi {0} goals and Ronaldo {1}. {2}. A goal scored in 2026 belongs to both views, so the two totals must not be added together.": "No. The 2026 comparison counts matches from 1 January 2026. Career totals cover all included senior seasons: Messi {0} goals and Ronaldo {1}. {2}. A goal scored in 2026 belongs to both views, so the two totals must not be added together."
+ }
+diff --git a/src/lib/i18n/messages/es.json b/src/lib/i18n/messages/es.json
+index 46e85f7..213f77e 100644
+--- a/src/lib/i18n/messages/es.json
++++ b/src/lib/i18n/messages/es.json
+@@ -1487,5 +1487,10 @@
+   "2012/13 club season": "Temporada de clubes 2012/13",
+   "Why can international assist totals differ?": "¿Por qué pueden diferir las asistencias con la selección?",
+   "Assist totals depend on the matches covered and the provider’s definition of the final action before a goal. Compare definitions and cutoff dates. Our baseline source and later match additions are documented separately.": "Los totales de asistencias dependen de los partidos incluidos y de cómo el proveedor define la última acción antes del gol. Compara las definiciones y las fechas de corte. Nuestra fuente de referencia y los partidos añadidos después se documentan por separado.",
+-  "Why assist totals differ": "Por qué difieren las asistencias"
++  "Why assist totals differ": "Por qué difieren las asistencias",
++  "2026 goals so far: Messi {0}, Ronaldo {1}. Club and country, from 1 January. {2}. Compare assists, appearances and minutes.": "Goles en 2026: Messi {0}, Ronaldo {1}. Club y selección, desde el 1 de enero. {2}. Compara asistencias, partidos y minutos.",
++  "How many goals have Messi and Ronaldo scored in 2026?": "¿Cuántos goles han marcado Messi y Ronaldo en 2026?",
++  "In the 2026 calendar year, Messi has {0} goals and Ronaldo has {1}. {2}. These are senior club and international goals from 1 January, not all-time career totals. The match update log documents later additions.": "En el año natural 2026, Messi lleva {0} goles y Ronaldo {1}. {2}. Son goles de club y selección absoluta desde el 1 de enero, no totales de carrera. El registro de actualizaciones documenta las incorporaciones posteriores.",
++  "Are 2026 goals the same as career totals?": "¿Los goles de 2026 son los mismos que los totales de carrera?",
++  "No. The 2026 comparison counts matches from 1 January 2026. Career totals cover all included senior seasons: Messi {0} goals and Ronaldo {1}. {2}. A goal scored in 2026 belongs to both views, so the two totals must not be added together.": "No. La comparación de 2026 cuenta partidos desde el 1 de enero de 2026. Los totales de carrera incluyen todas las temporadas de categoría absoluta contempladas: Messi {0} goles y Ronaldo {1}. {2}. Un gol de 2026 aparece en ambas vistas, por lo que sus totales no deben sumarse."
+ }
+diff --git a/src/lib/i18n/messages/fr.json b/src/lib/i18n/messages/fr.json
+index 4c1600b..e21ac1a 100644
+--- a/src/lib/i18n/messages/fr.json
++++ b/src/lib/i18n/messages/fr.json
+@@ -1,6 +1,6 @@
+ {
+   "Completed calendar year": "Année civile complète",
+-  "— = no playing minutes for a rate": "— = pas de minutes de jeu pour un tarif",
++  "— = no playing minutes for a rate": "— = pas de minutes de jeu pour un ratio",
+   "; award cancelled": "; prix annulé",
+   "· Edition {0}": "· Édition {0}",
+   "· Source review:": "· Examen des sources :",
+@@ -13,7 +13,7 @@
+   "{0} appearances · {1} minutes": "{0} matchs · {1} minutes",
+   "{0} Ballon d’Or awards": "{0} Ballon d'Or",
+   "{0} Ballon d’Or awards, 2008 to 2025": "{0} Ballon d'Or, 2008 à 2025",
+-  "{0} club and country: Messi {1} goals, Ronaldo {2}. Compare assists, minutes and per-90 rates.": "{0} club et pays : Messi {1} buts marqués, Ronaldo {2}. Comparez les passes décisives, les minutes et les tarifs par 90.\nStatistiques de carrière de",
++  "{0} club and country: Messi {1} goals, Ronaldo {2}. Compare assists, minutes and per-90 rates.": "{0} club et pays : Messi {1} buts marqués, Ronaldo {2}. Comparez les passes décisives, les minutes et les ratios par 90 minutes.\nStatistiques de carrière de",
+   "{0} Coverage ends {1}; newer matches are not included in this goal-type figure.": "{0} La couverture prend fin {1} ; les matchs les plus récents ne sont pas inclus dans ce chiffre de type but.",
+   "{0} custom {1} applied": "{0} personnalisé {1} appliqué",
+   "{0} Goal-type details stop at {1}.": "{0} Les détails du type d'objectif s'arrêtent à {1}.",
+@@ -192,7 +192,7 @@
+   "Club & country · Through Sep 2026": "Club et pays · Jusqu'en septembre 2026",
+   "Club & country this calendar year": "Club et pays cette année civile",
+   "Club + country": "Club et sélection",
+-  "Club + country includes senior competitive club games and recognized senior internationals. The league filter excludes cups and MLS playoffs. All-years totals combine the selected scope across every displayed year. Per-90 rates use the combined statistic multiplied by 90 and divided by the combined minutes. A zero appearance count means no senior appearance in that year; an undefined rate is shown as a dash.": "Club + pays comprend les matchs de club compétitifs seniors et les internationaux seniors reconnus. Le filtre de la ligue exclut les coupes et les séries éliminatoires de la MLS. Les totaux pour toutes les années combinent la portée sélectionnée pour chaque année affichée. Les tarifs par 90 utilisent la statistique combinée multipliée par 90 et divisée par le nombre de minutes combinées. Un nombre d'apparitions nul signifie aucune apparition senior cette année-là ; un taux non défini est affiché sous forme de tiret.",
++  "Club + country includes senior competitive club games and recognized senior internationals. The league filter excludes cups and MLS playoffs. All-years totals combine the selected scope across every displayed year. Per-90 rates use the combined statistic multiplied by 90 and divided by the combined minutes. A zero appearance count means no senior appearance in that year; an undefined rate is shown as a dash.": "Club + pays comprend les matchs de club compétitifs seniors et les internationaux seniors reconnus. Le filtre de la ligue exclut les coupes et les séries éliminatoires de la MLS. Les totaux pour toutes les années combinent la portée sélectionnée pour chaque année affichée. Les ratios par 90 minutes utilisent la statistique combinée multipliée par 90 et divisée par le nombre de minutes combinées. Un nombre d'apparitions nul signifie aucune apparition senior cette année-là ; un taux non défini est affiché sous forme de tiret.",
+   "Club and country sum to career totals. Champions League, goal types and penalties are overlapping subsets; do not add them all together.": "Le club et le pays totalisent les totaux de carrière. La Ligue des champions, les types de buts et les pénalités sont des sous-ensembles qui se chevauchent ; ne les additionnez pas tous.",
+   "Club by club": "Club par club",
+   "Club career records.": "Records de carrière du club.",
+@@ -361,7 +361,7 @@
+   "From the first appearances to 2026. Explore goals, assists and scoring rates across 25 calendar years.": "Des premiers matches joués jusqu'en 2026. Explorez les buts marqués, les passes décisives et les taux de buts sur 25 années civiles.",
+   "Funchal, Portugal": "Funchal, Portugal",
+   "Games in which both players appeared: competitive club meetings and senior international friendlies. The 2023 Riyadh exhibition is excluded.": "Jeux dans lesquels les deux joueurs sont apparus : réunions de clubs compétitives et matchs amicaux internationaux seniors. L'exposition de Riyad 2023 est exclue.",
+-  "Goal contributions = goals + assists. Goals per appearance = goals ÷ appearances. Goals per 90 = goals × 90 ÷ minutes. Penalty conversion = penalty goals ÷ attempts × 100. Non-penalty goals = goals − penalties. Rates are calculated before rounding. A rate with no minutes or appearances is unavailable, not zero.": "Contributions aux buts = buts marqués + passes décisives. Buts marqués par apparition = buts marqués ÷ matchs joués. Buts marqués par 90 = buts marqués × 90 ÷ minutes. Conversion des pénalités = buts de pénalité marqués ÷ tentatives × 100. Buts marqués sans pénalité = buts marqués − pénalités. Les tarifs sont calculés avant arrondi. Un tarif sans minutes ni matchs joués est indisponible, et non nul.",
++  "Goal contributions = goals + assists. Goals per appearance = goals ÷ appearances. Goals per 90 = goals × 90 ÷ minutes. Penalty conversion = penalty goals ÷ attempts × 100. Non-penalty goals = goals − penalties. Rates are calculated before rounding. A rate with no minutes or appearances is unavailable, not zero.": "Contributions aux buts = buts marqués + passes décisives. Buts marqués par apparition = buts marqués ÷ matchs joués. Buts marqués par 90 = buts marqués × 90 ÷ minutes. Conversion des pénalités = buts de pénalité marqués ÷ tentatives × 100. Buts marqués sans pénalité = buts marqués − pénalités. Les ratios sont calculés avant arrondi. Un ratio sans minutes ni matchs joués est indisponible, et non nul.",
+   "Goal display": "Affichage des buts",
+   "Goal types & set pieces": "Types de buts et coups de pied arrêtés",
+   "Goals": "Buts",
+@@ -722,7 +722,7 @@
+   "The goal machine": "La machine à buts",
+   "THE GOALSCORING STORY": "L'HISTOIRE DE BUT",
+   "The matches behind the latest totals.": "Les matchs derrière les derniers totaux.",
+-  "The per-appearance totals divide the combined goals by the combined appearances. They are not an average of rounded season rates. Domestic cups, national-team games and other competitions are excluded. Champions League figures exclude qualifying rounds.": "Les totaux par apparition divisent les buts combinés marqués par les matchs combinés joués. Il ne s’agit pas d’une moyenne de tarifs saisonniers arrondis. Les coupes nationales, les matchs des équipes nationales et autres compétitions sont exclus. Les chiffres de la Ligue des Champions excluent les tours de qualification.",
++  "The per-appearance totals divide the combined goals by the combined appearances. They are not an average of rounded season rates. Domestic cups, national-team games and other competitions are excluded. Champions League figures exclude qualifying rounds.": "Les totaux par apparition divisent les buts combinés marqués par les matchs combinés joués. Il ne s’agit pas d’une moyenne de ratios saisonniers arrondis. Les coupes nationales, les matchs des équipes nationales et autres compétitions sont exclus. Les chiffres de la Ligue des Champions excluent les tours de qualification.",
+   "The playmaker": "Le meneur de jeu",
+   "THE PROJECT": "LE PROJET",
+   "The pursuit of extraordinary.": "La quête de l’extraordinaire.",
+@@ -1487,5 +1487,10 @@
+   "2012/13 club season": "Saison de clubs 2012/13",
+   "Why can international assist totals differ?": "Pourquoi les totaux de passes décisives en sélection peuvent-ils varier ?",
+   "Assist totals depend on the matches covered and the provider’s definition of the final action before a goal. Compare definitions and cutoff dates. Our baseline source and later match additions are documented separately.": "Les totaux de passes décisives dépendent des matchs couverts et de la définition du fournisseur pour la dernière action avant un but. Comparez les définitions et les dates limites. Notre source de référence et les matchs ajoutés ensuite sont documentés séparément.",
+-  "Why assist totals differ": "Pourquoi les totaux de passes décisives diffèrent"
++  "Why assist totals differ": "Pourquoi les totaux de passes décisives diffèrent",
++  "2026 goals so far: Messi {0}, Ronaldo {1}. Club and country, from 1 January. {2}. Compare assists, appearances and minutes.": "Buts en 2026 : Messi {0}, Ronaldo {1}. En club et en sélection, depuis le 1er janvier. {2}. Comparez aussi les passes décisives, les matchs et les minutes.",
++  "How many goals have Messi and Ronaldo scored in 2026?": "Combien de buts Messi et Ronaldo ont-ils marqués en 2026 ?",
++  "In the 2026 calendar year, Messi has {0} goals and Ronaldo has {1}. {2}. These are senior club and international goals from 1 January, not all-time career totals. The match update log documents later additions.": "Durant l’année civile 2026, Messi compte {0} buts et Ronaldo {1}. {2}. Il s’agit des buts en club et en sélection senior depuis le 1er janvier, et non des totaux de carrière. Le journal des mises à jour documente les ajouts ultérieurs.",
++  "Are 2026 goals the same as career totals?": "Les buts de 2026 correspondent-ils aux totaux de carrière ?",
++  "No. The 2026 comparison counts matches from 1 January 2026. Career totals cover all included senior seasons: Messi {0} goals and Ronaldo {1}. {2}. A goal scored in 2026 belongs to both views, so the two totals must not be added together.": "Non. La comparaison 2026 compte les matchs depuis le 1er janvier 2026. Les totaux de carrière couvrent toutes les saisons senior retenues : Messi {0} buts et Ronaldo {1}. {2}. Un but marqué en 2026 figure dans les deux vues : il ne faut donc pas additionner leurs totaux."
+ }
+diff --git a/src/lib/i18n/messages/hi.json b/src/lib/i18n/messages/hi.json
+index dfeda43..c63ddc8 100644
+--- a/src/lib/i18n/messages/hi.json
++++ b/src/lib/i18n/messages/hi.json
+@@ -1487,5 +1487,10 @@
+   "2012/13 club season": "2012/13 क्लब सीज़न",
+   "Why can international assist totals differ?": "अंतरराष्ट्रीय असिस्ट के कुल आँकड़े अलग क्यों हो सकते हैं?",
+   "Assist totals depend on the matches covered and the provider’s definition of the final action before a goal. Compare definitions and cutoff dates. Our baseline source and later match additions are documented separately.": "असिस्ट के कुल आँकड़े शामिल मैचों और गोल से पहले की अंतिम कार्रवाई की डेटा प्रदाता द्वारा दी गई परिभाषा पर निर्भर करते हैं। परिभाषाओं और अंतिम शामिल तारीखों की तुलना करें। हमारे आधार स्रोत और बाद में जोड़े गए मैचों का अलग-अलग विवरण दिया गया है।",
+-  "Why assist totals differ": "असिस्ट के कुल आँकड़े अलग क्यों हैं"
++  "Why assist totals differ": "असिस्ट के कुल आँकड़े अलग क्यों हैं",
++  "2026 goals so far: Messi {0}, Ronaldo {1}. Club and country, from 1 January. {2}. Compare assists, appearances and minutes.": "2026 में अब तक गोल: मेसी {0}, रोनाल्डो {1}। क्लब और देश के लिए, 1 जनवरी से। {2}। असिस्ट, मैच और मिनटों की तुलना करें।",
++  "How many goals have Messi and Ronaldo scored in 2026?": "मेसी और रोनाल्डो ने 2026 में कितने गोल किए हैं?",
++  "In the 2026 calendar year, Messi has {0} goals and Ronaldo has {1}. {2}. These are senior club and international goals from 1 January, not all-time career totals. The match update log documents later additions.": "कैलेंडर वर्ष 2026 में मेसी के {0} गोल और रोनाल्डो के {1} गोल हैं। {2}। ये 1 जनवरी से सीनियर क्लब और राष्ट्रीय टीम के गोल हैं, पूरे करियर के कुल गोल नहीं। बाद में जोड़े गए मैच अपडेट लॉग में दर्ज हैं।",
++  "Are 2026 goals the same as career totals?": "क्या 2026 के गोल और करियर के कुल गोल एक ही हैं?",
++  "No. The 2026 comparison counts matches from 1 January 2026. Career totals cover all included senior seasons: Messi {0} goals and Ronaldo {1}. {2}. A goal scored in 2026 belongs to both views, so the two totals must not be added together.": "नहीं। 2026 की तुलना में 1 जनवरी 2026 से खेले गए मैच गिने जाते हैं। करियर के कुल आंकड़ों में शामिल सभी सीनियर सीज़न आते हैं: मेसी {0} गोल और रोनाल्डो {1}। {2}। 2026 का एक गोल दोनों दृश्यों में शामिल है, इसलिए दोनों कुलों को जोड़ना नहीं चाहिए।"
+ }
+diff --git a/src/lib/i18n/messages/nl.json b/src/lib/i18n/messages/nl.json
+index f60874f..8b858b9 100644
+--- a/src/lib/i18n/messages/nl.json
++++ b/src/lib/i18n/messages/nl.json
+@@ -1487,5 +1487,10 @@
+   "2012/13 club season": "Clubseizoen 2012/13",
+   "Why can international assist totals differ?": "Waarom kunnen assisttotalen in interlands verschillen?",
+   "Assist totals depend on the matches covered and the provider’s definition of the final action before a goal. Compare definitions and cutoff dates. Our baseline source and later match additions are documented separately.": "Assisttotalen hangen af van de opgenomen wedstrijden en de definitie van de laatste actie vóór een doelpunt bij de gegevensleverancier. Vergelijk definities en peildata. Onze basisbron en latere wedstrijdtoevoegingen worden apart gedocumenteerd.",
+-  "Why assist totals differ": "Waarom assisttotalen verschillen"
++  "Why assist totals differ": "Waarom assisttotalen verschillen",
++  "2026 goals so far: Messi {0}, Ronaldo {1}. Club and country, from 1 January. {2}. Compare assists, appearances and minutes.": "Doelpunten in 2026: Messi {0}, Ronaldo {1}. Club en land, vanaf 1 januari. {2}. Vergelijk assists, wedstrijden en minuten.",
++  "How many goals have Messi and Ronaldo scored in 2026?": "Hoeveel doelpunten hebben Messi en Ronaldo in 2026 gemaakt?",
++  "In the 2026 calendar year, Messi has {0} goals and Ronaldo has {1}. {2}. These are senior club and international goals from 1 January, not all-time career totals. The match update log documents later additions.": "In het kalenderjaar 2026 heeft Messi {0} doelpunten en Ronaldo {1}. {2}. Dit zijn doelpunten voor club en nationaal A-elftal vanaf 1 januari, geen carrièretotalen. Het updatelogboek documenteert later toegevoegde wedstrijden.",
++  "Are 2026 goals the same as career totals?": "Zijn de doelpunten van 2026 hetzelfde als de carrièretotalen?",
++  "No. The 2026 comparison counts matches from 1 January 2026. Career totals cover all included senior seasons: Messi {0} goals and Ronaldo {1}. {2}. A goal scored in 2026 belongs to both views, so the two totals must not be added together.": "Nee. De vergelijking voor 2026 telt wedstrijden vanaf 1 januari 2026. De carrièretotalen omvatten alle meegenomen seniorenseizoenen: Messi {0} doelpunten en Ronaldo {1}. {2}. Een doelpunt uit 2026 staat in beide overzichten. De twee totalen mogen daarom niet bij elkaar worden opgeteld."
+ }
+diff --git a/src/lib/i18n/messages/pt.json b/src/lib/i18n/messages/pt.json
+index 6bbadf8..21f3ad1 100644
+--- a/src/lib/i18n/messages/pt.json
++++ b/src/lib/i18n/messages/pt.json
+@@ -1487,5 +1487,10 @@
+   "2012/13 club season": "Temporada de clubes 2012/13",
+   "Why can international assist totals differ?": "Por que os totais de assistências pelas seleções podem variar?",
+   "Assist totals depend on the matches covered and the provider’s definition of the final action before a goal. Compare definitions and cutoff dates. Our baseline source and later match additions are documented separately.": "Os totais de assistências dependem dos jogos incluídos e da definição do provedor para a última ação antes do gol. Compare definições e datas de corte. Nossa fonte de referência e as partidas adicionadas depois são documentadas separadamente.",
+-  "Why assist totals differ": "Por que os totais de assistências variam"
++  "Why assist totals differ": "Por que os totais de assistências variam",
++  "2026 goals so far: Messi {0}, Ronaldo {1}. Club and country, from 1 January. {2}. Compare assists, appearances and minutes.": "Golos em 2026: Messi {0}, Ronaldo {1}. Clube e seleção, desde 1 de janeiro. {2}. Compara assistências, jogos e minutos.",
++  "How many goals have Messi and Ronaldo scored in 2026?": "Quantos golos marcaram Messi e Ronaldo em 2026?",
++  "In the 2026 calendar year, Messi has {0} goals and Ronaldo has {1}. {2}. These are senior club and international goals from 1 January, not all-time career totals. The match update log documents later additions.": "No ano civil de 2026, Messi tem {0} golos e Ronaldo {1}. {2}. São golos por clubes e seleções principais desde 1 de janeiro, não os totais da carreira. O registo de atualizações documenta os acréscimos posteriores.",
++  "Are 2026 goals the same as career totals?": "Os golos de 2026 são os mesmos que os totais da carreira?",
++  "No. The 2026 comparison counts matches from 1 January 2026. Career totals cover all included senior seasons: Messi {0} goals and Ronaldo {1}. {2}. A goal scored in 2026 belongs to both views, so the two totals must not be added together.": "Não. A comparação de 2026 conta jogos desde 1 de janeiro de 2026. Os totais da carreira abrangem todas as épocas seniores incluídas: Messi {0} golos e Ronaldo {1}. {2}. Um golo de 2026 aparece nas duas vistas, por isso os totais não devem ser somados."
+ }
+diff --git a/src/lib/i18n/messages/th.json b/src/lib/i18n/messages/th.json
+index 60206e6..eed3c46 100644
+--- a/src/lib/i18n/messages/th.json
++++ b/src/lib/i18n/messages/th.json
+@@ -1487,5 +1487,10 @@
+   "2012/13 club season": "ฤดูกาลสโมสร 2012/13",
+   "Why can international assist totals differ?": "ทำไมยอดแอสซิสต์ในทีมชาติจึงอาจแตกต่างกัน?",
+   "Assist totals depend on the matches covered and the provider’s definition of the final action before a goal. Compare definitions and cutoff dates. Our baseline source and later match additions are documented separately.": "ยอดแอสซิสต์ขึ้นอยู่กับนัดที่ครอบคลุมและนิยามของผู้ให้ข้อมูลต่อจังหวะสุดท้ายก่อนเกิดประตู ควรเปรียบเทียบนิยามและวันที่สิ้นสุดข้อมูล เราบันทึกแหล่งข้อมูลตั้งต้นและนัดที่เพิ่มภายหลังแยกกัน",
+-  "Why assist totals differ": "เหตุผลที่ยอดแอสซิสต์แตกต่างกัน"
++  "Why assist totals differ": "เหตุผลที่ยอดแอสซิสต์แตกต่างกัน",
++  "2026 goals so far: Messi {0}, Ronaldo {1}. Club and country, from 1 January. {2}. Compare assists, appearances and minutes.": "ประตูในปี 2026 จนถึงตอนนี้: เมสซี {0} โรนัลโด {1} รวมสโมสรและทีมชาติ ตั้งแต่วันที่ 1 มกราคม {2} เปรียบเทียบแอสซิสต์ จำนวนนัด และนาทีที่ลงเล่น",
++  "How many goals have Messi and Ronaldo scored in 2026?": "เมสซีและโรนัลโดยิงกี่ประตูในปี 2026?",
++  "In the 2026 calendar year, Messi has {0} goals and Ronaldo has {1}. {2}. These are senior club and international goals from 1 January, not all-time career totals. The match update log documents later additions.": "ในปีปฏิทิน 2026 เมสซียิง {0} ประตู และโรนัลโดยิง {1} ประตู {2} ตัวเลขนี้นับประตูของสโมสรชุดใหญ่และทีมชาติชุดใหญ่ตั้งแต่วันที่ 1 มกราคม ไม่ใช่ยอดรวมตลอดอาชีพ บันทึกการอัปเดตจะแสดงรายการแข่งขันที่เพิ่มภายหลัง",
++  "Are 2026 goals the same as career totals?": "ประตูในปี 2026 เหมือนกับยอดรวมตลอดอาชีพหรือไม่?",
++  "No. The 2026 comparison counts matches from 1 January 2026. Career totals cover all included senior seasons: Messi {0} goals and Ronaldo {1}. {2}. A goal scored in 2026 belongs to both views, so the two totals must not be added together.": "ไม่เหมือนกัน การเปรียบเทียบปี 2026 นับการแข่งขันตั้งแต่วันที่ 1 มกราคม 2026 ส่วนยอดรวมตลอดอาชีพครอบคลุมทุกฤดูกาลระดับชุดใหญ่ที่รวมไว้: เมสซี {0} ประตู และโรนัลโด {1} ประตู {2} ประตูที่ยิงในปี 2026 จะอยู่ในทั้งสองมุมมอง จึงไม่ควรนำยอดรวมทั้งสองมาบวกกัน"
+ }
+diff --git a/src/lib/public-pages.ts b/src/lib/public-pages.ts
+index 369ed33..2e66e67 100644
+--- a/src/lib/public-pages.ts
++++ b/src/lib/public-pages.ts
+@@ -6,7 +6,7 @@ import { policies, policyUpdated } from "./policies";
+ import { seasons } from "./seasons";
+ import { awardsReviewed, isAwardSlug } from "./awards";
+ import { toolPages, toolsUpdated } from "./tools";
+-import { comparisonContentUpdated, internationalAnswerUpdated, refreshedComparisons } from "./comparison-copy";
++import { comparisonContentRevisions, comparisonContentUpdated, internationalAnswerUpdated, refreshedComparisons } from "./comparison-copy";
+ import { answersUpdated } from "./record-answers";
+ import { ballonReviewed } from "./ballon-articles";
+ import { discoveryUpdated } from "./content-discovery";
+@@ -36,6 +36,10 @@ export function getPublicPages(years: readonly { year: number }[], snapshotDate:
+       if (slug === "answers" || page.scope || slug === "honours" || isAwardSlug(slug)) {
+         updated = [updated ?? snapshotDate, discoveryUpdated].sort().at(-1);
+       }
++      // A targeted editorial revision updates only the affected page's lastmod.
++      // Keep the statistic cutoff and unrelated comparison dates independent.
++      const editorialRevision = comparisonContentRevisions[slug];
++      if (editorialRevision) updated = [updated ?? editorialRevision, editorialRevision].sort().at(-1);
+       return {
+         path: `/${slug}`, title: page.title,
+         group: slug === "answers" ? "Comparisons" : Object.hasOwn(toolPages, slug) || slug === "scoring-calculator" ? "Tools & games" : page.scope || slug === "honours" || isAwardSlug(slug) ? "Comparisons" : "About & policies",
+diff --git a/tests/comparison-search.test.ts b/tests/comparison-search.test.ts
+index 78fb5ae..98d5e6c 100644
+--- a/tests/comparison-search.test.ts
++++ b/tests/comparison-search.test.ts
+@@ -83,7 +83,7 @@ test("visible answers and metadata are translated with the same published values
+   const data = buildPublishedData();
+   for (const locale of locales) {
+     const t = createTranslator(locale, JSON.parse(readFileSync(`src/lib/i18n/messages/${locale}.json`, "utf8")));
+-    for (const slug of ["goals", "free-kicks", "la-liga", "honours"]) {
++    for (const slug of ["goals", "free-kicks", "la-liga", "honours", "2026"]) {
+       const intro = comparisonIntro(slug, data, t, { messi: 48, ronaldo: 36 })!;
+       assert.ok(intro.length > 50, `${locale}/${slug}`);
+       assert.doesNotMatch(intro, /\{\d+\}/);
+@@ -100,12 +100,27 @@ test("visible answers and metadata are translated with the same published values
+   assert.match(answers[2].answer, /international friendlies.*Club friendlies.*excluded/);
+ });
+ 
++test("calendar-year answers keep annual goals distinct from career totals after a published match", () => {
++  const data = buildPublishedData([match], 1);
++  const year = data.scopes["2026"];
++  const intro = comparisonIntro("2026", data, english)!;
++  assert.ok(intro.includes(`Messi ${year.goals.messi}, Ronaldo ${year.goals.ronaldo}`));
++  assert.match(intro, /Updated 24 September 2026/);
++  const questions = comparisonQuestions("2026", data, english);
++  assert.ok(questions[0].answer.includes(`Messi has ${year.goals.messi} goals`));
++  assert.ok(questions[1].answer.includes(`Messi ${data.scopes.career.goals.messi} goals`));
++  assert.equal(questions[1].href, "/goals");
++  assert.ok(comparisonQuestions("goals", data, english).some(question => question.href === "/2026"));
++});
++
+ test("sitemap records the content revision separately from the statistic cutoff", () => {
+   const data = buildPublishedData();
+   const pages = getPublicPages(data.calendarYears, data.snapshotDate);
+-  for (const slug of ["goals", "free-kicks", "la-liga", "honours"]) assert.equal(pages.find(page => page.path === `/${slug}`)!.updated, discoveryUpdated);
++  for (const slug of ["2026", "goals", "compare"]) assert.equal(pages.find(page => page.path === `/${slug}`)!.updated, "2026-10-26");
++  for (const slug of ["free-kicks", "la-liga", "honours"]) assert.equal(pages.find(page => page.path === `/${slug}`)!.updated, discoveryUpdated);
+   assert.equal(data.snapshotDate, "2026-09-21");
+-  assert.equal(getPublicPages(data.calendarYears, "2026-10-07").find(page => page.path === "/goals")!.updated, "2026-10-07");
++  assert.equal(getPublicPages(data.calendarYears, "2026-10-07").find(page => page.path === "/goals")!.updated, "2026-10-26");
++  assert.equal(getPublicPages(data.calendarYears, "2026-10-27").find(page => page.path === "/goals")!.updated, "2026-10-27");
+ });
+ 
+ test("published matches preserve distinct translated page descriptions and goal-type cutoffs", () => {
+diff --git a/tests/e2e/comparison-search.spec.ts b/tests/e2e/comparison-search.spec.ts
+index dafe53c..d8ca159 100644
+--- a/tests/e2e/comparison-search.spec.ts
++++ b/tests/e2e/comparison-search.spec.ts
+@@ -62,10 +62,14 @@ test("targeted pages and all locale URLs retain canonical sitemap entries", asyn
+   const response = await request.get("/sitemap.xml");
+   expect(response.status()).toBe(200);
+   const xml = await response.text();
+-  for (const locale of locales) for (const slug of ["goals", "free-kicks", "la-liga", "honours"]) {
++  const statistics = await request.get("/api/comparison/career");
++  expect(statistics.status()).toBe(200);
++  const { coverageEnds } = await statistics.json();
++  for (const locale of locales) for (const slug of ["2026", "goals", "compare", "free-kicks", "la-liga", "honours"]) {
+     const path = `${locale === "en" ? "" : `/${locale}`}/${slug}`;
+     const entry = xml.split("<url>").find(item => item.includes(`${path}</loc>`));
+     expect(entry, path).toBeDefined();
+-    expect(entry).toContain(discoveryUpdated);
++    const editorialDate = ["2026", "goals", "compare"].includes(slug) ? "2026-10-26" : discoveryUpdated;
++    expect(entry).toContain(`<lastmod>${[coverageEnds, editorialDate].sort().at(-1)}</lastmod>`);
+   }
+ });
+diff --git a/tests/search-experience.test.ts b/tests/search-experience.test.ts
+index e5b6b79..0d3f8b3 100644
+--- a/tests/search-experience.test.ts
++++ b/tests/search-experience.test.ts
+@@ -5,7 +5,7 @@ import { buildPublishedData } from "../src/lib/published-data";
+ import { buildRecordAnswers, filterRecordAnswers } from "../src/lib/record-answers";
+ import { createTranslator } from "../src/lib/i18n/translate";
+ import { locales } from "../src/lib/i18n/config";
+-import { articleTopicLinks, contentTopics, relatedContent } from "../src/lib/content-discovery";
++import { articleComparisonLink, articleTopicLinks, contentTopics, relatedContent } from "../src/lib/content-discovery";
+ import { contentReview } from "../src/lib/content-review";
+ import { getPublicPages } from "../src/lib/public-pages";
+ import { comparisonDataset } from "../src/lib/comparison-schema";
+@@ -67,6 +67,14 @@ test("CMS topic links are reciprocal and never link to an unpublished translatio
+   assert.ok(unknown.every(item => !item.path.startsWith("/insights/")), "unmapped articles should not recommend unrelated news");
+ });
+ 
++test("article calls to action resolve to the exact record even for CMS-only explainers", () => {
++  assert.equal(articleComparisonLink("messi-ronaldo-free-kick-records")?.path, "/free-kicks");
++  assert.equal(articleComparisonLink("messi-ronaldo-penalty-records")?.path, "/penalties");
++  assert.equal(articleComparisonLink("messi-ronaldo-2026-goals-comparison")?.path, "/2026");
++  assert.equal(articleComparisonLink("unknown-article"), undefined);
++  for (const slug of Object.keys(articleTopicLinks)) assert.equal(articleComparisonLink(slug)?.kind, "comparison", slug);
++});
++
+ test("structured data retains cutoff, definitions, localized identities and actual displayed precision", () => {
+   const data = buildPublishedData([match], 1);
+   const core = comparisonDataset(data, "career", "/goals", "fr", "https://example.com", t);
