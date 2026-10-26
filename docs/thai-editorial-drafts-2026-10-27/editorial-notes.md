@@ -1,10 +1,23 @@
-# English editorial notes for four Thai informational drafts
+# English editorial notes for four bilingual informational articles
 
 Four original Thai drafts and their English adaptations cover mobile-link literacy, exposed credentials, similar names and operator identity, and evidence behind claims of official status or freshness. They are consumer-education alternatives to the supplied gambling access guides. Their titles describe those educational purposes. They do not offer betting destinations, account creation, gambling login instructions or endorsements.
 
-## Publication recommendation
+## Publication status
 
-Keep these as reviewable drafts. For messivsronaldo17.com, Thai football comparisons remain a clearer editorial fit than gambling-navigation keywords. A consumer-literacy section would need a deliberate audience purpose and sustained editorial expertise. Adding four pages solely because a competitor has similar URLs is not an evidence-based growth plan.
+All four articles are published in English and Thai following the user's request to add them to the live website. The local Markdown files remain the editorial source copies.
+
+| Article | English | Thai |
+|---|---|---|
+| Mobile links | [Read](https://messivsronaldo17.com/insights/ufabet-mobile-link-literacy) | [อ่าน](https://messivsronaldo17.com/th/insights/ufabet-mobile-link-literacy) |
+| Protecting exposed accounts | [Read](https://messivsronaldo17.com/insights/protect-accounts-after-data-exposure) | [อ่าน](https://messivsronaldo17.com/th/insights/protect-accounts-after-data-exposure) |
+| Similar names and website identity | [Read](https://messivsronaldo17.com/insights/ufa169-names-and-website-identity) | [อ่าน](https://messivsronaldo17.com/th/insights/ufa169-names-and-website-identity) |
+| Official website and latest-link claims | [Read](https://messivsronaldo17.com/insights/ufabet-official-website-claims) | [อ่าน](https://messivsronaldo17.com/th/insights/ufabet-official-website-claims) |
+
+The CMS uses each article's H1 for the page and search/social title. It has no separate SEO-title override, so the proposed alternative titles remain editorial metadata. The supplied meta descriptions populate the CMS description field. Opening answers appear once in the template's summary; tables, FAQs, citations and body text are preserved. Publication dates come from the CMS server.
+
+## Original editorial assessment
+
+The initial writing-stage recommendation was to retain these for review. The user's subsequent request authorized publication. The audience consideration remains: for messivsronaldo17.com, Thai football comparisons have a clearer editorial fit than gambling-navigation keywords. A consumer-literacy section benefits from a deliberate audience purpose and sustained editorial expertise. Competitor URLs alone do not demonstrate a growth opportunity.
 
 The screenshot shows five keyword strings: `ทางเข้าufabet`, `ufabet เข้าสู่ระบบ`, `เว็บยูฟ่า`, `ufa` and `ufabet.com`. It supplies no visible search volume, position, traffic, country, date range or measurement method. These are research inputs; they are not verified “top keywords.” UFA169 appears in one supplied article URL, rather than in the keyword screenshot.
 
@@ -32,7 +45,7 @@ The review does not establish traffic, sponsorship, authorship arrangements, pro
 | [3 Similar names and identity](03-ufa169-name-and-identity.md) | Separate naming, publication and operator relationships | No claim that a matching name proves common ownership |
 | [4 Official and latest claims](04-official-and-latest-claims.md) | Evaluate a publisher's claims without repeating them as established facts | Separate identity, freshness, safety and verification; examine source independence |
 
-SEO metadata: [Article 1](01-mobile-link-literacy.metadata.json), [Article 2](02-account-data-exposure.metadata.json), [Article 3](03-ufa169-name-and-identity.metadata.json), [Article 4](04-official-and-latest-claims.metadata.json). Each file contains its Thai SEO title, Thai description, proposed slug, keyword context and actual informational intent. Proposed slugs are suggestions, not live routes. English metadata and these notes belong outside the published article body.
+SEO metadata: [Article 1](01-mobile-link-literacy.metadata.json), [Article 2](02-account-data-exposure.metadata.json), [Article 3](03-ufa169-name-and-identity.metadata.json), [Article 4](04-official-and-latest-claims.metadata.json). Each file contains its Thai SEO title, Thai description, slug, keyword context, actual informational intent and publication receipt fields. The selected slugs now correspond to the live routes above. English editorial metadata and these notes remain outside the published article body.
 
 ## English versions
 
@@ -45,7 +58,7 @@ The English articles adapt the Thai drafts into natural English while preserving
 | [3 UFA169 and Similar Website Names Explained](03-ufa169-name-and-identity.en.md) | [Title and description](03-ufa169-name-and-identity.en.metadata.json) |
 | [4 UFABET Official Website and Latest Link Claims Explained](04-official-and-latest-claims.en.md) | [Title and description](04-official-and-latest-claims.en.metadata.json) |
 
-These files are separate drafts, not live alternate-language URLs. Their proposed slugs belong under the relevant language routing if published; no live routes or hreflang relationships have been created.
+Each English article and its Thai translation share a slug under their respective language routes. The live pages and sitemap identify English, Thai and an English x-default alternate. The local files remain separate editorial source copies.
 
 ## SEO AEO and GEO treatment
 
@@ -55,9 +68,9 @@ The four drafts deliberately serve different tasks. They will not fully satisfy 
 
 For Google Search, current AI-search guidance emphasizes useful original content and ordinary SEO foundations. Special AI markup, artificial text fragmentation and a specific word count are not prerequisites. These drafts aim for clarity and attributable facts; they do not guarantee rankings or AI citations. [Google's AI-search guidance](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide).
 
-If these drafts are eventually approved for this site's audience, use the existing Article and breadcrumb implementation, a truthful author/editor identity, and real publication dates. Preserve Thai language metadata and ordinary crawlable content. Do not invent expertise, reviews, first-hand testing or security certifications. Only add hreflang alternatives for translations that actually exist. FAQ sections are included for readers, with no rich-result promise.
+The published pages use the existing Article and breadcrumb implementation, configured publisher/editor identity, and real CMS publication dates. They preserve Thai language metadata and server-rendered article content. No expertise, reviews, first-hand testing or security certifications were invented. Hreflang alternatives cover the two published translations. FAQ sections are included for readers, with no rich-result promise.
 
-The relative links between draft files are editorial cross-references. Replace them with the final canonical article URLs only if the linked articles are published. Do not add the draft files to the sitemap or create live routes automatically.
+Relative links in the local Markdown remain editorial cross-references. All four such references were converted to their final localized paths in the CMS payloads. The sitemap includes the eight public article URLs.
 
 ## Originality and voice
 
@@ -69,4 +82,6 @@ The drafts contain no independent finding that UFABET, UFA169 or a named domain 
 
 ## Delivery state
 
-Prepared on 27 October 2026 as local editorial files. Four Thai originals and four English adaptations are complete for editorial review, with separate SEO metadata for each. No CMS records, application routes, sitemap entries, production settings or live articles were changed for these writing requests.
+Prepared on 27 October 2026 and subsequently published at the user's request through the existing authenticated CMS. Eight new records were created; the 32 existing English and Thai records were unchanged. The production application required no code deployment. Server publication timestamps are recorded in [publication receipts](publication-receipts.json); their UTC date may precede the local preparation date.
+
+[Payload validation](cms-validation.json) records the exact source text and metadata hashes at preparation time, before publication fields were added to the metadata files. [Public discovery verification](discovery-verification.json) records sitemap and article-list checks. [Live verification](live-verification.json) records public article, metadata, content and mobile layout checks.

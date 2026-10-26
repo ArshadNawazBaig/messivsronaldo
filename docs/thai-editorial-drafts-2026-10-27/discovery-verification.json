@@ -1,0 +1,297 @@
+{
+  "verifiedAt": "2026-10-26T22:50:10.183784+00:00",
+  "verificationMethod": "Anonymous HTTPS GETs only; XML namespace parsing for sitemap entries/alternates and HTML anchor parsing for public listings. No credentials, cookies, CMS writes or indexing claims.",
+  "origin": "https://messivsronaldo17.com",
+  "releaseHash": "51a3edd46cc6dc296a1fec303606ac0c942c7416bfee21c77c0c7d6c976f9ef6",
+  "httpResponses": [
+    {
+      "url": "https://messivsronaldo17.com/sitemap.xml",
+      "finalUrl": "https://messivsronaldo17.com/sitemap.xml",
+      "status": 200,
+      "contentType": "application/xml",
+      "bodySha256": "aea965ef10adb3db17d0174038b1840c652820930d73e9dcddb00c88ada5bf03",
+      "error": null
+    },
+    {
+      "url": "https://messivsronaldo17.com/insights",
+      "finalUrl": "https://messivsronaldo17.com/insights",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bodySha256": "2cfbac01433027faf9f58cb7cfa9607465a5a09b03c76f445898113c7e8cc69c",
+      "error": null
+    },
+    {
+      "url": "https://messivsronaldo17.com/th/insights",
+      "finalUrl": "https://messivsronaldo17.com/th/insights",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bodySha256": "ede0df6d2f5bc6fc36666df7ee4218358e06281b31d9a6d05c296d42d36a3984",
+      "error": null
+    }
+  ],
+  "sitemap": {
+    "url": "https://messivsronaldo17.com/sitemap.xml",
+    "status": 200,
+    "parseError": null,
+    "expectedArticles": 8,
+    "foundArticles": 8,
+    "articles": [
+      {
+        "url": "https://messivsronaldo17.com/insights/ufabet-mobile-link-literacy",
+        "locale": "en",
+        "occurrences": 1,
+        "lastmod": "2026-10-26T22:49:36.679Z",
+        "alternates": {
+          "en": "https://messivsronaldo17.com/insights/ufabet-mobile-link-literacy",
+          "th": "https://messivsronaldo17.com/th/insights/ufabet-mobile-link-literacy",
+          "x-default": "https://messivsronaldo17.com/insights/ufabet-mobile-link-literacy"
+        },
+        "expectedAlternates": {
+          "en": "https://messivsronaldo17.com/insights/ufabet-mobile-link-literacy",
+          "th": "https://messivsronaldo17.com/th/insights/ufabet-mobile-link-literacy",
+          "x-default": "https://messivsronaldo17.com/insights/ufabet-mobile-link-literacy"
+        },
+        "canonicalPresentOnce": true,
+        "correctEnglishThaiAlternates": true,
+        "correctXDefault": true,
+        "noUnpublishedLocaleAlternates": true,
+        "passed": true
+      },
+      {
+        "url": "https://messivsronaldo17.com/th/insights/ufabet-mobile-link-literacy",
+        "locale": "th",
+        "occurrences": 1,
+        "lastmod": "2026-10-26T22:49:37.111Z",
+        "alternates": {
+          "en": "https://messivsronaldo17.com/insights/ufabet-mobile-link-literacy",
+          "th": "https://messivsronaldo17.com/th/insights/ufabet-mobile-link-literacy",
+          "x-default": "https://messivsronaldo17.com/insights/ufabet-mobile-link-literacy"
+        },
+        "expectedAlternates": {
+          "en": "https://messivsronaldo17.com/insights/ufabet-mobile-link-literacy",
+          "th": "https://messivsronaldo17.com/th/insights/ufabet-mobile-link-literacy",
+          "x-default": "https://messivsronaldo17.com/insights/ufabet-mobile-link-literacy"
+        },
+        "canonicalPresentOnce": true,
+        "correctEnglishThaiAlternates": true,
+        "correctXDefault": true,
+        "noUnpublishedLocaleAlternates": true,
+        "passed": true
+      },
+      {
+        "url": "https://messivsronaldo17.com/insights/protect-accounts-after-data-exposure",
+        "locale": "en",
+        "occurrences": 1,
+        "lastmod": "2026-10-26T22:49:37.510Z",
+        "alternates": {
+          "en": "https://messivsronaldo17.com/insights/protect-accounts-after-data-exposure",
+          "th": "https://messivsronaldo17.com/th/insights/protect-accounts-after-data-exposure",
+          "x-default": "https://messivsronaldo17.com/insights/protect-accounts-after-data-exposure"
+        },
+        "expectedAlternates": {
+          "en": "https://messivsronaldo17.com/insights/protect-accounts-after-data-exposure",
+          "th": "https://messivsronaldo17.com/th/insights/protect-accounts-after-data-exposure",
+          "x-default": "https://messivsronaldo17.com/insights/protect-accounts-after-data-exposure"
+        },
+        "canonicalPresentOnce": true,
+        "correctEnglishThaiAlternates": true,
+        "correctXDefault": true,
+        "noUnpublishedLocaleAlternates": true,
+        "passed": true
+      },
+      {
+        "url": "https://messivsronaldo17.com/th/insights/protect-accounts-after-data-exposure",
+        "locale": "th",
+        "occurrences": 1,
+        "lastmod": "2026-10-26T22:49:37.949Z",
+        "alternates": {
+          "en": "https://messivsronaldo17.com/insights/protect-accounts-after-data-exposure",
+          "th": "https://messivsronaldo17.com/th/insights/protect-accounts-after-data-exposure",
+          "x-default": "https://messivsronaldo17.com/insights/protect-accounts-after-data-exposure"
+        },
+        "expectedAlternates": {
+          "en": "https://messivsronaldo17.com/insights/protect-accounts-after-data-exposure",
+          "th": "https://messivsronaldo17.com/th/insights/protect-accounts-after-data-exposure",
+          "x-default": "https://messivsronaldo17.com/insights/protect-accounts-after-data-exposure"
+        },
+        "canonicalPresentOnce": true,
+        "correctEnglishThaiAlternates": true,
+        "correctXDefault": true,
+        "noUnpublishedLocaleAlternates": true,
+        "passed": true
+      },
+      {
+        "url": "https://messivsronaldo17.com/insights/ufa169-names-and-website-identity",
+        "locale": "en",
+        "occurrences": 1,
+        "lastmod": "2026-10-26T22:49:38.493Z",
+        "alternates": {
+          "en": "https://messivsronaldo17.com/insights/ufa169-names-and-website-identity",
+          "th": "https://messivsronaldo17.com/th/insights/ufa169-names-and-website-identity",
+          "x-default": "https://messivsronaldo17.com/insights/ufa169-names-and-website-identity"
+        },
+        "expectedAlternates": {
+          "en": "https://messivsronaldo17.com/insights/ufa169-names-and-website-identity",
+          "th": "https://messivsronaldo17.com/th/insights/ufa169-names-and-website-identity",
+          "x-default": "https://messivsronaldo17.com/insights/ufa169-names-and-website-identity"
+        },
+        "canonicalPresentOnce": true,
+        "correctEnglishThaiAlternates": true,
+        "correctXDefault": true,
+        "noUnpublishedLocaleAlternates": true,
+        "passed": true
+      },
+      {
+        "url": "https://messivsronaldo17.com/th/insights/ufa169-names-and-website-identity",
+        "locale": "th",
+        "occurrences": 1,
+        "lastmod": "2026-10-26T22:49:39.111Z",
+        "alternates": {
+          "en": "https://messivsronaldo17.com/insights/ufa169-names-and-website-identity",
+          "th": "https://messivsronaldo17.com/th/insights/ufa169-names-and-website-identity",
+          "x-default": "https://messivsronaldo17.com/insights/ufa169-names-and-website-identity"
+        },
+        "expectedAlternates": {
+          "en": "https://messivsronaldo17.com/insights/ufa169-names-and-website-identity",
+          "th": "https://messivsronaldo17.com/th/insights/ufa169-names-and-website-identity",
+          "x-default": "https://messivsronaldo17.com/insights/ufa169-names-and-website-identity"
+        },
+        "canonicalPresentOnce": true,
+        "correctEnglishThaiAlternates": true,
+        "correctXDefault": true,
+        "noUnpublishedLocaleAlternates": true,
+        "passed": true
+      },
+      {
+        "url": "https://messivsronaldo17.com/insights/ufabet-official-website-claims",
+        "locale": "en",
+        "occurrences": 1,
+        "lastmod": "2026-10-26T22:49:39.513Z",
+        "alternates": {
+          "en": "https://messivsronaldo17.com/insights/ufabet-official-website-claims",
+          "th": "https://messivsronaldo17.com/th/insights/ufabet-official-website-claims",
+          "x-default": "https://messivsronaldo17.com/insights/ufabet-official-website-claims"
+        },
+        "expectedAlternates": {
+          "en": "https://messivsronaldo17.com/insights/ufabet-official-website-claims",
+          "th": "https://messivsronaldo17.com/th/insights/ufabet-official-website-claims",
+          "x-default": "https://messivsronaldo17.com/insights/ufabet-official-website-claims"
+        },
+        "canonicalPresentOnce": true,
+        "correctEnglishThaiAlternates": true,
+        "correctXDefault": true,
+        "noUnpublishedLocaleAlternates": true,
+        "passed": true
+      },
+      {
+        "url": "https://messivsronaldo17.com/th/insights/ufabet-official-website-claims",
+        "locale": "th",
+        "occurrences": 1,
+        "lastmod": "2026-10-26T22:49:39.922Z",
+        "alternates": {
+          "en": "https://messivsronaldo17.com/insights/ufabet-official-website-claims",
+          "th": "https://messivsronaldo17.com/th/insights/ufabet-official-website-claims",
+          "x-default": "https://messivsronaldo17.com/insights/ufabet-official-website-claims"
+        },
+        "expectedAlternates": {
+          "en": "https://messivsronaldo17.com/insights/ufabet-official-website-claims",
+          "th": "https://messivsronaldo17.com/th/insights/ufabet-official-website-claims",
+          "x-default": "https://messivsronaldo17.com/insights/ufabet-official-website-claims"
+        },
+        "canonicalPresentOnce": true,
+        "correctEnglishThaiAlternates": true,
+        "correctXDefault": true,
+        "noUnpublishedLocaleAlternates": true,
+        "passed": true
+      }
+    ],
+    "passed": true
+  },
+  "listings": [
+    {
+      "locale": "en",
+      "url": "https://messivsronaldo17.com/insights",
+      "status": 200,
+      "canonical": "https://messivsronaldo17.com/insights",
+      "canonicalMatches": true,
+      "articles": [
+        {
+          "url": "https://messivsronaldo17.com/insights/ufabet-mobile-link-literacy",
+          "matchingAnchors": 1,
+          "anchorTexts": [
+            "Digital literacy4 min readUFABET Mobile Links and How to Recognize Misleading URLsLearn what mobile link labels, URLs and HTTPS can reveal, with clear examples and practical guidance for protecting personal information.Read article"
+          ],
+          "passed": true
+        },
+        {
+          "url": "https://messivsronaldo17.com/insights/protect-accounts-after-data-exposure",
+          "matchingAnchors": 1,
+          "anchorTexts": [
+            "Digital literacy4 min readProtecting Your Accounts After Entering Details on a Suspicious PageEntered details on a suspicious page? Learn how to protect email, reused passwords, social accounts and banking information, with a fictional example.Read article"
+          ],
+          "passed": true
+        },
+        {
+          "url": "https://messivsronaldo17.com/insights/ufa169-names-and-website-identity",
+          "matchingAnchors": 1,
+          "anchorTexts": [
+            "Digital literacy4 min readUFA169 and Similar Website Names ExplainedSimilar names and logos do not establish ownership or endorsement. Learn to separate publishers, external links and sources through fictional sports examples.Read article"
+          ],
+          "passed": true
+        },
+        {
+          "url": "https://messivsronaldo17.com/insights/ufabet-official-website-claims",
+          "matchingAnchors": 1,
+          "anchorTexts": [
+            "Digital literacy5 min readUFABET Official Website and Latest Link Claims ExplainedUnderstand claims about official websites and latest links. Examine update dates, source independence and evidence before repeating a claim.Read article"
+          ],
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "locale": "th",
+      "url": "https://messivsronaldo17.com/th/insights",
+      "status": 200,
+      "canonical": "https://messivsronaldo17.com/th/insights",
+      "canonicalMatches": true,
+      "articles": [
+        {
+          "url": "https://messivsronaldo17.com/th/insights/ufabet-mobile-link-literacy",
+          "matchingAnchors": 1,
+          "anchorTexts": [
+            "ความรู้เท่าทันดิจิทัลอ่าน 6 นาทีทางเข้า UFABET บนมือถือกับความเสี่ยงจากลิงก์เลียนแบบอ่านลิงก์บนมือถือให้เข้าใจ แยกชื่อบนปุ่มออกจาก URL และรู้ว่า HTTPS ยืนยันอะไรได้บ้าง พร้อมตัวอย่างและข้อควรทำเมื่อพบหน้าที่ขอข้อมูลสำคัญอ่านบทความ"
+          ],
+          "passed": true
+        },
+        {
+          "url": "https://messivsronaldo17.com/th/insights/protect-accounts-after-data-exposure",
+          "matchingAnchors": 1,
+          "anchorTexts": [
+            "ความรู้เท่าทันดิจิทัลอ่าน 6 นาทีเผลอกรอกข้อมูลในหน้าที่น่าสงสัย ปกป้องอีเมลและบัญชีสำคัญอย่างไรเผลอส่งรหัสผ่านให้หน้าที่น่าสงสัย ควรทำอะไรต่อ อ่านวิธีดูแลอีเมล รหัสผ่านที่ใช้ซ้ำ บัญชีโซเชียล และข้อมูลธนาคาร พร้อมตัวอย่างสมมติอ่านบทความ"
+          ],
+          "passed": true
+        },
+        {
+          "url": "https://messivsronaldo17.com/th/insights/ufa169-names-and-website-identity",
+          "matchingAnchors": 1,
+          "anchorTexts": [
+            "ความรู้เท่าทันดิจิทัลอ่าน 6 นาทีUFA169 ufa และเว็บยูฟ่า ชื่อคล้ายกันบอกอะไรได้จริงชื่อ โลโก้ และคำในที่อยู่เว็บไม่ยืนยันผู้จัดทำหรือการรับรอง เรียนรู้การแยกผู้เขียนข่าว ลิงก์ภายนอก และแหล่งที่มาของข้ออ้างผ่านตัวอย่างสมมติอ่านบทความ"
+          ],
+          "passed": true
+        },
+        {
+          "url": "https://messivsronaldo17.com/th/insights/ufabet-official-website-claims",
+          "matchingAnchors": 1,
+          "anchorTexts": [
+            "ความรู้เท่าทันดิจิทัลอ่าน 6 นาทีUFABET เว็บไซต์ทางการและลิงก์ล่าสุด อ่านคำกล่าวอ้างอย่างไรคำว่าเว็บไซต์ทางการและลิงก์ล่าสุดบอกอะไรได้จริง เรียนรู้การอ่านวันที่อัปเดต แหล่งอ้างอิง และหลักฐาน เพื่อไม่ส่งต่อข้อกล่าวอ้างเกินข้อมูลที่มีอ่านบทความ"
+          ],
+          "passed": true
+        }
+      ],
+      "passed": true
+    }
+  ],
+  "allChecksPassed": true
+}

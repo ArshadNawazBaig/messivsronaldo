@@ -1,5 +1,5 @@
 {
-  "status": "Local editorial draft; not published",
+  "status": "Published",
   "language": "th",
   "reviewed_on": "2026-10-27",
   "seo_title_th": "เผลอกรอกข้อมูลในหน้าต้องสงสัย ปกป้องบัญชีอย่างไร",
@@ -32,5 +32,10 @@
       "supports_en": "Avoid supplying more information through suspicious messages and use independently known contact channels."
     }
   ],
-  "prepared_date": "2026-10-27"
+  "prepared_date": "2026-10-27",
+  "published_url": "https://messivsronaldo17.com/th/insights/protect-accounts-after-data-exposure",
+  "published_at": "2026-10-26T22:49:37.949Z",
+  "cms_id": "5de56994-a315-48b9-a502-a6b2a6cd4b00",
+  "published_title": "เผลอกรอกข้อมูลในหน้าที่น่าสงสัย ปกป้องอีเมลและบัญชีสำคัญอย่างไร",
+  "seo_title_mapping": "The CMS uses the article title for its SEO title; the proposed SEO title is retained above as editorial metadata."
 }

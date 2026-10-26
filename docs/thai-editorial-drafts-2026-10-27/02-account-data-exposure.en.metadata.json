@@ -1,5 +1,5 @@
 {
-  "status": "Local editorial draft; not published",
+  "status": "Published",
   "language": "en",
   "prepared_date": "2026-10-27",
   "translation_of": "02-account-data-exposure.md",
@@ -26,5 +26,10 @@
       "supports_en": "Avoiding further disclosures and independently initiating contact."
     }
   ],
-  "source_language": "th"
+  "source_language": "th",
+  "published_url": "https://messivsronaldo17.com/insights/protect-accounts-after-data-exposure",
+  "published_at": "2026-10-26T22:49:37.510Z",
+  "cms_id": "e2433ee4-30b5-4d3a-bfc8-05f5c59dbc30",
+  "published_title": "Protecting Your Accounts After Entering Details on a Suspicious Page",
+  "seo_title_mapping": "The CMS uses the article title for its SEO title; the proposed SEO title is retained above as editorial metadata."
 }

@@ -1,0 +1,509 @@
+{
+  "preparedAt": "2026-10-26T22:49:18.562Z",
+  "sourceCount": 8,
+  "commandCount": 8,
+  "allChecksPassed": true,
+  "publicationDatesAssignedByServer": true,
+  "limitations": [
+    "The CMS has no separate seoTitle or seoDescription fields. The exact source H1 maps to title (also the search/social headline); the proposed SEO title remains in this validation manifest. The supplied meta description maps to description (also the visible excerpt).",
+    "The plain opening answer maps to summary and is removed from the body to avoid duplication. The source H1 maps to title and is removed from the body. All remaining text, heading levels, tables, code marks and links are preserved.",
+    "Editorial metadata, query context, translation notes and prepared/reviewed dates are not CMS draft fields. Source dates are not used as publication dates; the CMS assigns real publication timestamps when published.",
+    "Covers are optional. image is null; no author, cover or credentials are invented. The existing public template supplies its standard image/organization fallback.",
+    "All formatting actually present is supported. The bounded converter rejects unhandled Markdown including emphasis, lists, blockquotes, images, fenced code, raw HTML, hard breaks and aligned table columns; none occurs in these eight sources.",
+    "This bundle contains local SAVE commands only. It performs no API or database write. Publication must preflight current locale/slug/revision state; regenerate with this file present to retain each UUID."
+  ],
+  "articles": [
+    {
+      "source": "01-mobile-link-literacy.en.md",
+      "metadataSource": "01-mobile-link-literacy.en.metadata.json",
+      "locale": "en",
+      "slug": "ufabet-mobile-link-literacy",
+      "id": "04ac6e9c-b120-4176-942b-e1ebfbaa57a0",
+      "canonicalPath": "/insights/ufabet-mobile-link-literacy",
+      "sourceSha256": "3b6d89de3b902728d9fecea0b708b5e3115384a502241ce77448bc0b5df2751c",
+      "metadataSha256": "52f805d779b5dbe7b061aee568db5c02b7d82f8d6264b5d6b64df8d2f5bd0a57",
+      "draftSha256": "e53c670e044a7ba4800917ebdb95bac356508289ccea9cc4fc296efe8fa22520",
+      "requestBytes": 10524,
+      "title": "UFABET Mobile Links and How to Recognize Misleading URLs",
+      "proposedSeoTitle": "UFABET Mobile Links and Misleading URLs Explained",
+      "seoTitleOverrideSupported": false,
+      "seoDescriptionMappedToDescription": true,
+      "description": "Learn what mobile link labels, URLs and HTTPS can reveal, with clear examples and practical guidance for protecting personal information.",
+      "summary": "A button labelled “UFABET access” does not establish who controls the website it leads to. HTTPS protects the connection between your browser and a website; it does not certify the operator's trustworthiness. If a page asks for a password, personal information or a download before you understand who is receiving your data, pause before continuing.",
+      "category": "Digital literacy",
+      "primaryQueryContext": "UFABET mobile links",
+      "actualIntentServed": "Consumer education about mobile URLs, browser security signals and requests for sensitive information.",
+      "citations": [
+        {
+          "title": "MDN explains the components of a URL",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL"
+        },
+        {
+          "title": "IANA's explanation of example domains",
+          "url": "https://www.iana.org/help/example-domains"
+        },
+        {
+          "title": "Chromium's explanation",
+          "url": "https://blog.chromium.org/2023/05/an-update-on-lock-icon.html?hl=en_GB"
+        },
+        {
+          "title": "Chrome's security-warning guidance",
+          "url": "https://support.google.com/chrome/answer/95617?hl=en"
+        },
+        {
+          "title": "FTC guidance on recognizing phishing",
+          "url": "https://consumer.ftc.gov/articles/how-recognize-avoid-phishing-scams"
+        }
+      ],
+      "rewrittenLinks": [
+        {
+          "from": "02-account-data-exposure.en.md",
+          "to": "/insights/protect-accounts-after-data-exposure"
+        }
+      ],
+      "preservedFormatting": {
+        "h2": 5,
+        "h3": 3,
+        "tables": 1,
+        "tableRows": 4,
+        "tableCells": 12,
+        "paragraphs": 29,
+        "inlineCode": 9,
+        "externalLinks": 5,
+        "internalLinks": 1
+      },
+      "checks": {
+        "exactMarkdownRoundTripBeforeLinkRewrite": true,
+        "onlyIntendedLinkChanges": true,
+        "draftSchema": true,
+        "commandSchema": true,
+        "publicationValidation": true,
+        "noSchemaNormalizationLoss": true,
+        "requestSize": true,
+        "threeFaqs": true
+      }
+    },
+    {
+      "source": "01-mobile-link-literacy.md",
+      "metadataSource": "01-mobile-link-literacy.metadata.json",
+      "locale": "th",
+      "slug": "ufabet-mobile-link-literacy",
+      "id": "cd76c456-7b61-48c9-92e5-910038dabf19",
+      "canonicalPath": "/th/insights/ufabet-mobile-link-literacy",
+      "sourceSha256": "4d4123d5940e3a6306ec4cdfe10cc07ee2be363b9e425e72b7c2f139027a4918",
+      "metadataSha256": "b2febe3ab9e6b6a17327d52dfd2d6572d5b7e7b431c5f187b0e6c3de464f6803",
+      "draftSha256": "b14ae51da5bec268965917c3a7b4187805a89c02bd18a8d3b9787fad6b1c9613",
+      "requestBytes": 18578,
+      "title": "ทางเข้า UFABET บนมือถือกับความเสี่ยงจากลิงก์เลียนแบบ",
+      "proposedSeoTitle": "ทางเข้า UFABET บนมือถือ รู้ทันลิงก์และความหมายของ HTTPS",
+      "seoTitleOverrideSupported": false,
+      "seoDescriptionMappedToDescription": true,
+      "description": "อ่านลิงก์บนมือถือให้เข้าใจ แยกชื่อบนปุ่มออกจาก URL และรู้ว่า HTTPS ยืนยันอะไรได้บ้าง พร้อมตัวอย่างและข้อควรทำเมื่อพบหน้าที่ขอข้อมูลสำคัญ",
+      "summary": "คำว่า “ทางเข้า UFABET” บนปุ่มหรือในผลค้นหาไม่ได้ยืนยันว่าใครเป็นเจ้าของเว็บไซต์ปลายทาง ส่วน HTTPS บอกเรื่องการเชื่อมต่อที่เข้ารหัส ไม่ได้เป็นใบรับรองความน่าเชื่อถือของผู้ให้บริการ หากหน้าที่เปิดขึ้นมาขอรหัสผ่าน ข้อมูลส่วนตัว หรือให้ดาวน์โหลดไฟล์ ทั้งที่คุณยังไม่ทราบว่าใครรับข้อมูลนั้น ควรหยุดก่อนส่งข้อมูล",
+      "category": "ความรู้เท่าทันดิจิทัล",
+      "primaryQueryContext": "ทางเข้าufabet",
+      "actualIntentServed": "Consumer education about mobile URL interpretation and browser security signals; not access to a gambling service.",
+      "citations": [
+        {
+          "title": "คู่มือ URL ของ MDN",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL"
+        },
+        {
+          "title": "ข้อมูลโดเมนตัวอย่างจาก IANA",
+          "url": "https://www.iana.org/help/example-domains"
+        },
+        {
+          "title": "คำอธิบายจากทีม Chromium",
+          "url": "https://blog.chromium.org/2023/05/an-update-on-lock-icon.html?hl=en_GB"
+        },
+        {
+          "title": "ความหมายของคำเตือนใน Chrome",
+          "url": "https://support.google.com/chrome/answer/95617?hl=en"
+        },
+        {
+          "title": "แนวทางสังเกตฟิชชิงจาก FTC",
+          "url": "https://consumer.ftc.gov/articles/how-recognize-avoid-phishing-scams"
+        }
+      ],
+      "rewrittenLinks": [
+        {
+          "from": "02-account-data-exposure.md",
+          "to": "/th/insights/protect-accounts-after-data-exposure"
+        }
+      ],
+      "preservedFormatting": {
+        "h2": 5,
+        "h3": 3,
+        "tables": 1,
+        "tableRows": 4,
+        "tableCells": 12,
+        "paragraphs": 29,
+        "inlineCode": 9,
+        "externalLinks": 5,
+        "internalLinks": 1
+      },
+      "checks": {
+        "exactMarkdownRoundTripBeforeLinkRewrite": true,
+        "onlyIntendedLinkChanges": true,
+        "draftSchema": true,
+        "commandSchema": true,
+        "publicationValidation": true,
+        "noSchemaNormalizationLoss": true,
+        "requestSize": true,
+        "threeFaqs": true
+      }
+    },
+    {
+      "source": "02-account-data-exposure.en.md",
+      "metadataSource": "02-account-data-exposure.en.metadata.json",
+      "locale": "en",
+      "slug": "protect-accounts-after-data-exposure",
+      "id": "e2433ee4-30b5-4d3a-bfc8-05f5c59dbc30",
+      "canonicalPath": "/insights/protect-accounts-after-data-exposure",
+      "sourceSha256": "afb57766cb45a78ccec8e98f26a2e847716514b7e9a7e491adb03b5da8a1063f",
+      "metadataSha256": "1c9da804f4decdef5a363332828717e8547e70b339fe9e372bbf9a28ce80ec87",
+      "draftSha256": "b47dd08b92e554d07cb9720e19b102c2d3116b2274321e85c7daeec5417b3d08",
+      "requestBytes": 7179,
+      "title": "Protecting Your Accounts After Entering Details on a Suspicious Page",
+      "proposedSeoTitle": "Protect Your Accounts After Sharing a Password by Mistake",
+      "seoTitleOverrideSupported": false,
+      "seoDescriptionMappedToDescription": true,
+      "description": "Entered details on a suspicious page? Learn how to protect email, reused passwords, social accounts and banking information, with a fictional example.",
+      "summary": "If you sent a password to a suspicious page, stop providing information and protect any important accounts that use the same password. If you also shared card details, banking information, or a transaction verification code, contact your bank through a channel you already know. You do not need to identify the page’s operator before acting.",
+      "category": "Digital literacy",
+      "primaryQueryContext": "ufabet เข้าสู่ระบบ",
+      "actualIntentServed": "Informational incident response after possible credential exposure: protecting email, reused passwords, social accounts, and banking information.",
+      "citations": [
+        {
+          "title": "Google’s compromised-account guide",
+          "url": "https://support.google.com/accounts/answer/6294825?hl=en"
+        },
+        {
+          "title": "NCSC’s guidance on compromised accounts",
+          "url": "https://www.ncsc.gov.uk/section/respond-recover/hacked-accounts"
+        },
+        {
+          "title": "FTC’s phishing guidance",
+          "url": "https://consumer.ftc.gov/articles/how-recognize-avoid-phishing-scams"
+        }
+      ],
+      "rewrittenLinks": [],
+      "preservedFormatting": {
+        "h2": 5,
+        "h3": 3,
+        "tables": 0,
+        "tableRows": 0,
+        "tableCells": 0,
+        "paragraphs": 15,
+        "inlineCode": 0,
+        "externalLinks": 3,
+        "internalLinks": 0
+      },
+      "checks": {
+        "exactMarkdownRoundTripBeforeLinkRewrite": true,
+        "onlyIntendedLinkChanges": true,
+        "draftSchema": true,
+        "commandSchema": true,
+        "publicationValidation": true,
+        "noSchemaNormalizationLoss": true,
+        "requestSize": true,
+        "threeFaqs": true
+      }
+    },
+    {
+      "source": "02-account-data-exposure.md",
+      "metadataSource": "02-account-data-exposure.metadata.json",
+      "locale": "th",
+      "slug": "protect-accounts-after-data-exposure",
+      "id": "5de56994-a315-48b9-a502-a6b2a6cd4b00",
+      "canonicalPath": "/th/insights/protect-accounts-after-data-exposure",
+      "sourceSha256": "97b6ece5089f428faf0e80771159a8520f6debb2e2f0cbad425d19847147844f",
+      "metadataSha256": "28a4aa78a51926b5627986a9dfaf0d1b176fa7d1086e9aaedc861309878be36f",
+      "draftSha256": "378a86f0b01c3b92b90e65d19903bf53c104067fa987bf2d7326367cba23ec75",
+      "requestBytes": 14995,
+      "title": "เผลอกรอกข้อมูลในหน้าที่น่าสงสัย ปกป้องอีเมลและบัญชีสำคัญอย่างไร",
+      "proposedSeoTitle": "เผลอกรอกข้อมูลในหน้าต้องสงสัย ปกป้องบัญชีอย่างไร",
+      "seoTitleOverrideSupported": false,
+      "seoDescriptionMappedToDescription": true,
+      "description": "เผลอส่งรหัสผ่านให้หน้าที่น่าสงสัย ควรทำอะไรต่อ อ่านวิธีดูแลอีเมล รหัสผ่านที่ใช้ซ้ำ บัญชีโซเชียล และข้อมูลธนาคาร พร้อมตัวอย่างสมมติ",
+      "summary": "หากเผลอส่งรหัสผ่านให้หน้าที่น่าสงสัย ให้หยุดส่งข้อมูลเพิ่ม แล้วดูแลอีเมลและบัญชีสำคัญที่ใช้รหัสผ่านเดียวกันทันที หากส่งข้อมูลบัตร ข้อมูลธนาคาร หรือรหัสยืนยันธุรกรรมไปด้วย ให้ติดต่อธนาคารผ่านช่องทางที่คุณมีอยู่เดิม ไม่ต้องรอให้รู้ว่าใครเป็นผู้ทำหน้าเว็บก่อนจึงเริ่มป้องกันความเสียหาย",
+      "category": "ความรู้เท่าทันดิจิทัล",
+      "primaryQueryContext": "ufabet เข้าสู่ระบบ",
+      "actualIntentServed": "Informational incident response after possible credential exposure: protecting email, reused passwords, social accounts, and banking information.",
+      "citations": [
+        {
+          "title": "คู่มือ Google สำหรับบัญชีที่อาจถูกบุกรุก",
+          "url": "https://support.google.com/accounts/answer/6294825?hl=th"
+        },
+        {
+          "title": "คำแนะนำรับมือบัญชีถูกบุกรุกจาก NCSC",
+          "url": "https://www.ncsc.gov.uk/section/respond-recover/hacked-accounts"
+        },
+        {
+          "title": "คำแนะนำเรื่องฟิชชิงของ FTC",
+          "url": "https://consumer.ftc.gov/articles/how-recognize-avoid-phishing-scams"
+        }
+      ],
+      "rewrittenLinks": [],
+      "preservedFormatting": {
+        "h2": 5,
+        "h3": 3,
+        "tables": 0,
+        "tableRows": 0,
+        "tableCells": 0,
+        "paragraphs": 15,
+        "inlineCode": 0,
+        "externalLinks": 3,
+        "internalLinks": 0
+      },
+      "checks": {
+        "exactMarkdownRoundTripBeforeLinkRewrite": true,
+        "onlyIntendedLinkChanges": true,
+        "draftSchema": true,
+        "commandSchema": true,
+        "publicationValidation": true,
+        "noSchemaNormalizationLoss": true,
+        "requestSize": true,
+        "threeFaqs": true
+      }
+    },
+    {
+      "source": "03-ufa169-name-and-identity.en.md",
+      "metadataSource": "03-ufa169-name-and-identity.en.metadata.json",
+      "locale": "en",
+      "slug": "ufa169-names-and-website-identity",
+      "id": "56e3b0c9-cf79-4026-aa07-ca3338a496bb",
+      "canonicalPath": "/insights/ufa169-names-and-website-identity",
+      "sourceSha256": "348f7e7423f8e158e09eb953cb30607d73eeffd1981410e4893a7155e60030ca",
+      "metadataSha256": "05e4908e0ba90a7a58449298439d657bfa035c2b4469c3e5e725722a39fbec70",
+      "draftSha256": "80178e9cea20fb42911bc6c3505e0a504a9de91580541304dc4b948ecdb9a02d",
+      "requestBytes": 7983,
+      "title": "UFA169 and Similar Website Names Explained",
+      "proposedSeoTitle": "UFA169 and Similar Names Understanding Website Identity",
+      "seoTitleOverrideSupported": false,
+      "seoDescriptionMappedToDescription": true,
+      "description": "Similar names and logos do not establish ownership or endorsement. Learn to separate publishers, external links and sources through fictional sports examples.",
+      "summary": "Similar names, logos, or words on web pages do not establish common ownership or endorsement. When you see “UFA169”, “ufa”, or “UFA website”, you can observe that the text appears there. Claims about who operates a website, its relationships, or its endorsements need separate evidence.",
+      "category": "Digital literacy",
+      "primaryQueryContext": [
+        "UFA169",
+        "ufa",
+        "เว็บยูฟ่า"
+      ],
+      "actualIntentServed": "Informational media literacy: why repeated names, logos, and domain text do not establish common ownership, endorsement, or the provenance of a claim.",
+      "citations": [
+        {
+          "title": "FTC’s examples of impersonation",
+          "url": "https://www.ftc.gov/business-guidance/blog/2024/02/new-impersonator-rule-gives-ftc-powerful-tool-protecting-consumers-businesses"
+        },
+        {
+          "title": "MDN explains the distinction between these URL components",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL"
+        },
+        {
+          "title": "IANA reserves example domains for documentation",
+          "url": "https://www.iana.org/help/example-domains"
+        }
+      ],
+      "rewrittenLinks": [],
+      "preservedFormatting": {
+        "h2": 6,
+        "h3": 3,
+        "tables": 0,
+        "tableRows": 0,
+        "tableCells": 0,
+        "paragraphs": 17,
+        "inlineCode": 3,
+        "externalLinks": 3,
+        "internalLinks": 0
+      },
+      "checks": {
+        "exactMarkdownRoundTripBeforeLinkRewrite": true,
+        "onlyIntendedLinkChanges": true,
+        "draftSchema": true,
+        "commandSchema": true,
+        "publicationValidation": true,
+        "noSchemaNormalizationLoss": true,
+        "requestSize": true,
+        "threeFaqs": true
+      }
+    },
+    {
+      "source": "03-ufa169-name-and-identity.md",
+      "metadataSource": "03-ufa169-name-and-identity.metadata.json",
+      "locale": "th",
+      "slug": "ufa169-names-and-website-identity",
+      "id": "385530fd-6d41-4974-b461-0bed8f78e670",
+      "canonicalPath": "/th/insights/ufa169-names-and-website-identity",
+      "sourceSha256": "f5b527b8ac2d3ae6edf98517dbc1d99e25b98c6bad063802f7394efea675ab30",
+      "metadataSha256": "cc92ffdae35649ad99ab7e9fdbc7b256f3a7445b6ddc3e95d463fba3129edd50",
+      "draftSha256": "8f430a9fc824f96e1461c194c16b7ef9d19d6ed4972f822f2bb1d749f53726e1",
+      "requestBytes": 16678,
+      "title": "UFA169 ufa และเว็บยูฟ่า ชื่อคล้ายกันบอกอะไรได้จริง",
+      "proposedSeoTitle": "UFA169 ufa และเว็บยูฟ่า ชื่อคล้ายกันบอกอะไรได้จริง",
+      "seoTitleOverrideSupported": false,
+      "seoDescriptionMappedToDescription": true,
+      "description": "ชื่อ โลโก้ และคำในที่อยู่เว็บไม่ยืนยันผู้จัดทำหรือการรับรอง เรียนรู้การแยกผู้เขียนข่าว ลิงก์ภายนอก และแหล่งที่มาของข้ออ้างผ่านตัวอย่างสมมติ",
+      "summary": "ชื่อ โลโก้ หรือคำที่คล้ายกันบนหน้าเว็บ ไม่เพียงพอจะยืนยันว่าเว็บไซต์เหล่านั้นมีผู้จัดทำรายเดียวกัน หรือได้รับการรับรองจากกันและกัน เมื่อพบคำว่า “UFA169”, “ufa” หรือ “เว็บยูฟ่า” สิ่งที่เห็นแน่ ๆ คือมีข้อความนั้นปรากฏอยู่ ส่วนข้ออ้างเรื่องผู้ดำเนินการ ความเกี่ยวข้อง หรือการรับรอง ต้องมีหลักฐานแยกต่างหาก",
+      "category": "ความรู้เท่าทันดิจิทัล",
+      "primaryQueryContext": [
+        "UFA169",
+        "ufa",
+        "เว็บยูฟ่า"
+      ],
+      "actualIntentServed": "Informational media literacy: why repeated names, logos, and domain text do not establish common ownership, endorsement, or the provenance of a claim.",
+      "citations": [
+        {
+          "title": "อ่านตัวอย่างการแอบอ้างจาก FTC",
+          "url": "https://www.ftc.gov/business-guidance/blog/2024/02/new-impersonator-rule-gives-ftc-powerful-tool-protecting-consumers-businesses"
+        },
+        {
+          "title": "คำอธิบายโครงสร้าง URL ของ MDN",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL"
+        },
+        {
+          "title": "IANA สงวนโดเมนตัวอย่างสำหรับงานเอกสาร",
+          "url": "https://www.iana.org/help/example-domains"
+        }
+      ],
+      "rewrittenLinks": [],
+      "preservedFormatting": {
+        "h2": 6,
+        "h3": 3,
+        "tables": 0,
+        "tableRows": 0,
+        "tableCells": 0,
+        "paragraphs": 17,
+        "inlineCode": 5,
+        "externalLinks": 3,
+        "internalLinks": 0
+      },
+      "checks": {
+        "exactMarkdownRoundTripBeforeLinkRewrite": true,
+        "onlyIntendedLinkChanges": true,
+        "draftSchema": true,
+        "commandSchema": true,
+        "publicationValidation": true,
+        "noSchemaNormalizationLoss": true,
+        "requestSize": true,
+        "threeFaqs": true
+      }
+    },
+    {
+      "source": "04-official-and-latest-claims.en.md",
+      "metadataSource": "04-official-and-latest-claims.en.metadata.json",
+      "locale": "en",
+      "slug": "ufabet-official-website-claims",
+      "id": "b51e2afb-0a7b-44e5-b84e-4484a4bd18e7",
+      "canonicalPath": "/insights/ufabet-official-website-claims",
+      "sourceSha256": "6c372b6de291dc5c7456b03e8ead78b8fd8f55d214ba37503c5623a382c57631",
+      "metadataSha256": "b8e354b392ed7d1a5dd5d45df4c1e5e68ab2f3ff2fa7aca62717638b690373c6",
+      "draftSha256": "d61a315c5fe3da72d48d5c36feada43efe6d750081dc11f8c1fe7fb46a0b4425",
+      "requestBytes": 10431,
+      "title": "UFABET Official Website and Latest Link Claims Explained",
+      "proposedSeoTitle": "UFABET Official Website and Latest Link Claims Explained",
+      "seoTitleOverrideSupported": false,
+      "seoDescriptionMappedToDescription": true,
+      "description": "Understand claims about official websites and latest links. Examine update dates, source independence and evidence before repeating a claim.",
+      "summary": "“Official website” is a claim about a relationship with an operator. “Latest link” is a claim about timing. Neither phrase supplies its own evidence. When you read an article using these terms, separate what the author asserts from what the supporting information establishes.",
+      "category": "Digital literacy",
+      "primaryQueryContext": "UFABET official website claims",
+      "actualIntentServed": "Media literacy about claimed official status, freshness and verification; no authentication or recommendation of a gambling operator.",
+      "citations": [
+        {
+          "title": "Google's explanation of reliable search results",
+          "url": "https://support.google.com/websearch/answer/12395529?hl=en"
+        },
+        {
+          "title": "Google Search Help",
+          "url": "https://support.google.com/websearch/answer/11127743?hl=en"
+        }
+      ],
+      "rewrittenLinks": [
+        {
+          "from": "03-ufa169-name-and-identity.en.md",
+          "to": "/insights/ufa169-names-and-website-identity"
+        }
+      ],
+      "preservedFormatting": {
+        "h2": 6,
+        "h3": 3,
+        "tables": 1,
+        "tableRows": 5,
+        "tableCells": 15,
+        "paragraphs": 33,
+        "inlineCode": 1,
+        "externalLinks": 2,
+        "internalLinks": 1
+      },
+      "checks": {
+        "exactMarkdownRoundTripBeforeLinkRewrite": true,
+        "onlyIntendedLinkChanges": true,
+        "draftSchema": true,
+        "commandSchema": true,
+        "publicationValidation": true,
+        "noSchemaNormalizationLoss": true,
+        "requestSize": true,
+        "threeFaqs": true
+      }
+    },
+    {
+      "source": "04-official-and-latest-claims.md",
+      "metadataSource": "04-official-and-latest-claims.metadata.json",
+      "locale": "th",
+      "slug": "ufabet-official-website-claims",
+      "id": "1c8ba824-12b5-47b4-b8fb-27ab58a7289d",
+      "canonicalPath": "/th/insights/ufabet-official-website-claims",
+      "sourceSha256": "a5e3bafe01f06419e604be6869b0bb9c3e6f9bf63d7af2d83a9b855e6a6499fd",
+      "metadataSha256": "4d8d30915fd8ee70c4b13141ac60e784953f06f79cda0012bab882400988e784",
+      "draftSha256": "bcb3c1f22097c0ec62bfa81407d9db0fc5df58f4394e6b193996176051a524ad",
+      "requestBytes": 19014,
+      "title": "UFABET เว็บไซต์ทางการและลิงก์ล่าสุด อ่านคำกล่าวอ้างอย่างไร",
+      "proposedSeoTitle": "UFABET เว็บไซต์ทางการและลิงก์ล่าสุด แยกคำอ้างจากหลักฐาน",
+      "seoTitleOverrideSupported": false,
+      "seoDescriptionMappedToDescription": true,
+      "description": "คำว่าเว็บไซต์ทางการและลิงก์ล่าสุดบอกอะไรได้จริง เรียนรู้การอ่านวันที่อัปเดต แหล่งอ้างอิง และหลักฐาน เพื่อไม่ส่งต่อข้อกล่าวอ้างเกินข้อมูลที่มี",
+      "summary": "คำว่า “เว็บไซต์ทางการ” เป็นข้อกล่าวอ้างเกี่ยวกับความสัมพันธ์กับผู้ดำเนินการ ส่วนคำว่า “ลิงก์ล่าสุด” เป็นข้อกล่าวอ้างเกี่ยวกับเวลา ทั้งสองคำไม่ได้เป็นหลักฐานในตัวเอง การอ่านบทความที่ใช้คำเหล่านี้จึงควรแยกว่า ผู้เขียนกำลังบอกอะไร และมีข้อมูลใดรองรับคำบอกนั้น",
+      "category": "ความรู้เท่าทันดิจิทัล",
+      "primaryQueryContext": "ufabet.com",
+      "actualIntentServed": "Media literacy about official-status, freshness and verification claims; not domain authentication or gambling access.",
+      "citations": [
+        {
+          "title": "คำอธิบายเรื่องผลค้นหาที่น่าเชื่อถือจาก Google",
+          "url": "https://support.google.com/websearch/answer/12395529?hl=en"
+        },
+        {
+          "title": "รายละเอียดจาก Google Search Help",
+          "url": "https://support.google.com/websearch/answer/11127743?hl=en"
+        }
+      ],
+      "rewrittenLinks": [
+        {
+          "from": "03-ufa169-name-and-identity.md",
+          "to": "/th/insights/ufa169-names-and-website-identity"
+        }
+      ],
+      "preservedFormatting": {
+        "h2": 6,
+        "h3": 3,
+        "tables": 1,
+        "tableRows": 5,
+        "tableCells": 15,
+        "paragraphs": 33,
+        "inlineCode": 1,
+        "externalLinks": 2,
+        "internalLinks": 1
+      },
+      "checks": {
+        "exactMarkdownRoundTripBeforeLinkRewrite": true,
+        "onlyIntendedLinkChanges": true,
+        "draftSchema": true,
+        "commandSchema": true,
+        "publicationValidation": true,
+        "noSchemaNormalizationLoss": true,
+        "requestSize": true,
+        "threeFaqs": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,4114 @@
+{
+  "preparedAt": "2026-10-26T22:49:18.562Z",
+  "status": "Validated local payloads; no CMS writes performed by preparation",
+  "commands": [
+    {
+      "action": "save",
+      "id": "04ac6e9c-b120-4176-942b-e1ebfbaa57a0",
+      "revision": 0,
+      "locale": "en",
+      "slug": "ufabet-mobile-link-literacy",
+      "draft": {
+        "title": "UFABET Mobile Links and How to Recognize Misleading URLs",
+        "description": "Learn what mobile link labels, URLs and HTTPS can reveal, with clear examples and practical guidance for protecting personal information.",
+        "category": "Digital literacy",
+        "summary": "A button labelled “UFABET access” does not establish who controls the website it leads to. HTTPS protects the connection between your browser and a website; it does not certify the operator's trustworthiness. If a page asks for a password, personal information or a download before you understand who is receiving your data, pause before continuing.",
+        "body": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "On a phone, a link may appear as just a few words. You remember the button's label but barely notice the address. That gap matters when a page you opened to read information starts asking you to provide it."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Read the button label and the address separately"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Imagine a football article with a button that says “Read the match report.” The label describes what the publisher wants you to expect. It does not establish whether the destination belongs to the same newsroom. Labels such as “official” and “updated today” have the same limitation."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "A URL contains a host identifying the server, a path to a resource, and sometimes parameters carrying additional information. A familiar name in its path does not establish who operates the site. "
+                },
+                {
+                  "type": "text",
+                  "text": "MDN explains the components of a URL",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": "."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "These fictional examples illustrate that distinction:"
+                }
+              ]
+            },
+            {
+              "type": "table",
+              "content": [
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableHeader",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "Example address"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableHeader",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "What the text shows"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableHeader",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "What it does not establish"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "https://news.example.com/report",
+                              "marks": [
+                                {
+                                  "type": "code"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "The host is "
+                            },
+                            {
+                              "type": "text",
+                              "text": "news.example.com",
+                              "marks": [
+                                {
+                                  "type": "code"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "text": "; "
+                            },
+                            {
+                              "type": "text",
+                              "text": "/report",
+                              "marks": [
+                                {
+                                  "type": "code"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "text": " is the path"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "Who wrote the report or checked its facts"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "https://example.org/news",
+                              "marks": [
+                                {
+                                  "type": "code"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "The host is "
+                            },
+                            {
+                              "type": "text",
+                              "text": "example.org",
+                              "marks": [
+                                {
+                                  "type": "code"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "text": ", despite “news” appearing in the path"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "Whether it belongs to the same publisher as the first example"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "https://example.com/?source=news",
+                              "marks": [
+                                {
+                                  "type": "code"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "source=news",
+                              "marks": [
+                                {
+                                  "type": "code"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "text": " is a parameter"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "Whether a news organization endorses the website"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "IANA maintains "
+                },
+                {
+                  "type": "text",
+                  "text": "example.com",
+                  "marks": [
+                    {
+                      "type": "code"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " and "
+                },
+                {
+                  "type": "text",
+                  "text": "example.org",
+                  "marks": [
+                    {
+                      "type": "code"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " for documentation, which allows these examples to explain the structure without directing readers to a commercial service. "
+                },
+                {
+                  "type": "text",
+                  "text": "IANA's explanation of example domains",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://www.iana.org/help/example-domains"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": "."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "You do not need to memorize every technical term. Keep three things separate: the words on a button, the claims in the article and the address of the destination."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Understand what HTTPS protects"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "A convincing imitation website can use an encrypted connection. The Chromium team explains that the browser's padlock was never a reliable indication of a website's trustworthiness. Confusion about its meaning contributed to Chrome's decision to replace that icon. "
+                },
+                {
+                  "type": "text",
+                  "text": "Chromium's explanation",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://blog.chromium.org/2023/05/an-update-on-lock-icon.html?hl=en_GB"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": "."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The practical consequence is straightforward: information can travel over an encrypted connection to someone you never intended to receive it. You still need to consider who is asking for the information and why."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "If your browser displays a dangerous-site warning, do not disable its protection to continue reading or submit information. Google's guidance advises avoiding sites flagged as dangerous and withholding personal information. "
+                },
+                {
+                  "type": "text",
+                  "text": "Chrome's security-warning guidance",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://support.google.com/chrome/answer/95617?hl=en"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": "."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Notice when a reading task becomes a request for sensitive information"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Suppose you open a sports report and a message demands your email password before showing the remaining paragraphs. Consider how that request relates to the task you started. A familiar logo or polished layout does not explain why an article needs access to your email."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "A password, a one-time verification code and an installation file each have consequences beyond reading a page. “Do this now” should not be the only reason you comply. If the request makes little sense in context, close the page."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Phishing messages often invent an account or payment problem to prompt a click or disclosure. Treat that pressure as a reason to slow down and examine the request. "
+                },
+                {
+                  "type": "text",
+                  "text": "FTC guidance on recognizing phishing",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://consumer.ftc.gov/articles/how-recognize-avoid-phishing-scams"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": "."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "If you have already shared information"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Write down what you disclosed, without recording the actual passwords or codes. An email password, a phone number and card details create different problems. Avoid sending more information because the same page claims your earlier submission failed."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "If you exposed a password used for email or another important account, follow the "
+                },
+                {
+                  "type": "text",
+                  "text": "guide to protecting accounts after possible data exposure",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "/insights/protect-accounts-after-data-exposure"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": ". Focus on the accounts affected by the information you shared."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Frequently asked questions"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 3
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Does HTTPS mean a website is official"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "No. HTTPS concerns the connection between your browser and the website. Ownership, authorization and trustworthiness require separate evidence."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 3
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Does UFABET appearing in a URL establish who owns the website"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "No. A name can appear in a path or parameter. Its presence alone does not establish the identity of the operator."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 3
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Should I be cautious if the page looks exactly like one I recognize"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Yes, especially when it requests sensitive information. Appearance alone does not prove who will receive your data. Uncertainty about the recipient is sufficient reason to stop entering information."
+                }
+              ]
+            }
+          ]
+        },
+        "image": null,
+        "citations": [
+          {
+            "title": "MDN explains the components of a URL",
+            "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL"
+          },
+          {
+            "title": "IANA's explanation of example domains",
+            "url": "https://www.iana.org/help/example-domains"
+          },
+          {
+            "title": "Chromium's explanation",
+            "url": "https://blog.chromium.org/2023/05/an-update-on-lock-icon.html?hl=en_GB"
+          },
+          {
+            "title": "Chrome's security-warning guidance",
+            "url": "https://support.google.com/chrome/answer/95617?hl=en"
+          },
+          {
+            "title": "FTC guidance on recognizing phishing",
+            "url": "https://consumer.ftc.gov/articles/how-recognize-avoid-phishing-scams"
+          }
+        ]
+      }
+    },
+    {
+      "action": "save",
+      "id": "cd76c456-7b61-48c9-92e5-910038dabf19",
+      "revision": 0,
+      "locale": "th",
+      "slug": "ufabet-mobile-link-literacy",
+      "draft": {
+        "title": "ทางเข้า UFABET บนมือถือกับความเสี่ยงจากลิงก์เลียนแบบ",
+        "description": "อ่านลิงก์บนมือถือให้เข้าใจ แยกชื่อบนปุ่มออกจาก URL และรู้ว่า HTTPS ยืนยันอะไรได้บ้าง พร้อมตัวอย่างและข้อควรทำเมื่อพบหน้าที่ขอข้อมูลสำคัญ",
+        "category": "ความรู้เท่าทันดิจิทัล",
+        "summary": "คำว่า “ทางเข้า UFABET” บนปุ่มหรือในผลค้นหาไม่ได้ยืนยันว่าใครเป็นเจ้าของเว็บไซต์ปลายทาง ส่วน HTTPS บอกเรื่องการเชื่อมต่อที่เข้ารหัส ไม่ได้เป็นใบรับรองความน่าเชื่อถือของผู้ให้บริการ หากหน้าที่เปิดขึ้นมาขอรหัสผ่าน ข้อมูลส่วนตัว หรือให้ดาวน์โหลดไฟล์ ทั้งที่คุณยังไม่ทราบว่าใครรับข้อมูลนั้น ควรหยุดก่อนส่งข้อมูล",
+        "body": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "บนหน้าจอโทรศัพท์ ลิงก์หนึ่งอาจมองเห็นเพียงไม่กี่คำ คุณจึงอาจจำชื่อบนปุ่มได้ แต่ไม่ทันสังเกตว่ากำลังดูหน้าเว็บของใคร ความแตกต่างเล็กน้อยนี้มีผลมากเมื่อหน้าอ่านข้อมูลเปลี่ยนเป็นแบบฟอร์มขอข้อมูลส่วนตัว"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ข้อความบนปุ่มกับที่อยู่ปลายทางเป็นคนละส่วน"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ลองนึกถึงบทความข่าวฟุตบอลที่มีปุ่มชื่อ “อ่านรายงานการแข่งขัน” ข้อความนี้อธิบายสิ่งที่ผู้เขียนอยากให้คุณเข้าใจเกี่ยวกับลิงก์ แต่ไม่ได้บอกว่าเว็บไซต์ปลายทางเป็นของกองบรรณาธิการเดียวกันหรือไม่ ปุ่มที่ใช้คำว่า “ทางการ” หรือ “อัปเดตล่าสุด” ก็มีข้อจำกัดเดียวกัน"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "URL คือที่อยู่ของทรัพยากรบนอินเทอร์เน็ต ภายในมีส่วนที่ระบุโฮสต์ และอาจมีเส้นทางของหน้าเว็บหรือพารามิเตอร์ตามมา ชื่อบริการที่ปรากฏในเส้นทางจึงไม่ได้เปลี่ยนเจ้าของที่อยู่ปลายทาง หลักการแบ่งส่วนนี้อธิบายไว้ใน "
+                },
+                {
+                  "type": "text",
+                  "text": "คู่มือ URL ของ MDN",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ตัวอย่างต่อไปนี้เป็นที่อยู่สมมติสำหรับอธิบายโครงสร้างเท่านั้น ไม่ใช่ลิงก์ให้เข้าใช้งานบริการ"
+                }
+              ]
+            },
+            {
+              "type": "table",
+              "content": [
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableHeader",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "ข้อความตัวอย่าง"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableHeader",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "ส่วนที่ควรอ่าน"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableHeader",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "สิ่งที่ยังสรุปไม่ได้"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "https://news.example.com/report",
+                              "marks": [
+                                {
+                                  "type": "code"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "โฮสต์คือ "
+                            },
+                            {
+                              "type": "text",
+                              "text": "news.example.com",
+                              "marks": [
+                                {
+                                  "type": "code"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "text": " ส่วน "
+                            },
+                            {
+                              "type": "text",
+                              "text": "/report",
+                              "marks": [
+                                {
+                                  "type": "code"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "text": " เป็นเส้นทางของหน้า"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "ใครเขียนรายงาน และข้อมูลผ่านการตรวจสอบหรือไม่"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "https://example.org/news",
+                              "marks": [
+                                {
+                                  "type": "code"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "โฮสต์คือ "
+                            },
+                            {
+                              "type": "text",
+                              "text": "example.org",
+                              "marks": [
+                                {
+                                  "type": "code"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "text": " แม้เส้นทางจะมีคำว่า news"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "เป็นกองบรรณาธิการเดียวกับเว็บไซต์แรกหรือไม่"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "https://example.com/?source=news",
+                              "marks": [
+                                {
+                                  "type": "code"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "source=news",
+                              "marks": [
+                                {
+                                  "type": "code"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "text": " เป็นพารามิเตอร์"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "เว็บไซต์ได้รับการรับรองจากสำนักข่าวหรือไม่"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ชื่อ "
+                },
+                {
+                  "type": "text",
+                  "text": "example.com",
+                  "marks": [
+                    {
+                      "type": "code"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " และ "
+                },
+                {
+                  "type": "text",
+                  "text": "example.org",
+                  "marks": [
+                    {
+                      "type": "code"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " เป็นโดเมนที่ IANA จัดไว้สำหรับใช้ในเอกสารและตัวอย่าง จึงเหมาะกับการอธิบายโดยไม่พาผู้อ่านไปยังบริการจริง "
+                },
+                {
+                  "type": "text",
+                  "text": "ข้อมูลโดเมนตัวอย่างจาก IANA",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://www.iana.org/help/example-domains"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ไม่จำเป็นต้องจำศัพท์เทคนิคทุกคำ ประเด็นที่ใช้ได้ทันทีคือ ชื่อบนปุ่ม ชื่อในเนื้อหาบทความ และที่อยู่เว็บไซต์ เป็นข้อมูลคนละชิ้น อย่าใช้ชิ้นหนึ่งแทนอีกชิ้นโดยอัตโนมัติ"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "HTTPS ปกป้องการส่งข้อมูล แต่ไม่ได้รับรองคนรับข้อมูล"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ความเข้าใจผิดที่พบบ่อยคือ เมื่อเห็น HTTPS แล้ว ข้อมูลทุกอย่างบนหน้านั้นย่อมน่าเชื่อถือ ความจริงคือเว็บไซต์เลียนแบบก็ใช้การเชื่อมต่อแบบเข้ารหัสได้ ทีม Chromium อธิบายว่ารูปแม่กุญแจไม่ได้สื่อถึงความน่าไว้วางใจของเว็บไซต์ และความเข้าใจผิดเรื่องนี้เป็นเหตุผลหนึ่งที่ปรับสัญลักษณ์ใน Chrome "
+                },
+                {
+                  "type": "text",
+                  "text": "คำอธิบายจากทีม Chromium",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://blog.chromium.org/2023/05/an-update-on-lock-icon.html?hl=en_GB"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "สำหรับผู้อ่าน ความแตกต่างนี้หมายความว่า ข้อมูลอาจเดินทางผ่านการเชื่อมต่อที่เข้ารหัสไปถึงผู้รับที่คุณไม่ได้ตั้งใจจะให้ข้อมูลก็ได้ จึงยังต้องพิจารณาว่าใครเป็นผู้รับ และเหตุใดหน้านั้นจึงต้องการข้อมูลดังกล่าว"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "หากเบราว์เซอร์แสดงคำเตือนว่าเว็บไซต์อันตราย อย่าปิดการป้องกันเพื่ออ่านต่อหรือกรอกข้อมูล Google แนะนำให้หลีกเลี่ยงเว็บไซต์ที่ขึ้นคำเตือนอันตรายและไม่ส่งข้อมูลส่วนตัวผ่านหน้านั้น "
+                },
+                {
+                  "type": "text",
+                  "text": "ความหมายของคำเตือนใน Chrome",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://support.google.com/chrome/answer/95617?hl=en"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "เมื่อหน้าอ่านข้อมูลเริ่มขอสิ่งที่ไม่เกี่ยวกับการอ่าน"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "สมมติว่าคุณเปิดอ่านข่าวกีฬา แล้วมีข้อความแจ้งว่าต้องกรอกรหัสผ่านอีเมลเพื่อดูเนื้อหาส่วนที่เหลือ สิ่งที่ควรพิจารณาคือเหตุผลของคำขอนั้น ไม่ใช่สีของปุ่มหรือความเหมือนของโลโก้"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "การขอรหัสผ่านอีเมล รหัสใช้ครั้งเดียว หรือไฟล์ที่ต้องติดตั้ง เป็นการขอให้คุณทำสิ่งที่มีผลต่อข้อมูลและอุปกรณ์ของตัวเอง อย่าปล่อยให้ประโยคสั้น ๆ อย่าง “ต้องทำตอนนี้” กลายเป็นเหตุผลเดียวที่ยอมทำตาม หากอธิบายไม่ได้ว่าคำขอนั้นเกี่ยวข้องกับสิ่งที่คุณกำลังอ่านอย่างไร การปิดหน้านั้นเป็นทางเลือกที่สมเหตุสมผล"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "FTC อธิบายว่าข้อความฟิชชิงมักสร้างเรื่องเกี่ยวกับบัญชีหรือการชำระเงินเพื่อกระตุ้นให้ผู้รับเปิดลิงก์และส่งข้อมูล ความเร่งด่วนจึงควรทำให้เราชะลอการตัดสินใจและตรวจบริบทมากขึ้น "
+                },
+                {
+                  "type": "text",
+                  "text": "แนวทางสังเกตฟิชชิงจาก FTC",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://consumer.ftc.gov/articles/how-recognize-avoid-phishing-scams"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "หากส่งข้อมูลไปแล้ว ให้เปลี่ยนจากการตรวจลิงก์เป็นการปกป้องบัญชี"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "จดก่อนว่าส่งอะไรไป รหัสผ่านอีเมล หมายเลขโทรศัพท์ และข้อมูลบัตร เป็นข้อมูลคนละประเภทและต้องรับมือต่างกัน อย่าส่งข้อมูลเพิ่มเติมเพียงเพราะหน้าเดิมบอกว่ารายการก่อนหน้ายังไม่สำเร็จ"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "หากมีรหัสผ่านที่ใช้ซ้ำกับอีเมลหรือบัญชีอื่นอยู่ในข้อมูลนั้น อ่าน "
+                },
+                {
+                  "type": "text",
+                  "text": "แนวทางรับมือเมื่อข้อมูลเข้าสู่ระบบหลุดไปยังหน้าที่น่าสงสัย",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "/th/insights/protect-accounts-after-data-exposure"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " เพื่อจัดลำดับการปกป้องบัญชีสำคัญ"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "คำถามที่พบบ่อย"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 3
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "มี HTTPS แล้วถือว่าเป็นเว็บไซต์ทางการหรือไม่"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ไม่ถือว่าเป็นหลักฐานยืนยันผู้ดำเนินการ HTTPS เกี่ยวกับการเชื่อมต่อระหว่างเบราว์เซอร์กับเว็บไซต์ ส่วนความเป็นเจ้าของและความน่าเชื่อถือเป็นอีกเรื่องหนึ่ง"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 3
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "เห็นชื่อ UFABET อยู่ใน URL แปลว่าเป็นเว็บไซต์ของชื่อนั้นหรือไม่"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "สรุปจากการมีชื่ออยู่ในข้อความ URL เพียงอย่างเดียวไม่ได้ ชื่ออาจปรากฏในเส้นทางหรือพารามิเตอร์ จึงต้องแยกให้ออกว่าข้อความส่วนใดระบุโฮสต์ และส่วนใดเป็นข้อมูลอื่น"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 3
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "หน้าตาเหมือนกันทุกอย่างยังต้องระวังหรือไม่"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ต้องระวังเมื่อมีการขอข้อมูลสำคัญ รูปแบบหน้าเว็บเป็นสิ่งที่มองเห็นได้ แต่ไม่ได้พิสูจน์ว่าผู้รับข้อมูลเป็นคนเดียวกับที่คุณคิด ความไม่แน่ใจเรื่องผู้รับข้อมูลเป็นเหตุผลเพียงพอที่จะหยุดกรอก"
+                }
+              ]
+            }
+          ]
+        },
+        "image": null,
+        "citations": [
+          {
+            "title": "คู่มือ URL ของ MDN",
+            "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL"
+          },
+          {
+            "title": "ข้อมูลโดเมนตัวอย่างจาก IANA",
+            "url": "https://www.iana.org/help/example-domains"
+          },
+          {
+            "title": "คำอธิบายจากทีม Chromium",
+            "url": "https://blog.chromium.org/2023/05/an-update-on-lock-icon.html?hl=en_GB"
+          },
+          {
+            "title": "ความหมายของคำเตือนใน Chrome",
+            "url": "https://support.google.com/chrome/answer/95617?hl=en"
+          },
+          {
+            "title": "แนวทางสังเกตฟิชชิงจาก FTC",
+            "url": "https://consumer.ftc.gov/articles/how-recognize-avoid-phishing-scams"
+          }
+        ]
+      }
+    },
+    {
+      "action": "save",
+      "id": "e2433ee4-30b5-4d3a-bfc8-05f5c59dbc30",
+      "revision": 0,
+      "locale": "en",
+      "slug": "protect-accounts-after-data-exposure",
+      "draft": {
+        "title": "Protecting Your Accounts After Entering Details on a Suspicious Page",
+        "description": "Entered details on a suspicious page? Learn how to protect email, reused passwords, social accounts and banking information, with a fictional example.",
+        "category": "Digital literacy",
+        "summary": "If you sent a password to a suspicious page, stop providing information and protect any important accounts that use the same password. If you also shared card details, banking information, or a transaction verification code, contact your bank through a channel you already know. You do not need to identify the page’s operator before acting.",
+        "body": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Someone searching for “UFABET login” may encounter a page requesting personal details. The response depends on what was disclosed and which accounts could be affected. A name displayed on that page does not establish whether another account has already been accessed."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Separate what happened from what you suspect"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Write a short account of what you remember: opening the page, entering an email address, submitting a password or verification code, or downloading a file. Include the approximate time. These distinctions help you explain the incident to your email provider or bank."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Do not record the actual password or verification code. Avoid returning to submit information again as a test. If you already have screenshots, cover account numbers, card details, and other personal information before sharing them."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Consider this fictional example. Kan enters a password on what appears to be a football-newsletter form. The page keeps asking for more information. Kan then remembers using that password for email and a community football team’s social account. Those shared credentials matter more to the response than the page’s colours or logo."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Protect the email account that receives important messages"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "From a device you trust, open your usual email app or use a familiar route to your email provider. Review recent activity and connected devices. If the email password matches the one disclosed, replace it with a password you do not use elsewhere."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Check recovery details and email-forwarding settings. A password change may not address altered settings. Remove unfamiliar connections following the provider’s instructions, and enable two-step verification. If you cannot access your email, use that email provider’s recovery process. These steps are covered in "
+                },
+                {
+                  "type": "text",
+                  "text": "Google’s compromised-account guide",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://support.google.com/accounts/answer/6294825?hl=en"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": "."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "For Kan, writing “email sorted” would be too vague when personal and team email accounts are involved. A separate note for each account, recording the action and approximate time, makes follow-up easier without relying on memory."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Follow the reused password across other accounts"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "List accounts using the exposed password, prioritising primary and backup email, social accounts, and work accounts. Give each a different password. Use the service’s option to sign out other devices and apps where available."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "If your social account sent messages you did not write, warn contacts through another channel. Explain which recent messages may not be yours and ask them not to provide information in response. You do not need to circulate the suspicious link."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Check for unfamiliar financial activity and contact your bank directly if you find it. These measures follow the "
+                },
+                {
+                  "type": "text",
+                  "text": "NCSC’s guidance on compromised accounts",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://www.ncsc.gov.uk/section/respond-recover/hacked-accounts"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": "."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Do not let urgency lead to another disclosure"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "A subsequent message may claim that you must verify your identity again before receiving help. Read what it requests. Do not give passwords or verification codes to someone who contacts you. For email or banking support, initiate contact through a known channel instead of using details supplied in a suspicious message. See the "
+                },
+                {
+                  "type": "text",
+                  "text": "FTC’s phishing guidance",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://consumer.ftc.gov/articles/how-recognize-avoid-phishing-scams"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": "."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Keep three columns in your notes: account, action completed, and follow-up needed. For example: “Primary email—password changed and devices reviewed—awaiting a response about unfamiliar activity.” Keep passwords out of this record."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Frequently asked questions"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 3
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Does opening the page mean my password was exposed"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "That alone does not establish exposure. Consider whether you entered information, downloaded anything, or granted permissions. Check alerts through the relevant account or device settings."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 3
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Is changing the password enough"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Also review connected devices, recovery details, and unfamiliar settings, particularly in email used to reset other accounts. Continue checking related activity."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 3
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Can a friend help"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Yes. Describe what happened and share redacted screenshots. They do not need your password or verification codes to help interpret a warning. Make account-setting changes yourself."
+                }
+              ]
+            }
+          ]
+        },
+        "image": null,
+        "citations": [
+          {
+            "title": "Google’s compromised-account guide",
+            "url": "https://support.google.com/accounts/answer/6294825?hl=en"
+          },
+          {
+            "title": "NCSC’s guidance on compromised accounts",
+            "url": "https://www.ncsc.gov.uk/section/respond-recover/hacked-accounts"
+          },
+          {
+            "title": "FTC’s phishing guidance",
+            "url": "https://consumer.ftc.gov/articles/how-recognize-avoid-phishing-scams"
+          }
+        ]
+      }
+    },
+    {
+      "action": "save",
+      "id": "5de56994-a315-48b9-a502-a6b2a6cd4b00",
+      "revision": 0,
+      "locale": "th",
+      "slug": "protect-accounts-after-data-exposure",
+      "draft": {
+        "title": "เผลอกรอกข้อมูลในหน้าที่น่าสงสัย ปกป้องอีเมลและบัญชีสำคัญอย่างไร",
+        "description": "เผลอส่งรหัสผ่านให้หน้าที่น่าสงสัย ควรทำอะไรต่อ อ่านวิธีดูแลอีเมล รหัสผ่านที่ใช้ซ้ำ บัญชีโซเชียล และข้อมูลธนาคาร พร้อมตัวอย่างสมมติ",
+        "category": "ความรู้เท่าทันดิจิทัล",
+        "summary": "หากเผลอส่งรหัสผ่านให้หน้าที่น่าสงสัย ให้หยุดส่งข้อมูลเพิ่ม แล้วดูแลอีเมลและบัญชีสำคัญที่ใช้รหัสผ่านเดียวกันทันที หากส่งข้อมูลบัตร ข้อมูลธนาคาร หรือรหัสยืนยันธุรกรรมไปด้วย ให้ติดต่อธนาคารผ่านช่องทางที่คุณมีอยู่เดิม ไม่ต้องรอให้รู้ว่าใครเป็นผู้ทำหน้าเว็บก่อนจึงเริ่มป้องกันความเสียหาย",
+        "body": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "คนที่ค้นคำว่า “ufabet เข้าสู่ระบบ” แล้วพบหน้าขอข้อมูล อาจมีคำถามตามมาว่าได้ส่งอะไรออกไปแล้วบ้าง สิ่งที่ต้องประเมินคือข้อมูลที่เปิดเผยและบัญชีที่อาจเกี่ยวข้อง ชื่อที่ปรากฏบนหน้าเพียงอย่างเดียวยังบอกไม่ได้ว่าเกิดการเข้าถึงบัญชีอื่นแล้วหรือไม่"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "เริ่มจากแยกว่าได้ทำอะไรไปแล้ว"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "จดเหตุการณ์สั้น ๆ ตามที่จำได้ เช่น เปิดหน้าอย่างเดียว กรอกอีเมล ส่งรหัสผ่าน กรอกรหัสยืนยัน หรือดาวน์โหลดไฟล์ พร้อมเวลาที่เกิดเหตุ การแยกเช่นนี้ช่วยให้คุณอธิบายปัญหากับผู้ให้บริการอีเมลหรือธนาคารได้ตรงประเด็น"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ไม่ต้องจดรหัสผ่านหรือรหัสยืนยันจริงลงในบันทึก และอย่าย้อนกลับไปส่งข้อมูลอีกครั้งเพื่อทดสอบว่าหน้านั้นทำงานหรือไม่ หากมีภาพหน้าจออยู่แล้ว ให้ปิดบังเลขบัญชี หมายเลขบัตร และข้อมูลส่วนตัวก่อนส่งให้ผู้อื่นช่วยดู"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ตัวอย่างต่อไปนี้เป็นเรื่องสมมติ: “กานต์” กรอกรหัสผ่านลงในหน้าที่คิดว่าเป็นแบบฟอร์มรับข่าวฟุตบอล ก่อนพบว่าหน้านั้นขอข้อมูลเพิ่มไม่หยุด กานต์จำได้ว่าใช้รหัสเดียวกันกับอีเมลและบัญชีโซเชียลของทีมฟุตบอลชุมชน ข้อมูลสำคัญสำหรับการรับมือจึงไม่ใช่สีหรือโลโก้ของหน้า แต่เป็นบัญชีอีกสองแห่งที่ใช้รหัสร่วมกัน"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ดูแลอีเมลที่ใช้รับข้อความสำคัญ"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ใช้อุปกรณ์ที่คุณเชื่อถือได้ เปิดแอปอีเมลที่ใช้อยู่ หรือเข้าผ่านช่องทางที่คุณรู้จักอยู่แล้ว ตรวจสอบกิจกรรมล่าสุดและอุปกรณ์ที่เชื่อมต่อ หากรหัสผ่านอีเมลเป็นชุดเดียวกับที่ส่งไป ให้เปลี่ยนเป็นรหัสใหม่ที่ไม่ใช้ร่วมกับบัญชีอื่น"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ตรวจดูข้อมูลกู้คืนบัญชีและการส่งต่ออีเมลด้วย เพราะการเปลี่ยนรหัสผ่านอย่างเดียวอาจไม่ครอบคลุมการตั้งค่าที่ถูกแก้ไข เอาการเชื่อมต่อที่ไม่รู้จักออกตามคำแนะนำของผู้ให้บริการ และเปิดการยืนยันแบบสองขั้นตอนหากยังไม่ได้ใช้ หากเข้าอีเมลไม่ได้ ให้ใช้กระบวนการช่วยเหลือของผู้ให้บริการอีเมลนั้นโดยตรง แนวทางเหล่านี้อยู่ใน "
+                },
+                {
+                  "type": "text",
+                  "text": "คู่มือ Google สำหรับบัญชีที่อาจถูกบุกรุก",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://support.google.com/accounts/answer/6294825?hl=th"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "กลับมาที่ตัวอย่างของกานต์ การเขียนว่า “จัดการอีเมลแล้ว” อาจกว้างเกินไปเมื่อมีทั้งอีเมลส่วนตัวและอีเมลทีม กานต์จึงแยกบันทึกเป็นรายบัญชี ระบุสิ่งที่ทำและเวลาคร่าว ๆ วิธีนี้ช่วยให้กลับมาติดตามงานต่อได้โดยไม่ต้องอาศัยความจำทั้งหมด"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ตามดูรหัสผ่านที่ใช้ซ้ำและบัญชีโซเชียล"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ทำรายชื่อบัญชีที่ใช้รหัสผ่านเดียวกัน โดยให้ความสำคัญกับอีเมลหลัก อีเมลสำรอง บัญชีโซเชียล และบัญชีที่เกี่ยวกับงาน เปลี่ยนรหัสของแต่ละบัญชีให้ต่างกัน แล้วใช้ตัวเลือกออกจากระบบบนอุปกรณ์หรือแอปอื่นตามที่บริการนั้นรองรับ"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ถ้าพบว่ามีข้อความถูกส่งจากบัญชีโซเชียลโดยที่คุณไม่ได้ส่ง ให้แจ้งคนรู้จักผ่านอีกช่องทางหนึ่ง ระบุเพียงว่าข้อความช่วงใดอาจไม่ได้มาจากคุณ และขอให้อย่าส่งข้อมูลตามข้อความนั้น ไม่จำเป็นต้องส่งต่อลิงก์ที่น่าสงสัยให้ทุกคนเปิดดู"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "หากพบรายการเงินที่ไม่รู้จัก ให้ติดต่อธนาคารโดยตรงผ่านแอปที่ใช้อยู่หรือข้อมูลติดต่อที่มีอยู่เดิม การดูแลรหัสที่ใช้ซ้ำ แจ้งผู้ติดต่อ และตรวจรายการทางการเงิน เป็นส่วนหนึ่งของ "
+                },
+                {
+                  "type": "text",
+                  "text": "คำแนะนำรับมือบัญชีถูกบุกรุกจาก NCSC",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://www.ncsc.gov.uk/section/respond-recover/hacked-accounts"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "อย่าให้ความเร่งด่วนพาไปเปิดเผยข้อมูลเพิ่ม"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "หลังเกิดเหตุ อาจมีข้อความอ้างว่าต้องยืนยันตัวตนอีกครั้งก่อนช่วยแก้ปัญหา หยุดอ่านให้ชัดว่าข้อความนั้นขออะไร อย่าส่งรหัสผ่านหรือรหัสยืนยันให้คนที่ติดต่อเข้ามา หากต้องสอบถามเรื่องอีเมลหรือธนาคาร ให้เริ่มติดต่อเองผ่านช่องทางที่รู้จัก ไม่ใช้เบอร์หรือลิงก์จากข้อความต้องสงสัย ตาม "
+                },
+                {
+                  "type": "text",
+                  "text": "คำแนะนำเรื่องฟิชชิงของ FTC",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://consumer.ftc.gov/articles/how-recognize-avoid-phishing-scams"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "บันทึกของคุณอาจมีเพียงสามช่อง: บัญชีที่เกี่ยวข้อง สิ่งที่ทำแล้ว และเรื่องที่ต้องติดตาม เช่น “อีเมลหลัก—เปลี่ยนรหัสและตรวจอุปกรณ์แล้ว—รอคำตอบเรื่องกิจกรรมที่ไม่รู้จัก” บันทึกแบบนี้ช่วยจัดการงานต่อได้โดยไม่ต้องเก็บข้อมูลลับไว้ในที่เดียว"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "คำถามที่พบบ่อย"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 3
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "เปิดหน้าอย่างเดียว แปลว่ารหัสผ่านรั่วแล้วหรือไม่"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ยังสรุปไม่ได้จากการเปิดหน้าเพียงอย่างเดียว ลองแยกว่าได้กรอกข้อมูล ดาวน์โหลดไฟล์ หรืออนุญาตอะไรเพิ่มเติมหรือไม่ หากมีการแจ้งเตือนจากอีเมลหรืออุปกรณ์ ให้ตรวจผ่านการตั้งค่าของบริการนั้นโดยตรง"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 3
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "เปลี่ยนรหัสผ่านแล้ว ถือว่าจบหรือยัง"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ควรตรวจอุปกรณ์ที่เชื่อมต่อ ข้อมูลกู้คืน และการตั้งค่าที่ไม่รู้จักด้วย โดยเฉพาะอีเมลที่ใช้รับข้อความรีเซ็ตรหัสของบัญชีอื่น แล้วติดตามกิจกรรมที่เกี่ยวข้องต่อไป"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 3
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ให้เพื่อนช่วยดูได้ไหม"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ได้ โดยเล่าเหตุการณ์และส่งภาพที่ปิดบังข้อมูลแล้ว คุณไม่ต้องให้เพื่อนรู้รหัสผ่านหรือรหัสยืนยันเพื่อช่วยอ่านคำแจ้งเตือน และควรเป็นผู้ดำเนินการเปลี่ยนการตั้งค่าบัญชีด้วยตนเอง"
+                }
+              ]
+            }
+          ]
+        },
+        "image": null,
+        "citations": [
+          {
+            "title": "คู่มือ Google สำหรับบัญชีที่อาจถูกบุกรุก",
+            "url": "https://support.google.com/accounts/answer/6294825?hl=th"
+          },
+          {
+            "title": "คำแนะนำรับมือบัญชีถูกบุกรุกจาก NCSC",
+            "url": "https://www.ncsc.gov.uk/section/respond-recover/hacked-accounts"
+          },
+          {
+            "title": "คำแนะนำเรื่องฟิชชิงของ FTC",
+            "url": "https://consumer.ftc.gov/articles/how-recognize-avoid-phishing-scams"
+          }
+        ]
+      }
+    },
+    {
+      "action": "save",
+      "id": "56e3b0c9-cf79-4026-aa07-ca3338a496bb",
+      "revision": 0,
+      "locale": "en",
+      "slug": "ufa169-names-and-website-identity",
+      "draft": {
+        "title": "UFA169 and Similar Website Names Explained",
+        "description": "Similar names and logos do not establish ownership or endorsement. Learn to separate publishers, external links and sources through fictional sports examples.",
+        "category": "Digital literacy",
+        "summary": "Similar names, logos, or words on web pages do not establish common ownership or endorsement. When you see “UFA169”, “ufa”, or “UFA website”, you can observe that the text appears there. Claims about who operates a website, its relationships, or its endorsements need separate evidence.",
+        "body": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The examples below use a fictional sports publication and football club. They explain how to read claims carefully without identifying the owner of any real brand."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Mentioning a name does not identify the publisher"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Imagine a sports-news website called Neighbourhood Pitch covering the fictional Morning Star Football Club. Its headlines name the team, its illustrations include the team crest, and several articles discuss its matches. That shows the publication covers the club. It does not establish that the club runs the website."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Compare three descriptions: “Morning Star news,” “Reported by Neighbourhood Pitch,” and “An announcement from Morning Star.” The first identifies a subject, the second identifies a reporter, and the third attributes an announcement to a source. They do different jobs."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "A brand-like search term can likewise appear as a subject, a phrase readers search for, or wording an author is discussing. Repetition increases the number of mentions. It does not add evidence about the publisher’s identity."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Familiar artwork is not proof of a relationship"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Suppose another fictional news site uses football graphics in the same colours as Neighbourhood Pitch. Readers may recognise the visual style. That feeling of familiarity is not documentation of a relationship between the publishers."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The FTC describes impersonation involving logos, names, and lookalike web addresses. This illustrates why appearance alone is insufficient evidence. It is a general point, not an allegation about any name mentioned here. See the "
+                },
+                {
+                  "type": "text",
+                  "text": "FTC’s examples of impersonation",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://www.ftc.gov/business-guidance/blog/2024/02/new-impersonator-rule-gives-ftc-powerful-tool-protecting-consumers-businesses"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": "."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The reverse also matters: an article without familiar branding is not automatically false. A writer could accurately cite an announcement without reproducing a crest. The relevant question is whether the evidence supports the statement."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Words in an address have different functions"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "In the fictional address "
+                },
+                {
+                  "type": "text",
+                  "text": "https://example.com/news/morning-star-final",
+                  "marks": [
+                    {
+                      "type": "code"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": ", "
+                },
+                {
+                  "type": "text",
+                  "text": "example.com",
+                  "marks": [
+                    {
+                      "type": "code"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " is the domain and "
+                },
+                {
+                  "type": "text",
+                  "text": "/news/morning-star-final",
+                  "marks": [
+                    {
+                      "type": "code"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " is the path. The club’s name in that path does not establish that the club controls the website. "
+                },
+                {
+                  "type": "text",
+                  "text": "MDN explains the distinction between these URL components",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": "."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "IANA reserves example domains for documentation",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://www.iana.org/help/example-domains"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": ". The address above is an illustration, not a service recommendation."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Even when a familiar word appears in the domain itself, two questions remain separate: “What does this address say?” and “Who publishes the page, and what relationships do they have?” Reading the letters answers the first, not automatically the second."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Separate the writer the link and the source"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Suppose Neighbourhood Pitch reports a change to Morning Star’s match schedule and links to an organiser’s document. The writer, the document’s publisher, and the link have different roles. The link does not establish shared ownership."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "If the document announces only a venue change but the article also claims the match date changed, the citation does not support that additional detail. Readers can distinguish the source’s statement from the writer’s interpretation without accepting or rejecting the entire page as a package."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Good editorial attribution makes clear what the writer confirms, what another source says, and what is opinion. “A website reports…” and “The organiser announced…” attribute a claim differently. That distinction helps readers understand who is asserting what."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Keep conclusions within the evidence"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "A screenshot might support “These pages use similar artwork.” It does not, by itself, support “These publishers belong to the same group.” Leaving a question unresolved can be more accurate than supplying a confident answer unsupported by the material."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Frequently asked questions"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 3
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Does UFA169 in a headline identify the website’s owner"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "No such conclusion follows from the headline alone. It may identify the article’s subject rather than its author or operator."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 3
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Do matching logos mean websites belong to one group"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Matching images are observable. Common ownership is a separate claim requiring evidence."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 3
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Does an external link endorse everything on the destination website"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The link alone does not establish an endorsement’s scope. Read the surrounding wording and check what the source supports. A citation for one fact does not validate every claim elsewhere on that site."
+                }
+              ]
+            }
+          ]
+        },
+        "image": null,
+        "citations": [
+          {
+            "title": "FTC’s examples of impersonation",
+            "url": "https://www.ftc.gov/business-guidance/blog/2024/02/new-impersonator-rule-gives-ftc-powerful-tool-protecting-consumers-businesses"
+          },
+          {
+            "title": "MDN explains the distinction between these URL components",
+            "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL"
+          },
+          {
+            "title": "IANA reserves example domains for documentation",
+            "url": "https://www.iana.org/help/example-domains"
+          }
+        ]
+      }
+    },
+    {
+      "action": "save",
+      "id": "385530fd-6d41-4974-b461-0bed8f78e670",
+      "revision": 0,
+      "locale": "th",
+      "slug": "ufa169-names-and-website-identity",
+      "draft": {
+        "title": "UFA169 ufa และเว็บยูฟ่า ชื่อคล้ายกันบอกอะไรได้จริง",
+        "description": "ชื่อ โลโก้ และคำในที่อยู่เว็บไม่ยืนยันผู้จัดทำหรือการรับรอง เรียนรู้การแยกผู้เขียนข่าว ลิงก์ภายนอก และแหล่งที่มาของข้ออ้างผ่านตัวอย่างสมมติ",
+        "category": "ความรู้เท่าทันดิจิทัล",
+        "summary": "ชื่อ โลโก้ หรือคำที่คล้ายกันบนหน้าเว็บ ไม่เพียงพอจะยืนยันว่าเว็บไซต์เหล่านั้นมีผู้จัดทำรายเดียวกัน หรือได้รับการรับรองจากกันและกัน เมื่อพบคำว่า “UFA169”, “ufa” หรือ “เว็บยูฟ่า” สิ่งที่เห็นแน่ ๆ คือมีข้อความนั้นปรากฏอยู่ ส่วนข้ออ้างเรื่องผู้ดำเนินการ ความเกี่ยวข้อง หรือการรับรอง ต้องมีหลักฐานแยกต่างหาก",
+        "body": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "บทความนี้ใช้ตัวอย่างสำนักข่าวกีฬาและทีมฟุตบอลที่สมมติขึ้น เพื่ออธิบายการอ่านหน้าเว็บอย่างมีวิจารณญาณ ชื่อในตัวอย่างไม่ได้หมายถึงองค์กรจริง และไม่ได้ใช้ตัดสินว่าใครเป็นเจ้าของชื่อข้างต้น"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "การกล่าวถึงชื่อ ไม่ได้แปลว่าเป็นผู้ใช้ชื่อนั้น"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "สมมติว่ามีเว็บไซต์ข่าวชื่อ “สนามข้างบ้าน” เขียนเรื่องทีมฟุตบอลสมมติ “สโมสรดาวเช้า” พาดหัวมีชื่อทีม ภาพประกอบมีตราทีม และบทความหลายหน้าก็พูดถึงทีมเดียวกัน ทั้งหมดนี้อาจบอกได้ว่าเว็บไซต์กำลังเสนอเนื้อหาเกี่ยวกับทีม แต่ยังไม่บอกว่าเป็นเว็บไซต์ที่ทีมจัดทำ"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ลองเปลี่ยนข้อความในหน้าเดียวกันเป็นสามแบบ: “ข่าวของสโมสรดาวเช้า”, “รายงานโดยสนามข้างบ้าน” และ “ประกาศจากสโมสรดาวเช้า” ข้อความแรกระบุหัวข้อ ข้อความที่สองระบุผู้รายงาน ส่วนข้อความสุดท้ายอ้างถึงต้นทางของประกาศ ผู้อ่านจึงไม่ควรถือว่าสามประโยคนี้มีความหมายเท่ากัน"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "หลักเดียวกันใช้กับคำค้นที่ดูเหมือนชื่อแบรนด์ คำอาจปรากฏเพราะเป็นหัวข้อข่าว คำที่ผู้อ่านค้นหา หรือข้อความที่ผู้เขียนนำมาอภิปราย การเห็นคำซ้ำหลายตำแหน่งจึงเพิ่มจำนวนครั้งที่ชื่อปรากฏ แต่ไม่ได้เพิ่มหลักฐานเรื่องตัวตนของผู้เผยแพร่"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "โลโก้เป็นภาพประกอบได้ และถูกนำไปเลียนแบบได้"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ในตัวอย่างสมมติ เว็บไซต์ข่าวอีกแห่งหนึ่งใช้ภาพฟุตบอลสีเดียวกับ “สนามข้างบ้าน” ผู้อ่านอาจรู้สึกคุ้นตา แต่ความคุ้นเคยเป็นปฏิกิริยาของคนอ่าน ไม่ใช่เอกสารยืนยันความสัมพันธ์ระหว่างผู้จัดทำ"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "FTC ยกตัวอย่างการแอบอ้างที่ใช้โลโก้ ชื่อ และที่อยู่เว็บคล้ายองค์กรอื่น ดังนั้นภาพและตัวสะกดจึงไม่ใช่หลักฐานที่เพียงพอในตัวเอง ข้อนี้เป็นหลักทั่วไปเรื่องการแอบอ้าง ไม่ใช่ข้อกล่าวหาต่อชื่อใดในบทความนี้ "
+                },
+                {
+                  "type": "text",
+                  "text": "อ่านตัวอย่างการแอบอ้างจาก FTC",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://www.ftc.gov/business-guidance/blog/2024/02/new-impersonator-rule-gives-ftc-powerful-tool-protecting-consumers-businesses"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ในทางกลับกัน การไม่มีโลโก้ที่คุ้นเคยก็ไม่ได้พิสูจน์ว่าบทความเป็นเท็จ ผู้เขียนอาจอ้างประกาศที่มีแหล่งต้นทางชัดเจนโดยไม่ใช้ภาพตราเลย สิ่งที่ควรอ่านคือข้อความกำลังอ้างอะไร และหลักฐานรองรับข้ออ้างนั้นจริงหรือไม่"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "คำในที่อยู่เว็บมีหน้าที่ต่างกัน"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ชื่อเว็บกับชื่อหน้าบทความเป็นคนละส่วนกัน ตัวอย่างสมมติ "
+                },
+                {
+                  "type": "text",
+                  "text": "https://example.com/news/morning-star-final",
+                  "marks": [
+                    {
+                      "type": "code"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " มี "
+                },
+                {
+                  "type": "text",
+                  "text": "example.com",
+                  "marks": [
+                    {
+                      "type": "code"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " เป็นชื่อโดเมน ส่วน "
+                },
+                {
+                  "type": "text",
+                  "text": "/news/morning-star-final",
+                  "marks": [
+                    {
+                      "type": "code"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " เป็นเส้นทางของเนื้อหา คำว่า "
+                },
+                {
+                  "type": "text",
+                  "text": "morning-star",
+                  "marks": [
+                    {
+                      "type": "code"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " ในเส้นทางไม่ได้แสดงว่าเจ้าของทีมสมมติเป็นผู้ควบคุมเว็บไซต์ ตาม "
+                },
+                {
+                  "type": "text",
+                  "text": "คำอธิบายโครงสร้าง URL ของ MDN",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "โดเมน "
+                },
+                {
+                  "type": "text",
+                  "text": "example.com",
+                  "marks": [
+                    {
+                      "type": "code"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " ใช้ที่นี่เพื่อประกอบคำอธิบายเท่านั้น โดย "
+                },
+                {
+                  "type": "text",
+                  "text": "IANA สงวนโดเมนตัวอย่างสำหรับงานเอกสาร",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://www.iana.org/help/example-domains"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " ตัวอย่างนี้จึงไม่ใช่ที่อยู่สำนักข่าวหรือบริการที่แนะนำให้เข้าใช้งาน"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "แม้คำที่คุ้นเคยจะอยู่ในชื่อโดเมนเอง ก็ยังต้องแยกคำถามสองเรื่อง: “ที่อยู่นี้เขียนว่าอะไร” กับ “ใครเป็นผู้จัดทำและมีความสัมพันธ์กับใคร” การอ่านตัวอักษรตอบคำถามแรกได้ แต่ไม่ได้ตอบคำถามที่สองโดยอัตโนมัติ"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "แยกผู้เขียน ลิงก์ภายนอก และต้นทางของข้ออ้าง"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "สมมติว่า “สนามข้างบ้าน” รายงานว่าการแข่งขันของสโมสรดาวเช้าเลื่อนเวลา แล้ววางลิงก์ไปยังเอกสารของผู้จัดการแข่งขัน ในหน้านี้มีบทบาทต่างกันสามส่วน ได้แก่ ผู้เขียนข่าว ผู้เผยแพร่เอกสารต้นทาง และลิงก์ที่เชื่อมไปยังเอกสาร การมีลิงก์ไม่ได้ทำให้ทั้งสามส่วนกลายเป็นผู้จัดทำรายเดียวกัน"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "หากเอกสารต้นทางบอกเพียงว่าเปลี่ยนสนาม แต่บทความเขียนว่าเปลี่ยนวันแข่งขันด้วย ลิงก์นั้นก็ยังไม่รองรับรายละเอียดเรื่องวันที่เพิ่มเข้ามา ผู้อ่านควรแยกสิ่งที่ต้นทางระบุออกจากสิ่งที่ผู้เขียนตีความ ไม่จำเป็นต้องเลือกว่าจะเชื่อทั้งหน้า หรือปฏิเสธทั้งหน้าพร้อมกัน"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ในงานบรรณาธิการ ผู้เขียนควรทำให้ชัดว่าข้อความใดตนยืนยัน ข้อความใดอ้างจากผู้อื่น และข้อใดเป็นความเห็น การเขียนว่า “มีเว็บไซต์รายงานว่า…” ต่างจาก “ผู้จัดการแข่งขันประกาศว่า…” เพราะระบุแหล่งความรับผิดชอบต่อคำกล่าวอ้างไว้ต่างกัน"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "เมื่อหลักฐานมีเพียงเท่านี้ ก็ควรสรุปเพียงเท่านี้"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ภาพหน้าจอที่มีโลโก้เหมือนกันอาจใช้บันทึกว่า “สองหน้านี้ใช้ภาพคล้ายกัน” ได้ แต่ไม่ควรถูกขยายเป็น “ทั้งสองหน้าอยู่ในเครือเดียวกัน” การเว้นข้อสรุปที่ยังไม่มีหลักฐานไม่ได้ทำให้การอ่านข่าวด้อยลง กลับช่วยให้คุณอธิบายได้ว่ารู้เรื่องใดแล้ว และเรื่องใดยังตอบไม่ได้"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "คำถามที่พบบ่อย"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 3
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "มีคำว่า UFA169 อยู่ในพาดหัว แปลว่าเป็นเจ้าของเว็บหรือไม่"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ไม่อาจสรุปเช่นนั้นได้ พาดหัวระบุเรื่องที่บทความพูดถึงได้ โดยไม่ใช่ชื่อผู้เขียนหรือผู้ดำเนินการเว็บไซต์ ต้องแยกบทบาทเหล่านี้ออกจากกัน"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 3
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "หลายเว็บใช้โลโก้เดียวกัน แปลว่าเป็นกลุ่มเดียวกันไหม"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "โลโก้เพียงอย่างเดียวไม่พอจะยืนยันความสัมพันธ์ การใช้ภาพเดียวกันเป็นสิ่งที่สังเกตได้ ส่วนการมีผู้ดำเนินการร่วมกันเป็นอีกข้ออ้างหนึ่งที่ต้องมีหลักฐานรองรับ"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 3
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "เว็บไซต์ข่าวใส่ลิงก์ภายนอก เท่ากับรับรองทุกข้อความในปลายทางหรือไม่"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ตัวลิงก์เพียงอย่างเดียวไม่ได้แสดงขอบเขตการรับรอง ต้องอ่านข้อความรอบลิงก์ว่าผู้เขียนอ้างอะไร และแหล่งปลายทางรองรับเรื่องนั้นจริงหรือไม่ การอ้างข้อมูลข้อหนึ่งไม่ควรถูกขยายให้ครอบคลุมทุกข้อกล่าวอ้างของเว็บไซต์อื่น"
+                }
+              ]
+            }
+          ]
+        },
+        "image": null,
+        "citations": [
+          {
+            "title": "อ่านตัวอย่างการแอบอ้างจาก FTC",
+            "url": "https://www.ftc.gov/business-guidance/blog/2024/02/new-impersonator-rule-gives-ftc-powerful-tool-protecting-consumers-businesses"
+          },
+          {
+            "title": "คำอธิบายโครงสร้าง URL ของ MDN",
+            "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL"
+          },
+          {
+            "title": "IANA สงวนโดเมนตัวอย่างสำหรับงานเอกสาร",
+            "url": "https://www.iana.org/help/example-domains"
+          }
+        ]
+      }
+    },
+    {
+      "action": "save",
+      "id": "b51e2afb-0a7b-44e5-b84e-4484a4bd18e7",
+      "revision": 0,
+      "locale": "en",
+      "slug": "ufabet-official-website-claims",
+      "draft": {
+        "title": "UFABET Official Website and Latest Link Claims Explained",
+        "description": "Understand claims about official websites and latest links. Examine update dates, source independence and evidence before repeating a claim.",
+        "category": "Digital literacy",
+        "summary": "“Official website” is a claim about a relationship with an operator. “Latest link” is a claim about timing. Neither phrase supplies its own evidence. When you read an article using these terms, separate what the author asserts from what the supporting information establishes.",
+        "body": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "A search for UFABET or "
+                },
+                {
+                  "type": "text",
+                  "text": "ufabet.com",
+                  "marks": [
+                    {
+                      "type": "code"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " may produce a headline that seems to settle everything at once. Yet several questions sit behind that headline: who operates the website, how current the information is and how much confidence the evidence warrants. An answer to one question does not automatically answer the others."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Identify the claim before weighing the evidence"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Consider this fictional sentence: “The latest page from the official provider, safe for everyone.” It contains at least three claims. Each needs its own explanation."
+                }
+              ]
+            },
+            {
+              "type": "table",
+              "content": [
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableHeader",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "Wording"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableHeader",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "The question it needs to answer"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableHeader",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "What cannot answer it alone"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "Official"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "Who asserts the relationship, and on what basis"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "A familiar name or logo"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "Latest"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "What changed, and when"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "The current year in a headline"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "Safe"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "Which risks are being discussed, and within what limits"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "HTTPS or a professional-looking page"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "Verified"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "What was checked, how and by whom"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "An assurance with no supporting detail"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "These questions help assess an article's reasoning. They do not certify a service. If the evidence supports only part of a statement, keep your conclusion within that part."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Read the update date alongside the change"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Imagine a football fixture article with a fresh update date that still lists an old kick-off time. If the organizer has announced a change, the new date on the article cannot make its outdated schedule accurate."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Apply the same reasoning to a claim about a “latest link.” Look for an explanation of what information was current at a particular time and what the revision changed. Correcting a spelling mistake is a real edit, but it does not establish that every claim in the article has been checked again."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Publication dates, revision dates and event dates serve different purposes. They need not match. A clear article tells readers which date applies to which statement, so information from one period is not mistaken for a current finding."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Several articles can depend on one source"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Suppose Website A reports a transfer story from Website B. Website C then publishes a separate article citing Website B. You have found three articles, but you have not necessarily found three independent confirmations."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "When an article makes a claim about a website, examine what its reference contributes. Does it provide evidence that answers the question, or does it repeat the same assertion? If every reference leads back to one statement, the number of pages can overstate the amount of independent support."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Sometimes a claim remains unverified. Google acknowledges that some searches have relatively little reliable information and that dependable reporting on a developing topic may take time. A result appearing in search does not resolve the evidence behind every sentence on that page. "
+                },
+                {
+                  "type": "text",
+                  "text": "Google's explanation of reliable search results",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://support.google.com/websearch/answer/12395529?hl=en"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": "."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Consider the publisher and the specific claim"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "A byline, contact page and corrections policy help establish responsibility for an article. Read them alongside the evidence for the particular statement you are evaluating. A website that explains football statistics thoroughly still needs separate support for a claim about another service's operator."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Google's “About this result” feature can provide background about a source, depending on the information available. The feature is available only in some regions. This background adds context; it does not replace evidence for a particular assertion. "
+                },
+                {
+                  "type": "text",
+                  "text": "Google Search Help",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://support.google.com/websearch/answer/11127743?hl=en"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": "."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "If an article discloses an advertising or commercial relationship, take that context into account. An absent disclosure does not establish that no relationship exists. Avoid filling the gap with assumptions about ownership, sponsorship or the author's intentions."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Preserve the limits when sharing a claim"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "“This article describes the site as official, but does not show evidence of that relationship” communicates something different from “This is the official site.” The first describes what you read. The second passes on the claim as an established fact."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "A careful message can still be short. State who made the claim, when the relevant information applied and what remains unresolved. That gives the next reader enough context to judge it without adding certainty that the source has not earned."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "For the related question of similar names and organizational relationships, read "
+                },
+                {
+                  "type": "text",
+                  "text": "UFA169 and what similar names reveal about website identity",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "/insights/ufa169-names-and-website-identity"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": "."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Frequently asked questions"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 3
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Does naming a domain in an article prove it is official"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "No. Naming a domain establishes that the article mentions it. A relationship with an operator requires separate support. This article does not endorse or authenticate a domain."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 3
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Is an article with a newer date always more reliable"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "No. Consider whether the relevant information was actually reviewed and when its underlying evidence applied. A newer date alone cannot establish either point."
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 3
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Is a claim confirmed when several websites repeat it"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Check whether the sources reached their conclusions independently. If every article relies on the same original statement, the number of articles exceeds the number of underlying sources. Examine that source before treating repetition as confirmation."
+                }
+              ]
+            }
+          ]
+        },
+        "image": null,
+        "citations": [
+          {
+            "title": "Google's explanation of reliable search results",
+            "url": "https://support.google.com/websearch/answer/12395529?hl=en"
+          },
+          {
+            "title": "Google Search Help",
+            "url": "https://support.google.com/websearch/answer/11127743?hl=en"
+          }
+        ]
+      }
+    },
+    {
+      "action": "save",
+      "id": "1c8ba824-12b5-47b4-b8fb-27ab58a7289d",
+      "revision": 0,
+      "locale": "th",
+      "slug": "ufabet-official-website-claims",
+      "draft": {
+        "title": "UFABET เว็บไซต์ทางการและลิงก์ล่าสุด อ่านคำกล่าวอ้างอย่างไร",
+        "description": "คำว่าเว็บไซต์ทางการและลิงก์ล่าสุดบอกอะไรได้จริง เรียนรู้การอ่านวันที่อัปเดต แหล่งอ้างอิง และหลักฐาน เพื่อไม่ส่งต่อข้อกล่าวอ้างเกินข้อมูลที่มี",
+        "category": "ความรู้เท่าทันดิจิทัล",
+        "summary": "คำว่า “เว็บไซต์ทางการ” เป็นข้อกล่าวอ้างเกี่ยวกับความสัมพันธ์กับผู้ดำเนินการ ส่วนคำว่า “ลิงก์ล่าสุด” เป็นข้อกล่าวอ้างเกี่ยวกับเวลา ทั้งสองคำไม่ได้เป็นหลักฐานในตัวเอง การอ่านบทความที่ใช้คำเหล่านี้จึงควรแยกว่า ผู้เขียนกำลังบอกอะไร และมีข้อมูลใดรองรับคำบอกนั้น",
+        "body": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "คนที่ค้นคำว่า UFABET หรือ "
+                },
+                {
+                  "type": "text",
+                  "text": "ufabet.com",
+                  "marks": [
+                    {
+                      "type": "code"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " อาจพบพาดหัวที่ดูเหมือนตอบได้ทันที แต่พาดหัวสั้น ๆ มักรวมคำถามหลายข้อไว้ด้วยกัน เช่น เว็บไซต์นี้เกี่ยวข้องกับใคร ข้อมูลยังเป็นปัจจุบันหรือไม่ และผู้อ่านควรเชื่อข้อความมากน้อยเพียงใด คำตอบของข้อหนึ่งไม่ควรถูกใช้แทนอีกข้อ"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "แยกคำกล่าวอ้างก่อนอ่านหลักฐาน"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ลองอ่านประโยคสมมติว่า “หน้าใหม่ล่าสุดจากผู้ให้บริการทางการ ปลอดภัยสำหรับทุกคน” ประโยคเดียวนี้มีข้อกล่าวอ้างอย่างน้อยสามเรื่อง และแต่ละเรื่องต้องมีคำอธิบายของตัวเอง"
+                }
+              ]
+            },
+            {
+              "type": "table",
+              "content": [
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableHeader",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "คำที่อ่านพบ"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableHeader",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "คำถามที่ข้อความนั้นต้องตอบ"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableHeader",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "สิ่งที่ยังใช้แทนคำตอบไม่ได้"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "ทางการ"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "ใครเป็นผู้กล่าวอ้างความสัมพันธ์ และกล่าวไว้อย่างไร"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "โลโก้หรือชื่อที่คล้ายกัน"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "ล่าสุด"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "ข้อมูลส่วนใดเปลี่ยน และเปลี่ยนเมื่อใด"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "ปีปัจจุบันในชื่อบทความเพียงอย่างเดียว"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "ปลอดภัย"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "กล่าวถึงความเสี่ยงประเภทใด และมีขอบเขตแค่ไหน"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "การมี HTTPS หรือหน้าเว็บที่ดูเรียบร้อย"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "ตรวจสอบแล้ว"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "ตรวจอะไร ใช้วิธีใด และใครรับผิดชอบผลตรวจ"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tableCell",
+                      "attrs": {
+                        "colspan": 1,
+                        "rowspan": 1
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "ประโยครับรองที่ไม่มีรายละเอียด"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ตารางนี้ใช้ประเมินความชัดเจนของบทความ ไม่ใช่ให้คะแนนผู้ให้บริการหรือรับรองเว็บไซต์ใด หากข้อมูลตอบได้เพียงบางเรื่อง ก็ควรเชื่อข้อสรุปได้เท่าที่หลักฐานรองรับ"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "วันที่อัปเดตต้องอ่านคู่กับสิ่งที่เปลี่ยน"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "สมมติว่าบทความรายงานกำหนดการแข่งขันฟุตบอลมีวันที่อัปเดตใหม่ แต่ยังใช้เวลาแข่งขันเดิมทั้งที่ประกาศจัดการแข่งขันเปลี่ยนแล้ว วันที่ใหม่ย่อมไม่ช่วยให้ข้อมูลเก่าถูกต้องขึ้น"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "หลักเดียวกันใช้กับคำว่า “ลิงก์ล่าสุด” ได้ ผู้อ่านควรมองหาคำอธิบายว่าข้อมูลที่กล่าวถึงเป็นข้อมูล ณ เวลาใด และการแก้ไขครอบคลุมเรื่องอะไร บทความที่แก้เพียงตัวสะกดอาจมีการอัปเดตจริง แต่การแก้นั้นไม่ได้หมายความว่าผู้เขียนตรวจทุกข้อกล่าวอ้างใหม่ทั้งหมด"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "วันที่เผยแพร่ วันที่แก้ไข และวันที่เกิดเหตุการณ์ก็มีหน้าที่ต่างกัน หากสามวันนั้นไม่ตรงกัน ไม่จำเป็นว่ามีใครทำผิด แต่ผู้เขียนควรทำให้เห็นว่ากำลังอ้างวันไหน เพื่อไม่ให้ผู้อ่านนำข้อสรุปจากช่วงเวลาหนึ่งไปใช้กับอีกช่วงเวลาหนึ่ง"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "หลายบทความอาจมีต้นทางเพียงแห่งเดียว"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ลองนึกถึงข่าวย้ายทีมที่เว็บไซต์ ก อ้างเว็บไซต์ ข ส่วนเว็บไซต์ ค ก็อ้างเว็บไซต์ ข เช่นกัน การเห็นข่าวเดียวกันสามแห่งช่วยให้รู้ว่ามีการเผยแพร่ต่อ แต่ยังไม่ได้เพิ่มแหล่งยืนยันอิสระเป็นสามแหล่ง"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "เมื่ออ่านคำกล่าวอ้างเกี่ยวกับเว็บไซต์ ลองดูว่าลิงก์อ้างอิงพาไปยังเอกสารที่ตอบคำถามจริง หรือพาไปยังบทความที่กล่าวซ้ำ ๆ ถ้าบทความทุกชิ้นย้อนกลับไปหาข้อความเดียวกัน หลักฐานที่เรามีอาจยังเป็นเพียงข้อกล่าวอ้างต้นทางหนึ่งชิ้น"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "บางครั้งคำตอบที่เหมาะสมที่สุดคือ “ข้อมูลนี้ยังยืนยันไม่ได้” Google เองอธิบายว่าบางคำค้นอาจมีแหล่งที่น่าเชื่อถือไม่มาก และหัวข้อที่เพิ่งเกิดขึ้นอาจต้องรอให้มีข้อมูลที่ตรวจสอบได้มากขึ้น การพบผลค้นหาจึงไม่ได้ทำให้ทุกข้อกล่าวอ้างในผลนั้นได้รับการยืนยัน "
+                },
+                {
+                  "type": "text",
+                  "text": "คำอธิบายเรื่องผลค้นหาที่น่าเชื่อถือจาก Google",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://support.google.com/websearch/answer/12395529?hl=en"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "อ่านข้อมูลเกี่ยวกับผู้เผยแพร่โดยไม่ข้ามไปสู่ข้อสรุป"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ชื่อผู้เขียน หน้าติดต่อ และนโยบายแก้ไขข้อผิดพลาดช่วยให้ทราบว่าใครรับผิดชอบเนื้อหา แต่ต้องอ่านร่วมกับหลักฐานของเรื่องที่กำลังพิจารณา เว็บไซต์ที่รายงานสถิติฟุตบอลได้ละเอียด ยังต้องแสดงเหตุผลแยกต่างหากเมื่อกล่าวถึงผู้ดำเนินการของบริการอื่น"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Google มีข้อมูลเกี่ยวกับแหล่งที่มาในส่วน “เกี่ยวกับผลการค้นหานี้” ซึ่งอาจแสดงข้อมูลพื้นฐานของเว็บไซต์ตามข้อมูลที่มี และมีให้ใช้เฉพาะบางภูมิภาค ข้อมูลนี้ช่วยเติมบริบทเกี่ยวกับแหล่งข่าว ไม่ได้แทนที่หลักฐานของข้อกล่าวอ้างเฉพาะเรื่อง "
+                },
+                {
+                  "type": "text",
+                  "text": "รายละเอียดจาก Google Search Help",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://support.google.com/websearch/answer/11127743?hl=en"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "หากบทความระบุว่าเป็นโฆษณาหรือมีความสัมพันธ์ทางการค้า ให้นำข้อมูลนั้นมาประกอบการอ่าน ขณะเดียวกัน การไม่เห็นป้ายดังกล่าวก็ยังไม่ใช่หลักฐานว่าไม่มีความสัมพันธ์ใด ๆ อย่าเติมข้อสรุปเรื่องเจ้าของ ผู้สนับสนุน หรือเจตนาของผู้เขียนเอง"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "เมื่อต้องส่งข้อมูลต่อ ให้รักษาขอบเขตของข้อสรุป"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "หากคุณจะส่งบทความให้เพื่อน ประโยคว่า “หน้านี้อ้างว่าเป็นเว็บไซต์ทางการ แต่ยังไม่แสดงหลักฐานของความสัมพันธ์” ให้ข้อมูลต่างจาก “นี่คือเว็บไซต์ทางการ” มาก ประโยคแรกบอกสิ่งที่อ่านพบ ส่วนประโยคหลังรับรองข้อกล่าวอ้างนั้นต่อแล้ว"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "การส่งต่ออย่างระมัดระวังไม่จำเป็นต้องยาว เพียงบอกว่าใครกล่าวอะไร อ้างข้อมูลจากเมื่อใด และยังมีเรื่องใดที่สรุปไม่ได้ ก็ช่วยให้คนอ่านต่อไม่เข้าใจเกินหลักฐานที่มี"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "สำหรับความสับสนเรื่องชื่อและความสัมพันธ์ อ่านเพิ่มเติมได้ที่ "
+                },
+                {
+                  "type": "text",
+                  "text": "UFA169 และชื่อที่คล้ายกันบอกอะไรเกี่ยวกับผู้ดำเนินการ",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "/th/insights/ufa169-names-and-website-identity"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "คำถามที่พบบ่อย"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 3
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "การพิมพ์ชื่อโดเมนในบทความยืนยันว่าเป็นเว็บไซต์ทางการหรือไม่"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ไม่ยืนยัน การกล่าวถึงชื่อโดเมนเป็นเพียงข้อความหนึ่งในบทความ ความสัมพันธ์กับผู้ดำเนินการต้องมีหลักฐานรองรับต่างหาก บทความนี้ไม่ได้รับรองโดเมนใด"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 3
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "บทความที่มีวันที่ใหม่กว่าน่าเชื่อถือกว่าเสมอหรือไม่"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ไม่เสมอ ต้องดูว่าข้อมูลที่เกี่ยวข้องได้รับการทบทวนจริงหรือไม่ และอ้างเหตุการณ์หรือเอกสารจากช่วงเวลาใด วันที่ใหม่เพียงอย่างเดียวไม่ได้ตอบคำถามเหล่านี้"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 3
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ถ้าหลายเว็บไซต์เขียนเหมือนกันถือว่ายืนยันได้แล้วหรือไม่"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ต้องดูความเป็นอิสระของแหล่งข้อมูลด้วย หากทุกเว็บนำข้อความมาจากต้นทางเดียวกัน จำนวนบทความจะมากกว่าจำนวนหลักฐาน การตรวจต้นทางจึงมีประโยชน์กว่าการนับว่าพบข้อความซ้ำกี่ครั้ง"
+                }
+              ]
+            }
+          ]
+        },
+        "image": null,
+        "citations": [
+          {
+            "title": "คำอธิบายเรื่องผลค้นหาที่น่าเชื่อถือจาก Google",
+            "url": "https://support.google.com/websearch/answer/12395529?hl=en"
+          },
+          {
+            "title": "รายละเอียดจาก Google Search Help",
+            "url": "https://support.google.com/websearch/answer/11127743?hl=en"
+          }
+        ]
+      }
+    }
+  ]
+}
