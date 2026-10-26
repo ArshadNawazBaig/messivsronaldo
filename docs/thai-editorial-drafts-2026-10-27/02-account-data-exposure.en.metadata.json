@@ -1,0 +1,30 @@
+{
+  "status": "Local editorial draft; not published",
+  "language": "en",
+  "prepared_date": "2026-10-27",
+  "translation_of": "02-account-data-exposure.md",
+  "seo_title_en": "Protect Your Accounts After Sharing a Password by Mistake",
+  "meta_description_en": "Entered details on a suspicious page? Learn how to protect email, reused passwords, social accounts and banking information, with a fictional example.",
+  "suggested_slug": "protect-accounts-after-data-exposure",
+  "primary_query_context": "ufabet เข้าสู่ระบบ",
+  "actual_intent_served": "Informational incident response after possible credential exposure: protecting email, reused passwords, social accounts, and banking information.",
+  "editorial_note_en": "English adaptation of the Thai consumer-education draft. It preserves the fictional example, source citations, and three FAQs. It does not serve gambling-account access intent or identify a gambling destination. No independent originality check, publication, or ranking outcome is claimed.",
+  "sources": [
+    {
+      "publisher": "Google Account Help",
+      "url": "https://support.google.com/accounts/answer/6294825?hl=en",
+      "supports_en": "Email activity, connected devices, recovery details, forwarding settings, and two-step verification."
+    },
+    {
+      "publisher": "UK National Cyber Security Centre",
+      "url": "https://www.ncsc.gov.uk/section/respond-recover/hacked-accounts",
+      "supports_en": "Reused passwords, other sessions, contact warnings, and unfamiliar financial activity."
+    },
+    {
+      "publisher": "US Federal Trade Commission Consumer Advice",
+      "url": "https://consumer.ftc.gov/articles/how-recognize-avoid-phishing-scams",
+      "supports_en": "Avoiding further disclosures and independently initiating contact."
+    }
+  ],
+  "source_language": "th"
+}

@@ -1,0 +1,117 @@
+{
+  "checked_at_utc": "2026-10-26T22:30:43.385157+00:00",
+  "method": "Local exact-substring comparison after Unicode NFKC normalization, case folding, and removal of whitespace/punctuation. Minimum seed 40 normalized characters. Zero means no match of at least 40 characters, not no shared words. No semantic plagiarism detection or internet-wide scan.",
+  "references": [
+    {
+      "name": "mobile",
+      "url": "https://www.messivsronaldo.app/articles/ufabet-mobile-access-latest-links-and-direct-website-guide/",
+      "status": 200,
+      "extracted_characters": 6752
+    },
+    {
+      "name": "access",
+      "url": "https://www.messivsronaldo.app/articles/ufabet-access/",
+      "status": 200,
+      "extracted_characters": 6760
+    },
+    {
+      "name": "ufa169",
+      "url": "https://www.messivsronaldo.app/articles/ufa169-entrance/",
+      "status": 200,
+      "extracted_characters": 8410
+    },
+    {
+      "name": "latest",
+      "url": "https://www.messivsronaldo.app/articles/latest-ufabet-login-link-ufabet-official-website/",
+      "status": 200,
+      "extracted_characters": 8543
+    }
+  ],
+  "comparisons": [
+    {
+      "draft": "01-mobile-link-literacy.md",
+      "reference": "mobile",
+      "longest_exact_span_at_least_40_normalized_characters": 0
+    },
+    {
+      "draft": "01-mobile-link-literacy.md",
+      "reference": "access",
+      "longest_exact_span_at_least_40_normalized_characters": 0
+    },
+    {
+      "draft": "01-mobile-link-literacy.md",
+      "reference": "ufa169",
+      "longest_exact_span_at_least_40_normalized_characters": 0
+    },
+    {
+      "draft": "01-mobile-link-literacy.md",
+      "reference": "latest",
+      "longest_exact_span_at_least_40_normalized_characters": 0
+    },
+    {
+      "draft": "02-account-data-exposure.md",
+      "reference": "mobile",
+      "longest_exact_span_at_least_40_normalized_characters": 0
+    },
+    {
+      "draft": "02-account-data-exposure.md",
+      "reference": "access",
+      "longest_exact_span_at_least_40_normalized_characters": 0
+    },
+    {
+      "draft": "02-account-data-exposure.md",
+      "reference": "ufa169",
+      "longest_exact_span_at_least_40_normalized_characters": 0
+    },
+    {
+      "draft": "02-account-data-exposure.md",
+      "reference": "latest",
+      "longest_exact_span_at_least_40_normalized_characters": 0
+    },
+    {
+      "draft": "03-ufa169-name-and-identity.md",
+      "reference": "mobile",
+      "longest_exact_span_at_least_40_normalized_characters": 0
+    },
+    {
+      "draft": "03-ufa169-name-and-identity.md",
+      "reference": "access",
+      "longest_exact_span_at_least_40_normalized_characters": 0
+    },
+    {
+      "draft": "03-ufa169-name-and-identity.md",
+      "reference": "ufa169",
+      "longest_exact_span_at_least_40_normalized_characters": 0
+    },
+    {
+      "draft": "03-ufa169-name-and-identity.md",
+      "reference": "latest",
+      "longest_exact_span_at_least_40_normalized_characters": 0
+    },
+    {
+      "draft": "04-official-and-latest-claims.md",
+      "reference": "mobile",
+      "longest_exact_span_at_least_40_normalized_characters": 0
+    },
+    {
+      "draft": "04-official-and-latest-claims.md",
+      "reference": "access",
+      "longest_exact_span_at_least_40_normalized_characters": 0
+    },
+    {
+      "draft": "04-official-and-latest-claims.md",
+      "reference": "ufa169",
+      "longest_exact_span_at_least_40_normalized_characters": 0
+    },
+    {
+      "draft": "04-official-and-latest-claims.md",
+      "reference": "latest",
+      "longest_exact_span_at_least_40_normalized_characters": 0
+    }
+  ],
+  "limits": [
+    "Only the four supplied competitor articles were compared.",
+    "Common names, terminology and factual concepts can overlap without copying.",
+    "This does not certify a plagiarism percentage or AI-detector outcome."
+  ]
+}

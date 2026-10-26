@@ -1,0 +1,40 @@
+{
+  "status": "Local editorial draft; not published",
+  "language": "th",
+  "reviewed_on": "2026-10-27",
+  "seo_title_th": "UFA169 ufa และเว็บยูฟ่า ชื่อคล้ายกันบอกอะไรได้จริง",
+  "meta_description_th": "ชื่อ โลโก้ และคำในที่อยู่เว็บไม่ยืนยันผู้จัดทำหรือการรับรอง เรียนรู้การแยกผู้เขียนข่าว ลิงก์ภายนอก และแหล่งที่มาของข้ออ้างผ่านตัวอย่างสมมติ",
+  "suggested_slug": "ufa169-names-and-website-identity",
+  "primary_query_context": [
+    "UFA169",
+    "ufa",
+    "เว็บยูฟ่า"
+  ],
+  "actual_intent_served": "Informational media literacy: why repeated names, logos, and domain text do not establish common ownership, endorsement, or the provenance of a claim.",
+  "editorial_note_en": "This article intentionally addresses critical reading rather than helping readers identify or select a gambling provider. It makes no claim about actual ownership, affiliation, licensing, legitimacy, or safety of any named brand. All sports-publication and club examples are explicitly fictional. Responsibility is discussed as editorial attribution, not a jurisdiction-specific legal conclusion.",
+  "content_features_en": [
+    "Direct opening answer separating observations from unsupported conclusions",
+    "Original fictional sports-publication and football-club examples",
+    "Reserved example.com URL used only to explain URL structure",
+    "Distinct roles for editorial publisher, outbound link, and source of a claim",
+    "Three short FAQs"
+  ],
+  "sources": [
+    {
+      "publisher": "US Federal Trade Commission",
+      "url": "https://www.ftc.gov/business-guidance/blog/2024/02/new-impersonator-rule-gives-ftc-powerful-tool-protecting-consumers-businesses",
+      "supports_en": "General examples of impersonation using logos and lookalike web addresses; no legal conclusion is applied to a brand or jurisdiction."
+    },
+    {
+      "publisher": "Mozilla MDN Web Docs",
+      "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL",
+      "supports_en": "The technical distinction between the domain and path portions of a URL."
+    },
+    {
+      "publisher": "Internet Assigned Numbers Authority",
+      "url": "https://www.iana.org/help/example-domains",
+      "supports_en": "example.com is reserved for illustrative documentation and is not a recommended service destination."
+    }
+  ],
+  "prepared_date": "2026-10-27"
+}

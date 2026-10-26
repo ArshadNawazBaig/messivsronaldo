@@ -1,0 +1,34 @@
+{
+  "status": "Local editorial draft; not published",
+  "language": "en",
+  "prepared_date": "2026-10-27",
+  "translation_of": "03-ufa169-name-and-identity.md",
+  "seo_title_en": "UFA169 and Similar Names Understanding Website Identity",
+  "meta_description_en": "Similar names and logos do not establish ownership or endorsement. Learn to separate publishers, external links and sources through fictional sports examples.",
+  "suggested_slug": "ufa169-names-and-website-identity",
+  "primary_query_context": [
+    "UFA169",
+    "ufa",
+    "เว็บยูฟ่า"
+  ],
+  "actual_intent_served": "Informational media literacy: why repeated names, logos, and domain text do not establish common ownership, endorsement, or the provenance of a claim.",
+  "editorial_note_en": "English adaptation of the Thai media-literacy draft. The fictional publication and club are rendered as Neighbourhood Pitch and Morning Star Football Club. No actual operator, affiliation, licensing, legitimacy, or safety claim is made. The article does not help readers select a gambling provider. No independent originality check, publication, or ranking outcome is claimed.",
+  "sources": [
+    {
+      "publisher": "US Federal Trade Commission",
+      "url": "https://www.ftc.gov/business-guidance/blog/2024/02/new-impersonator-rule-gives-ftc-powerful-tool-protecting-consumers-businesses",
+      "supports_en": "General impersonation examples involving logos, names, and lookalike addresses."
+    },
+    {
+      "publisher": "Mozilla MDN Web Docs",
+      "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL",
+      "supports_en": "Domain and path distinction."
+    },
+    {
+      "publisher": "Internet Assigned Numbers Authority",
+      "url": "https://www.iana.org/help/example-domains",
+      "supports_en": "Reserved example domains."
+    }
+  ],
+  "source_language": "th"
+}

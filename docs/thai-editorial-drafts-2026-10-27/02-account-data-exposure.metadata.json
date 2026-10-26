@@ -1,0 +1,36 @@
+{
+  "status": "Local editorial draft; not published",
+  "language": "th",
+  "reviewed_on": "2026-10-27",
+  "seo_title_th": "เผลอกรอกข้อมูลในหน้าต้องสงสัย ปกป้องบัญชีอย่างไร",
+  "meta_description_th": "เผลอส่งรหัสผ่านให้หน้าที่น่าสงสัย ควรทำอะไรต่อ อ่านวิธีดูแลอีเมล รหัสผ่านที่ใช้ซ้ำ บัญชีโซเชียล และข้อมูลธนาคาร พร้อมตัวอย่างสมมติ",
+  "suggested_slug": "protect-accounts-after-data-exposure",
+  "primary_query_context": "ufabet เข้าสู่ระบบ",
+  "actual_intent_served": "Informational incident response after possible credential exposure: protecting email, reused passwords, social accounts, and banking information.",
+  "editorial_note_en": "This article intentionally serves consumer education, not the access intent of the query. It contains no gambling destinations, instructions for accessing gambling accounts, provider recommendations, or claim about who operates a named brand. The fictional sports-newsletter example is an original teaching scenario, not a reported incident.",
+  "content_features_en": [
+    "Direct opening answer with immediate containment priorities",
+    "Original fictional sports-newsletter scenario",
+    "Separate treatment of exposed information and observed account activity",
+    "Three short FAQs",
+    "Primary-source citations placed beside the supported advice"
+  ],
+  "sources": [
+    {
+      "publisher": "Google Account Help",
+      "url": "https://support.google.com/accounts/answer/6294825?hl=th",
+      "supports_en": "Review unfamiliar activity and devices, recovery information, email forwarding, two-step verification, and the email provider's own recovery process."
+    },
+    {
+      "publisher": "UK National Cyber Security Centre",
+      "url": "https://www.ncsc.gov.uk/section/respond-recover/hacked-accounts",
+      "supports_en": "Change reused passwords, sign out connected sessions, alert contacts about unauthorized messages, check financial activity, and contact the bank directly."
+    },
+    {
+      "publisher": "US Federal Trade Commission Consumer Advice",
+      "url": "https://consumer.ftc.gov/articles/how-recognize-avoid-phishing-scams",
+      "supports_en": "Avoid supplying more information through suspicious messages and use independently known contact channels."
+    }
+  ],
+  "prepared_date": "2026-10-27"
+}
