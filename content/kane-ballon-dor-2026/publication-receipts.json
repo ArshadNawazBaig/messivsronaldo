@@ -1,0 +1,43 @@
+{
+  "origin": "https://messivsronaldo17.com",
+  "releaseHash": "3efdde4ea7ed9d9453bbb60fb5a155c16a988eb2c7e906c8b33883e04a34dee7",
+  "verifiedAt": "2026-10-27T16:46:18.724Z",
+  "allThreeCmsRecordsVerified": true,
+  "unrelatedRecordsChecked": 48,
+  "changedUnrelatedRecords": [],
+  "receipts": [
+    {
+      "id": "f61c59cf-e061-5a0d-a2de-bb096acb093b",
+      "locale": "en",
+      "slug": "ballon-dor-winner-2026-harry-kane",
+      "title": "Ballon d’Or Winner 2026: Harry Kane’s Stats, Voting Rules and Historic Win",
+      "url": "https://messivsronaldo17.com/insights/ballon-dor-winner-2026-harry-kane",
+      "revision": 1,
+      "publishedAt": "2026-10-27T16:46:14.775Z",
+      "updatedAt": "2026-10-27T16:46:14.775Z",
+      "draftHash": "1b8f724f72b761fec78d56b1f0a8b5e070769f011409ea18aa72c493191b7dfe"
+    },
+    {
+      "id": "0e6dd7a6-0c51-517b-a02c-6b05d6cf7ffe",
+      "locale": "fr",
+      "slug": "ballon-dor-winner-2026-harry-kane",
+      "title": "Ballon d’Or 2026 : Harry Kane sacré, ses statistiques et les règles du vote",
+      "url": "https://messivsronaldo17.com/fr/insights/ballon-dor-winner-2026-harry-kane",
+      "revision": 1,
+      "publishedAt": "2026-10-27T16:46:15.440Z",
+      "updatedAt": "2026-10-27T16:46:15.440Z",
+      "draftHash": "0ba2f8556e1f25c8225aeb94ae35373a72a2a561b807e2597d97d5eabc55638d"
+    },
+    {
+      "id": "d3c4bd06-1b74-56a5-a10c-c82c4912b5ff",
+      "locale": "es",
+      "slug": "ballon-dor-winner-2026-harry-kane",
+      "title": "Balón de Oro 2026: Harry Kane gana, sus estadísticas y las reglas del voto",
+      "url": "https://messivsronaldo17.com/es/insights/ballon-dor-winner-2026-harry-kane",
+      "revision": 1,
+      "publishedAt": "2026-10-27T16:46:16.595Z",
+      "updatedAt": "2026-10-27T16:46:16.595Z",
+      "draftHash": "d8db934ac6109ddd91720b9d573899bd4476824c1c670e2d2faeb704938bca5b"
+    }
+  ]
+}

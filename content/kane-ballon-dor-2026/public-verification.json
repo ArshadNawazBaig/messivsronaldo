@@ -1,0 +1,70 @@
+{
+  "verifiedAt": "2026-10-27T16:47:15.572Z",
+  "checks": [
+    {
+      "locale": "en",
+      "url": "https://messivsronaldo17.com/insights/ballon-dor-winner-2026-harry-kane",
+      "status": 200,
+      "titleVerified": true,
+      "allArticleParagraphsVerified": true,
+      "tablesVerified": 3,
+      "sourcesVerified": 13,
+      "canonicalVerified": true,
+      "alternateLanguagesVerified": [
+        "en",
+        "fr",
+        "es",
+        "x-default"
+      ],
+      "indexable": true,
+      "structuredDataVerified": true,
+      "desktopOverflow": false,
+      "mobileOverflow": false,
+      "renderedWithoutJavaScript": true
+    },
+    {
+      "locale": "fr",
+      "url": "https://messivsronaldo17.com/fr/insights/ballon-dor-winner-2026-harry-kane",
+      "status": 200,
+      "titleVerified": true,
+      "allArticleParagraphsVerified": true,
+      "tablesVerified": 3,
+      "sourcesVerified": 13,
+      "canonicalVerified": true,
+      "alternateLanguagesVerified": [
+        "en",
+        "fr",
+        "es",
+        "x-default"
+      ],
+      "indexable": true,
+      "structuredDataVerified": true,
+      "desktopOverflow": false,
+      "mobileOverflow": false,
+      "renderedWithoutJavaScript": true
+    },
+    {
+      "locale": "es",
+      "url": "https://messivsronaldo17.com/es/insights/ballon-dor-winner-2026-harry-kane",
+      "status": 200,
+      "titleVerified": true,
+      "allArticleParagraphsVerified": true,
+      "tablesVerified": 3,
+      "sourcesVerified": 13,
+      "canonicalVerified": true,
+      "alternateLanguagesVerified": [
+        "en",
+        "fr",
+        "es",
+        "x-default"
+      ],
+      "indexable": true,
+      "structuredDataVerified": true,
+      "desktopOverflow": false,
+      "mobileOverflow": false,
+      "renderedWithoutJavaScript": true
+    }
+  ],
+  "sitemapIncludesAllThreeEditions": true,
+  "readingRoomsIncludeAllThreeEditions": true
+}
