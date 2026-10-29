@@ -1499,5 +1499,6 @@
   "If you mean January–December instead, use the calendar-year records. The main table on this page compares both players in the same 2008/09 club season.": "إذا كنت تقصد الفترة من يناير إلى ديسمبر، فراجع سجلات السنوات الميلادية. يقارن الجدول الرئيسي في هذه الصفحة اللاعبين في موسم الأندية نفسه 2008/09.",
   "2007/08 club season": "موسم الأندية 2007/08",
   "2008 calendar year": "السنة الميلادية 2008",
-  "2009 calendar year": "السنة الميلادية 2009"
+  "2009 calendar year": "السنة الميلادية 2009",
+  "Season totals include the reviewed {0} snapshot plus verified club matches through {1}. See the public update log for those additions.": "تشمل إجماليات الموسم البيانات التي تمت مراجعتها في {0}، مضافًا إليها مباريات الأندية التي تم التحقق منها حتى {1}. ترد هذه الإضافات في سجل التحديثات العام."
 }

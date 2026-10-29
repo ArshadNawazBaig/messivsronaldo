@@ -1499,5 +1499,6 @@
   "If you mean January–December instead, use the calendar-year records. The main table on this page compares both players in the same 2008/09 club season.": "หากหมายถึงช่วงเดือนมกราคมถึงธันวาคม ให้ดูสถิติตามปีปฏิทิน ตารางหลักในหน้านี้เปรียบเทียบผู้เล่นทั้งสองคนในฤดูกาลสโมสร 2008/09 เดียวกัน",
   "2007/08 club season": "ฤดูกาลสโมสร 2007/08",
   "2008 calendar year": "ปีปฏิทิน 2008",
-  "2009 calendar year": "ปีปฏิทิน 2009"
+  "2009 calendar year": "ปีปฏิทิน 2009",
+  "Season totals include the reviewed {0} snapshot plus verified club matches through {1}. See the public update log for those additions.": "สถิติรวมของฤดูกาลประกอบด้วยข้อมูลที่ตรวจสอบเมื่อ {0} และการแข่งขันสโมสรที่ยืนยันแล้วจนถึง {1} ดูรายการที่เพิ่มได้ในบันทึกการอัปเดตสาธารณะ"
 }

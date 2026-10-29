@@ -9,7 +9,7 @@ import { EarlySeasonComparison } from "@/components/early-season-comparison";
 import Link from "@/components/localized-link";
 import { PageContext } from "@/components/page-context";
 import { PlayerMatchup } from "@/components/player-matchup";
-import { clubSeasons, clubSeasonsReviewed, clubSeasonTitle, clubSeasonDescription, clubSeasonRows } from "@/lib/club-seasons";
+import { clubSeasons, clubSeasonReviewDate, clubSeasonTitle, clubSeasonDescription, clubSeasonRows } from "@/lib/club-seasons";
 import { getI18n } from "@/lib/i18n/server";
 import { translatedDate } from "@/lib/i18n/date-format";
 import { pageMetadata } from "@/lib/site";
@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props) {
   const season = clubSeasons.find(item => item.slug === slug);
   if (!season) return {};
   const { t, locale } = await getI18n();
-  const cutoff = t("In progress; source reviewed {0}.", { 0: translatedDate(clubSeasonsReviewed, locale)! });
+  const cutoff = t("In progress; source reviewed {0}.", { 0: translatedDate(clubSeasonReviewDate(season), locale)! });
   return pageMetadata(clubSeasonTitle(season), `${t(clubSeasonDescription(season))}${season.inProgress ? ` ${cutoff}` : ""}`, `/club-stats/${slug}`);
 }
 
@@ -33,7 +33,7 @@ export default async function ClubSeasonPage({ params }: Props) {
   if (!season) notFound();
   const { t, locale, numberLocale } = await getI18n();
   const title = t(clubSeasonTitle(season));
-  const reviewed = translatedDate(clubSeasonsReviewed, locale)!;
+  const reviewed = translatedDate(clubSeasonReviewDate(season), locale)!;
   const description = `${t(clubSeasonDescription(season))}${season.inProgress ? ` ${t("In progress; source reviewed {0}.", { 0: reviewed })}` : ""}`;
   const index = clubSeasons.indexOf(season);
   const previous = clubSeasons[index - 1];
@@ -53,7 +53,7 @@ export default async function ClubSeasonPage({ params }: Props) {
     <PlayerMatchup values={season.stats.goals} label={t("Goals")} accessibleLabel={t("goals")} context={`${season.label} · ${t("All club competitions")}`} details={{
       messi: t("{0} appearances · {1} minutes", { 0: fmt(season.stats.appearances.messi), 1: fmt(season.stats.minutes.messi) }),
       ronaldo: t("{0} appearances · {1} minutes", { 0: fmt(season.stats.appearances.ronaldo), 1: fmt(season.stats.minutes.ronaldo) }),
-    }} exportData={{ title: "Club season goals", context: `${season.label} · All club competitions`, note: `Source reviewed ${clubSeasonsReviewed}${season.inProgress ? " · Incomplete season" : ""}${season.alignedPeriod ? " · Messi in the same period as Ronaldo's season" : ""}` }} />
+    }} exportData={{ title: "Club season goals", context: `${season.label} · All club competitions`, note: `Source reviewed ${clubSeasonReviewDate(season)}${season.inProgress ? " · Incomplete season" : ""}${season.alignedPeriod ? " · Messi in the same period as Ronaldo's season" : ""}` }} />
     <section className={styles.clubSummary} aria-labelledby="club-season-summary" data-club-season-summary>
       <header className={styles.seasonHeading}>
         <div>
@@ -74,6 +74,7 @@ export default async function ClubSeasonPage({ params }: Props) {
           <span>{t("Source reviewed {0}.", { 0: reviewed })}</span>
         </div>
         {season.inProgress && <p>{t("This season is incomplete. Figures are a reviewed snapshot and do not update automatically.")}</p>}
+        {season.updates && <p>{t("Season totals include the reviewed {0} snapshot plus verified club matches through {1}. See the public update log for those additions.", { 0: translatedDate(season.updates.baselineThrough, locale)!, 1: translatedDate(season.updates.through, locale)! })} <Link href="/updates">{t("Published match updates")}</Link></p>}
         <details>
           <summary>{t("Source & definition")}</summary>
           <p>{t("Club competitions only. National-team matches and club friendlies are excluded.")}</p>

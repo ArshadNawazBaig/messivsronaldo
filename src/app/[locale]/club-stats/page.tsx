@@ -32,6 +32,7 @@ export default async function ClubSeasonsPage() {
       <p>{t("Club competitions only. National-team matches and club friendlies are excluded.")}</p>
       <p>{t("From 2023/2024, Messi’s figures use the same period as Ronaldo’s club season, rather than a full MLS calendar season.")}</p>
       <p>{t("Source reviewed {0}.", { 0: translatedDate(clubSeasonsReviewed, locale)! })} 2026/2027: {t("This season is incomplete. Figures are a reviewed snapshot and do not update automatically.")}</p>
+      {clubSeasons.filter(season => season.updates).map(season => <p key={season.slug}>{season.label}: {t("Season totals include the reviewed {0} snapshot plus verified club matches through {1}. See the public update log for those additions.", { 0: translatedDate(season.updates!.baselineThrough, locale)!, 1: translatedDate(season.updates!.through, locale)! })} <Link href="/updates">{t("Published match updates")}</Link></p>)}
       <Link href="/seasons">{t("All years & seasons")}</Link>
     </section>
   </div>;

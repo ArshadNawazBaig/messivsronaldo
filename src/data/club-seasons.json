@@ -609,21 +609,38 @@
       "alignedPeriod": true,
       "stats": {
         "goals": {
-          "messi": 12,
-          "ronaldo": 3
+          "messi": 16,
+          "ronaldo": 9
         },
         "assists": {
-          "messi": 6,
+          "messi": 7,
           "ronaldo": 0
         },
         "appearances": {
-          "messi": 13,
-          "ronaldo": 7
+          "messi": 18,
+          "ronaldo": 12
         },
         "minutes": {
-          "messi": 1072,
-          "ronaldo": 513
+          "messi": 1466,
+          "ronaldo": 963
         }
+      },
+      "updates": {
+        "baselineThrough": "2026-09-29",
+        "through": "2026-10-29",
+        "reviewedAt": "2026-10-30",
+        "recordIds": [
+          "api:1490513:messi",
+          "api:1490526:messi",
+          "api:1490543:messi",
+          "api:1490558:messi",
+          "api:1603042:ronaldo",
+          "api:1603059:ronaldo",
+          "api:1603063:ronaldo",
+          "api:1629931:ronaldo",
+          "manual:mls:2026-10-28:messi",
+          "manual:spl:2026-10-29:ronaldo"
+        ]
       }
     }
   ]

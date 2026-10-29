@@ -1499,5 +1499,6 @@
   "If you mean January–December instead, use the calendar-year records. The main table on this page compares both players in the same 2008/09 club season.": "Si buscas el periodo de enero a diciembre, consulta los años naturales. La tabla principal de esta página compara a ambos jugadores en la misma temporada 2008/09 de clubes.",
   "2007/08 club season": "Temporada 2007/08 de clubes",
   "2008 calendar year": "Año natural 2008",
-  "2009 calendar year": "Año natural 2009"
+  "2009 calendar year": "Año natural 2009",
+  "Season totals include the reviewed {0} snapshot plus verified club matches through {1}. See the public update log for those additions.": "Los totales de la temporada incluyen el registro revisado del {0} y los partidos de clubes verificados hasta el {1}. Consulta esas incorporaciones en el registro público de actualizaciones."
 }
