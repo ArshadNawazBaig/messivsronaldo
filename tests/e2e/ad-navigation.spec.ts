@@ -5,13 +5,37 @@ import { expect, test, type Page } from "@playwright/test";
 test.beforeEach(async ({ page }) => {
   await page.route("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js*", route => route.fulfill({
     contentType: "application/javascript",
-    body: "document.documentElement.dataset.adTestPath = location.pathname;",
+    body: "document.documentElement.dataset.adTestPath = location.pathname; document.documentElement.dataset.adTestPause = String(window.adsbygoogle?.pauseAdRequests);",
   }));
 });
 
 async function adsEnabled(page: Page) {
   return page.locator("#rivalry-adsense-state").evaluateAll(nodes => nodes.some(node => node.textContent?.includes("pauseAdRequests=0")));
 }
+
+test("advertising initializes before slow images finish loading", async ({ page }) => {
+  let releaseImages!: () => void;
+  const imagesReady = new Promise<void>(resolve => { releaseImages = resolve; });
+  let heldImages = 0;
+  await page.route("**/*", async route => {
+    if (route.request().resourceType() === "image") {
+      heldImages++;
+      await imagesReady;
+    }
+    await route.fallback();
+  });
+  try {
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+    test.skip(!(await adsEnabled(page)), "Requires the advertising-enabled preview.");
+    await expect(page.locator("html")).toHaveAttribute("data-ad-test-path", "/");
+    await expect(page.locator("html")).toHaveAttribute("data-ad-test-pause", "0");
+    expect(heldImages).toBeGreaterThan(0);
+    expect(await page.evaluate(() => document.readyState)).not.toBe("complete");
+    await expect(page.locator("script#rivalry-adsense")).toHaveCount(1);
+  } finally {
+    releaseImages();
+  }
+});
 
 for (const prefix of ["", "/fr"]) {
   test(`public page navigation initializes advertising for the destination (${prefix || "English"})`, async ({ page }) => {
