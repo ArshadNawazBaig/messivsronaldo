@@ -12,7 +12,7 @@ import { ballonReviewed } from "./ballon-articles";
 import { discoveryUpdated } from "./content-discovery";
 import { socialProfilesUpdated } from "./social-profiles";
 import { semanticContentUpdated } from "./page-semantics";
-import { clubSeasons, clubSeasonsReviewed, clubSeasonTitle } from "./club-seasons";
+import { clubSeasons, clubSeasonsReviewed, clubSeasonTitle, clubSeasonEditorialRevisions } from "./club-seasons";
 import { homeContentUpdated } from "./home-content";
 
 export type PublicPage = { path: string; title: string; group: string; updated?: string };
@@ -51,7 +51,7 @@ export function getPublicPages(years: readonly { year: number }[], snapshotDate:
     { path: "/seasons", title: "All years & seasons", group: "Calendar years", updated: [snapshotDate, semanticContentUpdated, archiveContentUpdated].sort().at(-1) },
     ...years.map(({ year }) => ({ path: `/seasons/${year}`, title: calendarYearTitle(year), group: "Calendar years", updated: [snapshotDate, semanticContentUpdated, archiveContentUpdated].sort().at(-1) })),
     { path: "/club-stats", title: "All club seasons", group: "Club seasons", updated: clubSeasonsReviewed },
-    ...clubSeasons.map(season => ({ path: `/club-stats/${season.slug}`, title: clubSeasonTitle(season), group: "Club seasons", updated: [clubSeasonsReviewed, archiveContentUpdated].sort().at(-1) })),
+    ...clubSeasons.map(season => ({ path: `/club-stats/${season.slug}`, title: clubSeasonTitle(season), group: "Club seasons", updated: [clubSeasonsReviewed, archiveContentUpdated, clubSeasonEditorialRevisions[season.slug] ?? ""].sort().at(-1) })),
     ...seasons.map(season => ({ path: `/seasons/${season.slug}`, title: `Messi vs Ronaldo, ${season.label}`, group: "Spanish-season archive", updated: [semanticContentUpdated, archiveContentUpdated].sort().at(-1) })),
     { path: "/insights", title: "The reading room", group: "Articles", updated: latestArticle },
     ...entries.map(article => ({ path: `/insights/${article.slug}`, title: article.title, group: "Articles", updated: [discoveryUpdated, article.updated ?? "2026-09-21"].sort().at(-1) })),

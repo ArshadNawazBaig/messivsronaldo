@@ -6,6 +6,7 @@ import { ratio } from "./football";
 // Since 2023/2024, Messi's sample follows the source's Ronaldo-season period.
 export const clubSeasons = snapshot.seasons;
 export const clubSeasonsReviewed = snapshot.reviewedAt;
+export const clubSeasonEditorialRevisions: Record<string, string> = { "2008-2009": "2026-10-30" };
 export type ClubSeason = (typeof clubSeasons)[number];
 export const clubSeasonTitle = (season: ClubSeason) => `Messi vs Ronaldo ${season.label}: Season Goals & Stats`;
 export const clubSeasonDescription = (season: ClubSeason) => `${season.label} club season: Messi ${season.stats.goals.messi} goals and ${season.stats.assists.messi} assists; Ronaldo ${season.stats.goals.ronaldo} goals and ${season.stats.assists.ronaldo} assists. Compare appearances, minutes and scoring rates.`;

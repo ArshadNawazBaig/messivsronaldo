@@ -5,6 +5,7 @@ import { PeriodReading } from "@/components/period-reading";
 import { clubSeasonNotes } from "@/lib/period-analysis";
 import { ClubSeasonChart } from "@/components/record-charts";
 import { ClubSeasonNavigation } from "@/components/club-season-navigation";
+import { EarlySeasonComparison } from "@/components/early-season-comparison";
 import Link from "@/components/localized-link";
 import { PageContext } from "@/components/page-context";
 import { PlayerMatchup } from "@/components/player-matchup";
@@ -46,6 +47,7 @@ export default async function ClubSeasonPage({ params }: Props) {
       <span className="eyebrow">{t("CLUB SEASON IN FOCUS")}</span>
       <h1>{title}</h1>
       <p>{description}</p>
+      {slug === "2008-2009" && <p><Link href="#ronaldo-2008-messi-2009">{t("Ronaldo 2008 vs Messi 2009: comparing different seasons")}</Link></p>}
       {season.alignedPeriod && <p>{t("Messi’s club figures cover the same period as Ronaldo’s season. This is not a complete MLS calendar season.")}</p>}
     </div></div>
     <PlayerMatchup values={season.stats.goals} label={t("Goals")} accessibleLabel={t("goals")} context={`${season.label} · ${t("All club competitions")}`} details={{
@@ -85,6 +87,7 @@ export default async function ClubSeasonPage({ params }: Props) {
         {next && <Link href={`/club-stats/${next.slug}`} rel="next">{t("Next: {0}", { 0: next.label })}</Link>}
       </nav>
     </section>
+    {slug === "2008-2009" && <EarlySeasonComparison />}
     <PeriodReading sample={season.stats} previous={previous?.alignedPeriod === season.alignedPeriod ? previous?.stats : undefined} note={clubSeasonNotes[slug]} source={season.source} period={season.label} incomplete={season.inProgress} />
     <ClubSeasonChart selected={slug} />
     <ClubSeasonNavigation selected={slug} />
